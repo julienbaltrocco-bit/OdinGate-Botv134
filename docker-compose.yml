@@ -1,0 +1,60 @@
+# Self-hosted stack: Postgres, MinIO (S3-compatible media), web app, worker.
+# Usage: cp .env.example .env (fill secrets) && docker compose up -d --build
+# First admin: docker compose run --rm web pnpm seed --email you@example.com --password '…'
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: contentengine
+      POSTGRES_USER: contentengine
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U contentengine"]
+      interval: 5s
+      retries: 10
+
+  minio:
+    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+    restart: unless-stopped
+    command: server /data --console-address :9001
+    environment:
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY_ID:?set S3_ACCESS_KEY_ID}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_ACCESS_KEY:?set S3_SECRET_ACCESS_KEY}
+    volumes: [minio:/data]
+    ports: ["9000:9000"]
+
+  migrate:
+    build: .
+    command: ["pnpm", "db:migrate"]
+    env_file: .env
+    environment: &dbenv
+      DATABASE_URL: postgres://contentengine:${POSTGRES_PASSWORD}@db:5432/contentengine
+    depends_on:
+      db: { condition: service_healthy }
+
+  web:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment: *dbenv
+    ports: ["3000:3000"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+    volumes: [media:/app/data]
+
+  worker:
+    build: .
+    restart: unless-stopped
+    command: ["pnpm", "worker"]
+    env_file: .env
+    environment: *dbenv
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+    volumes: [media:/app/data]
+
+volumes:
+  pgdata:
+  minio:
+  media:
