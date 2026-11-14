@@ -631,3 +631,20 @@ erst in Stufe 3 angesehen. Unabhängig vom Ausgang wird alles berichtet.
 Vorwissen, offen benannt: Der Prüfzeitraum ist für Trend und Paar-Handel bekannt, für diese Idee nicht. Ich weiß,
 dass Coins im Prüfzeitraum überwiegend gefallen sind; die Beta-Neutralität soll verhindern, dass der Baustein nur
 davon lebt. Gesamtzahl der Versuche danach: 70 Einzelhypothesen plus Massentest.
+
+# Runde 13: Ergebnis (14.11.2026)
+
+Zahlen in `suche_runde13.json`.
+
+- **Stufe 1 durchgefallen.** Entwicklung A+B, vor Gebühren: D1 +10,3 %, D2 −8,2 %, zusammen +2,1 % in gut
+  dreieinhalb Jahren bei einem Einbruch von 51 %. Netto mit Rebate: D1 +10,2 %, D2 −8,3 %.
+- Die späteren Stufen wurden nicht gerechnet. **Der Prüfzeitraum und die Gruppen C und D wurden nicht angesehen.**
+- Gegenrechnung ohne Rechenkern (Gewichte stündlich auf den Sollwert zurückgesetzt, ohne Kosten und Funding):
+  D1 −0,2 %, D2 +12,1 %, Sharpe −0,01 und 0,55. Auch so besteht eine Hälfte nicht. Die beiden Rechnungen
+  unterscheiden sich, weil der Rechenkern die Stückzahl bis zur nächsten Gewichtsänderung hält und die Positionen
+  dazwischen auseinanderlaufen. In keiner der beiden Bauarten ist der Baustein in beiden Hälften positiv.
+- Der Baustein hält fast durchgehend BTC, BNB und TRX long und NEAR, AAVE, AVAX short. Das ist eher eine Dauerwette
+  auf wenige Coins als eine breit gestreute Quelle.
+
+**Runde 13: kein zweiter Ertragsbringer.** Keine Nachbesserung der Einstellung. Stand: 70 Einzelhypothesen plus
+Massentest, weiterhin nur der Trend.
