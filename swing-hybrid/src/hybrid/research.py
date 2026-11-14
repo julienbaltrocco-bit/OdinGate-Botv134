@@ -21,18 +21,33 @@ TTL = 3            # 15 Minuten Standzeit je Order
 BARS_H = 12
 
 
-def markt(coins) -> SimpleNamespace:
-    idx = pd.date_range(START, ENDE, freq="5min", inclusive="left")
+VOR_START, VOR_ENDE = "2020-02-01 00:00", START   # Vorperiode für die Bestätigung (Runde 4)
+
+
+def _lesen(art: str, coin: str, vor: bool) -> pd.DataFrame:
+    teile = []
+    for ordner in ([art + "_vor", art] if vor else [art]):
+        pfad = DATA / "candles" / ordner / f"{coin}USDT.parquet"
+        if pfad.exists():
+            d = pd.read_parquet(pfad)
+            d.index = d.index.astype("datetime64[ns]")
+            teile.append(d)
+    df = pd.concat(teile)
+    return df[~df.index.duplicated()].sort_index()
+
+
+def markt(coins, start=START, ende=ENDE, vor=False) -> SimpleNamespace:
+    """`vor=True` nimmt die Vorperiode dazu. Vor dem Handelsstart eines Coins steht der Kurs still (kein Signal, kein Handel)."""
+    idx = pd.date_range(start, ende, freq="5min", inclusive="left")
     f = {k: np.empty((len(coins), len(idx))) for k in ("o", "h", "l", "c", "atr", "fund")}
     h1 = {}
     for j, coin in enumerate(coins):
-        df = pd.read_parquet(DATA / "candles/5m" / f"{coin}USDT.parquet")
-        df.index = df.index.astype("datetime64[ns]")
+        df = _lesen("5m", coin, vor)
         k = df.reindex(idx)
         luecke = k["close"].isna()
-        close = k["close"].ffill()
+        close = k["close"].ffill().bfill()
         if close.isna().any():
-            raise ValueError(f"{coin}: keine Kerzen am Beginn")
+            raise ValueError(f"{coin}: keine Kerzen im Zeitraum")
         for name, sp in (("o", "open"), ("h", "high"), ("l", "low")):
             f[name][j] = k[sp].where(~luecke, close).to_numpy()
         f["c"][j] = close.to_numpy()
@@ -44,8 +59,8 @@ def markt(coins) -> SimpleNamespace:
         a = tr.rolling(14).mean()
         a.index = a.index + pd.Timedelta(hours=1)
         f["atr"][j] = a.reindex(idx.union(a.index)).ffill().reindex(idx).to_numpy()
-        fr = pd.read_parquet(DATA / "candles/funding" / f"{coin}USDT.parquet")["rate"]
-        fr.index = fr.index.astype("datetime64[ns]").floor("5min")
+        fr = _lesen("funding", coin, vor)["rate"]
+        fr.index = fr.index.floor("5min")
         f["fund"][j] = fr[~fr.index.duplicated()].reindex(idx).fillna(0.0).to_numpy()
     tage = idx.normalize()
     return SimpleNamespace(index=idx, coins=list(coins), day=np.asarray((tage - tage[0]).days, dtype=np.int64),

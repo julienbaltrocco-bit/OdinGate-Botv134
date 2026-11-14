@@ -4,8 +4,9 @@ Stand 14.11.2026. Historische Simulation, keine Anlageberatung. Vergangene Ergeb
 
 ## Ergebnis
 
-**Es gibt einen Kandidaten, der alle vorab festgelegten Hürden besteht und deine Vorgabe auf dem Papier erfüllt.
-Er ist aber dünn, und ich würde ihn nicht „bewiesenen Edge“ nennen.**
+**Es gibt einen Kandidaten, der alle vorab festgelegten Hürden besteht, deine Vorgabe auf dem Papier erfüllt und
+sich auf frischen Daten bestätigt hat (20 weitere Coins, dazu die Jahre 2020–2021). Der Vorteil ist klein, und
+gemessen an deinem Kapital bringt er wenig Geld.**
 
 - **Vor Gebühren profitabel:** ja, in jedem Kalenderjahr seit 2021.
 - **Netto mit Rebate profitabel:** ja, in jedem Kalenderjahr. Im Prüfzeitraum aber nur +2,4 % in 19 Monaten.
@@ -14,9 +15,11 @@ Er ist aber dünn, und ich würde ihn nicht „bewiesenen Edge“ nennen.**
 - **Größter Einbruch:** 11 % im Prüfzeitraum, 10 % in der Entwicklung (Grenze 15 %).
 - **Der Haken:** Das hält nur bei Hebel 0,2, also wenn nur ein Fünftel des Kontos im Markt ist. Bei 5.000 $ sind
   das etwa 0,80 $ Rebate und 0,21 $ Nettogewinn pro Tag.
+- **Breiter gestreut wird es etwas besser:** Über 40 Coins bringt derselbe Kandidat im Prüfzeitraum +5,5 % statt +2,4 %,
+  bei 9 % Einbruch. Mehr Hebel erlaubt die Streuung aber nicht.
 
 Meine Empfehlung: als Vorwärtstest mit Kleinstbetrag laufen lassen, um die echte Slippage bei Yubit zu messen.
-Nicht hochfahren, bevor diese Zahl vorliegt.
+Nicht hochfahren, bevor diese Zahl vorliegt. Mit den historischen Daten ist jetzt alles geprüft, was sich prüfen lässt.
 
 ## Der Kandidat in einfachen Worten
 
@@ -93,6 +96,62 @@ deines Labors: In den letzten 19 Monaten ist der Vorteil statistisch nicht gesic
 Dieser Wert hängt an der Füllannahme, die sich mit Kerzen nicht absichern lässt. Die sofortige Ausführung ist die
 vorsichtige Untergrenze.
 
+## Bestätigung auf frischen Daten (Runde 4)
+
+Der Kandidat wurde unverändert auf Daten getestet, die in der Suche nie vorkamen. Vorab festgelegt war: bestätigt
+nur, wenn Gruppe C in Entwicklung und Prüfzeitraum und die Vorperiode netto positiv sind. **Ergebnis: bestätigt.**
+Alle Werte auf Hebel 0,2 umgerechnet, ohne Tageslimit.
+
+| Gruppe C (20 neue Coins) | Entwicklung | Prüfzeitraum |
+|---|---|---|
+| Handel vor Gebühren | +39,7 % | +11,1 % |
+| Handel nach voller Gebühr (ohne Rebate) | +16,0 % | +0,5 % |
+| **Netto mit Rebate** | +36,1 % | +9,5 % |
+
+| Vorperiode 02/2020–08/2021 | Coins | Handel vor Gebühren | Netto mit Rebate |
+|---|---|---|---|
+| Gruppe A | 10 | +40,9 % | +39,6 % |
+| Gruppe B | 10 | +16,8 % | +15,5 % |
+| Gruppe C | 20 | +46,3 % | +45,2 % |
+| alle zusammen | 40 | +37,6 % | +36,4 % |
+
+Gruppe C: XMR, ZEC, DASH, ALGO, VET, THETA, EGLD, SUSHI, COMP, SNX, CRV, 1INCH, GRT, SAND, MANA, AXS, CHZ, ENJ, KSM, ZIL. Die Vorperiode war ein starker Aufwärtsmarkt, in dem Trendfolge leichtes
+Spiel hatte; sie zählt deshalb weniger als Gruppe C. Nur Coins mit vollständiger Historie bis 2026 sind dabei, das
+schönt etwas.
+
+### Breites Portfolio: alle 40 Coins zusammen
+
+| Breites Portfolio (40 Coins), Hebel 0,2 | Entwicklung | Prüfzeitraum | Gesamt |
+|---|---|---|---|
+| Handel vor Gebühren | +37,8 % | +7,0 % | +44,8 % |
+| Rebate (85 %) | +20,2 % | +8,8 % | +29,0 % |
+| Handel nach voller Gebühr (ohne Rebate) | +14,0 % | −3,4 % | +10,7 % |
+| **Netto mit Rebate** | +34,2 % | +5,5 % | +39,7 % |
+| Größter Einbruch | 10 % | 9 % | 10 % |
+
+| Jahr | Handel vor Gebühren | Rebate | Netto mit Rebate |
+|---|---|---|---|
+| 2021 (ab 15.08.) | −0,1 % | +2,2 % | −0,5 % |
+| 2022 | +11,4 % | +5,0 % | +10,6 % |
+| 2023 | +4,9 % | +6,1 % | +3,8 % |
+| 2024 | +20,1 % | +5,3 % | +19,2 % |
+| 2025 | +4,5 % | +5,6 % | +3,5 % |
+| 2026 (bis 23.10.) | +4,1 % | +4,8 % | +3,2 % |
+
+- **Streuung senkt den Einbruch nicht genug für mehr Hebel.** Die Coins fallen und steigen zu sehr gemeinsam.
+  Der zulässige Hebel bleibt 0,2, das Rebate damit bei rund 5,6 % des Kapitals pro Jahr.
+- **Slippage im Prüfzeitraum** (netto mit Rebate): 0,000 % → +12,0 %, 0,025 % → +8,7 %, 0,050 % → +5,5 %, 0,075 % → +2,2 %, 0,100 % → −1,0 %. Die Schmerzgrenze liegt hier bei knapp 0,09 %.
+- **Zufallstest nur im Prüfzeitraum:** besser als 86 % der Zufallsvarianten, weiter unter der 90-%-Marke.
+
+| Kapital | Position je Coin | Volumen/Tag | Rebate/Tag | Netto/Tag (Prüfzeitraum) | Netto/Tag (gesamter Zeitraum) |
+|---|---|---|---|---|---|
+| 500 $ | 2,50 $ | 114 $ | 0,08 $ | 0,05 $ | 0,10 $ |
+| 1.000 $ | 5,00 $ | 228 $ | 0,15 $ | 0,10 $ | 0,21 $ |
+| 5.000 $ | 25,00 $ | 1.138 $ | 0,77 $ | 0,48 $ | 1,05 $ |
+
+Bei 40 Coins werden die Einzelpositionen sehr klein. Unter etwa 5.000 $ Kapital ist das breite Portfolio kaum
+handelbar, und ob Yubit alle diese Coins führt, weiß ich nicht.
+
 ## Der Weg dorthin
 
 Drei Runden, 40 Signal-Einstellungen, alles vorab im Protokoll festgelegt (`suche_protokoll.md`).
@@ -105,7 +164,11 @@ Drei Runden, 40 Signal-Einstellungen, alles vorab im Protokoll festgelegt (`such
 3. **Runde 3 (dieselben 10, Messfehler korrigiert):** 2 Finalisten. Einer fällt im Prüfzeitraum klar durch
    (4-Tage-Trend), der 14-Tage-Trend besteht alle fünf Stufen.
 
+4. **Runde 4 (keine Suche):** der Kandidat unverändert auf 20 frischen Coins und der Vorperiode 2020–2021. Bestätigt.
+
 Der Prüfzeitraum und die zweite Coin-Gruppe wurden erst in Runde 3 angesehen, und nur für diese zwei Finalisten.
+Mit Runde 4 sind alle frischen Daten verbraucht. Jede weitere Verbesserung am Rechner wäre ab hier Anpassung an
+bekannte Daten; neue Erkenntnis kommt nur noch aus dem Vorwärtstest.
 Wichtig für die Einordnung: Bei 40 Versuchen in drei Messaufbauten ist ein einzelner Treffer weniger wert als ein
 Treffer beim ersten Versuch.
 
@@ -139,4 +202,6 @@ Treffer beim ersten Versuch.
 
 - `suche_protokoll.md`: Regeln und Zwischenergebnisse aller drei Runden
 - `suche_stufe1.csv`, `suche_runde2_stufe1.csv`, `suche_runde3_stufe1.csv`: alle 40 Einstellungen mit Zahlen
-- `suche_runde3.json`, `kandidat.json`, `fuellmodell_diagnose.json`: Rohwerte zu diesem Bericht
+- `suche_runde3.json`, `suche_runde4.json`, `kandidat.json`, `fuellmodell_diagnose.json`: Rohwerte zu diesem Bericht
+- `../labor_strategie/trend_14d/strategie.py`: der Kandidat im Format deines Labors
+- `../scripts/vorwaertstest_auswerten.py`: wertet ein Protokoll echter Orders aus (Slippage gegen die Schmerzgrenze)
