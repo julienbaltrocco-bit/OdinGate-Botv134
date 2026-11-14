@@ -81,6 +81,16 @@ def lauf(art: str, fn, sym: str):
 
 
 if __name__ == "__main__":
-    for s in (sys.argv[1:] or SYMBOLE):
-        lauf("5m", kerzen_monat, s)
-        lauf("funding", funding_monat, s)
+    # Aufruf: kerzen_laden.py [--vor] [SYMBOL ...]   (--vor lädt die Vorperiode 01/2020–06/2021 in eigene Ordner)
+    args = sys.argv[1:]
+    endung = ""
+    if args and args[0] == "--vor":
+        args = args[1:]
+        MONATE[:] = [str(p) for p in pd.period_range("2020-01", "2021-06", freq="M")]
+        endung = "_vor"
+    for s in (args or SYMBOLE):
+        try:
+            lauf("5m" + endung, kerzen_monat, s)
+            lauf("funding" + endung, funding_monat, s)
+        except ValueError as e:  # keine einzige Monatsdatei vorhanden
+            print(f"{s}: keine Daten ({e})", flush=True)
