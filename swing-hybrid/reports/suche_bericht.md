@@ -4,9 +4,13 @@ Stand 14.11.2026. Historische Simulation, keine Anlageberatung. Vergangene Ergeb
 
 ## Ergebnis
 
-**Es gibt einen Kandidaten, der alle vorab festgelegten Hürden besteht, deine Vorgabe auf dem Papier erfüllt und
-sich auf frischen Daten bestätigt hat (20 weitere Coins, dazu die Jahre 2020–2021). Der Vorteil ist klein, und
-gemessen an deinem Kapital bringt er wenig Geld.**
+**Es gibt einen Kandidaten, der deine Vorgabe auf dem Papier erfüllt. Tieferes Graben (Runde 5) hat keinen
+zusätzlichen Edge gefunden und das Bild eher gedämpft: Auf einer zweiten frischen Coin-Gruppe bringt er im
+Prüfzeitraum netto null. Der Vorteil ist klein und bringt bei deinem Kapital wenig Geld.**
+
+Beste Gesamtschätzung über alle 60 getesteten Coins, Hebel 0,15: im Prüfzeitraum +2,7 % netto mit Rebate
+in 19 Monaten (davon +6,8 % Rebate), über gut fünf Jahre +27,6 %. Die Punkte darunter beziehen sich auf die
+ursprünglichen 10 Coins.
 
 - **Vor Gebühren profitabel:** ja, in jedem Kalenderjahr seit 2021.
 - **Netto mit Rebate profitabel:** ja, in jedem Kalenderjahr. Im Prüfzeitraum aber nur +2,4 % in 19 Monaten.
@@ -19,7 +23,7 @@ gemessen an deinem Kapital bringt er wenig Geld.**
   bei 9 % Einbruch. Mehr Hebel erlaubt die Streuung aber nicht.
 
 Meine Empfehlung: als Vorwärtstest mit Kleinstbetrag laufen lassen, um die echte Slippage bei Yubit zu messen.
-Nicht hochfahren, bevor diese Zahl vorliegt. Mit den historischen Daten ist jetzt alles geprüft, was sich prüfen lässt.
+Nicht hochfahren, bevor diese Zahl vorliegt.
 
 ## Der Kandidat in einfachen Worten
 
@@ -100,6 +104,7 @@ vorsichtige Untergrenze.
 
 Der Kandidat wurde unverändert auf Daten getestet, die in der Suche nie vorkamen. Vorab festgelegt war: bestätigt
 nur, wenn Gruppe C in Entwicklung und Prüfzeitraum und die Vorperiode netto positiv sind. **Ergebnis: bestätigt.**
+Runde 5 relativiert das: Eine weitere frische Gruppe (D) liegt im Prüfzeitraum bei null.
 Alle Werte auf Hebel 0,2 umgerechnet, ohne Tageslimit.
 
 | Gruppe C (20 neue Coins) | Entwicklung | Prüfzeitraum |
@@ -152,9 +157,59 @@ schönt etwas.
 Bei 40 Coins werden die Einzelpositionen sehr klein. Unter etwa 5.000 $ Kapital ist das breite Portfolio kaum
 handelbar, und ob Yubit alle diese Coins führt, weiß ich nicht.
 
+## Tiefer gegraben (Runde 5)
+
+Frage: Lässt sich aus dem Trend mehr holen, ohne den Einbruch zu erhöhen? Getestet wurden drei Arten der
+Risikosteuerung, eine Mischung aus vier Trendlängen und eine neue Ertragsquelle (Funding-Carry), auf 40 Coins.
+
+| Variante | Besteht beide Hälften | Schlechtere Hälfte (Sharpe) | Netto, Entwicklung (Hebel 1) | Einbruch (Hebel 1) |
+|---|---|---|---|---|
+| Basis (der Kandidat) | ja | 0,44 | +162,4 % | 35 % |
+| Ruhige Coins größer | ja | 0,45 | +141,6 % | 35 % |
+| In wilden Phasen kleiner | ja | 0,73 | +199,4 % | 41 % |
+| Beides zusammen | ja | 0,74 | +176,8 % | 41 % |
+| Mischung aus 4 Trendlängen | nein | −0,01 | +76,6 % | 42 % |
+| Funding-Carry | nein | −0,13 | +16,6 % | 10 % |
+
+- **Risikosteuerung sieht in der Entwicklung besser aus, hilft aber nicht.** Sie macht die beiden Hälften
+  gleichmäßiger, erhöht aber den Einbruch. Beim zulässigen Hebel (0,15 statt 0,20) bringt sie im Prüfzeitraum
+  +3,9 % statt +5,5 %. Auf der frischen Gruppe D ist sie nicht bestätigt.
+- **Funding-Carry fällt durch:** in der ersten Hälfte positiv, in der zweiten nicht mehr.
+- **Die Mischung aus Trendlängen fällt durch:** in der ersten Hälfte netto negativ.
+
+### Gegenprobe über alle vier Coin-Gruppen
+
+Der unveränderte Kandidat, auf Hebel 0,2 umgerechnet:
+
+| Gruppe | Coins | Handel vor Gebühren, Prüfzeitraum | Netto mit Rebate, Prüfzeitraum | Netto mit Rebate, Entwicklung |
+|---|---|---|---|---|
+| A | 10 | +4,0 % | +2,4 % | +36,7 % |
+| B | 10 | +2,0 % | +0,5 % | +21,0 % |
+| C (frisch in Runde 4) | 20 | +11,1 % | +9,5 % | +36,1 % |
+| D (frisch in Runde 5) | 20 | +1,6 % | −0,0 % | +21,9 % |
+
+Vor Gebühren ist der Handel in allen vier Gruppen und beiden Zeiträumen positiv. Netto mit Rebate bleibt im
+Prüfzeitraum aber nur in einer Gruppe (C) deutlich etwas übrig. Gruppe D: IOTA, NEO, ONT, QTUM, XTZ, RUNE, KAVA, BAT, ZRX, YFI, HBAR, ONE, ANKR, RLC, BAND, KNC, ZEN, CELR, COTI, SKL.
+
+| Alle 60 Coins, Hebel 0,15 | Entwicklung | Prüfzeitraum | Gesamt |
+|---|---|---|---|
+| Handel vor Gebühren | +27,5 % | +3,9 % | +31,4 % |
+| Rebate (85 %) | +15,1 % | +6,8 % | +21,9 % |
+| Handel nach voller Gebühr (ohne Rebate) | +9,7 % | −4,0 % | +5,7 % |
+| **Netto mit Rebate** | +24,8 % | +2,7 % | +27,6 % |
+| Größter Einbruch | 9 % | 8 % | 9 % |
+
+- **Jahr für Jahr netto:** 2021: −2,8 %, 2022: +7,8 %, 2023: +2,6 %, 2024: +15,8 %, 2025: +1,1 %, 2026: +3,1 %.
+- **Slippage im Prüfzeitraum:** 0,000 % → +7,7 %, 0,025 % → +5,2 %, 0,050 % → +2,7 %, 0,075 % → +0,3 %, 0,100 % → −2,2 %.
+- **Zufallstest nur im Prüfzeitraum:** besser als 86 % der Zufallsvarianten.
+- **In Dollar bei 5.000 $:** etwa 0,59 $ Rebate und 0,24 $ netto pro Tag im Prüfzeitraum,
+  0,73 $ netto pro Tag über den ganzen Zeitraum.
+
+Über 60 Coins sinkt der zulässige Hebel auf 0,15.
+
 ## Der Weg dorthin
 
-Drei Runden, 40 Signal-Einstellungen, alles vorab im Protokoll festgelegt (`suche_protokoll.md`).
+Fünf Runden, 47 Versuche, alles vorab im Protokoll festgelegt (`suche_protokoll.md`).
 
 1. **Runde 1 (30 Einstellungen, passive Limits):** 3 bestehen die Entwicklung, beide Finalisten fallen im Füll-Stress durch.
    Alle Gegenbewegungs-Ideen (Rücksetzer kaufen, schwache Coins kaufen) verlieren schon vor Gebühren.
@@ -166,9 +221,12 @@ Drei Runden, 40 Signal-Einstellungen, alles vorab im Protokoll festgelegt (`such
 
 4. **Runde 4 (keine Suche):** der Kandidat unverändert auf 20 frischen Coins und der Vorperiode 2020–2021. Bestätigt.
 
+5. **Runde 5 (7 Varianten, tiefer gegraben):** Risikosteuerung, Trend-Mischung, Funding-Carry. Kein Mehrwert.
+   Eine vierte, frische Coin-Gruppe zeigt den Kandidaten im Prüfzeitraum bei netto null.
+
 Der Prüfzeitraum und die zweite Coin-Gruppe wurden erst in Runde 3 angesehen, und nur für diese zwei Finalisten.
-Mit Runde 4 sind alle frischen Daten verbraucht. Jede weitere Verbesserung am Rechner wäre ab hier Anpassung an
-bekannte Daten; neue Erkenntnis kommt nur noch aus dem Vorwärtstest.
+Insgesamt sind es jetzt 47 Versuche. Der Kern des Befunds hat sich seit Runde 3 nicht mehr bewegt: ein kleiner
+Trend-Vorteil vor Gebühren, der nach Kosten nur mit Rebate und nur knapp trägt.
 Wichtig für die Einordnung: Bei 40 Versuchen in drei Messaufbauten ist ein einzelner Treffer weniger wert als ein
 Treffer beim ersten Versuch.
 
@@ -202,6 +260,6 @@ Treffer beim ersten Versuch.
 
 - `suche_protokoll.md`: Regeln und Zwischenergebnisse aller drei Runden
 - `suche_stufe1.csv`, `suche_runde2_stufe1.csv`, `suche_runde3_stufe1.csv`: alle 40 Einstellungen mit Zahlen
-- `suche_runde3.json`, `suche_runde4.json`, `kandidat.json`, `fuellmodell_diagnose.json`: Rohwerte zu diesem Bericht
+- `suche_runde3.json`, `suche_runde4.json`, `suche_runde5.json`, `gesamt_60.json`, `kandidat.json`, `fuellmodell_diagnose.json`: Rohwerte zu diesem Bericht
 - `../labor_strategie/trend_14d/strategie.py`: der Kandidat im Format deines Labors
 - `../scripts/vorwaertstest_auswerten.py`: wertet ein Protokoll echter Orders aus (Slippage gegen die Schmerzgrenze)

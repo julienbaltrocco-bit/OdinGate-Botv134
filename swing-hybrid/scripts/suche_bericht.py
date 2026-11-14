@@ -12,6 +12,8 @@ D = json.loads((ROOT / "reports/fuellmodell_diagnose.json").read_text())
 S1 = pd.read_csv(ROOT / "reports/suche_stufe1.csv")
 H = K["hebel"]
 R4 = json.loads((ROOT / "reports/suche_runde4.json").read_text())
+R5 = json.loads((ROOT / "reports/suche_runde5.json").read_text())
+G6 = json.loads((ROOT / "reports/gesamt_60.json").read_text())
 SV = json.loads((ROOT / "reports/swing_vergleich.json").read_text())
 sw = SV["momentum_vol_ls_baseline"]["pruef"]
 
@@ -24,7 +26,7 @@ def pz(x, n=1, vz=True):
 
 
 def zahl(x, n=2):
-    return f"{x:,.{n}f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    return f"{x:,.{n}f}".replace(",", "X").replace(".", ",").replace("X", ".").replace("-", "−")
 
 
 def usd(x, n=2):
@@ -95,6 +97,30 @@ for c in (500, 1000, 5000):
 kap_b = "\n".join(kap_b)
 sl_b = ", ".join(f"{zahl(float(k) / 100, 3)} % → {pz(v['N'])}" for k, v in R4["breit_slippage"].items())
 zb = R4["breit_zufall_pruefung"]
+# ---- Runde 5 und Gesamtschätzung
+gr = G6["gruppen"]
+H6 = G6["hebel"]
+a6 = G6["alle"]
+t6p, t6g = G6["tage"]["Pruefung"], G6["tage"]["Gesamt"]
+tab_gr = "\n".join(["| Gruppe | Coins | Handel vor Gebühren, Prüfzeitraum | Netto mit Rebate, Prüfzeitraum | Netto mit Rebate, Entwicklung |",
+                     "|---|---|---|---|---|"] + [
+    f"| {g}{' (frisch in Runde 4)' if g == 'C' else ' (frisch in Runde 5)' if g == 'D' else ''} | {n} | {pz(gr[g]['Pruefung']['G'] * H)} | "
+    f"{pz(gr[g]['Pruefung']['N'] * H)} | {pz(gr[g]['Entwicklung']['N'] * H)} |" for g, n in (("A", 10), ("B", 10), ("C", 20), ("D", 20))])
+tab_60 = "\n".join([
+    f"| Alle {G6['n_coins']} Coins, Hebel {zahl(H6, 2)} | Entwicklung | Prüfzeitraum | Gesamt |", "|---|---|---|---|",
+    f"| Handel vor Gebühren | {pz(a6['Entwicklung']['G'])} | {pz(a6['Pruefung']['G'])} | {pz(a6['Gesamt']['G'])} |",
+    f"| Rebate (85 %) | {pz(a6['Entwicklung']['R'])} | {pz(a6['Pruefung']['R'])} | {pz(a6['Gesamt']['R'])} |",
+    f"| Handel nach voller Gebühr (ohne Rebate) | {pz(a6['Entwicklung']['handel'])} | {pz(a6['Pruefung']['handel'])} | {pz(a6['Gesamt']['handel'])} |",
+    f"| **Netto mit Rebate** | {pz(a6['Entwicklung']['N'])} | {pz(a6['Pruefung']['N'])} | {pz(a6['Gesamt']['N'])} |",
+    f"| Größter Einbruch | {pz(a6['Entwicklung']['dd_mit'], 0, False)} | {pz(a6['Pruefung']['dd_mit'], 0, False)} | {pz(a6['Gesamt']['dd_mit'], 0, False)} |"])
+jahre_60 = ", ".join(f"{j}: {pz(v['N'])}" for j, v in G6["jahre"].items())
+sl_60 = ", ".join(f"{zahl(float(k) / 100, 3)} % → {pz(v['N'])}" for k, v in G6["slippage"].items())
+e5 = R5["entwicklung"]
+hb, hv = R5["hebel_basis"], R5[f"hebel_{R5['gewinnerin']}"]
+tab_5 = "\n".join(["| Variante | Besteht beide Hälften | Schlechtere Hälfte (Sharpe) | Netto, Entwicklung (Hebel 1) | Einbruch (Hebel 1) |", "|---|---|---|---|---|"] + [
+    f"| {nm} | {'ja' if e5[k]['besteht'] else 'nein'} | {zahl(e5[k]['score'])} | {pz(e5[k]['N'])} | {pz(e5[k]['dd_mit'], 0, False)} |"
+    for nm, k in (("Basis (der Kandidat)", "basis"), ("Ruhige Coins größer", "vol_coin"), ("In wilden Phasen kleiner", "vol_markt"),
+                  ("Beides zusammen", "vol_beide"), ("Mischung aus 4 Trendlängen", "mischung"), ("Funding-Carry", "carry"))])
 diag = D["tsmom_L168_biasTrue"]
 rebate_jahr = pr["R"] / tage_p * 365
 
@@ -104,9 +130,13 @@ Stand 14.11.2026. Historische Simulation, keine Anlageberatung. Vergangene Ergeb
 
 ## Ergebnis
 
-**Es gibt einen Kandidaten, der alle vorab festgelegten Hürden besteht, deine Vorgabe auf dem Papier erfüllt und
-sich auf frischen Daten bestätigt hat (20 weitere Coins, dazu die Jahre 2020–2021). Der Vorteil ist klein, und
-gemessen an deinem Kapital bringt er wenig Geld.**
+**Es gibt einen Kandidaten, der deine Vorgabe auf dem Papier erfüllt. Tieferes Graben (Runde 5) hat keinen
+zusätzlichen Edge gefunden und das Bild eher gedämpft: Auf einer zweiten frischen Coin-Gruppe bringt er im
+Prüfzeitraum netto null. Der Vorteil ist klein und bringt bei deinem Kapital wenig Geld.**
+
+Beste Gesamtschätzung über alle {G6['n_coins']} getesteten Coins, Hebel {zahl(H6, 2)}: im Prüfzeitraum {pz(a6['Pruefung']['N'])} netto mit Rebate
+in 19 Monaten (davon {pz(a6['Pruefung']['R'])} Rebate), über gut fünf Jahre {pz(a6['Gesamt']['N'])}. Die Punkte darunter beziehen sich auf die
+ursprünglichen 10 Coins.
 
 - **Vor Gebühren profitabel:** ja, in jedem Kalenderjahr seit 2021.
 - **Netto mit Rebate profitabel:** ja, in jedem Kalenderjahr. Im Prüfzeitraum aber nur {pz(pr['N'])} in 19 Monaten.
@@ -119,7 +149,7 @@ gemessen an deinem Kapital bringt er wenig Geld.**
   bei {pz(bp['dd_mit'], 0, False)} Einbruch. Mehr Hebel erlaubt die Streuung aber nicht.
 
 Meine Empfehlung: als Vorwärtstest mit Kleinstbetrag laufen lassen, um die echte Slippage bei Yubit zu messen.
-Nicht hochfahren, bevor diese Zahl vorliegt. Mit den historischen Daten ist jetzt alles geprüft, was sich prüfen lässt.
+Nicht hochfahren, bevor diese Zahl vorliegt.
 
 ## Der Kandidat in einfachen Worten
 
@@ -175,6 +205,7 @@ vorsichtige Untergrenze.
 
 Der Kandidat wurde unverändert auf Daten getestet, die in der Suche nie vorkamen. Vorab festgelegt war: bestätigt
 nur, wenn Gruppe C in Entwicklung und Prüfzeitraum und die Vorperiode netto positiv sind. **Ergebnis: bestätigt.**
+Runde 5 relativiert das: Eine weitere frische Gruppe (D) liegt im Prüfzeitraum bei null.
 Alle Werte auf Hebel {zahl(H, 1)} umgerechnet, ohne Tageslimit.
 
 {tab_c}
@@ -201,9 +232,41 @@ schönt etwas.
 Bei {n_breit} Coins werden die Einzelpositionen sehr klein. Unter etwa 5.000 $ Kapital ist das breite Portfolio kaum
 handelbar, und ob Yubit alle diese Coins führt, weiß ich nicht.
 
+## Tiefer gegraben (Runde 5)
+
+Frage: Lässt sich aus dem Trend mehr holen, ohne den Einbruch zu erhöhen? Getestet wurden drei Arten der
+Risikosteuerung, eine Mischung aus vier Trendlängen und eine neue Ertragsquelle (Funding-Carry), auf 40 Coins.
+
+{tab_5}
+
+- **Risikosteuerung sieht in der Entwicklung besser aus, hilft aber nicht.** Sie macht die beiden Hälften
+  gleichmäßiger, erhöht aber den Einbruch. Beim zulässigen Hebel ({zahl(hv['hebel'], 2)} statt {zahl(hb['hebel'], 2)}) bringt sie im Prüfzeitraum
+  {pz(hv['Pruefung']['N'])} statt {pz(hb['Pruefung']['N'])}. Auf der frischen Gruppe D ist sie nicht bestätigt.
+- **Funding-Carry fällt durch:** in der ersten Hälfte positiv, in der zweiten nicht mehr.
+- **Die Mischung aus Trendlängen fällt durch:** in der ersten Hälfte netto negativ.
+
+### Gegenprobe über alle vier Coin-Gruppen
+
+Der unveränderte Kandidat, auf Hebel {zahl(H, 1)} umgerechnet:
+
+{tab_gr}
+
+Vor Gebühren ist der Handel in allen vier Gruppen und beiden Zeiträumen positiv. Netto mit Rebate bleibt im
+Prüfzeitraum aber nur in einer Gruppe (C) deutlich etwas übrig. Gruppe D: {", ".join(R5["gruppe_d"])}.
+
+{tab_60}
+
+- **Jahr für Jahr netto:** {jahre_60}.
+- **Slippage im Prüfzeitraum:** {sl_60}.
+- **Zufallstest nur im Prüfzeitraum:** besser als {zahl(G6['zufall_pruefung']['perzentil'], 0)} % der Zufallsvarianten.
+- **In Dollar bei 5.000 $:** etwa {usd(a6['Pruefung']['R'] / t6p * 5000)} Rebate und {usd(a6['Pruefung']['N'] / t6p * 5000)} netto pro Tag im Prüfzeitraum,
+  {usd(a6['Gesamt']['N'] / t6g * 5000)} netto pro Tag über den ganzen Zeitraum.
+
+Über {G6['n_coins']} Coins sinkt der zulässige Hebel auf {zahl(H6, 2)}.
+
 ## Der Weg dorthin
 
-Drei Runden, 40 Signal-Einstellungen, alles vorab im Protokoll festgelegt (`suche_protokoll.md`).
+Fünf Runden, 47 Versuche, alles vorab im Protokoll festgelegt (`suche_protokoll.md`).
 
 1. **Runde 1 (30 Einstellungen, passive Limits):** {n_s1} bestehen die Entwicklung, beide Finalisten fallen im Füll-Stress durch.
    Alle Gegenbewegungs-Ideen (Rücksetzer kaufen, schwache Coins kaufen) verlieren schon vor Gebühren.
@@ -215,9 +278,12 @@ Drei Runden, 40 Signal-Einstellungen, alles vorab im Protokoll festgelegt (`such
 
 4. **Runde 4 (keine Suche):** der Kandidat unverändert auf 20 frischen Coins und der Vorperiode 2020–2021. Bestätigt.
 
+5. **Runde 5 (7 Varianten, tiefer gegraben):** Risikosteuerung, Trend-Mischung, Funding-Carry. Kein Mehrwert.
+   Eine vierte, frische Coin-Gruppe zeigt den Kandidaten im Prüfzeitraum bei netto null.
+
 Der Prüfzeitraum und die zweite Coin-Gruppe wurden erst in Runde 3 angesehen, und nur für diese zwei Finalisten.
-Mit Runde 4 sind alle frischen Daten verbraucht. Jede weitere Verbesserung am Rechner wäre ab hier Anpassung an
-bekannte Daten; neue Erkenntnis kommt nur noch aus dem Vorwärtstest.
+Insgesamt sind es jetzt 47 Versuche. Der Kern des Befunds hat sich seit Runde 3 nicht mehr bewegt: ein kleiner
+Trend-Vorteil vor Gebühren, der nach Kosten nur mit Rebate und nur knapp trägt.
 Wichtig für die Einordnung: Bei 40 Versuchen in drei Messaufbauten ist ein einzelner Treffer weniger wert als ein
 Treffer beim ersten Versuch.
 
@@ -251,7 +317,7 @@ Treffer beim ersten Versuch.
 
 - `suche_protokoll.md`: Regeln und Zwischenergebnisse aller drei Runden
 - `suche_stufe1.csv`, `suche_runde2_stufe1.csv`, `suche_runde3_stufe1.csv`: alle 40 Einstellungen mit Zahlen
-- `suche_runde3.json`, `suche_runde4.json`, `kandidat.json`, `fuellmodell_diagnose.json`: Rohwerte zu diesem Bericht
+- `suche_runde3.json`, `suche_runde4.json`, `suche_runde5.json`, `gesamt_60.json`, `kandidat.json`, `fuellmodell_diagnose.json`: Rohwerte zu diesem Bericht
 - `../labor_strategie/trend_14d/strategie.py`: der Kandidat im Format deines Labors
 - `../scripts/vorwaertstest_auswerten.py`: wertet ein Protokoll echter Orders aus (Slippage gegen die Schmerzgrenze)
 """

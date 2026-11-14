@@ -180,3 +180,66 @@ def sicht(l, von=None, bis=None) -> dict:
             "maker": k["maker_anteil"], "of": k["order_zu_fill"], "trades": k["trades"], "halte_h": k["haltedauer_h"],
             "sharpe": float(tg.mean() / tg.std() * np.sqrt(365)) if tg.std() > 0 else 0.0,
             "jahr_N": N / k["tage"] * 365, "anteil_coin": k["anteil_coin"], "anteil_monat": k["anteil_monat"]}
+
+
+# --------------------------------------------- Runde 5: Risikosteuerung und Carry ----
+def _trend(m, L=336):
+    c = _close(m)
+    return np.sign(c / c.shift(L) - 1).fillna(0.0)
+
+
+def groesse_coin(m, tage=20):
+    """Ruhige Coins größer, wilde kleiner: Größe ∝ 1/Schwankung, über die Coins im Mittel 1, Stufen von 25 %."""
+    vol = _close(m).pct_change().rolling(tage * 24).std()
+    inv = 1.0 / vol
+    g = inv.div(inv.mean(axis=1), axis=0).clip(0.25, 2.0)
+    return (np.round(g * 4) / 4).fillna(0.0)
+
+
+def groesse_markt(m, tage=20):
+    """In wilden Marktphasen alles kleiner: Schwankung des Coin-Korbs gegen ihren bisherigen Median (kein Blick voraus)."""
+    korb = _close(m).pct_change().mean(axis=1)
+    s = korb.rolling(tage * 24).std()
+    g = (s.expanding(min_periods=tage * 24).median() / s).clip(0.5, 1.5)
+    return (np.round(g * 4) / 4).fillna(1.0)
+
+
+def mischung(m, laengen=(168, 336, 672, 1440)):
+    c = _close(m)
+    return (sum(np.sign(c / c.shift(L) - 1) for L in laengen) / len(laengen)).fillna(0.0)
+
+
+def carry(m, tage=3, anteil=0.25):
+    """Funding-Carry im Querschnitt: höchstes Funding der letzten `tage` Tage short, niedrigstes long, je ein Viertel."""
+    c = _close(m)
+    summe = {}
+    for coin in m.coins:
+        fr = _lesen("funding", coin, False)["rate"]
+        s = fr.rolling(f"{tage}D").sum()
+        s.index = s.index.floor("h")
+        summe[coin] = s[~s.index.duplicated(keep="last")].reindex(c.index.union(s.index)).ffill().reindex(c.index)
+    f = pd.DataFrame(summe)
+    n = f.notna().sum(axis=1)
+    k = np.maximum((n * anteil).round(), 1)
+    rang = f.rank(axis=1, ascending=False)            # 1 = höchstes Funding
+    w = pd.DataFrame(0.0, index=c.index, columns=c.columns)
+    w[rang.le(k, axis=0)] = -1.0
+    w[rang.gt(n - k, axis=0)] = 1.0
+    w[f.isna()] = 0.0
+    return w
+
+
+def variante(m, name: str) -> pd.DataFrame:
+    if name == "basis":
+        return _trend(m)
+    if name == "vol_coin":
+        return _trend(m) * groesse_coin(m)
+    if name == "vol_markt":
+        return _trend(m).mul(groesse_markt(m), axis=0)
+    if name == "vol_beide":
+        return (_trend(m) * groesse_coin(m)).mul(groesse_markt(m), axis=0).clip(-2.0, 2.0)
+    if name == "mischung":
+        return mischung(m)
+    if name == "carry":
+        return carry(m)
+    raise ValueError(name)

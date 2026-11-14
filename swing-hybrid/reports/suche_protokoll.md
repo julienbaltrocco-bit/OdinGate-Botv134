@@ -197,3 +197,15 @@ Gewinnt keine, bleibt es bei der Basis („kein Mehrwert“).
    über den ganzen Zeitraum mehr Netto je Prozent Einbruch bringt als die Basis.
 
 Gesamtzahl der Versuche danach: 47.
+
+---
+
+# Runde 5: Ergebnis (14.11.2026)
+
+- Auswahlregel: `vol_beide` gewinnt in der Entwicklung (schlechtere Hälfte 0,74 gegen 0,44 der Basis).
+- Beim zulässigen Hebel (0,15 statt 0,20) bringt sie im Prüfzeitraum weniger als die Basis (+3,9 % gegen +5,5 %).
+- **Gruppe D: nicht bestätigt.** Im Prüfzeitraum netto −0,6 % (Hebel 1). Auch die Basis liegt dort bei −0,1 %.
+- Funding-Carry und Trend-Mischung bestehen die Entwicklung nicht.
+
+**Runde 5: kein Mehrwert.** Gesamtschätzung für den unveränderten Kandidaten über alle 60 Coins in `gesamt_60.json`:
+Hebel 0,15, Prüfzeitraum netto mit Rebate +2,7 %, gesamter Zeitraum +27,6 %.
