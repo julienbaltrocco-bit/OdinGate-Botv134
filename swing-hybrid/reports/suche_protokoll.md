@@ -774,3 +774,20 @@ das es dem User geht. Die Runden 13 bis 15 hätten auch so nicht bestanden (alle
 Vorwissen: Der Übernacht-Effekt ist aus der Literatur bekannt, ebenso, dass er nach Kosten knapp ist. Für H2 kenne
 ich den Krypto-Prüfzeitraum (schwach für Trend). Einschränkungen wie in Runde 14 (Kurse der Basiswerte, Spannen an
 einem Samstag gemessen, Funding unbekannt). Gesamtzahl der Versuche danach: 74 Einzelhypothesen plus Massentest.
+
+# Runde 16: Ergebnis (14.11.2026)
+
+Zahlen in `suche_runde16.json`.
+
+**H1 Übernacht-Effekt: durchgefallen (alle drei Hürden).**
+- Vor Kosten ist der Effekt da: Entwicklung +22,2 %, Prüfzeitraum +19,4 % (Sharpe 0,53 und 0,99), allerdings
+  D1 −9,9 % (Bärenmarkt 2022).
+- Zwei Orders an jedem Börsentag kosten mehr, als der Effekt bringt: netto mit Rebate −28,2 % und −2,5 %, ohne
+  Rebate −152 % und −56 %. Im Stress überall negativ.
+- Mischung mit dem Kandidaten: Sharpe 0,81 gegen 0,95 und 0,29 gegen 0,34.
+
+**H2 Risiko-Filter: durchgefallen (Hürde 1).** Sharpe mit Filter 0,78 / 0,89 / −0,32 (D1 / D2 / Prüfzeitraum) gegen
+0,56 / 1,32 / 0,34 ohne. Im Prüfzeitraum macht der Filter aus +25,8 % ein Minus von 22,4 %. Zufallstest und
+Gruppe B wurden deshalb nicht gerechnet.
+
+**Runde 16: keine Verbesserung.** Stand: 74 Einzelhypothesen plus Massentest, weiterhin nur der Krypto-Trend.
