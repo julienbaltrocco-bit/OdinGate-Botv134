@@ -16,7 +16,7 @@ def sim(close, w, high=None, low=None, open_=None, **kw):
     p = dict(S=1.0, ttl=3, eps=EPS, slip=SLIP, adverse=0.0, delay=0, stop_atr=0.0, day_limit=9.0, taker=False)
     p.update(kw)
     return engine2.simulate_target(o, h, l, c, np.array([w], dtype=float), np.ones((1, T)), np.zeros((1, T)),
-                                   np.zeros(T, dtype=np.int64), p["S"], p["ttl"], p["eps"], p["slip"], p["adverse"],
+                                   np.zeros(T, dtype=np.int64), p["S"], p["ttl"], p["eps"], np.array([p["slip"]]), p["adverse"],
                                    p["delay"], p["stop_atr"], 0.0004, 0.0008, p["day_limit"], 1000, p["taker"])
 
 
@@ -81,3 +81,16 @@ def test_taker_sofort_zum_open_mit_slippage():
     assert eq[-1] == pytest.approx((verkauf - kauf) / 100)       # Stückzahl nach dem Open bemessen (1/100)
     assert MV[-1] == 0.0 and TV[-1] == pytest.approx((kauf + verkauf) / 100)
     assert st[0] == st[1] == 2 and nt == 1
+
+
+def test_slippage_je_coin():
+    # Zwei Coins mit gleichem Kurs, aber unterschiedlicher Slippage: der teurere verdient entsprechend weniger.
+    c = np.array([[100, 105, 110, 108, 108]] * 2, dtype=float)
+    o = np.concatenate([c[:, :1], c[:, :-1]], axis=1)
+    w = np.array([[0, 1, 1, 0, 0]] * 2, dtype=float)
+    r = engine2.simulate_target(o, np.maximum(o, c), np.minimum(o, c), c, w, np.ones((2, 5)), np.zeros((2, 5)),
+                                np.zeros(5, dtype=np.int64), 1.0, 3, EPS, np.array([0.0, 0.001]), 0.0, 0, 0.0,
+                                0.0004, 0.0008, 9.0, 100, True)
+    daily = r[4]
+    assert daily[0, 0, 0] == pytest.approx(0.10)                       # ohne Slippage: Kauf 100, Verkauf 110
+    assert daily[1, 0, 0] == pytest.approx((110 * 0.999 - 100 * 1.001) / 100)

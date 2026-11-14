@@ -148,9 +148,13 @@ FAMILIEN = {"tsmom": tsmom, "ensemble": ensemble, "reversal": reversal, "quersch
 def lauf(m, w: np.ndarray, hebel=1.0, stop_atr=0.0, eps=None, adverse=0.0, delay=0, ttl=TTL, taker=False, slip=None,
          day_limit=None):
     S = hebel / len(m.coins)
+    sl = runner.SLIP if slip is None else slip
+    sl = np.full(len(m.coins), float(sl)) if np.isscalar(sl) else np.ascontiguousarray(sl, dtype=np.float64)
+    if sl.shape != (len(m.coins),):
+        raise ValueError("slip braucht einen Wert je Coin")
     eq, MV, TV, FU, daily, tr, st, nt, ORD, FIL = engine2.simulate_target(
         m.o, m.h, m.l, m.c, w, m.atr, m.fund, m.day, S, ttl, runner.EPS if eps is None else eps,
-        runner.SLIP if slip is None else slip, adverse, delay, stop_atr, runner.MAKER, runner.TAKER,
+        sl, adverse, delay, stop_atr, runner.MAKER, runner.TAKER,
         runner.CFG["risiko"]["tagesverlust_limit"] if day_limit is None else day_limit, 4_000_000, taker)
     if nt > len(tr):
         raise RuntimeError("Trade-Speicher zu klein")
@@ -243,3 +247,33 @@ def variante(m, name: str) -> pd.DataFrame:
     if name == "carry":
         return carry(m)
     raise ValueError(name)
+
+
+# ------------------------------------------------- Runde 6: echte Yubit-Kosten, Rangfolge ----
+def rangfolge(m, L, takt, anteil=0.3):
+    """Marktneutrale Rangfolge: alle `takt` Stunden (Uhrzeit-Raster ab 00:00 UTC) die stärksten `anteil` der Coins
+    über L Stunden long, die schwächsten short. Dazwischen wird gehalten."""
+    c = _close(m)
+    r = c / c.shift(L) - 1
+    n = r.notna().sum(axis=1)
+    k = np.maximum((n * anteil).round(), 1)
+    rang = r.rank(axis=1, ascending=False)
+    w = pd.DataFrame(0.0, index=c.index, columns=c.columns)
+    w[rang.le(k, axis=0)] = 1.0
+    w[rang.gt(n - k, axis=0)] = -1.0
+    w[r.isna()] = 0.0
+    w[n < 4] = 0.0
+    # Das Signal der Kerze H gilt ab H+1. Umgeschichtet wird, wenn H+1 auf dem Raster liegt.
+    stunde = ((c.index - pd.Timestamp(0)) // pd.Timedelta(hours=1)).to_numpy() + 1
+    w[stunde % takt != 0] = np.nan
+    return w.ffill().fillna(0.0)
+
+
+def yubit_kosten(coins, faktor=2.0, boden=0.00005):
+    """Slippage je Coin aus der Yubit-Stichprobe: `faktor` x mittlere halbe Spanne, mindestens `boden`.
+    Gibt (Feld, Liste der bei Yubit nicht gefundenen Coins) zurück."""
+    d = pd.read_csv(DATA / "processed/yubit_spannen_stichprobe.csv")
+    d["halb"] = (d["brief"] - d["geld"]) / (d["brief"] + d["geld"])       # halbe Spanne relativ zur Mitte
+    mittel = d.groupby("symbol")["halb"].mean()
+    fehlt = [c for c in coins if c + "USDT" not in mittel.index]
+    return np.array([max(boden, faktor * float(mittel.get(c + "USDT", np.nan))) for c in coins]), fehlt

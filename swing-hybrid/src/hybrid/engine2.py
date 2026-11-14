@@ -14,7 +14,8 @@ Stress-Schalter (für die Gegenprüfung, nicht zum Optimieren):
 - `delay`:   die Order kann erst `delay` Kerzen nach dem Einstellen gefüllt werden.
 
 `taker=True`: statt passiver Limits eine Limit-Order mit Preisgrenze DURCH den Markt (sofort gefüllt, zählt als Taker).
-Abgerechnet zum Open der Kerze plus `slip` Slippage. Keine Annahme über Warteschlangen nötig.
+Abgerechnet zum Open der Kerze plus Slippage. `slip` ist ein Feld mit einem Wert je Coin (z. B. die gemessene
+halbe Spanne an der Börse). Keine Annahme über Warteschlangen nötig.
 """
 import numpy as np
 from numba import njit
@@ -64,7 +65,7 @@ def simulate_target(o, h, l, c, w, atr, fund, day, S, ttl, eps, slip, adverse, d
             # ---- Market: Tagesverlust-Limit oder Schlussabrechnung ----
             if (do_lock or ende) and pos[j] != 0.0:
                 d = 1.0 if pos[j] > 0 else -1.0
-                px = ot * (1.0 - d * slip)
+                px = ot * (1.0 - d * slip[j])
                 dq = -pos[j]
                 cash[j] -= dq * px; pos[j] = 0.0; tv[j] += abs(dq) * px
                 cyc_cf[j] -= dq * px; cyc_tv[j] += abs(dq) * px
@@ -106,7 +107,7 @@ def simulate_target(o, h, l, c, w, atr, fund, day, S, ttl, eps, slip, adverse, d
                 stop = ent_px[j] - d * stop_atr * ent_atr[j]
                 if (d > 0 and lo <= stop) or (d < 0 and hi >= stop):
                     basis = min(stop, ot) if d > 0 else max(stop, ot)
-                    px = basis * (1.0 - d * slip)
+                    px = basis * (1.0 - d * slip[j])
                     dq = -pos[j]
                     cash[j] -= dq * px; pos[j] = 0.0; tv[j] += abs(dq) * px
                     cyc_cf[j] -= dq * px; cyc_tv[j] += abs(dq) * px
@@ -124,7 +125,7 @@ def simulate_target(o, h, l, c, w, atr, fund, day, S, ttl, eps, slip, adverse, d
                 p = od_p[j]; q = od_q[j]
                 if taker or (q > 0 and lo < p * (1.0 - eps)) or (q < 0 and hi > p * (1.0 + eps)):
                     sq = 1.0 if q > 0 else -1.0
-                    px = p * (1.0 + sq * (slip if taker else adverse))
+                    px = p * (1.0 + sq * (slip[j] if taker else adverse))
                     alt = pos[j]
                     neu = alt + q
                     if abs(neu) < 1e-15:

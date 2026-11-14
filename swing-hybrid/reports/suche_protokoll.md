@@ -209,3 +209,41 @@ Gesamtzahl der Versuche danach: 47.
 
 **Runde 5: kein Mehrwert.** Gesamtschätzung für den unveränderten Kandidaten über alle 60 Coins in `gesamt_60.json`:
 Hebel 0,15, Prüfzeitraum netto mit Rebate +2,7 %, gesamter Zeitraum +27,6 %.
+
+---
+
+# Runde 6: Echte Yubit-Kosten und marktneutrale Rangfolge (festgelegt vor dem ersten Ergebnis)
+
+**Neue Information, keine neue Laune:** Am 14.11.2026 wurde an Yubits öffentlichem Orderbuch gemessen, dass die
+Slippage für kleine Orders bei den großen Coins um 0,01 % liegt, nicht bei den bisher angenommenen 0,05 %.
+Damit ändern sich zwei Dinge: (1) der bestehende Kandidat ist mit echten Kosten neu zu bewerten, (2) Strategien mit
+mehr Umsatz, die an 0,05 % gescheitert sind, können tragen. Am wertvollsten wäre eine **marktneutrale** Strategie:
+Sie hat weniger Einbruch je eingesetztem Dollar, erlaubt also mehr Hebel und damit mehr Umsatz und Rebate.
+In Runde 1 war die Rangfolge über 72 Stunden die Einstellung mit den gleichmäßigsten Hälften, sie scheiterte dort
+an einem falsch gebauten Füll-Stress und später an 0,05 % Slippage.
+
+**Kostenmodell (fest, bevor Ergebnisse vorliegen):**
+- Slippage je Coin = 2 × mittlere halbe Spanne Geld/Brief aus einer 60-Minuten-Stichprobe bei Yubit
+  (alle 2 Minuten, 14.11.2026), mindestens 0,005 %. Der Faktor 2 ist ein Sicherheitsaufschlag.
+- Sofortige Ausführung (Taker 0,08 %, mit Rebate effektiv 0,012 %). Nur Coins, die Yubit führt.
+- Stress: doppelte Kosten (4 × halbe Spanne). Zusätzlich wird der alte Wert 0,05 % mitberichtet.
+
+**Teil 1 (keine Auswahl):** der bestehende Kandidat (14-Tage-Trend) mit echten Kosten, Gruppe A und A+B.
+
+**Teil 2 (Suche, 6 Einstellungen):** Rangfolge marktneutral. Die stärksten 30 % der Coins über L Stunden long, die
+schwächsten 30 % short, umgeschichtet alle T Stunden. L = 72 / 168 / 336, T = 4 / 24.
+1. Entwicklung nur Gruppe A: G > 0 und N > 0 in D1 **und** D2. Ein Finalist: bester schlechterer Halbzeit-Sharpe.
+2. Stress in der Entwicklung (doppelte Kosten): N > 0 in D1 und D2.
+3. Bestätigung, für diese Familie alles frisch: Prüfzeitraum Gruppe A mit G > 0 und N > 0; Gruppe B **und**
+   Gruppe C (soweit bei Yubit gelistet) jeweils N > 0 in Entwicklung und Prüfzeitraum. Gruppe D wird berichtet.
+4. Zufallstest (Gruppe A, ganzer Zeitraum): besser als 90 % von 200 verschobenen Signalen.
+5. Hebel wie bisher: Einbruch in der Entwicklung ≤ 10 % mit Tageslimit 3 %, höchstens 5; im Prüfzeitraum < 15 %.
+
+**Teil 3 (keine Suche):** Kombination aus Kandidat und Finalist je zur Hälfte auf A+B (20 Coins).
+
+**„Stärkerer Edge gefunden“ heißt:** Der Finalist besteht alle fünf Stufen, **oder** die Kombination bringt beim
+regelkonformen Hebel in Entwicklung **und** Prüfzeitraum mehr Netto mit Rebate als der Kandidat allein
+(beides mit echten Kosten, 20 Coins). Sonst lautet das Ergebnis „kein stärkerer Edge“.
+
+Gesamtzahl der Versuche danach: 53. Die Spannen-Stichprobe ist eine Stunde eines einzigen Tages; das bleibt die
+größte Unsicherheit und wird im Bericht so benannt.
