@@ -452,3 +452,17 @@ Zusätzlich nach Namen ausgeschlossen: ANTHROPIC (Unternehmensanteil, kein Token
 `scripts/listings_ausschluss.txt`. Es bleiben 275 neue Krypto-Listings
 (2021: 6, 2022: 10, 2023: 43, 2024: 61, 2025: 127, 2026: 28).
 Die frühen Jahrgänge sind dünn besetzt, weil nur Coins enthalten sind, die Yubit heute noch führt.
+
+---
+
+# Runde 10: Ergebnis (14.11.2026)
+
+275 Paare, Portfolio bei Hebel 1. Entwicklung netto +57,4 % (D1 +22,0 %, D2 +35,4 %), Stress bestanden.
+**Prüfzeitraum: −107,7 %.** Die dort eröffneten 133 Paare verlieren im Mittel 17,1 % (t = −2,1), obwohl 61 % von
+ihnen gewinnen und der Median bei +17,6 % liegt: 33 Stops durch Coins, die sich gegen BTC verdoppelt haben, und
+negatives Funding von im Mittel 4,4 % je Paar. Placebo: schlechter als 98 % der Zufallsläufe mit alten Coins.
+
+**Runde 10: durchgefallen (Stufen 3, 4 und 5).** Die Hürden haben getan, wofür sie da sind: Nach der Entwicklung
+allein hätte die Idee überzeugend ausgesehen. Hinzu kommt, dass die Auswahl „heute bei Yubit gelistet“ gerade die
+Coins enthält, die überlebt haben und beliebt sind; das schadet einem Short stärker als vorab angenommen.
+Gesamtzahl der Versuche: 60.

@@ -1,0 +1,172 @@
+{
+ "hebel": [
+  {
+   "hebel": 0.2,
+   "entw_N_jahr": 0.11386515215768932,
+   "entw_einbruch": 0.08848889037332,
+   "pruef_N_jahr": 0.033047026647284844,
+   "pruef_einbruch": 0.09620241096705154,
+   "pruef_rebate_jahr": 0.05805770604252423,
+   "schlechtestes_jahr": 0.020084691527131486,
+   "bestes_jahr": 0.1456918834735156,
+   "sperrtage": 3,
+   "schlechtester_tag": -0.03677601844936678
+  },
+  {
+   "hebel": 0.5,
+   "entw_N_jahr": 0.2276815051320004,
+   "entw_einbruch": 0.18025128482240546,
+   "pruef_N_jahr": 0.10583745412372857,
+   "pruef_einbruch": 0.19781358925016795,
+   "pruef_rebate_jahr": 0.14955594356045826,
+   "schlechtestes_jahr": 0.054527060798441614,
+   "bestes_jahr": 0.2465763917026601,
+   "sperrtage": 64,
+   "schlechtester_tag": -0.058393970585050324
+  },
+  {
+   "hebel": 1.0,
+   "entw_N_jahr": 0.13181059690137711,
+   "entw_einbruch": 0.38159131372060173,
+   "pruef_N_jahr": -0.16937445631773096,
+   "pruef_einbruch": 0.5265008674759125,
+   "pruef_rebate_jahr": 0.36007747844090826,
+   "schlechtestes_jahr": -0.33321363769093204,
+   "bestes_jahr": 0.48744136631677665,
+   "sperrtage": 375,
+   "schlechtester_tag": -0.06406949014284077
+  },
+  {
+   "hebel": 2.0,
+   "entw_N_jahr": -0.2573110450949177,
+   "entw_einbruch": 1.0180837947837258,
+   "pruef_N_jahr": -0.11178558074015552,
+   "pruef_einbruch": 0.583661816192347,
+   "pruef_rebate_jahr": 0.8803710694136501,
+   "schlechtestes_jahr": -0.5690171832783851,
+   "bestes_jahr": 0.1480190256770333,
+   "sperrtage": 885,
+   "schlechtester_tag": -0.12813898028568146
+  },
+  {
+   "hebel": 3.0,
+   "entw_N_jahr": -1.0132486166031107,
+   "entw_einbruch": 3.5886106379255436,
+   "pruef_N_jahr": -0.3993751162939217,
+   "pruef_einbruch": 0.9766497011485323,
+   "pruef_rebate_jahr": 1.4455653189549882,
+   "schlechtestes_jahr": -1.2497582533740075,
+   "bestes_jahr": 0.2642366035166382,
+   "sperrtage": 1178,
+   "schlechtester_tag": -0.11437121273752161
+  }
+ ],
+ "kapital": [
+  {
+   "kapital": 100,
+   "hebel": 0.2,
+   "je_coin_usd": 2.0,
+   "handelbar": 6,
+   "nicht": "BTC,ETH,SOL,AVAX"
+  },
+  {
+   "kapital": 100,
+   "hebel": 1.0,
+   "je_coin_usd": 10.0,
+   "handelbar": 8,
+   "nicht": "BTC,ETH"
+  },
+  {
+   "kapital": 300,
+   "hebel": 0.2,
+   "je_coin_usd": 6.0,
+   "handelbar": 6,
+   "nicht": "BTC,ETH,SOL,AVAX"
+  },
+  {
+   "kapital": 300,
+   "hebel": 1.0,
+   "je_coin_usd": 30.0,
+   "handelbar": 9,
+   "nicht": "BTC"
+  },
+  {
+   "kapital": 500,
+   "hebel": 0.2,
+   "je_coin_usd": 10.0,
+   "handelbar": 8,
+   "nicht": "BTC,ETH"
+  },
+  {
+   "kapital": 500,
+   "hebel": 1.0,
+   "je_coin_usd": 50.0,
+   "handelbar": 9,
+   "nicht": "BTC"
+  },
+  {
+   "kapital": 1000,
+   "hebel": 0.2,
+   "je_coin_usd": 20.0,
+   "handelbar": 9,
+   "nicht": "BTC"
+  },
+  {
+   "kapital": 1000,
+   "hebel": 1.0,
+   "je_coin_usd": 100.0,
+   "handelbar": 10,
+   "nicht": ""
+  },
+  {
+   "kapital": 3000,
+   "hebel": 0.2,
+   "je_coin_usd": 60.0,
+   "handelbar": 9,
+   "nicht": "BTC"
+  },
+  {
+   "kapital": 3000,
+   "hebel": 1.0,
+   "je_coin_usd": 300.0,
+   "handelbar": 10,
+   "nicht": ""
+  },
+  {
+   "kapital": 5000,
+   "hebel": 0.2,
+   "je_coin_usd": 100.0,
+   "handelbar": 10,
+   "nicht": ""
+  },
+  {
+   "kapital": 5000,
+   "hebel": 1.0,
+   "je_coin_usd": 500.0,
+   "handelbar": 10,
+   "nicht": ""
+  }
+ ],
+ "ohne_btc_eth": {
+  "entw_N": 0.4033832440309576,
+  "entw_dd": 0.09579778656800225,
+  "pruef_N": 0.019017166960214493,
+  "pruef_dd": 0.12234822653068293
+ },
+ "mindestorder_usd": {
+  "BTC": 66.45,
+  "ETH": 18.72,
+  "SOL": 7.5,
+  "XRP": 0.1,
+  "DOT": 0.08,
+  "DOGE": 0.06,
+  "ADA": 0.16,
+  "LINK": 0.09,
+  "AVAX": 7.84,
+  "LTC": 0.47
+ },
+ "tage": {
+  "entw": 1325,
+  "pruef": 571
+ }
+}
