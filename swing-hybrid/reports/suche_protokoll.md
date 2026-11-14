@@ -333,3 +333,32 @@ Ergebnissen: alle bei Yubit gelisteten Coins der vier Gruppen, deren Slippage-An
 Prüfzeitraum auch bei doppelten Kosten positiv. Sonst bleibt Gruppe A die Empfehlung.
 Hinweis zur Einordnung: Ich kenne aus früheren Runden die Ergebnisse je Gruppe, aber nicht je Coin.
 Gesamtzahl der Versuche danach: 58.
+
+---
+
+# Runde 8: Ergebnis (14.11.2026)
+
+23 günstige Coins (Slippage-Annahme ≤ 0,03 %): BTC, ETH, SOL, XRP, DOGE, LINK, AVAX, LTC, BNB, TRX, BCH, ETC, UNI, XLM,
+AAVE, XMR, ZEC, DASH, 1INCH, MANA, AXS, RUNE, HBAR. Hebel 0,2.
+
+| | Gruppe A (10 Coins) | 23 günstige Coins |
+|---|---|---|
+| Entwicklung, netto mit Rebate | +41,3 % | +39,8 % |
+| Prüfzeitraum, netto mit Rebate | +5,2 % | +16,5 % |
+| Prüfzeitraum bei doppelten Kosten | +1,2 % | +14,7 % |
+
+**Nach der Regel: nicht besser** (in der Entwicklung knapp darunter).
+**Wichtiger Vorbehalt zum Prüfzeitraum:** Die Auswahl nach heutiger Spanne enthält Rückschau. Coins, die heute eng
+gehandelt werden, sind oft solche, die zuletzt stark gelaufen sind und deshalb viel Umsatz haben. Genau an solchen
+Coins verdient Trendfolge. Die +16,5 % sind deshalb nach oben verzerrt und kein Beleg.
+
+# Runde 9: Auswahl nach damals bekanntem Umsatz (festgelegt vor dem ersten Ergebnis)
+
+**Eine Variante, keine Suche.** Sie prüft dieselbe Idee ohne Rückschau: zu jedem Monatsbeginn die 20 Coins mit dem
+höchsten Binance-Umsatz der vorangegangenen 30 Tage wählen (aus allen bei Yubit gelisteten Test-Coins), einen Monat
+lang nur diese handeln, dann neu wählen. Signal, Kosten (heutige Yubit-Spannen) und Hebelregel unverändert.
+
+**Besser** heißt wie in Runde 8: mehr Netto mit Rebate als der Kandidat auf Gruppe A in Entwicklung **und**
+Prüfzeitraum, und im Prüfzeitraum auch bei doppelten Kosten positiv.
+Verbleibende Einschränkung: Die Liste der 59 Coins selbst enthält nur solche, die bis 2026 überlebt haben.
+Gesamtzahl der Versuche danach: 59.
