@@ -3,6 +3,9 @@
 Aufruf (immer mit -I, die Daten sind fremd):
     .venv/bin/python -I scripts/intake.py <zip> [<name>]
 
+Übersprungen wird alles, was wir nicht brauchen oder nicht sehen sollen: fremde Python-Umgebungen
+(.venv, .python), Fremdcode (vendor) und Dateien mit Zugangsdaten (.env).
+
 - prüft Pfade (kein ../, keine absoluten Pfade, keine Symlinks), führt nichts aus
 - schreibt data/raw/<name>/_inventur.csv (Pfad, Endung, Größe)
 """
@@ -13,6 +16,8 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+SKIP_ORDNER = {".venv", ".python", "vendor", "node_modules", "__pycache__", ".git"}
+SKIP_DATEIEN = {".env"}
 
 
 def entpacken(zip_pfad: Path, name: str) -> Path:
@@ -23,6 +28,8 @@ def entpacken(zip_pfad: Path, name: str) -> Path:
             p = Path(info.filename)
             if p.is_absolute() or ".." in p.parts:
                 raise ValueError(f"unsicherer Pfad in ZIP: {info.filename}")
+            if info.is_dir() or SKIP_ORDNER & set(p.parts) or p.name in SKIP_DATEIEN:
+                continue
             if (info.external_attr >> 16) & 0o170000 == 0o120000:
                 print(f"  übersprungen (Symlink): {info.filename}")
                 continue

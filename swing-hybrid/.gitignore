@@ -3,5 +3,6 @@ __pycache__/
 .pytest_cache/
 # Rohdaten und Kerzen sind groß und bleiben nur in der Cloud-Umgebung
 data/raw/
+data/download/
 data/candles/
 data/processed/
