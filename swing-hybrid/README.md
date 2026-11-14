@@ -16,3 +16,18 @@ Einrichten in der Cloud-Umgebung:
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m pytest -q
 ```
+
+## Ablauf (nach dem Entpacken der Daten)
+
+```bash
+.venv/bin/python -I scripts/intake.py data/download/trading-labor.zip labor-daten   # ZIP sicher entpacken
+.venv/bin/python -I scripts/kerzen_laden.py     # Binance-5m-Kerzen + Funding (braucht data.binance.vision)
+.venv/bin/python -I scripts/signal_check.py     # Swing-Signale gegen das Labor prüfen
+.venv/bin/python -I scripts/baseline.py         # reine Swing mit Yubit-Gebühren
+.venv/bin/python -I scripts/raster.py           # Baseline + 18 Hybrid-Varianten, Hebel 1 und 3
+.venv/bin/python -I scripts/walkforward.py      # 70/30, rollierende Fenster, Entscheidungsregeln
+.venv/bin/python -I scripts/gegenpruefung.py    # Gegenprüfungen
+.venv/bin/python -I scripts/bericht.py          # reports/hybrid_report.md
+```
+
+Die Rohdaten (`data/`) liegen nur in der Cloud-Umgebung und nicht im Repo.
