@@ -306,3 +306,30 @@ S3 für sich, S1/S2/S4 als Mischung je zur Hälfte mit dem Kandidaten.
 
 Gesamtzahl der Versuche danach: 57. Einschränkung für den Betrieb: Die Signale kämen live von Binance, gehandelt
 würde bei Yubit.
+
+---
+
+# Runde 7: Ergebnis (14.11.2026)
+
+Positionierungsdaten für 49 Coins geladen (ab 01.12.2021, BTC ab 07/2021). Kandidat als Maßstab auf A+B: Hebel 0,2,
+Entwicklung +30,5 %, Prüfzeitraum +3,9 %.
+
+| Hypothese | Ergebnis |
+|---|---|
+| S1 profis_gegen_menge | Stufe 1 durchgefallen (erste Hälfte −8,7 %) |
+| S2 gegen_die_menge | Stufe 1 bestanden, Stufe 2 durchgefallen (erste Hälfte bei doppelten Kosten −1,8 %) |
+| S3 trend_frisches_geld | Stufe 1 durchgefallen (erste Hälfte −15,1 %); schlechter als der Trend ohne Filter |
+| S4 orderfluss | Stufen 1 und 2 bestanden, Stufe 3 durchgefallen (Prüfzeitraum Gruppe A −18,2 %, Gruppe C Entwicklung −23,3 %) |
+
+**Runde 7: kein stärkerer Edge.**
+
+# Runde 8: Kandidat nur auf günstig handelbaren Coins (festgelegt vor dem ersten Ergebnis)
+
+**Keine Suche, eine einzige Variante.** Die Auswahl der Coins hängt nur an den gemessenen Yubit-Kosten, nicht an
+Ergebnissen: alle bei Yubit gelisteten Coins der vier Gruppen, deren Slippage-Annahme (2 × halbe Spanne) höchstens
+0,03 % beträgt („günstige Coins“). Darauf läuft der unveränderte Kandidat mit echten Kosten und regelkonformem Hebel.
+
+**Besser** heißt: mehr Netto mit Rebate als der Kandidat auf Gruppe A, in Entwicklung **und** Prüfzeitraum, und im
+Prüfzeitraum auch bei doppelten Kosten positiv. Sonst bleibt Gruppe A die Empfehlung.
+Hinweis zur Einordnung: Ich kenne aus früheren Runden die Ergebnisse je Gruppe, aber nicht je Coin.
+Gesamtzahl der Versuche danach: 58.
