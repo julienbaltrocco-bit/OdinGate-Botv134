@@ -557,3 +557,17 @@ und einen kleineren Einbruch hat. Berichtet wird in jedem Fall alles, auch wenn 
 Vorwissen, offen benannt: Gegenbewegungs-Regeln (Runde 1) und die marktneutrale Rangfolge (Runde 6) sind
 durchgefallen. Paar-Handel über Kointegration ist verwandt, aber nicht dasselbe. Gesamtzahl der Versuche danach:
 69 Einzelhypothesen plus Massentest.
+
+---
+
+# Runde 12: Ergebnis (14.11.2026)
+
+**Stat-Arb allein:** Keine der 9 Einstellungen ist in beiden Entwicklungshälften netto positiv (Stufe 1 nicht
+bestanden). Vor Kosten ist der Effekt auf Gruppe A vorhanden (30 Tage / Z 2,0: +28,3 % in der Entwicklung, +4,8 % im
+Prüfzeitraum), nach Labor-Kosten −2,8 % und −11,5 %. Gruppe B ist schon vor Kosten negativ, Gruppe C vor Kosten
+positiv und netto +9,0 % / −7,7 %. Ein Paar-Trade verdient im Mittel 0,13 % seines Einsatzes und kostet 0,20 %.
+
+**Fusion:** Die Tagesgewinne von Swing und Stat-Arb korrelieren mit −0,14. Der Einbruch sinkt in allen vier
+Kombinationen deutlich, der Sharpe ist in der Entwicklung in drei von vier Fällen höher, im Prüfzeitraum in allen
+vier Fällen niedriger als beim Swing allein. **Nach der vorab festgelegten Regel ist keine Fusion besser.**
+Details in `statarb_bericht.md`.
