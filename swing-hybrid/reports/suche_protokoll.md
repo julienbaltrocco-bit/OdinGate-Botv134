@@ -791,3 +791,36 @@ Zahlen in `suche_runde16.json`.
 Gruppe B wurden deshalb nicht gerechnet.
 
 **Runde 16: keine Verbesserung.** Stand: 74 Einzelhypothesen plus Massentest, weiterhin nur der Krypto-Trend.
+
+---
+
+# Runde 17: Zwei marktneutrale Ideen auf Nicht-Krypto-Kontrakten (festgelegt vor dem ersten Ergebnis)
+
+**H1 „Verwandte Paare“.** Der Paar-Handel aus Runde 12 scheiterte an Coins, die nur lose zusammenhängen. Bei eng
+verwandten klassischen Märkten ist der Zusammenhang wirtschaftlich begründet. Paare (vorab fest): Gold/Silber,
+Platin/Palladium, SPY/QQQ, SPY/IWM. Öl (WTI/Brent) bleibt draußen, weil die unbereinigten Kontraktwechsel dort
+Scheingewinne erzeugen würden.
+- Einstellung wie Runde 12, nichts Neues: Z-Wert des Preisverhältnisses (Logarithmus) über 30 Tage, Einstieg ab
+  |Z| ≥ 2,0 gegen die Abweichung (ein Markt long, der andere short, gleicher Betrag), Ausstieg bei |Z| ≤ 0,5,
+  Notausstieg bei |Z| ≥ 4,0. Je Paar ein Viertel des Einsatzes. Signal nach Tagesschluss, Handel zur nächsten
+  Eröffnung.
+
+**H2 „Aktien-Momentum“.** Der am besten belegte Effekt bei Aktien (Jegadeesh/Titman 1993): Gewinner der letzten
+12 Monate schlagen Verlierer. Yubit führt rund 150 Aktien-Kontrakte.
+- Einstellung aus der Literatur: Rendite von vor 12 Monaten bis vor 1 Monat; am Monatsende die besten 30 % long,
+  die schwächsten 30 % short, gleich gewichtet, Summe der Beträge = Einsatz 100 %; einen Monat halten. Signal am
+  letzten Börsentag des Monats, Handel am nächsten Börsentag zum Schluss.
+- Auswahl: alle Yubit-Kontrakte der Ausschlussliste aus Runde 10, die bei Binance erst ab 2026 gelistet sind und
+  bei Yahoo unter demselben Kürzel als Aktie geführt werden; je Stichtag nur Titel mit mindestens 400 Tagen Kursen.
+- **Bekannte Verzerrung:** Die Liste stammt von 2026 und enthält bevorzugt Titel, die bis dahin groß geworden sind.
+  Long gegen Short innerhalb der Liste mildert das, hebt es aber nicht auf.
+
+**Kosten für beide:** Taker 0,08 % mit 85 % Rebate, Slippage = gemessene Yubit-Spanne je Kontrakt (mindestens
+0,005 %; ohne Messwert der Median der gemessenen). Funding 0 in der Hauptrechnung.
+
+**Hürden je Idee (wie Runde 16):** (1) N > 0 in D1, D2 und Prüfzeitraum. (2) Stress: doppelte Slippage und 10 %
+Funding pro Jahr auf alle gehaltenen Beträge, N > 0 in Entwicklung und Prüfzeitraum. (3) Mischung je zur Hälfte
+mit dem Kandidaten: höherer Sharpe in Entwicklung und Prüfzeitraum.
+
+Vorwissen: Aus Runde 14/15 kenne ich Trend-Ergebnisse je Markt für Gold, Silber, Platin, Palladium, SPY, QQQ, IWM,
+nicht aber deren Verhältnisse. Einschränkungen wie in Runde 14. Gesamtzahl der Versuche danach: 76 plus Massentest.
