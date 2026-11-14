@@ -520,3 +520,40 @@ Median nur auf 0,16 bei 24 Stunden Haltedauer und liegt bei kürzeren Haltedauer
 Regelauswahl, sondern Rechnung: Die Gebühr je Trade ist fest (0,16 % hin und zurück), der erzielbare Vorteil wächst
 mit der Haltedauer. Gebühr plus Slippage betragen im Mittel 0,22 % je Trade, die typische Stundenbewegung eines Coins
 0,38 % (`diagnose_huerde.json`). Ein Stunden-Trade müsste im Schnitt mehr als die Hälfte davon richtig erwischen.
+
+---
+
+# Runde 12: Statistical Arbitrage (Paare, Z-Score) und Fusion mit dem Swing (festgelegt vor dem ersten Ergebnis)
+
+**Auftrag des Users:** unabhängig von Yubit ein Stat-Arb-System bauen, das Korrelationen zwischen Coins modelliert,
+über einen Z-Score long/short geht, und es mit der Swing-Strategie verbinden.
+
+**Das Stat-Arb-System (Stundenkerzen, Binance-Futures):**
+- Für jedes Coin-Paar laufend über ein Fenster W: Korrelation der Stundenrenditen, Hedge-Verhältnis β (Regression
+  der logarithmierten Kurse), daraus der Spread und sein Z-Score (Abweichung vom Fenster-Mittel in Standardabweichungen).
+- Einstieg: Korrelation ≥ 0,7, β zwischen 0,5 und 2, |Z| ≥ z_ein. Teurer Coin short, billiger long, nach β gewichtet.
+  β bleibt bis zum Ausstieg fest. Ausführung zum Open der Folgekerze.
+- Ausstieg: |Z| ≤ 0,5 oder Vorzeichenwechsel (Ziel erreicht), |Z| ≥ 4 (Stop, Paar danach W/4 gesperrt),
+  oder nach W/2 Stunden (Zeitlimit).
+- Höchstens 10 Paare gleichzeitig, jeder Coin in höchstens 3 Paaren, stärkste Signale zuerst.
+  Einsatz: Long- und Short-Seite zusammen höchstens 100 % des Topfes.
+- Kosten wie im Labor des Users: 0,05 % Gebühr + 0,05 % Slippage je Order. Echtes Funding für beide Seiten.
+
+**Raster (9 Einstellungen):** W = 7 / 14 / 30 Tage, z_ein = 1,5 / 2,0 / 2,5.
+
+**Hürden für das Stat-Arb-System allein:**
+1. Entwicklung Gruppe A: vor Kosten und netto positiv in D1 und D2. Ein Finalist: bester schlechterer Halbzeit-Sharpe.
+2. Doppelte Kosten: netto positiv in D1 und D2.
+3. Bestätigung: Prüfzeitraum Gruppe A netto positiv; Gruppe B und C jeweils netto positiv in Entwicklung und Prüfzeitraum.
+
+**Fusion mit dem Swing (beide Labor-Strategien getrennt: trail_beide 4H und momentum_vol_ls 1D, je Hebel 1,
+gleiche Kosten):**
+- F1 „zwei Töpfe“: je 50 % Swing und Stat-Arb.
+- F2 „Swing als Filter“: Stat-Arb nimmt ein Paar nur, wenn keine der beiden Seiten gegen die Swing-Richtung des
+  jeweiligen Coins läuft; dazu wieder 50 % Swing.
+**Fusion ist besser**, wenn sie gegenüber dem Swing allein in Entwicklung **und** Prüfzeitraum einen höheren Sharpe
+und einen kleineren Einbruch hat. Berichtet wird in jedem Fall alles, auch wenn das Stat-Arb-System allein durchfällt.
+
+Vorwissen, offen benannt: Gegenbewegungs-Regeln (Runde 1) und die marktneutrale Rangfolge (Runde 6) sind
+durchgefallen. Paar-Handel über Kointegration ist verwandt, aber nicht dasselbe. Gesamtzahl der Versuche danach:
+69 Einzelhypothesen plus Massentest.
