@@ -588,3 +588,46 @@ Zahlen in `fusion_yubit.json`.
 
 Wertung: kein belastbarer Vorteil. Ein formaler Treffer aus vier Kombinationen, nachträglich gerechnet und mit
 einem Vorsprung, der im Rauschen liegt.
+
+---
+
+# Runde 13: Niedrig-Risiko-Baustein auf breiter Coin-Auswahl (festgelegt vor dem ersten Ergebnis)
+
+**Anlass (Frage des Users):** Der Sharpe fällt nach März 2025 von 1,27 auf 0,46. Ein zweiter Ertragsbringer, der
+nicht vom Trend abhängt, könnte schwache Trend-Phasen glätten. Der Prüfzeitraum wird dafür nicht nachjustiert:
+eine Idee, eine Einstellung, eine Rechnung.
+
+**Idee:** In vielen Märkten sind riskante Titel dauerhaft zu teuer, weil Händler ohne viel Kapital lieber stark
+schwankende Titel kaufen als Hebel zu nehmen. Ruhige Titel bringen deshalb je Risiko mehr („Betting against Beta“).
+Diese Quelle kam in der Suche bisher nicht vor und hängt nicht von der Marktrichtung ab.
+
+**Eine Hypothese, eine Einstellung, kein Raster:**
+- Beta jedes Coins: Stundenrenditen der letzten 60 Tage (1.440 Stunden, volle Historie nötig) gegen den
+  gleichgewichteten Korb aller Coins der jeweiligen Auswahl.
+- Einmal pro Woche (alle 168 Stunden, Raster ab 00:00 UTC): die 30 % mit dem niedrigsten Beta long, die 30 % mit
+  dem höchsten Beta short. Dazwischen wird gehalten.
+- Beide Seiten werden so gewichtet, dass ihr Beta sich aufhebt (Gewicht ∝ 1 / mittleres Beta der Seite, Summe der
+  beiden Gewichte 2, je Seite auf 0,5 bis 1,5 begrenzt). Marktneutral nach Beta, nicht nach Betrag.
+- Signal erst nach Stundenschluss wirksam. Kosten wie in Runde 6 (2 × gemessene halbe Yubit-Spanne je Coin, Taker
+  mit 85 % Rebate), echtes Funding.
+
+**Breite (Punkt 2):** Entwickelt wird auf A+B (20 Coins), weil 30 % von 10 Coins zu wenige sind. Bestätigt wird
+auf C (19 Coins) und D (10 Coins), die für diese Idee frisch sind.
+
+**Hürden (wie Runde 7, auf die breitere Auswahl übertragen):**
+1. Entwicklung A+B: G > 0 und N > 0 in D1 und D2.
+2. Doppelte Kosten: N > 0 in D1 und D2.
+3. Bestätigung: Prüfzeitraum A+B mit G > 0 und N > 0; Gruppe C und Gruppe D jeweils N > 0 in Entwicklung und
+   Prüfzeitraum.
+4. Zufallstest (A+B, ganzer Zeitraum): besser als 90 % von 200 zeitlich verschobenen Signalen.
+5. Hebel: Einbruch in der Entwicklung ≤ 10 % mit Tageslimit, im Prüfzeitraum < 15 %, dort G > 0 und N > 0.
+6. **Antwort auf die Frage:** Mischung je zur Hälfte mit dem Kandidaten (14-Tage-Trend) auf A+B, beim Hebel mit
+   Einbruch ≤ 10 % in der Entwicklung. „Besser“ nur, wenn die Mischung in Entwicklung **und** Prüfzeitraum mehr
+   Netto mit Rebate **und** einen höheren Sharpe hat als der Kandidat allein.
+
+Wer an einer Hürde scheitert, scheidet aus; die späteren Stufen werden dann nicht gerechnet. Der Prüfzeitraum wird
+erst in Stufe 3 angesehen. Unabhängig vom Ausgang wird alles berichtet.
+
+Vorwissen, offen benannt: Der Prüfzeitraum ist für Trend und Paar-Handel bekannt, für diese Idee nicht. Ich weiß,
+dass Coins im Prüfzeitraum überwiegend gefallen sind; die Beta-Neutralität soll verhindern, dass der Baustein nur
+davon lebt. Gesamtzahl der Versuche danach: 70 Einzelhypothesen plus Massentest.
