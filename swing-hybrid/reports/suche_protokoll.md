@@ -442,3 +442,13 @@ Die Strategie handelt selten und in kleinen Stückgrößen, braucht also wenig K
 **Bekannte Verzerrungen, vorab benannt:** Es fehlen Coins, die Yubit oder Binance wieder gestrichen haben. Das sind
 meist die schwächsten, ihr Fehlen macht einen Short eher schlechter als besser. Ob Yubit einen Coin zum
 Einstiegstag schon führte, ist nicht bekannt. Gesamtzahl der Versuche danach: 60.
+
+**Nachtrag zu Runde 10, vor dem ersten Ergebnis (Ausschlussregel):** Von 554 Yubit-Kontrakten haben 529
+Binance-Daten, 474 davon mit erstem Handelstag ab 01.09.2021. Viele davon sind Aktien-, ETF- und Rohstoff-Kontrakte
+aus dem Jahr 2026. Statt nach Namen wird objektiv getrennt: Ausgeschlossen ist jeder Kontrakt, dessen typische
+Tagesbewegung am Wochenende unter 55 % der Wochentags-Bewegung liegt (der zugrunde liegende Markt ist dann am
+Wochenende geschlossen). Die Verteilung ist klar zweigipflig (194 Kontrakte unter 45 %, 3 dazwischen, 276 darüber).
+Zusätzlich nach Namen ausgeschlossen: ANTHROPIC (Unternehmensanteil, kein Token). Die Liste steht in
+`scripts/listings_ausschluss.txt`. Es bleiben 275 neue Krypto-Listings
+(2021: 6, 2022: 10, 2023: 43, 2024: 61, 2025: 127, 2026: 28).
+Die frühen Jahrgänge sind dünn besetzt, weil nur Coins enthalten sind, die Yubit heute noch führt.
