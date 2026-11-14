@@ -130,12 +130,13 @@ FAMILIEN = {"tsmom": tsmom, "ensemble": ensemble, "reversal": reversal, "quersch
 
 
 # ----------------------------------------------------------------------------- Lauf ----
-def lauf(m, w: np.ndarray, hebel=1.0, stop_atr=0.0, eps=None, adverse=0.0, delay=0, ttl=TTL, taker=False, slip=None):
+def lauf(m, w: np.ndarray, hebel=1.0, stop_atr=0.0, eps=None, adverse=0.0, delay=0, ttl=TTL, taker=False, slip=None,
+         day_limit=None):
     S = hebel / len(m.coins)
     eq, MV, TV, FU, daily, tr, st, nt, ORD, FIL = engine2.simulate_target(
         m.o, m.h, m.l, m.c, w, m.atr, m.fund, m.day, S, ttl, runner.EPS if eps is None else eps,
         runner.SLIP if slip is None else slip, adverse, delay, stop_atr, runner.MAKER, runner.TAKER,
-        runner.CFG["risiko"]["tagesverlust_limit"], 4_000_000, taker)
+        runner.CFG["risiko"]["tagesverlust_limit"] if day_limit is None else day_limit, 4_000_000, taker)
     if nt > len(tr):
         raise RuntimeError("Trade-Speicher zu klein")
     t = pd.DataFrame(tr, columns=["coin", "art", "richtung", "ein", "aus", "brutto", "maker_vol", "taker_vol"])
