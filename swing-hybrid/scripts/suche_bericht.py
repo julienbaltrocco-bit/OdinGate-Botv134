@@ -20,6 +20,8 @@ R8 = json.loads((ROOT / "reports/suche_runde8.json").read_text())
 R9 = json.loads((ROOT / "reports/suche_runde9.json").read_text())
 R10 = json.loads((ROOT / "reports/suche_runde10.json").read_text())
 DK = json.loads((ROOT / "reports/diagnose_kapital.json").read_text())
+R11 = json.loads((ROOT / "reports/suche_runde11.json").read_text())
+DH = json.loads((ROOT / "reports/diagnose_huerde.json").read_text())
 SV = json.loads((ROOT / "reports/swing_vergleich.json").read_text())
 sw = SV["momentum_vol_ls_baseline"]["pruef"]
 
@@ -144,6 +146,12 @@ def _kap(kapital, h):
 tab_kap = "\n".join(["| Kapital | Betrag je Coin bei Hebel 0,2 | Handelbare Coins |", "|---|---|---|"] + [
     f"| {zahl(k, 0)} $ | {usd(k * 0.02)} | {_kap(k, 0.2)} |" for k in (100, 300, 500, 1000, 3000, 5000)])
 ob = DK["ohne_btc_eth"]
+_aus = {"halte1": "1 Stunde halten", "halte2": "2 Stunden halten", "halte4": "4 Stunden halten", "halte8": "8 Stunden halten",
+        "halte24": "24 Stunden halten", "ziel1atr": "Gewinnziel und Stop, eng", "ziel2atr": "Gewinnziel und Stop, weit"}
+tab_11 = "\n".join(["| Ausstieg | Entwicklung: typische Regel | Entwicklung: beste Regel | Prüfzeitraum: typische Regel | Prüfzeitraum: beste Regel |",
+                     "|---|---|---|---|---|"] + [
+    f"| {_aus[a]} | {zahl(v['entw_median'])} | {zahl(v['entw_max'])} | {zahl(v['pruef_median'])} | {zahl(v['pruef_max'])} |"
+    for a, v in R11["frontier"].items()])
 # ---- Runde 5 und Gesamtschätzung
 gr = G6["gruppen"]
 H6 = G6["hebel"]
@@ -177,8 +185,8 @@ Stand 14.11.2026. Historische Simulation, keine Anlageberatung. Vergangene Ergeb
 
 ## Ergebnis
 
-**Der Kandidat (14-Tage-Trend) bleibt das Beste, was die Daten hergeben. Fünf weitere Runden mit 13 neuen
-Versuchen haben keinen stärkeren Edge gefunden. Deutlich besser geworden ist aber die Kostenrechnung: An Yubit
+**Der Kandidat (14-Tage-Trend) bleibt das Beste, was die Daten hergeben. Sechs weitere Runden (13 Einzelversuche
+und ein Massentest mit {R11['varianten']} Regel-Varianten) haben keinen stärkeren Edge gefunden. Deutlich besser geworden ist aber die Kostenrechnung: An Yubit
 gemessen ist die Slippage viel niedriger als bisher angenommen.**
 
 Mit echten Yubit-Kosten (10 Coins, Hebel {zahl(k6['hebel'], 1)}): Entwicklung {pz(k6e['N'])}, Prüfzeitraum {pz(k6p['N'])} netto mit Rebate
@@ -315,7 +323,7 @@ Prüfzeitraum aber nur in einer Gruppe (C) deutlich etwas übrig. Gruppe D: {", 
 
 Über {G6['n_coins']} Coins sinkt der zulässige Hebel auf {zahl(H6, 2)}.
 
-## Runden 6 bis 10: echte Yubit-Kosten und die Suche nach mehr
+## Runden 6 bis 11: echte Yubit-Kosten und die Suche nach mehr
 
 ### Was eine Order bei Yubit wirklich kostet
 
@@ -349,6 +357,38 @@ gelistete Token. In der Entwicklung sah sie überzeugend aus. Im Prüfzeitraum g
 aber {ps10['stops']} von {ps10['paare']} laufen in den Stop (der Coin verdoppelt sich gegen BTC), und das Funding kostet im Mittel
 {pz(-ps10['funding_mittel'], 1, False)} je Paar. Im Mittel verliert ein Paar {pz(-ps10['mittel'], 1, False)}.
 
+### Massentest: kleine Trades in Swing-Richtung, die ihre Gebühr verdienen (Runde 11)
+
+Die Frage: Gibt es eine einfache Regel, mit der man in Richtung des Swing-Bias viele kleine Trades macht, von denen
+jeder seine eigene Gebühr mindestens wieder einspielt? Dann wäre das Rebate reiner Gewinn.
+
+Getestet wurden {R11['varianten']} Varianten: Rücksetzer nach RSI und Bollinger, Ausbrüche, Impulse, Volumenspitzen, feste
+Tageszeiten, jeweils mit fünf Haltedauern und zwei Arten von Gewinnziel mit Stop, für zwei Bias-Längen.
+Messlatte ist die **Deckung**: Ertrag des Trades nach Slippage geteilt durch die gezahlte Gebühr (0,16 % für
+Ein- und Ausstieg). 1,0 heißt Gebühr genau verdient, dein Beispiel „2,20 € bei 2 € Gebühr“ wäre 1,1.
+
+- **{len(R11['stufe1'])} Varianten** erreichen in beiden Entwicklungshälften mindestens 1,0. Das ist die Größenordnung, die bei so
+  vielen Varianten der Zufall liefert.
+- **{len(R11['stufe2'])} Varianten** halten das in den fünf unabhängigen Gegenproben (Prüfzeitraum und zwei weitere Coin-Gruppen).
+
+{tab_11}
+
+- **Kurze Trades verlieren schon vor der Gebühr.** Bei 1 bis 4 Stunden Haltedauer ist die typische Deckung negativ.
+- **Erst ab etwa einem Tag Haltedauer** kommt in der Entwicklung etwas zusammen, und auch das hält im Prüfzeitraum nicht.
+- **Gewinnziel mit Stop hilft nicht.** Die typische Deckung bleibt auch damit negativ.
+- Die „beste Regel“ je Zeile ist jeweils die beste aus rund 80. Ihr Wert ist deshalb kein Beleg, und keine davon
+  hält in den anderen Gegenproben.
+
+**Warum das so ist:** Die Kosten je Trade sind fest, der erzielbare Vorteil wächst mit der Haltedauer. Gebühr und
+Slippage zusammen betragen im Mittel {pz(DH['huerde'], 2, False)} je Trade. Ein Coin bewegt sich in einer typischen Stunde um {pz(DH['bewegung_median'], 2, False)}.
+Ein Stunden-Trade müsste also im Schnitt mehr als die Hälfte dieser Bewegung in die richtige Richtung erwischen, nur
+um seine Kosten zu decken. Die getesteten Regeln erwischen im Schnitt nichts davon. Deshalb landet jede Suche wieder
+bei langsamen Trades, also beim Swing selbst.
+
+**Zum Rebate-Farming:** Mit 85 % Rebate kostet jeder Trade weiterhin 15 % der Gebühr plus Slippage. Bei 1.000 $
+Umsatz sind das rund 0,12 $ Gebühr netto und 0,15 $ bis 0,30 $ Slippage. Umsatz ohne Vorteil ist also ein sicherer
+kleiner Verlust je Trade, kein Gewinn. Trades, die nur Volumen erzeugen sollen, verbieten außerdem Yubits Regeln.
+
 ### Wenig Kapital und Hebel
 
 **Mindestgrößen.** Yubit verlangt bei BTC rund 66 $ je Order, bei ETH 19 $, bei SOL und AVAX 8 $, sonst unter 1 $.
@@ -373,7 +413,8 @@ Coin-Auswahl in Runde 8 enthielt die beschriebene Rückschau; Runde 9 hat das sa
 
 ## Der Weg dorthin
 
-Zehn Runden, 60 Versuche, alles vorab im Protokoll festgelegt (`suche_protokoll.md`).
+Elf Runden (60 Einzelversuche und ein Massentest mit {R11['varianten']} Varianten), alles vorab im Protokoll festgelegt
+(`suche_protokoll.md`).
 
 1. **Runde 1 (30 Einstellungen, passive Limits):** {n_s1} bestehen die Entwicklung, beide Finalisten fallen im Füll-Stress durch.
    Alle Gegenbewegungs-Ideen (Rücksetzer kaufen, schwache Coins kaufen) verlieren schon vor Gebühren.
@@ -394,11 +435,12 @@ Zehn Runden, 60 Versuche, alles vorab im Protokoll festgelegt (`suche_protokoll.
 8. **Runde 8 (1 Variante):** nur heute günstige Coins. Im Prüfzeitraum stark, aber mit Rückschau in der Auswahl.
 9. **Runde 9 (1 Variante):** dieselbe Idee ohne Rückschau. Kein Vorsprung.
 10. **Runde 10 (1 Hypothese):** neue Listings short gegen BTC. In der Entwicklung gut, im Prüfzeitraum klar negativ.
+11. **Runde 11 (Massentest, {R11['varianten']} Varianten):** kleine Trades in Swing-Richtung. Keine Regel verdient ihre Gebühr verlässlich.
 
 Der Prüfzeitraum und die zweite Coin-Gruppe wurden erst in Runde 3 angesehen, und nur für diese zwei Finalisten.
-Insgesamt sind es jetzt 60 Versuche. Der Kern des Befunds hat sich seit Runde 3 nicht mehr bewegt: ein kleiner
+Insgesamt sind es jetzt 60 Einzelversuche und ein Massentest. Der Kern des Befunds hat sich seit Runde 3 nicht mehr bewegt: ein kleiner
 Trend-Vorteil vor Gebühren, der nach Kosten vor allem mit Rebate trägt.
-Wichtig für die Einordnung: Bei 60 Versuchen ist ein einzelner Treffer weniger wert als ein Treffer beim ersten
+Wichtig für die Einordnung: Bei so vielen Versuchen ist ein einzelner Treffer weniger wert als ein Treffer beim ersten
 Versuch. Deshalb habe ich knappe oder nur formale Treffer nicht als Erfolg gewertet.
 
 ## Was das für dein Ziel bedeutet
@@ -434,6 +476,7 @@ Versuch. Deshalb habe ich knappe oder nur formale Treffer nicht als Erfolg gewer
 - `suche_runde3.json`, `suche_runde4.json`, `suche_runde5.json`, `gesamt_60.json`, `kandidat.json`, `fuellmodell_diagnose.json`: Rohwerte zu diesem Bericht
 - `suche_runde6.json` bis `suche_runde10.json`, `yubit_erstmessung.md`: echte Kosten und die Runden 6 bis 10
 - `diagnose_frequenz.csv`, `diagnose_kapital.json`: Geschwindigkeit, Hebel und Mindestkapital
+- `suche_runde11_uebersicht.csv`: alle {R11['varianten']} Regel-Varianten des Massentests mit ihren Gegenproben
 - `../vorwaertstest/`: der Vorwärtstest für Yubit (Anleitung in `README.md`, Regeln in `YUBIT_REGELN.md`)
 - `../labor_strategie/trend_14d/strategie.py`: der Kandidat im Format deines Labors
 - `../scripts/vorwaertstest_auswerten.py`: wertet ein Protokoll echter Orders aus (Slippage gegen die Schmerzgrenze)

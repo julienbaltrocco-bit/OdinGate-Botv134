@@ -498,3 +498,25 @@ Maker-Ausführung berichtet (0,08 % Gebühr, ohne Slippage) als optimistische Ob
 **Erwartung vorab, damit das Ergebnis einzuordnen ist:** Bei rund 600 Varianten bestehen einige Stufe 1 rein
 zufällig. Entscheidend ist Stufe 2 mit sechs unabhängigen Gegenproben. Berichtet wird außerdem, wie die beste und
 die mittlere Deckung von der Haltedauer abhängt. Gesamtzahl der Versuche: 60 Einzelhypothesen plus dieser Massentest.
+
+---
+
+# Runde 11: Ergebnis (14.11.2026)
+
+602 Regel-Varianten (43 Einstiege × 7 Ausstiege × 2 Bias-Längen), Stundenkerzen, 49 Coins.
+
+- **Stufe 1** (Entwicklung Gruppe A, Deckung ≥ 1,0 in beiden Hälften, je ≥ 200 Trades): **9 Varianten.** Bei 580
+  Varianten mit genug Trades ist das die Größenordnung, die der Zufall erwarten lässt.
+- **Stufe 2** (Prüfzeitraum Gruppe A, Gruppe B und C je Entwicklung und Prüfzeitraum): **0 Varianten.**
+  Die beste aus Stufe 1 (`b14_volumen_mit_z3.0_halte24`) fällt im Prüfzeitraum auf Deckung 0,69, in Gruppe C auf 0,19.
+
+Deckung nach Haltedauer (Median über alle Regeln, Gruppe A): 1 Stunde −0,31 · 2 Stunden −0,25 · 4 Stunden −0,08 ·
+8 Stunden +0,09 · 24 Stunden +0,46 in der Entwicklung; im Prüfzeitraum durchweg negativ (−0,28 bis −0,53).
+Gewinnziel mit Stop: −0,53 (1 ATR) und −0,50 (2 ATR).
+Selbst die optimistische Maker-Rechnung (halbe Gebühr, keine Slippage, jede Order gefüllt) kommt im Prüfzeitraum im
+Median nur auf 0,16 bei 24 Stunden Haltedauer und liegt bei kürzeren Haltedauern um null.
+
+**Runde 11: keine Regel gefunden, deren Trades ihre Gebühr verlässlich verdienen.** Der Befund ist kein Zufall der
+Regelauswahl, sondern Rechnung: Die Gebühr je Trade ist fest (0,16 % hin und zurück), der erzielbare Vorteil wächst
+mit der Haltedauer. Gebühr plus Slippage betragen im Mittel 0,22 % je Trade, die typische Stundenbewegung eines Coins
+0,38 % (`diagnose_huerde.json`). Ein Stunden-Trade müsste im Schnitt mehr als die Hälfte davon richtig erwischen.
