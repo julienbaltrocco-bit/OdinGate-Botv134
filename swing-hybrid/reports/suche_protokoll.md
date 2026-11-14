@@ -824,3 +824,24 @@ mit dem Kandidaten: höherer Sharpe in Entwicklung und Prüfzeitraum.
 
 Vorwissen: Aus Runde 14/15 kenne ich Trend-Ergebnisse je Markt für Gold, Silber, Platin, Palladium, SPY, QQQ, IWM,
 nicht aber deren Verhältnisse. Einschränkungen wie in Runde 14. Gesamtzahl der Versuche danach: 76 plus Massentest.
+
+# Runde 17: Ergebnis (14.11.2026)
+
+Zahlen in `suche_runde17.json`. 134 Aktien geladen (ETFs, Rohstoffe und nicht auffindbare Kürzel ausgelassen),
+für alle eine Yubit-Spanne gemessen (Median 0,055 %).
+
+**H1 Verwandte Paare: durchgefallen (alle drei Hürden).** Netto mit Rebate: D1 +2,9 %, D2 +4,8 %, Prüfzeitraum
+−3,0 %. Im Stress überall negativ. Mischung: Sharpe 0,98 gegen 0,95 in der Entwicklung, aber 0,29 gegen 0,34 im
+Prüfzeitraum. Der Verlust im Prüfzeitraum kommt aus Gold/Silber (−3,6 %).
+
+**H2 Aktien-Momentum: durchgefallen (alle drei Hürden), aber knapper als alles bisher.**
+- Netto mit Rebate: D1 −5,5 %, D2 +10,8 %, Prüfzeitraum +33,5 % (Sharpe 1,00). Hürde 1 scheitert an D1.
+- Stress: Entwicklung −32,8 %, Prüfzeitraum +16,5 %. Der Baustein hält dauerhaft 100 % Einsatz, 10 % Funding pro
+  Jahr fressen den Ertrag der Entwicklung auf.
+- Mischung: Sharpe 0,93 gegen 0,95 in der Entwicklung (knapp darunter), 0,72 gegen 0,34 im Prüfzeitraum.
+  Einbruch 18 % und 16 % gegen 25 % und 31 %. Korrelation der Tagesergebnisse 0,01.
+- **Warum das kein Treffer ist:** Die Aktienliste stammt von 2026. Sie enthält Titel, die gerade wegen ihres Laufs
+  2025/26 aufgenommen wurden. Das begünstigt genau den Prüfzeitraum. Das gute Ergebnis dort ist deshalb verzerrt,
+  und in der Entwicklung verdient der Baustein kaum etwas (+5,3 % in dreieinhalb Jahren).
+
+**Runde 17: keine Verbesserung nach den festgelegten Regeln.** Stand: 76 Einzelhypothesen plus Massentest.
