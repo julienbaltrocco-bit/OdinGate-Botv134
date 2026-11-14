@@ -571,3 +571,20 @@ positiv und netto +9,0 % / −7,7 %. Ein Paar-Trade verdient im Mittel 0,13 % se
 Kombinationen deutlich, der Sharpe ist in der Entwicklung in drei von vier Fällen höher, im Prüfzeitraum in allen
 vier Fällen niedriger als beim Swing allein. **Nach der vorab festgelegten Regel ist keine Fusion besser.**
 Details in `statarb_bericht.md`.
+
+---
+
+# Nachrechnung zu Runde 12: Fusion mit Yubit-Kosten und 85 % Rebate (14.11.2026)
+
+Auf Wunsch des Users, nach Kenntnis der Ergebnisse mit Labor-Kosten, also **keine** vorab festgelegte Prüfung.
+Gleiche Stat-Arb-Einstellung (30 Tage, Z 2,0), Kosten je Order 0,012 % plus 2 × gemessene halbe Yubit-Spanne.
+Zahlen in `fusion_yubit.json`.
+
+- trail_beide: „Swing als Filter“ erfüllt die Regel aus Runde 12 formal (Sharpe Entwicklung 1,27 gegen 1,13,
+  Prüfzeitraum 0,46 gegen 0,43; Einbruch 9 % gegen 16 % und 13 % gegen 20 %). Der Vorsprung im Prüfzeitraum ist
+  minimal, der Ertrag pro Jahr niedriger (4,9 % gegen 8,3 %). „Zwei Töpfe“ erfüllt sie nicht.
+- momentum_vol_ls: keine der beiden Fusionen erfüllt sie (Sharpe im Prüfzeitraum 0,48 und 0,50 gegen 0,53).
+- Stat-Arb allein bleibt im Prüfzeitraum negativ (−1,1 % pro Jahr).
+
+Wertung: kein belastbarer Vorteil. Ein formaler Treffer aus vier Kombinationen, nachträglich gerechnet und mit
+einem Vorsprung, der im Rauschen liegt.
