@@ -725,3 +725,19 @@ Ausführung, Stress, Zeiträume). Die Kurse reichen bis 01/2020 zurück, das ers
 
 **Einschränkung, vorab:** siehe Vorwissen oben. Ein Bestehen wäre deshalb nur ein Hinweis; als Beleg zählt es erst
 nach einem Vorwärtstest. Gesamtzahl der Versuche danach: 72 Einzelhypothesen plus Massentest.
+
+# Runde 15: Ergebnis (14.11.2026)
+
+Zahlen in `suche_runde15.json`. Korrektur vor der Wertung: Die Tagesrechnung schnitt die Kurse 60 Tage vor dem
+Start ab, das 12-Monats-Signal begann dadurch erst Mitte 2022. Behoben (Vorlauf = Rückblick + 46 Tage), wie im
+Protokoll vorgesehen; Runde 14 ist davon nicht betroffen.
+
+- **Hürde 1 durchgefallen.** 12-Monats-Trend allein, netto mit Rebate: D1 −7,2 %, D2 +1,9 %, Entwicklung −5,3 %,
+  Prüfzeitraum +18,7 % (Sharpe 0,34). Über alles +13,3 % in gut fünf Jahren bei 29 % Einbruch.
+- **Hürde 2 durchgefallen.** Mit doppelten Kosten und 10 % Funding pro Jahr in beiden Zeiträumen negativ.
+- **Hürde 3 durchgefallen.** Mischung je zur Hälfte: Sharpe 0,90 gegen 0,95 in der Entwicklung, 0,47 gegen 0,34
+  im Prüfzeitraum; Netto in beiden Zeiträumen niedriger. Der Einbruch sinkt (19 % gegen 25 %, 22 % gegen 31 %).
+- Die Tagesergebnisse beider Bausteine hängen nicht zusammen (Korrelation 0,01). Die Streuung wirkt also, aber der
+  zweite Baustein verdient im Entwicklungszeitraum nichts.
+
+**Runde 15: keine Verbesserung nach den festgelegten Regeln.** Stand: 72 Einzelhypothesen plus Massentest.

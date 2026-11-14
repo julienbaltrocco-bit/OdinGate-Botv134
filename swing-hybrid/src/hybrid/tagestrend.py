@@ -19,7 +19,7 @@ def signal(close: pd.Series, tage: int = TAGE) -> pd.Series:
 def lauf_markt(d: pd.DataFrame, kalender: pd.DatetimeIndex, S: float, slip: float, gebuehr: float,
                funding_jahr: float = 0.0, tage: int = TAGE) -> pd.DataFrame:
     """Tages-P&L eines Marktes auf dem Kalenderraster. Spalten: brutto, gebuehr, funding, umsatz."""
-    d = d[(d.index >= kalender[0] - pd.Timedelta(days=60)) & (d.index <= kalender[-1])]
+    d = d[(d.index >= kalender[0] - pd.Timedelta(days=tage + 46)) & (d.index <= kalender[-1])]
     sig = signal(d["close"], tage).shift(1).fillna(0.0)          # gilt ab der Eröffnung des Folgetags
     o, c, s = d["open"].to_numpy(), d["close"].to_numpy(), sig.to_numpy()
     n = len(d)
