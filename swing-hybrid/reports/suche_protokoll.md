@@ -403,3 +403,42 @@ Yubit-Kosten (Slippage 2 × halbe Spanne, rund 0,029 % je Order, plus 0,012 % Ge
 
 Ergebnis: Je schneller, desto kleiner der Signalwert je umgesetztem Dollar. Unter zwei Tagen Rückblick ist er schon
 ohne Kosten null oder negativ. Die Kosten je Dollar bleiben gleich (rund 0,041 %).
+
+---
+
+# Runde 10: Neue Listings gegen BTC (festgelegt vor dem ersten Ergebnis)
+
+**Begründung:** Kursmuster, Funding und Positionierung sind durchsucht. Ein wirklich guter Edge muss aus einer
+anderen Ertragsquelle kommen. Neu gelistete Token stehen oft monatelang unter Verkaufsdruck: Freigaben gesperrter
+Token, Verkäufe früher Investoren, nachlassende Aufmerksamkeit. Das ist ein struktureller Grund, kein Kursmuster.
+Die Strategie handelt selten und in kleinen Stückgrößen, braucht also wenig Kapital.
+
+**Eine Hypothese, eine Einstellung, keine Raster:**
+
+- **Neu** ist ein Kontrakt, dessen erster Handelstag bei Binance-Futures am oder nach dem 01.09.2021 liegt.
+  Betrachtet werden nur Kontrakte, die Yubit heute führt und für die Binance Daten hat. Aktien-, Rohstoff- und
+  Index-Kontrakte werden anhand des Namens ausgeschlossen, bevor Ergebnisse vorliegen.
+- **Einstieg:** Tagesschluss 7 Tage nach dem ersten Handelstag. Coin short, gleich großer Betrag BTC long.
+- **Ausstieg:** Tagesschluss 90 Tage nach dem Einstieg, oder früher, wenn das Paar 100 % seines Einsatzes verloren
+  hat (Stop), oder wenn die Daten enden.
+- **Größe:** jedes Paar ein Zwanzigstel einer Einheit je Seite, fest ab Einstieg. Die Einheit wird über den Hebel
+  skaliert.
+- **Kosten:** Taker-Gebühr 0,08 % mit 85 % Rebate; Slippage je Order beim Coin 0,15 %, bei BTC 0,005 %;
+  echtes Binance-Funding für beide Seiten (der Short erhält positives Funding und zahlt negatives).
+- Das Tagesverlust-Limit entfällt hier (Tagesdaten, zwei Orders je Paar in 90 Tagen); maßgeblich ist die Einbruch-Regel.
+
+**Hürden:**
+1. Entwicklung: Ergebnis vor Gebühren und netto mit Rebate positiv in D1 (bis 30.06.2023) **und** D2 (bis 31.03.2025).
+2. Stress: Slippage beim Coin 0,5 % je Order. Netto in D1 und D2 positiv.
+3. Prüfzeitraum (ab 01.04.2025): vor Gebühren und netto positiv; die dort eröffneten Paare im Mittel im Plus,
+   mit t-Wert mindestens 2.
+4. Placebo: dieselben Termine, aber statt des neuen Coins ein zufällig gewählter alter Coin. Die echte Strategie
+   muss besser sein als 90 % von 200 Placebo-Läufen. Das prüft, ob wirklich die Neuheit zählt.
+5. Hebel: Einbruch in der Entwicklung ≤ 10 %, Gesamteinsatz höchstens das Fünffache; im Prüfzeitraum < 15 %.
+
+**„Wirklich gut“** heißt: alle fünf Hürden bestanden **und** im Prüfzeitraum beim regelkonformen Hebel mindestens
+10 % netto pro Jahr (der Trend-Kandidat liegt dort bei rund 3 %).
+
+**Bekannte Verzerrungen, vorab benannt:** Es fehlen Coins, die Yubit oder Binance wieder gestrichen haben. Das sind
+meist die schwächsten, ihr Fehlen macht einen Short eher schlechter als besser. Ob Yubit einen Coin zum
+Einstiegstag schon führte, ist nicht bekannt. Gesamtzahl der Versuche danach: 60.
