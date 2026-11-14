@@ -247,3 +247,62 @@ regelkonformen Hebel in Entwicklung **und** Prüfzeitraum mehr Netto mit Rebate 
 
 Gesamtzahl der Versuche danach: 53. Die Spannen-Stichprobe ist eine Stunde eines einzigen Tages; das bleibt die
 größte Unsicherheit und wird im Bericht so benannt.
+
+---
+
+# Runde 6: Ergebnis (14.11.2026)
+
+Stichprobe: 30 Messungen, 15:40–16:39 UTC. Slippage-Annahme (2 × halbe Spanne): Gruppe A im Mittel 0,030 %
+(Median 0,014 %, DOT 0,132 %, ADA 0,064 %), Gruppe B 0,033 %, Gruppe C 0,053 %, Gruppe D 0,079 %.
+
+**Teil 1, Kandidat mit echten Kosten (Hebel 0,2):** Gruppe A: Entwicklung +41,3 %, Prüfzeitraum +5,2 % netto mit
+Rebate (mit dem alten Wert 0,05 % waren es +2,4 %; mit doppelten Kosten +1,2 %). A+B: +30,5 % / +3,9 %.
+
+**Teil 2, Rangfolge:** Alle 6 Einstellungen bestehen die Entwicklung auf Gruppe A. Finalist `rang_L168_T24`
+(7 Tage, tägliche Umschichtung) besteht den Kosten-Stress. **Stufe 3: durchgefallen.** Prüfzeitraum Gruppe A −5,5 %,
+Gruppe C in der Entwicklung −66,6 %, Gruppe D in beiden Zeiträumen negativ. Die Rangfolge ist nicht robust.
+
+**Teil 3, Kombination auf A+B:** Hebel 0,35; Entwicklung +31,7 % (Kandidat allein +30,5 %), Prüfzeitraum +5,9 %
+(Kandidat allein +3,9 %). Das erfüllt das vorab festgelegte Kriterium „stärker“ dem Wortlaut nach.
+
+**Bewertung:** Ich werte das **nicht** als stärkeren Edge. Der Vorsprung in der Entwicklung ist winzig, und der
+zugemischte Baustein hat seine eigene Robustheitsprüfung nicht bestanden. Das Kriterium war zu weich formuliert:
+Es hätte verlangen müssen, dass der neue Baustein selbst besteht. Das wird in Runde 7 so festgelegt.
+Belastbar ist aus Runde 6 nur Teil 1: Mit echten Yubit-Kosten ist der Kandidat besser als bisher gerechnet.
+
+---
+
+# Runde 7: Positionierungsdaten als neue Informationsquelle (festgelegt vor dem ersten Ergebnis)
+
+**Begründung:** Aus Kursen allein kam in 53 Versuchen nur der Trend heraus. Neue Stärke kann nur aus neuer
+Information kommen. Binance veröffentlicht für jeden Kontrakt alle 5 Minuten: offene Positionen (Open Interest),
+das Long/Short-Verhältnis aller Konten, das Long/Short-Verhältnis der größten Händler und das Verhältnis von
+Kauf- zu Verkaufs-Marktorders. Diese Daten kamen in der Suche bisher nicht vor.
+
+**Vier Hypothesen, je genau eine Einstellung (keine Raster, keine Auswahl unter Varianten):**
+
+| # | Name | Idee | Bauart |
+|---|---|---|---|
+| S1 | profis_gegen_menge | Coins kaufen, in denen die großen Händler stärker long sind als die Masse; die umgekehrten verkaufen | marktneutral |
+| S2 | gegen_die_menge | Coins verkaufen, in denen ungewöhnlich viele Konten long sind; die mit den wenigsten kaufen | marktneutral |
+| S3 | trend_frisches_geld | der Kandidat (14-Tage-Trend), aber nur solange das Open Interest höher ist als vor 7 Tagen | gerichtet |
+| S4 | orderfluss | Coins kaufen, in denen 7 Tage lang die Kauf-Marktorders überwogen; die umgekehrten verkaufen | marktneutral |
+
+Feste Bauteile: Abweichung vom eigenen 30-Tage-Mittel in Standardabweichungen (S1, S2), 7-Tage-Fenster (S3, S4),
+stärkste 30 % gegen schwächste 30 %, Umschichtung alle 24 Stunden, Signal erst nach Stundenschluss wirksam.
+Kosten wie in Runde 6 (2 × gemessene halbe Yubit-Spanne je Coin, Taker mit Rebate).
+
+**Hürden je Hypothese (jede steht für sich):**
+1. Entwicklung Gruppe A: G > 0 und N > 0 in D1 und D2.
+2. Doppelte Kosten: N > 0 in D1 und D2.
+3. Bestätigung: Prüfzeitraum Gruppe A mit G > 0 und N > 0; Gruppe B und Gruppe C (bei Yubit gelistet) jeweils
+   N > 0 in Entwicklung und Prüfzeitraum.
+4. Zufallstest (Gruppe A, ganzer Zeitraum): besser als 90 % von 200 verschobenen Signalen.
+5. Hebel: Einbruch in der Entwicklung ≤ 10 % mit Tageslimit, im Prüfzeitraum < 15 %, dort G > 0 und N > 0.
+
+**„Stärkerer Edge“ (strenger als in Runde 6):** Die Hypothese besteht **selbst** alle fünf Hürden **und** bringt
+auf A+B beim regelkonformen Hebel in Entwicklung und Prüfzeitraum mehr Netto mit Rebate als der Kandidat allein:
+S3 für sich, S1/S2/S4 als Mischung je zur Hälfte mit dem Kandidaten.
+
+Gesamtzahl der Versuche danach: 57. Einschränkung für den Betrieb: Die Signale kämen live von Binance, gehandelt
+würde bei Yubit.
