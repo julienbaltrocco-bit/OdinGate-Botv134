@@ -691,3 +691,37 @@ Umgebung nicht zugelassen.
   Einstieg festgelegt und bis zum Richtungswechsel gehalten (wie beim Kandidaten). „Vor 14 Tagen“ = letzter
   Schlusskurs, der mindestens 14 Kalendertage alt ist.
 - Zeitraum und Teilung wie bisher (ab 15.08.2021, D1 bis 30.06.2023, D2 bis 31.03.2025, danach Prüfzeitraum).
+
+# Runde 14: Ergebnis (14.11.2026)
+
+Zahlen in `suche_runde14.json`.
+
+- **Hürde 1 durchgefallen.** Der 14-Tage-Trend verliert auf den 14 Märkten: Entwicklung −66,4 % (D1 −27,9 %,
+  D2 −38,5 %), Prüfzeitraum −2,9 %, schon vor Gebühren negativ (−63,2 % und −1,5 %). 11 von 14 Märkten sind in der
+  Entwicklung negativ.
+- Hürde 2 (Stress) und Hürde 3 (Mischung) ebenfalls verfehlt. Mischung: Sharpe 0,62 und 0,28 gegen 0,95 und 0,34
+  des Kandidaten allein (Gruppe A, Einsatz 100 %, ohne Tageslimit).
+- Kontrolle der Rechnung: Eine unabhängige Vektor-Rechnung (Schluss zu Schluss) liefert für Gold, SPY und Öl
+  dieselben Größenordnungen. Kein Rechenfehler; auf diesen Märkten kehren 14-Tage-Bewegungen eher um.
+- **Vorwissen aus dieser Kontrolle, offen benannt:** Dabei habe ich für Gold, SPY und Öl auch längere Rückblicke
+  über den ganzen Zeitraum gesehen (60/200 Börsentage, 90/280 Kalendertage). Gold war damit deutlich positiv, SPY
+  positiv, Öl um null bis negativ. Der Prüfzeitraum ist für längere Rückblicke auf diesen drei Märkten damit nicht
+  mehr unberührt.
+
+**Runde 14: keine Verbesserung.** Der Krypto-Trend lässt sich nicht einfach auf andere Märkte übertragen.
+
+---
+
+# Runde 15: 12-Monats-Trend auf denselben 14 Märkten (festgelegt vor dem ersten Ergebnis)
+
+**Begründung:** Für Aktien-Indizes, Metalle und Energie ist nicht der 14-Tage-, sondern der 12-Monats-Trend der
+seit Jahrzehnten belegte Standard (Moskowitz, Ooi, Pedersen 2012: „Time Series Momentum“). Die Einstellung kommt
+aus dieser Literatur und nicht aus einem Raster.
+
+**Eine Einstellung:** Schluss gegen den Schluss vor 365 Kalendertagen, sonst alles wie in Runde 14 (Märkte, Kosten,
+Ausführung, Stress, Zeiträume). Die Kurse reichen bis 01/2020 zurück, das erste Signal liegt also vor dem Start.
+
+**Hürden:** dieselben drei wie in Runde 14.
+
+**Einschränkung, vorab:** siehe Vorwissen oben. Ein Bestehen wäre deshalb nur ein Hinweis; als Beleg zählt es erst
+nach einem Vorwärtstest. Gesamtzahl der Versuche danach: 72 Einzelhypothesen plus Massentest.
