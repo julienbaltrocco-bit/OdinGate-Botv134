@@ -648,3 +648,32 @@ Zahlen in `suche_runde13.json`.
 
 **Runde 13: kein zweiter Ertragsbringer.** Keine Nachbesserung der Einstellung. Stand: 70 Einzelhypothesen plus
 Massentest, weiterhin nur der Trend.
+
+---
+
+# Runde 14: Derselbe Trend auf Nicht-Krypto-Märkten bei Yubit (festgelegt vor dem ersten Ergebnis, noch nicht gerechnet)
+
+**Begründung:** Trendfolge wird in der Praxis vor allem durch Märkte stärker, die nicht gemeinsam laufen. Die zehn
+Coins laufen fast als ein Markt. Yubit führt aber auch Kontrakte auf Aktien-Indizes, Metalle und Energie.
+
+**Keine neue Regel, keine neue Einstellung:** der Kandidat unverändert (Schlusskurs gegen den vor 14 Tagen, long
+oder short, jeder Markt gleich groß), auf Tageskursen.
+
+**Märkte (festgelegt, bevor ein Kurs geladen ist):** SPY, QQQ, IWM, EWJ, EWY, Gold, Silber, Platin, Palladium,
+Kupfer, WTI-Öl, Brent-Öl, Erdgas, TBT. Keine Einzelaktien, keine gehebelten oder Branchen-ETFs.
+
+**Kosten:** Taker 0,08 % mit 85 % Rebate plus 2 × halbe Yubit-Spanne je Kontrakt (wird vor der Rechnung gemessen).
+Funding: aktueller Yubit-Satz je Kontrakt als Dauerwert, weil es keine Historie gibt.
+
+**Hürden:**
+1. Nicht-Krypto-Trend allein: N > 0 in D1, D2 und im Prüfzeitraum.
+2. Doppelte Kosten: N > 0 in Entwicklung und Prüfzeitraum.
+3. Mischung je zur Hälfte mit dem Kandidaten auf Gruppe A, gleicher Gesamteinsatz: mehr Netto mit Rebate **und**
+   höherer Sharpe als der Kandidat allein, in Entwicklung **und** Prüfzeitraum.
+
+Einschränkung, vorab benannt: Die Kurse wären die der Basiswerte (Börsentage), gehandelt würden Yubit-Kontrakte, die
+erst seit 2026 existieren. Abweichungen zwischen beiden sind ungeprüft.
+
+**Stand 14.11.2026:** Nicht gerechnet. Für diese Märkte fehlen Kurse vor 2026 (Binance-Historie nur wenige Monate).
+Der Abruf bei stooq.com scheiterte technisch, der Abruf bei Yahoo Finance wurde von der Sicherheitsprüfung der
+Umgebung nicht zugelassen.
