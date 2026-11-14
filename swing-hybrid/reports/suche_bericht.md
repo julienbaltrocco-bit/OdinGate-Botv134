@@ -1,0 +1,142 @@
+# Suchbericht: Strategie mit Rebate als größerem Gewinnanteil
+
+Stand 14.11.2026. Historische Simulation, keine Anlageberatung. Vergangene Ergebnisse sagen nichts Sicheres über die Zukunft.
+
+## Ergebnis
+
+**Es gibt einen Kandidaten, der alle vorab festgelegten Hürden besteht und deine Vorgabe auf dem Papier erfüllt.
+Er ist aber dünn, und ich würde ihn nicht „bewiesenen Edge“ nennen.**
+
+- **Vor Gebühren profitabel:** ja, in jedem Kalenderjahr seit 2021.
+- **Netto mit Rebate profitabel:** ja, in jedem Kalenderjahr. Im Prüfzeitraum aber nur +2,4 % in 19 Monaten.
+- **Rebate ist der größere Anteil:** ja. Im Prüfzeitraum +9,1 % Rebate gegen +2,4 % Nettogewinn.
+  Ohne Rebate hätte der Handel dort −6,6 % gebracht, also verloren.
+- **Größter Einbruch:** 11 % im Prüfzeitraum, 10 % in der Entwicklung (Grenze 15 %).
+- **Der Haken:** Das hält nur bei Hebel 0,2, also wenn nur ein Fünftel des Kontos im Markt ist. Bei 5.000 $ sind
+  das etwa 0,80 $ Rebate und 0,21 $ Nettogewinn pro Tag.
+
+Meine Empfehlung: als Vorwärtstest mit Kleinstbetrag laufen lassen, um die echte Slippage bei Yubit zu messen.
+Nicht hochfahren, bevor diese Zahl vorliegt.
+
+## Der Kandidat in einfachen Worten
+
+- **Markt:** dieselben 10 Coins wie in deinem Labor, als Futures.
+- **Signal, jede volle Stunde:** Steht der Kurs höher als vor 14 Tagen, dann Long. Steht er tiefer, dann Short.
+  Das ist dein Tagestrend (momentum_vol_ls), nur stündlich nachgeführt und mit kürzerer Länge.
+- **Größe:** jeder Coin gleich groß, zusammen höchstens 20 % des Kontos (Hebel 0,2).
+- **Order:** Limit mit Preisgrenze knapp durch den Markt. Sie wird sofort gefüllt und zählt als Taker.
+- **Schutz:** Tagesverlust-Limit 3 % (in 1896 Tagen 3-mal ausgelöst), Obergrenze je Coin.
+- **Aktivität:** rund 6 Orders pro Tag über alle Coins, Ø Haltedauer 42 Stunden,
+  Order-zu-Fill 1:1, keine Stornos, nie zwei Orders gleichzeitig je Coin.
+
+## Zahlen
+
+Gruppe A (10 Labor-Coins), Hebel 0,2, 0,05 % Slippage je Order. Prozent vom Startkapital, ohne Zinseszins.
+
+| | Entwicklung (08/2021–03/2025) | Prüfzeitraum (04/2025–10/2026) | Gesamt |
+|---|---|---|---|
+| Handel vor Gebühren | +38,5 % | +4,0 % | +42,5 % |
+| Gezahlte Gebühr | 24,0 % | 10,7 % | 34,7 % |
+| Rebate (85 %) | +20,4 % | +9,1 % | +29,5 % |
+| Handel nach voller Gebühr (ohne Rebate) | +14,4 % | −6,6 % | +7,8 % |
+| **Netto mit Rebate** | +34,9 % | +2,4 % | +37,3 % |
+| Größter Einbruch | 10 % | 11 % | 10 % |
+| Volumen pro Tag (× Kapital) | 0,23 | 0,23 | 0,23 |
+
+### Jahr für Jahr
+
+| Jahr | Handel vor Gebühren | Rebate | Handel nach voller Gebühr | Netto mit Rebate |
+|---|---|---|---|---|
+| 2021 (ab 15.08.) | +7,8 % | +1,8 % | +5,6 % | +7,5 % |
+| 2022 | +5,8 % | +5,5 % | −0,7 % | +4,8 % |
+| 2023 | +10,6 % | +5,8 % | +3,8 % | +9,5 % |
+| 2024 | +13,8 % | +5,8 % | +6,9 % | +12,8 % |
+| 2025 | +3,0 % | +5,5 % | −3,4 % | +2,0 % |
+| 2026 (bis 23.10.) | +1,6 % | +5,1 % | −4,4 % | +0,7 % |
+
+Das Rebate ist jedes Jahr fast gleich groß (rund 5,8 % des Kapitals), weil der Umsatz gleich bleibt.
+Der Handel selbst schwankt stark und ist 2025 und 2026 deutlich schwächer als davor.
+56 % der 63 Monate schließen im Plus, 28 % der Trades gewinnen (typisch für Trendfolge:
+viele kleine Verluste, wenige große Gewinne).
+
+## Kapital-Szenarien
+
+| Kapital | Position je Coin | Volumen/Tag | Rebate/Tag | Netto/Tag (Prüfzeitraum) | Netto/Tag (gesamter Zeitraum) | Größter Einbruch |
+|---|---|---|---|---|---|---|
+| 500 $ | 10 $ | 117 $ | 0,08 $ | 0,02 $ | 0,10 $ | 11 % (≈ 56 $) |
+| 1.000 $ | 20 $ | 234 $ | 0,16 $ | 0,04 $ | 0,20 $ | 11 % (≈ 111 $) |
+| 5.000 $ | 100 $ | 1.170 $ | 0,80 $ | 0,21 $ | 0,98 $ | 11 % (≈ 556 $) |
+
+Bei 500 $ ist eine Position nur 10 $ groß. Ob Yubit so kleine Orders annimmt, weiß ich nicht.
+
+## Wie belastbar ist das?
+
+**Slippage entscheidet.** Der Kandidat verträgt im Prüfzeitraum bis knapp 0,07 % je Order, darüber verliert er:
+
+| Slippage je Order | Netto mit Rebate, Entwicklung | Netto mit Rebate, Prüfzeitraum |
+|---|---|---|
+| 0,000 % | +49,9 % | +9,1 % |
+| 0,025 % | +42,4 % | +5,8 % |
+| 0,050 % | +34,9 % | +2,4 % |
+| 0,075 % | +27,4 % | −0,9 % |
+| 0,100 % | +19,9 % | −4,2 % |
+
+**Zweite Coin-Gruppe (nie zur Auswahl benutzt):** BNB, TRX, ATOM, BCH, ETC, FIL, UNI, NEAR, XLM, AAVE.
+Entwicklung +18,3 %, Prüfzeitraum +0,5 %. Positiv, im Prüfzeitraum aber praktisch null.
+
+**Zufallstest:** Über den ganzen Zeitraum schlägt der Kandidat alle 200 Zufallsvarianten (dasselbe Signal, zeitlich
+verschoben). Nur im Prüfzeitraum betrachtet ist er besser als 80 % davon. Das liegt unter der 90-%-Marke
+deines Labors: In den letzten 19 Monaten ist der Vorteil statistisch nicht gesichert.
+
+**Passive Ausführung statt sofortiger:** Mit Limit zum letzten Kurs (Maker) rechnet das Modell im Prüfzeitraum
++5,7 % netto, und der Handel wäre dort sogar nach voller Gebühr im Plus (+1,1 %).
+Dieser Wert hängt an der Füllannahme, die sich mit Kerzen nicht absichern lässt. Die sofortige Ausführung ist die
+vorsichtige Untergrenze.
+
+## Der Weg dorthin
+
+Drei Runden, 40 Signal-Einstellungen, alles vorab im Protokoll festgelegt (`suche_protokoll.md`).
+
+1. **Runde 1 (30 Einstellungen, passive Limits):** 3 bestehen die Entwicklung, beide Finalisten fallen im Füll-Stress durch.
+   Alle Gegenbewegungs-Ideen (Rücksetzer kaufen, schwache Coins kaufen) verlieren schon vor Gebühren.
+2. **Runde 2 (10 Trend-Einstellungen, sofortige Ausführung):** durchgefallen. Die Diagnose zeigte einen Fehler in
+   meinem Testaufbau: Das Tagesverlust-Limit von 3 % wurde bei vollem Einsatz an jedem sechsten Tag ausgelöst
+   und hat das Ergebnis dominiert.
+3. **Runde 3 (dieselben 10, Messfehler korrigiert):** 2 Finalisten. Einer fällt im Prüfzeitraum klar durch
+   (4-Tage-Trend), der 14-Tage-Trend besteht alle fünf Stufen.
+
+Der Prüfzeitraum und die zweite Coin-Gruppe wurden erst in Runde 3 angesehen, und nur für diese zwei Finalisten.
+Wichtig für die Einordnung: Bei 40 Versuchen in drei Messaufbauten ist ein einzelner Treffer weniger wert als ein
+Treffer beim ersten Versuch.
+
+## Was das für dein Ziel bedeutet
+
+- **Rebate hängt am Umsatz, Umsatz hängt am Einsatz, und den Einsatz begrenzt deine 15-%-Grenze.**
+  Diese Strategie schlägt den eingesetzten Betrag etwa 1,1-mal pro Tag um. Mit Hebel 0,2 ergibt das
+  rund 5,8 % des Kapitals als Rebate pro Jahr.
+- **Mehr Hebel bringt mehr Rebate, aber im selben Maß mehr Einbruch.** Bei Hebel 1 lag der Einbruch im
+  Prüfzeitraum bei 39 %.
+- **Der Gewinn kommt hier wirklich aus dem Rebate.** In den Jahren 2022, 2025 und 2026 hätte der Handel ohne Rebate
+  verloren. Wird das Rebate gekürzt oder gestrichen, trägt die Strategie nach heutigem Stand nicht mehr.
+  Das ist genau die Abhängigkeit, die du mit „kein Rebate-Farming“ ursprünglich ausschließen wolltest.
+- **Mehr Rebate heißt hier nicht mehr Gewinn.** Deine reine Tages-Swing (momentum_vol_ls) hätte im selben
+  Prüfzeitraum beim selben Hebel +4,1 % netto gebracht, also mehr als der Kandidat (+2,4 %),
+  mit rund einem 13tel des Umsatzes. Der Kandidat tauscht Gewinn gegen Volumen.
+
+## Risiken und Annahmen
+
+- **Yubit ist nicht getestet.** Kurse, Funding und Slippage stammen von Binance-Futures. Die Slippage bei Yubit ist
+  die eine Zahl, die über Gewinn oder Verlust entscheidet.
+- **Regel-Auslegung:** Du hast „Limit-Orders für Einstiege“ verlangt. Der Kandidat nutzt Limits mit Preisgrenze,
+  die sofort gefüllt werden. Dem Ordertyp nach ist das ein Limit, den Gebühren nach ein Taker.
+- **Risikokontrolle der Börse:** Ein Konto, dessen Gewinn überwiegend aus Rebate stammt, kann dort auffallen.
+  Prüf, ob die Freigabe deines Partners das ausdrücklich abdeckt.
+- **Rebate:** gerechnet als sofortige Gutschrift von 85 % der Gebühr.
+- **Die Coins wurden im Rückblick festgelegt,** und der Prüfzeitraum umfasst nur 19 Monate.
+- **Keine Zinseszins-Rechnung,** feste Positionsgröße vom Startkapital.
+
+## Dateien
+
+- `suche_protokoll.md`: Regeln und Zwischenergebnisse aller drei Runden
+- `suche_stufe1.csv`, `suche_runde2_stufe1.csv`, `suche_runde3_stufe1.csv`: alle 40 Einstellungen mit Zahlen
+- `suche_runde3.json`, `kandidat.json`, `fuellmodell_diagnose.json`: Rohwerte zu diesem Bericht

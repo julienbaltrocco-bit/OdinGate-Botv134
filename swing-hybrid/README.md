@@ -31,3 +31,16 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 
 Die Rohdaten (`data/`) liegen nur in der Cloud-Umgebung und nicht im Repo.
+
+## Suche nach einer Strategie mit hohem Umsatz (Rebate als größerer Gewinnanteil)
+
+Regeln und Zwischenergebnisse: `reports/suche_protokoll.md`. Ergebnis: `reports/suche_bericht.md`.
+
+```bash
+.venv/bin/python -I scripts/kerzen_laden.py BNBUSDT TRXUSDT ATOMUSDT BCHUSDT ETCUSDT FILUSDT UNIUSDT NEARUSDT XLMUSDT AAVEUSDT
+.venv/bin/python -I scripts/suche_stufe1.py && .venv/bin/python -I scripts/suche_stufe2bis5.py   # Runde 1
+.venv/bin/python -I scripts/fuellmodell_diagnose.py
+.venv/bin/python -I scripts/suche_runde2.py                                                      # Runde 2
+.venv/bin/python -I scripts/suche_runde3.py                                                      # Runde 3
+.venv/bin/python -I scripts/kandidat_pruefen.py && .venv/bin/python -I scripts/suche_bericht.py
+```
