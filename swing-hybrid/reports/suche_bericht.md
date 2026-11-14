@@ -4,13 +4,16 @@ Stand 14.11.2026. Historische Simulation, keine Anlageberatung. Vergangene Ergeb
 
 ## Ergebnis
 
-**Es gibt einen Kandidaten, der deine Vorgabe auf dem Papier erfüllt. Tieferes Graben (Runde 5) hat keinen
-zusätzlichen Edge gefunden und das Bild eher gedämpft: Auf einer zweiten frischen Coin-Gruppe bringt er im
-Prüfzeitraum netto null. Der Vorteil ist klein und bringt bei deinem Kapital wenig Geld.**
+**Der Kandidat (14-Tage-Trend) bleibt das Beste, was die Daten hergeben. Vier weitere Runden mit 12 neuen
+Versuchen haben keinen stärkeren Edge gefunden. Deutlich besser geworden ist aber die Kostenrechnung: An Yubit
+gemessen ist die Slippage viel niedriger als bisher angenommen.**
 
-Beste Gesamtschätzung über alle 60 getesteten Coins, Hebel 0,15: im Prüfzeitraum +2,7 % netto mit Rebate
-in 19 Monaten (davon +6,8 % Rebate), über gut fünf Jahre +27,6 %. Die Punkte darunter beziehen sich auf die
-ursprünglichen 10 Coins.
+Mit echten Yubit-Kosten (10 Coins, Hebel 0,2): Entwicklung +41,3 %, Prüfzeitraum +5,2 % netto mit Rebate
+in 19 Monaten, davon +9,1 % Rebate. Bei doppelten Kosten bleiben im Prüfzeitraum +1,2 %.
+Der Vorteil ist weiterhin klein und im Prüfzeitraum statistisch nicht gesichert.
+
+Die folgenden Punkte und die Abschnitte bis Runde 5 rechnen noch mit der alten, vorsichtigen Annahme von 0,05 %
+Slippage. Über alle 60 getesteten Coins waren es damit +2,7 % im Prüfzeitraum (Hebel 0,15).
 
 - **Vor Gebühren profitabel:** ja, in jedem Kalenderjahr seit 2021.
 - **Netto mit Rebate profitabel:** ja, in jedem Kalenderjahr. Im Prüfzeitraum aber nur +2,4 % in 19 Monaten.
@@ -22,8 +25,9 @@ ursprünglichen 10 Coins.
 - **Breiter gestreut wird es etwas besser:** Über 40 Coins bringt derselbe Kandidat im Prüfzeitraum +5,5 % statt +2,4 %,
   bei 9 % Einbruch. Mehr Hebel erlaubt die Streuung aber nicht.
 
-Meine Empfehlung: als Vorwärtstest mit Kleinstbetrag laufen lassen, um die echte Slippage bei Yubit zu messen.
-Nicht hochfahren, bevor diese Zahl vorliegt.
+Meine Empfehlung: den gebauten Vorwärtstest (`../vorwaertstest/`) laufen lassen, zuerst auf Papier gegen das echte
+Yubit-Orderbuch. Die Kostenmessung beruht bisher auf einer Stunde eines einzigen Tages. Nicht hochfahren, bevor
+der Dauerwert vorliegt.
 
 ## Der Kandidat in einfachen Worten
 
@@ -207,9 +211,55 @@ Prüfzeitraum aber nur in einer Gruppe (C) deutlich etwas übrig. Gruppe D: IOTA
 
 Über 60 Coins sinkt der zulässige Hebel auf 0,15.
 
+## Runden 6 bis 9: echte Yubit-Kosten und die Suche nach mehr
+
+### Was eine Order bei Yubit wirklich kostet
+
+Gemessen an Yubits öffentlichem Orderbuch, 30 Messungen über eine Stunde am 14.11.2026
+(Details in `yubit_erstmessung.md`). Angesetzt wird je Coin das Doppelte der gemessenen halben Spanne:
+Gruppe A im Mittel 0,030 %, Gruppe B 0,033 %, Gruppe C 0,053 %, Gruppe D 0,078 %.
+Bisher hatte ich pauschal 0,050 % gerechnet. Das Orderbuch ist tief genug, dass auch Orders über 10.000 $
+bei den großen Coins kaum mehr kosten.
+
+### Der Kandidat mit echten Kosten
+
+Unverändert: 14-Tage-Trend, Gruppe A, Hebel 0,2, Tageslimit 3 %.
+
+| Slippage-Annahme | Entwicklung, netto mit Rebate | Prüfzeitraum, netto mit Rebate |
+|---|---|---|
+| alt: 0,05 % pauschal | +34,9 % | +2,4 % |
+| **gemessen: 2 × halbe Yubit-Spanne je Coin** | **+41,3 %** | **+5,2 %** |
+| Stress: das Doppelte davon | +32,8 % | +1,2 % |
+
+- **Im Prüfzeitraum:** Handel vor Gebühren +6,8 %, Rebate +9,1 %, nach voller Gebühr ohne Rebate −3,9 %,
+  größter Einbruch 10 %.
+- **Jahr für Jahr netto mit Rebate:** 2021: +8,1 %, 2022: +6,5 %, 2023: +11,5 %, 2024: +14,6 %, 2025: +3,9 %, 2026: +2,0 %.
+- **In Dollar bei 5.000 $:** etwa 0,80 $ Rebate und 0,45 $ netto pro Tag im Prüfzeitraum.
+
+### Was nicht stärker war
+
+| Idee | Versuche | Ergebnis |
+|---|---|---|
+| Marktneutrale Rangfolge (starke Coins gegen schwache) | 6 | In der Entwicklung auf Gruppe A gut, dann nicht bestätigt: Prüfzeitraum Gruppe A −5,5 %, Gruppe C in der Entwicklung −66,6 % (Hebel 1) |
+| Mischung Kandidat + Rangfolge | – | Formal knapp vorn (Entwicklung +31,7 % gegen +30,5 %, Prüfzeitraum +5,9 % gegen +3,9 %). Nicht gewertet, weil der zugemischte Baustein selbst durchfiel |
+| Den großen Händlern folgen, gegen die Masse | 1 | Entwicklung, erste Hälfte −8,7 %: durchgefallen |
+| Gegen überfüllte Long-Seiten | 1 | Besteht die Entwicklung, fällt bei doppelten Kosten durch (−1,8 % in der ersten Hälfte) |
+| Trend nur bei steigendem Open Interest | 1 | Erste Hälfte −15,1 %: schlechter als der Trend ohne Filter |
+| Orderfluss (Kauf- gegen Verkaufsdruck) | 1 | Besteht Entwicklung und Kosten-Stress, Prüfzeitraum Gruppe A −18,2 %: nicht bestätigt |
+| Kandidat nur auf den 23 heute günstigen Coins | 1 | Prüfzeitraum +16,5 %, Entwicklung +39,8 %. Sieht stark aus, enthält aber Rückschau (siehe unten) |
+| Kandidat auf den jeweils 20 umsatzstärksten Coins, ohne Rückschau | 1 | Prüfzeitraum +5,1 %, Entwicklung +22,4 % bei Hebel 0,15: nicht besser |
+
+**Warum ich die +16,5 % nicht als Edge werte:** Die Auswahl „heute günstig handelbar“ bevorzugt Coins, die zuletzt
+stark gelaufen sind und deshalb viel Umsatz haben. Genau an solchen Coins verdient Trendfolge im Rückblick.
+Die Gegenprobe ohne Rückschau (Auswahl nur nach damals bekanntem Umsatz) bringt keinen Vorsprung.
+
+**Zwei Korrekturen an meiner eigenen Arbeit:** Das Kriterium „stärker“ in Runde 6 war zu weich formuliert und hätte
+die Mischung durchgewinkt; ich habe sie nicht gewertet und das Kriterium für Runde 7 verschärft. Und die
+Coin-Auswahl in Runde 8 enthielt die beschriebene Rückschau; Runde 9 hat das sauber nachgeprüft.
+
 ## Der Weg dorthin
 
-Fünf Runden, 47 Versuche, alles vorab im Protokoll festgelegt (`suche_protokoll.md`).
+Neun Runden, 59 Versuche, alles vorab im Protokoll festgelegt (`suche_protokoll.md`).
 
 1. **Runde 1 (30 Einstellungen, passive Limits):** 3 bestehen die Entwicklung, beide Finalisten fallen im Füll-Stress durch.
    Alle Gegenbewegungs-Ideen (Rücksetzer kaufen, schwache Coins kaufen) verlieren schon vor Gebühren.
@@ -224,11 +274,17 @@ Fünf Runden, 47 Versuche, alles vorab im Protokoll festgelegt (`suche_protokoll
 5. **Runde 5 (7 Varianten, tiefer gegraben):** Risikosteuerung, Trend-Mischung, Funding-Carry. Kein Mehrwert.
    Eine vierte, frische Coin-Gruppe zeigt den Kandidaten im Prüfzeitraum bei netto null.
 
+6. **Runde 6 (6 Einstellungen):** echte Yubit-Kosten gemessen; marktneutrale Rangfolge nicht robust.
+7. **Runde 7 (4 Hypothesen):** Positionierungsdaten von Binance (Open Interest, Long/Short-Verhältnisse, Orderfluss).
+   Keine besteht.
+8. **Runde 8 (1 Variante):** nur heute günstige Coins. Im Prüfzeitraum stark, aber mit Rückschau in der Auswahl.
+9. **Runde 9 (1 Variante):** dieselbe Idee ohne Rückschau. Kein Vorsprung.
+
 Der Prüfzeitraum und die zweite Coin-Gruppe wurden erst in Runde 3 angesehen, und nur für diese zwei Finalisten.
-Insgesamt sind es jetzt 47 Versuche. Der Kern des Befunds hat sich seit Runde 3 nicht mehr bewegt: ein kleiner
-Trend-Vorteil vor Gebühren, der nach Kosten nur mit Rebate und nur knapp trägt.
-Wichtig für die Einordnung: Bei 40 Versuchen in drei Messaufbauten ist ein einzelner Treffer weniger wert als ein
-Treffer beim ersten Versuch.
+Insgesamt sind es jetzt 59 Versuche. Der Kern des Befunds hat sich seit Runde 3 nicht mehr bewegt: ein kleiner
+Trend-Vorteil vor Gebühren, der nach Kosten vor allem mit Rebate trägt.
+Wichtig für die Einordnung: Bei 59 Versuchen ist ein einzelner Treffer weniger wert als ein Treffer beim ersten
+Versuch. Deshalb habe ich knappe oder nur formale Treffer nicht als Erfolg gewertet.
 
 ## Was das für dein Ziel bedeutet
 
@@ -261,5 +317,7 @@ Treffer beim ersten Versuch.
 - `suche_protokoll.md`: Regeln und Zwischenergebnisse aller drei Runden
 - `suche_stufe1.csv`, `suche_runde2_stufe1.csv`, `suche_runde3_stufe1.csv`: alle 40 Einstellungen mit Zahlen
 - `suche_runde3.json`, `suche_runde4.json`, `suche_runde5.json`, `gesamt_60.json`, `kandidat.json`, `fuellmodell_diagnose.json`: Rohwerte zu diesem Bericht
+- `suche_runde6.json` bis `suche_runde9.json`, `yubit_erstmessung.md`: echte Kosten und die Runden 6 bis 9
+- `../vorwaertstest/`: der Vorwärtstest für Yubit (Anleitung in `README.md`, Regeln in `YUBIT_REGELN.md`)
 - `../labor_strategie/trend_14d/strategie.py`: der Kandidat im Format deines Labors
 - `../scripts/vorwaertstest_auswerten.py`: wertet ein Protokoll echter Orders aus (Slippage gegen die Schmerzgrenze)

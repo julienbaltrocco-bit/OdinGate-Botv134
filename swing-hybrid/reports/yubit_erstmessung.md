@@ -49,3 +49,25 @@ Nicht gelistet: SNX, IOTA, ONT, QTUM, KAVA, BAT, YFI, ANKR, RLC, KNC, CELR.
 - Die Gruppen A und B (die 20 großen Coins) haben enge Spannen. In C und D sind sie drei- bis fünfmal so weit.
 - BTC braucht mindestens rund 66 $ je Order. Bei 100 $ je Coin (5.000 $ Kapital, Hebel 0,2) passt genau eine Einheit.
   Unter etwa 3.300 $ Kapital fällt BTC aus dem Portfolio.
+
+## Nachtrag: Stichprobe über eine Stunde und Tiefe des Orderbuchs
+
+30 Messungen im Abstand von 2 Minuten (15:40–16:39 UTC). Slippage = halbe Spanne.
+
+| Coin | Slippage im Mittel | Höchster Wert | Slippage bei 1.000 $ | bei 10.000 $ |
+|---|---|---|---|---|
+| BTC | 0,001 % | 0,008 % | 0,001 % | 0,001 % |
+| ETH | 0,001 % | 0,004 % | 0,001 % | 0,001 % |
+| SOL | 0,007 % | 0,007 % | 0,007 % | 0,007 % |
+| XRP | 0,006 % | 0,021 % | 0,005 % | 0,005 % |
+| DOT | 0,066 % | 0,067 % | 0,093 % | 0,127 % |
+| DOGE | 0,008 % | 0,008 % | 0,008 % | 0,008 % |
+| ADA | 0,032 % | 0,032 % | 0,032 % | 0,032 % |
+| LINK | 0,005 % | 0,006 % | 0,005 % | 0,012 % |
+| AVAX | 0,007 % | 0,013 % | 0,012 % | 0,020 % |
+| LTC | 0,011 % | 0,011 % | 0,011 % | 0,021 % |
+
+- Mittel über die 10 Coins: 0,015 %. Die Werte schwanken innerhalb der Stunde kaum.
+- Das Orderbuch ist tief: Auch Orders über 10.000 $ kosten bei den meisten großen Coins nur wenig mehr.
+- Für die Nachrechnung in Runde 6 habe ich den doppelten Wert je Coin angesetzt (Sicherheitsaufschlag).
+- Weiterhin gilt: Es ist eine Stunde eines einzigen Tages. Den Dauerwert liefert der stündliche Vorwärtstest.

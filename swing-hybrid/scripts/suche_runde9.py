@@ -55,7 +55,7 @@ pruef = tg[tg.index >= pd.Timestamp(R.SPLIT)].sum().sort_values(ascending=False)
 out = {"hebel": h, **fen(l), "stress_2x": fen(R.lauf(m, w, hebel=h * skala, taker=True, slip=2 * kosten)),
        "alt_5bp": fen(R.lauf(m, w, hebel=h * skala, taker=True, slip=0.0005)), "orders": runner.order_statistik(l),
        "jahre": {str(i): x for i, x in j.round(5).T.to_dict().items()},
-       "anteil_gewaehlt_pct": haeufig.to_dict(), "wechsel_je_monat": float((wahl.diff().abs().sum(axis=1) / 2)[wahl.index.day == 1].mean()),
+       "anteil_gewaehlt_pct": haeufig.to_dict(), "wechsel_je_monat": float((wahl.diff().abs().sum(axis=1) / 2)[(wahl.index.day == 1) & (wahl.index.hour == 0)].iloc[1:].mean()),
        "pruefung_je_coin_top": pruef.head(5).round(4).to_dict(), "pruefung_je_coin_flop": pruef.tail(5).round(4).to_dict(),
        "tage": {"Pruefung": (m.index[-1] - pd.Timestamp(R.SPLIT)).days + 1, "Gesamt": (m.index[-1] - m.index[0]).days + 1}}
 r8 = json.loads((ROOT / "reports/suche_runde8.json").read_text())["A"]

@@ -253,7 +253,7 @@ größte Unsicherheit und wird im Bericht so benannt.
 # Runde 6: Ergebnis (14.11.2026)
 
 Stichprobe: 30 Messungen, 15:40–16:39 UTC. Slippage-Annahme (2 × halbe Spanne): Gruppe A im Mittel 0,030 %
-(Median 0,014 %, DOT 0,132 %, ADA 0,064 %), Gruppe B 0,033 %, Gruppe C 0,053 %, Gruppe D 0,079 %.
+(Median 0,014 %, DOT 0,132 %, ADA 0,064 %), Gruppe B 0,033 %, Gruppe C 0,053 %, Gruppe D 0,078 %.
 
 **Teil 1, Kandidat mit echten Kosten (Hebel 0,2):** Gruppe A: Entwicklung +41,3 %, Prüfzeitraum +5,2 % netto mit
 Rebate (mit dem alten Wert 0,05 % waren es +2,4 %; mit doppelten Kosten +1,2 %). A+B: +30,5 % / +3,9 %.
@@ -362,3 +362,23 @@ lang nur diese handeln, dann neu wählen. Signal, Kosten (heutige Yubit-Spannen)
 Prüfzeitraum, und im Prüfzeitraum auch bei doppelten Kosten positiv.
 Verbleibende Einschränkung: Die Liste der 59 Coins selbst enthält nur solche, die bis 2026 überlebt haben.
 Gesamtzahl der Versuche danach: 59.
+
+---
+
+# Runde 9: Ergebnis (14.11.2026)
+
+Berichtigung zum Protokolltext oben: Es sind 49 bei Yubit gelistete Test-Coins, nicht 59.
+
+Immer die 20 umsatzstärksten von 49 Coins, Hebel 0,15: Entwicklung +22,4 %, Prüfzeitraum +5,1 % netto mit Rebate
+(Gruppe A: +41,3 % / +5,2 %). **Nicht besser.** Damit ist der Vorbehalt aus Runde 8 bestätigt: Der dortige Vorsprung
+im Prüfzeitraum kam aus der Rückschau in der Coin-Auswahl, nicht aus einem stärkeren Edge.
+
+# Stand nach 9 Runden und 59 Versuchen
+
+- **Kein stärkerer Edge gefunden.** Marktneutrale Rangfolge, vier Hypothesen aus Positionierungsdaten und zwei
+  Arten der Coin-Auswahl bestehen die vorab festgelegten Hürden nicht.
+- **Belastbar besser geworden ist nur die Kostenrechnung:** Mit den an Yubit gemessenen Spannen bringt der
+  unveränderte Kandidat (Gruppe A, Hebel 0,2) in der Entwicklung +41,3 % und im Prüfzeitraum +5,2 % netto mit Rebate,
+  bei doppelten Kosten +1,2 %.
+- Zwei Stellen, an denen ich mich korrigiert habe: Das Kriterium „stärker“ in Runde 6 war zu weich (in Runde 7
+  verschärft), und die Coin-Auswahl in Runde 8 enthielt Rückschau (in Runde 9 sauber nachgeprüft).

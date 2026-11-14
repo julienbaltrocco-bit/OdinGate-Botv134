@@ -14,6 +14,10 @@ H = K["hebel"]
 R4 = json.loads((ROOT / "reports/suche_runde4.json").read_text())
 R5 = json.loads((ROOT / "reports/suche_runde5.json").read_text())
 G6 = json.loads((ROOT / "reports/gesamt_60.json").read_text())
+R6 = json.loads((ROOT / "reports/suche_runde6.json").read_text())
+R7 = json.loads((ROOT / "reports/suche_runde7.json").read_text())
+R8 = json.loads((ROOT / "reports/suche_runde8.json").read_text())
+R9 = json.loads((ROOT / "reports/suche_runde9.json").read_text())
 SV = json.loads((ROOT / "reports/swing_vergleich.json").read_text())
 sw = SV["momentum_vol_ls_baseline"]["pruef"]
 
@@ -97,6 +101,33 @@ for c in (500, 1000, 5000):
 kap_b = "\n".join(kap_b)
 sl_b = ", ".join(f"{zahl(float(k) / 100, 3)} % → {pz(v['N'])}" for k, v in R4["breit_slippage"].items())
 zb = R4["breit_zufall_pruefung"]
+# ---- Runden 6 bis 9
+k6 = R6["teil1"]["A"]
+k6e, k6p = k6["Entwicklung"], k6["Pruefung"]
+t8p = R8["A"]["tage"]["Pruefung"]
+mittel_bp = lambda g: sum(R6["kosten_bp"][g].values()) / len(R6["kosten_bp"][g])
+tab_k6 = "\n".join([
+    "| Slippage-Annahme | Entwicklung, netto mit Rebate | Prüfzeitraum, netto mit Rebate |", "|---|---|---|",
+    f"| alt: 0,05 % pauschal | {pz(k6['alt_5bp']['Entwicklung']['N'])} | {pz(k6['alt_5bp']['Pruefung']['N'])} |",
+    f"| **gemessen: 2 × halbe Yubit-Spanne je Coin** | **{pz(k6e['N'])}** | **{pz(k6p['N'])}** |",
+    f"| Stress: das Doppelte davon | {pz(k6['stress_2x']['Entwicklung']['N'])} | {pz(k6['stress_2x']['Pruefung']['N'])} |"])
+jahre_k6 = ", ".join(f"{j}: {pz(v['N'])}" for j, v in k6["jahre"].items())
+f6 = R6["teil2"]["finalist"]["stufen"]["3_bestaetigung"]
+t3 = R6["teil3"]
+s7 = R7["signale"]
+g8, r9 = R8["guenstige_coins"], R9
+tab_69 = "\n".join([
+    "| Idee | Versuche | Ergebnis |", "|---|---|---|",
+    f"| Marktneutrale Rangfolge (starke Coins gegen schwache) | 6 | In der Entwicklung auf Gruppe A gut, dann nicht bestätigt: "
+    f"Prüfzeitraum Gruppe A {pz(f6['A']['Pruefung']['N'])}, Gruppe C in der Entwicklung {pz(f6['C']['Entwicklung']['N'])} (Hebel 1) |",
+    f"| Mischung Kandidat + Rangfolge | – | Formal knapp vorn (Entwicklung {pz(t3['kombination']['Entwicklung']['N'])} gegen {pz(t3['trend']['Entwicklung']['N'])}, "
+    f"Prüfzeitraum {pz(t3['kombination']['Pruefung']['N'])} gegen {pz(t3['trend']['Pruefung']['N'])}). Nicht gewertet, weil der zugemischte Baustein selbst durchfiel |",
+    f"| Den großen Händlern folgen, gegen die Masse | 1 | Entwicklung, erste Hälfte {pz(s7['profis_gegen_menge']['stufen']['1_entwicklung']['D1']['N'])}: durchgefallen |",
+    f"| Gegen überfüllte Long-Seiten | 1 | Besteht die Entwicklung, fällt bei doppelten Kosten durch ({pz(s7['gegen_die_menge']['stufen']['2_stress']['D1']['N'])} in der ersten Hälfte) |",
+    f"| Trend nur bei steigendem Open Interest | 1 | Erste Hälfte {pz(s7['trend_frisches_geld']['stufen']['1_entwicklung']['D1']['N'])}: schlechter als der Trend ohne Filter |",
+    f"| Orderfluss (Kauf- gegen Verkaufsdruck) | 1 | Besteht Entwicklung und Kosten-Stress, Prüfzeitraum Gruppe A {pz(s7['orderfluss']['stufen']['3_bestaetigung']['A']['Pruefung']['N'])}: nicht bestätigt |",
+    f"| Kandidat nur auf den {len(g8['coins'])} heute günstigen Coins | 1 | Prüfzeitraum {pz(g8['Pruefung']['N'])}, Entwicklung {pz(g8['Entwicklung']['N'])}. Sieht stark aus, enthält aber Rückschau (siehe unten) |",
+    f"| Kandidat auf den jeweils 20 umsatzstärksten Coins, ohne Rückschau | 1 | Prüfzeitraum {pz(r9['Pruefung']['N'])}, Entwicklung {pz(r9['Entwicklung']['N'])} bei Hebel {zahl(r9['hebel'], 2)}: nicht besser |"])
 # ---- Runde 5 und Gesamtschätzung
 gr = G6["gruppen"]
 H6 = G6["hebel"]
@@ -130,13 +161,16 @@ Stand 14.11.2026. Historische Simulation, keine Anlageberatung. Vergangene Ergeb
 
 ## Ergebnis
 
-**Es gibt einen Kandidaten, der deine Vorgabe auf dem Papier erfüllt. Tieferes Graben (Runde 5) hat keinen
-zusätzlichen Edge gefunden und das Bild eher gedämpft: Auf einer zweiten frischen Coin-Gruppe bringt er im
-Prüfzeitraum netto null. Der Vorteil ist klein und bringt bei deinem Kapital wenig Geld.**
+**Der Kandidat (14-Tage-Trend) bleibt das Beste, was die Daten hergeben. Vier weitere Runden mit 12 neuen
+Versuchen haben keinen stärkeren Edge gefunden. Deutlich besser geworden ist aber die Kostenrechnung: An Yubit
+gemessen ist die Slippage viel niedriger als bisher angenommen.**
 
-Beste Gesamtschätzung über alle {G6['n_coins']} getesteten Coins, Hebel {zahl(H6, 2)}: im Prüfzeitraum {pz(a6['Pruefung']['N'])} netto mit Rebate
-in 19 Monaten (davon {pz(a6['Pruefung']['R'])} Rebate), über gut fünf Jahre {pz(a6['Gesamt']['N'])}. Die Punkte darunter beziehen sich auf die
-ursprünglichen 10 Coins.
+Mit echten Yubit-Kosten (10 Coins, Hebel {zahl(k6['hebel'], 1)}): Entwicklung {pz(k6e['N'])}, Prüfzeitraum {pz(k6p['N'])} netto mit Rebate
+in 19 Monaten, davon {pz(k6p['R'])} Rebate. Bei doppelten Kosten bleiben im Prüfzeitraum {pz(k6['stress_2x']['Pruefung']['N'])}.
+Der Vorteil ist weiterhin klein und im Prüfzeitraum statistisch nicht gesichert.
+
+Die folgenden Punkte und die Abschnitte bis Runde 5 rechnen noch mit der alten, vorsichtigen Annahme von 0,05 %
+Slippage. Über alle {G6['n_coins']} getesteten Coins waren es damit {pz(a6['Pruefung']['N'])} im Prüfzeitraum (Hebel {zahl(H6, 2)}).
 
 - **Vor Gebühren profitabel:** ja, in jedem Kalenderjahr seit 2021.
 - **Netto mit Rebate profitabel:** ja, in jedem Kalenderjahr. Im Prüfzeitraum aber nur {pz(pr['N'])} in 19 Monaten.
@@ -148,8 +182,9 @@ ursprünglichen 10 Coins.
 - **Breiter gestreut wird es etwas besser:** Über {n_breit} Coins bringt derselbe Kandidat im Prüfzeitraum {pz(bp['N'])} statt {pz(pr['N'])},
   bei {pz(bp['dd_mit'], 0, False)} Einbruch. Mehr Hebel erlaubt die Streuung aber nicht.
 
-Meine Empfehlung: als Vorwärtstest mit Kleinstbetrag laufen lassen, um die echte Slippage bei Yubit zu messen.
-Nicht hochfahren, bevor diese Zahl vorliegt.
+Meine Empfehlung: den gebauten Vorwärtstest (`../vorwaertstest/`) laufen lassen, zuerst auf Papier gegen das echte
+Yubit-Orderbuch. Die Kostenmessung beruht bisher auf einer Stunde eines einzigen Tages. Nicht hochfahren, bevor
+der Dauerwert vorliegt.
 
 ## Der Kandidat in einfachen Worten
 
@@ -264,9 +299,42 @@ Prüfzeitraum aber nur in einer Gruppe (C) deutlich etwas übrig. Gruppe D: {", 
 
 Über {G6['n_coins']} Coins sinkt der zulässige Hebel auf {zahl(H6, 2)}.
 
+## Runden 6 bis 9: echte Yubit-Kosten und die Suche nach mehr
+
+### Was eine Order bei Yubit wirklich kostet
+
+Gemessen an Yubits öffentlichem Orderbuch, {R6['stichprobe']['messungen']} Messungen über eine Stunde am 14.11.2026
+(Details in `yubit_erstmessung.md`). Angesetzt wird je Coin das Doppelte der gemessenen halben Spanne:
+Gruppe A im Mittel {pz(mittel_bp('A') / 1e4, 3, False)}, Gruppe B {pz(mittel_bp('B') / 1e4, 3, False)}, Gruppe C {pz(mittel_bp('C') / 1e4, 3, False)}, Gruppe D {pz(mittel_bp('D') / 1e4, 3, False)}.
+Bisher hatte ich pauschal 0,050 % gerechnet. Das Orderbuch ist tief genug, dass auch Orders über 10.000 $
+bei den großen Coins kaum mehr kosten.
+
+### Der Kandidat mit echten Kosten
+
+Unverändert: 14-Tage-Trend, Gruppe A, Hebel {zahl(k6['hebel'], 1)}, Tageslimit 3 %.
+
+{tab_k6}
+
+- **Im Prüfzeitraum:** Handel vor Gebühren {pz(k6p['G'])}, Rebate {pz(k6p['R'])}, nach voller Gebühr ohne Rebate {pz(k6p['handel'])},
+  größter Einbruch {pz(k6p['dd_mit'], 0, False)}.
+- **Jahr für Jahr netto mit Rebate:** {jahre_k6}.
+- **In Dollar bei 5.000 $:** etwa {usd(k6p['R'] / t8p * 5000)} Rebate und {usd(k6p['N'] / t8p * 5000)} netto pro Tag im Prüfzeitraum.
+
+### Was nicht stärker war
+
+{tab_69}
+
+**Warum ich die +16,5 % nicht als Edge werte:** Die Auswahl „heute günstig handelbar“ bevorzugt Coins, die zuletzt
+stark gelaufen sind und deshalb viel Umsatz haben. Genau an solchen Coins verdient Trendfolge im Rückblick.
+Die Gegenprobe ohne Rückschau (Auswahl nur nach damals bekanntem Umsatz) bringt keinen Vorsprung.
+
+**Zwei Korrekturen an meiner eigenen Arbeit:** Das Kriterium „stärker“ in Runde 6 war zu weich formuliert und hätte
+die Mischung durchgewinkt; ich habe sie nicht gewertet und das Kriterium für Runde 7 verschärft. Und die
+Coin-Auswahl in Runde 8 enthielt die beschriebene Rückschau; Runde 9 hat das sauber nachgeprüft.
+
 ## Der Weg dorthin
 
-Fünf Runden, 47 Versuche, alles vorab im Protokoll festgelegt (`suche_protokoll.md`).
+Neun Runden, 59 Versuche, alles vorab im Protokoll festgelegt (`suche_protokoll.md`).
 
 1. **Runde 1 (30 Einstellungen, passive Limits):** {n_s1} bestehen die Entwicklung, beide Finalisten fallen im Füll-Stress durch.
    Alle Gegenbewegungs-Ideen (Rücksetzer kaufen, schwache Coins kaufen) verlieren schon vor Gebühren.
@@ -281,11 +349,17 @@ Fünf Runden, 47 Versuche, alles vorab im Protokoll festgelegt (`suche_protokoll
 5. **Runde 5 (7 Varianten, tiefer gegraben):** Risikosteuerung, Trend-Mischung, Funding-Carry. Kein Mehrwert.
    Eine vierte, frische Coin-Gruppe zeigt den Kandidaten im Prüfzeitraum bei netto null.
 
+6. **Runde 6 (6 Einstellungen):** echte Yubit-Kosten gemessen; marktneutrale Rangfolge nicht robust.
+7. **Runde 7 (4 Hypothesen):** Positionierungsdaten von Binance (Open Interest, Long/Short-Verhältnisse, Orderfluss).
+   Keine besteht.
+8. **Runde 8 (1 Variante):** nur heute günstige Coins. Im Prüfzeitraum stark, aber mit Rückschau in der Auswahl.
+9. **Runde 9 (1 Variante):** dieselbe Idee ohne Rückschau. Kein Vorsprung.
+
 Der Prüfzeitraum und die zweite Coin-Gruppe wurden erst in Runde 3 angesehen, und nur für diese zwei Finalisten.
-Insgesamt sind es jetzt 47 Versuche. Der Kern des Befunds hat sich seit Runde 3 nicht mehr bewegt: ein kleiner
-Trend-Vorteil vor Gebühren, der nach Kosten nur mit Rebate und nur knapp trägt.
-Wichtig für die Einordnung: Bei 40 Versuchen in drei Messaufbauten ist ein einzelner Treffer weniger wert als ein
-Treffer beim ersten Versuch.
+Insgesamt sind es jetzt 59 Versuche. Der Kern des Befunds hat sich seit Runde 3 nicht mehr bewegt: ein kleiner
+Trend-Vorteil vor Gebühren, der nach Kosten vor allem mit Rebate trägt.
+Wichtig für die Einordnung: Bei 59 Versuchen ist ein einzelner Treffer weniger wert als ein Treffer beim ersten
+Versuch. Deshalb habe ich knappe oder nur formale Treffer nicht als Erfolg gewertet.
 
 ## Was das für dein Ziel bedeutet
 
@@ -318,6 +392,8 @@ Treffer beim ersten Versuch.
 - `suche_protokoll.md`: Regeln und Zwischenergebnisse aller drei Runden
 - `suche_stufe1.csv`, `suche_runde2_stufe1.csv`, `suche_runde3_stufe1.csv`: alle 40 Einstellungen mit Zahlen
 - `suche_runde3.json`, `suche_runde4.json`, `suche_runde5.json`, `gesamt_60.json`, `kandidat.json`, `fuellmodell_diagnose.json`: Rohwerte zu diesem Bericht
+- `suche_runde6.json` bis `suche_runde9.json`, `yubit_erstmessung.md`: echte Kosten und die Runden 6 bis 9
+- `../vorwaertstest/`: der Vorwärtstest für Yubit (Anleitung in `README.md`, Regeln in `YUBIT_REGELN.md`)
 - `../labor_strategie/trend_14d/strategie.py`: der Kandidat im Format deines Labors
 - `../scripts/vorwaertstest_auswerten.py`: wertet ein Protokoll echter Orders aus (Slippage gegen die Schmerzgrenze)
 """
