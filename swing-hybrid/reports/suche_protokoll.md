@@ -382,3 +382,24 @@ im Prüfzeitraum kam aus der Rückschau in der Coin-Auswahl, nicht aus einem st�
   bei doppelten Kosten +1,2 %.
 - Zwei Stellen, an denen ich mich korrigiert habe: Das Kriterium „stärker“ in Runde 6 war zu weich (in Runde 7
   verschärft), und die Coin-Auswahl in Runde 8 enthielt Rückschau (in Runde 9 sauber nachgeprüft).
+
+---
+
+# Diagnose: dasselbe Trend-Signal in sieben Geschwindigkeiten (14.11.2026)
+
+Keine Kandidatensuche, sondern die Antwort auf die Frage „geht das auch schnell?“. Gruppe A, Hebel 1, echte
+Yubit-Kosten (Slippage 2 × halbe Spanne, rund 0,029 % je Order, plus 0,012 % Gebühr nach Rebate). Zahlen in
+`diagnose_frequenz.csv`.
+
+| Rückblick | Ø Haltedauer | Umsatz/Tag (× Einsatz) | Signalwert je Dollar, Entwicklung / Prüfzeitraum | Netto je Dollar, Entwicklung / Prüfzeitraum |
+|---|---|---|---|---|
+| 6 h | 5 h | 9,7 | −0,005 % / +0,008 % | −0,046 % / −0,033 % |
+| 12 h | 7 h | 6,8 | −0,002 % / +0,018 % | −0,043 % / −0,023 % |
+| 24 h | 10 h | 4,6 | −0,009 % / −0,019 % | −0,050 % / −0,060 % |
+| 48 h | 15 h | 3,2 | +0,041 % / +0,021 % | +0,001 % / −0,020 % |
+| 96 h | 21 h | 2,2 | +0,076 % / −0,022 % | +0,035 % / −0,063 % |
+| 168 h | 29 h | 1,6 | +0,097 % / +0,032 % | +0,056 % / −0,008 % |
+| 336 h (Kandidat) | 42 h | 1,1 | +0,185 % / +0,080 % | +0,144 % / +0,039 % |
+
+Ergebnis: Je schneller, desto kleiner der Signalwert je umgesetztem Dollar. Unter zwei Tagen Rückblick ist er schon
+ohne Kosten null oder negativ. Die Kosten je Dollar bleiben gleich (rund 0,041 %).
