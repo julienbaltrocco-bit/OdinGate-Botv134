@@ -12,6 +12,9 @@ aus Daten bis zur Vorkerze stammt. Der Kern führt die Position nach:
 Stress-Schalter (für die Gegenprüfung, nicht zum Optimieren):
 - `adverse`: jeder Limit-Fill wird um diesen Anteil schlechter abgerechnet (Spread / Warteschlange).
 - `delay`:   die Order kann erst `delay` Kerzen nach dem Einstellen gefüllt werden.
+
+`taker=True`: statt passiver Limits eine Limit-Order mit Preisgrenze DURCH den Markt (sofort gefüllt, zählt als Taker).
+Abgerechnet zum Open der Kerze plus `slip` Slippage. Keine Annahme über Warteschlangen nötig.
 """
 import numpy as np
 from numba import njit
@@ -19,7 +22,7 @@ from numba import njit
 
 @njit(cache=True)
 def simulate_target(o, h, l, c, w, atr, fund, day, S, ttl, eps, slip, adverse, delay, stop_atr,
-                    fee_m, fee_t, day_limit, max_trades):
+                    fee_m, fee_t, day_limit, max_trades, taker):
     N, T = c.shape
     D = day[T - 1] + 1
     cash = np.zeros(N); pos = np.zeros(N); mv = np.zeros(N); tv = np.zeros(N); fu = np.zeros(N)
@@ -78,7 +81,7 @@ def simulate_target(o, h, l, c, w, atr, fund, day, S, ttl, eps, slip, adverse, d
             if od_on[j] and (t - od_t[j] >= ttl or od_tgt[j] != tgt):
                 od_on[j] = False; st[2] += 1; st[3] = min(st[3], t - od_t[j])
             if (not od_on[j]) and t > 0 and (not ende) and abs(tgt - held[j]) > 1e-9:
-                p = c[j, t - 1]
+                p = ot if taker else c[j, t - 1]
                 hj = held[j]
                 if hj == 0.0 or abs(tgt) > abs(hj) and tgt * hj > 0.0:
                     dq = (tgt - hj) * S / p                  # eröffnen oder aufstocken
@@ -117,33 +120,38 @@ def simulate_target(o, h, l, c, w, atr, fund, day, S, ttl, eps, slip, adverse, d
                         od_on[j] = False; st[2] += 1; st[3] = min(st[3], t - od_t[j])
 
             # ---- Limit-Fill ----
-            if od_on[j] and t >= od_t[j] + delay:
+            if od_on[j] and (taker or t >= od_t[j] + delay):
                 p = od_p[j]; q = od_q[j]
-                if (q > 0 and lo < p * (1.0 - eps)) or (q < 0 and hi > p * (1.0 + eps)):
+                if taker or (q > 0 and lo < p * (1.0 - eps)) or (q < 0 and hi > p * (1.0 + eps)):
                     sq = 1.0 if q > 0 else -1.0
-                    px = p * (1.0 + sq * adverse)
+                    px = p * (1.0 + sq * (slip if taker else adverse))
                     alt = pos[j]
                     neu = alt + q
                     if abs(neu) < 1e-15:
                         neu = 0.0
-                    cash[j] -= q * px; pos[j] = neu; mv[j] += abs(q) * px
+                    cash[j] -= q * px; pos[j] = neu
+                    if taker:
+                        tv[j] += abs(q) * px; st[7] += 1
+                    else:
+                        mv[j] += abs(q) * px
                     st[1] += 1
+                    vm = 0.0 if taker else 1.0                   # Volumen zählt als Maker (1) oder Taker (0)
                     if alt == 0.0:                               # neuer Trade
-                        cyc_cf[j] = -q * px; cyc_mv[j] = abs(q) * px; cyc_tv[j] = 0.0; cyc_in[j] = t
+                        cyc_cf[j] = -q * px; cyc_mv[j] = vm * abs(q) * px; cyc_tv[j] = (1.0 - vm) * abs(q) * px; cyc_in[j] = t
                         ent_px[j] = px; ent_atr[j] = atr[j, t]
                     elif neu == 0.0 or alt * neu < 0.0:          # geschlossen oder gedreht
                         zu = -alt
-                        cyc_cf[j] -= zu * px; cyc_mv[j] += abs(zu) * px
+                        cyc_cf[j] -= zu * px; cyc_mv[j] += vm * abs(zu) * px; cyc_tv[j] += (1.0 - vm) * abs(zu) * px
                         if nt < max_trades:
                             trades[nt, 0] = j; trades[nt, 1] = 0; trades[nt, 2] = 1.0 if alt > 0 else -1.0
                             trades[nt, 3] = cyc_in[j]; trades[nt, 4] = t; trades[nt, 5] = cyc_cf[j]
                             trades[nt, 6] = cyc_mv[j]; trades[nt, 7] = cyc_tv[j]
                         nt += 1
                         if neu != 0.0:
-                            cyc_cf[j] = -neu * px; cyc_mv[j] = abs(neu) * px; cyc_tv[j] = 0.0; cyc_in[j] = t
+                            cyc_cf[j] = -neu * px; cyc_mv[j] = vm * abs(neu) * px; cyc_tv[j] = (1.0 - vm) * abs(neu) * px; cyc_in[j] = t
                             ent_px[j] = px; ent_atr[j] = atr[j, t]
                     else:
-                        cyc_cf[j] -= q * px; cyc_mv[j] += abs(q) * px
+                        cyc_cf[j] -= q * px; cyc_mv[j] += vm * abs(q) * px; cyc_tv[j] += (1.0 - vm) * abs(q) * px
                         if abs(neu) > abs(alt):                  # aufgestockt: Einstiegspreis mitteln
                             ent_px[j] = (ent_px[j] * abs(alt) + px * abs(q)) / abs(neu)
                     held[j] = od_tgt[j]

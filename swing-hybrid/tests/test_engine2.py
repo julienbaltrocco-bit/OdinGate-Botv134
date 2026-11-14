@@ -13,11 +13,11 @@ def sim(close, w, high=None, low=None, open_=None, **kw):
     o = np.array([open_], dtype=float) if open_ is not None else np.concatenate([c[:, :1], c[:, :-1]], axis=1)
     h = np.array([high], dtype=float) if high is not None else np.maximum(o, c)
     l = np.array([low], dtype=float) if low is not None else np.minimum(o, c)
-    p = dict(S=1.0, ttl=3, eps=EPS, slip=SLIP, adverse=0.0, delay=0, stop_atr=0.0, day_limit=9.0)
+    p = dict(S=1.0, ttl=3, eps=EPS, slip=SLIP, adverse=0.0, delay=0, stop_atr=0.0, day_limit=9.0, taker=False)
     p.update(kw)
     return engine2.simulate_target(o, h, l, c, np.array([w], dtype=float), np.ones((1, T)), np.zeros((1, T)),
                                    np.zeros(T, dtype=np.int64), p["S"], p["ttl"], p["eps"], p["slip"], p["adverse"],
-                                   p["delay"], p["stop_atr"], 0.0004, 0.0008, p["day_limit"], 1000)
+                                   p["delay"], p["stop_atr"], 0.0004, 0.0008, p["day_limit"], 1000, p["taker"])
 
 
 def test_einstieg_und_ausstieg_per_limit():
@@ -72,3 +72,12 @@ def test_kein_blick_in_die_zukunft():
     c2[200:] *= 1.3; h2[200:] *= 1.3; l2[200:] *= 1.3; o2[201:] *= 1.3
     b = sim(c2, w, high=h2, low=l2, open_=o2, stop_atr=3.0)
     assert np.allclose(a[0][:200], b[0][:200]) and np.allclose(a[1][:200], b[1][:200])
+
+
+def test_taker_sofort_zum_open_mit_slippage():
+    # Ziel ab Kerze 1 Long, ab Kerze 3 flat. Kauf zum Open 100 + Slippage, Verkauf zum Open 110 - Slippage.
+    eq, MV, TV, FU, daily, tr, st, nt, *_ = sim([100, 105, 110, 108, 108], [0, 1, 1, 0, 0], taker=True)
+    kauf, verkauf = 100 * (1 + SLIP), 110 * (1 - SLIP)
+    assert eq[-1] == pytest.approx((verkauf - kauf) / 100)       # Stückzahl nach dem Open bemessen (1/100)
+    assert MV[-1] == 0.0 and TV[-1] == pytest.approx((kauf + verkauf) / 100)
+    assert st[0] == st[1] == 2 and nt == 1
