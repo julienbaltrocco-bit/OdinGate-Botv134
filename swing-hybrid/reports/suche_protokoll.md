@@ -466,3 +466,35 @@ negatives Funding von im Mittel 4,4 % je Paar. Placebo: schlechter als 98 % der 
 allein hätte die Idee überzeugend ausgesehen. Hinzu kommt, dass die Auswahl „heute bei Yubit gelistet“ gerade die
 Coins enthält, die überlebt haben und beliebt sind; das schadet einem Short stärker als vorab angenommen.
 Gesamtzahl der Versuche: 60.
+
+---
+
+# Runde 11: Massentest „kleine Trades in Swing-Richtung, die ihre Gebühr verdienen“ (festgelegt vor dem ersten Ergebnis)
+
+**Vorgabe des Users (präzisiert):** viele kleine, echte Trades in Richtung des Swing-Bias. Jeder Trade soll seine
+eigene Gebühr mindestens wieder einspielen („2 € Gebühr, 2,20 € verdient“), das Rebate ist dann Gewinn obendrauf.
+Erlaubt sind neue Indikatoren und abgewandelte Regeln. Nicht gebaut werden Trades, deren Zweck nur Volumen ist.
+
+**Messlatte je Trade:** Deckung = Ertrag des Trades nach Slippage ÷ gezahlte Gebühr (0,16 % für Ein- und Ausstieg
+als Taker). Deckung 1,0 heißt: Gebühr genau verdient. Die Vorgabe „2,20 € bei 2 €“ entspricht Deckung 1,1.
+Slippage je Order wie in Runde 6 (2 × gemessene halbe Yubit-Spanne je Coin). Zusätzlich wird die Deckung für
+Maker-Ausführung berichtet (0,08 % Gebühr, ohne Slippage) als optimistische Obergrenze.
+
+**Regelraum (systematisch, rund 600 Varianten), Stundenkerzen:**
+- Swing-Bias: Vorzeichen der 60-Tage-Rendite (wie momentum_vol_ls) oder der 14-Tage-Rendite (Kandidat).
+- Einstieg nur in Bias-Richtung, eine Position je Coin, Einstieg zum Open der Folgekerze:
+  Rücksetzer nach RSI (3 Längen × 3 Schwellen) · Rücksetzer nach Bollinger (2 × 3) · Ausbruch über das N-Stunden-Hoch
+  (5) · Impuls in Bias-Richtung (3 × 2) · Rücksetzer-Impuls gegen die Richtung (3 × 2) · Volumenspitze mit oder gegen
+  die Richtung (2 × 2) · feste Tageszeit (6) · „immer sofort wieder einsteigen“ als Vergleich (1).
+- Ausstieg: feste Haltedauer 1 / 2 / 4 / 8 / 24 Stunden, oder Gewinnziel und Stop im Abstand von 1 bzw. 2
+  Stunden-ATR mit Zeitlimit 24 Stunden (trifft eine Kerze beide, zählt der Stop).
+
+**Hürden:**
+1. Entwicklung Gruppe A: Deckung ≥ 1,0 in D1 **und** D2, mit jeweils mindestens 200 Trades.
+2. Bestätigung für jede Regel, die Stufe 1 besteht: Deckung ≥ 1,0 im Prüfzeitraum Gruppe A, und in Gruppe B und
+   Gruppe C jeweils in Entwicklung und Prüfzeitraum.
+3. Wer das besteht, wird im vollen Rechenkern nachgerechnet (Funding, Tageslimit, Einbruch, Hebel).
+
+**Erwartung vorab, damit das Ergebnis einzuordnen ist:** Bei rund 600 Varianten bestehen einige Stufe 1 rein
+zufällig. Entscheidend ist Stufe 2 mit sechs unabhängigen Gegenproben. Berichtet wird außerdem, wie die beste und
+die mittlere Deckung von der Haltedauer abhängt. Gesamtzahl der Versuche: 60 Einzelhypothesen plus dieser Massentest.
