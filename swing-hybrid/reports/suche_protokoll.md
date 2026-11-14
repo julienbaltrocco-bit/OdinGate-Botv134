@@ -677,3 +677,17 @@ erst seit 2026 existieren. Abweichungen zwischen beiden sind ungeprüft.
 **Stand 14.11.2026:** Nicht gerechnet. Für diese Märkte fehlen Kurse vor 2026 (Binance-Historie nur wenige Monate).
 Der Abruf bei stooq.com scheiterte technisch, der Abruf bei Yahoo Finance wurde von der Sicherheitsprüfung der
 Umgebung nicht zugelassen.
+
+**Nachtrag zu Runde 14, vor dem ersten Ergebnis (14.11.2026):**
+- Tageskurse von Yahoo Finance geladen (User hat den Abruf ausdrücklich angewiesen): 14 Märkte, 2020 bis 10/2026.
+  Rohstoffe sind die jeweils nächstfälligen Futures ohne Bereinigung der Kontraktwechsel.
+- Yubit-Spannen gemessen (`runde14_kosten.json`), an einem Samstag. Slippage je Order = gemessene Spanne
+  (2 × halbe Spanne), mindestens 0,005 %, wie in Runde 6.
+- **Funding:** Der Momentanwert ist unbrauchbar (Wochenende: meist 0, Silber −0,15 % je 4 Stunden). Die
+  Festlegung „aktueller Satz als Dauerwert“ wird deshalb ersetzt, bevor ein Ergebnis vorliegt: Hauptrechnung mit
+  Funding 0; zusätzlich Pflicht-Stress, in dem **jede** Position 10 % pro Jahr Funding zahlt. Hürde 2 (doppelte
+  Kosten) gilt mit diesem Stress zusammen.
+- Ausführung: Signal nach Tagesschluss, Handel zur Eröffnung des nächsten Börsentags plus Slippage. Größe wird beim
+  Einstieg festgelegt und bis zum Richtungswechsel gehalten (wie beim Kandidaten). „Vor 14 Tagen“ = letzter
+  Schlusskurs, der mindestens 14 Kalendertage alt ist.
+- Zeitraum und Teilung wie bisher (ab 15.08.2021, D1 bis 30.06.2023, D2 bis 31.03.2025, danach Prüfzeitraum).

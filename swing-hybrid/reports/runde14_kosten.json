@@ -1,0 +1,101 @@
+{
+ "SPY": {
+  "spanne_bp": 1.202477102832259,
+  "funding": 0.0,
+  "funding_minuten": 480,
+  "umsatz24h": 9566951.16369999,
+  "status": "Trading"
+ },
+ "QQQ": {
+  "spanne_bp": 1.3410678184428282,
+  "funding": 0.0,
+  "funding_minuten": 480,
+  "umsatz24h": 762684.4158,
+  "status": "Trading"
+ },
+ "IWM": {
+  "spanne_bp": 2.17627856365623,
+  "funding": 0.0,
+  "funding_minuten": 480,
+  "umsatz24h": 34484.46119999,
+  "status": "Trading"
+ },
+ "EWJ": {
+  "spanne_bp": 13.297872340424458,
+  "funding": 0.0,
+  "funding_minuten": 480,
+  "umsatz24h": 49105.3144,
+  "status": "Trading"
+ },
+ "EWY": {
+  "spanne_bp": 0.7222772296053777,
+  "funding": -0.000312,
+  "funding_minuten": 480,
+  "umsatz24h": 3543323.7576,
+  "status": "Trading"
+ },
+ "XAU": {
+  "spanne_bp": 0.02630301866531521,
+  "funding": -0.000798,
+  "funding_minuten": 240,
+  "umsatz24h": 27419153.16132004,
+  "status": "Trading"
+ },
+ "XAG": {
+  "spanne_bp": 6.352567496029886,
+  "funding": -0.001455,
+  "funding_minuten": 240,
+  "umsatz24h": 20388244.58585,
+  "status": "Trading"
+ },
+ "XPT": {
+  "spanne_bp": 0.8524290044223427,
+  "funding": -0.0001,
+  "funding_minuten": 240,
+  "umsatz24h": 1584402.16122999,
+  "status": "Trading"
+ },
+ "XPD": {
+  "spanne_bp": 3.1388174248374825,
+  "funding": -0.0001,
+  "funding_minuten": 240,
+  "umsatz24h": 1049221.9817,
+  "status": "Trading"
+ },
+ "COPPER": {
+  "spanne_bp": 1.6311883206921685,
+  "funding": 0.0,
+  "funding_minuten": 240,
+  "umsatz24h": 682032.56169999,
+  "status": "Trading"
+ },
+ "CL": {
+  "spanne_bp": 3.451648161997484,
+  "funding": 0.0,
+  "funding_minuten": 240,
+  "umsatz24h": 9616542.1025,
+  "status": "Trading"
+ },
+ "BZ": {
+  "spanne_bp": 1.0774120562399294,
+  "funding": 0.0,
+  "funding_minuten": 240,
+  "umsatz24h": 5736141.18349999,
+  "status": "Trading"
+ },
+ "NATGAS": {
+  "spanne_bp": 8.24062628759817,
+  "funding": 0.0,
+  "funding_minuten": 240,
+  "umsatz24h": 1272391.62119999,
+  "status": "Trading"
+ },
+ "TBT": {
+  "spanne_bp": 17.316017316017387,
+  "funding": 0.0,
+  "funding_minuten": 480,
+  "umsatz24h": 15528.334,
+  "status": "Trading"
+ },
+ "_zeit": "2026-11-14 22:03 UTC"
+}
