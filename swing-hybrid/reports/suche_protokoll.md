@@ -162,3 +162,38 @@ Coins zusammen netto mit Rebate > 0. Jeweils Hebel 1, ohne Tageslimit.
 02/2020–08/2021 über alle 40 Coins positiv. ICP schied wegen unvollständiger Funding-Historie aus.
 Breites Portfolio: zulässiger Hebel bleibt 0,2; Prüfzeitraum netto mit Rebate +5,5 %.
 Damit sind alle frischen Daten verbraucht. Weitere Erkenntnis nur noch aus dem Vorwärtstest.
+
+---
+
+# Runde 5: Mehr aus dem Trend holen (festgelegt vor dem ersten Ergebnis)
+
+**Begründung:** Rebate = Umsatz × Satz, Umsatz = Einsatz × Umschlag, und den Einsatz begrenzt die 15-%-Grenze.
+Mehr Rebate und mehr Gewinn gibt es also nur über ein besseres Verhältnis von Ertrag zu Einbruch.
+Dafür gibt es drei in der Trendfolge übliche Hebel und eine zweite, unabhängige Ertragsquelle.
+
+**Varianten (7, alle auf 40 Coins = Gruppen A+B+C, sofortige Ausführung, 0,05 % Slippage):**
+
+| # | Name | Idee |
+|---|---|---|
+| 0 | basis | der Kandidat: 14-Tage-Trend, alle Coins gleich groß |
+| 1 | vol_coin | ruhige Coins größer, wilde kleiner (Größe ∝ 1/Schwankung der letzten 20 Tage, Stufen von 25 %, 0,25- bis 2-fach) |
+| 2 | vol_markt | in wilden Marktphasen alles kleiner (Marktschwankung gegen ihren bisherigen Median, 0,5- bis 1,5-fach) |
+| 3 | vol_beide | 1 und 2 zusammen |
+| 4 | mischung | Mittel aus vier Trendlängen: 7, 14, 28 und 60 Tage |
+| 5 | carry | neue Quelle: Coins mit dem höchsten Funding der letzten 3 Tage short, die mit dem niedrigsten long (je ein Viertel), marktneutral |
+| 6 | trend_carry | beste Trend-Variante und carry je zur Hälfte, nur falls carry allein besteht |
+
+**Auswahl (nur Entwicklungszeitraum):** Eine Variante ersetzt die Basis nur, wenn sie in D1 und D2 vor Gebühren und
+netto positiv ist **und** ihr schlechterer Halbzeit-Sharpe den der Basis um mindestens 0,10 übertrifft.
+Gewinnt keine, bleibt es bei der Basis („kein Mehrwert“).
+
+**Prüfung der Gewinnerin:**
+1. Hebel wie bisher (Einbruch in der Entwicklung ≤ 10 %, Tageslimit 3 %), dann Prüfzeitraum. Der Prüfzeitraum ist
+   für Trend-Signale nicht mehr ganz unberührt: Ich weiß aus Runde 3 und 4, dass er für Trend schwach war.
+2. **Gruppe D (frisch):** 20 Coins, die bisher nirgends vorkamen: die 11 unbenutzten der Liste aus Runde 4 (IOTA, NEO,
+   ONT, QTUM, XTZ, RUNE, KAVA, BAT, ZRX, YFI, HBAR), aufgefüllt mit den ersten vollständigen aus LRC, OCEAN, ONE, STORJ,
+   ANKR, RLC, BAND, KNC, ZEN, CELR, COTI, SKL, IOST, ICX, RVN, TRB, MTL, CHR, HOT, DENT.
+   **Bestätigt** nur, wenn die Gewinnerin auf Gruppe D netto positiv ist (Entwicklung und Prüfzeitraum) **und** dort
+   über den ganzen Zeitraum mehr Netto je Prozent Einbruch bringt als die Basis.
+
+Gesamtzahl der Versuche danach: 47.
