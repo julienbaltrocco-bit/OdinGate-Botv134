@@ -741,3 +741,36 @@ Protokoll vorgesehen; Runde 14 ist davon nicht betroffen.
   zweite Baustein verdient im Entwicklungszeitraum nichts.
 
 **Runde 15: keine Verbesserung nach den festgelegten Regeln.** Stand: 72 Einzelhypothesen plus Massentest.
+
+---
+
+# Runde 16: Zwei Ideen aus den neuen Aktien-Daten (festgelegt vor dem ersten Ergebnis)
+
+Auf Wunsch des Users weitere Ideen. Beide nutzen Information, die in der Suche bisher fehlte (US-Aktienmarkt), und
+haben je genau eine Einstellung.
+
+**H1 „Übernacht-Effekt“.** Seit Jahrzehnten belegt: US-Aktienindizes verdienen ihre Rendite fast ganz zwischen
+Börsenschluss und nächster Eröffnung, tagsüber fast nichts. Yubit-Kontrakte auf SPY, QQQ und IWM handeln rund um
+die Uhr. Regel: zum US-Börsenschluss long, zur nächsten US-Eröffnung glatt, jeden Börsentag, drei Märkte gleich groß,
+Einsatz 100 %. Nur diese drei: EWJ und EWY bilden Märkte ab, die in der US-Nacht selbst handeln.
+- Rechnung: Eröffnung gegen Vortagesschluss (Yahoo, nicht dividendenbereinigt, das ist für Long vorsichtig).
+  Je Tag zwei Orders: Slippage wie Runde 14, Taker 0,08 % mit 85 % Rebate.
+- Hürden: (1) N > 0 in D1, D2 und Prüfzeitraum. (2) Stress: doppelte Slippage und 10 % Funding pro Jahr auf die
+  gehaltene Zeit, N > 0 in Entwicklung und Prüfzeitraum. (3) Mischung je zur Hälfte mit dem Kandidaten: höherer
+  Sharpe in Entwicklung und Prüfzeitraum.
+- Zusätzlich berichtet: Ergebnis ohne Rebate.
+
+**H2 „Risiko-Filter“.** Krypto läuft seit Jahren mit Technologie-Aktien. Regel: der Kandidat unverändert, aber eine
+Position nur, wenn der 14-Tage-Trend von QQQ in dieselbe Richtung zeigt; sonst glatt. QQQ-Signal nach US-Schluss,
+gültig ab dem nächsten UTC-Tag. Kein neuer Parameter (dieselben 14 Tage).
+- Hürden: (1) N > 0 und höherer Sharpe als der Kandidat in D1, D2 und Prüfzeitraum (Gruppe A, Yubit-Kosten,
+  Einsatz 100 %, ohne Tageslimit). (2) Zufallstest: Sharpe über den ganzen Zeitraum besser als 90 % von 200 Läufen
+  mit zeitlich verschobenem QQQ-Signal. (3) Gruppe B: höherer Sharpe als der Kandidat in Entwicklung und Prüfzeitraum.
+
+**Änderung an Hürde 3 gegenüber Runde 13–15, offen benannt:** Verlangt wird nur noch der höhere Sharpe, nicht mehr
+zusätzlich mehr Netto bei gleichem Einsatz. Grund: Der Einsatz lässt sich frei wählen, der Sharpe ist das Maß, um
+das es dem User geht. Die Runden 13 bis 15 hätten auch so nicht bestanden (alle an Hürde 1 gescheitert).
+
+Vorwissen: Der Übernacht-Effekt ist aus der Literatur bekannt, ebenso, dass er nach Kosten knapp ist. Für H2 kenne
+ich den Krypto-Prüfzeitraum (schwach für Trend). Einschränkungen wie in Runde 14 (Kurse der Basiswerte, Spannen an
+einem Samstag gemessen, Funding unbekannt). Gesamtzahl der Versuche danach: 74 Einzelhypothesen plus Massentest.
