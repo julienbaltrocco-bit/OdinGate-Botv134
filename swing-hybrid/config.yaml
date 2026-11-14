@@ -1,0 +1,40 @@
+# Zentrale Einstellungen. Alle Regeln aus dem Auftrag stehen hier, nicht verstreut im Code.
+
+boerse: yubit_futures
+
+gebuehren:                 # pro Seite, auf das volle Positionsvolumen (Nominalwert inkl. Hebel)
+  maker: 0.0004            # 0,04 %
+  taker: 0.0008            # 0,08 %
+  rebate_anteil: 0.85      # 85 % zurück -> effektiv 0,006 % Maker / 0,012 % Taker
+  szenarien: [mit_rebate, ohne_rebate]   # immer beide Läufe
+
+risiko:
+  hebel_standard: 3
+  hebel_max: 5
+  max_position_pro_paar: 1.0     # Anteil des Kontos x Hebel, den ein Paar höchstens belegen darf
+  tagesverlust_limit: 0.03       # -3 % Konto am Tag -> alles flat, bis zum nächsten UTC-Tag keine neuen Orders
+
+ausfuehrung:
+  einstieg: limit                # Einstiege und Teilgewinne nur per Limit (Maker)
+  teilgewinn: limit
+  stop: market                   # nur Stops als Market (Taker)
+  fill_regel: durchgehandelt     # Limit nur gefüllt, wenn die Folgekerze den Preis DURCHhandelt (nicht nur berührt)
+  order_ttl_minuten: 60          # nicht gefüllte Orders danach verwerfen
+  min_standzeit_minuten: 5       # keine Order vor Ablauf storniert/ersetzt
+  max_order_zu_fill: 5.0         # höchstens 5 platzierte Orders je Fill
+  beidseitige_orders: false      # nie gleichzeitig Kauf- und Verkaufs-Limits, die sich kreuzen könnten
+
+kapital_szenarien: [500, 1000, 5000]
+
+walk_forward:
+  lern_anteil: 0.70              # Parameter nur hier wählen
+  test_anteil: 0.30              # danach unverändert
+  rollierend: {lern_monate: 12, test_monate: 3}
+
+entscheidung:                    # nicht verhandelbar
+  netto_ohne_rebate_min: baseline   # >= reine Swing-Baseline, out-of-sample
+  vor_gebuehren_min: 0.0
+  max_drawdown: 0.15
+  min_trades_oos: 300
+  max_anteil_paar: 0.50
+  max_anteil_monat: 0.50
