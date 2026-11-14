@@ -282,8 +282,8 @@ statt +41,3 % und +5,2 %. Kleine Konten verlieren also einen Teil des Ergebnisse
 | 0,2 | +11,4 % | 9 % | +3,3 % | 10 % | 3 |
 | 0,5 | +22,8 % | 18 % | +10,6 % | 20 % | 64 |
 | 1,0 | +13,2 % | 38 % | −16,9 % | 53 % | 375 |
-| 2,0 | −25,7 % | 102 % | −11,2 % | 58 % | 885 |
-| 3,0 | −101,3 % | 359 % | −39,9 % | 98 % | 1178 |
+| 2,0 | −25,7 % | über 100 % (Konto unter null) | −11,2 % | 58 % | 885 |
+| 3,0 | −101,3 % | über 100 % (Konto unter null) | −39,9 % | 98 % | 1178 |
 
 - Bei Hebel 0,5 steigt der Ertrag, der Einbruch liegt dann aber bei rund 20 % und damit über deiner 15-%-Grenze.
 - Ab Hebel 1 kippt es: Das Tageslimit greift an Hunderten Tagen, schließt alles mit Verlust und verpasst die Erholung.

@@ -133,9 +133,10 @@ tab_69 = "\n".join([
     f"| Neue Listings short gegen BTC long ({R10['paare']} Paare) | 1 | Entwicklung {pz(R10['hebel1']['Entwicklung']['N'])}, Prüfzeitraum {pz(R10['hebel1']['Pruefung']['N'])} (Hebel 1). "
     f"Schlechter als {zahl(100 - R10['placebo']['perzentil'], 0)} % der Placebo-Läufe: durchgefallen |"])
 ps10 = R10["paar_statistik"]["pruefung"]
+_dd = lambda x: "über 100 % (Konto unter null)" if x >= 1 else pz(x, 0, False)
 tab_hebel = "\n".join(["| Hebel | Netto pro Jahr, Entwicklung | Einbruch, Entwicklung | Netto pro Jahr, Prüfzeitraum | Einbruch, Prüfzeitraum | Tage mit Tageslimit |",
                         "|---|---|---|---|---|---|"] + [
-    f"| {zahl(x['hebel'], 1)} | {pz(x['entw_N_jahr'])} | {pz(x['entw_einbruch'], 0, False)} | {pz(x['pruef_N_jahr'])} | {pz(x['pruef_einbruch'], 0, False)} | {x['sperrtage']} |"
+    f"| {zahl(x['hebel'], 1)} | {pz(x['entw_N_jahr'])} | {_dd(x['entw_einbruch'])} | {pz(x['pruef_N_jahr'])} | {_dd(x['pruef_einbruch'])} | {x['sperrtage']} |"
     for x in DK["hebel"]])
 def _kap(kapital, h):
     x = next(k for k in DK["kapital"] if k["kapital"] == kapital and k["hebel"] == h)
