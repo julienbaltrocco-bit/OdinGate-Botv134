@@ -41,7 +41,7 @@ def test_eine_position_je_coin():
 
 def test_starttage_erkennt_liquidation():
     t = pd.DataFrame({"ein": pd.to_datetime(["2024-01-02", "2024-03-01"]), "aus": pd.to_datetime(["2024-01-02 01:00", "2024-03-01 01:00"]),
-                      "n85": [10.0, -9000.0], "schlimmst": [-5.0, -9500.0]})
+                      "n85": [10.0, -9000.0], "schlimmst": [-5.0, -9950.0]})
     s = konto.starttage(t, "n85", pd.Timestamp("2024-01-01"), pd.Timestamp("2024-06-01"), 1, 1.0)
-    assert s["liquidationen"] > 0 and s["tiefster_kontostand"] < 0.06
+    assert s["liquidationen"] > 0 and s["tiefster_kontostand"] < 0.01   # Kontostand unter der Erhaltungsmargin von 1 %
     assert konto.starttage(t.iloc[:1], "n85", pd.Timestamp("2024-01-01"), pd.Timestamp("2024-06-01"), 1, 1.0)["liquidationen"] == 0
