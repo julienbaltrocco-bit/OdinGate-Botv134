@@ -388,3 +388,35 @@ Stand: 12 Experimente, 52 Einstellungen.
 - Besteht 1.1, ersetzt sie 1.0 als Kandidat. Besteht sie nicht, bleibt 1.0, und 1.1 gilt als Überanpassung.
 - Zusätzlich berichtet (ohne Hürde): dieselbe Version auf den fünf handelbaren frischen Coins in E und V.
 - Danach endet die Runde (13 Experimente). Der Zeitraum ab 04/2025 bleibt ungeöffnet.
+
+---
+
+## 16. Ergebnis E13: Version 1.1 in der Validierung (15.11.2026)
+
+| Version | Zeitraum | Trades (je Tag) | Haltedauer | roh | N0 | N50 | N85 | t(N85) | pro Jahr, Hebel 1 | Sharpe | Rückgang |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1.1 | E | 1.113 (2,5) | 128 min | +19,2 | +1,7 | +9,7 | +15,3 | 3,7 | 45,5 % | 3,3 | 7,8 % |
+| 1.1 | **V** | 919 (2,5) | 128 min | +8,3 | −9,2 | −1,2 | **+4,4** | 1,1 | 13,6 % | 1,1 | 13,6 % |
+| 1.0 | E | 1.509 (3,3) | 60 min | +9,8 | −7,7 | +0,3 | +5,9 | 2,3 | 23,7 % | 2,0 | 6,6 % |
+| 1.0 | **V** | 1.239 (3,4) | 60 min | +6,8 | −10,7 | −2,7 | **+2,9** | 1,1 | 12,1 % | 1,1 | 13,9 % |
+
+- **Hürden formal bestanden:** N85 in V positiv (+4,4 bp), je Tag etwas besser als 1.0 (13,6 gegen 12,1 % pro Jahr),
+  positiv bei doppelter Slippage (+2,9 bp) und bei einer Kerze Verzögerung (+0,9 bp), keine Liquidation bei Hebel 3.
+- **Der große Vorsprung aus der Entwicklung hat sich nicht bestätigt.** In E war 1.1 fast dreimal so gut wie 1.0
+  (15,3 gegen 5,9 bp), in V kaum besser (4,4 gegen 2,9 bp). Der Mehrwert des Signal-Ausstiegs war also überwiegend
+  Anpassung an die Entwicklungsdaten. Ohne Rebate ist auch 1.1 in V klar negativ (−9,2 bp).
+- **Empfindlich gegen Verzögerung:** fünf Minuten später handeln kostet in V rund 40 % der rohen Bewegung
+  (8,3 → 4,8 bp). Das Signal verfällt schnell.
+- In V je Coin: BTC +5,3, ETH +0,9, SOL +7,7 bp N85. Quartale: sechs positiv, drei negativ (2023 Q3, 2024 Q2, Q3).
+- Starttage: tiefster Kontostand bei Hebel 1 86 %, Hebel 3 59 %, Hebel 5 31 % des Startkapitals; keine Liquidation.
+  Größte Bewegung gegen einen Trade 13,2 %.
+- Fünf frische Coins mit Version 1.1: roh +4,2 bp (t 1,7), N85 −1,2 bp. Nicht handelbar.
+
+**Einstufung nach den vorab gesetzten Regeln:** Version 1.1 ersetzt 1.0 als Kandidat, Kategorie **D (bereit für
+einen unabhängigen Vorwärtstest), Zusatz „nur mit Rebate“**. Eigene Einschätzung dazu im Bericht: Das Vertrauen ist
+gering bis mittel. Gesichert ist die Vorhersagekraft des Orderbuchs vor Kosten, nicht ein Gewinn nach Kosten.
+
+## 17. Abschluss der Runde
+
+13 Experimente (Obergrenze 15), danach Stopp wie festgelegt. Der Zeitraum ab 01.04.2025 wurde nicht geladen und
+nicht angesehen. Bericht: `bericht_runde1.md`. Register aller Strategien: `register/register.json`.

@@ -1,0 +1,152 @@
+<title>OdinGate Forschungszentrum</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* Aufbau: eine Spalte wie das bestehende Trading Board; oben Testkarten, darunter Vergleich und Strategie-Bibliothek.
+     Farben und Schriften sind vom bestehenden Board übernommen (bewusst nur dunkel). */
+  :root { --bg: #0b1016; --panel: #121a23; --panel2: #18222d; --fg: #e8eef4; --muted: #8b99a8; --line: #24303c; --accent: #5cb3ee;
+    --ok: #2fd39a; --bad: #ff6b5e; --warn: #f0b34a; --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 14.5px; line-height: 1.45;
+    padding-block: 14px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .seite { max-width: 1080px; margin: 0 auto; display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); }
+  header { display: grid; gap: 4px; }
+  header h1 { font-size: 20px; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+  .hinweis { border: 1px solid var(--warn); color: var(--warn); border-radius: 9px; padding: 9px 11px; font-size: 13px; background: var(--panel); }
+  .leiste { font-family: var(--mono); font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 2px 14px; }
+  h2 { font-size: 13px; font-weight: 600; margin: 6px 0 0; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+  .erkl { color: var(--muted); font-size: 13px; margin: -10px 0 0; max-width: 70ch; }
+  .karten { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+  .karte { all: unset; box-sizing: border-box; cursor: pointer; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 13px;
+    display: grid; gap: 6px; min-width: 0; }
+  .karte:focus-visible, .chip:focus-visible, .zeile > button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .karte[aria-pressed="true"] { border-color: var(--accent); background: var(--panel2); }
+  .karte .name { font-weight: 600; font-size: 14px; }
+  .karte .gross { font-family: var(--mono); font-size: 26px; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .karte .klein { font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .pille { display: inline-block; font-size: 11.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+  .pille.ok { color: var(--ok); border-color: var(--ok); } .pille.warn { color: var(--warn); border-color: var(--warn); }
+  .pille.bad { color: var(--bad); border-color: var(--bad); } .pille.blau { color: var(--accent); border-color: var(--accent); }
+  .gut { color: var(--ok); } .schlecht { color: var(--bad); } .ruhig { color: var(--muted); }
+  .kasten { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .detail { padding: 12px 13px; display: grid; gap: 10px; }
+  .detail h3 { margin: 0; font-size: 15px; }
+  .kv { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+  .kv div { background: var(--panel2); border-radius: 8px; padding: 8px 10px; min-width: 0; }
+  .kv .n { font-size: 11.5px; color: var(--muted); } .kv .w { font-family: var(--mono); font-size: 14.5px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .text { display: grid; gap: 6px; font-size: 13.5px; } .text b { color: var(--muted); font-weight: 500; }
+  .rollen { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { text-align: left; white-space: normal; min-width: 150px; }
+  th { color: var(--muted); font-weight: 500; font-size: 12px; } td { font-family: var(--mono); } td:first-child { font-family: var(--body); }
+  tr:last-child td { border-bottom: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { all: unset; cursor: pointer; font-size: 12.5px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; color: var(--muted); }
+  .chip[aria-pressed="true"] { color: var(--bg); background: var(--accent); border-color: var(--accent); font-weight: 600; }
+  .zeile { border-bottom: 1px solid var(--line); } .zeile:last-child { border-bottom: 0; }
+  .zeile > button { all: unset; box-sizing: border-box; cursor: pointer; width: 100%; display: grid; grid-template-columns: 58px minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; padding: 10px 12px; }
+  .zeile .id { font-family: var(--mono); font-size: 12px; color: var(--muted); } .zeile .zahl { font-family: var(--mono); font-size: 12.5px; grid-column: 2 / 4; color: var(--muted); }
+  .zeile .auf { padding: 0 12px 12px; }
+  .fuss { color: var(--muted); font-size: 12px; }
+</style>
+<div class="seite">
+  <header>
+    <h1>OdinGate Forschungszentrum</h1>
+    <div class="leiste"><span id="stand"></span><span id="zahl"></span></div>
+  </header>
+  <div class="hinweis">Vorschau der erweiterten Oberfläche. Das echte Trading Board ist unverändert. Die Zahlen der laufenden Tests sind eine Momentaufnahme, kein Live-Stand.</div>
+
+  <h2>Vorwärtstests</h2>
+  <p class="erkl">Papierhandel mit echten Marktdaten. Jeder Test hat ein eigenes Konto. Karte antippen für Details.</p>
+  <div class="karten" id="karten"></div>
+  <div class="kasten" id="detail" hidden></div>
+
+  <h2>Vergleich: Vorwärtstests (gemessen)</h2>
+  <div class="kasten rollen"><table id="tab-live"></table></div>
+
+  <h2>Vergleich: Rückrechnungen (historisch, kein laufender Test)</h2>
+  <p class="erkl">Hebel 1, feste Größe, gleiche Kostenannahmen. Rückrechnungen stehen nie in derselben Tabelle wie gemessene Tests.</p>
+  <div class="kasten rollen"><table id="tab-back"></table></div>
+
+  <h2>Strategie-Bibliothek</h2>
+  <p class="erkl">Alle untersuchten Ideen, auch die gescheiterten. Nichts wird nachträglich entfernt.</p>
+  <div class="chips" id="chips"></div>
+  <div class="kasten" id="liste"></div>
+  <p class="fuss">Rebate 85 % ist eine unbestätigte Annahme. Keine Anlageberatung.</p>
+</div>
+<script>
+const R = /*REGISTER*/null;
+const esc = (s) => String(s ?? '–').replace(/[&<>"]/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const zahl = (x, n = 1, e = '') => (x === null || x === undefined || x === '') ? '–' : (typeof x === 'number' ? x.toLocaleString('de-DE', {minimumFractionDigits: n, maximumFractionDigits: n}) + e : esc(x));
+const vz = (x, n = 2, e = ' %') => typeof x !== 'number' ? '–' : `<span class="${x > 0 ? 'gut' : x < 0 ? 'schlecht' : 'ruhig'}">${x > 0 ? '+' : ''}${zahl(x, n, e)}</span>`;
+const E = R.eintraege, tests = E.filter((e) => ['laufend', 'vorbereitet', 'abgeschlossen', 'kandidat'].includes(e.kategorie));
+const jetzt = Date.now();
+function status(e) {   // ein Test gilt nur als laufend, wenn sein letzter Lauf frisch ist
+  if (e.kategorie === 'laufend') {
+    const t = Date.parse((e.kennzahlen.stand || '').replace(' UTC', 'Z').replace(' ', 'T'));
+    const alt = (jetzt - t) / 3.6e6;
+    return alt > 2 ? ['Stand veraltet', 'warn'] : ['läuft', 'ok'];
+  }
+  if (e.kategorie === 'kandidat' || e.kategorie === 'vorbereitet') return ['vorbereitet, wartet auf Freigabe', 'blau'];
+  if (e.einstufung === 'A') return ['verworfen', 'bad'];
+  if (e.einstufung === 'D') return ['Prüfung formal bestanden', 'blau'];
+  if (e.einstufung === 'B') return ['unbestätigt', 'warn'];
+  return [e.status, ''];
+}
+document.getElementById('stand').textContent = 'Register vom ' + R.stand;
+document.getElementById('zahl').textContent = E.length + ' Einträge · ' + R.experimente + ' Experimente in Runde ' + R.runde;
+
+let offen = null;
+function zeigeKarten() {
+  document.getElementById('karten').innerHTML = tests.map((e) => {
+    const [s, f] = status(e), k = e.kennzahlen || {};
+    const kopf = e.kategorie === 'laufend'
+      ? `<span class="gross">${vz(k.mit_rebate_pct)}</span><span class="klein">${zahl(k.kapital, 2, ' $')} · Start ${esc(e.beginn)}</span><span class="klein">Stand ${esc(k.stand)}</span>`
+      : `<span class="gross ruhig">–</span><span class="klein">noch kein Test gestartet</span><span class="klein">Rückrechnung: ${vz(k.n85_bp, 1, ' bp')} je Trade</span>`;
+    return `<button class="karte" type="button" data-id="${esc(e.id)}" aria-pressed="${offen === e.id}"><span class="pille ${f}">${esc(s)}</span><span class="name">${esc(e.name)}${e.kategorie !== 'laufend' ? ' ' + esc(e.version) : ''}</span>${kopf}</button>`;
+  }).join('');
+}
+const NAMEN = {stand: 'Stand', kapital: 'Kapital ($)', mit_rebate_pct: 'Rendite mit Rebate (%)', ohne_rebate_pct: 'Rendite ohne Rebate (%)', orders: 'Orders', volumen_usd: 'Volumen ($)',
+  gebuehr_usd: 'Gebühr ($)', rebate_usd: 'Rebate, angenommen ($)', funding_usd: 'Funding ($)', einbruch_pct: 'Größter Einbruch (%)', margin_pct: 'Gebundene Margin (%)', laeufe: 'Bot-Läufe',
+  zeitraum: 'Zeitraum', trades_je_tag: 'Trades je Tag', haltedauer_min: 'Haltedauer (min)', roh_bp: 'Kursbewegung roh (bp)', n85_bp: 'Netto mit 85 % Rebate (bp)', n50_bp: 'Netto mit 50 % Rebate (bp)',
+  n0_bp: 'Netto ohne Rebate (bp)', t_n85: 't-Wert netto', gewinnquote: 'Gewinnquote', profit_factor: 'Profit Factor', ertrag_jahr_pct_hebel1: 'Ertrag pro Jahr, Hebel 1 (%)',
+  ertrag_jahr_ohne_rebate_pct: 'Ertrag pro Jahr ohne Rebate (%)', sharpe: 'Sharpe', rueckgang_pct: 'Größter Rückgang (%)', liquidationen: 'Liquidationen', tiefster_kontostand_hebel3: 'Tiefster Kontostand, Hebel 3', hinweis: 'Hinweis'};
+function details(e) {
+  const k = e.kennzahlen || {};
+  const kv = Object.entries(k).map(([n, w]) => `<div><div class="n">${esc(NAMEN[n] || n)}</div><div class="w">${typeof w === 'number' ? zahl(w, Number.isInteger(w) ? 0 : 2) : esc(w)}</div></div>`).join('');
+  const t = [['Hypothese', e.hypothese], ['Regel', e.algorithmus], ['Parameter', e.parameter && JSON.stringify(e.parameter)], ['Märkte', e.maerkte], ['Daten', e.daten], ['Kosten', e.gebuehren],
+    ['Risiko', e.risiko], ['Hebel', e.hebel], ['Startkapital', e.startkapital && e.startkapital + ' $'], ['Prüfstand', e.validierung], ['Vertrauen', e.vertrauen], ['Ergebnisdateien', (e.ergebnisdateien || []).join(', ')]]
+    .filter(([, w]) => w).map(([n, w]) => `<div><b>${n}:</b> ${esc(w)}</div>`).join('');
+  return `<div class="detail"><h3>${esc(e.name)} <span class="ruhig">${esc(e.version)}</span></h3>${kv ? `<div class="kv">${kv}</div>` : ''}<div class="text">${t}</div></div>`;
+}
+document.getElementById('karten').addEventListener('click', (ev) => {
+  const b = ev.target.closest('.karte'); if (!b) return;
+  offen = offen === b.dataset.id ? null : b.dataset.id;
+  const d = document.getElementById('detail');
+  d.hidden = !offen; d.innerHTML = offen ? details(E.find((e) => e.id === offen)) : '';
+  zeigeKarten();
+});
+zeigeKarten();
+
+const live = E.filter((e) => e.kategorie === 'laufend');
+document.getElementById('tab-live').innerHTML = '<tr><th>Test</th><th>mit Rebate</th><th>ohne Rebate</th><th>Einbruch</th><th>Orders</th><th>Gebühr</th><th>Rebate</th><th>Hebel</th><th>Stand</th></tr>' +
+  live.map((e) => { const k = e.kennzahlen; return `<tr><td>${esc(e.name)}</td><td>${vz(k.mit_rebate_pct)}</td><td>${vz(k.ohne_rebate_pct)}</td><td>${zahl(k.einbruch_pct, 2, ' %')}</td><td>${zahl(k.orders, 0)}</td><td>${zahl(k.gebuehr_usd, 2, ' $')}</td><td>${zahl(k.rebate_usd, 2, ' $')}</td><td>${zahl(e.hebel, 0)}</td><td>${esc(k.stand)}</td></tr>`; }).join('');
+const back = E.filter((e) => e.kategorie !== 'laufend' && e.kennzahlen && 'sharpe' in e.kennzahlen);
+document.getElementById('tab-back').innerHTML = '<tr><th>Strategie</th><th>pro Jahr mit Rebate</th><th>pro Jahr ohne Rebate</th><th>Sharpe</th><th>Rückgang</th><th>Trades/Tag</th><th>Haltedauer</th><th>Zeitraum</th></tr>' +
+  back.map((e) => { const k = e.kennzahlen; return `<tr><td>${esc(e.name)} ${e.version.length < 6 ? esc(e.version) : ''}</td><td>${vz(k.ertrag_jahr_pct_hebel1, 1)}</td><td>${vz(k.ertrag_jahr_ohne_rebate_pct, 1)}</td><td>${zahl(k.sharpe, 2)}</td><td>${zahl(k.rueckgang_pct, 1, ' %')}</td><td>${zahl(k.trades_je_tag, 1)}</td><td>${k.haltedauer_min >= 600 ? zahl(k.haltedauer_min / 60, 0, ' h') : zahl(k.haltedauer_min, 0, ' min')}</td><td>${esc(String(k.zeitraum).split(' (')[0] === 'V' ? 'Validierung 04/2024–03/2025' : String(k.zeitraum).split(' (')[0])}</td></tr>`; }).join('');
+
+const FILTER = [['alle', 'alle'], ['D', 'Prüfung bestanden'], ['B', 'unbestätigt'], ['A', 'verworfen'], ['–', 'Tests und Analysen']];
+let filter = 'alle'; const auf = new Set();
+function zeigeListe() {
+  document.getElementById('chips').innerHTML = FILTER.map(([w, n]) => `<button class="chip" type="button" data-f="${w}" aria-pressed="${filter === w}">${n} (${E.filter((e) => w === 'alle' || e.einstufung === w).length})</button>`).join('');
+  document.getElementById('liste').innerHTML = E.filter((e) => filter === 'alle' || e.einstufung === filter).map((e) => {
+    const [s, f] = status(e), k = e.kennzahlen || {};
+    const z = 'n85_bp' in k ? `netto mit Rebate ${zahl(k.n85_bp, 1, ' bp')} · ohne Rebate ${zahl(k.n0_bp, 1, ' bp')} je Trade` : ('mit_rebate_pct' in k ? `Papier-Konto ${zahl(k.mit_rebate_pct, 2, ' %')}` : esc(e.familie));
+    return `<div class="zeile"><button type="button" data-id="${esc(e.id)}" aria-expanded="${auf.has(e.id)}"><span class="id">${esc(e.id)}</span><span>${esc(e.name)}</span><span class="pille ${f}">${esc(s)}</span><span class="zahl">${z}</span></button>${auf.has(e.id) ? `<div class="auf">${details(e)}</div>` : ''}</div>`;
+  }).join('');
+}
+document.getElementById('chips').addEventListener('click', (ev) => { const b = ev.target.closest('.chip'); if (b) { filter = b.dataset.f; zeigeListe(); } });
+document.getElementById('liste').addEventListener('click', (ev) => { const b = ev.target.closest('.zeile > button'); if (!b) return; auf.has(b.dataset.id) ? auf.delete(b.dataset.id) : auf.add(b.dataset.id); zeigeListe(); });
+zeigeListe();
+</script>
