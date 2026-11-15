@@ -18,3 +18,15 @@ Claude-Session: https://claude.ai/code/session_01Ti9KuBStbgAKmCzGpRA6zL" || true
 git push -q origin "$ZWEIG"
 echo "gesichert: $(git rev-parse --short HEAD)"
 
+
+# Zweites, getrenntes Papier-Konto: dieselbe Regel mit Stop 5 % und Gewinnziel 15 % (Start 15.11.2026)
+python3 -m vorwaertstest.bot schritt --config vorwaertstest/config_lauf_tpsl.json --daten vorwaertstest/lauf_tpsl
+python3 -m vorwaertstest.dashboard_daten --config vorwaertstest/config_lauf_tpsl.json --daten vorwaertstest/lauf_tpsl
+python3 -m vorwaertstest.board_verschluesseln --quelle vorwaertstest/lauf_tpsl/dashboard.json --ziel ../docs/stand_tpsl.enc.json
+git add vorwaertstest/lauf_tpsl ../docs/stand_tpsl.enc.json
+git commit -q -m "Vorwärtstest (Papier, Stop 5 % / Ziel 15 %) $(date -u '+%F %H:%M') UTC
+
+Co-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Ti9KuBStbgAKmCzGpRA6zL" || true
+git push -q origin "$ZWEIG"
+echo "gesichert (Variante): $(git rev-parse --short HEAD)"

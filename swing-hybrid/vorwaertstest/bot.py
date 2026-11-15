@@ -212,6 +212,20 @@ def schritt(cfg: dict, api: Yubit, daten: Path, jetzt_ms: int | None = None, mel
         ziel = 0 if gesperrt else m["richtung"]
         ist = z["pos"].get(coin, 0.0)
         ist_richtung = (ist > 0) - (ist < 0)
+        anlass = None
+        tp, sl = cfg.get("tp", 0.0), cfg.get("sl", 0.0)
+        if tp or sl:   # Variante mit Gewinnziel / Stop: nach dem Ausstieg Pause, bis das Signal dreht
+            sperre = z.setdefault("sperre", {})
+            if sperre.get(coin, 0) and sperre[coin] != m["richtung"]:
+                sperre[coin] = 0
+            ein = z.setdefault("einstieg", {}).get(coin, 0.0)
+            if ist_richtung and ist_richtung == m["richtung"] and ein > 0:
+                r = (mitte / ein - 1) * ist_richtung
+                anlass = "ziel" if tp and r >= tp else "stop" if sl and r <= -sl else None
+                if anlass:
+                    sperre[coin] = ist_richtung
+            if m["richtung"] != 0 and sperre.get(coin, 0) == m["richtung"]:
+                ziel = 0
         if ziel == ist_richtung:
             continue
         auftraege = []   # (kauf, menge, position_idx, reduce_only)
@@ -224,7 +238,7 @@ def schritt(cfg: dict, api: Yubit, daten: Path, jetzt_ms: int | None = None, mel
                 warnungen.append(f"{coin}: Zielbetrag {nominal:.0f} USDT liegt unter der Mindestordergröße, kein Einstieg")
         schon = 0.0      # im Papier-Modus zehrt die zweite Order vom selben Buch
         for kauf, menge, idx, reduce in auftraege:
-            grund = "tageslimit" if gesperrt else ("schliessen" if reduce else "einstieg")
+            grund = "tageslimit" if gesperrt else ((anlass or "schliessen") if reduce else "einstieg")
             try:
                 if live:
                     kurs, q, gebuehr = live_order(api, m, kauf, menge, idx, reduce, cfg)
@@ -244,6 +258,8 @@ def schritt(cfg: dict, api: Yubit, daten: Path, jetzt_ms: int | None = None, mel
                 warnungen.append(f"{coin}: nichts gefüllt")
                 break
             kern.buchen(z, coin, q if kauf else -q, kurs, gebuehr, rebate)
+            if not reduce:
+                z.setdefault("einstieg", {})[coin] = kurs
             protokoll.append({"zeit": zeit, "coin": coin, "seite": "kauf" if kauf else "verkauf", "signalkurs": mitte,
                               "fuellkurs": round(kurs, 10), "volumen": round(q * kurs, 4), "gebuehr": round(gebuehr, 6),
                               "rebate": round(rebate, 6), "menge": q, "geld": buch["geld"][0][0], "brief": buch["brief"][0][0],

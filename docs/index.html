@@ -77,6 +77,13 @@
   .tor button { font: inherit; font-weight: 600; padding: 10px 12px; border-radius: 8px; border: 0; background: var(--accent); color: #06121c; cursor: pointer; }
   .tor .fehler { color: var(--bad); font-size: 12.5px; min-height: 1.2em; margin: 0; }
   .abmelden { all: unset; cursor: pointer; text-decoration: underline; }
+  .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .tabs button { all: unset; box-sizing: border-box; cursor: pointer; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: grid; gap: 2px; min-width: 0; }
+  .tabs button[aria-pressed="true"] { border-color: var(--accent); background: var(--panel2); }
+  .tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .tabs .t { font-weight: 600; font-size: 13.5px; } .tabs .s { font-size: 11.5px; color: var(--muted); }
+  .tabs .w { font-family: var(--mono); font-size: 15px; font-variant-numeric: tabular-nums; }
+  .regelzeile { font-size: 12.5px; color: var(--muted); margin: 2px 0 0; }
   @media (min-width: 760px) { .paar > button { grid-template-columns: 80px 70px minmax(0, 1fr) minmax(0, 1fr) 20px; padding: 12px 16px; } .kerzen { height: 380px; } .chartbox { height: 260px; } }
 </style>
 </head>
@@ -99,10 +106,16 @@
     <button class="abmelden" id="abmelden" type="button">Sperren</button>
   </div>
 
+  <div class="tabs" id="tabs" role="group" aria-label="Test auswählen">
+    <button type="button" id="tab-basis" aria-pressed="true"><span class="t">Test 1 · Nur Umkehrsignal</span><span class="s" id="tabs-basis">ohne Ziel und Stop</span><span class="w" id="tabw-basis">—</span></button>
+    <button type="button" id="tab-tpsl" aria-pressed="false"><span class="t">Test 2 · Stop 5 % und Ziel 15 %</span><span class="s" id="tabs-tpsl">getrenntes Konto</span><span class="w" id="tabw-tpsl">—</span></button>
+  </div>
+
   <div class="kopf">
     <h1>PAPIER-KONTO · 14-TAGE-TREND · 10 COINS · HEBEL <span id="hebel">–</span></h1>
     <div class="gross" id="konto">—</div>
     <div class="unter"><span id="netto">—</span> <span class="ruhig">seit Start, nach Kosten mit Rebate</span></div>
+    <p class="regelzeile" id="regel"></p>
   </div>
 
   <div class="stats" id="stats"></div>
@@ -125,7 +138,9 @@
 <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 <script>
 (() => {
-  const STAND = ['stand.enc.json'];
+  const DATEIEN = {basis: 'stand.enc.json', tpsl: 'stand_tpsl.enc.json'};
+  const SS = {basis: null, tpsl: null};
+  let aktiv = 'basis';
   const b64 = (t) => Uint8Array.from(atob(t), (c) => c.charCodeAt(0));
   let privat = null;                  // RSA-Schlüssel, nach richtiger Passworteingabe
 
@@ -173,11 +188,11 @@
   };
 
   // ---------------------------------------------------------------- Rechnen ----
-  function konto() {
-    if (!S) return null;
-    const k = S.kennzahlen[0];
+  function konto(st = S) {
+    if (!st) return null;
+    const k = st.kennzahlen[0];
     let brutto = 0, offen = 0, wert = 0, vollstaendig = true;
-    S.positionen.forEach((p) => {
+    st.positionen.forEach((p) => {
       const preis = P[p.coin] ?? p.kurs;
       if (P[p.coin] == null) vollstaendig = false;
       brutto += p.kasse + p.menge * preis;
@@ -199,6 +214,15 @@
     if (!a) return;
     const k = a.k, pz = (x) => x / a.kapital * 100;
     $('hebel').textContent = de(0).format(k.hebel);
+    $('regel').textContent = (k.tp || k.sl)
+      ? `Test 2, läuft seit ${k.start} UTC: Einstieg beim Umkehrsignal, Ausstieg bei ${de(0).format(k.sl * 100)} % Verlust oder ${de(0).format(k.tp * 100)} % Gewinn je Position, danach Pause bis zum nächsten Umkehrsignal.`
+      : `Test 1, läuft seit ${k.start} UTC: Positionen reagieren nur auf das Umkehrsignal, ohne Gewinnziel und ohne Stop.`;
+    Object.keys(SS).forEach((id) => {
+      const b = konto(SS[id]), w = $('tabw-' + id);
+      if (!b) { w.textContent = 'noch keine Daten'; return; }
+      setze(w, vz(b.mit / b.kapital * 100, 2) + ' %', b.mit, farbe(b.mit));
+      $('tabs-' + id).textContent = 'seit ' + b.k.start.slice(5) + ' UTC';
+    });
     setze($('konto'), de(2).format(a.kapital + a.mit) + ' $', a.mit);
     setze($('netto'), `${vz(a.mit, 2)} $ (${vz(pz(a.mit), 3)} %)`, a.mit, farbe(a.mit));
     setze(stat.offen, vz(a.offen, 2) + ' $', a.offen, farbe(a.offen)); stat.offen_z.textContent = vz(pz(a.offen), 3) + ' % vom Konto';
@@ -240,7 +264,7 @@
       z.detail = z.box.appendChild(el('div', 'detail'));
       z.werte = z.detail.appendChild(el('div', 'werte'));
       z.w = {};
-      [['einstieg', 'Einstieg'], ['seit', 'Seit (UTC)'], ['menge', 'Menge'], ['wert', 'Positionswert'], ['trend', '14-Tage-Trend'], ['dreh', 'Signal dreht bei'], ['abstand', 'Kurs zur Drehschwelle']].forEach(([id, name]) => {
+      [['einstieg', 'Einstieg'], ['seit', 'Seit (UTC)'], ['menge', 'Menge'], ['wert', 'Positionswert'], ['trend', '14-Tage-Trend'], ['dreh', 'Signal dreht bei'], ['abstand', 'Kurs zur Drehschwelle'], ['ziel', 'Gewinnziel bei'], ['stop', 'Stop bei']].forEach(([id, name]) => {
         const d = el('div'); d.appendChild(el('span', null, name)); z.w[id] = d.appendChild(el('span', null, '–')); z.werte.appendChild(d);
       });
       z.raster = z.detail.appendChild(el('div', 'raster'));
@@ -257,7 +281,9 @@
     S.positionen.forEach((p) => {
       const z = Z[p.coin]; if (!z) return;
       const preis = P[p.coin] ?? p.kurs, live = P[p.coin] != null;
-      z.marke.textContent = p.richtung; z.marke.className = 'marke ' + (p.menge > 0 ? 'long' : p.menge < 0 ? 'short' : '');
+      z.marke.textContent = p.wartet ? 'Pause' : p.richtung; z.marke.className = 'marke ' + (p.menge > 0 ? 'long' : p.menge < 0 ? 'short' : '');
+      z.w.ziel.textContent = p.ziel_kurs ? kurs(p.ziel_kurs) : (p.wartet ? 'Pause bis zum Dreh' : '–');
+      z.w.stop.textContent = p.stop_kurs ? kurs(p.stop_kurs) : '–';
       setze(z.preis, kurs(preis), live ? preis : null);
       if (TAG[p.coin] != null) setze(z.tag, '24 h ' + vz(TAG[p.coin], 2) + ' %', null, farbe(TAG[p.coin]));
       const g = p.menge ? p.menge * (preis - p.einstieg) : 0, gp = p.menge && p.einstieg ? (preis / p.einstieg - 1) * Math.sign(p.menge) * 100 : 0;
@@ -277,7 +303,7 @@
 
   function zeigeOrders() {
     const tb = $('orders'); tb.replaceChildren();
-    const anlass = {einstieg: 'Einstieg', schliessen: 'Schließen', tageslimit: 'Tageslimit'};
+    const anlass = {einstieg: 'Einstieg', schliessen: 'Umkehrsignal', tageslimit: 'Tageslimit', ziel: 'Gewinnziel', stop: 'Stop'};
     [...S.orders_alle].reverse().forEach((o) => {
       const tr = el('tr');
       tr.appendChild(el('td', null, o.zeit.slice(0, 16).replace('T', ' '))); tr.appendChild(el('td', null, o.coin));
@@ -346,6 +372,8 @@
     kerzenSerie.setMarkers(marken);
     const p = S.positionen.find((x) => x.coin === coin);
     if (p && p.menge) kerzenSerie.createPriceLine({price: p.einstieg, color: '#5cb3ee', lineWidth: 1, lineStyle: 0, axisLabelVisible: true, title: 'Einstieg ' + p.richtung});
+    if (p && p.ziel_kurs) kerzenSerie.createPriceLine({price: p.ziel_kurs, color: '#2fd39a', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: 'Ziel'});
+    if (p && p.stop_kurs) kerzenSerie.createPriceLine({price: p.stop_kurs, color: '#ff6b5e', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: 'Stop'});
     if (SIG[coin]) kerzenSerie.createPriceLine({price: SIG[coin].dreh, color: '#f0b34a', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: 'Signal dreht'});
     new ResizeObserver(() => kerzenChart && kerzenChart.applyOptions({width: box.clientWidth, height: box.clientHeight})).observe(box);
     try {
@@ -356,21 +384,33 @@
 
   // ------------------------------------------------------------------ Daten ----
   async function ladeStand() {
-    for (const url of STAND) {
+    for (const [id, url] of Object.entries(DATEIEN)) {
       try {
-        const r = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Math.floor(Date.now() / 30000), {cache: 'no-store'});
+        const r = await fetch(url + '?t=' + Math.floor(Date.now() / 30000), {cache: 'no-store'});
         if (!r.ok) continue;
         const d = await entschluesseln(await r.json());
         if (!d.kennzahlen || !d.positionen) continue;
-        const neu = !S || d.geschrieben !== S.geschrieben, ersterLauf = !S;
+        const alt = SS[id];
+        SS[id] = d;
+        if (id !== aktiv) continue;
+        const neu = !alt || d.geschrieben !== alt.geschrieben, ersterLauf = !S;
         S = d;
         if (ersterLauf) bauePaare();
-        if (neu) { zeigeOrders(); zeigeVerlauf(); zeigePaare(); zeigeKonto(); if (offenerCoin && !ersterLauf) ladeKerzen(offenerCoin); }
-        return;
+        if (neu) { zeigeOrders(); zeigeVerlauf(); zeigePaare(); if (offenerCoin && !ersterLauf) ladeKerzen(offenerCoin); }
       } catch (e) {}
     }
+    zeigeKonto();
     if (!S) $('status').textContent = 'Bot-Stand konnte nicht geladen werden';
   }
+  function waehle(id) {
+    if (id === aktiv || !SS[id]) return;
+    if (offenerCoin) umschalten(offenerCoin);
+    aktiv = id; S = SS[id];
+    Object.keys(SS).forEach((k) => $('tab-' + k).setAttribute('aria-pressed', String(k === id)));
+    vorher.clear();
+    bauePaare(); zeigeOrders(); zeigeVerlauf(); zeigeKonto();
+  }
+  Object.keys(DATEIEN).forEach((id) => $('tab-' + id).addEventListener('click', () => waehle(id)));
 
   async function ladeSignale() {
     if (!S) return;

@@ -159,3 +159,41 @@ def test_signatur_wie_im_offiziellen_paket(monkeypatch):
     assert kopf["MF-ACCESS-SIGN"] == soll and kopf["MF-ACCESS-API-KEY"] == "schluessel"
     with pytest.raises(YubitFehler):
         Yubit(pause=0, oeffner=oeffner([])).positionen()                  # ohne Schlüssel kein Kontozugriff
+
+
+def test_gewinnziel_stop_und_pause_bis_zum_dreh(tmp_path):
+    cfg = {**CFG, "tp": 0.15, "sl": 0.05}
+    still = lambda *_: None
+    api = Boerse({"AAA": 100.0, "BBB": 50.0}, {"AAA": 90.0, "BBB": 60.0})      # AAA Long, BBB Short
+    bot.schritt(cfg, api, tmp_path, JETZT, melden=still)
+    z = json.loads((tmp_path / "zustand.json").read_text())
+    assert z["einstieg"]["AAA"] == pytest.approx(100.05) and z["einstieg"]["BBB"] == pytest.approx(49.95)
+    # AAA +10 %: noch kein Ziel; BBB steigt 6 % gegen den Short: Stop
+    api.kurse.update({"AAA": 110.0, "BBB": 53.0})
+    bot.schritt(cfg, api, tmp_path, JETZT + H // 4, melden=still)
+    z = json.loads((tmp_path / "zustand.json").read_text())
+    assert z["pos"]["AAA"] == pytest.approx(5.0) and z["pos"]["BBB"] == 0.0 and z["sperre"]["BBB"] == -1
+    assert bot.lesen(tmp_path / "protokoll.csv")[-1]["grund"] == "stop"
+    # AAA +16 %: Gewinnziel; BBB bleibt Short-Signal: kein Wiedereinstieg
+    api.kurse.update({"AAA": 116.2, "BBB": 52.0})
+    r = bot.schritt(cfg, api, tmp_path, JETZT + 2 * (H // 4), melden=still)
+    z = json.loads((tmp_path / "zustand.json").read_text())
+    assert r["orders"] == 1 and z["pos"]["AAA"] == 0.0 and z["pos"]["BBB"] == 0.0
+    assert bot.lesen(tmp_path / "protokoll.csv")[-1]["grund"] == "ziel"
+    assert bot.schritt(cfg, api, tmp_path, JETZT + 3 * (H // 4), melden=still)["orders"] == 0     # beide pausieren
+    # BBB dreht auf Long: Sperre fällt, Einstieg in die neue Richtung; AAA pausiert weiter
+    api.kurse["BBB"] = 61.0
+    bot.schritt(cfg, api, tmp_path, JETZT + 4 * (H // 4), melden=still)
+    z = json.loads((tmp_path / "zustand.json").read_text())
+    assert z["pos"]["BBB"] > 0 and z["sperre"]["BBB"] == 0 and z["pos"]["AAA"] == 0.0
+    d = __import__("vorwaertstest.dashboard_daten", fromlist=["bauen"]).bauen(cfg, tmp_path)
+    aaa = next(p for p in d["positionen"] if p["coin"] == "AAA"); bbb = next(p for p in d["positionen"] if p["coin"] == "BBB")
+    assert aaa["wartet"] and aaa["ziel_kurs"] is None
+    assert bbb["ziel_kurs"] == pytest.approx(bbb["einstieg"] * 1.15) and bbb["stop_kurs"] == pytest.approx(bbb["einstieg"] * 0.95)
+
+
+def test_ohne_ziel_und_stop_bleibt_alles_wie_bisher(tmp_path):
+    api = Boerse({"AAA": 100.0, "BBB": 50.0}, {"AAA": 90.0, "BBB": 60.0})
+    bot.schritt(CFG, api, tmp_path, JETZT, melden=lambda *_: None)
+    api.kurse.update({"AAA": 130.0, "BBB": 58.0})                              # weit über Ziel bzw. Stop der Variante
+    assert bot.schritt(CFG, api, tmp_path, JETZT + H, melden=lambda *_: None)["orders"] == 0
