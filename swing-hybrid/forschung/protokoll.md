@@ -336,3 +336,55 @@ Keine Auswahl, keine Hürde. Der Trend wird mit dem vorhandenen Rechenkern unver
 Trades der Version 1.0 getrennt nach Schwankung der letzten 24 Stunden (Drittel, eingeordnet nur in vergangene
 90 Tage), nach Richtung des 14-Tage-Trends und nach Tageszeit. Keine Auswahl; ein Filter wäre eine neue Regel für
 eine spätere Runde.
+
+---
+
+## 14. Ergebnisse E10 bis E12 (15.11.2026)
+
+### E10 Ausstiegs-Engine (nur Entwicklung)
+
+| Variante | Trades | Haltedauer | roh | N0 | N85 | t(N85) | Gewinnquote | pro Jahr (Hebel 1) | Sharpe | Rückgang | Anteil Stops |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| X0 Basis 60 min | 1.508 | 60 min | +9,8 | −7,7 | +5,9 | 2,3 | 57 % | 23,7 % | 2,0 | 6,6 % | – |
+| X1 120 min | 1.166 | 120 min | +12,2 | −5,3 | +8,3 | 2,0 | 56 % | 25,8 % | 1,9 | 10,2 % | – |
+| X2 240 min | 968 | 240 min | +8,6 | −9,0 | +4,6 | 0,8 | 56 % | 12,0 % | 0,7 | 16,1 % | – |
+| **X3 Signal-Ausstieg** | 1.112 | 128 min | **+19,2** | **+1,7** | **+15,3** | 3,7 | 64 % | 45,5 % | 3,3 | 7,8 % | – |
+| X4 fester Stop 2 σ | 1.227 | 177 min | +17,2 | −0,4 | +13,2 | 3,3 | 50 % | 43,4 % | 3,2 | 8,5 % | 43 % |
+| X5 nachgezogener Stop | 1.876 | 75 min | +7,4 | −10,1 | +3,5 | 1,6 | 40 % | 17,6 % | 1,4 | 9,4 % | 91 % |
+| X6 nachgezogenes Gewinnziel | 1.303 | 107 min | +9,3 | −8,2 | +5,4 | 1,5 | 74 % | 18,9 % | 1,4 | 11,3 % | 73 % |
+| X7 Break-even | 1.178 | 171 min | +8,4 | −9,1 | +4,5 | 1,0 | 32 % | 14,0 % | 0,9 | 12,7 % | 45 % |
+
+- **Nachgezogene Stops und Gewinnziele (X5, X6, X7) verschlechtern das Ergebnis.** Sie erhöhen die Gewinnquote (X6:
+  74 %) oder senken sie stark (X7: 32 %), aber nicht den Ertrag. Das ist dieselbe Erfahrung wie in Runde 20 und 24.
+- **Zwei Varianten sind in der Entwicklung klar besser:** der Signal-Ausstieg (X3: halten, solange das Übergewicht
+  im Orderbuch besteht) und der feste Stop (X4). Beide begrenzen die Verlierer, die bei reiner Zeitsteuerung
+  weiterlaufen.
+- Zufallsprüfung über die sieben Varianten gegen die Basis: beste X3, Vorsprung 21,8 Punkte pro Jahr,
+  Zufallsschwelle 22,2, **p = 0,053**. Nach der vorab gesetzten Regel (p ≤ 0,10, beide Hälften positiv: +14,6 und
+  +16,1 bp) geht X3 einmal in die Validierung (E13). Auch das ist knapp.
+
+### E12 Marktphasen (nur Entwicklung, beschreibend)
+- Nach Schwankung: niedrig +1,2 bp N85 · mittel +3,6 · **hoch +12,9** (t 2,5).
+- Nach 14-Tage-Trend: mit dem Trend +6,0, gegen den Trend +5,9. Kein Unterschied.
+- Nach Tageszeit (UTC): **0–8 Uhr +14,5** (t 3,6) · 8–16 Uhr −1,0 · 16–24 Uhr +6,5.
+- Keine Auswahl daraus. Ein Filter auf hohe Schwankung wäre eine neue, eigens festzulegende Regel.
+
+### E11 Kombination mit dem 14-Tage-Trend (01/2023 bis 03/2025, beschreibend)
+- Korrelation der Tagesergebnisse: **−0,03**. Die beiden Regeln verdienen und verlieren unabhängig voneinander.
+- Mit Rebate, Hebel 1: Orderbuch-Regel Sharpe 1,6 · Trend Sharpe 1,0 (größter Rückgang 51 % des Startkapitals) ·
+  Mischung mit gleichem Risiko Sharpe 1,9. Dafür müsste die Orderbuch-Regel aber mit Hebel 5,5 laufen, mehr als die
+  Obergrenze von 5.
+- Ohne Rebate: Orderbuch-Regel −37 % pro Jahr, die Mischung negativ. Die Ergänzung funktioniert nur mit Rebate.
+
+Stand: 12 Experimente, 52 Einstellungen.
+
+## 15. Festlegung E13 (vor der Rechnung): Version 1.1 in der Validierung
+
+- **Version 1.1, eingefroren:** Einstieg wie 1.0 (z ≥ 3 bzw. ≤ −3). Ausstieg, sobald z unter 1 fällt (Long) bzw.
+  über −1 steigt (Short), geprüft am Schluss jeder 5-Minuten-Kerze, spätestens nach 240 Minuten. Kein Stop.
+- **Einmalige Prüfung in V** (01.04.2024 bis 31.03.2025) auf BTC, ETH, SOL, im Vergleich mit Version 1.0.
+- **Hürden:** N85 > 0 in V · N85 je Tag in V höher als bei Version 1.0 · N85 > 0 bei doppelter Slippage und bei
+  einer Kerze Verzögerung · kein Starttag mit Liquidation bei Hebel 3.
+- Besteht 1.1, ersetzt sie 1.0 als Kandidat. Besteht sie nicht, bleibt 1.0, und 1.1 gilt als Überanpassung.
+- Zusätzlich berichtet (ohne Hürde): dieselbe Version auf den fünf handelbaren frischen Coins in E und V.
+- Danach endet die Runde (13 Experimente). Der Zeitraum ab 04/2025 bleibt ungeöffnet.

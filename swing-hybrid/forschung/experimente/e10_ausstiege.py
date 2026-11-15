@@ -21,7 +21,7 @@ VARIANTEN = {"X0_zeit60": (12, False, 0, 0, 0, 0), "X1_zeit120": (24, False, 0, 
              "X6_trailtp": (48, False, 0, 0.5, 1.0, 0), "X7_breakeven": (48, False, 0, 0, 0, 1.0)}
 
 
-def lauf(coin, var, bis):
+def lauf(coin, var, bis, coins_slip=None):
     limit, signal, stop_s, trail_s, akt_s, be_s = VARIANTEN[var]
     k, z = S.z_wert(coin)
     k = k[k.index < bis]; z = z[: len(k)]
@@ -54,12 +54,15 @@ def lauf(coin, var, bis):
     g = np.isfinite(px)
     t.loc[g, "roh"] = (t["richtung"].to_numpy() * (px / o[np.array(ein)[: len(t)]] - 1) * 1e4)[g]
     t["stop"] = g
-    t["schlimmst"] = 0.0
+    A, B, r = np.array(ein)[: len(t)], np.array(aus)[: len(t)], t["richtung"].to_numpy()
+    t["schlimmst"] = [((l[x:y + 1].min() if s2 > 0 else h[x:y + 1].max()) / o[x] - 1) * s2 * 1e4 for x, y, s2 in zip(A, B, r)]
+    ok = (B + 1 < len(o))                                # Stress: Ein- und Ausstieg je eine Kerze später
+    t["roh_spaeter"] = np.where(g, t["roh"], np.where(ok, r * (o[np.minimum(B + 1, len(o) - 1)] / o[np.minimum(A + 1, len(o) - 1)] - 1) * 1e4, np.nan))
     return t
 
 
-def alle(var, bis=E[1]):
-    return K.netto(pd.concat([lauf(c, var, bis) for c in COINS]), slip)
+def alle(var, bis=E[1], coins=COINS):
+    return K.netto(pd.concat([lauf(c, var, bis) for c in coins], ignore_index=True), K.slippage_bp(coins))
 
 
 if __name__ == "__main__":
