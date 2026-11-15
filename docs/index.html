@@ -275,13 +275,14 @@
         k.addEventListener('click', () => {
           tpslImBild = !tpslImBild;
           document.querySelectorAll('button[data-tpsl]').forEach((b) => b.setAttribute('aria-pressed', String(tpslImBild)));
-          if (offenerCoin) ladeKerzen(offenerCoin);
+          if (kerzenSerie) kerzenSerie.applyOptions({});   // Skala neu berechnen, ohne den Chart neu aufzubauen
         });
         z.raster.appendChild(k);
       }
       z.kerzen = z.detail.appendChild(el('div', 'kerzen'));
-      z.detail.appendChild(el('p', 'hinweis', 'Pfeile: Orders des Papier-Bots. Blaue Linie: Einstieg. Gelb gestrichelt: Kurs, an dem sich das Signal beim nächsten Stundenschluss dreht.'
-        + ((S.kennzahlen[0].tp || S.kennzahlen[0].sl) ? ' Grün gestrichelt: Gewinnziel (TP). Rot gestrichelt: Stop (SL). Mit „TP/SL im Bild“ reicht die Kursskala bis zu beiden Linien; ausgeschaltet zeigt sie nur die Kerzen in voller Größe.' : '')));
+      const test2 = S.kennzahlen[0].tp || S.kennzahlen[0].sl;   // Test 1 behält den bisherigen Hinweistext unverändert
+      z.detail.appendChild(el('p', 'hinweis', 'Pfeile: Orders des Papier-Bots. Blaue Linie: Einstieg. ' + (test2 ? 'Gelb gestrichelt' : 'Gestrichelt') + ': Kurs, an dem sich das Signal beim nächsten Stundenschluss dreht.'
+        + (test2 ? ' Grün gestrichelt: Gewinnziel (TP). Rot gestrichelt: Stop (SL). Mit „TP/SL im Bild“ reicht die Kursskala bis zu beiden Linien; ausgeschaltet zeigt sie nur die Kerzen in voller Größe.' : '')));
       box.appendChild(z.box);
     });
     zeigePaare();
