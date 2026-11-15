@@ -1,0 +1,64 @@
+Yubit-Slippage je Coin (2 x halbe Spanne): {'BTC': np.float64(0.5), 'ETH': np.float64(0.5), 'SOL': np.float64(1.366), 'XRP': np.float64(1.139), 'DOT': np.float64(13.216), 'DOGE': np.float64(1.652), 'ADA': np.float64(6.419), 'LINK': np.float64(1.089), 'AVAX': np.float64(1.451), 'LTC': np.float64(2.184)} bp | fehlend: []
+Gebuehren aus config.yaml: maker 0.0004 taker 0.0008 rebate 0.85
+
+=== A. Kandidat: Tagesreihe (Hebel 1, sofortige Ausfuehrung, ohne Tageslimit, Gruppe A)
+vor=True  Kosten=yubit | M.basis == R.tsmom(336): True | Sperrtage 0 | groesste Abweichung eigene Nachrechnung gegen engine2: mit Rebate 4.79e-16, ohne Rebate 5.20e-16
+vor=True  Kosten=5bp   | M.basis == R.tsmom(336): True | Sperrtage 0 | groesste Abweichung eigene Nachrechnung gegen engine2: mit Rebate 5.27e-16, ohne Rebate 4.72e-16
+vor=False Kosten=yubit | M.basis == R.tsmom(336): True | Sperrtage 0 | groesste Abweichung eigene Nachrechnung gegen engine2: mit Rebate 4.79e-16, ohne Rebate 5.20e-16
+vor=False Kosten=5bp   | M.basis == R.tsmom(336): True | Sperrtage 0 | groesste Abweichung eigene Nachrechnung gegen engine2: mit Rebate 5.27e-16, ohne Rebate 4.72e-16
+
+=== B. Punktschaetzung und Unsicherheit
+vor=True  yubit mit Rebate  Entwicklung   Tage 1325  Ertrag/Jahr +0.594  Vola/Jahr 0.628  Sharpe +0.946  t +1.80  t(HAC,10) +1.78  AK1 -0.022
+      stationaerer Bootstrap (Block 20, 10.000): Ertrag/Jahr 90-% [+0.057, +1.183]  Sharpe 90-% [+0.10, +1.74]  Sharpe 95-% [-0.06, +1.88]  Anteil Mittel <= 0: 0.033
+      stationaer Block  5 (4.000): Ertrag/Jahr [+0.059, +1.156]  Sharpe [+0.10, +1.78]  Anteil <= 0: 0.035
+      stationaer Block 40 (4.000): Ertrag/Jahr [+0.130, +1.156]  Sharpe [+0.23, +1.69]  Anteil <= 0: 0.016
+      Kreisblock 20 (10.000):     Ertrag/Jahr [+0.049, +1.191]  Sharpe [+0.08, +1.77]  Anteil <= 0: 0.036
+      ohne Bloecke (10.000):      Ertrag/Jahr [+0.057, +1.133]  Sharpe [+0.09, +1.80]  Anteil <= 0: 0.034
+      Naeherungsformel (Lo 2002, unabhaengige Tage): Sharpe 90-% [+0.08, +1.81]
+vor=True  yubit mit Rebate  Pruefzeitraum Tage  571  Ertrag/Jahr +0.165  Vola/Jahr 0.490  Sharpe +0.337  t +0.42  t(HAC,10) +0.45  AK1 -0.001
+      stationaerer Bootstrap (Block 20, 10.000): Ertrag/Jahr 90-% [-0.385, +0.731]  Sharpe 90-% [-0.84, +1.43]  Sharpe 95-% [-1.06, +1.64]  Anteil Mittel <= 0: 0.322
+      stationaer Block  5 (4.000): Ertrag/Jahr [-0.427, +0.773]  Sharpe [-0.91, +1.52]  Anteil <= 0: 0.326
+      stationaer Block 40 (4.000): Ertrag/Jahr [-0.347, +0.700]  Sharpe [-0.76, +1.36]  Anteil <= 0: 0.300
+      Kreisblock 20 (10.000):     Ertrag/Jahr [-0.392, +0.750]  Sharpe [-0.85, +1.46]  Anteil <= 0: 0.327
+      ohne Bloecke (10.000):      Ertrag/Jahr [-0.465, +0.800]  Sharpe [-0.97, +1.63]  Anteil <= 0: 0.337
+      Naeherungsformel (Lo 2002, unabhaengige Tage): Sharpe 90-% [-0.98, +1.65]
+vor=True  yubit ohne Rebate Entwicklung   Tage 1325  Ertrag/Jahr +0.314  Vola/Jahr 0.631  Sharpe +0.497  t +0.95  t(HAC,10) +0.92  AK1 -0.015
+      stationaerer Bootstrap (Block 20, 10.000): Ertrag/Jahr 90-% [-0.224, +0.897]  Sharpe 90-% [-0.38, +1.32]  Sharpe 95-% [-0.55, +1.47]  Anteil Mittel <= 0: 0.182
+vor=True  yubit ohne Rebate Pruefzeitraum Tage  571  Ertrag/Jahr -0.125  Vola/Jahr 0.493  Sharpe -0.254  t -0.32  t(HAC,10) -0.33  AK1 +0.004
+      stationaerer Bootstrap (Block 20, 10.000): Ertrag/Jahr 90-% [-0.701, +0.466]  Sharpe 90-% [-1.53, +0.90]  Sharpe 95-% [-1.76, +1.12]  Anteil Mittel <= 0: 0.643
+vor=True  5bp   mit Rebate  Entwicklung   Tage 1325  Ertrag/Jahr +0.505  Vola/Jahr 0.629  Sharpe +0.803  t +1.53  t(HAC,10) +1.50  AK1 -0.020
+vor=True  5bp   mit Rebate  Pruefzeitraum Tage  571  Ertrag/Jahr +0.078  Vola/Jahr 0.491  Sharpe +0.159  t +0.20  t(HAC,10) +0.21  AK1 -0.000
+vor=True  5bp   ohne Rebate Entwicklung   Tage 1325  Ertrag/Jahr +0.225  Vola/Jahr 0.632  Sharpe +0.356  t +0.68  t(HAC,10) +0.66  AK1 -0.014
+vor=True  5bp   ohne Rebate Pruefzeitraum Tage  571  Ertrag/Jahr -0.212  Vola/Jahr 0.493  Sharpe -0.430  t -0.54  t(HAC,10) -0.56  AK1 +0.005
+vor=False yubit mit Rebate  Entwicklung   Tage 1325  Ertrag/Jahr +0.594  Vola/Jahr 0.628  Sharpe +0.946  t +1.80  t(HAC,10) +1.78  AK1 -0.022
+vor=False yubit mit Rebate  Pruefzeitraum Tage  571  Ertrag/Jahr +0.165  Vola/Jahr 0.490  Sharpe +0.337  t +0.42  t(HAC,10) +0.45  AK1 -0.001
+vor=False yubit ohne Rebate Entwicklung   Tage 1325  Ertrag/Jahr +0.314  Vola/Jahr 0.631  Sharpe +0.497  t +0.95  t(HAC,10) +0.92  AK1 -0.015
+vor=False yubit ohne Rebate Pruefzeitraum Tage  571  Ertrag/Jahr -0.125  Vola/Jahr 0.493  Sharpe -0.254  t -0.32  t(HAC,10) -0.33  AK1 +0.004
+vor=False 5bp   mit Rebate  Entwicklung   Tage 1325  Ertrag/Jahr +0.505  Vola/Jahr 0.629  Sharpe +0.803  t +1.53  t(HAC,10) +1.50  AK1 -0.020
+vor=False 5bp   mit Rebate  Pruefzeitraum Tage  571  Ertrag/Jahr +0.078  Vola/Jahr 0.491  Sharpe +0.159  t +0.20  t(HAC,10) +0.21  AK1 -0.000
+vor=False 5bp   ohne Rebate Entwicklung   Tage 1325  Ertrag/Jahr +0.225  Vola/Jahr 0.632  Sharpe +0.356  t +0.68  t(HAC,10) +0.66  AK1 -0.014
+vor=False 5bp   ohne Rebate Pruefzeitraum Tage  571  Ertrag/Jahr -0.212  Vola/Jahr 0.493  Sharpe -0.430  t -0.54  t(HAC,10) -0.56  AK1 +0.005
+
+Unterschied Entwicklung minus Pruefzeitraum (Yubit, mit Rebate): t = 0.84
+Hebel 3 skaliert Ertrag und Band linear: Pruefzeitraum 90-%-Band Ertrag/Jahr bei Hebel 3 = [-1.15, +2.19]
+Jahre, die ein wahrer Sharpe von 0.337 fuer t = 1,645 (einseitig 5 %) braucht: 23.8
+
+=== C. Zufallstest des Projekts (zeitlich verschobenes Signal)
+gespeichert reports/kandidat.json zufall_pruefung: {"perzentil": 80.5, "echt": 0.1222004717697307, "median": -0.29678355509664095, "p90": 0.36036458904434604, "max": 1.1663391376415875}
+nachgerechnet wie scripts/kandidat_pruefen.py:60-67 (5 bp, ohne Vorlauf, seed 11, 200): {"pruef_perzentil": 80.5, "pruef_echt": 0.1222, "pruef_median": -0.296784, "pruef_p90": 0.360365, "pruef_max": 1.166339, "entw_perzentil": 100.0, "entw_echt": 1.833789, "entw_median": -1.005084, "entw_p90": 0.162796, "entw_max": 1.568783}
+   Abweichung gegen gespeichert: Perzentil +0.00, echt +6.94e-17, Median -1.11e-16
+Yubit-Kosten, mit Vorlauf, seed 11, 200 (wie Pruefer): {"pruef_perzentil": 80.5, "pruef_echt": 0.2585, "pruef_median": -0.1588, "pruef_p90": 0.4905, "pruef_max": 1.3079, "entw_perzentil": 100.0, "entw_echt": 2.1564, "entw_median": -0.6822, "entw_p90": 0.4859, "entw_max": 1.8814}
+Yubit-Kosten, mit Vorlauf, anderer seed, 600 Verschiebungen um ganze Stunden: {"pruef_perzentil": 79.1667, "pruef_echt": 0.2585, "pruef_median": -0.2325, "pruef_p90": 0.5217, "pruef_max": 1.3518, "entw_perzentil": 99.8333, "entw_echt": 2.1564, "entw_median": -0.8202, "entw_p90": 0.6446, "entw_max": 2.371}
+
+=== D. Zusaetzliche Evidenz ausserhalb der Auswahl: Vorperiode 02/2020-08/2021, Gruppe A, Yubit-Kosten mit Rebate
+erste Kerze je Coin: {'BTC': '2020-01-01', 'ETH': '2020-01-01', 'SOL': '2020-09-14', 'XRP': '2020-01-06', 'DOT': '2020-08-22', 'DOGE': '2020-07-10', 'ADA': '2020-01-31', 'LINK': '2020-01-17', 'AVAX': '2020-09-23', 'LTC': '2020-01-09'}
+Vorperiode mit Rebate    Tage 561  Ertrag/Jahr +1.361  Sharpe +1.363  t +1.69  t(HAC,10) +1.60
+Vorperiode ohne Rebate   Tage 561  Ertrag/Jahr +1.115  Sharpe +1.114  t +1.38  t(HAC,10) +1.30
+Vorperiode + Pruefzeitraum (nicht zur Auswahl benutzt)  Tage 1132  Ertrag/Jahr +0.758  Sharpe +0.966  t +1.70  t(HAC,10) +1.63  Bootstrap 90-% Sharpe [+0.04, +1.80]  Anteil Mittel <= 0: 0.0428
+Vorperiode + Entwicklung + Pruefzeitraum                Tage 2457  Ertrag/Jahr +0.669  Sharpe +0.950  t +2.47  t(HAC,10) +2.38  Bootstrap 90-% Sharpe [+0.31, +1.55]  Anteil Mittel <= 0: 0.0076
+Entwicklung + Pruefzeitraum                             Tage 1896  Ertrag/Jahr +0.465  Sharpe +0.788  t +1.80  t(HAC,10) +1.80  Bootstrap 90-% Sharpe [+0.08, +1.44]  Anteil Mittel <= 0: 0.0338
+letzte 365 Tage (bis 2026-10-23): Ertrag/Jahr +0.051  Sharpe +0.115  t +0.11
+letzte 730 Tage (bis 2026-10-23): Ertrag/Jahr +0.698  Sharpe +1.130  t +1.60
+Kalenderjahre (Summe Tagesergebnis, Hebel 1, Yubit mit Rebate): {2021: 0.406, 2022: 0.323, 2023: 0.573, 2024: 0.818, 2025: 0.195, 2026: 0.1}
+
+fertig nach 230 s

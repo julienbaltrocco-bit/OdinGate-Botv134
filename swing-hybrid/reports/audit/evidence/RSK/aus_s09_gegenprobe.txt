@@ -1,0 +1,18 @@
+(a)/(b) Gegenprobe einzelner Starttage mit dem Rechenkern (R.markt ab Starttag, 365 Tage, Hebel 1; Konto bei Hebel 3 = 1 + 3 x Ergebnis)
+  Start 2021-02-13: [unter 50 %: 131 Tage / 2699 Stunden; unter 25 %: 82 Tage / 1616 Stunden; unter 0 %: 41 Tage / 832 Stunden]
+  Start 2021-02-13: tiefstes Ergebnis Hebel 1 laut Rechenkern -0.5279, laut Start-Tag-Simulation -0.5279 (Abweichung 0.0e+00); Konto bei Hebel 3: tiefster Stand -58%, unter 50 % ab 2021-02-23 09:00 (Tag 10), unter 25 % ab 2021-02-25 10:45 (Tag 12), unter 0 % ab 2021-03-07 09:10 (Tag 22); Stand am Ende des Fensters (364 Tage) 353%
+  Start 2024-08-06: [unter 50 %: 78 Tage / 1603 Stunden; unter 25 %: 50 Tage / 1081 Stunden; unter 0 %: 38 Tage / 879 Stunden]
+  Start 2024-08-06: tiefstes Ergebnis Hebel 1 laut Rechenkern -0.5014, laut Start-Tag-Simulation -0.5014 (Abweichung 1.1e-16); Konto bei Hebel 3: tiefster Stand -50%, unter 50 % ab 2024-08-08 22:50 (Tag 2), unter 25 % ab 2024-09-16 01:45 (Tag 41), unter 0 % ab 2024-10-04 12:55 (Tag 59); Stand am Ende des Fensters (364 Tage) 427%
+  Start 2025-07-23: [unter 50 %: 279 Tage / 6226 Stunden; unter 25 %: 177 Tage / 4034 Stunden; unter 0 %: 94 Tage / 1794 Stunden]
+  Start 2025-07-23: tiefstes Ergebnis Hebel 1 laut Rechenkern -0.4397, laut Start-Tag-Simulation -0.4397 (Abweichung 5.6e-17); Konto bei Hebel 3: tiefster Stand -32%, unter 50 % ab 2025-08-08 17:30 (Tag 16), unter 25 % ab 2025-09-09 02:45 (Tag 48), unter 0 % ab 2025-10-01 23:45 (Tag 70); Stand am Ende des Fensters (364 Tage) 15%
+  Start 2022-01-01: [unter 50 %: 0 Tage / 0 Stunden; unter 25 %: 0 Tage / 0 Stunden; unter 0 %: 0 Tage / 0 Stunden]
+  Start 2022-01-01: tiefstes Ergebnis Hebel 1 laut Rechenkern -0.1066, laut Start-Tag-Simulation -0.1066 (Abweichung 1.4e-17); Konto bei Hebel 3: tiefster Stand 68%, unter 50 % ab nie, unter 25 % ab nie, unter 0 % ab nie; Stand am Ende des Fensters (364 Tage) 196%
+  Start 2023-06-01: [unter 50 %: 0 Tage / 0 Stunden; unter 25 %: 0 Tage / 0 Stunden; unter 0 %: 0 Tage / 0 Stunden]
+  Start 2023-06-01: tiefstes Ergebnis Hebel 1 laut Rechenkern -0.0889, laut Start-Tag-Simulation -0.0889 (Abweichung 0.0e+00); Konto bei Hebel 3: tiefster Stand 73%, unter 50 % ab nie, unter 25 % ab nie, unter 0 % ab nie; Stand am Ende des Fensters (364 Tage) 305%
+  Start 2026-02-26: [unter 50 %: 218 Tage / 5157 Stunden; unter 25 %: 163 Tage / 3824 Stunden; unter 0 %: 115 Tage / 2396 Stunden]
+  Start 2026-02-26: tiefstes Ergebnis Hebel 1 laut Rechenkern -0.4958 (weniger als 365 Tage Daten); Konto bei Hebel 3: tiefster Stand -49%, unter 50 % ab 2026-03-18 18:05 (Tag 20), unter 25 % ab 2026-04-12 14:35 (Tag 45), unter 0 % ab 2026-05-07 14:30 (Tag 70); Stand am Ende des Fensters (239 Tage) -0%
+
+(c) Tage mit großem Verlust bei Hebel 3 (Tagesschluss zu Tagesschluss, in Punkten des Startkapitals)
+  Vorperiode    (561 Tage): Verlust ab 10 %: 74 Tage (48/Jahr), ab 20 %: 31 (20.2/Jahr), ab 33 %: 10 (6.5/Jahr), ab 50 %: 4; Gewinn ab 20 %: 44; Streuung 15.7% je Tag
+  Entwicklung   (1325 Tage): Verlust ab 10 %: 116 Tage (32/Jahr), ab 20 %: 29 (8.0/Jahr), ab 33 %: 4 (1.1/Jahr), ab 50 %: 1; Gewinn ab 20 %: 47; Streuung 9.9% je Tag
+  Pruefzeitraum (571 Tage): Verlust ab 10 %: 42 Tage (27/Jahr), ab 20 %: 4 (2.6/Jahr), ab 33 %: 1 (0.6/Jahr), ab 50 %: 0; Gewinn ab 20 %: 11; Streuung 7.7% je Tag

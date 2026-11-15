@@ -1,0 +1,6 @@
+Fenster        Tage  vor_Geb(G)  Gebuehr(F)  Funding  netto_ohne_Rebate  Rebate(R)  netto_mit(N)  N/Jahr  ohne_Rebate/Jahr  Rebate-Anteil an N
+Entwicklung    1325     2.3360      1.1977  -0.2316             1.1383     1.0180        2.1564  0.5940            0.3136       0.47
+Pruefung        571     0.3386      0.5343  -0.0348            -0.1956     0.4541        0.2585  0.1652           -0.1251       1.76
+Gesamt         1896     2.6746      1.7319  -0.2665             0.9427     1.4722        2.4149  0.4649            0.1815       0.61
+Identitaeten G - F = netto_ohne_Rebate und netto_ohne_Rebate + R = N: erfuellt. Achtung: G (runner "brutto") ENTHAELT das Funding; im Bot ist "brutto" OHNE Funding.
+Umsatz je Tag (x Kapital): 1.1418 | Gebuehrensatz effektiv mit Rebate: 0.00012000000000000003

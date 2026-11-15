@@ -1,0 +1,109 @@
+
+=== Vorperiode (2020-02-01 00:00:00 bis 2021-08-14 23:55:00) ===
+  (Korrelationen der Vorperiode erst ab 2020-10-08, vorher handeln nicht alle zehn Coins)
+  Coins, Stundenrenditen: mittlere paarweise Korrelation 0.57 (kleinste 0.28, größte 0.82); erster Faktor erklärt 63% der Streuung; effektive Zahl unabhängiger Wetten: 1.63 (Formel n/(1+(n-1)rho)), 2.43 (Eigenwerte), 1.73 (Streuungsverhältnis)
+  Coins, Tagesrenditen: mittlere paarweise Korrelation 0.48 (kleinste 0.10, größte 0.79); erster Faktor erklärt 56% der Streuung; effektive Zahl unabhängiger Wetten: 1.87 (Formel n/(1+(n-1)rho)), 2.95 (Eigenwerte), 2.19 (Streuungsverhältnis)
+  Korrelationsmatrix der Tagesrenditen:
+       BTC   ETH   SOL   XRP   DOT  DOGE   ADA  LINK  AVAX   LTC
+BTC   1.00  0.73  0.35  0.45  0.62  0.27  0.53  0.64  0.47  0.76
+ETH   0.73  1.00  0.50  0.49  0.70  0.21  0.63  0.79  0.53  0.79
+SOL   0.35  0.50  1.00  0.37  0.41  0.10  0.38  0.47  0.46  0.41
+XRP   0.45  0.49  0.37  1.00  0.41  0.13  0.44  0.53  0.42  0.57
+DOT   0.62  0.70  0.41  0.41  1.00  0.18  0.60  0.66  0.56  0.66
+DOGE  0.27  0.21  0.10  0.13  0.18  1.00  0.19  0.23  0.16  0.25
+ADA   0.53  0.63  0.38  0.44  0.60  0.19  1.00  0.64  0.64  0.59
+LINK  0.64  0.79  0.47  0.53  0.66  0.23  0.64  1.00  0.54  0.76
+AVAX  0.47  0.53  0.46  0.42  0.56  0.16  0.64  0.54  1.00  0.49
+LTC   0.76  0.79  0.41  0.57  0.66  0.25  0.59  0.76  0.49  1.00
+  Tagesergebnisse der zehn Positionen (Kandidat): mittlere paarweise Korrelation 0.20 (kleinste -0.14, größte 0.60); effektive Zahl unabhängiger Wetten: 3.55 (Formel), 6.17 (Eigenwerte), 4.00 (Streuungsverhältnis)
+  Korrelationsmatrix der Tagesergebnisse je Position:
+       BTC   ETH   SOL   XRP   DOT  DOGE   ADA  LINK  AVAX   LTC
+BTC   1.00  0.33  0.00  0.31  0.22  0.01  0.13  0.33  0.05  0.60
+ETH   0.33  1.00  0.05  0.26  0.44  0.06  0.27  0.42  0.23  0.52
+SOL   0.00  0.05  1.00  0.02  0.13 -0.04  0.07 -0.02  0.16  0.02
+XRP   0.31  0.26  0.02  1.00  0.14 -0.14  0.20  0.39  0.13  0.42
+DOT   0.22  0.44  0.13  0.14  1.00  0.13  0.33  0.35  0.37  0.29
+DOGE  0.01  0.06 -0.04 -0.14  0.13  1.00  0.05  0.03  0.08  0.09
+ADA   0.13  0.27  0.07  0.20  0.33  0.05  1.00  0.21  0.41  0.18
+LINK  0.33  0.42 -0.02  0.39  0.35  0.03  0.21  1.00  0.23  0.48
+AVAX  0.05  0.23  0.16  0.13  0.37  0.08  0.41  0.23  1.00  0.13
+LTC   0.60  0.52  0.02  0.42  0.29  0.09  0.18  0.48  0.13  1.00
+  Richtungen (7464 Stunden): alle zehn gleich in 36.2% (alle Long 24.5%, alle Short 11.7%), mindestens neun gleich 52.3%, mindestens acht gleich 63.5%, genau 5 zu 5 6.3%; mittlerer Betrag der Netto-Richtung 0.65 (1 = alle gleich); längste Phase mit allen zehn gleich 245 Stunden (10 Tage)
+    Verteilung Anzahl Long-Positionen: 0: 11.7%, 1: 4.3%, 2: 3.9%, 3: 6.8%, 4: 4.6%, 5: 6.3%, 6: 9.9%, 7: 9.0%, 8: 7.2%, 9: 11.8%, 10: 24.5%
+  Beta des Tagesergebnisses (Hebel 1) zum gleichgewichteten Korb: unbedingt +0.36 (Korrelation +0.34); zu BTC +0.30 (Korrelation +0.20)
+    Tage mit mindestens 9 von 10 Long: 112 Tage, Beta zum Korb +1.46 (Korrelation +0.89), Streuung des Tagesergebnisses 8.55%
+    Tage mit mindestens 9 von 10 Short: 50 Tage, Beta zum Korb -0.69 (Korrelation -0.98), Streuung des Tagesergebnisses 5.40%
+    gemischte Tage: 149 Tage, Beta zum Korb +0.30 (Korrelation +0.39), Streuung des Tagesergebnisses 5.12%
+    Anteil der Streuung des Tagesergebnisses, den die reine Richtungswette (Netto-Richtung am Tagesbeginn x Korbrendite) erklärt: 58% (Korrelation 0.76, Steigung 1.13)
+
+=== Entwicklung (2021-08-15 00:00:00 bis 2025-03-31 23:55:00) ===
+  Coins, Stundenrenditen: mittlere paarweise Korrelation 0.68 (kleinste 0.57, größte 0.85); erster Faktor erklärt 72% der Streuung; effektive Zahl unabhängiger Wetten: 1.40 (Formel n/(1+(n-1)rho)), 1.92 (Eigenwerte), 1.41 (Streuungsverhältnis)
+  Coins, Tagesrenditen: mittlere paarweise Korrelation 0.65 (kleinste 0.53, größte 0.84); erster Faktor erklärt 69% der Streuung; effektive Zahl unabhängiger Wetten: 1.46 (Formel n/(1+(n-1)rho)), 2.07 (Eigenwerte), 1.47 (Streuungsverhältnis)
+  Korrelationsmatrix der Tagesrenditen:
+       BTC   ETH   SOL   XRP   DOT  DOGE   ADA  LINK  AVAX   LTC
+BTC   1.00  0.84  0.67  0.58  0.70  0.70  0.68  0.68  0.65  0.67
+ETH   0.84  1.00  0.68  0.60  0.75  0.68  0.69  0.73  0.66  0.71
+SOL   0.67  0.68  1.00  0.53  0.65  0.56  0.63  0.61  0.66  0.57
+XRP   0.58  0.60  0.53  1.00  0.61  0.53  0.69  0.60  0.53  0.60
+DOT   0.70  0.75  0.65  0.61  1.00  0.64  0.73  0.76  0.68  0.70
+DOGE  0.70  0.68  0.56  0.53  0.64  1.00  0.63  0.59  0.57  0.60
+ADA   0.68  0.69  0.63  0.69  0.73  0.63  1.00  0.69  0.64  0.63
+LINK  0.68  0.73  0.61  0.60  0.76  0.59  0.69  1.00  0.65  0.67
+AVAX  0.65  0.66  0.66  0.53  0.68  0.57  0.64  0.65  1.00  0.58
+LTC   0.67  0.71  0.57  0.60  0.70  0.60  0.63  0.67  0.58  1.00
+  Tagesergebnisse der zehn Positionen (Kandidat): mittlere paarweise Korrelation 0.33 (kleinste 0.14, größte 0.63); effektive Zahl unabhängiger Wetten: 2.52 (Formel), 4.81 (Eigenwerte), 2.61 (Streuungsverhältnis)
+  Korrelationsmatrix der Tagesergebnisse je Position:
+       BTC   ETH   SOL   XRP   DOT  DOGE   ADA  LINK  AVAX   LTC
+BTC   1.00  0.63  0.33  0.26  0.40  0.39  0.31  0.36  0.25  0.38
+ETH   0.63  1.00  0.34  0.26  0.46  0.27  0.34  0.42  0.28  0.46
+SOL   0.33  0.34  1.00  0.15  0.30  0.14  0.23  0.27  0.36  0.20
+XRP   0.26  0.26  0.15  1.00  0.37  0.14  0.47  0.37  0.20  0.41
+DOT   0.40  0.46  0.30  0.37  1.00  0.28  0.52  0.46  0.34  0.47
+DOGE  0.39  0.27  0.14  0.14  0.28  1.00  0.32  0.20  0.17  0.25
+ADA   0.31  0.34  0.23  0.47  0.52  0.32  1.00  0.39  0.34  0.40
+LINK  0.36  0.42  0.27  0.37  0.46  0.20  0.39  1.00  0.29  0.44
+AVAX  0.25  0.28  0.36  0.20  0.34  0.17  0.34  0.29  1.00  0.24
+LTC   0.38  0.46  0.20  0.41  0.47  0.25  0.40  0.44  0.24  1.00
+  Richtungen (31800 Stunden): alle zehn gleich in 39.0% (alle Long 18.1%, alle Short 20.9%), mindestens neun gleich 59.2%, mindestens acht gleich 73.7%, genau 5 zu 5 4.5%; mittlerer Betrag der Netto-Richtung 0.70 (1 = alle gleich); längste Phase mit allen zehn gleich 555 Stunden (23 Tage)
+    Verteilung Anzahl Long-Positionen: 0: 20.9%, 1: 11.0%, 2: 8.3%, 3: 6.2%, 4: 5.5%, 5: 4.5%, 6: 5.2%, 7: 4.9%, 8: 6.2%, 9: 9.2%, 10: 18.1%
+  Beta des Tagesergebnisses (Hebel 1) zum gleichgewichteten Korb: unbedingt +0.04 (Korrelation +0.04); zu BTC -0.04 (Korrelation -0.04)
+    Tage mit mindestens 9 von 10 Long: 353 Tage, Beta zum Korb +1.20 (Korrelation +0.93), Streuung des Tagesergebnisses 4.69%
+    Tage mit mindestens 9 von 10 Short: 417 Tage, Beta zum Korb -0.70 (Korrelation -0.95), Streuung des Tagesergebnisses 3.04%
+    gemischte Tage: 554 Tage, Beta zum Korb +0.00 (Korrelation +0.00), Streuung des Tagesergebnisses 2.19%
+    Anteil der Streuung des Tagesergebnisses, den die reine Richtungswette (Netto-Richtung am Tagesbeginn x Korbrendite) erklärt: 76% (Korrelation 0.87, Steigung 0.95)
+
+=== Pruefzeitraum (2025-04-01 00:00:00 bis 2026-10-23 23:55:00) ===
+  Coins, Stundenrenditen: mittlere paarweise Korrelation 0.77 (kleinste 0.67, größte 0.84); erster Faktor erklärt 79% der Streuung; effektive Zahl unabhängiger Wetten: 1.26 (Formel n/(1+(n-1)rho)), 1.57 (Eigenwerte), 1.25 (Streuungsverhältnis)
+  Coins, Tagesrenditen: mittlere paarweise Korrelation 0.79 (kleinste 0.65, größte 0.87); erster Faktor erklärt 81% der Streuung; effektive Zahl unabhängiger Wetten: 1.24 (Formel n/(1+(n-1)rho)), 1.52 (Eigenwerte), 1.24 (Streuungsverhältnis)
+  Korrelationsmatrix der Tagesrenditen:
+       BTC   ETH   SOL   XRP   DOT  DOGE   ADA  LINK  AVAX   LTC
+BTC   1.00  0.85  0.83  0.83  0.65  0.76  0.80  0.79  0.72  0.71
+ETH   0.85  1.00  0.86  0.79  0.71  0.83  0.83  0.86  0.77  0.72
+SOL   0.83  0.86  1.00  0.80  0.73  0.82  0.83  0.85  0.78  0.75
+XRP   0.83  0.79  0.80  1.00  0.70  0.81  0.84  0.80  0.73  0.72
+DOT   0.65  0.71  0.73  0.70  1.00  0.78  0.81  0.77  0.77  0.75
+DOGE  0.76  0.83  0.82  0.81  0.78  1.00  0.87  0.83  0.78  0.77
+ADA   0.80  0.83  0.83  0.84  0.81  0.87  1.00  0.85  0.81  0.78
+LINK  0.79  0.86  0.85  0.80  0.77  0.83  0.85  1.00  0.80  0.77
+AVAX  0.72  0.77  0.78  0.73  0.77  0.78  0.81  0.80  1.00  0.72
+LTC   0.71  0.72  0.75  0.72  0.75  0.77  0.78  0.77  0.72  1.00
+  Tagesergebnisse der zehn Positionen (Kandidat): mittlere paarweise Korrelation 0.46 (kleinste 0.27, größte 0.63); effektive Zahl unabhängiger Wetten: 1.95 (Formel), 3.37 (Eigenwerte), 1.94 (Streuungsverhältnis)
+  Korrelationsmatrix der Tagesergebnisse je Position:
+       BTC   ETH   SOL   XRP   DOT  DOGE   ADA  LINK  AVAX   LTC
+BTC   1.00  0.57  0.54  0.51  0.27  0.46  0.36  0.43  0.30  0.45
+ETH   0.57  1.00  0.60  0.40  0.31  0.52  0.45  0.60  0.33  0.37
+SOL   0.54  0.60  1.00  0.46  0.37  0.56  0.53  0.61  0.44  0.41
+XRP   0.51  0.40  0.46  1.00  0.42  0.61  0.56  0.50  0.38  0.42
+DOT   0.27  0.31  0.37  0.42  1.00  0.53  0.45  0.37  0.40  0.40
+DOGE  0.46  0.52  0.56  0.61  0.53  1.00  0.63  0.55  0.48  0.46
+ADA   0.36  0.45  0.53  0.56  0.45  0.63  1.00  0.60  0.51  0.33
+LINK  0.43  0.60  0.61  0.50  0.37  0.55  0.60  1.00  0.47  0.35
+AVAX  0.30  0.33  0.44  0.38  0.40  0.48  0.51  0.47  1.00  0.31
+LTC   0.45  0.37  0.41  0.42  0.40  0.46  0.33  0.35  0.31  1.00
+  Richtungen (13704 Stunden): alle zehn gleich in 48.0% (alle Long 21.4%, alle Short 26.5%), mindestens neun gleich 62.7%, mindestens acht gleich 76.6%, genau 5 zu 5 4.2%; mittlerer Betrag der Netto-Richtung 0.74 (1 = alle gleich); längste Phase mit allen zehn gleich 604 Stunden (25 Tage)
+    Verteilung Anzahl Long-Positionen: 0: 26.5%, 1: 8.1%, 2: 8.3%, 3: 5.4%, 4: 6.1%, 5: 4.2%, 6: 3.4%, 7: 4.3%, 8: 5.6%, 9: 6.7%, 10: 21.4%
+  Beta des Tagesergebnisses (Hebel 1) zum gleichgewichteten Korb: unbedingt -0.06 (Korrelation -0.07); zu BTC -0.18 (Korrelation -0.15)
+    Tage mit mindestens 9 von 10 Long: 156 Tage, Beta zum Korb +0.77 (Korrelation +0.81), Streuung des Tagesergebnisses 3.15%
+    Tage mit mindestens 9 von 10 Short: 201 Tage, Beta zum Korb -0.69 (Korrelation -0.88), Streuung des Tagesergebnisses 2.80%
+    gemischte Tage: 213 Tage, Beta zum Korb +0.07 (Korrelation +0.12), Streuung des Tagesergebnisses 1.75%
+    Anteil der Streuung des Tagesergebnisses, den die reine Richtungswette (Netto-Richtung am Tagesbeginn x Korbrendite) erklärt: 67% (Korrelation 0.82, Steigung 0.78)

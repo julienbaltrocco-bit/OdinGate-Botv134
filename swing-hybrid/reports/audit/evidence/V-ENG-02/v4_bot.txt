@@ -1,0 +1,19 @@
+Konfiguration aus config_lauf.json: {'modus': 'papier', 'kapital_usd': 5000, 'hebel': 3.0, 'tagesverlust_limit': 1.0, 'max_order_usd': 2000}
+
+Szenario 1: 10 Coins short, je 1.500 USD; Anstieg je Tag +12 % (Referenzkurs von vor 14 Tagen bleibt darueber)
+  Start 00:05, alle short bei 100              netto ohne Rebate       -13 USD | Kontostand    +4997 USD | Orders 10 | Short-Positionen 10, Long 0 | Positionswert 15000 | margin_pct 100.0 | einbruch_pct 0.051 | gesperrt_tag ''
+  Tag 1, Kurs 112.0 (+12.0 %)                  netto ohne Rebate     -1813 USD | Kontostand    +3197 USD | Orders 0 | Short-Positionen 10, Long 0 | Positionswert 16800 | margin_pct 112.0 | einbruch_pct 36.051 | gesperrt_tag ''
+  Tag 2, Kurs 125.44 (+25.4 %)                 netto ohne Rebate     -3829 USD | Kontostand    +1181 USD | Orders 0 | Short-Positionen 10, Long 0 | Positionswert 18816 | margin_pct 125.4 | einbruch_pct 76.371 | gesperrt_tag ''
+  Tag 3, Kurs 140.49 (+40.5 %)                 netto ohne Rebate     -6086 USD | Kontostand    -1076 USD | Orders 0 | Short-Positionen 10, Long 0 | Positionswert 21074 | margin_pct 140.5 | einbruch_pct 121.521 | gesperrt_tag ''
+  Tag 4, Kurs 160 (+60 %)                      netto ohne Rebate     -9013 USD | Kontostand    -4003 USD | Orders 0 | Short-Positionen 10, Long 0 | Positionswert 24000 | margin_pct 160.0 | einbruch_pct 180.051 | gesperrt_tag ''
+
+Szenario 2: 10 Coins long ab 100, Anstieg auf 133,4 (+100 % vom Kapital), danach zurueck auf 100 (Signal bleibt Long)
+  Start, alle long bei 100                     netto ohne Rebate       -13 USD | Kontostand    +4997 USD | Orders 10 | Short-Positionen 0, Long 10 | Positionswert 15000 | margin_pct 100.0 | einbruch_pct 0.051 | gesperrt_tag ''
+  Tag 1, Kurs 133,4                            netto ohne Rebate     +4997 USD | Kontostand   +10007 USD | Orders 0 | Short-Positionen 0, Long 10 | Positionswert 20010 | margin_pct 133.4 | einbruch_pct 0.051 | gesperrt_tag ''
+  Tag 2, Kurs 116,7                            netto ohne Rebate     +2492 USD | Kontostand    +7502 USD | Orders 0 | Short-Positionen 0, Long 10 | Positionswert 17505 | margin_pct 116.7 | einbruch_pct 25.031 | gesperrt_tag ''
+  Tag 3, Kurs 100                              netto ohne Rebate       -13 USD | Kontostand    +4997 USD | Orders 0 | Short-Positionen 0, Long 10 | Positionswert 15000 | margin_pct 100.0 | einbruch_pct 50.063 | gesperrt_tag ''
+  Rueckgang vom Hoechststand: 5010 USD = 100.2 % des Startkapitals; einbruch_pct im Dashboard: 50.063 %
+
+Szenario 3: wann greift tagesverlust_limit = 1.0?
+  selber Tag, +33 %                            netto ohne Rebate     -4963 USD | Kontostand      +47 USD | Orders 0 | Short-Positionen 10, Long 0 | Positionswert 19950 | margin_pct 133.0 | einbruch_pct 99.051 | gesperrt_tag ''
+  selber Tag, +34 %                            netto ohne Rebate     -5130 USD | Kontostand     -106 USD | Orders 10 | Short-Positionen 0, Long 0 | Positionswert 0 | margin_pct 0.0 | einbruch_pct 102.114 | gesperrt_tag '2027-01-15'

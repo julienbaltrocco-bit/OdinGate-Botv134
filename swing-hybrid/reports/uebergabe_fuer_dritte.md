@@ -3,6 +3,11 @@
 Stand: 15.11.2026. Zweck: Außenstehende (Menschen oder andere KI-Assistenten) sollen den Stand prüfen und daraus
 nächste Arbeitsschritte vorschlagen können. Alles hier ist Rückrechnung oder Papierhandel, kein echtes Geld.
 
+> **Nachtrag 15.11.2026, unabhängiges Audit (Zwischenstand):** Mehrere Aussagen dieses Berichts sind zu stark
+> formuliert, vor allem „belegt“, „ungesehener Prüfzeitraum“ sowie die Kennzahlen ohne Hinweis auf Rebate und Hebel.
+> Die Rechnung selbst wurde bestätigt. Maßgeblich ist `swing-hybrid/reports/audit/zwischenbericht.md`, dort
+> Abschnitt 6 „Korrekturen an früheren Aussagen“. Der Text unten ist unverändert.
+
 ## 1. Ziel und Rahmen
 
 - Gesucht: eine regelbasierte Futures-Strategie für die Börse Yubit, die nach Gebühren profitabel ist und Umsatz

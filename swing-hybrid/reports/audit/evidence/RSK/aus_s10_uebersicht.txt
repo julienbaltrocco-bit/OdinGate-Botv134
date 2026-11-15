@@ -1,0 +1,115 @@
+TABELLE 1: Kandidat (14-Tage-Trend, Gruppe A), frischer Start am Fensterbeginn, feste Größe, kein Tageslimit, Yubit-Kosten mit Rebate
+Alle Verluste in Punkten des Startkapitals (ohne Zinseszins), außer 'Einbruch vom Höchststand'.
+| Zeitraum | Hebel | Ergebnis/Jahr | Sharpe | Einbruch vom Höchststand | größter Rückgang (Punkte) | schlechtester Tag | schlechteste Woche | schlechtester Monat | 1-%-Quantil Tag | 0,1-%-Quantil Tag | längste Zeit unter Höchststand | tiefster Kontostand |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Vorperiode 02/2020-08/2021 | 1 | +136,1 % | 1.36 | 32,3 % | 79,9 % | -21,0 % (2021-04-17) | -20,9 % | -32,4 % | -14,6 % | -21,0 % | 208 Tage | 93,7 % |
+| Vorperiode 02/2020-08/2021 | 3 | +408,3 % | 1.36 | 61,7 % | 239,7 % | -63,1 % (2021-04-17) | -62,8 % | -97,3 % | -43,8 % | -63,0 % | 208 Tage | 81,1 % |
+| Entwicklung 08/2021-03/2025 | 1 | +59,4 % | 0.95 | 25,8 % | 56,9 % | -29,7 % (2024-12-09) | -25,6 % | -27,1 % | -7,7 % | -13,1 % | 279 Tage | 96,2 % |
+| Entwicklung 08/2021-03/2025 | 3 | +178,1 % | 0.95 | 38,4 % | 170,7 % | -89,0 % (2024-12-09) | -76,9 % | -81,3 % | -23,0 % | -39,2 % | 279 Tage | 88,7 % |
+| Pruefzeitraum 04/2025-10/2026 | 1 | +16,7 % | 0.34 | 33,0 % | 54,3 % | -11,1 % (2025-07-23) | -10,6 % | -20,2 % | -6,5 % | -10,6 % | 240 Tage | 94,9 % |
+| Pruefzeitraum 04/2025-10/2026 | 3 | +50,1 % | 0.34 | 55,6 % | 162,8 % | -33,4 % (2025-07-23) | -31,8 % | -60,7 % | -19,4 % | -31,8 % | 240 Tage | 84,7 % |
+
+TABELLE 2: Start-Tag-Analyse. Anteil der Starttage (jeder Kalendertag 02/2020 bis 10/2026, frischer Start), nach denen das Konto im Horizont unter die Schwelle fällt
+| Hebel | Horizont | Starttage | Konto < 50 % | Konto < 25 % | Konto < 0 % | tiefster Stand (Median) | tiefster Stand (schlechtestes Zwanzigstel) |
+|---|---|---|---|---|---|---|---|
+| 0,2 | 30 Tage | 2428 | 0,0 % | 0,0 % | 0,0 % | 98 % | 96 % |
+| 0,2 | 90 Tage | 2368 | 0,0 % | 0,0 % | 0,0 % | 98 % | 93 % |
+| 0,2 | 180 Tage | 2278 | 0,0 % | 0,0 % | 0,0 % | 97 % | 92 % |
+| 0,2 | 365 Tage | 2093 | 0,0 % | 0,0 % | 0,0 % | 97 % | 92 % |
+| 1,0 | 30 Tage | 2428 | 0,1 % | 0,0 % | 0,0 % | 92 % | 78 % |
+| 1,0 | 90 Tage | 2368 | 0,2 % | 0,0 % | 0,0 % | 89 % | 66 % |
+| 1,0 | 180 Tage | 2278 | 0,2 % | 0,0 % | 0,0 % | 87 % | 61 % |
+| 1,0 | 365 Tage | 2093 | 0,2 % | 0,0 % | 0,0 % | 83 % | 61 % |
+| 3,0 | 30 Tage | 2428 | 15,0 % | 2,5 % | 0,6 % | 77 % | 34 % |
+| 3,0 | 90 Tage | 2368 | 33,6 % | 15,5 % | 5,4 % | 66 % | -2 % |
+| 3,0 | 180 Tage | 2278 | 42,6 % | 26,5 % | 11,4 % | 60 % | -16 % |
+| 3,0 | 365 Tage | 2093 | 50,7 % | 31,4 % | 12,9 % | 49 % | -17 % |
+| 5,0 | 30 Tage | 2428 | 40,4 % | 19,8 % | 7,5 % | 61 % | -10 % |
+| 5,0 | 90 Tage | 2368 | 57,1 % | 37,7 % | 25,4 % | 43 % | -69 % |
+| 5,0 | 180 Tage | 2278 | 62,6 % | 45,6 % | 36,6 % | 34 % | -94 % |
+| 5,0 | 365 Tage | 2093 | 69,9 % | 54,3 % | 42,8 % | 15 % | -95 % |
+
+Dasselbe für Hebel 3 getrennt nach Lage des Starttags:
+| Starttag in | Horizont | Starttage | Konto < 50 % | Konto < 25 % | Konto < 0 % |
+|---|---|---|---|---|---|
+| Vorperiode | 30 Tage | 561 | 23,4 % | 7,7 % | 2,7 % |
+| Vorperiode | 90 Tage | 561 | 38,3 % | 18,9 % | 7,7 % |
+| Vorperiode | 180 Tage | 561 | 54,5 % | 28,7 % | 9,3 % |
+| Vorperiode | 365 Tage | 561 | 60,2 % | 34,9 % | 11,8 % |
+| Entwicklung | 30 Tage | 1325 | 13,6 % | 1,4 % | 0,0 % |
+| Entwicklung | 90 Tage | 1325 | 28,6 % | 12,6 % | 4,5 % |
+| Entwicklung | 180 Tage | 1325 | 37,1 % | 24,3 % | 11,4 % |
+| Entwicklung | 365 Tage | 1325 | 48,3 % | 31,2 % | 14,2 % |
+| Pruefzeitraum | 30 Tage | 542 | 9,8 % | 0,0 % | 0,0 % |
+| Pruefzeitraum | 90 Tage | 482 | 41,9 % | 19,5 % | 5,2 % |
+| Pruefzeitraum | 180 Tage | 392 | 44,1 % | 30,9 % | 14,5 % |
+| Pruefzeitraum | 365 Tage | 207 | 40,1 % | 23,2 % | 7,7 % |
+
+TABELLE 3: ANNAHME gemeinsame Margin (Cross), Hebel 3: Anteil der Starttage mit Liquidation des ganzen Kontos (Kontostand <= MMR x Positionswert)
+| Horizont | Starttage | MMR 0,5 % | MMR 1 % | MMR 2,5 % |
+|---|---|---|---|---|
+| 30 Tage | 2428 | 0,7 % | 0,8 % | 1,0 % |
+| 90 Tage | 2368 | 6,2 % | 6,6 % | 8,0 % |
+| 180 Tage | 2278 | 12,2 % | 12,8 % | 14,9 % |
+| 365 Tage | 2093 | 14,4 % | 15,5 % | 18,6 % |
+
+TABELLE 4: ANNAHME isolierte Margin: Haltephasen des Kandidaten (13.571 in 6,7 Jahren), die liquidiert worden wären
+| Börsenhebel | MMR | Distanz | Trades (5-Minuten-Hochs/-Tiefs) | pro Jahr | nur Schlusskurse | Vorperiode / Entwicklung / Prüfzeitraum |
+|---|---|---|---|---|---|---|
+| 3x | 0,5 % | 32,8 % | 5 | 0.7 | 4 | 4 / 0 / 1 |
+| 3x | 2,5 % | 30,8 % | 7 | 1.0 | 4 | 5 / 1 / 1 |
+| 5x | 0,5 % | 19,5 % | 29 | 4.3 | 15 | 21 / 7 / 1 |
+| 5x | 2,5 % | 17,5 % | 47 | 7.0 | 29 | 28 / 18 / 1 |
+| 10x | 0,5 % | 9,5 % | 283 | 42.1 | 223 | 132 / 126 / 25 |
+| 10x | 2,5 % | 7,5 % | 470 | 69.9 | 380 | 197 / 220 / 53 |
+| 20x | 0,5 % | 4,5 % | 1178 | 175.2 | 999 | 413 / 578 / 187 |
+| 20x | 2,5 % | 2,5 % | 2639 | 392.5 | 2274 | 830 / 1356 / 453 |
+
+TABELLE 5: Korrelation und Konzentration
+| Zeitraum | mittlere Korrelation Coins (Tag) | effektive Wetten Coins | mittlere Korrelation Positions-Ergebnisse | effektive Wetten Positionen | alle zehn gleichgerichtet | mind. acht gleich | Beta zum Korb bei >= 9 Long | bei >= 9 Short | Anteil Streuung aus Richtungswette |
+|---|---|---|---|---|---|---|---|---|---|
+| Vorperiode | 0.48 | 1.87 | 0.20 | 3.55 | 36,2 % | 63,5 % | +1.46 | -0.69 | 58 % |
+| Entwicklung | 0.65 | 1.46 | 0.33 | 2.52 | 39,0 % | 73,7 % | +1.20 | -0.70 | 76 % |
+| Pruefzeitraum | 0.79 | 1.24 | 0.46 | 1.95 | 48,0 % | 76,6 % | +0.77 | -0.69 | 67 % |
+
+TABELLE 6: Gleichzeitige Verluste (durchlaufender Lauf, Hebel 1; Hebel 3 = dreifach)
+| Zeitraum | Fenster | alle zehn im Verlust | mind. acht im Verlust | Verlustanteil aus Fenstern mit mind. acht Verlierern | größter Verlust Hebel 1 | Hebel 3 | Beginn |
+|---|---|---|---|---|---|---|---|
+| Vorperiode | 1 Stunde (volle Stunden) | 3,5 % | 12,0 % | 52 % | -15,6 % | -46,8 % | 2021-01-15 15:00 |
+| Vorperiode | 24 Stunden (rollierend, Stundenschritt) | 3,3 % | 11,6 % | 48 % | -42,2 % | -126,5 % | 2021-01-29 04:00 |
+| Vorperiode | Kalendertag | 3,2 % | 11,8 % | 46 % | -20,4 % | -61,2 % | 2020-11-26 00:00 |
+| Entwicklung | 1 Stunde (volle Stunden) | 7,7 % | 24,8 % | 79 % | -27,7 % | -83,0 % | 2024-12-09 20:00 |
+| Entwicklung | 24 Stunden (rollierend, Stundenschritt) | 7,6 % | 26,2 % | 76 % | -40,5 % | -121,4 % | 2024-12-08 21:00 |
+| Entwicklung | Kalendertag | 7,3 % | 26,6 % | 76 % | -31,2 % | -93,5 % | 2024-12-09 00:00 |
+| Pruefzeitraum | 1 Stunde (volle Stunden) | 10,8 % | 27,4 % | 85 % | -8,1 % | -24,2 % | 2026-08-22 05:00 |
+| Pruefzeitraum | 24 Stunden (rollierend, Stundenschritt) | 12,2 % | 30,1 % | 82 % | -14,9 % | -44,8 % | 2025-07-23 07:00 |
+| Pruefzeitraum | Kalendertag | 11,8 % | 29,5 % | 82 % | -11,1 % | -33,3 % | 2025-07-23 00:00 |
+
+TABELLE 7: Test 2 (Bot-Logik mit Stop 5 % / Ziel 15 %), Hebel 3, je Prüfabstand
+| Zeitraum | Lauf | Ergebnis | Sharpe | Einbruch vom Höchststand | tiefster Stand | Stops | Verlust am Stop (Mittel) | schlechtester Stop | Stops schlechter als −10 % |
+|---|---|---|---|---|---|---|---|---|---|
+| Vorperiode | Kandidat ohne Stop (Test 1) | +627,5 % | 1.36 | 61,7 % | 81 % | – | – | – | – |
+| Vorperiode | Forschung sl5_tp15 (tpsl.py, Stundenschluss) | -121,4 % | -0.86 | 176,5 % | -106 % | – | – | – | – |
+| Vorperiode | Bot-Logik Test 2, Prüfabstand 5 Minuten (Betrieb) | -83,8 % | -0.67 | 137,0 % | -53 % | 264 | -5,64 % | -12,1 % | 2 |
+| Vorperiode | Bot-Logik Test 2, Prüfabstand 60 Minuten (Forschung/README) | -107,8 % | -0.76 | 164,6 % | -95 % | 143 | -6,11 % | -11,5 % | 4 |
+| Vorperiode | Bot-Logik Test 2, Prüfabstand 6 Stunden (Ausfall) | -96,9 % | -0.74 | 151,1 % | -54 % | 140 | -6,71 % | -14,9 % | 10 |
+| Vorperiode | Bot-Logik Test 2, Prüfabstand 24 Stunden (Ausfall) | -76,0 % | -0.36 | 218,8 % | -145 % | 100 | -8,00 % | -29,9 % | 18 |
+| Entwicklung | Kandidat ohne Stop (Test 1) | +646,9 % | 0.95 | 38,4 % | 89 % | – | – | – | – |
+| Entwicklung | Forschung sl5_tp15 (tpsl.py, Stundenschluss) | +362,3 % | 1.13 | 37,2 % | 82 % | – | – | – | – |
+| Entwicklung | Bot-Logik Test 2, Prüfabstand 5 Minuten (Betrieb) | +324,5 % | 1.04 | 27,3 % | 86 % | 373 | -5,54 % | -16,9 % | 4 |
+| Entwicklung | Bot-Logik Test 2, Prüfabstand 60 Minuten (Forschung/README) | +371,4 % | 1.16 | 35,0 % | 88 % | 236 | -5,69 % | -8,9 % | 0 |
+| Entwicklung | Bot-Logik Test 2, Prüfabstand 6 Stunden (Ausfall) | +446,6 % | 1.36 | 25,5 % | 90 % | 234 | -6,34 % | -18,3 % | 5 |
+| Entwicklung | Bot-Logik Test 2, Prüfabstand 24 Stunden (Ausfall) | +352,3 % | 0.96 | 26,8 % | 93 % | 175 | -6,96 % | -24,4 % | 10 |
+| Pruefzeitraum | Kandidat ohne Stop (Test 1) | +77,5 % | 0.34 | 55,8 % | 84 % | – | – | – | – |
+| Pruefzeitraum | Forschung sl5_tp15 (tpsl.py, Stundenschluss) | +65,3 % | 0.44 | 53,1 % | 85 % | – | – | – | – |
+| Pruefzeitraum | Bot-Logik Test 2, Prüfabstand 5 Minuten (Betrieb) | +129,7 % | 0.77 | 44,4 % | 86 % | 117 | -5,30 % | -11,4 % | 1 |
+| Pruefzeitraum | Bot-Logik Test 2, Prüfabstand 60 Minuten (Forschung/README) | +66,0 % | 0.44 | 53,0 % | 85 % | 71 | -5,53 % | -8,8 % | 0 |
+| Pruefzeitraum | Bot-Logik Test 2, Prüfabstand 6 Stunden (Ausfall) | +19,1 % | 0.13 | 61,5 % | 82 % | 77 | -6,28 % | -10,3 % | 1 |
+| Pruefzeitraum | Bot-Logik Test 2, Prüfabstand 24 Stunden (Ausfall) | -89,1 % | -0.55 | 100,3 % | -0 % | 76 | -6,86 % | -12,6 % | 5 |
+
+TABELLE 8: Funding (Binance-Sätze), Hebel 1; Hebel 3 = dreifach
+| Zeitraum | Funding pro Jahr | schlechteste 30 Tage | schlechteste 90 Tage | Position zahlt (Anteil der Abrechnungen) | zahlt mind. 0,03 % | mittlerer Satz wenn Long | wenn Short |
+|---|---|---|---|---|---|---|---|
+| Vorperiode | -29,55 % | -14,95 % | -26,05 % | 62 % | 27,1 % | +0,0448 % | +0,0105 % |
+| Entwicklung | -6,39 % | -4,32 % | -5,37 % | 57 % | 5,8 % | +0,0118 % | +0,0015 % |
+| Pruefzeitraum | -2,23 % | -0,83 % | -1,06 % | 57 % | 0,7 % | +0,0045 % | +0,0003 % |

@@ -1,0 +1,4 @@
+Dateien des Laufs: ['bericht.md', 'protokoll.csv', 'spannen.csv', 'stand.csv', 'zustand.json']
+Schluessel oder Secret in Dateien/Meldungen: False
+Fehlertexte: ['HTTP 401 bei /oapi/contract/trade/private/v1/positions: b\'{"code":10003,"message":"invalid api key"}\'', 'HTTP 401 bei /oapi/contract/trade/private/v1/orders: b\'{"code":10003,"message":"invalid api key"}\'']
+Schluessel oder Secret in Fehlertexten: False

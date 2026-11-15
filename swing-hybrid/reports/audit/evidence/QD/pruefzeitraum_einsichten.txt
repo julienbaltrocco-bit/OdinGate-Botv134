@@ -1,0 +1,200 @@
+diagnose_kapital.json: 6 Stellen mit Pruefzeitraum-Zahlen
+      /hebel[]/pruef_N_jahr
+      /hebel[]/pruef_einbruch
+      /hebel[]/pruef_rebate_jahr
+      /ohne_btc_eth/pruef_N
+      /ohne_btc_eth/pruef_dd
+      /tage/pruef
+ergebnis.json: 10 Stellen mit Pruefzeitraum-Zahlen
+      /momentum_vol_ls/alle_pruefen
+      /momentum_vol_ls/ergebnis/baseline/pruefen
+      /momentum_vol_ls/ergebnis/hybrid/pruefen
+      /momentum_vol_ls/ergebnis/swing_limit/pruefen
+      /momentum_vol_ls/hebel1_pruefen
+      /trail_beide/alle_pruefen
+      /trail_beide/ergebnis/baseline/pruefen
+      /trail_beide/ergebnis/hybrid/pruefen
+      /trail_beide/ergebnis/swing_limit/pruefen
+      /trail_beide/hebel1_pruefen
+fusion_yubit.json: 10 Stellen mit Pruefzeitraum-Zahlen
+      /momentum_vol_ls/F1_zwei_toepfe/Pruefung
+      /momentum_vol_ls/F2_swing_als_filter/Pruefung
+      /momentum_vol_ls/statarb_allein/Pruefung
+      /momentum_vol_ls/statarb_gefiltert/Pruefung
+      /momentum_vol_ls/swing_allein/Pruefung
+      /trail_beide/F1_zwei_toepfe/Pruefung
+      /trail_beide/F2_swing_als_filter/Pruefung
+      /trail_beide/statarb_allein/Pruefung
+      /trail_beide/statarb_gefiltert/Pruefung
+      /trail_beide/swing_allein/Pruefung
+gesamt_60.json: 7 Stellen mit Pruefzeitraum-Zahlen
+      /alle/Pruefung
+      /gruppen/A/Pruefung
+      /gruppen/B/Pruefung
+      /gruppen/C/Pruefung
+      /gruppen/D/Pruefung
+      /tage/Pruefung
+      /zufall_pruefung
+kandidat.json: 10 Stellen mit Pruefzeitraum-Zahlen
+      /basis/Pruefung
+      /gruppe_b/Pruefung
+      /passiv/Pruefung
+      /slippage/0/Pruefung
+      /slippage/10/Pruefung
+      /slippage/2.5/Pruefung
+      /slippage/5/Pruefung
+      /slippage/7.5/Pruefung
+      /tage/Pruefung
+      /zufall_pruefung
+rebate_sicht.json: 2 Stellen mit Pruefzeitraum-Zahlen
+      /momentum_vol_ls/pruef
+      /trail_beide/pruef
+suche_runde10.json: 4 Stellen mit Pruefzeitraum-Zahlen
+      /hebel1/Pruefung
+      /mit_hebel/Pruefung
+      /paar_statistik/pruefung
+      /stress/Pruefung
+suche_runde11.json: 72 Stellen mit Pruefzeitraum-Zahlen
+      /frontier/halte1/maker_pruef_max
+      /frontier/halte1/maker_pruef_median
+      /frontier/halte1/pruef_max
+      /frontier/halte1/pruef_median
+      /frontier/halte1/pruef_p90
+      /frontier/halte2/maker_pruef_max
+      /frontier/halte2/maker_pruef_median
+      /frontier/halte2/pruef_max
+      /frontier/halte2/pruef_median
+      /frontier/halte2/pruef_p90
+      /frontier/halte24/maker_pruef_max
+      /frontier/halte24/maker_pruef_median
+      /frontier/halte24/pruef_max
+      /frontier/halte24/pruef_median
+      ... und 58 weitere
+suche_runde12.json: 16 Stellen mit Pruefzeitraum-Zahlen
+      /fusion/momentum_vol_ls/F1_zwei_toepfe/Pruefung
+      /fusion/momentum_vol_ls/F2_swing_als_filter/Pruefung
+      /fusion/momentum_vol_ls/statarb_allein/Pruefung
+      /fusion/momentum_vol_ls/statarb_gefiltert/Pruefung
+      /fusion/momentum_vol_ls/swing_allein/Pruefung
+      /fusion/trail_beide/F1_zwei_toepfe/Pruefung
+      /fusion/trail_beide/F2_swing_als_filter/Pruefung
+      /fusion/trail_beide/statarb_allein/Pruefung
+      /fusion/trail_beide/statarb_gefiltert/Pruefung
+      /fusion/trail_beide/swing_allein/Pruefung
+      /statarb/A/Pruefung
+      /statarb/A_ohne_kosten/Pruefung
+      /statarb/A_stress/Pruefung
+      /statarb/A_yubit_kosten/Pruefung
+      ... und 2 weitere
+suche_runde14.json: 7 Stellen mit Pruefzeitraum-Zahlen
+      /je_markt/Pruefung
+      /kandidat/Pruefung
+      /mischung/Pruefung
+      /tradfi/Pruefung
+      /tradfi_brutto/Pruefung
+      /tradfi_ohne_rebate/Pruefung
+      /tradfi_stress/Pruefung
+suche_runde15.json: 7 Stellen mit Pruefzeitraum-Zahlen
+      /je_markt/Pruefung
+      /kandidat/Pruefung
+      /mischung/Pruefung
+      /tradfi/Pruefung
+      /tradfi_brutto/Pruefung
+      /tradfi_ohne_rebate/Pruefung
+      /tradfi_stress/Pruefung
+suche_runde16.json: 7 Stellen mit Pruefzeitraum-Zahlen
+      /H1/mischung/Pruefung
+      /H1/netto/Pruefung
+      /H1/ohne_rebate/Pruefung
+      /H1/stress/Pruefung
+      /H1/vor_kosten/Pruefung
+      /H2/A/Pruefung
+      /kandidat_A/Pruefung
+suche_runde17.json: 15 Stellen mit Pruefzeitraum-Zahlen
+      /H1/je_paar/SPY/IWM/Pruefung
+      /H1/je_paar/SPY/QQQ/Pruefung
+      /H1/je_paar/XAU/XAG/Pruefung
+      /H1/je_paar/XPT/XPD/Pruefung
+      /H1/mischung/Pruefung
+      /H1/netto/Pruefung
+      /H1/ohne_rebate/Pruefung
+      /H1/stress/Pruefung
+      /H1/vor_kosten/Pruefung
+      /H2/mischung/Pruefung
+      /H2/netto/Pruefung
+      /H2/ohne_rebate/Pruefung
+      /H2/stress/Pruefung
+      /H2/vor_kosten/Pruefung
+      ... und 1 weitere
+suche_runde22.json: 3 Stellen mit Pruefzeitraum-Zahlen
+      /doppelte_kosten/pruefzeitraum
+      /gruppen_pruefzeitraum
+      /pruefzeitraum
+suche_runde23.json: 1 Stellen mit Pruefzeitraum-Zahlen
+      /pruefung
+suche_runde3.json: 3 Stellen mit Pruefzeitraum-Zahlen
+      /finalisten/tsmom_L336_biasFalse/stufen/3_pruefung
+      /finalisten/tsmom_L336_biasFalse/stufen/5_hebel/Pruefung
+      /finalisten/tsmom_L96_biasFalse/stufen/3_pruefung
+suche_runde4.json: 6 Stellen mit Pruefzeitraum-Zahlen
+      /C_passiv/Pruefung
+      /C_sofort/Pruefung
+      /breit/Pruefung
+      /breit_hebel1/Pruefung
+      /breit_zufall_pruefung
+      /tage/Pruefung
+suche_runde5.json: 5 Stellen mit Pruefzeitraum-Zahlen
+      /D/basis/Pruefung
+      /D/vol_beide/Pruefung
+      /hebel_basis/Pruefung
+      /hebel_vol_beide/Pruefung
+      /tage/Pruefung
+suche_runde6.json: 20 Stellen mit Pruefzeitraum-Zahlen
+      /tage/Pruefung
+      /teil1/A+B/Pruefung
+      /teil1/A+B/alt_5bp/Pruefung
+      /teil1/A+B/stress_2x/Pruefung
+      /teil1/A/Pruefung
+      /teil1/A/alt_5bp/Pruefung
+      /teil1/A/stress_2x/Pruefung
+      /teil2/finalist/stufen/3_bestaetigung/A/Pruefung
+      /teil2/finalist/stufen/3_bestaetigung/B/Pruefung
+      /teil2/finalist/stufen/3_bestaetigung/C/Pruefung
+      /teil2/finalist/stufen/3_bestaetigung/D/Pruefung
+      /teil3/kombination/Pruefung
+      /teil3/kombination/alt_5bp/Pruefung
+      /teil3/kombination/stress_2x/Pruefung
+      ... und 6 weitere
+suche_runde7.json: 6 Stellen mit Pruefzeitraum-Zahlen
+      /kandidat_AB/Pruefung
+      /signale/orderfluss/stufen/3_bestaetigung/A/Pruefung
+      /signale/orderfluss/stufen/3_bestaetigung/B/Pruefung
+      /signale/orderfluss/stufen/3_bestaetigung/C/Pruefung
+      /signale/orderfluss/stufen/3_bestaetigung/D/Pruefung
+      /tage/Pruefung
+suche_runde8.json: 8 Stellen mit Pruefzeitraum-Zahlen
+      /A/Pruefung
+      /A/alt_5bp/Pruefung
+      /A/stress_2x/Pruefung
+      /A/tage/Pruefung
+      /guenstige_coins/Pruefung
+      /guenstige_coins/alt_5bp/Pruefung
+      /guenstige_coins/stress_2x/Pruefung
+      /guenstige_coins/tage/Pruefung
+suche_runde9.json: 6 Stellen mit Pruefzeitraum-Zahlen
+      /Pruefung
+      /alt_5bp/Pruefung
+      /pruefung_je_coin_flop
+      /pruefung_je_coin_top
+      /stress_2x/Pruefung
+      /tage/Pruefung
+swing_vergleich.json: 4 Stellen mit Pruefzeitraum-Zahlen
+      /momentum_vol_ls_baseline/pruef
+      /momentum_vol_ls_swing_limit/pruef
+      /trail_beide_baseline/pruef
+      /trail_beide_swing_limit/pruef
+diagnose_frequenz.csv: Spalten ['pruef_umsatz_tag', 'pruef_halte_h', 'pruef_signal_bp', 'pruef_slippage_bp', 'pruef_gebuehr_netto_bp', 'pruef_netto_bp', 'pruef_N_jahr', 'pruef_rebate_jahr']; Zeilen 7
+suche_runde11_alle.csv: Spalten []; Zeilen mit fenster == 'Pruefung': 2408 (Regeln: 602); Zeilen 7224
+suche_runde11_uebersicht.csv: Spalten ['A_Pruef', 'n_Pruef', 'B_Pruef', 'C_Pruef', 'D_Pruef', 'maker_A_Pruef']; Zeilen 602
+
+JSON-Stellen insgesamt: 235

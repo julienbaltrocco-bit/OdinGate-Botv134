@@ -1,0 +1,82 @@
+Stand der lokalen Historie: HEAD 3dfd5b2 2026-11-15T19:03:04+00:00
+
+========== Test 1 swing-hybrid/vorwaertstest/lauf
+Commits mit Aenderung im Ordner: 68
+  stand.csv: 68 Versionen, nicht-anhaengende Aenderungen: 1 [('4276791', '2026-11-15T13:21:52+00:00', 'swing-hybrid: Papier-Vorwärtstest neu gestartet mit Hebel 3,')]
+  protokoll.csv: 68 Versionen, nicht-anhaengende Aenderungen: 1 [('4276791', '2026-11-15T13:21:52+00:00', 'swing-hybrid: Papier-Vorwärtstest neu gestartet mit Hebel 3,')]
+  spannen.csv: 68 Versionen, nicht-anhaengende Aenderungen: 1 [('4276791', '2026-11-15T13:21:52+00:00', 'swing-hybrid: Papier-Vorwärtstest neu gestartet mit Hebel 3,')]
+  stand.csv: 64 Laeufe von 2026-11-15 13:21 bis 2026-11-15 18:58 UTC
+  Abstand zwischen Laeufen (Minuten): min 1, Median 5, Mittel 5.3, max 13
+  Verteilung der Abstaende: {1: 1, 3: 1, 4: 10, 5: 32, 6: 10, 7: 5, 8: 2, 9: 1, 13: 1}
+  Abstaende > 7 Minuten: [('2026-11-15 15:51', '2026-11-15 16:04', 13), ('2026-11-15 17:04', '2026-11-15 17:12', 8), ('2026-11-15 17:56', '2026-11-15 18:04', 8), ('2026-11-15 18:04', '2026-11-15 18:13', 9)]
+  doppelte Zeitstempel in stand.csv: []
+  erster Lauf je Stunde (Minute nach voller Stunde): {'13': 21, '14': 5, '15': 1, '16': 4, '17': 4, '18': 4}
+  Sekunden zwischen Lauf-Zeitstempel (Minute abgeschnitten) und Commit: min 27, Median 63, max 266
+  Laeufe ohne eigenen Commit (Zeile in stand.csv, aber kein Commit mit dieser letzten Zeile): []
+  Commits ausserhalb des stunde.sh-Musters: 19
+     ('caee215', '2026-11-15T13:04:26+00:00', 'swing-hybrid: Papier-Vorwärtstest gestartet (voller Einsatz), Dashboard-Daten, Dashboard-S')
+     ('35eb665', '2026-11-15T13:10:36+00:00', 'swing-hybrid: Live-Dashboard (lädt neue Durchläufe selbst nach), Daten mit Takt und Zeitst')
+     ('4276791', '2026-11-15T13:21:52+00:00', 'swing-hybrid: Papier-Vorwärtstest neu gestartet mit Hebel 3, Lauf mit Hebel 1 archiviert, ')
+     ('360fa1b', '2026-11-15T13:32:45+00:00', 'Trading Board (docs/): Live-Kurse und Kerzen im Browser, Einstiege und Konto vom Papier-Bo')
+     ('5422e9f', '2026-11-15T13:50:07+00:00', 'Vorwärtstest (Papier) 13:49 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('f1fd79f', '2026-11-15T13:54:57+00:00', 'Vorwärtstest (Papier) 13:54 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('d514f0b', '2026-11-15T14:00:12+00:00', 'Vorwärtstest (Papier) 13:59 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('d7ddf67', '2026-11-15T14:05:49+00:00', 'Vorwärtstest (Papier) 14:04 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('4b869b4', '2026-11-15T14:10:03+00:00', 'Vorwärtstest (Papier) 14:09 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('372800a', '2026-11-15T14:16:53+00:00', 'Vorwärtstest (Papier) 14:15 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('5bb14cd', '2026-11-15T14:20:55+00:00', 'Vorwärtstest (Papier) 14:20 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('7c3bcf1', '2026-11-15T14:27:05+00:00', 'Vorwärtstest (Papier) 14:26 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('1f80f93', '2026-11-15T14:31:02+00:00', 'Vorwärtstest (Papier) 14:30 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('8b1e8d4', '2026-11-15T14:37:11+00:00', 'Vorwärtstest (Papier) 14:36 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('24aa73b', '2026-11-15T14:41:04+00:00', 'Vorwärtstest (Papier) 14:40 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('b3a337c', '2026-11-15T14:46:18+00:00', 'Vorwärtstest (Papier) 14:45 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('a419ecf', '2026-11-15T14:51:47+00:00', 'Vorwärtstest (Papier) 14:50 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('2529dd4', '2026-11-15T14:55:50+00:00', 'Vorwärtstest (Papier) 14:55 UTC (Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)')
+     ('cf1f1cb', '2026-11-15T15:00:40+00:00', 'Trading Board: öffentlichen Schlüssel ins Repo aufgenommen (war durch .gitignore ausgeschl')
+  spannen.csv: 635 Zeilen; Laeufe mit weniger als 10 Coins: {'2026-11-15 15:16': 5}
+  Laeufe in stand.csv ohne Zeile in spannen.csv: []
+  Messungen ohne volle Fuellung (kauf_bp/verkauf_bp leer): []
+    2026-11-15 15:16 vorhanden: ['BTC', 'ETH', 'SOL', 'XRP', 'DOT']
+
+========== Test 2 swing-hybrid/vorwaertstest/lauf_tpsl
+Commits mit Aenderung im Ordner: 14
+  stand.csv: 14 Versionen, nicht-anhaengende Aenderungen: 0 []
+  protokoll.csv: 14 Versionen, nicht-anhaengende Aenderungen: 0 []
+  spannen.csv: 14 Versionen, nicht-anhaengende Aenderungen: 0 []
+  stand.csv: 14 Laeufe von 2026-11-15 17:44 bis 2026-11-15 18:58 UTC
+  Abstand zwischen Laeufen (Minuten): min 4, Median 5, Mittel 5.7, max 9
+  Verteilung der Abstaende: {4: 1, 5: 8, 6: 1, 7: 1, 8: 1, 9: 1}
+  Abstaende > 7 Minuten: [('2026-11-15 17:56', '2026-11-15 18:05', 9), ('2026-11-15 18:05', '2026-11-15 18:13', 8)]
+  doppelte Zeitstempel in stand.csv: []
+  erster Lauf je Stunde (Minute nach voller Stunde): {'17': 44, '18': 5}
+  Sekunden zwischen Lauf-Zeitstempel (Minute abgeschnitten) und Commit: min 24, Median 62, max 109
+  Laeufe ohne eigenen Commit (Zeile in stand.csv, aber kein Commit mit dieser letzten Zeile): []
+  Commits ausserhalb des stunde.sh-Musters: 1
+     ('b8795b3', '2026-11-15T17:45:49+00:00', 'Zweites Papier-Konto (Stop 5 %, Gewinnziel 15 %) als getrennter Test; Board mit Umschalter')
+  spannen.csv: 140 Zeilen; Laeufe mit weniger als 10 Coins: {}
+  Laeufe in stand.csv ohne Zeile in spannen.csv: []
+  Messungen ohne volle Fuellung (kauf_bp/verkauf_bp leer): []
+
+========== Zeitfenster je Lauf: Beginn des Bot-Schritts (funding_zeit im Zustand, ms-genau) bis Commit
+Test 1: 63 Laeufe, Sekunden von Schrittbeginn bis Commit: min 19, Median 29, max 78
+  Laeufe mit mehr als 60 s: [('0a24d07', '15:16:29', 78, '2026-11-15 15:17 UTC')]
+Fenster je stunde.sh-Lauf mit zwei Konten (Schrittbeginn Test 1 bis Commit Test 2): n=13, min 44 s, Median 51 s, max 68 s
+Zyklus in derselben Zeit (Abstand der Schrittbeginne Test 1): Median 311 s  -> Anteil des Fensters am Zyklus rund 16 %
+Versatz zwischen den Marktabfragen der beiden Konten (Schrittbeginn Test 2 minus Test 1): Median 27 s
+
+========== Anteil der Laeufe, die der erste Lauf nach einer vollen Stunde waren (nur dann kann ein Stundensignal drehen)
+Test 1: 64 Laeufe, davon 5 erste Laeufe nach voller Stunde (8 %): ['14:05', '15:01', '16:04', '17:04', '18:04']
+Test 2: 14 Laeufe, davon 1 erste Laeufe nach voller Stunde (7 %): ['18:05']
+
+========== Fremde Commits (nicht vom Runner) seit 13:22 UTC und ihr Abstand zum naechsten Lauf-Fenster des Runners
+(Fenster = Beginn Bot-Schritt Konto 1 bis letzter Commit des Laufs; der Push folgt Sekunden nach dem Commit. Negativ = im Fenster)
+  360fa1b 13:32:45   130 s vor Beginn des naechsten Fensters  | Trading Board (docs/): Live-Kurse und Kerzen im Browser, Einstiege und
+  1695511 13:41:56   108 s nach Ende des naechsten Fensters  | Trading Board: Passwortabfrage, Stand nur noch verschlüsselt in docs/ 
+  cf1f1cb 15:00:40    26 s vor Beginn des naechsten Fensters  | Trading Board: öffentlichen Schlüssel ins Repo aufgenommen (war durch 
+  30443cd 17:39:54   122 s vor Beginn des naechsten Fensters  | swing-hybrid: Protokoll Runde 24 (Gewinnziel und Stop für den Kandidat
+  42c2168 17:40:34    82 s vor Beginn des naechsten Fensters  | swing-hybrid: Runde 24 (Gewinnziel und Stop) gerechnet, kein belegter 
+  b8795b3 17:45:49    39 s vor Beginn des naechsten Fensters  | Zweites Papier-Konto (Stop 5 %, Gewinnziel 15 %) als getrennter Test; 
+  a6bf357 18:06:30    41 s nach Ende des naechsten Fensters  | Trading Board, Test 2: TP und SL immer im Chart sichtbar (Kursskala bi
+  eb94715 18:26:48    96 s vor Beginn des naechsten Fensters  | Trading Board, Test 2: Schalter „TP/SL im Bild“ baut den Chart nicht m
+  b569b73 18:31:20    90 s vor Beginn des naechsten Fensters  | swing-hybrid: Übergabebericht für Dritte (Stand, Methode, offene Frage
+  3dfd5b2 19:03:04   251 s nach Ende des naechsten Fensters  | Audit: Zwischenstand der Evidenzdateien (Lauf noch nicht abgeschlossen

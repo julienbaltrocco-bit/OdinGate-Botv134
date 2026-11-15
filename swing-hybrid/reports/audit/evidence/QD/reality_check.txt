@@ -8,8 +8,7 @@ Runde 24: Kandidat Sharpe D1/D2/Entw 0.5640/1.3165/0.9457; max. Abweichung Sharp
    eigene Umsetzung (anderer Zufallsstart): Schwelle/Jahr 0.6080, p 0.5554; studentisierte Variante p 0.9068
    Streuung der Tagesdifferenzen je Variante (pro Jahr): {'sl5': 0.092, 'sl10': 0.034, 'sl15': 0.004, 'tp10': 0.622, 'tp20': 0.498, 'tp30': 0.416, 'sl5_tp15': 0.561, 'sl10_tp20': 0.502, 'sl15_tp30': 0.416, 'trail10': 0.49, 'trail15': 0.389}
 
-=== (b)+(c) Groessentest: Nullhypothese wahr (kein Vorsprung), 14 korrelierte Spalten, 1325 Tage, AR(1)=0,1; 400 Wiederholungen, je 1000 Ziehungen
-Ablehnungsquote bei 5 %-Niveau: 0.028 (Soll rund 0,05); mittlerer p-Wert 0.467 (Soll rund 0,5)
+=== (b)+(c) Groessentest: aus dieser Datei entfernt (fehlerhafter Aufbau im ersten Lauf); gueltige Fassung in reality_check_2.txt
 
 === (d) Auswahl in Runde 3: 10 Trend-Einstellungen, Entwicklung, sofortige Ausfuehrung, 5 bp, ohne Tageslimit; Massstab null
 Rohertrag: bestes Tagesmittel tsmom_L336_biasFalse = +0.505/Jahr; 95-%-Schwelle des groessten Zufallswerts 0.654/Jahr; p-Wert der besten von 10: 0.1232
@@ -18,7 +17,3 @@ Sharpe je Einstellung (Entwicklung): {'tsmom_L48_biasFalse': -0.415, 'tsmom_L48_
 zum Vergleich: p-Wert des Kandidaten allein, ohne Auswahl-Korrektur: 0.0710
 
 fertig nach 205 s
-
-HINWEIS DES PRUEFERS (QD): Der Groessentest in Abschnitt (b)+(c) dieser Datei ist fehlerhaft aufgebaut (das Stichprobenmittel wurde
-kuenstlich und je Spalte unabhaengig ersetzt) und daher NICHT zu verwenden. Der sauber aufgebaute Groessentest steht in
-reality_check_2.txt (Ablehnungsquote 0,057 bei Soll 0,05). Die Abschnitte (a) und (d) dieser Datei sind gueltig.

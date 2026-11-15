@@ -1,0 +1,93 @@
+%% ARC: Modul- und Datenflusskarte OdinGate / swing-hybrid, Stand 0e92022 (15.11.2026)
+%% Erstellt aus dem Code (Importgraph: importgraph.txt, Schreibziele: Textsuche in scripts/). Gestrichelt = kein Code-Bezug, nur Konvention.
+flowchart TD
+
+  subgraph Q["Rohdaten: swing-hybrid/data/ (nur lokal, per .gitignore nicht im Repo, 9,7 GB)"]
+    Q1["Binance-Futures 5m-Kerzen<br/>candles/5m, candles/5m_vor"]
+    Q2["Binance Funding<br/>candles/funding"]
+    Q3["Positionierung, Tageskerzen, Aktien<br/>candles/metrics, 1d, aktien_1d"]
+    Q4["Yubit-Spannen-Stichprobe<br/>processed/yubit_spannen_stichprobe.csv<br/>30 Messzeitpunkte am 14.11.2026"]
+    Q5["Labor-ZIP: OKX-Kerzen, Parameter<br/>raw/labor-daten"]
+  end
+
+  L["Ladeskripte: scripts/kerzen_laden.py, positionierung_laden.py,<br/>listings_laden.py, tageskurse_laden.py, aktien_laden.py,<br/>pump_*_laden.py, yubit_spannen_sammeln.py, intake.py"] --> Q
+
+  subgraph F["Forschung: swing-hybrid/src/hybrid (numpy, pandas, numba)"]
+    CFG["config.yaml -> config.load()<br/>runner.CFG: Gebuehren, Tageslimit 3 %, TTL"]
+    M["research.markt()<br/>5-Minuten-Raster, ffill/bfill, Stundenkerzen h1,<br/>ATR, Funding (fehlend = 0)"]
+    S1["Signale Kern 2: research.tsmom / _trend / rangfolge / carry,<br/>mutationen.basis und 14 Varianten, tpsl.gewichte,<br/>positionierung, niedrigrisiko"]
+    AR["research.auf_raster()<br/>Stundensignal + 1 h auf 5-Minuten-Raster"]
+    E2["research.lauf() -> engine2.simulate_target()<br/>Zielposition, Taker zum Open + Slippage,<br/>Funding, Tageslimit"]
+    YK["research.yubit_kosten()<br/>Slippage je Coin"]
+    K["runner.Lauf / runner.kennzahlen / research.sicht<br/>Gebuehr, Rebate, Sharpe, Einbruch"]
+    subgraph ALT["Kern 1 (erste Projektphase, Swing-Hybrid)"]
+      SW["swing.py: Labor-Signale aus OKX-Kerzen"]
+      DL["data.laden()"]
+      E1["runner.lauf() -> engine.simulate()"]
+      WF["walkforward.py"]
+    end
+    subgraph EIG["Eigene Simulatoren mit eigener Kosten- und Kennzahlenrechnung"]
+      X1["statarb.simulate"]
+      X2["listings.paar"]
+      X3["massentest.trades_fest / trades_ziel"]
+      X4["pumpshort.trades_coin(_trail)"]
+      X5["tagestrend.lauf_markt"]
+      X6["tradfi_neutral.paar / momentum"]
+    end
+  end
+
+  Q1 --> M
+  Q2 --> M
+  Q4 --> YK
+  Q5 --> SW
+  M --> S1 --> AR --> E2 --> K
+  YK --> E2
+  CFG --> E2
+  CFG --> E1
+  CFG --> K
+  SW --> DL --> E1 --> WF
+  Q1 --> DL
+  M --> X1
+  Q3 --> X2
+  Q1 --> X3
+  Q3 --> X5
+  Q3 --> X6
+
+  SK["scripts/suche_stufe*.py, suche_runde2..24.py,<br/>kandidat_pruefen.py, diagnose_*.py, fusion_yubit.py<br/>(je Runde ein Skript, schreibt beim Lauf nach reports/)"]
+  K --> SK
+  WF --> SK
+  EIG --> SK
+  SK --> R1["reports/suche_runde*.json, *.csv,<br/>kandidat.json, ergebnis.json"]
+  R1 --> BR["scripts/suche_bericht.py, bericht.py,<br/>statarb_bericht.py"] --> R2["reports/suche_bericht.md,<br/>hybrid_report.md, statarb_bericht.md"]
+  HAND["von Hand: reports/suche_protokoll.md,<br/>uebergabe_fuer_dritte.md"]
+  R1 -.-> HAND
+
+  subgraph B["Betrieb: swing-hybrid/vorwaertstest (nur Standardbibliothek, kein Import aus src/hybrid)"]
+    T["Taktgeber: KI-Sitzung, etwa alle 5 Minuten<br/>(nicht im Repo; Alternativen ohne Betrieb:<br/>.github/workflows/vorwaertstest.yml, server/installieren.sh)"]
+    ST["stunde.sh<br/>git fetch / checkout / pull, dann beide Tests nacheinander"]
+    YU["yubit.Yubit (oeffentliche REST-Endpunkte):<br/>klines, instruments, tickers, orderbooks"]
+    BOT["bot.schritt()<br/>markt_lesen -> kern.richtung (336 h)<br/>kern.buch_fill, kern.buchen, Funding-Naeherung,<br/>Stop/Ziel (nur Test 2), Tageslimit"]
+    C1["config_lauf.json (Test 1)<br/>config_lauf_tpsl.json (Test 2)<br/>Hebel 3, Tageslimit 1.0"]
+    Z["Zustand je Test: lauf/ bzw. lauf_tpsl/<br/>zustand.json, protokoll.csv,<br/>spannen.csv, stand.csv, bericht.md"]
+    DD["dashboard_daten.bauen()<br/>-> dashboard.json (Klartext)"]
+    BV["board_verschluesseln.py + board_pub.pem<br/>openssl: AES-256-CBC, Schluessel per RSA-OAEP"]
+    LS["live_server.py (Port 8765, optional)<br/>eigene Kontobewertung aus Yubit-Tickern"]
+  end
+
+  T --> ST --> BOT
+  C1 --> BOT
+  YU --> BOT
+  BOT --> Z --> DD --> BV
+  Z --> LS
+  BV --> ENC["docs/stand.enc.json,<br/>docs/stand_tpsl.enc.json"]
+  ST --> GIT["git add / commit / push<br/>auf Zweig claude/intelligent-sagan-2cviug<br/>(Code, Zustand und Board im selben Zweig)"]
+  Z --> GIT
+  ENC --> GIT
+  GIT --> GP["GitHub Pages: Ordner /docs"]
+  GP --> IDX["docs/index.html im Browser<br/>schluessel.json: PBKDF2 -> AES -> privater RSA-Schluessel<br/>entschluesselt stand*.enc.json"]
+  BIN["Binance fapi REST und WebSocket<br/>(Kurse, 1h-Kerzen)"] --> IDX
+  IDX --> ANZ["Anzeige: Kontowert und 336-h-Signal<br/>im Browser neu gerechnet, mit Binance-Kursen"]
+
+  S1 -. "dieselbe Regel, getrennt implementiert,<br/>kein gemeinsamer Code, kein Paritaetstest" .- BOT
+  E2 -. "Fuellung, Gebuehr, Funding, Stop/Ziel:<br/>je eigene Implementierung" .- BOT
+  Z --> AUS["scripts/vorwaertstest_auswerten.py<br/>Slippage gegen Annahme 0,05 %"]

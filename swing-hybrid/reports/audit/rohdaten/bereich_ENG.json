@@ -1,0 +1,227 @@
+{
+ "summary": "Die Rechenkerne rechnen korrekt: engine2 stimmt im Taker-Modus auf den echten Daten mit einer unabhängigen Nachrechnung auf 3e-16 überein, und +59 % pro Jahr / Sharpe 0,95 (Entwicklung) sowie +16,5 % pro Jahr / Sharpe 0,34 (Prüfzeitraum) sind reproduziert. Signalregel, Gebühren- und Rebate-Arithmetik sowie alle Kontoidentitäten des Papier-Bots (Zustand = stand.csv = Orderprotokoll = dashboard.json = Browser-Formel) stimmen. Die schweren Befunde liegen in dem, was nicht modelliert ist: Weder Rückrechnung noch Bot kennen Margin oder Liquidation, das Tagesverlust-Limit steht in beiden Tests auf 1.0 (faktisch aus), und bei Hebel 3 mit fester Positionsgröße fällt ein frisch gestartetes Konto im Entwicklungszeitraum bei 8,4 % der Starttage binnen 365 Tagen auf null (ohne Rebate 44,9 %), während die gemeldete Einbruchskennzahl 38 % zeigt. Im Live-Pfad blockiert der Sicherheitsdeckel max_order_usd auch Schließ-Orders (P0, mit nachgestellter Börse belegt), und verspätete Füllungen lassen den Bot mit offener Position stehen. Test 2 prüft Stop und Ziel bei jedem Lauf (alle 5 Minuten) statt am Stundenschluss wie Runde 24: 58 % mehr Stops und rund 4 Prozentpunkte weniger Ertrag pro Jahr bei Hebel 1, also nicht mit der Rückrechnung vergleichbar. Der Prüfzeitraum ist nur durch die Rebate-Annahme positiv (ohne Rebate −19,6 %), der Bot bucht das Rebate aber als erzielten Ertrag; 18 Regressionstests zum Ausgangsverhalten und alle Belege liegen unter reports/audit/evidence/ENG.",
+ "findings": [
+  {
+   "id": "ENG-01",
+   "title": "Live-Modus: Sicherheitsdeckel max_order_usd blockiert auch Schließ-Orders",
+   "priority": "P0",
+   "confidence": "hoch",
+   "evidence": "vorwaertstest/bot.py:130-131: `if menge * preis > cfg[\"max_order_usd\"]: raise YubitFehler(...)` gilt für jede Order, auch reduce_only; bot.py:254-256 fängt den Fehler nur als Hinweis ab. Experiment mit nachgestelltem Konto (reports/audit/evidence/ENG/d_bot_experimente.txt, Schlüssel D8_live): Short 1,0 Stück zu 100 USD, Deckel 150 USD. Kurs 160, Signal dreht: Warnung \"Order über dem Sicherheitsdeckel (160 > 150 USDT)\", Position an der Börse bleibt -1,0. Kurs 200 und ausgelöstes Tageslimit: wieder keine Schließ-Order für AAA, gesperrt_tag gesetzt. Abstand Deckel zu Sollbetrag: config.json:8 150 USD bei 100 USD (50 %), config_lauf.json:19 und config_lauf_tpsl.json:19 2000 USD bei 1500 USD (33 %). Im Entwicklungszeitraum gab es innerhalb eines Trades eine Gegenbewegung von 38,1 % (ADA-Short 24.02. bis 02.03.2025, g_hebel3_entwicklung.txt).",
+   "impact": "Steigt der Wert einer Short-Position über den Deckel, kann der Bot sie nicht mehr schließen: weder durch Umkehrsignal noch durch Stop noch durch das Tageslimit. Der Verlust läuft unbegrenzt weiter, gemeldet wird nur ein Hinweis auf der Standardausgabe. Betrifft nur den Live-Modus; der Papier-Modus prüft den Deckel nicht.",
+   "recommendation": "Deckel nur auf eröffnende Orders anwenden; reduce-only-Orders immer zulassen (bei Bedarf in Teilen unterhalb des Deckels). Scheitert eine Schließ-Order, Alarm auslösen statt nur Hinweis. Den Test test_ist_live_sicherheitsdeckel_blockiert_auch_das_schliessen nach der Korrektur umdrehen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B -m pytest -q -p no:cacheprovider --basetemp=$(mktemp -d) reports/audit/evidence/ENG/test_eng_ausgangsverhalten.py -k sicherheitsdeckel"
+  },
+  {
+   "id": "ENG-02",
+   "title": "Kein Margin- und Liquidationsmodell bei Hebel 3; Einbruchskennzahl unterschätzt den Verlust eines frisch gestarteten Kontos",
+   "priority": "P0",
+   "confidence": "hoch",
+   "evidence": "src/hybrid/engine2.py:161-170 und vorwaertstest/kern.py:83-88 rechnen ohne Untergrenze weiter; bot.py:165 hält die Größe fest auf kapital_usd x hebel / Anzahl Coins. Hebel oder Margin-Modus der Börse werden nirgends gelesen oder gesetzt (nur Anzeige dashboard_daten.py:66-67, aktuell 97,7 % des Kontos als Margin gebunden). reports/audit/evidence/ENG/g_hebel3_entwicklung.txt (nur Entwicklungszeitraum, Kandidat, Hebel 3, feste Größe, 5-Minuten-Basis): Konto <= 0 binnen 365 Tagen bei 8,4 % von 960 Starttagen, <= 50 % bei 46,6 %; binnen 90 Tagen <= 0 bei 5,7 %; ohne Rebate <= 0 bei 44,9 %. Größter Rückgang 170,7 % des Startkapitals, runner.max_drawdown (runner.py:79-83, relativ zum Höchststand) meldet dafür 38,4 %. Bei Hebel 1: 50,7 % des Startkapitals gegen gemeldete 24,6 % (a_engine_parity.txt). engine2 ist exakt linear im Hebel (f_gleichstand_hebel.txt: |e3 - 3*e1| <= 1,4e-14). Bot-Experiment D10: Konto rechnerisch bei -2.514 USD, Bot hält weiter 15.000 USD Short, gesperrt_tag leer.",
+   "impact": "Rückrechnung und Vorwärtstest weisen auch für Verläufe ein Ergebnis aus, in denen ein echtes Konto bei Hebel 3 liquidiert wäre. Die gemeldeten Einbrüche (24,6 % im Protokoll, einbruch_pct im Dashboard) beziehen sich auf den Höchststand samt aufgelaufener Gewinne bei nicht mitwachsender Position; für neu eingesetztes Geld sagen sie zu wenig. Bei echtem Geld ist ein Totalverlust möglich, ohne dass eine vorhandene Kennzahl davor warnt.",
+   "recommendation": "Liquidation in engine2 und im Bot abbilden (Konto unter Erhaltungsmargin: alles schließen, Lauf als Ausfall werten). Zusätzlich den Einbruch in Einheiten des Startkapitals und den Anteil der Starttage mit Kontoausfall berichten. Die Hebelwahl darauf stützen, ausschließlich mit Entwicklungsdaten. Im Live-Modus Hebel und Margin-Modus der Börse lesen und gegen die Konfiguration prüfen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/ENG/g_hebel3_entwicklung.py"
+  },
+  {
+   "id": "ENG-03",
+   "title": "Test 2 prüft Stop und Gewinnziel bei jedem Lauf statt am Stundenschluss und misst damit eine andere Regel als Runde 24",
+   "priority": "P1",
+   "confidence": "hoch",
+   "evidence": "src/hybrid/tpsl.py:19-40: Prüfung je Stundenschluss, Einstiegsreferenz ist der Stundenschluss. vorwaertstest/bot.py:216-228: Prüfung bei jedem Lauf mit dem Mittelkurs gegen den Füllkurs (z[\"einstieg\"]). Läufe im Median alle 5 Minuten (e_snapshot_identitaeten.txt, Punkt 6). reports/audit/evidence/ENG/c_tpsl_takt.txt (Entwicklungszeitraum, Hebel 1, tp 0,15 / sl 0,05 fest): hybrid.tpsl 33,3 % pro Jahr, Sharpe 1,135, Einbruch 14,6 %; Bot-Logik mit einem Lauf je Stunde 34,0 % / 1,159 / 14,2 % (236 Stops, 371 Ziele); Bot-Logik alle 5 Minuten 29,7 % / 1,035 / 16,6 % (373 Stops, 379 Ziele). Experiment D13: Bot stoppt 20 Minuten nach der vollen Stunde bei -5,5 %, tpsl._zustand bleibt bei den Stundenschlüssen 100 / 99 / 99,5 investiert.",
+   "impact": "58 % mehr Stops und rund 4,3 Prozentpunkte weniger Ertrag pro Jahr bei Hebel 1 (linear etwa 13 bei Hebel 3) gegenüber der protokollierten Variante sl5_tp15. Die Ergebnisse von Test 2 lassen sich nicht mit Runde 24 vergleichen und hängen vom Lauf-Takt ab, also von einem Betriebsdetail.",
+   "recommendation": "Festlegen und im Protokoll dokumentieren, welche Regel gilt. Entweder prüft der Bot Stop und Ziel nur beim ersten Lauf nach Stundenschluss gegen den Stundenschluss (wie tpsl), oder die 5-Minuten-Prüfung wird als eigene, vorab protokollierte Variante im Entwicklungszeitraum nachgerechnet. Bis dahin Test 2 als nicht mit der Rückrechnung vergleichbar kennzeichnen; bestehende Daten nicht ändern.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/ENG/c_tpsl_takt.py"
+  },
+  {
+   "id": "ENG-04",
+   "title": "Tagesverlust-Limit in beiden Tests faktisch aus; die dokumentierte Sicherung von 3 % ist bei Hebel 3 laut Rückrechnung nicht tragfähig",
+   "priority": "P1",
+   "confidence": "hoch",
+   "evidence": "vorwaertstest/config_lauf.json:17 und config_lauf_tpsl.json:17: \"tagesverlust_limit\": 1.0; bot.py:196 löst damit erst bei einem Tagesverlust von 100 % des Kapitals aus; bot.konfig (bot.py:41-47) prüft den Wert nicht. README.md:47 nennt als Live-Sicherung \"Tagesverlust-Limit 3 %\", config.json:6 und config.yaml haben 0,03. Die Kandidaten-Kennzahlen sind ohne Limit gerechnet (scripts/suche_runde21.py:19 und suche_runde24.py:19, day_limit=9.0). reports/audit/evidence/ENG/g_hebel3_entwicklung.txt (Entwicklungszeitraum): Hebel 1 ohne Limit +59,4 % pro Jahr, mit 3 % +13,2 % (269 Sperrtage von 1325); Hebel 3 ohne Limit +178,1 %, mit 3 % -101,3 % (826 Sperrtage). Experiment D10b: bei Hebel 3 reicht eine Kursbewegung von 1,5 %, um das 3-%-Limit auszulösen.",
+   "impact": "Es gibt keinen wirksamen, getesteten Verlustbegrenzer. Die einzige eingebaute Sicherung würde bei Hebel 3 den gemessenen Vorteil in einen Verlust drehen, ohne sie besteht kein Schutz (siehe ENG-02). Die README beschreibt eine Sicherung, die in keinem der beiden laufenden Tests aktiv ist.",
+   "recommendation": "Verlustbegrenzung als Teil der Strategie vorab im Protokoll festlegen, in engine2 und Bot identisch rechnen und nur im Entwicklungszeitraum prüfen. bot.konfig soll Werte ab 1 ablehnen oder ausdrücklich als abgeschaltet kennzeichnen. README an den getesteten Stand anpassen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/ENG/g_hebel3_entwicklung.py   # letzte zwei Zeilen"
+  },
+  {
+   "id": "ENG-05",
+   "title": "Ergebnis hängt am angenommenen Rebate; der Bot bucht es als erzielten Ertrag und zeigt es als Kopfzahl",
+   "priority": "P1",
+   "confidence": "hoch",
+   "evidence": "reports/audit/evidence/ENG/h_kostenzerlegung.txt (engine2, Gruppe A, Hebel 1): Entwicklung netto mit Rebate +215,6 %, davon Rebate 101,8 Punkte (47 %), ohne Rebate +31,4 % pro Jahr. Prüfzeitraum netto mit Rebate +25,9 % (16,5 % pro Jahr), Rebate 45,4 Punkte, ohne Rebate -19,6 % (-12,5 % pro Jahr). Gebühr vor Rebate rund 33 % des Kapitals pro Jahr bei Hebel 1. bot.py:252-253 bucht 85 % der Gebühr sofort als Rebate; bot.py:245 setzt im Live-Modus rebate = 0.0 (\"wird von Yubit getrennt gutgeschrieben, hier nicht sichtbar\"). Dashboard-Kopfzahl und Verlauf sind \"mit Rebate\" (docs/index.html:123, 227-228). vorwaertstest/YUBIT_REGELN.md Abschnitt 2: Yubit kann Rebates abziehen.",
+   "impact": "Der unabhängige Prüfzeitraum ist nur durch die Rebate-Annahme positiv. Der Vorwärtstest kann diese Annahme nicht prüfen (Papier rechnet sie fest ein, Live sieht sie nicht), weist sie aber als verdient aus. Entscheidungen auf Basis der Kopfzahl stützen sich auf einen nicht gemessenen Ertragsbestandteil.",
+   "recommendation": "Netto ohne Rebate als Kopfzahl oder gleichrangig zeigen und das Rebate als offene Forderung getrennt führen. Vor Live eine schriftliche Zusage von Yubit einholen und Gutschriften im Live-Modus mit dem Konto abgleichen. Jede Entscheidungsvorlage muss beide Sichten enthalten.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/ENG/h_kostenzerlegung.py"
+  },
+  {
+   "id": "ENG-06",
+   "title": "Live-Ausführung: Füllungen werden einmal nach 1,5 Sekunden abgefragt; verspätete Füllungen führen zu Abbruch und unbeaufsichtigter Position",
+   "priority": "P1",
+   "confidence": "mittel",
+   "evidence": "vorwaertstest/bot.py:135-145: time.sleep(1.5), ein einziger Abruf der Fills, Storno-Fehler werden verschluckt. yubit.py:130-138: Limit-Order ohne timeInForce, die orderLinkId wird nicht gespeichert. bot.py:177-182: Abweichung zwischen Börse und Protokoll beendet den Lauf mit SystemExit. bot.py:276-281: Zustand und Protokoll werden erst nach allen Orders geschrieben. Experiment mit nachgestelltem Konto (d_bot_experimente.txt, D8_live.fills_spaet): Börse hält -1,0 / -2,0, Protokoll leer (\"nichts gefüllt\"), der nächste Lauf bricht ab mit \"Position laut Börse -1.0 weicht vom Protokoll 0.0 ab. Kein Handel.\" README.md:52-53: der Live-Teil ist nie gegen ein echtes Konto gelaufen. Wie schnell Yubit Fills meldet, ist nicht bekannt, daher Vertrauen mittel.",
+   "impact": "Eine gewöhnliche Verzögerung der Börse genügt, damit der Bot dauerhaft stehen bleibt. Die offenen, gehebelten Positionen laufen dann ohne Signal, Stop und Tageslimit weiter; die Meldung erscheint nur auf der Standardausgabe. Stürzt der Prozess nach einer Order ab, fehlt sie im Zustand, mit derselben Folge.",
+   "recommendation": "Vor Live: Fills mit Wiederholung und Zeitlimit abholen, offene Orders und Positionen der Börse als maßgeblich übernehmen (Abgleich statt Abbruch), orderLinkId vor dem Senden speichern, sofort ausführbare Orderart nutzen, falls die API sie anbietet, und einen Alarmweg einrichten. Tests mit verzögerten und teilweisen Fills ergänzen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/ENG/d_bot_experimente.py $(mktemp -d)   # Schlüssel D8_live.fills_spaet"
+  },
+  {
+   "id": "ENG-07",
+   "title": "Funding im Bot: gebucht wird der Ticker-Satz nach dem Termin, multipliziert mit der Zahl verpasster Termine",
+   "priority": "P2",
+   "confidence": "mittel",
+   "evidence": "vorwaertstest/bot.py:184-189 (\"Näherung mit der aktuellen Rate\"), kern.py:91-96, yubit.py:92. Die echte Ticker-Antwort in tests/fixtures/yubit_ticker.json führt fundingRate zusammen mit nextFundingTime (2026-11-14 16:00 UTC), der Satz gehört also zum kommenden Termin. Experiment D5 (d_bot_experimente.txt): Satz vor dem Termin +0,01 %, Ticker danach -0,03 %: gebucht +4,50 USD statt -1,50 USD auf 15.000 USD Long; drei Termine ohne Lauf: dreimal der aktuelle Satz (+13,50 USD). Realer Lauf Test 1: einziger Termin 16:00 UTC, gebucht um 16:04: -1,1503 USD = -0,00785 % auf 14.647 USD Short (e_snapshot_identitaeten.txt). Rückrechnung: Funding -23,2 Punkte im Entwicklungszeitraum, etwa -6,4 % pro Jahr bei Hebel 1 (h_kostenzerlegung.txt). Vorzeichen und Einheit sind in Ordnung (siehe correct).",
+   "impact": "Die Funding-Spalte des Vorwärtstests ist eine Näherung mit unbekanntem Fehler; bei Hebel 3 geht es in der Rückrechnung um rund 19 % des Kapitals pro Jahr. Auf Handelsentscheidungen wirkt das nicht, wohl aber auf den Vergleich Vorwärtstest gegen Rückrechnung. Im Live-Modus würde das Kontrollbuch vom echten Konto abweichen.",
+   "recommendation": "Den Satz des letzten Laufs vor dem Termin verwenden (beim 5-Minuten-Takt vorhanden) oder die Funding-Historie der Börse abrufen. Verpasste Termine in stand.csv kennzeichnen. Im Live-Modus die tatsächlichen Funding-Buchungen abgleichen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B -m pytest -q -p no:cacheprovider --basetemp=$(mktemp -d) reports/audit/evidence/ENG/test_eng_ausgangsverhalten.py -k funding"
+  },
+  {
+   "id": "ENG-08",
+   "title": "Teilausfall der Marktdaten: Coin wird übersprungen, Position bleibt, Bewertung mit altem Kurs ohne Kennzeichen",
+   "priority": "P2",
+   "confidence": "hoch",
+   "evidence": "vorwaertstest/bot.py:168-173 überspringt einen Coin bei Datenfehler; bot.py:88 akzeptiert eine bis zu 2 Stunden alte Kerze ohne Hinweis; bot.py:272-279 schreibt stand.csv ohne Kennzeichen. Bereits eingetreten: Test 1, Lauf 2026-11-15 15:16 UTC, nur 5 von 10 Coins in spannen.csv (BTC, ETH, SOL, XRP, DOT), Zeile in stand.csv unauffällig (reports/audit/evidence/ENG/j_teilausfall.txt). Experiment D7: Referenzkerze fehlt, Kurs fällt von 100 auf 70; der Bot hält die Long-Position und meldet brutto -11,25 USD statt -2.261,25 USD. Experiment D6: Kerze 1 h 05 min nach Schluss wird ohne Warnung benutzt, ab 2 h 05 min Abbruch. Die Rückrechnung geht bei fehlenden Daten flach (Signal 0; SOL, XRP, LTC je 120 Stunden vom 26.02. bis 02.03.2022, b_signal_luecken.txt).",
+   "impact": "Bei Teilausfällen zeigt der Stand einen falschen Wert; Umkehr und Stop (Test 2) werden für den betroffenen Coin in diesem Lauf nicht ausgeführt. Im Live-Modus bliebe die Position so lange unbeaufsichtigt. Bisher ein belegter Fall in 64 Läufen.",
+   "recommendation": "In stand.csv je Lauf festhalten, wie viele Coins mit frischem Kurs bewertet wurden und welche fehlten. Nach N fehlgeschlagenen Läufen je Coin Alarm. Das Alter der verwendeten Kerze protokollieren und über einer Stunde warnen. Verhalten bei fehlenden Daten festlegen und in Rückrechnung und Bot gleich umsetzen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && T=$(mktemp -d) && cp -r vorwaertstest/lauf vorwaertstest/lauf_tpsl $T/ && .venv/bin/python -I -B reports/audit/evidence/ENG/j_teilausfall.py $T"
+  },
+  {
+   "id": "ENG-09",
+   "title": "Teilfüllungen werden nicht nachgeführt; Mengenrundung falsch bei Schrittweiten, die keine Zehnerpotenz sind",
+   "priority": "P2",
+   "confidence": "hoch",
+   "evidence": "vorwaertstest/bot.py:229 vergleicht nur die Richtung (`if ziel == ist_richtung: continue`), bot.py:268-270 bricht nach einer Teilfüllung ab. Experiment D2: Soll 75,0 Stück, gefüllt 6,0; im nächsten Lauf mit vollem Buch keine Order, Position bleibt 6,0. kern.py:28-29 und 33-35 runden auf Dezimalstellen: Experiment D4: menge_runden(10, 13, 0.25, 0.25) = 0.8 statt 0.75 (kein Vielfaches der Schrittweite, über dem Zielbetrag), als_text(0.75, 0.25) = \"0.8\". Real: alle 10 Coins haben Zehnerpotenz-Schritte; BTC erreicht 96,4 % des Sollbetrags (Schritt 0,001 BTC, rund 65 USD), die Summe 99,5 % (e_snapshot_identitaeten.txt). 0 von 775 Messungen ohne volle Buchtiefe.",
+   "impact": "Derzeit ohne Wirkung auf die beiden Tests. Bei dünnerem Buch, kleinerem Kapital oder weiteren Coins bliebe eine Position bis zum nächsten Dreh zu klein, bzw. im Live-Modus ginge eine ungültige Ordermenge an die Börse. Im Live-Modus sind Teilfüllungen wegen der Preisgrenze von 0,05 % wahrscheinlicher als im Papier-Modus, der das ganze Buch füllt.",
+   "recommendation": "Zielmenge statt Zielrichtung vergleichen (Toleranz eine Schrittweite) und Reste nachführen. Auf Vielfache der Schrittweite mit Decimal runden. Die beiden test_ist-Tests nach der Korrektur umdrehen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B -m pytest -q -p no:cacheprovider --basetemp=$(mktemp -d) reports/audit/evidence/ENG/test_eng_ausgangsverhalten.py -k \"teilfuellung or runden\""
+  },
+  {
+   "id": "ENG-10",
+   "title": "Vorwärtstest ist kein 1:1-Abbild der Rückrechnung: 23 semantische Unterschiede; Test 1 und Test 2 untereinander nicht direkt vergleichbar",
+   "priority": "P2",
+   "confidence": "hoch",
+   "evidence": "Vollständige Liste mit Fundstellen und Bewertung: reports/audit/evidence/ENG/semantik_backtest_vs_bot.txt. Ergebniswirksam sind: Stop/Ziel-Takt (ENG-03), Hebel 3 ohne Liquidation gegen Kennzahlen bei Hebel 1 (ENG-02), Funding-Näherung (ENG-07), Kursquelle Yubit gegen Binance (nicht messbar, keine Yubit-Historie im Repo), Start mitten im Trend. Klein oder zugunsten der Rückrechnung: Verzug der Ausführung (5 Minuten später: 59,4 auf 57,8 % pro Jahr, Sharpe 0,946 auf 0,919, c_tpsl_takt.txt), Slippage (gemessen 1,58 bp im Mittel gegen 2,95 bp Annahme, e_snapshot_identitaeten.txt), Rundung der Stückzahl. Test 1 startete 13:21 UTC, Test 2 17:44 UTC, beide mit sofortigem Einstieg: Stand 18:58 UTC +264,57 USD gegen -10,45 USD, seit 17:46 aber -9,70 gegen -6,44 USD. Der Abstand von 5,5 % des Kapitals ist ein Startzeit-Effekt und keine Wirkung von Stop und Ziel.",
+   "impact": "Ohne diese Liste werden Abweichungen zwischen Vorwärtstest und Rückrechnung leicht der Strategie zugeschrieben, obwohl sie aus der Messanordnung stammen. Ein Vergleich der Kontostände von Test 1 und Test 2 führt derzeit zu einem falschen Schluss über Stop und Gewinnziel.",
+   "recommendation": "Yubit-Stundenkerzen je Lauf mitschreiben und den Vorwärtstest regelmäßig gegen eine Schatten-Rückrechnung derselben Stunden mit engine2 prüfen. Test 1 und Test 2 nur ab einem gemeinsamen Zeitpunkt bzw. je Coin ab dem ersten gemeinsamen Dreh vergleichen. Tagesschlüsse aus stand.csv bilden, bevor ein Sharpe berechnet wird.",
+   "reproduce": "cat /home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/semantik_backtest_vs_bot.txt"
+  },
+  {
+   "id": "ENG-11",
+   "title": "Kleinere Unstimmigkeiten in Beschriftung und Anzeige (Sammelbefund)",
+   "priority": "P3",
+   "confidence": "hoch",
+   "evidence": "(a) Takt: README.md:10 und docs/index.html:135 sagen stündlich, dashboard_daten.py:12 TAKT_MINUTEN = 60, index.html:478 zählt auf Minute 4 herunter, bot.py:314 \"zur vollen Stunde\"; gemessen läuft der Bot im Median alle 5 Minuten, also sind auch die Spannen-Messungen 5-Minuten-Werte. (b) bot.py:318 vergleicht die gemessene Slippage mit festen 5 bp; der Kandidat wurde mit 0,5 bis 13,2 bp je Coin gerechnet, im Mittel 2,95 bp (research.py:272-279). (c) \"brutto\" enthält in runner.py:14, 50 das Funding, in kern.py:85-86 nicht. (d) docs/index.html:192-204 bewertet Yubit-Positionen live mit Binance-Kursen; mit Bot-Kursen weicht die Browser-Formel nur durch Rundung ab (höchstens 0,02 USD). (e) Die STOPP-Datei hält an, schließt aber keine Position (bot.py:151-153, Experiment D9); die README nennt sie Notbremse. (f) Zwei Läufe in derselben Minute erzeugen doppelte Zeilen in stand.csv und spannen.csv, aber keine doppelten Orders (Experiment D14). (g) Gleichstand bedeutet in Rückrechnung und Bot flach, nicht short; in den Binance-Daten 146 solche Phasen, 2026 bei DOT 15 Stunden (f_gleichstand_hebel.txt). Ein Gleichstand löst außerdem die Sperre nach Stop oder Ziel (Experiment D1b), in beiden Implementierungen gleich.",
+   "impact": "Keine Wirkung auf die Rechnung, aber Missverständnisse beim Lesen von Bericht und Dashboard und beim Vergleich von Spalten zwischen Rückrechnung und Vorwärtstest.",
+   "recommendation": "Texte und Konstanten an den tatsächlichen Takt anpassen oder den Takt auf stündlich zurückstellen. Slippage-Urteil gegen die Annahme je Coin rechnen. Spalten einheitlich benennen. In der README klarstellen, dass STOPP nicht schließt. Die Regelbeschreibung um den Gleichstand ergänzen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/ENG/d_bot_experimente.py $(mktemp -d)   # Schlüssel D1, D1b, D9, D14"
+  }
+ ],
+ "reproduced": [
+  {
+   "claim": "Entwicklung: +59 % pro Jahr, Sharpe 0,95 (Kandidat, Gruppe A, Einsatz 100 %, Yubit-Kosten mit Rebate, ohne Tageslimit)",
+   "result": "reproduziert",
+   "detail": "engine2: 59,40 % pro Jahr, Sharpe 0,946, Einbruch 24,58 % (D1 0,564, D2 1,317). Unabhängige Nachrechnung ohne engine2 mit denselben Zielgewichten: größte Abweichung im Tagesergebnis je Coin 3,3e-16; mit eigenem, zeitbasiertem Signal 59,34 % und Sharpe 0,944 (Unterschied nur durch die 120-Stunden-Datenlücke bei SOL, XRP, LTC).",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/ENG/a_engine_parity.py"
+  },
+  {
+   "claim": "Unabhängiger Prüfzeitraum: +16,5 % pro Jahr, Sharpe 0,34",
+   "result": "reproduziert",
+   "detail": "engine2 und Nachrechnung: 16,52 % pro Jahr, Sharpe 0,337, netto +25,85 % über 571 Tage, Einbruch 31,3 %. Einschränkung: ohne Rebate -19,6 % (h_kostenzerlegung.txt).",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/ENG/a_engine_parity.py"
+  },
+  {
+   "claim": "Signal: long, wenn der Schlusskurs der letzten abgeschlossenen Stunde über dem von 336 Stunden zuvor liegt, andernfalls short",
+   "result": "abweichend",
+   "detail": "Rückrechnung (mutationen.py:22-23) und Bot (kern.py:14-19, bot.py:84-102) setzen dieselbe Regel um, aber bei exaktem Gleichstand gehen beide flach statt short. In den Binance-Daten 146 solche Phasen über zehn Coins. Der Vergleichskurs ist in beiden die Kerze genau 336 Stunden früher; der gemeinsame Stundenindex ist lückenlos (59.904 Stunden).",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/ENG/b_signal_luecken.py"
+  },
+  {
+   "claim": "Stündliche Signalprüfung",
+   "result": "abweichend",
+   "detail": "Das Signal ändert sich nur stündlich, der Bot läuft aber im Median alle 5 Minuten (Test 1: 64 Läufe in 5,6 Stunden, Abstand 1 bis 13 Minuten; erster Lauf nach voller Stunde in Minute 1 bis 5). Für Test 1 ohne Wirkung auf das Signal, für Test 2 wesentlich (ENG-03).",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && T=$(mktemp -d) && cp -r vorwaertstest/lauf vorwaertstest/lauf_tpsl $T/ && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/ENG/e_snapshot_identitaeten.py $T"
+  },
+  {
+   "claim": "10 Kryptowährungen, gleichgewichtet, zwei Papier-Tests mit Hebel 3 seit 15.11.2026",
+   "result": "reproduziert",
+   "detail": "config_lauf.json und config_lauf_tpsl.json: 10 Coins, Hebel 3,0, Kapital 5.000 USD, Sollbetrag 1.500 USD je Coin. Test 1 Start 13:21 UTC, Test 2 Start 17:44 UTC. Effektiver Hebel 2,985 bzw. 2,992; BTC durch die Schrittweite 96,4 % des Sollbetrags, die übrigen 98,9 bis 100 %. Ein früherer Lauf mit Hebel 1 von 13:00 UTC liegt in lauf_hebel1_archiv.",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && T=$(mktemp -d) && cp -r vorwaertstest/lauf vorwaertstest/lauf_tpsl $T/ && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/ENG/e_snapshot_identitaeten.py $T"
+  },
+  {
+   "claim": "Test 2: zusätzlich Stop 5 % und Gewinnziel 15 % (Runde 24, Variante sl5_tp15: 33 % pro Jahr, Sharpe 1,13, Einbruch 14,6 %, 56 % der Zeit im Markt)",
+   "result": "abweichend",
+   "detail": "Die Protokollzeile ist reproduziert (33,27 % / 1,135 / 14,56 % / 56,35 %). Der Bot setzt die Regel aber anders um (Prüfung alle 5 Minuten gegen den Füllkurs): 29,7 % / 1,035 / 16,6 %, 373 statt 236 Stops im Entwicklungszeitraum.",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/ENG/c_tpsl_takt.py"
+  },
+  {
+   "claim": "Kontorechnung des Papier-Bots ist in sich stimmig (Zustand, stand.csv, Orderprotokoll, Dashboard, Browser)",
+   "result": "reproduziert",
+   "detail": "Beide Tests, Stand 18:58 UTC: kern.vermoegen(zustand) gleich der letzten Zeile von stand.csv (Abweichung unter 0,0001 USD), brutto aus protokoll.csv neu gerechnet identisch (267,5080 bzw. -8,6558), Gebühr genau 0,08 % des Volumens, Rebate genau 85 % der Gebühr, dashboard.json 264,57 / -10,45, Browser-Formel 264,5680 / -10,4558, Einbruch 1,820 / 1,247 % nachgerechnet gleich.",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && T=$(mktemp -d) && cp -r vorwaertstest/lauf vorwaertstest/lauf_tpsl $T/ && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/ENG/e_snapshot_identitaeten.py $T"
+  },
+  {
+   "claim": "Bestehende Tests: 105 Tests grün",
+   "result": "reproduziert",
+   "detail": "105 passed in 13,5 s, ohne Schreibzugriffe im Repo (Cache und temporäre Verzeichnisse umgeleitet).",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B -m pytest -q -p no:cacheprovider --basetemp=$(mktemp -d) tests"
+  },
+  {
+   "claim": "Börse Yubit: Funding-Einheit (yubit.ticker teilt fundingRate durch 1e6)",
+   "result": "reproduziert",
+   "detail": "Nur indirekt belegt: In der aufgezeichneten Ticker-Antwort steht price24hPcnt = -41317 bei lastPrice 66480,3 und prevPrice24h 69345,5, das sind -4,1318 %; die Prozentfelder haben also die Einheit 1e-6, fundingRate \"100\" entspricht 0,01 %. Im echten Lauf wurde Funding nur zum 8-Stunden-Termin 16:00 UTC gebucht (-0,00785 % auf 14.647 USD Short), eine plausible Größe. Ein direkter Abgleich mit einer Yubit-Abrechnung fehlt.",
+   "command": "cat /home/user/OdinGate-Botv134/swing-hybrid/tests/fixtures/yubit_ticker.json"
+  }
+ ],
+ "correct": [
+  "engine2 im Taker-Modus (Stückzahl = hebel/N / Open, Dreh als eine Order, Slippage-Vorzeichen, Gebühr auf das Volumen, Funding-Vorzeichen, Schlussabrechnung): unabhängige Nachrechnung auf den echten 5-Minuten-Daten weicht um höchstens 3,3e-16 je Coin und Tag ab (src/hybrid/engine2.py:84-159; reports/audit/evidence/ENG/a_engine_parity.txt)",
+  "Identität Summe der Tagesergebnisse = Endstand: 2,4148538757 auf beiden Seiten; G - F = netto ohne Rebate und netto ohne Rebate + R = N in allen Fenstern (runner.py:48-57; a_engine_parity.txt, h_kostenzerlegung.txt)",
+  "engine2 skaliert exakt linear mit dem Hebel: |equity(Hebel 3) - 3 x equity(Hebel 1)| <= 1,4e-14 (f_gleichstand_hebel.txt)",
+  "Kein Blick voraus bei der Zuordnung des Stundensignals: Signal der Stunde H gilt erst ab H+1:00 (research.py:70-75; Test test_stundensignal_gilt_erst_ab_stundenschluss)",
+  "shift(336) der Rückrechnung ist faktisch zeitbasiert: der gemeinsame Stundenindex hat 59.904 Stunden ohne Lücke; Bot und Rückrechnung vergleichen dieselben zwei Kerzen (b_signal_luecken.txt; bot.py:84-91; kern.py:14-19)",
+  "Hebel-Semantik identisch: Bot nominal = kapital_usd x hebel / Anzahl Coins (bot.py:165), Rückrechnung S = hebel / N (research.py:150); feste Größe bis zum Dreh, kein Zinseszins auf beiden Seiten",
+  "Gebühr und Rebate im Bot: je Order |Gebühr - 0,0008 x Volumen| <= 5e-7 und |Rebate - 0,85 x Gebühr| <= 7e-7 in beiden echten Protokollen; gleiche Sätze wie runner.py / config.yaml (e_snapshot_identitaeten.txt)",
+  "Füllung gegen das Orderbuch (kern.buch_fill, kern.py:38-51) und Dreh als zwei Orders: kumulativ durch dasselbe Buch, Volumen wie eine einzige Order (Experiment D12, 19.960,00 USD auf beiden Wegen)",
+  "kern.vermoegen = stand.csv = Rekonstruktion aus protokoll.csv = dashboard.json = Browser-Formel konto() (docs/index.html:192-204) für beide laufenden Tests; Einbruch und Margin-Anzeige rechnerisch richtig nachvollzogen (e_snapshot_identitaeten.txt)",
+  "Funding-Vorzeichen: Long zahlt bei positivem Satz, Short erhält (Bot: Experiment D5, -1,50 / +1,50 USD auf 15.000 USD; engine2: Test test_engine2_taker_stueckzahl_dreh_gebuehr_funding); Termin-Raster in Minuten korrekt (kern.py:91-96; im echten Lauf nur eine Buchung um 16:04 UTC)",
+  "Sperre nach Stop oder Ziel bis das Signal die Richtung verlässt: Bot (bot.py:218-228) und hybrid.tpsl (tpsl.py:24-28) verhalten sich gleich; Stop- und Zielkurs im Dashboard (dashboard_daten.py:35-36) passen zur Bot-Formel",
+  "Live-Schranken: modus live ohne YUBIT_LIVE=ja oder ohne Schlüssel bricht vor jeder Order ab; modus papier bleibt Papier auch mit Umgebungsvariable und Schlüssel; live nur mit allen dreien (bot.py:107-108, 156-158; Experiment D8, Test test_live_nur_mit_modus_umgebungsvariable_und_schluessel)",
+  "STOPP-Datei: kein Lauf, Zustand unverändert, keine neue Zeile in stand.csv (bot.py:151-153; Experiment D9)",
+  "Wiederholter Lauf in derselben Minute löst keine zweite Order aus, weil der Bot zustandsbasiert vergleicht (Experiment D14)",
+  "Mengenrundung für die zehn gehandelten Coins (alle Schrittweiten sind Zehnerpotenzen): abgerundet auf die Schrittweite, unter der Mindestmenge kein Einstieg mit Hinweis (kern.py:22-30; bestehender Test test_unter_mindestgroesse_wird_ausgelassen)",
+  "Slippage-Annahme der Rückrechnung ist gegenüber der bisherigen Messung vorsichtig: gemessen 1,58 bp im Mittel über die Coins gegen 2,95 bp Annahme (DOT 7,3 gegen 13,2 bp), 635 Messungen in 5,6 Stunden; in keiner Messung lag der Durchschnittskurs jenseits der Live-Preisgrenze (e_snapshot_identitaeten.txt, i_preisgrenze.txt)",
+  "Verzug der Ausführung um 5 Minuten wirkt im Entwicklungszeitraum nur wenig: 59,4 auf 57,8 % pro Jahr (c_tpsl_takt.txt)",
+  "Bestehende Testsuite: 105 Tests bestanden; zusätzlich 18 Regressionstests zum Ausgangsverhalten bestanden (reports/audit/evidence/ENG/test_eng_ausgangsverhalten.py)"
+ ],
+ "unclear": [
+  "Wie stark Yubit-Stundenschlüsse von Binance-Stundenschlüssen abweichen und wie oft das Signal dadurch zu einer anderen Stunde dreht: im Repo liegt keine Yubit-Kerzenhistorie, der Bot speichert die verwendeten Kerzen nicht.",
+  "Bedeutung von fundingRate im Yubit-Ticker (Prognose für den kommenden Termin oder zuletzt abgerechneter Satz) und die Funding-Intervalle der neun Coins außer BTC: nur aus der Fixture (nextFundingTime neben fundingRate, fundingInterval 480 für BTC) erschlossen, ohne Netz nicht prüfbar. Die Einheit 1e-6 ist nur indirekt über price24hPcnt belegt.",
+  "Ob Yubit das Rebate von 85 % und den Taker-Satz von 0,08 % für dieses Konto tatsächlich so abrechnet, wann es gutgeschrieben wird und ob es nach YUBIT_REGELN.md Abschnitt 2 gestrichen werden kann: keine Abrechnung im Repo.",
+  "Hebel-Einstellung, Margin-Modus (cross oder isoliert), Hedge-Modus und Liquidationsregeln des Yubit-Kontos: Der Bot liest und setzt nichts davon; die Fixture nennt nur für BTC eine Erhaltungsmargin von 0,25 %. Ab welchem Kontostand real liquidiert würde, ist daher offen; die Auswertung in ENG-02 nimmt Kontostand <= 0 als Näherung.",
+  "Verhalten der echten Yubit-API im Live-Pfad (Meldeverzug von Fills, Unterstützung einer sofort ausführbaren Orderart, Fehlercodes beim Storno): Der Live-Teil ist laut README nie gegen ein echtes Konto gelaufen; ENG-06 ist nur mit nachgestellter Börse belegt.",
+  "Ursache der 120-Stunden-Lücke in den Binance-Daten von SOL, XRP und LTC (26.02. bis 02.03.2022): Download-Lücke oder echte Handelspause nicht geklärt; Wirkung auf das Kandidaten-Ergebnis 0,24 Punkte über den Gesamtzeitraum.",
+  "Warum im Lauf vom 15.11.2026 15:16 UTC nur 5 von 10 Coins Marktdaten lieferten: Die Hinweise des Bots gehen nur auf die Standardausgabe und sind nicht gespeichert.",
+  "Ob der 5-Minuten-Takt dauerhaft so bleibt: Er ist nur aus den Zeitstempeln in stand.csv abgelesen; das Ergebnis von Test 2 hängt davon ab.",
+  "Die Auswertung der Kontoausfälle je Starttag in f_gleichstand_hebel.txt Teil (2) umfasst auch den Prüfzeitraum und ist rein beschreibend; für Befunde wurde nur g_hebel3_entwicklung.txt (ausschließlich Entwicklungszeitraum) herangezogen. Es wurden keine Parameter gewählt oder verändert."
+ ],
+ "evidence_files": [
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/semantik_backtest_vs_bot.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/test_eng_ausgangsverhalten.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/test_eng_ausgangsverhalten.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/a_engine_parity.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/a_engine_parity.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/b_signal_luecken.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/b_signal_luecken.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/c_tpsl_takt.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/c_tpsl_takt.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/d_bot_experimente.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/d_bot_experimente.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/e_snapshot_identitaeten.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/e_snapshot_identitaeten.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/f_gleichstand_hebel.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/f_gleichstand_hebel.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/g_hebel3_entwicklung.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/g_hebel3_entwicklung.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/h_kostenzerlegung.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/h_kostenzerlegung.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/i_preisgrenze.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/i_preisgrenze.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/j_teilausfall.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ENG/j_teilausfall.txt"
+ ]
+}

@@ -1,0 +1,8 @@
+docs/schluessel.json                                       Fassungen in der Historie: 1
+docs/stand.enc.json                                        Fassungen in der Historie: 46
+docs/stand_tpsl.enc.json                                   Fassungen in der Historie: 14
+docs/stand.json                                            Fassungen in der Historie: 4
+swing-hybrid/vorwaertstest/lauf/dashboard.json             Fassungen in der Historie: 68
+swing-hybrid/vorwaertstest/lauf_tpsl/dashboard.json        Fassungen in der Historie: 14
+swing-hybrid/vorwaertstest/lauf/zustand.json               Fassungen in der Historie: 65
+swing-hybrid/vorwaertstest/lauf/protokoll.csv              Fassungen in der Historie: 2

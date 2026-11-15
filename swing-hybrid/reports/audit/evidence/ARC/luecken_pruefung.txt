@@ -1,0 +1,23 @@
+1) engine2: Funding (Vorzeichen, Betrag, Zeitpunkt)
+  [OK] Long zahlt bei positiver Rate, Betrag = Nominal x Rate FU[3]=-0.001000
+  [OK] Funding in der Einstiegskerze wird nicht berechnet (Position entsteht erst nach dem Funding-Schritt) FU[1]=0.000000
+2) engine2: Tagesverlust-Limit (schliesst alles, sperrt bis zum naechsten Tag, danach Wiedereinstieg)
+  [OK] eine Sperre ausgeloest Sperrtage=1
+  [OK] Verlust am Sperrtag realisiert (-5 % zum Open der Folgekerze) Tag0 brutto=-0.0500
+  [OK] am Folgetag Wiedereinstieg (Orders: Einstieg, Sperre, Einstieg, Schluss = 4) Orders=4
+3) runner.Lauf: Gebuehr, Rebate, Tagesreihe
+  [OK] netto ohne Rebate = brutto - 0,08 % x Taker-Volumen 
+  [OK] netto mit Rebate = brutto - 0,012 % x Taker-Volumen 
+  [OK] Summe der Tagesgewinne = Endstand des Kontoverlaufs 
+  [OK] sicht(): N = G - F + R (ohne Funding) G=-0.01700 F=0.00798 R=0.00679 N=-0.01819
+4) research.tsmom + auf_raster: Signal der Stunde H gilt erst ab H+1:00, spaetere Kurse aendern nichts Frueheres
+  [OK] identisch bis zum Schluss der geaenderten Stunde 
+  [OK] Unterschied erst ab H+1:00 moeglich 
+  [OK] Rasterwert um H+1:00 = Signal der Stunde H; um H+0:55 noch das der Stunde H-1 
+5) Bot: Funding-Buchung (bot.py:185-189) ueber einen 8-Stunden-Termin
+     +0 h: Position 50.0, Funding kumuliert +0.0000 $
+     +1 h: Position 50.0, Funding kumuliert +0.0000 $
+     +7 h: Position 50.0, Funding kumuliert +0.0000 $
+     +8 h: Position 50.0, Funding kumuliert -0.5000 $
+     +9 h: Position 50.0, Funding kumuliert -0.5000 $
+  [OK] Long 50 Stueck x 100 $ x 0,01 % = -0,50 $, genau einmal gebucht 

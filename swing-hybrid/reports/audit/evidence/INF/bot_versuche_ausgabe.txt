@@ -1,0 +1,66 @@
+
+==============================================================================================================
+V1  Zweifache Ausfuehrung im selben Augenblick (derselbe Zeitstempel)
+--------------------------------------------------------------------------------------------------------------
+Orders im 1. Lauf: 2, im 2. Lauf: 0  -> Handel ist ueber den Zustand idempotent: True
+stand.csv: 2 Zeilen, Zeitstempel ['2027-01-15 08:05', '2027-01-15 08:05']  -> doppelte Zeile mit gleichem Zeitstempel: True
+spannen.csv: 4 Zeilen fuer 2 Coins (jede Messung doppelt)
+Im Zustand steht letzte_kerze = 1799996400000 - das Feld wird in bot.py nur geschrieben (Zeile 280), nie gelesen.
+
+==============================================================================================================
+V2  Absturz zwischen dem Anhaengen an die CSV-Dateien (bot.py:276-279) und zustand_speichern (bot.py:281)
+--------------------------------------------------------------------------------------------------------------
+1. Lauf: simulierter Absturz vor dem Schreiben von zustand.json | zustand.json vorhanden: False | Zeilen protokoll.csv: 2
+2. Lauf (Neustart): 2 Orders. protokoll.csv hat jetzt 4 Orders, zustand.orders = 2, Positionen {'AAA': 75.0, 'BBB': -150.0}
+Summe Volumen laut protokoll.csv 29992.50 USDT, Gebuehr 23.9940; laut Zustand Gebuehr 11.9970  -> Protokoll zaehlt doppelt: True
+Dashboard: orders 4, volumen_usd 29992.0, gebuehr_usd 12.0 (Gebuehr stammt aus stand.csv, Orders und Volumen aus protokoll.csv)
+bericht.md: ['- 4 Orders, Volumen 29.992 $', '- Gebühr gezahlt: 23,99 $ (das sind 0,080 % vom Volumen)']
+stand.csv: 2 Zeilen fuer 2 Versuche (die Zeile des abgestuerzten Laufs bleibt stehen): [('2027-01-15 08:05', '2'), ('2027-01-15 08:10', '2')]
+
+==============================================================================================================
+V3  Zwei gleichzeitig laufende Instanzen auf demselben Datenordner (kein Sperrmechanismus in bot.py oder stunde.sh)
+--------------------------------------------------------------------------------------------------------------
+Instanz A meldet 2 Orders. protokoll.csv: 4 Orders, zustand.orders = 2, Positionen {'AAA': 75.0, 'BBB': -150.0}
+Orders im Protokoll: [('AAA', 'kauf', '75.0'), ('BBB', 'verkauf', '150.0'), ('AAA', 'kauf', '75.0'), ('BBB', 'verkauf', '150.0')]
+Position laut Protokoll {'AAA': 150.0, 'BBB': -300.0} gegen Zustand {'AAA': 75.0, 'BBB': -150.0}  -> Protokoll und Zustand widersprechen sich: True
+Im Live-Modus waeren das vier echte Orders (doppelte Positionsgroesse an der Boerse); erst der naechste Lauf wuerde am Abgleich bot.py:177-182 abbrechen.
+
+==============================================================================================================
+V4  Ausfall des Zeitgebers: 10 Stunden kein Lauf, Konto mit Stop 5 % / Ziel 15 % (Konfiguration wie Test 2)
+--------------------------------------------------------------------------------------------------------------
+Erster Lauf nach dem Ausfall: 1 Order, Grund 'stop', Ausstieg BBB bei 60.05 nach Einstieg 49.95: 20.2 % gegen die Position (Stop war 5 %)
+Hinweise des Laufs zur Luecke: []  | stand.csv-Zeitstempel: ['2027-01-15 08:05', '2027-01-15 18:05'] (Luecke von 10 Stunden ohne Kennzeichnung)
+Funding: 0.1500 USDT fuer 1 Termin(e), nachtraeglich mit Rate und Kurs des Wiederanlaufs gebucht (bot.py:185-189)
+
+==============================================================================================================
+V5  Marktdaten eines Coins fehlen in genau dem Lauf, in dem sein Signal dreht
+--------------------------------------------------------------------------------------------------------------
+Lauf mit Fehler: 0 Orders, Rueckgabe-Hinweise ['HTTP 429 bei /klines (BBB)']
+Position BBB bleibt -150.0 (Short), bewertet mit altem Kurs 50.0 statt 66.0; stand.csv brutto -11.25
+Tatsaechliches Brutto bei Kurs 66: -2411.25 USDT  -> stand.csv weicht um 2400.00 USDT ab, ohne Kennzeichnung in der Zeile
+spannen.csv fuer diesen Lauf: ['AAA'] | Dateien im Datenordner: ['protokoll.csv', 'spannen.csv', 'stand.csv', 'zustand.json'] (keine Protokolldatei mit dem Hinweis)
+Naechster Lauf ohne Fehler: 2 Orders (Dreh wird einen Takt spaeter nachgeholt)
+Alle Coins fehlen -> SystemExit: Keine Marktdaten erhalten: HTTP 429 bei /klines (AAA); HTTP 429 bei /klines (BBB) | stand.csv unveraendert: True
+
+==============================================================================================================
+V6  Veraltete Kerzen: wie alt darf die letzte abgeschlossene Stundenkerze sein (bot.py:88)?
+--------------------------------------------------------------------------------------------------------------
+neueste gelieferte Kerze beginnt 0 h vor der laufenden Stunde, Lauf  5 min nach voller Stunde: 2 Orders, Schluss der verwendeten Kerze ist 5 min alt, Hinweise []
+neueste gelieferte Kerze beginnt 1 h vor der laufenden Stunde, Lauf  5 min nach voller Stunde: 2 Orders, Schluss der verwendeten Kerze ist 5 min alt, Hinweise []
+neueste gelieferte Kerze beginnt 2 h vor der laufenden Stunde, Lauf  5 min nach voller Stunde: 2 Orders, Schluss der verwendeten Kerze ist 65 min alt, Hinweise []
+neueste gelieferte Kerze beginnt 2 h vor der laufenden Stunde, Lauf 59 min nach voller Stunde: 2 Orders, Schluss der verwendeten Kerze ist 119 min alt, Hinweise []
+neueste gelieferte Kerze beginnt 3 h vor der laufenden Stunde, Lauf  0 min nach voller Stunde: 2 Orders, Schluss der verwendeten Kerze ist 120 min alt, Hinweise []
+neueste gelieferte Kerze beginnt 3 h vor der laufenden Stunde, Lauf  5 min nach voller Stunde: Abbruch (Keine Marktdaten erhalten: AAA: Kerzen sind veraltet (2027-01-15 05:00)
+
+==============================================================================================================
+V7  Abgeschnittene letzte Zeile in protokoll.csv (Absturz mitten im Schreiben)
+--------------------------------------------------------------------------------------------------------------
+bot.bericht bricht ab: TypeError: float() argument must be a string or a real number, not 'NoneType'
+dashboard_daten.bauen bricht ab: TypeError: float() argument must be a string or a real number, not 'NoneType'
+Naechster Lauf haengt an die kaputte Zeile an: '2027-01-15 08:05,BBB,verkauf,50.0,49.95,74922027-01-15 09:05,AAA,verkauf,80.0,79.95,5996.25,4.797,4.07745,75.0,79.95,80.05,12.5,6.25,schliessen,papier'
+
+==============================================================================================================
+V8  STOPP-Datei: das Board zeigt weiter einen frischen 'Bot-Stand'
+--------------------------------------------------------------------------------------------------------------
+Rueckgabe {'gestoppt': True}; Dashboard: letzter_lauf 2027-01-15 08:05 (Bot-Uhr T0), geschrieben 2026-11-15T19:43:53Z (Wanduhr jetzt), takt_minuten 60
+docs/index.html:477 zeigt das Alter aus 'geschrieben' an; 'letzter_lauf' wird im Board nicht verwendet (grep).

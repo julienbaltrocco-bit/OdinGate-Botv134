@@ -1,0 +1,9 @@
+Tag 0 00:05  Kurs  100.00  Orders 10  Shorts 10  Einsatz    15000 $  Ergebnis     -3.30 $  Konto   4996.70 $  gesperrt_tag=''
+Tag 0 12:05  Kurs  106.00  Orders  0  Shorts 10  Einsatz    15900 $  Ergebnis   -903.30 $  Konto   4096.70 $  gesperrt_tag=''
+Tag 1 00:05  Kurs  112.36  Orders  0  Shorts 10  Einsatz    16854 $  Ergebnis  -1857.30 $  Konto   3142.70 $  gesperrt_tag=''
+Tag 1 12:05  Kurs  119.10  Orders  0  Shorts 10  Einsatz    17865 $  Ergebnis  -2868.54 $  Konto   2131.46 $  gesperrt_tag=''
+Tag 2 00:05  Kurs  126.25  Orders  0  Shorts 10  Einsatz    18937 $  Ergebnis  -3940.45 $  Konto   1059.55 $  gesperrt_tag=''
+Tag 2 12:05  Kurs  133.82  Orders  0  Shorts 10  Einsatz    20073 $  Ergebnis  -5076.68 $  Konto    -76.68 $  gesperrt_tag=''
+Tag 3 00:05  Kurs  141.85  Orders  0  Shorts 10  Einsatz    21278 $  Ergebnis  -6281.09 $  Konto  -1281.09 $  gesperrt_tag=''
+Tag 3 12:05  Kurs  150.36  Orders  0  Shorts 10  Einsatz    22554 $  Ergebnis  -7557.75 $  Konto  -2557.75 $  gesperrt_tag=''
+Meldungen mit 'Limit': []

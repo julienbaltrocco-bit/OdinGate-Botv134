@@ -1,0 +1,51 @@
+===== lauf (Hebel 3.0, Tageslimit 1.0, tp None, sl None) =====
+1) kern.vermoegen(zustand) vs. letzte Zeile stand.csv:
+   brutto                 267.5080     267.5080  diff +0.00001
+   gebuehr                 11.9405      11.9405  diff +0.00004
+   rebate                  10.1495      10.1495  diff -0.00004
+   funding                 -1.1503      -1.1503  diff -0.00000
+   netto_ohne_rebate      254.4172     254.4172  diff -0.00003
+   netto_mit_rebate       264.5666     264.5666  diff +0.00003
+2) aus protokoll.csv: brutto 267.5080 (Zustand 267.5080); Positionen gleich: True; Gebuehr 11.940540 (Zustand 11.940540), Gebuehr/Volumen 0.000800, Rebate/Gebuehr 0.8500
+   je Order |gebuehr - 0.0008*volumen| max: 4.800000001914384e-07 | |rebate - 0.85*gebuehr| max: 6.500000000464468e-07
+3) dashboard.json (letzter_lauf 2026-11-15 18:58): mit_rebate_usd 264.57 | stand.csv 264.5666 | Browser-Formel konto() mit Bot-Kursen 264.5680
+   einbruch_pct Dashboard 1.82 | nachgerechnet 1.820 | margin_usd 4886.0 = einsatz 14658.17 / Hebel 3.0 -> 4886; margin_pct 97.7
+4) Sollbetrag je Coin 1500 USD; Ist beim Einstieg (Volumen / Soll):
+   BTC 96.4 %, ETH 99.3 %, SOL 99.9 %, XRP 100.0 %, DOT 99.9 %, DOGE 100.0 %, ADA 100.0 %, LINK 100.0 %, AVAX 99.7 %, LTC 100.0 %
+   Summe Einstiegsvolumen 14925.67 = 99.50 % vom Soll; Hebel effektiv 2.985
+5) Funding erstmals 2026-11-15 16:04: -1.1503 USD auf Einsatz 14647 USD = -0.00785 % (alle Short)
+   Zeitpunkte mit Aenderung des Funding-Standes: ['2026-11-15 16:04']
+6) 64 Laeufe von 2026-11-15 13:21 bis 2026-11-15 18:58; Abstand Minuten: median 5, min 1, max 13; dashboard takt_minuten = 60
+   erster Lauf nach voller Stunde (Minute): [5, 1, 4, 4, 4]
+7) spannen.csv: 635 Messungen, davon ohne volle Fuellung (Tiefe < Standardgroesse): 0
+   Coin  Messungen  Slippage-Mittel bp (Kauf/Verkauf)  max bp  halbe Spanne Mittel bp | Backtest-Annahme bp
+   BTC      64      0.121                        0.418      0.121                    0.500
+   ETH      64      0.145                        1.029      0.138                    0.500
+   SOL      64      0.699                        0.706      0.699                    1.366
+   XRP      64      0.534                        1.132      0.523                    1.139
+   DOT      64      7.289                       18.948      6.823                   13.216
+   DOGE     63      0.852                        0.859      0.852                    1.652
+   ADA      63      3.258                        3.286      3.258                    6.419
+   LINK     63      0.700                        2.023      0.542                    1.089
+   AVAX     63      1.007                        2.765      0.717                    1.451
+   LTC      63      1.161                        2.896      1.113                    2.184
+   Mittel ueber Coins: gemessen 1.577 bp | Annahme 2.951 bp | bot.bericht vergleicht mit festen 5 bp
+===== lauf_tpsl (Hebel 3.0, Tageslimit 1.0, tp 0.15, sl 0.05) =====
+1) kern.vermoegen(zustand) vs. letzte Zeile stand.csv:
+   brutto                  -8.6558      -8.6558  diff +0.00003
+   gebuehr                 11.9667      11.9667  diff +0.00004
+   rebate                  10.1717      10.1717  diff +0.00003
+   funding                  0.0000       0.0000  diff +0.00000
+   netto_ohne_rebate      -20.6225     -20.6225  diff -0.00001
+   netto_mit_rebate       -10.4508     -10.4508  diff +0.00002
+2) aus protokoll.csv: brutto -8.6558 (Zustand -8.6558); Positionen gleich: True; Gebuehr 11.966741 (Zustand 11.966741), Gebuehr/Volumen 0.000800, Rebate/Gebuehr 0.8500
+   je Order |gebuehr - 0.0008*volumen| max: 3.600000002546011e-07 | |rebate - 0.85*gebuehr| max: 4.499999999296733e-07
+3) dashboard.json (letzter_lauf 2026-11-15 18:58): mit_rebate_usd -10.45 | stand.csv -10.4508 | Browser-Formel konto() mit Bot-Kursen -10.4558
+   einbruch_pct Dashboard 1.247 | nachgerechnet 1.247 | margin_usd 4989.0 = einsatz 14967.08 / Hebel 3.0 -> 4989; margin_pct 99.8
+4) Sollbetrag je Coin 1500 USD; Ist beim Einstieg (Volumen / Soll):
+   BTC 99.1 %, ETH 98.9 %, SOL 99.8 %, XRP 100.0 %, DOT 99.9 %, DOGE 100.0 %, ADA 100.0 %, LINK 100.0 %, AVAX 99.7 %, LTC 100.0 %
+   Summe Einstiegsvolumen 14958.43 = 99.72 % vom Soll; Hebel effektiv 2.992
+5) noch kein Funding gebucht
+6) 14 Laeufe von 2026-11-15 17:44 bis 2026-11-15 18:58; Abstand Minuten: median 5, min 4, max 9; dashboard takt_minuten = 60
+   erster Lauf nach voller Stunde (Minute): [5]
+7) spannen.csv: 140 Messungen, davon ohne volle Fuellung (Tiefe < Standardgroesse): 0

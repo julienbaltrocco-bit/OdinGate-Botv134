@@ -1,0 +1,130 @@
+== vorwaertstest/bot.py: 94 von 324 ausfuehrbaren Zeilen nie ausgefuehrt
+     0: main()
+    42: c = json.loads((pfad or HIER / "config.json").read_text())
+    43: if c["modus"] not in ("papier", "live"):
+    44: raise ValueError("modus muss 'papier' oder 'live' sein")
+    45: if not 0 < c["hebel"] <= 5:
+    46: raise ValueError("hebel muss zwischen 0 und 5 liegen")
+    47: return c
+    64: return []
+    86: raise YubitFehler(f"{coin}: keine abgeschlossene Stundenkerze")
+    93: raise YubitFehler(f"{coin}: keine Kerze von vor 14 Tagen ({utc(ref)})")
+    96: raise YubitFehler(f"{coin}: Handel ausgesetzt ({kt['status']})")
+   100: raise YubitFehler(f"{coin}: leeres Orderbuch")
+   113: out = {c: 0.0 for c in coins}
+   114: for p in api.positionen("USDT"):
+   115: coin = str(p.get("symbol", "")).removesuffix("USDT")
+   116: if coin in out:
+   117: groesse = float(p.get("size") or 0)
+   118: out[coin] += groesse if int(p.get("positionIdx") or 0) == 1 else -groesse
+   119: return out
+   124: kt, buch = m["kontrakt"], m["buch"]
+   125: tick = kt["tick"]
+   126: if kauf:
+   127: preis = -(-buch["brief"][0][0] * (1 + cfg["preisgrenze"]) // tick) * tick      # aufrunden
+   129: preis = (buch["geld"][0][0] * (1 - cfg["preisgrenze"]) // tick) * tick          # abrunden
+   130: if menge * preis > cfg["max_order_usd"]:
+   131: raise YubitFehler(f"Order über dem Sicherheitsdeckel ({menge * preis:.0f} > {cfg['max_order_usd']} USDT)")
+   132: stellen = max(0, len(f"{tick:.10f}".rstrip("0").split(".")[1]))
+   133: r = api.order(m["sym"], "Buy" if kauf else "Sell", kern.als_text(menge, kt["schritt"]), f"{preis:.{stellen}f}",
+   134: position_idx, reduce_only)
+   135: time.sleep(1.5)
+   136: fills = api.fills(m["sym"], r["order_id"]) if r["order_id"] else []
+   137: q = sum(float(f.get("execQty") or 0) for f in fills)
+   138: wert = sum(float(f.get("execQty") or 0) * float(f.get("execPrice") or 0) for f in fills)
+   139: gebuehr = sum(abs(float(f.get("execFee") or 0)) for f in fills)
+   140: if q < menge - 1e-12 and r["order_id"]:
+   141: try:
+   142: api.storno(m["sym"], r["order_id"])       # Rest nicht im Buch liegen lassen
+   143: except YubitFehler:
+   144: pass                                       # schon vollständig gefüllt oder bereits gestrichen
+   145: return (wert / q if q > 0 else 0.0), q, gebuehr
+   178: echt = live_positionen(api, coins)
+   179: for coin in coins:
+   180: if abs(echt[coin] - z["pos"].get(coin, 0.0)) > 1e-9:
+   181: raise SystemExit(f"{coin}: Position laut Börse {echt[coin]} weicht vom Protokoll {z['pos'].get(coin, 0.0)} ab. "
+   188: z["funding"] -= z["pos"][coin] * m["ticker"]["mark"] * m["ticker"]["funding"] * n
+   244: kurs, q, gebuehr = live_order(api, m, kauf, menge, idx, reduce, cfg)
+   245: rebate = 0.0                       # wird von Yubit getrennt gutgeschrieben, hier nicht sichtbar
+   254: except YubitFehler as e:
+   255: warnungen.append(f"{coin}: Order fehlgeschlagen ({e})")
+   256: break
+   258: warnungen.append(f"{coin}: nichts gefüllt")
+   259: break
+   269: warnungen.append(f"{coin}: nur {q} von {menge} gefüllt")
+   270: break
+   307: return "\n".join(z + ["Noch keine Daten."])
+   332: z += ["", "Ohne Messung (Zielbetrag unter der Mindestordergröße oder keine Daten): " + ", ".join(fehlend) + "."]
+   334: z.append("Noch keine Messungen.")
+   346: z.append("Noch keine Orders.")
+   363: jetzt = int(time.time() * 1000)
+   364: print("Öffentliche Kursdaten:")
+   365: for coin in cfg["coins"]:
+   366: try:
+   367: m = markt_lesen(api, coin, jetzt)
+   368: kt = m["kontrakt"]
+   369: print(f"  {coin:5s} ok  Richtung {m['richtung']:+d}  Spanne {kern.spanne_bp(m['buch']):6.2f} bp  "
+   370: f"Mindestorder {kt['min_menge'] * m['mitte']:8.2f} $  Schritt {kt['schritt'] * m['mitte']:8.2f} $")
+   371: except (YubitFehler, KeyError, ValueError, IndexError) as e:
+   372: print(f"  {coin:5s} FEHLER: {e}")
+   373: if not (api.key and api.secret):
+   374: print("Kein API-Schlüssel gesetzt: Kontoteil übersprungen (für Stufe „papier“ nicht nötig).")
+   375: return
+   376: print("Konto (nur lesend, es wird nichts geordert):")
+   377: for name, fn in (("Guthaben", api.guthaben_roh), ("Gebühren BTCUSDT", lambda: api.gebuehren_roh("BTCUSDT")),
+   378: ("Positionen", lambda: api.positionen("USDT"))):
+   379: try:
+   380: d = fn()
+   381: print(f"  {name}: ok ->", json.dumps(d)[:400])
+   382: except YubitFehler as e:
+   383: print(f"  {name}: FEHLER: {e}")
+   387: p = argparse.ArgumentParser(description="Vorwärtstest Yubit")
+   388: p.add_argument("befehl", choices=["schritt", "bericht", "selbsttest"])
+   389: p.add_argument("--config", type=Path)
+   390: p.add_argument("--daten", type=Path)
+   391: a = p.parse_args(argv)
+   392: cfg = konfig(a.config)
+   393: daten = a.daten or HIER / cfg.get("daten", "daten")
+   394: api = Yubit(os.environ.get("YUBIT_API_KEY", ""), os.environ.get("YUBIT_API_SECRET", ""))
+   395: if a.befehl == "schritt":
+   396: schritt(cfg, api, daten)
+   397: bericht(cfg, daten)
+   398: elif a.befehl == "bericht":
+   399: print(bericht(cfg, daten))
+   401: selbsttest(cfg, api)
+   405: main()
+== vorwaertstest/kern.py: 4 von 59 ausfuehrbaren Zeilen nie ausgefuehrt
+     0: return max(0, jetzt_ms // raster - letzte_ms // raster)
+    25: return 0.0
+    34: stellen = max(0, -int(math.floor(math.log10(schritt) + 1e-9)))
+    35: return f"{menge:.{stellen}f}"
+== vorwaertstest/yubit.py: 17 von 116 ausfuehrbaren Zeilen nie ausgefuehrt
+     0: return list(d.get("list") or [])
+    65: kopf.update(self._signatur(query))
+    73: time.sleep(warten)
+    80: except urllib.error.HTTPError as e:
+    81: raise YubitFehler(f"HTTP {e.code} bei {pfad}: {e.read()[:200]!r}") from e
+    82: except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as e:
+    83: raise YubitFehler(f"Keine brauchbare Antwort von {pfad}: {e}") from e
+    85: raise YubitFehler(f"Yubit meldet Fehler bei {pfad}: {roh.get('code')} {roh.get('message')}")
+   113: raise YubitFehler(f"{symbol} ist bei Yubit nicht gelistet")
+   122: return list(d.get("list") or []) + list(d.get("separateList") or [])
+   125: return self._anfrage("GET", P["guthaben"], {}, privat=True)
+   128: return self._anfrage("GET", P["gebuehren"], {"symbol": symbol}, privat=True)
+   136: body["reduceOnly"] = True
+   141: return self._anfrage("POST", P["storno"], {"symbol": symbol, "orderId": order_id}, privat=True)
+   144: return list(self._anfrage("GET", P["offene_orders"], {"symbol": symbol}, privat=True).get("list") or [])
+   147: d = self._anfrage("GET", P["fills"], {"symbol": symbol, "orderId": order_id, "limit": "50"}, privat=True)
+   148: return list(d.get("list") or [])
+== vorwaertstest/dashboard_daten.py: 11 von 75 ausfuehrbaren Zeilen nie ausgefuehrt
+     0: main()
+    69: alt, neu = verlauf[:-120], verlauf[-120:]
+    70: schritt = -(-len(alt) // 280)
+    71: verlauf = alt[::schritt] + neu
+    77: p = argparse.ArgumentParser()
+    78: p.add_argument("--config", type=Path); p.add_argument("--daten", type=Path, required=True)
+    79: a = p.parse_args(argv)
+    80: d = bauen(bot.konfig(a.config), a.daten)
+    81: (a.daten / "dashboard.json").write_text(json.dumps(d, separators=(",", ":")))
+    82: print("dashboard.json:", len(d["verlauf"]), "Läufe,", len(d["orders"]), "Orders")
+    86: main()

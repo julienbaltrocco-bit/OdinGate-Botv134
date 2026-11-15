@@ -1,0 +1,4 @@
+Aufrufe an die Boerse: [('order', 'Buy', '15.0', '100.11', 1, False), ('fills', 1), ('storno',)]
+Rueckgabe von live_order: Kurs 0.0 | Menge 0 | Gebuehr 0
+Folge in bot.schritt (bot.py:257-259): q <= 0 -> Hinweis 'nichts gefuellt', Zustand unveraendert;
+die Boerse haelt aber 15 Stueck. Der naechste Lauf bricht in bot.py:177-182 mit SystemExit ab (Position weicht ab).

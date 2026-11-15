@@ -1,0 +1,225 @@
+{
+ "summary": "Die Plattform besteht aus zwei getrennten Teilen ohne gemeinsamen Code: der Forschung (src/hybrid, zwei Rechenkerne plus sechs eigene Simulatoren) und dem Papier-Bot (vorwaertstest, nur Standardbibliothek). Die Modul- und Datenflusskarte liegt als Mermaid-Text in reports/audit/evidence/ARC/datenfluss.mmd, der Importgraph in importgraph.txt. Wichtigstes Ergebnis: Geprüft wurde der Kandidat mit Hebel 0,2 und Tageslimit 3 %, berichtet wird Hebel 1 ohne Limit (+59 % pro Jahr, Sharpe 0,95, von mir nachgerechnet), betrieben wird Hebel 3 mit abgeschaltetem Limit. Mit dem dokumentierten Limit von 3 % ergibt Hebel 3 im Entwicklungszeitraum −101 % pro Jahr. Die Signalregel selbst stimmt zwischen Forschung und Bot überein (463.680 von 464.400 Coin-Stunden, der Rest sind Datenlücken), aber kein Test sichert das ab. Der Live-Pfad im Bot wird von keinem der 105 grünen Tests ausgeführt, und sein Sicherheitsdeckel blockiert auch schließende Orders. Ein Margin- und Liquidationsmodell fehlt in Bot und Rechenkern. Code, Zustand und Board liegen im selben öffentlichen Arbeitszweig, in dem der Klartext-Stand neben dem verschlüsselten Board-Stand steht.",
+ "findings": [
+  {
+   "id": "ARC-01",
+   "title": "Drei verschiedene Strategie- und Risikostände: geprüft Hebel 0,2 mit Tageslimit 3 %, berichtet Hebel 1 ohne Limit, betrieben Hebel 3 ohne Limit",
+   "priority": "P0",
+   "confidence": "hoch",
+   "evidence": "Geprüfter Kandidat: reports/kandidat.json ('hebel': 0.2; Entwicklung jahr_N 0,096; Prüfzeitraum jahr_N 0,0156, Sharpe 0,159) und reports/suche_protokoll.md:125,135 (Stufe 5 mit Tagesverlust-Limit 3 %, 'besteht alle fünf Stufen, bei Hebel 0,2'). Berichtete Kennzahl: scripts/suche_runde24.py:19 (R.lauf mit Hebel-Standard 1.0 und day_limit=9.0), reports/suche_runde24.json kandidat.Entwicklung (jahr 0,594, sharpe 0,946). Betrieb: vorwaertstest/config_lauf.json:4,17 und config_lauf_tpsl.json:4,17 ('hebel': 3.0, 'tagesverlust_limit': 1.0; Schwelle nach bot.py:196 = −5.000 $ = 100 % des Kapitals), eingeführt mit Commit 4276791. 'Hebel 3' kommt in suche_protokoll.md und suche_bericht.md nicht vor (grep -n -i 'hebel 3'). Dokumentierte Regel: config.yaml:15 (tagesverlust_limit 0.03), vorwaertstest/README.md:3,47 (Hebel 0,2; Tagesverlust-Limit 3 %). Stiller Standard: research.py:148-158 (day_limit=None nimmt den Wert aus config.yaml). Nachrechnung Entwicklungszeitraum, Gruppe A, Yubit-Kosten mit Rebate (reports/audit/evidence/ARC/experimente_forschung.txt): Hebel 1 ohne Limit +59,4 %/Jahr, Sharpe 0,946, 0 Sperrtage; Hebel 1 mit Standardaufruf +13,2 %/Jahr, Sharpe 0,248, 375 Sperrtage; Hebel 3 ohne Limit Sharpe 0,946; Hebel 3 mit Limit 3 % −101 %/Jahr, Sharpe −0,91, 1.178 Sperrtage.",
+   "impact": "Entscheidungen über Hebel und Echtgeldbetrieb stützen sich auf Kennzahlen, die zu keiner betriebenen Konfiguration gehören. Die als fest dokumentierte Risikoregel ist im Betrieb abgeschaltet und lässt sich beim betriebenen Hebel nicht einschalten, ohne das Ergebnis umzukehren. Ein vergessenes day_limit-Argument verändert Forschungsergebnisse um Größenordnungen, ohne dass der Aufruf auffällt.",
+   "recommendation": "Einen einzigen versionierten Parametersatz festlegen (Coins, Rückblick, Hebel, Risikoregeln, Kosten), den Forschung und Bot lesen. Hebel 3 erst weiter betreiben oder bewerten, nachdem er mit genau den betriebenen Risikoregeln in einer vorab festgelegten Runde gerechnet wurde. day_limit in research.lauf zum Pflichtargument machen. README und config.yaml auf den tatsächlichen Stand bringen. Keine Parameterwahl am Prüfzeitraum.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/ARC/experimente_forschung.py"
+  },
+  {
+   "id": "ARC-02",
+   "title": "Live-Handelspfad im Papier-Bot ist ungetestet, weicht vom Papier-Ausführungsmodell ab, und der Sicherheitsdeckel blockiert auch schließende Orders",
+   "priority": "P0",
+   "confidence": "hoch",
+   "evidence": "Abdeckung der 105 Tests (reports/audit/evidence/ARC/abdeckung_zeilen.txt): bot.py:113-145 (live_positionen, live_order), 178-181, 244-245 sowie yubit.py storno, fills und die Rückgabe von positionen werden nie ausgeführt. vorwaertstest/README.md:50 sagt dagegen 'mit nachgestellter Börse getestet'. Deckel: bot.py:130-131 prüft max_order_usd ohne Rücksicht auf reduce_only; experimente_bot.txt E3: Schließen einer Short-Position von 1.500 $ nach +40 % Kurs ergibt 'Order über dem Sicherheitsdeckel (2102 > 2000 USDT)', danach bot.py:254-256 nur Hinweis und Abbruch für den Coin. Fill-Abfrage: bot.py:135-145 fragt genau einmal nach 1,5 s; experiment_live_attrappe.txt: meldet die Börse den Fill später, liefert live_order Menge 0, der Zustand bleibt unverändert und der nächste Lauf bricht bei bot.py:177-182 ab. Papier-Modell: bot.py:246-253 füllt ohne preisgrenze und ohne Deckel durch bis zu 25 Buchstufen; live ist es ein Limit mit 0,05 % Preisgrenze, Rest gestrichen. Rebate live = 0 (bot.py:245), Funding als Näherung (bot.py:184-189). Umschaltung: 'modus': 'live' plus YUBIT_LIVE=ja plus Schlüssel (bot.py:107-108); server/installieren.sh:12-22 legt die Datei dafür an.",
+   "impact": "Beim Umschalten auf live liefe Code mit echtem Geld, der nie ausgeführt wurde. Positionen lassen sich ab rund +33 % Kurswert gegenüber dem Einstieg nicht mehr schließen, bei Shorts also genau im Verlust. Nach einem verspätet gemeldeten Fill steht eine Position ohne Verwaltung an der Börse. Die Papier-Ergebnisse sagen nichts über das Live-Ausführungsverhalten aus.",
+   "recommendation": "Live-Pfad bis zu vollständigen Tests mit nachgestellter Börse (Teilfüllung, verspäteter Fill, Storno-Fehler, Positionsabgleich) aus dem Betriebsmodul herausnehmen oder hart sperren. Deckel nur auf eröffnende Orders anwenden. Papier-Füllung mit derselben Preisgrenze rechnen wie live. Fill-Abfrage mit Wiederholung und Abgleich über offene Orders. Aussage in der README berichtigen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/ARC/experimente_bot.py && .venv/bin/python -I -B reports/audit/evidence/ARC/experiment_live_attrappe.py && .venv/bin/python -I -B reports/audit/evidence/ARC/abdeckung_zeilen.py"
+  },
+  {
+   "id": "ARC-03",
+   "title": "Kein Margin- und Liquidationsmodell in Papier-Konto und Rechenkern; weitere Bausteine für einen Echtgeldbetrieb fehlen",
+   "priority": "P0",
+   "confidence": "hoch",
+   "evidence": "kern.py:68-88 und bot.py:160-199: Das Papier-Konto kennt keine Margin und keine Liquidation; einzige Schwelle ist tagesverlust_limit (bot.py:196). experimente_bot.txt E4 (nachgestellte Börse, Hebel 3, Konfiguration wie config_lauf.json): nach −30 % Kurs netto −4.512 $ von 5.000 $, Positionen offen, keine Sperre; nach −50 % Konto rechnerisch −2.518 $, erst dann Sperre. engine2.py:161-170: Konto in Kapital-Einheiten bei fester Positionsgröße, kein Abbruch bei Konto ≤ 0 (experimente_forschung.txt: ein Lauf mit Einbruch 359 % des Höchststands wird zu Ende gerechnet). dashboard_daten.py:66-67: 'margin_usd' = Einsatz / Hebel, reine Anzeige. Warnungen nur auf der Konsole (bot.py:282-285), stunde.sh schreibt kein Laufprotokoll.",
+   "impact": "Papier- und Backtest-Ergebnisse bei Hebel 3 enthalten keine Zwangsliquidation. Ein Verlauf, bei dem ein echtes Konto liquidiert würde, läuft im Papier-Konto weiter und kann sich erholen. Die Überlebensfähigkeit der betriebenen Konfiguration wird dadurch überschätzt.",
+   "recommendation": "Vor Echtgeld fehlen (nur benannt, nichts gebaut): 1. Margin- und Liquidationsrechnung nach den Kontraktregeln der Börse in Papier-Konto und Rechenkern. 2. Von der Strategie unabhängige Risikogrenzen (Gesamtexposure, Verlustgrenze, Notaus). 3. Abgleich von Fills, Gebühren, Funding und Rebate mit der Börsenabrechnung. 4. Order-Idempotenz und definierter Wiederanlauf nach Abbruch. 5. Überwachung und Alarmierung mit dauerhaftem Laufprotokoll. 6. Schlüsselverwaltung und getrennte Umgebungen für Forschung, Papier und Live. 7. Freigabeprozess mit Versionsstand je Lauf. 8. Eigener, verlässlicher Taktgeber.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/ARC/experimente_bot.py   (Abschnitt E4)"
+  },
+  {
+   "id": "ARC-04",
+   "title": "Handelsregel, Kontobewertung und Kennzahlen sind mehrfach getrennt implementiert, ohne gemeinsamen Code und ohne Paritätstest",
+   "priority": "P1",
+   "confidence": "hoch",
+   "evidence": "Signalregel 336 Stunden an sechs Stellen: research.py:89-93 (tsmom), research.py:190-192 (_trend), mutationen.py:23-24 (basis), labor_strategie/trend_14d/strategie.py:22, vorwaertstest/kern.py:11-19 mit bot.py:84-102, docs/index.html:438-440 (JavaScript, auf Binance-Kerzen statt Yubit). Importgraph (reports/audit/evidence/ARC/importgraph.txt): vorwaertstest importiert nichts aus src/hybrid. Kontobewertung viermal: kern.py:83-88, dashboard_daten.py:29-39, live_server.py:25-56, docs/index.html:192-198 (mit Binance-Kursen). Eigene Gewinn- und Kostenrechnung in engine.py:41, engine2.py:25, statarb.py:12, listings.py:12, massentest.py:69,86, pumpshort.py:11,73, tagestrend.py:19, tradfi_neutral.py:11,81. Sharpe-Formel neunmal (grep 'sqrt(365)'), Einbruch siebenmal in zwei Definitionen: runner.py:79-83 (5-Minuten-Werte, Höchststand mindestens 1,0) gegen suche_runde24.py:49,62 (Tageswerte ohne Boden); derselbe Lauf ergibt 24,6 % (suche_runde24.json) und 25,8 % (experimente_forschung.txt). Sichtbare Drift zwischen Kern 1 und Kern 2: runner.py:132-138 beschriftet Zähler 5 als 'verstoesse_beide_seiten', in engine2.py:40 ist das die Zahl der Stops (experimente_forschung.txt E6: ein Stop erscheint als 1 Verstoß); runner.py:113-114 liefert bei engine2-Läufen immer trades_kern = trades_taktik = 0; das Tageslimit schließt in Kern 1 nur die Taktik (engine.py Kopf), in Kern 2 alles (engine2.py:62-77), bei demselben Konfigurationsschlüssel.",
+   "impact": "Jede Änderung an einer Stelle (Rückblick, Gleichstandsregel, Kosten, Limit) lässt Forschung, Bot und Board unbemerkt auseinanderlaufen. Das Board kann ein anderes Signal und einen anderen Kontowert zeigen, als der Bot handelt und bucht, weil es eine andere Börse als Kursquelle nutzt. Zahlen aus verschiedenen Runden sind nur eingeschränkt vergleichbar.",
+   "recommendation": "Regel, Buchung und Kennzahlen in eine gemeinsame, abhängigkeitsarme Bibliothek legen, die Forschung und Bot nutzen. Mindestens einen Paritätstest als Pflichttest einführen (Bot mit nachgestellter Börse gegen engine2 auf denselben Kerzen). Das Board soll nur Signale und Werte anzeigen, die der Bot liefert. Eine einzige Kennzahlenfunktion für alle Runden.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/ARC/signal_paritaet.py && .venv/bin/python -I -B reports/audit/evidence/ARC/experimente_forschung.py"
+  },
+  {
+   "id": "ARC-05",
+   "title": "Verhalten von Test 2 (Stop 5 % / Ziel 15 %) hängt vom Aufruftakt ab, der nicht Teil der Konfiguration ist; die Forschung hat eine andere Regel gerechnet",
+   "priority": "P1",
+   "confidence": "hoch",
+   "evidence": "bot.py:216-228 prüft Stop und Ziel bei jedem Aufruf am Mittelkurs. Runde 24 rechnet dieselbe Variante nur auf Stundenschlüssen (tpsl.py:14-40). Takt laut Code und Dokumentation stündlich: bot.py:3, vorwaertstest/README.md:10, dashboard_daten.py:12 (TAKT_MINUTEN = 60), .github/workflows/vorwaertstest.yml:8. Tatsächlich laut vorwaertstest/lauf/stand.csv 64 Läufe von 13:21 bis 18:58 UTC, Abstände 1 bis 13 Minuten, am häufigsten 5. Nachstellung (experimente_bot.txt E1): Kurs fällt innerhalb der Stunde auf −6 % und schließt bei −3 %; der Bot im 5-Minuten-Takt stoppt und sperrt die Richtung, tpsl._zustand und ein stündlicher Aufruf stoppen nicht. Zusätzlich: reports/suche_runde24.json ('finalisten': [], sl5_tp15 ok1 false, ok2 false) und suche_protokoll.md ab Zeile 1268 ('kein belegter Vorteil. Dashboard und Papier-Test bleiben unverändert'); Test 2 wurde fünf Minuten später mit Commit b8795b3 gestartet.",
+   "impact": "Das Ergebnis von Test 2 lässt sich weder mit Runde 24 vergleichen noch von einem Betrieb mit anderem Takt reproduzieren. Ein Wechsel des Taktgebers (etwa auf den stündlichen Workflow) ändert die gehandelte Regel, ohne dass eine Konfigurationsdatei sich ändert.",
+   "recommendation": "Prüfzeitpunkt für Stop und Ziel ausdrücklich festlegen (Stundenschluss oder fester Takt) und im Bot erzwingen, unabhängig vom Aufrufabstand. Den Takt in Konfiguration und Zustand festhalten. Vor der Auswertung von Test 2 schriftlich festlegen, mit welcher Rückrechnung er verglichen wird.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/ARC/experimente_bot.py   (Abschnitt E1)"
+  },
+  {
+   "id": "ARC-06",
+   "title": "Kritische Rechenwege der Kennzahlenkette und des Bots haben keinen Test",
+   "priority": "P1",
+   "confidence": "hoch",
+   "evidence": "Testlauf: 105 passed. Zeilenabdeckung mit stdlib trace (reports/audit/evidence/ARC/abdeckung.txt, abdeckung_zeilen.txt). Signal: mutationen.basis geprüft (tests/test_mutationen.py:25-31), aber research.tsmom, research.auf_raster (Zeitversatz), research.markt (Raster, Lücken, Funding-Zuordnung), research.lauf, research.sicht, research.yubit_kosten werden nie ausgeführt (research.py 49 von 208 Zeilen); im Bot liefert die nachgestellte Börse für jede Startzeit denselben Altkurs (tests/test_vorwaertstest_bot.py:31-32), der 336-Stunden-Bezug wird also nicht geprüft. Gebühren und Rebate im Ergebnis: runner.py 0 von 112 Zeilen (equity, daily_pnl, kennzahlen, max_drawdown). Funding: alle engine2-Tests laufen mit Funding 0 (tests/test_engine2.py:18,91-93); bot.py:188 wird nie ausgeführt. Tageslimit in engine2: alle Tests mit day = 0 und day_limit = 9.0. Füllung: Teilfüllung und 'nichts gefüllt' im Bot (bot.py:254-259, 269-270) nie ausgeführt. Konfiguration: bot.konfig (bot.py:41-47) nie ausgeführt. Verschlüsselung: board_verschluesseln.py 0 von 26 Zeilen, kein Rundlauf gegen den Entschlüsselungsweg in docs/index.html. live_server.py 0 von 91 Zeilen, walkforward.py 0 von 80. Zustandsführung: kein Test für Abbruch, Neustart oder doppelte Ausführung. Eigene Stichproben auf diesen Wegen (luecken_pruefung.txt): 13 von 13 ohne Abweichung.",
+   "impact": "Die Kette, aus der die berichteten Kennzahlen stammen (Marktdaten, Signal, Zeitversatz, Kern 2, Gebühren und Rebate, Sharpe), ist nur im Füllpreis abgesichert. Ein Fehler beim Zeitversatz, beim Funding-Vorzeichen oder bei der Rebate-Rechnung fiele in den Tests nicht auf. Heute rechnen die Wege richtig, das ist aber nicht festgeschrieben.",
+   "recommendation": "Regressionstests in dieser Reihenfolge ergänzen: Zeitversatz research.auf_raster mit tsmom; Funding und Tageslimit in engine2; runner.Lauf mit Gebühr und Rebate; Parität Bot gegen Forschung; Funding-Buchung im Bot; Verschlüsselungs-Rundlauf; bot.konfig. Die Skripte unter reports/audit/evidence/ARC/ (luecken_pruefung.py, signal_paritaet.py) können als Vorlage dienen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B -m pytest -q -p no:cacheprovider tests && .venv/bin/python -I -B reports/audit/evidence/ARC/abdeckung.py /tmp/abdeckung.json && .venv/bin/python -I -B reports/audit/evidence/ARC/luecken_pruefung.py"
+  },
+  {
+   "id": "ARC-07",
+   "title": "Zustandsführung des Bots ist nicht transaktional und hat zwei Wahrheiten (CSV-Protokolle und zustand.json)",
+   "priority": "P1",
+   "confidence": "hoch",
+   "evidence": "bot.py:276-281: erst drei CSV-Anhänge (protokoll, spannen, stand), danach zustand.json. Nachstellung (experimente_bot.txt E2): Abbruch dazwischen, der nächste Lauf wiederholt die Orders: zustand.orders = 2, protokoll.csv 4 Zeilen, Gebührensumme im Protokoll 24,00 gegen 12,00 im Zustand, das Dashboard meldet 4 Orders und 30.000 $ Volumen statt 15.000 $. dashboard_daten.py:49-50,61 zählt Orders, Volumen und Slippage aus protokoll.csv, die Positionen aus zustand.json (Zeile 30). kern.py:69: die Felder version, kapital und letzte_kerze werden geschrieben, aber nirgends gelesen (grep in vorwaertstest/*.py). Kein Dateischloss gegen parallele Läufe. Übersprungene Coins und andere Warnungen werden nur ausgegeben (bot.py:172-173, 284-285), stand.csv enthält sie nicht. Kein Code-Stand im Zustand: bot.py und kern.py wurden um 17:45 UTC geändert (Commit b8795b3), während Test 1 seit 13:21 UTC lief.",
+   "impact": "Nach einem Abbruch zeigen Protokoll, Bericht und Board andere Orderzahlen, Volumina und Gebühren als das Konto. Ausgelassene Coins bleiben in den gespeicherten Daten unsichtbar. Ergebnisse eines Tests lassen sich keinem Code-Stand zuordnen. Im Live-Betrieb käme die Abweichung zur Börse hinzu.",
+   "recommendation": "Zustand und Protokoll in einem Schritt schreiben (ein Journal mit Laufnummer oder der Zustand zuerst und die Protokolle daraus ableitbar). Laufnummer, Kerzenzeit und Commit-Stand je Lauf festhalten. Warnungen dauerhaft mitschreiben. Dateischloss gegen parallele Läufe. Das Feld version beim Laden prüfen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/ARC/experimente_bot.py   (Abschnitt E2)"
+  },
+  {
+   "id": "ARC-08",
+   "title": "Code, Betriebszustand und Board liegen im selben Arbeitszweig; der Taktgeber liegt außerhalb des Repos; drei widersprüchliche Betriebswege sind definiert",
+   "priority": "P1",
+   "confidence": "mittel",
+   "evidence": "vorwaertstest/stunde.sh:4-8 (fester Zweigname, fetch, checkout und pull vor jedem Lauf, Fehler mit '|| true' verschluckt), :13-18 und :26-31 (Zustand und Board werden in denselben Zweig committet und gepusht), :3 mit :10-23 (set -e: scheitert Test 1 oder der erste Push, läuft Test 2 nicht). git log: 76 von 144 Commits sind Bot-Läufe aus 5,6 Stunden, zuletzt 25 je Stunde, hochgerechnet rund 210.000 pro Jahr. Je Zyklus rund 108 KB neu geschriebene Dateien (git diff-tree 3985cf0 und be1f4dd). spannen.csv wächst je Test um rund 2.900 Zeilen pro Tag und wird bei jedem Lauf vollständig eingelesen (dashboard_daten.py:16). git reflog zeigt Entwickler- und Audit-Commits, die per 'pull --rebase' zwischen die Bot-Commits geschoben werden. Taktgeber nicht im Repo (reports/uebergabe_fuer_dritte.md:57: 'Claude-Sitzung alle fünf Minuten'). Weitere, abweichende Betriebswege: .github/workflows/vorwaertstest.yml:2,8,36 (stündlich, Standard-config.json mit Hebel 0,2, eigener Zweig vorwaertstest-daten) und vorwaertstest/server/installieren.sh:36,43 (systemd stündlich, config.json, Ordner daten/).",
+   "impact": "Jeder Push auf den Zweig ändert binnen Minuten den laufenden Bot, ohne Freigabe und ohne Versionsvermerk. Die Code-Historie wird von Betriebs-Commits überdeckt. Der Betrieb hängt an einer KI-Sitzung ohne Verfügbarkeitszusage. Aus dem Code abgeleitet, nicht ausgeführt: Ein fremder Push zwischen pull und push lässt den Bot-Push scheitern, und wegen 'pull --ff-only || true' bleibt er danach dauerhaft hängen, während der Bot lokal weiterrechnet.",
+   "recommendation": "Betriebsdaten in einen eigenen Zweig oder Speicher auslagern. Den Bot von einem freigegebenen, festen Code-Stand starten statt vom Kopf des Arbeitszweigs. Einen einzigen Betriebsweg behalten und die beiden anderen entfernen oder angleichen. Die Tests voneinander entkoppeln. Verlauf verdichten statt jeden Lauf einzeln zu committen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134 && git log --format=%s | grep -c '^Vorwärtstest (Papier' && git log --format='%ad' --date=format:'%Y-%m-%d %H' | sort | uniq -c | tail -5 && git reflog -8 --date=iso && cat -n swing-hybrid/vorwaertstest/stunde.sh"
+  },
+  {
+   "id": "ARC-09",
+   "title": "Der Klartext-Stand liegt im selben öffentlichen Zweig wie der verschlüsselte Board-Stand",
+   "priority": "P1",
+   "confidence": "hoch",
+   "evidence": "vorwaertstest/stunde.sh:12-13 und :25-26: dashboard.json (Klartext) wird verschlüsselt nach docs/stand.enc.json geschrieben und zusammen mit dem Klartext-Ordner committet. git ls-files zeigt als versioniert: swing-hybrid/vorwaertstest/lauf/zustand.json, protokoll.csv, stand.csv, dashboard.json, dasselbe unter lauf_tpsl/ und lauf_hebel1_archiv/. Größenvergleich: dashboard.json 12.890 Bytes, stand.enc.json 17.593 Bytes (Base64 desselben Inhalts). Zusätzlich docs/stand.json: Klartext-Stand von 13:44 UTC (Commit 4dc3256), nach der Umstellung auf Verschlüsselung (Commit 1695511) nochmals geschrieben und weiter im veröffentlichten Ordner docs/. Dass das Repo öffentlich ist, steht in reports/uebergabe_fuer_dritte.md:76 und ist lokal nicht prüfbar.",
+   "impact": "Die Passwortabfrage des Boards schützt keine Information: Positionen, Orders, Einstiegskurse und Kontostand sind im selben Zweig im Klartext lesbar. Für Papierdaten ist der Schaden begrenzt; bei echtem Geld wären Positionen und Orders öffentlich. Die Bewertung der Kryptografie selbst gehört in den Bereich Security.",
+   "recommendation": "Entscheiden, ob der Stand vertraulich sein soll. Wenn ja: Zustand und Klartext-Dashboard nicht in einem öffentlichen Zweig ablegen, docs/stand.json entfernen und die Historie berücksichtigen. Wenn nein: Verschlüsselung und Passwortabfrage entfernen, damit kein falscher Eindruck von Schutz entsteht.",
+   "reproduce": "cd /home/user/OdinGate-Botv134 && git ls-files swing-hybrid/vorwaertstest docs | grep -E 'zustand.json|protokoll.csv|dashboard.json|stand' && git log --oneline -3 -- docs/stand.json"
+  },
+  {
+   "id": "ARC-10",
+   "title": "Konfiguration: ungenutzte Schlüssel, fest im Code stehende Werte, kaum Prüfung der Bot-Konfiguration",
+   "priority": "P2",
+   "confidence": "hoch",
+   "evidence": "config.yaml:1 ('Alle Regeln aus dem Auftrag stehen hier, nicht verstreut im Code'). Ohne Leser im Code (grep je Schlüssel in src, scripts, vorwaertstest, tests): boerse, gebuehren.szenarien, ausfuehrung.einstieg, teilgewinn, stop, fill_regel, min_standzeit_minuten, beidseitige_orders, kapital_szenarien, walk_forward.test_anteil, entscheidung.netto_ohne_rebate_min; risiko.hebel_max wird nur in tests/test_fees.py:20 gelesen. Gebühr und Rebate zusätzlich fest im Code: vorwaertstest/kern.py:9, src/hybrid/listings.py:9, pumpshort.py:47, massentest.py:9-10, scripts/kandidat_pruefen.py:50, fusion_yubit.py:20, suche_runde12.py:71. Zeitgrenzen der Forschung fest in research.py:18-19 statt über walk_forward.lern_anteil. Bot: konfig (bot.py:41-47) prüft nur modus und hebel; tp und sl kommen über cfg.get mit Standard 0 (bot.py:216), falsch geschriebene Schlüssel bleiben unbemerkt; preisgrenze und max_order_usd wirken nur im Live-Pfad (bot.py:127-131) und im Papier-Modus nie; 'daten' wird durch --daten übersteuert (bot.py:393). Drei Bot-Konfigurationen mit unterschiedlichem Stand (experimente_bot.txt E4): config.json Hebel 0,2, Limit 0,03, Deckel 150 $; config_lauf.json und config_lauf_tpsl.json Hebel 3, Limit 1,0, Deckel 2.000 $.",
+   "impact": "Die Konfigurationsdatei vermittelt Regeln, die der Code nicht durchsetzt (Mindeststandzeit, Hebelobergrenze in der Forschung, Order-Arten). Eine Änderung der Gebühr an einer Stelle erreicht die anderen nicht. Ein Tippfehler bei tp oder sl schaltet die Variante stillschweigend ab.",
+   "recommendation": "Ungenutzte Schlüssel entfernen oder durchsetzen. Gebühren, Rebate und Rückblick an einer Stelle definieren. Bot-Konfiguration gegen ein festes Schema prüfen (unbekannte Schlüssel ablehnen, Wertebereiche für tagesverlust_limit, tp, sl). Im Papier-Modus dieselben Grenzen anwenden wie live.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && for k in szenarien teilgewinn fill_regel min_standzeit_minuten beidseitige_orders kapital_szenarien test_anteil netto_ohne_rebate_min hebel_max; do echo $k $(grep -rn \"[\\\"']$k[\\\"']\" src scripts vorwaertstest/*.py tests | grep -v __pycache__ | wc -l); done"
+  },
+  {
+   "id": "ARC-11",
+   "title": "Stille Annahmen bei Datenlücken und Fehlern; Forschung und Bot behandeln Lücken unterschiedlich",
+   "priority": "P2",
+   "confidence": "hoch",
+   "evidence": "Forschung: research.py:48 (ffill().bfill(): vor dem ersten Kurs gilt der erste Kurs), :51-52 (in Lücken Open, Hoch und Tief = letzter Schluss, eine Taker-Füllung zu veraltetem Kurs ist möglich), :64 (fehlendes Funding = 0), :74 (fehlendes Signal = 0). Gemessene Wirkung (reports/audit/evidence/ARC/signal_paritaet.txt): SOL, XRP und LTC haben ab 26.02.2022 je 120 Stunden ohne Kerzen; die Forschung stellt deshalb je Coin 240 Stunden glatt (während der Lücke und 336 Stunden später), der Bot würde die Position halten (714 Fälle 'keine Kerze', 6 Fälle 'ältere Kerze'). Bot: bot.py:172-173 (Coin bei jedem Fehler übersprungen, nur Konsolenhinweis), bot.py:171 und kern.py:85 (alter Kurs bleibt stehen, fehlender Kurs zählt als 0), bot.py:88 (eine bis zu 2 Stunden alte Kerze gilt), yubit.py:86 ('data or {}' führt zu KeyError 'list' als Hinweistext), live_server.py:69 (except Exception), docs/index.html:401,419,441,466 (catch ohne Meldung), stunde.sh:6,8,17 ('|| true'), scripts/yubit_spannen_sammeln.py:35.",
+   "impact": "Lücken und Ausfälle verändern Ergebnisse, ohne in den Ausgaben zu erscheinen. Der Umfang ist im geprüften Zeitraum klein (720 von 464.400 Coin-Stunden), die Behandlung unterscheidet sich aber zwischen Rückrechnung und Betrieb. Im Betrieb kann ein Coin über längere Zeit ausfallen, ohne dass die gespeicherten Daten es zeigen.",
+   "recommendation": "Lücken ausdrücklich kennzeichnen und in Forschung und Bot gleich behandeln (Position halten oder schließen, aber einheitlich). Fehlende Funding-Werte zählen und ausgeben. Jeden übersprungenen Coin und jede abgefangene Ausnahme dauerhaft mitschreiben. Im Board Ladefehler anzeigen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/ARC/signal_paritaet.py"
+  },
+  {
+   "id": "ARC-12",
+   "title": "Repo-Hygiene, Dokumentation und Reproduzierbarkeit entsprechen nicht dem tatsächlichen Stand",
+   "priority": "P2",
+   "confidence": "hoch",
+   "evidence": "Vermischung: Das Repo ist laut README.md:1-9 eine Next.js-Anwendung ('Content Engine'); die Trading-Plattform liegt als Unterordner in einem Arbeitszweig. docs/ enthält die App-Dokumentation (API.md, ARCHITECTURE.md und weitere) neben dem Board; Dockerfile:11 (COPY . .) mit .dockerignore nimmt swing-hybrid und docs in das App-Image; .gitignore:25 ('*.pem') der App schloss den Board-Schlüssel aus (Commit cf1f1cb). Dokumentation: vorwaertstest/README.md:3,10,18-21,47,55 beschreibt Hebel 0,2, stündlichen Lauf per Workflow, Tageslimit 3 % und nur config.json; stunde.sh, config_lauf*.json, Test 2, Board und Verschlüsselung fehlen. swing-hybrid/README.md:5-6,35-46 endet bei Runde 3 von 24. Verwaist: vorwaertstest/dashboard_seite.html und dashboard_live.html (von keinem Skript genutzt, grep), lauf_hebel1_archiv/, docs/stand.json. Abhängigkeiten: requirements.txt:1 pinnt freqtrade==2026.10, das nirgends importiert wird (grep). Reproduzierbarkeit: data/ (9,7 GB) liegt laut swing-hybrid/.gitignore:4-8 nur lokal, ohne Prüfsummen; die Kostenbasis der Kennzahlen (research.py:272-279) ist data/processed/yubit_spannen_stichprobe.csv mit 30 Messzeitpunkten aus einer Stunde am 14.11.2026 und lässt sich nicht neu erzeugen. Herkunft der Ergebnisdateien (reports_herkunft.txt): Runde 15, 20a und 20b entstehen über Aufrufargumente von suche_runde14.py, suche_runde18.py und suche_runde19.py; für swing_vergleich.json gibt es kein erzeugendes Skript.",
+   "impact": "Dritte können aus der Dokumentation weder den laufenden Betrieb noch die geltende Konfiguration ablesen. Die berichteten Kennzahlen lassen sich nur in der bestehenden Arbeitsumgebung nachrechnen; geht sie verloren, ist die Kostenbasis nicht wiederherstellbar.",
+   "recommendation": "Trading-Plattform in ein eigenes Repo oder mindestens einen eigenen Zweig mit eigener .gitignore und eigenem Veröffentlichungsordner legen. READMEs auf den Stand bringen (Betriebsweg, Konfigurationen, Tests 1 und 2). Verwaiste Dateien entfernen. Die kleine Kostenstichprobe und ein Datenverzeichnis mit Prüfsummen versionieren. Ungenutzte Abhängigkeiten streichen. Je Runde den genauen Aufruf festhalten.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I reports/audit/evidence/ARC/outputs_map.py /home/user/OdinGate-Botv134/swing-hybrid; grep -rn 'freqtrade' --include=*.py src scripts vorwaertstest tests; grep -rn 'dashboard_seite\\|dashboard_live' --include=*.py --include=*.sh vorwaertstest scripts"
+  }
+ ],
+ "reproduced": [
+  {
+   "claim": "Bestehende Tests: 105 Tests grün",
+   "result": "reproduziert",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B -m pytest -q -p no:cacheprovider tests",
+   "detail": "105 passed in 16,6 s, verteilt auf 17 Testdateien. Der Arbeitsbaum blieb danach unverändert (git status)."
+  },
+  {
+   "claim": "Regel: long, wenn der Schlusskurs der letzten abgeschlossenen Stunde über dem von 336 Stunden zuvor liegt, sonst short; 10 Coins gleichgewichtet",
+   "result": "reproduziert",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/ARC/signal_paritaet.py",
+   "detail": "research.tsmom(336), research._trend und mutationen.basis sind identisch. Der Bot (bot.markt_lesen mit kern.richtung) liefert auf denselben Binance-Stundenkerzen in 463.680 von 464.400 Coin-Stunden dieselbe Richtung, in 0 Fällen eine widersprechende. Die 720 Abweichungen liegen alle in Datenlücken (SOL, XRP, LTC). Bei Gleichstand ist das Signal 0, also keine Position. Positionsgröße in beiden Teilen fest: Kapital × Hebel / Anzahl Coins (bot.py:165, research.py:150)."
+  },
+  {
+   "claim": "Entwicklung +59 % pro Jahr, Sharpe 0,95",
+   "result": "reproduziert",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/ARC/experimente_forschung.py",
+   "detail": "Gruppe A, bis 01.04.2025, sofortige Ausführung, Yubit-Kosten mit Rebate, Hebel 1, ohne Tageslimit: N +2,156, +59,4 % pro Jahr, Sharpe 0,946. Das deckt sich mit reports/suche_runde24.json. Die Zahl gilt nur für Hebel 1 ohne Tageslimit und ohne Zinseszins, nicht für die betriebene Konfiguration (siehe ARC-01)."
+  },
+  {
+   "claim": "Zwei Papier-Tests mit Hebel 3 seit 15.11.2026 (Test 1 nur Umkehrsignal, Test 2 mit Stop 5 % und Ziel 15 %)",
+   "result": "reproduziert",
+   "command": "cat swing-hybrid/vorwaertstest/config_lauf.json swing-hybrid/vorwaertstest/config_lauf_tpsl.json; head -2 swing-hybrid/vorwaertstest/lauf/stand.csv swing-hybrid/vorwaertstest/lauf_tpsl/stand.csv",
+   "detail": "Beide Konfigurationen: Hebel 3.0, Modus papier, Kapital 5.000 $. Test 1 startet laut zustand.json um 13:21 UTC, Test 2 um 17:44 UTC. Je 10 Short-Positionen, je 10 Orders. Die Zustände habe ich nur gelesen."
+  },
+  {
+   "claim": "Stündliche Signalprüfung",
+   "result": "abweichend",
+   "command": "python3 -I -c \"import csv,datetime as d,collections;r=list(csv.DictReader(open('/home/user/OdinGate-Botv134/swing-hybrid/vorwaertstest/lauf/stand.csv')));t=[d.datetime.fromisoformat(x['zeit']) for x in r];print(sorted(collections.Counter(int((b-a).total_seconds()/60) for a,b in zip(t,t[1:])).items()))\"",
+   "detail": "Das Signal ändert sich nur mit der Stundenkerze, der Bot wird aber alle 1 bis 13 Minuten aufgerufen, am häufigsten alle 5 (64 Läufe in 5,6 Stunden). Für Test 1 ist das ohne Folgen für die Regel, für Test 2 ändert es die Stop- und Ziel-Prüfung (ARC-05)."
+  },
+  {
+   "claim": "README: Tagesverlust-Limit 3 % als Sicherung im Betrieb",
+   "result": "abweichend",
+   "command": "grep -n tagesverlust_limit swing-hybrid/vorwaertstest/config*.json swing-hybrid/config.yaml",
+   "detail": "config.json und config.yaml nennen 0.03, die laufenden Konfigurationen config_lauf.json und config_lauf_tpsl.json 1.0. Das Limit greift damit erst bei 100 % Verlust des Kapitals an einem Tag."
+  },
+  {
+   "claim": "README: Der Live-Teil ist mit nachgestellter Börse getestet",
+   "result": "abweichend",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/ARC/abdeckung_zeilen.py",
+   "detail": "Getestet sind nur die Signatur einer Order und die Sperre ohne Schlüssel. bot.live_order, bot.live_positionen, yubit.storno und yubit.fills werden von keinem Test ausgeführt."
+  },
+  {
+   "claim": "Die Workflow-Datei unter .github liegt nicht im Standard-Zweig",
+   "result": "ungeklaert",
+   "command": "cd /home/user/OdinGate-Botv134 && git ls-tree -r origin/feature/content-engine-mvp --name-only | grep -c workflows",
+   "detail": "Die Datei existiert nur im Zweig claude/intelligent-sagan-2cviug, nicht in feature/content-engine-mvp. Welcher Zweig auf GitHub als Standard gesetzt ist, lässt sich lokal nicht feststellen."
+  },
+  {
+   "claim": "Unabhängiger Prüfzeitraum +16,5 % pro Jahr, Sharpe 0,34",
+   "result": "ungeklaert",
+   "detail": "In diesem Prüfbereich nicht nachgerechnet; ich habe nur im Entwicklungszeitraum gerechnet. Die Nachrechnung gehört in den Bereich Quantitative Research."
+  }
+ ],
+ "correct": [
+  "Signalregel stimmt zwischen Forschung und Bot überein: 463.680 von 464.400 Coin-Stunden gleich, 0 widersprechend, Rest Datenlücken (reports/audit/evidence/ARC/signal_paritaet.txt; research.py:89-93, kern.py:14-19, bot.py:84-102).",
+  "Kein Blick voraus beim Zeitversatz: Das Signal der Stunde H wirkt im 5-Minuten-Raster erst ab H+1:00, spätere Kurse ändern nichts Früheres (research.py:70-75; luecken_pruefung.txt, Abschnitt 4).",
+  "Kern 2 rechnet Funding mit richtigem Vorzeichen und Betrag (Long zahlt bei positiver Rate, Nominal × Rate) und nicht in der Einstiegskerze; das Tageslimit schließt alles, sperrt bis zum nächsten UTC-Tag und lässt danach den Wiedereinstieg zu (engine2.py:45-79, 99-102; luecken_pruefung.txt, Abschnitte 1 und 2).",
+  "Gebühr und Rebate im Ergebnis: netto ohne Rebate = brutto − 0,08 % × Taker-Volumen, mit Rebate = brutto − 0,012 % × Taker-Volumen; die Summe der Tagesgewinne entspricht dem Endstand; in sicht() gilt N = G − F + R (runner.py:48-57, research.py:170-186; luecken_pruefung.txt, Abschnitt 3).",
+  "Funding-Buchung im Bot: über einen 8-Stunden-Termin genau einmal gebucht, Betrag = Position × Mark-Kurs × Rate (bot.py:185-189, kern.py:91-96; luecken_pruefung.txt, Abschnitt 5).",
+  "zustand.json wird über eine temporäre Datei und replace geschrieben, also nie halb (bot.py:74-77).",
+  "Im Papier-Modus kann der Bot keine Order senden: live nur bei 'modus': 'live' und YUBIT_LIVE=ja und Schlüssel (bot.py:107-108, 156-158); private Endpunkte brechen ohne Schlüssel ab (yubit.py:55-56); beide laufenden Konfigurationen stehen auf 'papier'; Test dazu: tests/test_vorwaertstest_bot.py:104-112.",
+  "Der Papier-Bot braucht nur die Standardbibliothek und importiert nichts aus src/hybrid; src/hybrid hat keine zyklischen Importe (reports/audit/evidence/ARC/importgraph.txt).",
+  "Gebühren und Rebate sind derzeit an allen Stellen gleich: config.yaml:6-8 (0,04 %, 0,08 %, 85 %), kern.py:9, listings.py:9, pumpshort.py:47.",
+  "Positionsgröße ist in Forschung und Bot gleich definiert: fester Nominalwert je Coin beim Einstieg, ohne Zinseszins (research.py:150, engine2.py:88; bot.py:165, 204).",
+  "Alle Bot-Tests schreiben nur in temporäre Verzeichnisse (tmp_path); der Testlauf verändert weder vorwaertstest/lauf noch docs oder reports.",
+  "Die Forschungsskripte schreiben nur nach reports/; bis auf fünf Dateien lässt sich jede Ergebnisdatei einem Skript zuordnen (reports/audit/evidence/ARC/reports_herkunft.txt)."
+ ],
+ "unclear": [
+  "GitHub-Einstellungen sind lokal nicht prüfbar: Sichtbarkeit des Repos, Standard-Zweig, Quelle von GitHub Pages (Ordner /docs dieses Zweigs).",
+  "Der Taktgeber (KI-Sitzung) liegt nicht im Repo. Sein Takt ist nur aus stand.csv abgeleitet. Ob der Bot nach 18:58 UTC weiterlief, ist lokal nicht feststellbar: Der lokale Stand endet mit dem Abruf von 19:03 UTC, und ein fetch war nicht erlaubt.",
+  "Ob der Live-Pfad gegen die echte Yubit-Schnittstelle funktioniert, ist ungeklärt; er ist nie gelaufen und wurde auftragsgemäß nicht gegen die Börse geprüft. Die Aussagen zu ARC-02 stammen aus Code und Attrappen.",
+  "Ob die Preisgrenze von 0,05 % bei den beobachteten Orderbüchern live gebunden hätte, ist ungeklärt: In 93 von 635 Messungen von Test 1 reichte die beste Buchstufe nicht für eine Order in Standardgröße, wegen der Tick-Rundung (bei DOT entspricht ein Tick rund 13,7 Basispunkten) lässt sich daraus aber keine Teilfüllung ableiten.",
+  "Die Bedeutung der Yubit-Felder (fundingRate / 1e6, fundingInterval) ist nur durch die vier gespeicherten Antwortbeispiele in tests/fixtures belegt, nicht durch eine Abrechnung.",
+  "Der in ARC-08 beschriebene Dauerfehler nach einem fremden Push (Push abgelehnt, danach 'pull --ff-only || true') ist aus stunde.sh abgeleitet und wurde nicht ausgeführt, weil schreibende git-Befehle untersagt waren.",
+  "Ob die Rohdaten unter data/ vollständig und unverändert sind, ist ungeklärt: Es gibt keine Prüfsummen und kein versioniertes Verzeichnis; die Nachrechnung auf einer frischen Maschine wurde nicht versucht.",
+  "Die Reihenfolge 'Protokoll vor Ergebnis' lässt sich aus git allein nicht beweisen: Protokoll- und Ergebnis-Commits liegen oft nur ein bis zwei Minuten auseinander (zum Beispiel 30443cd um 17:39 und 42c2168 um 17:40)."
+ ],
+ "evidence_files": [
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/datenfluss.mmd",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/importgraph.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/importgraph.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/signal_paritaet.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/signal_paritaet.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/abdeckung.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/abdeckung.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/abdeckung_zeilen.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/abdeckung_zeilen.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/experimente_bot.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/experimente_bot.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/experimente_forschung.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/experimente_forschung.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/experiment_live_attrappe.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/experiment_live_attrappe.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/luecken_pruefung.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/luecken_pruefung.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/reports_herkunft.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/ARC/outputs_map.py"
+ ]
+}

@@ -1,0 +1,22 @@
+V-QD-04: Gegenpruefung des Befunds QD-04 (Hebel 3 ohne Tageslimit). Alle Skripte lesen nur; Ausgaben gehen in den
+als erstes Argument uebergebenen Ordner (bitte einen leeren temporaeren Ordner nehmen, NICHT vorwaertstest/ oder docs/).
+
+cd /home/user/OdinGate-Botv134/swing-hybrid
+AUS=$(mktemp -d)
+
+1. Eigener Rechenkern ohne src/hybrid (Neustart-Statistik Test 1, Ereignis-Cluster, andere Hebel), rund 1 Minute:
+   .venv/bin/python -I reports/audit/evidence/V-QD-04/unabhaengig.py $AUS        -> unabhaengig.txt
+2. Nachbau der Bot-Logik fuer Test 1 und Test 2 inkl. Limit 1,0 und Takt, rund 2 Minuten:
+   .venv/bin/python -I reports/audit/evidence/V-QD-04/bot_nachbau.py $AUS        -> bot_nachbau.txt
+3. Unveraenderter Bot-Code (vorwaertstest/bot.py) gegen nachgestellte Boerse mit historischen Kursen:
+   .venv/bin/python -I reports/audit/evidence/V-QD-04/bot_replay.py $AUS 2025-07-20 160 60
+   .venv/bin/python -I reports/audit/evidence/V-QD-04/bot_replay.py $AUS 2026-02-08 255 60
+   .venv/bin/python -I reports/audit/evidence/V-QD-04/bot_replay.py $AUS 2026-02-08 255 5     (rund 2,5 Minuten)
+   .venv/bin/python -I reports/audit/evidence/V-QD-04/bot_replay.py $AUS 2024-06-23 160 60
+4. Gegenprobe mit dem Rechenkern des Projekts (gespeicherte Hebel-3-Zeile, Limit 3 % / 1,0 / aus):
+   .venv/bin/python -I reports/audit/evidence/V-QD-04/engine_gegenprobe.py       -> engine_gegenprobe.txt
+5. repro_pruefer_skript_hebel3.txt: Ausgabe von evidence/QD/hebel3.py, ausgefuehrt als Kopie mit umgeleiteten
+   Ausgabepfaden (Original schreibt nach evidence/QD). Ergebnis-CSV ist bytegleich mit evidence/QD/neustart_hebel3.csv.
+
+Die Starttage der Replays (Punkt 3) sind keine Stichprobe, sondern Starttage, die die Neustart-Rechnung bereits als
+Totalverlust ausweist; sie dienen dem Nachweis des Mechanismus im echten Code und dem Abgleich der Nachbauten.
