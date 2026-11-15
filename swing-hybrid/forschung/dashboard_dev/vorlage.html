@@ -49,23 +49,26 @@
   .zeile .id { font-family: var(--mono); font-size: 12px; color: var(--muted); } .zeile .zahl { font-family: var(--mono); font-size: 12.5px; grid-column: 2 / 4; color: var(--muted); }
   .zeile .auf { padding: 0 12px 12px; }
   .fuss { color: var(--muted); font-size: 12px; }
+  .funke { width: 100%; height: 44px; display: block; }
+  .meld { border-left: 3px solid var(--warn); padding: 6px 10px; background: var(--panel2); border-radius: 0 8px 8px 0; font-size: 13px; color: var(--warn); }
+  .meld.bad { border-color: var(--bad); color: var(--bad); }
+  .leer { padding: 14px; color: var(--muted); font-size: 13.5px; }
 </style>
 <div class="seite">
   <header>
     <h1>OdinGate Forschungszentrum</h1>
-    <div class="leiste"><span id="stand"></span><span id="zahl"></span></div>
+    <div class="leiste"><span id="stand"></span><span id="zahl"></span><span id="verb"></span></div>
   </header>
-  <div class="hinweis">Vorschau der erweiterten Oberfläche. Das echte Trading Board ist unverändert. Die Zahlen der laufenden Tests sind eine Momentaufnahme, kein Live-Stand.</div>
 
-  <h2>Vorwärtstests</h2>
-  <p class="erkl">Papierhandel mit echten Marktdaten. Jeder Test hat ein eigenes Konto. Karte antippen für Details.</p>
-  <div class="karten" id="karten"></div>
+  <h2>Vorwärtstests (gemessen)</h2>
+  <p class="erkl">Papierhandel, kein echtes Geld. Jeder Test hat ein eigenes Konto und erscheint hier automatisch, sobald er registriert ist. Karte antippen für Details.</p>
+  <div class="karten" id="karten"><div class="leer">Stand wird geladen …</div></div>
   <div class="kasten" id="detail" hidden></div>
 
-  <h2>Vergleich: Vorwärtstests (gemessen)</h2>
+  <h2>Vergleich der Vorwärtstests</h2>
   <div class="kasten rollen"><table id="tab-live"></table></div>
 
-  <h2>Vergleich: Rückrechnungen (historisch, kein laufender Test)</h2>
+  <h2>Rückrechnungen (historisch, kein laufender Test)</h2>
   <p class="erkl">Hebel 1, feste Größe, gleiche Kostenannahmen. Rückrechnungen stehen nie in derselben Tabelle wie gemessene Tests.</p>
   <div class="kasten rollen"><table id="tab-back"></table></div>
 
@@ -73,80 +76,109 @@
   <p class="erkl">Alle untersuchten Ideen, auch die gescheiterten. Nichts wird nachträglich entfernt.</p>
   <div class="chips" id="chips"></div>
   <div class="kasten" id="liste"></div>
-  <p class="fuss">Rebate 85 % ist eine unbestätigte Annahme. Keine Anlageberatung.</p>
+  <p class="fuss">Rebate 85 % ist eine unbestätigte Annahme. Die Zahlen der Tests werden einmal täglich aktualisiert. Keine Anlageberatung.</p>
 </div>
 <script>
-const R = /*REGISTER*/null;
+let R = /*REGISTER*/null;                       // eingebetteter Stand des Registers; wird durch den gespeicherten Stand ersetzt
+let TESTS = [];                                // gemessene Vorwärtstests aus der Datenbank der Seite
 const esc = (s) => String(s ?? '–').replace(/[&<>"]/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 const zahl = (x, n = 1, e = '') => (x === null || x === undefined || x === '') ? '–' : (typeof x === 'number' ? x.toLocaleString('de-DE', {minimumFractionDigits: n, maximumFractionDigits: n}) + e : esc(x));
 const vz = (x, n = 2, e = ' %') => typeof x !== 'number' ? '–' : `<span class="${x > 0 ? 'gut' : x < 0 ? 'schlecht' : 'ruhig'}">${x > 0 ? '+' : ''}${zahl(x, n, e)}</span>`;
-const E = R.eintraege, tests = E.filter((e) => ['laufend', 'vorbereitet', 'abgeschlossen', 'kandidat'].includes(e.kategorie));
-const jetzt = Date.now();
-function status(e) {   // ein Test gilt nur als laufend, wenn sein letzter Lauf frisch ist
-  if (e.kategorie === 'laufend') {
-    const t = Date.parse((e.kennzahlen.stand || '').replace(' UTC', 'Z').replace(' ', 'T'));
-    const alt = (jetzt - t) / 3.6e6;
-    return alt > 2 ? ['Stand veraltet', 'warn'] : ['läuft', 'ok'];
-  }
-  if (e.kategorie === 'kandidat' || e.kategorie === 'vorbereitet') return ['vorbereitet, wartet auf Freigabe', 'blau'];
+const $ = (id) => document.getElementById(id);
+
+function testStatus(t) {     // ein Test gilt nur als laufend, wenn sein Stand frisch ist
+  const alt = (Date.now() - Date.parse(t.aktualisiert || 0)) / 3.6e6;
+  if (!(alt < (t.takt_stunden || 24) * 1.6)) return ['Stand veraltet', 'warn'];
+  const s = t.status || 'unbekannt';
+  return [s, s === 'läuft' ? 'ok' : s === 'wartet auf Daten' || s === 'pausiert' ? 'blau' : s === 'abgeschlossen' ? '' : 'bad'];
+}
+function funke(v) {
+  if (!v || v.length < 2) return '';
+  const w = v.map((p) => p.kontostand), lo = Math.min(...w), hi = Math.max(...w), sp = (hi - lo) || 1;
+  const pts = w.map((y, i) => `${(i / (w.length - 1) * 300).toFixed(1)},${(40 - (y - lo) / sp * 36).toFixed(1)}`).join(' ');
+  return `<svg class="funke" viewBox="0 0 300 44" preserveAspectRatio="none" role="img" aria-label="Kapitalverlauf"><polyline points="${pts}" fill="none" stroke="${w[w.length - 1] >= w[0] ? 'var(--ok)' : 'var(--bad)'}" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>`;
+}
+let offen = null;
+function zeigeTests() {
+  $('karten').innerHTML = TESTS.length ? TESTS.map((t) => {
+    const [s, f] = testStatus(t);
+    return `<button class="karte" type="button" data-id="${esc(t.id)}" aria-pressed="${offen === t.id}"><span class="pille ${f}">${esc(s)}</span>
+      <span class="name">${esc(t.name)}${t.id.startsWith('T') ? '' : ' ' + esc(t.version)}</span><span class="gross">${vz(t.rendite_mit_rebate_pct)}</span>
+      <span class="klein">${zahl(t.kontostand, 2, ' $')} · ohne Rebate ${typeof t.rendite_ohne_rebate_pct === 'number' ? zahl(t.rendite_ohne_rebate_pct, 2, ' %') : '–'}</span>${funke(t.verlauf)}
+      <span class="klein">Start ${esc(String(t.start || '').replace('T', ' ').replace(':00Z', ' UTC'))}</span><span class="klein">letzter Lauf ${esc(t.letzter_lauf)}</span></button>`;
+  }).join('') : '<div class="leer">Noch kein Stand gespeichert. Der erste tägliche Lauf trägt die Tests hier ein.</div>';
+  const t = TESTS.find((x) => x.id === offen);
+  $('detail').hidden = !t; $('detail').innerHTML = t ? testDetail(t) : '';
+  $('tab-live').innerHTML = '<tr><th>Test</th><th>mit Rebate</th><th>ohne Rebate</th><th>Trades</th><th>je Tag</th><th>Gewinnquote</th><th>netto je Trade</th><th>Rückgang</th><th>Gebühr</th><th>Rebate</th><th>Hebel</th><th>Laufzeit</th></tr>' +
+    TESTS.map((t) => `<tr><td>${esc(t.name)}</td><td>${vz(t.rendite_mit_rebate_pct)}</td><td>${vz(t.rendite_ohne_rebate_pct)}</td><td>${zahl(t.trades, 0)}</td><td>${zahl(t.trades_je_tag, 1)}</td><td>${typeof t.gewinnquote === 'number' ? zahl(t.gewinnquote * 100, 0, ' %') : '–'}</td><td>${zahl(t.netto_je_trade_bp, 1, ' bp')}</td><td>${zahl(t.rueckgang_max_pct, 2, ' %')}</td><td>${zahl(t.gebuehr_usd, 2, ' $')}</td><td>${zahl(t.rebate_usd_angenommen, 2, ' $')}</td><td>${zahl(t.hebel, 0)}</td><td>${zahl(t.laufzeit_tage, 1, ' Tage')}</td></tr>`).join('');
+}
+const FELDER = [['kontostand', 'Kontostand ($)'], ['kapital', 'Startkapital ($)'], ['rendite_mit_rebate_pct', 'Rendite nach Kosten, mit Rebate (%)'], ['rendite_ohne_rebate_pct', 'Rendite ohne Rebate (%)'],
+  ['realisiert_usd', 'Realisiert ($)'], ['unrealisiert_usd', 'Unrealisiert ($)'], ['trades', 'Abgeschlossene Trades'], ['trades_je_tag', 'Trades je Tag'], ['gewinnquote', 'Gewinnquote'],
+  ['netto_je_trade_bp', 'Netto je Trade (bp)'], ['roh_je_trade_bp', 'Kursbewegung je Trade (bp)'], ['profit_factor', 'Profit Factor'], ['haltedauer_min', 'Haltedauer (min)'],
+  ['gebuehr_usd', 'Gebühren ($)'], ['rebate_usd_angenommen', 'Rebate, angenommen ($)'], ['funding_usd', 'Funding ($)'], ['slippage_usd', 'Slippage ($)'], ['slippage_bp_je_order', 'Slippage je Order (bp)'],
+  ['volumen_usd', 'Volumen ($)'], ['hebel', 'Hebel'], ['positionsgroesse_usd', 'Größe je Position ($)'], ['margin_pct', 'Gebundene Margin (%)'], ['rueckgang_aktuell_pct', 'Rückgang aktuell (%)'],
+  ['rueckgang_max_pct', 'Größter Rückgang (%)'], ['laufzeit_tage', 'Laufzeit (Tage)'], ['daten_bis', 'Marktdaten bis'], ['letzter_lauf', 'Letzter erfolgreicher Lauf'], ['funding_ausstehend', 'Trades mit ausstehendem Funding']];
+function testDetail(t) {
+  const kv = FELDER.filter(([k]) => t[k] !== undefined && t[k] !== null).map(([k, n]) => `<div><div class="n">${n}</div><div class="w">${typeof t[k] === 'number' ? zahl(t[k], Number.isInteger(t[k]) ? 0 : 2) : esc(t[k])}</div></div>`).join('');
+  const meld = [...(t.fehler || []).map((m) => `<div class="meld bad">${esc(m)}</div>`), ...(t.ereignis ? [`<div class="meld bad">${esc(t.ereignis)}</div>`] : []), ...(t.datenluecken || []).map((m) => `<div class="meld">${esc(m)}</div>`)].join('');
+  const pos = (t.offene_positionen || []).length ? `<div class="rollen"><table><tr><th>Offene Position</th><th>Richtung</th><th>seit</th><th>Einstieg</th><th>Ergebnis</th></tr>${t.offene_positionen.map((p) => `<tr><td>${esc(p.coin)}</td><td>${esc(p.richtung)}</td><td>${esc(p.seit)}</td><td>${zahl(p.einstieg, 4)}</td><td>${vz(p.ergebnis_usd, 2, ' $')}</td></tr>`).join('')}</table></div>` : '<div class="ruhig">Keine offenen Positionen.</div>';
+  const tr = (t.letzte_trades || []).length ? `<div class="rollen"><table><tr><th>Letzte Trades</th><th>Richtung</th><th>Einstieg</th><th>Ausstieg</th><th>netto</th><th>Ergebnis</th></tr>${t.letzte_trades.slice(0, 15).map((p) => `<tr><td>${esc(p.coin)}</td><td>${esc(p.richtung)}</td><td>${esc(p.ein)}</td><td>${esc(p.aus)}</td><td>${vz(p.netto_bp, 1, ' bp')}</td><td>${vz(p.usd, 2, ' $')}</td></tr>`).join('')}</table></div>` : '';
+  const text = [['Art', t.art], ['Regel', t.regel], ['Märkte', (t.maerkte || []).join(', ')], ['Prüfstand', t.validierung], ['Eingefroren am', t.eingefroren], ['Lauf-Nummer', t.lauf_id]].filter(([, w]) => w).map(([n, w]) => `<div><b>${n}:</b> ${esc(w)}</div>`).join('');
+  return `<div class="detail"><h3>${esc(t.name)} <span class="ruhig">${esc(t.version)}</span></h3>${meld}${kv ? `<div class="kv">${kv}</div>` : ''}${pos}${tr}<div class="text">${text}</div></div>`;
+}
+$('karten').addEventListener('click', (ev) => { const b = ev.target.closest('.karte'); if (!b) return; offen = offen === b.dataset.id ? null : b.dataset.id; zeigeTests(); });
+
+const NAMEN = {zeitraum: 'Zeitraum', trades_je_tag: 'Trades je Tag', haltedauer_min: 'Haltedauer (min)', roh_bp: 'Kursbewegung roh (bp)', n85_bp: 'Netto mit 85 % Rebate (bp)', n50_bp: 'Netto mit 50 % Rebate (bp)',
+  n0_bp: 'Netto ohne Rebate (bp)', t_n85: 't-Wert netto', gewinnquote: 'Gewinnquote', profit_factor: 'Profit Factor', ertrag_jahr_pct_hebel1: 'Ertrag pro Jahr, Hebel 1 (%)',
+  ertrag_jahr_ohne_rebate_pct: 'Ertrag pro Jahr ohne Rebate (%)', sharpe: 'Sharpe', rueckgang_pct: 'Größter Rückgang (%)', liquidationen: 'Liquidationen', tiefster_kontostand_hebel3: 'Tiefster Kontostand, Hebel 3', hinweis: 'Hinweis'};
+function regStatus(e) {
+  if (e.kategorie === 'laufend') return ['Papier-Test läuft', 'ok'];
+  if (e.kategorie === 'kandidat' || e.kategorie === 'vorbereitet') return ['vorbereitet', 'blau'];
+  if (e.kategorie === 'abgeschlossen') return ['Test beendet', ''];
   if (e.einstufung === 'A') return ['verworfen', 'bad'];
   if (e.einstufung === 'D') return ['Prüfung formal bestanden', 'blau'];
   if (e.einstufung === 'B') return ['unbestätigt', 'warn'];
   return [e.status, ''];
 }
-document.getElementById('stand').textContent = 'Register vom ' + R.stand;
-document.getElementById('zahl').textContent = E.length + ' Einträge · ' + R.experimente + ' Experimente in Runde ' + R.runde;
-
-let offen = null;
-function zeigeKarten() {
-  document.getElementById('karten').innerHTML = tests.map((e) => {
-    const [s, f] = status(e), k = e.kennzahlen || {};
-    const kopf = e.kategorie === 'laufend'
-      ? `<span class="gross">${vz(k.mit_rebate_pct)}</span><span class="klein">${zahl(k.kapital, 2, ' $')} · Start ${esc(e.beginn)}</span><span class="klein">Stand ${esc(k.stand)}</span>`
-      : `<span class="gross ruhig">–</span><span class="klein">noch kein Test gestartet</span><span class="klein">Rückrechnung: ${vz(k.n85_bp, 1, ' bp')} je Trade</span>`;
-    return `<button class="karte" type="button" data-id="${esc(e.id)}" aria-pressed="${offen === e.id}"><span class="pille ${f}">${esc(s)}</span><span class="name">${esc(e.name)}${e.kategorie !== 'laufend' ? ' ' + esc(e.version) : ''}</span>${kopf}</button>`;
-  }).join('');
-}
-const NAMEN = {stand: 'Stand', kapital: 'Kapital ($)', mit_rebate_pct: 'Rendite mit Rebate (%)', ohne_rebate_pct: 'Rendite ohne Rebate (%)', orders: 'Orders', volumen_usd: 'Volumen ($)',
-  gebuehr_usd: 'Gebühr ($)', rebate_usd: 'Rebate, angenommen ($)', funding_usd: 'Funding ($)', einbruch_pct: 'Größter Einbruch (%)', margin_pct: 'Gebundene Margin (%)', laeufe: 'Bot-Läufe',
-  zeitraum: 'Zeitraum', trades_je_tag: 'Trades je Tag', haltedauer_min: 'Haltedauer (min)', roh_bp: 'Kursbewegung roh (bp)', n85_bp: 'Netto mit 85 % Rebate (bp)', n50_bp: 'Netto mit 50 % Rebate (bp)',
-  n0_bp: 'Netto ohne Rebate (bp)', t_n85: 't-Wert netto', gewinnquote: 'Gewinnquote', profit_factor: 'Profit Factor', ertrag_jahr_pct_hebel1: 'Ertrag pro Jahr, Hebel 1 (%)',
-  ertrag_jahr_ohne_rebate_pct: 'Ertrag pro Jahr ohne Rebate (%)', sharpe: 'Sharpe', rueckgang_pct: 'Größter Rückgang (%)', liquidationen: 'Liquidationen', tiefster_kontostand_hebel3: 'Tiefster Kontostand, Hebel 3', hinweis: 'Hinweis'};
-function details(e) {
+function regDetail(e) {
   const k = e.kennzahlen || {};
-  const kv = Object.entries(k).map(([n, w]) => `<div><div class="n">${esc(NAMEN[n] || n)}</div><div class="w">${typeof w === 'number' ? zahl(w, Number.isInteger(w) ? 0 : 2) : esc(w)}</div></div>`).join('');
+  const kv = Object.entries(k).filter(([n]) => NAMEN[n]).map(([n, w]) => `<div><div class="n">${NAMEN[n]}</div><div class="w">${typeof w === 'number' ? zahl(w, Number.isInteger(w) ? 0 : 2) : esc(w)}</div></div>`).join('');
   const t = [['Hypothese', e.hypothese], ['Regel', e.algorithmus], ['Parameter', e.parameter && JSON.stringify(e.parameter)], ['Märkte', e.maerkte], ['Daten', e.daten], ['Kosten', e.gebuehren],
-    ['Risiko', e.risiko], ['Hebel', e.hebel], ['Startkapital', e.startkapital && e.startkapital + ' $'], ['Prüfstand', e.validierung], ['Vertrauen', e.vertrauen], ['Ergebnisdateien', (e.ergebnisdateien || []).join(', ')]]
+    ['Risiko', e.risiko], ['Hebel', e.hebel], ['Prüfstand', e.validierung], ['Vertrauen', e.vertrauen], ['Ergebnisdateien', (e.ergebnisdateien || []).join(', ')]]
     .filter(([, w]) => w).map(([n, w]) => `<div><b>${n}:</b> ${esc(w)}</div>`).join('');
-  return `<div class="detail"><h3>${esc(e.name)} <span class="ruhig">${esc(e.version)}</span></h3>${kv ? `<div class="kv">${kv}</div>` : ''}<div class="text">${t}</div></div>`;
+  return `<div class="detail">${kv ? `<div class="kv">${kv}</div>` : ''}<div class="text">${t}</div></div>`;
 }
-document.getElementById('karten').addEventListener('click', (ev) => {
-  const b = ev.target.closest('.karte'); if (!b) return;
-  offen = offen === b.dataset.id ? null : b.dataset.id;
-  const d = document.getElementById('detail');
-  d.hidden = !offen; d.innerHTML = offen ? details(E.find((e) => e.id === offen)) : '';
-  zeigeKarten();
-});
-zeigeKarten();
-
-const live = E.filter((e) => e.kategorie === 'laufend');
-document.getElementById('tab-live').innerHTML = '<tr><th>Test</th><th>mit Rebate</th><th>ohne Rebate</th><th>Einbruch</th><th>Orders</th><th>Gebühr</th><th>Rebate</th><th>Hebel</th><th>Stand</th></tr>' +
-  live.map((e) => { const k = e.kennzahlen; return `<tr><td>${esc(e.name)}</td><td>${vz(k.mit_rebate_pct)}</td><td>${vz(k.ohne_rebate_pct)}</td><td>${zahl(k.einbruch_pct, 2, ' %')}</td><td>${zahl(k.orders, 0)}</td><td>${zahl(k.gebuehr_usd, 2, ' $')}</td><td>${zahl(k.rebate_usd, 2, ' $')}</td><td>${zahl(e.hebel, 0)}</td><td>${esc(k.stand)}</td></tr>`; }).join('');
-const back = E.filter((e) => e.kategorie !== 'laufend' && e.kennzahlen && 'sharpe' in e.kennzahlen);
-document.getElementById('tab-back').innerHTML = '<tr><th>Strategie</th><th>pro Jahr mit Rebate</th><th>pro Jahr ohne Rebate</th><th>Sharpe</th><th>Rückgang</th><th>Trades/Tag</th><th>Haltedauer</th><th>Zeitraum</th></tr>' +
-  back.map((e) => { const k = e.kennzahlen; return `<tr><td>${esc(e.name)} ${e.version.length < 6 ? esc(e.version) : ''}</td><td>${vz(k.ertrag_jahr_pct_hebel1, 1)}</td><td>${vz(k.ertrag_jahr_ohne_rebate_pct, 1)}</td><td>${zahl(k.sharpe, 2)}</td><td>${zahl(k.rueckgang_pct, 1, ' %')}</td><td>${zahl(k.trades_je_tag, 1)}</td><td>${k.haltedauer_min >= 600 ? zahl(k.haltedauer_min / 60, 0, ' h') : zahl(k.haltedauer_min, 0, ' min')}</td><td>${esc(String(k.zeitraum).split(' (')[0] === 'V' ? 'Validierung 04/2024–03/2025' : String(k.zeitraum).split(' (')[0])}</td></tr>`; }).join('');
-
 const FILTER = [['alle', 'alle'], ['D', 'Prüfung bestanden'], ['B', 'unbestätigt'], ['A', 'verworfen'], ['–', 'Tests und Analysen']];
 let filter = 'alle'; const auf = new Set();
-function zeigeListe() {
-  document.getElementById('chips').innerHTML = FILTER.map(([w, n]) => `<button class="chip" type="button" data-f="${w}" aria-pressed="${filter === w}">${n} (${E.filter((e) => w === 'alle' || e.einstufung === w).length})</button>`).join('');
-  document.getElementById('liste').innerHTML = E.filter((e) => filter === 'alle' || e.einstufung === filter).map((e) => {
-    const [s, f] = status(e), k = e.kennzahlen || {};
-    const z = 'n85_bp' in k ? `netto mit Rebate ${zahl(k.n85_bp, 1, ' bp')} · ohne Rebate ${zahl(k.n0_bp, 1, ' bp')} je Trade` : ('mit_rebate_pct' in k ? `Papier-Konto ${zahl(k.mit_rebate_pct, 2, ' %')}` : esc(e.familie));
-    return `<div class="zeile"><button type="button" data-id="${esc(e.id)}" aria-expanded="${auf.has(e.id)}"><span class="id">${esc(e.id)}</span><span>${esc(e.name)}</span><span class="pille ${f}">${esc(s)}</span><span class="zahl">${z}</span></button>${auf.has(e.id) ? `<div class="auf">${details(e)}</div>` : ''}</div>`;
+function zeigeRegister() {
+  const E = R.eintraege;
+  $('stand').textContent = 'Register vom ' + R.stand;
+  $('zahl').textContent = E.length + ' Einträge · ' + R.experimente + ' Experimente';
+  const back = E.filter((e) => e.kennzahlen && 'sharpe' in e.kennzahlen);
+  $('tab-back').innerHTML = '<tr><th>Strategie</th><th>pro Jahr mit Rebate</th><th>pro Jahr ohne Rebate</th><th>Sharpe</th><th>Rückgang</th><th>Trades/Tag</th><th>Haltedauer</th><th>Zeitraum</th></tr>' +
+    back.map((e) => { const k = e.kennzahlen; return `<tr><td>${esc(e.name)} ${e.version.length < 6 ? esc(e.version) : ''}</td><td>${vz(k.ertrag_jahr_pct_hebel1, 1)}</td><td>${vz(k.ertrag_jahr_ohne_rebate_pct, 1)}</td><td>${zahl(k.sharpe, 2)}</td><td>${zahl(k.rueckgang_pct, 1, ' %')}</td><td>${zahl(k.trades_je_tag, 1)}</td><td>${k.haltedauer_min >= 600 ? zahl(k.haltedauer_min / 60, 0, ' h') : zahl(k.haltedauer_min, 0, ' min')}</td><td>${esc(String(k.zeitraum) === 'V' ? 'Validierung 04/2024–03/2025' : String(k.zeitraum).split(' (')[0])}</td></tr>`; }).join('');
+  $('chips').innerHTML = FILTER.map(([w, n]) => `<button class="chip" type="button" data-f="${w}" aria-pressed="${filter === w}">${n} (${E.filter((e) => w === 'alle' || e.einstufung === w).length})</button>`).join('');
+  $('liste').innerHTML = E.filter((e) => filter === 'alle' || e.einstufung === filter).map((e) => {
+    const [s, f] = regStatus(e), k = e.kennzahlen || {};
+    const z = 'n85_bp' in k ? `Rückrechnung: netto mit Rebate ${zahl(k.n85_bp, 1, ' bp')} · ohne Rebate ${zahl(k.n0_bp, 1, ' bp')} je Trade` : esc(e.familie);
+    return `<div class="zeile"><button type="button" data-id="${esc(e.id)}" aria-expanded="${auf.has(e.id)}"><span class="id">${esc(e.id)}</span><span>${esc(e.name)}${e.version && e.version.length < 6 && e.version !== '–' ? ' ' + esc(e.version) : ''}</span><span class="pille ${f}">${esc(s)}</span><span class="zahl">${z}</span></button>${auf.has(e.id) ? `<div class="auf">${regDetail(e)}</div>` : ''}</div>`;
   }).join('');
 }
-document.getElementById('chips').addEventListener('click', (ev) => { const b = ev.target.closest('.chip'); if (b) { filter = b.dataset.f; zeigeListe(); } });
-document.getElementById('liste').addEventListener('click', (ev) => { const b = ev.target.closest('.zeile > button'); if (!b) return; auf.has(b.dataset.id) ? auf.delete(b.dataset.id) : auf.add(b.dataset.id); zeigeListe(); });
-zeigeListe();
+$('chips').addEventListener('click', (ev) => { const b = ev.target.closest('.chip'); if (b) { filter = b.dataset.f; zeigeRegister(); } });
+$('liste').addEventListener('click', (ev) => { const b = ev.target.closest('.zeile > button'); if (!b) return; auf.has(b.dataset.id) ? auf.delete(b.dataset.id) : auf.add(b.dataset.id); zeigeRegister(); });
+zeigeRegister();
+
+(async () => {                                   // gespeicherten Stand laden; die Seite funktioniert auch ohne
+  const warte = setTimeout(() => { if (!TESTS.length) $('karten').innerHTML = '<div class="leer">Der gespeicherte Stand ist gerade nicht erreichbar. Die Rückrechnungen unten sind vollständig.</div>'; }, 10000);
+  const db = window.claude && window.claude.use ? await window.claude.use('db') : null;
+  if (!db) { clearTimeout(warte); $('karten').innerHTML = '<div class="leer">Der gespeicherte Stand der Tests ist in dieser Ansicht nicht verfügbar (nur für angemeldete Betrachter).</div>'; return; }
+  const ordnung = (t) => (t.id.startsWith('T') ? '0' : '1') + t.id;
+  db.collection('tests').onSnapshot((snap) => {
+    clearTimeout(warte);
+    TESTS = snap.docs.map((d) => ({id: d.id, ...d.data()})).sort((a, b) => ordnung(a).localeCompare(ordnung(b)));
+    $('verb').textContent = 'Tests: ' + TESTS.length;
+    zeigeTests();
+  }, () => { clearTimeout(warte); $('karten').innerHTML = '<div class="leer">Der gespeicherte Stand konnte nicht geladen werden.</div>'; });
+  db.doc('register/aktuell').onSnapshot((d) => { if (d.exists && d.data().eintraege) { R = d.data(); zeigeRegister(); } }, () => {});
+})();
 </script>

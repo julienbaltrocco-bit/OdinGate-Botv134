@@ -1,5 +1,5 @@
 {
- "stand": "2026-11-15 21:57 UTC",
+ "stand": "2026-11-15 22:23 UTC",
  "runde": 1,
  "experimente": 13,
  "kategorien": {
@@ -125,9 +125,9 @@
    "name": "Orderbuch-Stütze",
    "version": "1.1",
    "familie": "Orderbuch / Liquidität",
-   "kategorie": "kandidat",
+   "kategorie": "laufend",
    "einstufung": "D",
-   "status": "vorbereitet, nicht gestartet",
+   "status": "Papier-Test (Schattentest) seit 16.11.2026",
    "richtung": "Long und Short",
    "maerkte": "BTC, ETH, SOL",
    "daten": "Binance-Orderbuch-Tiefe bis 5 % (bookDepth), 5-Minuten-Kerzen, Funding",

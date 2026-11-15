@@ -1,0 +1,69 @@
+[
+ {
+  "id": "H07",
+  "titel": "Orderbuch-Signal in 1-Minuten-Auflösung",
+  "mechanismus": "Das Signal verfällt schnell (5 Minuten Verzug kosten 40 %). Feinere Auflösung könnte früher einsteigen.",
+  "daten": "bookDepth (vorhanden), 1-Minuten-Kerzen (vorhanden bis 03/2025)",
+  "aufwand": "gering",
+  "status": "offen",
+  "hinweis": "Nur Entwicklung 01/2023–03/2024 zur Auswahl. Die Validierung 04/2024–03/2025 ist für Orderbuch-Regeln bereits zweimal geöffnet worden und taugt nur noch eingeschränkt."
+ },
+ {
+  "id": "H08",
+  "titel": "Kauf- und Verkaufsdruck je Minute als zweite Bestätigung",
+  "mechanismus": "Aggressive Marktorders in Signalrichtung zeigen, dass die Stütze im Orderbuch tatsächlich angenommen wird.",
+  "daten": "1-Minuten-Kerzen mit Kaufanteil (vorhanden)",
+  "aufwand": "gering",
+  "status": "offen"
+ },
+ {
+  "id": "H09",
+  "titel": "Orderbuch-Stütze nur bei hoher Schwankung",
+  "mechanismus": "E12: Wirkung fast nur im oberen Drittel der Schwankung. Eigene Regel, eigene Version.",
+  "daten": "vorhanden",
+  "aufwand": "gering",
+  "status": "offen",
+  "hinweis": "E12 war nur beschreibend. Als Regel braucht es unberührte Daten: prospektiv als eigener Papier-Test oder einmalig auf 04/2025–10/2026 (nur mit Freigabe des Auftraggebers)."
+ },
+ {
+  "id": "H10",
+  "titel": "Wiederkehrende Tageszeit-Muster (gleiche Uhrzeit an Vortagen)",
+  "mechanismus": "Wiederkehrende Orderströme großer Teilnehmer.",
+  "daten": "vorhanden",
+  "aufwand": "gering",
+  "status": "offen"
+ },
+ {
+  "id": "H11",
+  "titel": "Eröffnungsspanne der Handelssitzungen",
+  "mechanismus": "Neue Information zu Sitzungsbeginn; Ausbrüche in Runde 11 nur in Trendrichtung getestet.",
+  "daten": "vorhanden",
+  "aufwand": "gering",
+  "status": "offen"
+ },
+ {
+  "id": "H12",
+  "titel": "Lücke der CME-Futures am Wochenende",
+  "mechanismus": "Rückkehr zum Freitagsschluss.",
+  "daten": "vorhanden",
+  "aufwand": "gering",
+  "status": "offen"
+ },
+ {
+  "id": "H13",
+  "titel": "Große Einzelaufträge (Einzeltrade-Daten)",
+  "mechanismus": "Informierte Händler handeln groß und aggressiv.",
+  "daten": "aggTrades, rund 0,8 GB je Coin-Monat",
+  "aufwand": "hoch",
+  "status": "offen"
+ },
+ {
+  "id": "H14",
+  "titel": "Eigener Sammler für das Yubit-Orderbuch",
+  "mechanismus": "Ausführbarkeit bei Yubit messen: Spanne und Tiefe zur Signalzeit; Grundlage für passive Orders.",
+  "daten": "Yubit-Schnittstelle (höchstens 200 Preisstufen)",
+  "aufwand": "mittel",
+  "status": "offen",
+  "hinweis": "Braucht einen dauerhaft laufenden Prozess; die Spanne der zehn Coins misst bereits der bestehende Papier-Bot alle fünf Minuten."
+ }
+]

@@ -420,3 +420,21 @@ gering bis mittel. Gesichert ist die Vorhersagekraft des Orderbuchs vor Kosten, 
 
 13 Experimente (Obergrenze 15), danach Stopp wie festgelegt. Der Zeitraum ab 01.04.2025 wurde nicht geladen und
 nicht angesehen. Bericht: `bericht_runde1.md`. Register aller Strategien: `register/register.json`.
+
+---
+
+## 18. Übergang in den Dauerbetrieb (15.11.2026, Direktive „Continuous Autonomous Alpha Research Engine“)
+
+- Die Obergrenze von 15 Experimenten entfällt. Die Forschung läuft in Zyklen weiter (`engine/AUFTRAG.md`).
+- Der Auftraggeber hat die automatische Einrichtung rein simulierter Papier-Tests freigegeben und verlangt,
+  unberührte Daten zu bewahren. Die zuvor vorgeschlagene Einmalprüfung auf 04/2025 bis 10/2026 findet deshalb nicht
+  statt; dieser Zeitraum bleibt ungeöffnet.
+- **Erster Durchlauf der Kette Forschung → Papier-Test: OS-1.1 „Orderbuch-Stütze“ 1.1.**
+  Geprüfte Bedingungen: Regel dokumentiert und eingefroren (Prüfsumme in `papier/OS-1.1/konfiguration.json`) ·
+  Mechanismus benannt · Rückrechnung reproduzierbar (E07 bis E13) · vorab gesetzte Hürden formal bestanden ·
+  kein Blick in die Zukunft (Signal nur aus abgeschlossenen Kerzen; Paritätstest Runner gegen Rückrechnung auf
+  echten Archivdaten grün) · Kosten mit und ohne Rebate · Margin und Liquidation im Modell · aktuelle Datenquelle
+  vorhanden (Binance-Archiv, ein Tag Verzug) · 13 neue Softwaretests grün.
+- **Kennzeichnung:** formal bestanden, schwach belegt, nur mit Rebate positiv. Art: Schattentest, keine Füllungen
+  bei Yubit. Start 16.11.2026 00:00 UTC, 5.000 $ Papier-Kapital, Hebel 3. Plan mit Erfolgs- und Abbruchkriterien:
+  `papier/OS-1.1/plan.md`.

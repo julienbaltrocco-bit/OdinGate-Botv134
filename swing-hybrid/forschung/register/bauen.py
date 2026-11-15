@@ -68,7 +68,7 @@ eintraege = [
                     "ertrag_jahr_pct_hebel1": e11["mit 85 % Rebate"]["trend"]["ertrag_jahr_pct"], "ertrag_jahr_ohne_rebate_pct": e11["ohne Rebate"]["trend"]["ertrag_jahr_pct"],
                     "sharpe": e11["mit 85 % Rebate"]["trend"]["sharpe"], "rueckgang_pct": e11["mit 85 % Rebate"]["trend"]["rueckgang_pct_startkapital"],
                     "hinweis": "Entwicklung 08/2021–03/2025: +59 % pro Jahr, Sharpe 0,95; 04/2025–10/2026: +16,5 %, Sharpe 0,34, ohne Rebate −12,5 %"}},
-    {"id": "OS-1.1", "name": "Orderbuch-Stütze", "version": "1.1", "familie": "Orderbuch / Liquidität", "kategorie": "kandidat", "einstufung": "D", "status": "vorbereitet, nicht gestartet",
+    {"id": "OS-1.1", "name": "Orderbuch-Stütze", "version": "1.1", "familie": "Orderbuch / Liquidität", "kategorie": "laufend", "einstufung": "D", "status": "Papier-Test (Schattentest) seit 16.11.2026",
      "richtung": "Long und Short", "maerkte": "BTC, ETH, SOL", "daten": "Binance-Orderbuch-Tiefe bis 5 % (bookDepth), 5-Minuten-Kerzen, Funding", "gebuehren": KOSTEN,
      "hypothese": "Ein ungewöhnliches Übergewicht der Kauf- oder Verkaufsaufträge im tiefen Orderbuch zeigt, wohin sich der Kurs in den nächsten ein bis zwei Stunden bewegt.",
      "algorithmus": "z = Abweichung des Auftrags-Übergewichts (bis 5 % um den Kurs, 5-Minuten-Mittel) vom eigenen 24-Stunden-Mittel. Einstieg bei z ≥ 3 (Long) bzw. ≤ −3 (Short); Ausstieg, sobald z unter 1 fällt, spätestens nach 240 Minuten.",
@@ -99,7 +99,7 @@ for exp, name in (("E07", "Ursachenanalyse Orderbuch-Tiefe (17 Einstellungen)"),
                   ("E11", "Kombination mit dem 14-Tage-Trend"), ("E12", "Marktphasen")):
     eintraege.append({"id": exp, "name": name, "version": "–", "familie": "Orderbuch / Liquidität", "kategorie": "backtest", "einstufung": "–", "status": "Analyse abgeschlossen",
                       "ergebnisdateien": [str(p.relative_to(ROOT)) for p in sorted(ERG.glob(exp.lower() + "_*.json"))], "validierung": "siehe Protokoll", "vertrauen": "–"})
-register = {"stand": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "runde": 1, "experimente": 13,
+register = {"stand": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "runde": 1, "experimente": len(json.loads((ROOT / "forschung/engine/experimente.json").read_text())),
             "kategorien": {"backtest": "Historische Rückrechnung, kein laufender Test", "kandidat": "Neue Strategie, für einen Vorwärtstest vorbereitet, nicht gestartet",
                            "vorbereitet": "Vorwärtstest eingerichtet, wartet auf Freigabe", "laufend": "Papier-Vorwärtstest läuft", "abgeschlossen": "Vorwärtstest beendet oder gescheitert"},
             "einstufungen": {"A": "verworfen", "B": "interessant, unbestätigt", "C": "vorläufig vielversprechend", "D": "bereit für unabhängigen Vorwärtstest"},

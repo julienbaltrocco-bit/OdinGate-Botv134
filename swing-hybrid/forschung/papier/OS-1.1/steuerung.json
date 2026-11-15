@@ -1,0 +1,4 @@
+{
+ "status": "laufend",
+ "hinweis": "Pausieren: status auf 'pausiert' setzen. Beenden: status 'beendet' und 'ende' als Zeit (z. B. 2027-01-31T00:00:00Z). Die Regel selbst wird nie geändert; eine neue Regel bekommt eine neue Version und einen neuen Test."
+}
