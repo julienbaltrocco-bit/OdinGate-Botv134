@@ -1231,3 +1231,36 @@ Der Prüfzeitraum wurde nicht angesehen.
 **Runde 23: durchgefallen.** Mit einfachen, offenen Regeln steckt in „Short nach Pump“ kein Vorteil. Falls die
 Signale des Dienstes einen haben, steckt er in dessen Score, und das ist nur mit dem langen Export oder live
 prüfbar. Stand: 116 Einzelhypothesen plus Massentest.
+
+---
+
+# Runde 24: Gewinnziel und Stop für den Kandidaten (festgelegt vor dem ersten Ergebnis)
+
+**Frage des Users:** Wäre es klüger, Gewinnziele (TP) und Stops (SL) einzubauen, oder geht dabei etwas verloren?
+Das laufende Dashboard und der Papier-Test bleiben unverändert; geändert würde erst nach bestandenem Test und
+ausdrücklicher Zustimmung des Users.
+
+**Regel:** Einstieg wie beim Kandidaten (Signal dreht). Zusätzlich wird die Position geschlossen, wenn ihr Ergebnis
+seit dem Einstieg das Ziel oder den Stop erreicht. Danach bleibt der Coin ohne Position, bis das Signal dreht; erst
+dann wird wieder eingestiegen. Geprüft wird am Stundenschluss, gehandelt zur nächsten Stunde (wie beim Signal).
+Innerhalb der Stunde kann der Kurs weiter laufen; ein Stop kann also etwas teurer ausfallen als die Schwelle.
+
+**11 Varianten, feste runde Werte (kein Raster-Nachschärfen):**
+
+| Name | Stop | Ziel | Nachgezogen |
+|---|---|---|---|
+| sl5 / sl10 / sl15 | 5 % / 10 % / 15 % | – | – |
+| tp10 / tp20 / tp30 | – | 10 % / 20 % / 30 % | – |
+| sl5_tp15 / sl10_tp20 / sl15_tp30 | 5 / 10 / 15 % | 15 / 20 / 30 % | – |
+| trail10 / trail15 | – | – | Stop 10 % / 15 % hinter dem besten Kurs seit Einstieg |
+
+**Prüfung wie Runde 21:** Gruppe A, Yubit-Kosten mit Rebate, Einsatz 100 %, Tagesergebnis auf die Schwankung des
+Kandidaten gebracht. (1) Höherer Sharpe als der Kandidat in D1 und D2. (2) Gemeinsame Zufallsprüfung über alle 11
+(White's Reality Check, 5.000 Ziehungen, Blöcke im Mittel 20 Tage). (3) Bestätigung: Prüfzeitraum Gruppe A,
+Gruppen B, C, D, Vorperiode 2020/21, überall höherer Sharpe.
+
+Zusätzlich berichtet, ohne Hürde: größter Einbruch und Ertrag je Variante in der Entwicklung, weil Stops oft das
+Risiko senken, auch wenn sie den Ertrag je Risiko nicht verbessern.
+
+Vorwissen: Runde 21 hat gezeigt, dass frühere Ausstiege (Band, Donchian) den Kandidaten nicht verbessern, und dass
+sich kleine Verbesserungen in diesen Daten nicht von Zufall trennen lassen. Gesamtzahl der Versuche danach: 127.
