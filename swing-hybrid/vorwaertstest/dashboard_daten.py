@@ -9,7 +9,7 @@ from pathlib import Path
 
 from . import bot
 
-TAKT_MINUTEN = 5
+TAKT_MINUTEN = 60
 
 
 def bauen(cfg: dict, daten: Path) -> dict:
@@ -30,12 +30,15 @@ def bauen(cfg: dict, daten: Path) -> dict:
         ein, seit = einstieg.get(coin, (0.0, ""))
         positionen.append({"coin": coin, "richtung": "Long" if q > 0 else "Short" if q < 0 else "keine",
                            "seit": seit, "einstieg": ein if q else None, "kurs": kurs,
+                           "menge": q, "kasse": z["kasse"].get(coin, 0.0),
                            "betrag": round(abs(q) * kurs, 2), "ergebnis": round(q * (kurs - ein), 2) if q else 0.0,
                            "ergebnis_pct": round((kurs / ein - 1) * (1 if q > 0 else -1) * 100, 3) if q and ein else 0.0})
     orders = [{"nr": i + 1, "zeit": r["zeit"], "coin": r["coin"], "seite": "Kauf" if r["seite"] == "kauf" else "Verkauf",
                "grund": {"einstieg": "Einstieg", "schliessen": "Schließen", "tageslimit": "Tageslimit"}.get(r["grund"], r["grund"]),
                "kurs": float(r["fuellkurs"]), "volumen": round(float(r["volumen"]), 2), "slippage_bp": float(r["slippage_bp"])}
               for i, r in enumerate(pr)][-60:][::-1]
+    orders_alle = [{"zeit": r["zeit"].replace(" ", "T") + ":00Z", "coin": r["coin"], "kauf": r["seite"] == "kauf", "grund": r["grund"],
+                    "kurs": float(r["fuellkurs"]), "menge": float(r["menge"]), "volumen": round(float(r["volumen"]), 2)} for r in pr][-600:]
     l = st[-1]
     start, ende = (dt.datetime.fromisoformat(st[i]["zeit"]) for i in (0, -1))
     tage = (ende - start).total_seconds() / 86400
@@ -62,7 +65,7 @@ def bauen(cfg: dict, daten: Path) -> dict:
         alt, neu = verlauf[:-120], verlauf[-120:]
         schritt = -(-len(alt) // 280)
         verlauf = alt[::schritt] + neu
-    return {"kennzahlen": kennzahlen, "verlauf": verlauf, "positionen": positionen, "orders": orders, "takt_minuten": TAKT_MINUTEN,
+    return {"kennzahlen": kennzahlen, "verlauf": verlauf, "positionen": positionen, "orders": orders, "orders_alle": orders_alle, "takt_minuten": TAKT_MINUTEN,
             "geschrieben": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}
 
 

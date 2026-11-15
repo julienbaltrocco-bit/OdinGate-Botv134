@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Trading Board · Vorwärtstest</title>
+<style>
+  :root { --bg: #0b1016; --panel: #121a23; --panel2: #18222d; --fg: #e8eef4; --muted: #8b99a8; --line: #24303c; --accent: #5cb3ee;
+    --ok: #2fd39a; --bad: #ff6b5e; --warn: #f0b34a; --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 14.5px; line-height: 1.45;
+    padding: max(12px, env(safe-area-inset-top, 0px)) max(14px, env(safe-area-inset-right, 0px)) 48px max(14px, env(safe-area-inset-left, 0px)); }
+  .seite { max-width: 1180px; margin: 0 auto; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+  .leiste { display: flex; flex-wrap: wrap; gap: 4px 16px; font-family: var(--mono); font-size: 12px; color: var(--muted); align-items: center; }
+  .leiste b { color: var(--fg); font-weight: 500; }
+  .punkt { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--warn); margin-right: 6px; }
+  .punkt.an { background: var(--ok); animation: puls 1.6s ease-in-out infinite; } .punkt.aus { background: var(--bad); }
+  @keyframes puls { 50% { opacity: .3; } }
+  .kopf { display: grid; gap: 2px; }
+  .kopf h1 { font-size: 13px; font-weight: 500; color: var(--muted); margin: 0; letter-spacing: .02em; }
+  .gross { font-family: var(--mono); font-size: clamp(34px, 9.5vw, 54px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .unter { font-family: var(--mono); font-size: 14.5px; font-variant-numeric: tabular-nums; }
+  .gut { color: var(--ok); } .schlecht { color: var(--bad); } .ruhig { color: var(--muted); }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 8px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 9px; padding: 10px 11px; display: grid; gap: 1px; min-width: 0; }
+  .stat .n { font-size: 11.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .stat .w { font-family: var(--mono); font-size: 16px; font-variant-numeric: tabular-nums; }
+  .stat .z { font-size: 11px; color: var(--muted); font-family: var(--mono); }
+  h2 { font-size: 13px; font-weight: 600; margin: 4px 0 0; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+  .kasten { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .chartbox { height: 220px; }
+  .paar { border-bottom: 1px solid var(--line); }
+  .paar:last-child { border-bottom: 0; }
+  .paar > button { all: unset; box-sizing: border-box; cursor: pointer; width: 100%; display: grid; align-items: center; gap: 2px 10px; padding: 11px 12px;
+    grid-template-columns: 62px 58px minmax(0, 1fr) minmax(0, 1fr) 18px; }
+  .paar > button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .paar .coin { font-weight: 600; font-size: 15px; }
+  .marke { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11.5px; border: 1px solid var(--line); text-align: center; }
+  .marke.long { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 50%, transparent); }
+  .marke.short { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 50%, transparent); }
+  .paar .preis, .paar .pnl { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; display: grid; }
+  .paar .preis small, .paar .pnl small { font-size: 11px; color: var(--muted); }
+  .paar .pnl small.gut { color: var(--ok); } .paar .pnl small.schlecht { color: var(--bad); }
+  .pfeil { color: var(--muted); transition: transform .15s; text-align: center; }
+  .paar.offen .pfeil { transform: rotate(90deg); }
+  .detail { display: none; padding: 0 12px 12px; gap: 10px; }
+  .paar.offen .detail { display: grid; }
+  .detail .werte { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 6px 14px; font-size: 12.5px; }
+  .detail .werte div { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px dashed var(--line); padding-bottom: 3px; }
+  .detail .werte span:first-child { color: var(--muted); } .detail .werte span:last-child { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .raster { display: flex; gap: 6px; flex-wrap: wrap; }
+  .raster button { all: unset; cursor: pointer; font-family: var(--mono); font-size: 12px; padding: 4px 10px; border-radius: 7px; border: 1px solid var(--line); color: var(--muted); }
+  .raster button[aria-pressed="true"] { color: var(--fg); background: var(--panel2); border-color: var(--accent); }
+  .raster button:focus-visible { outline: 2px solid var(--accent); }
+  .kerzen { height: 300px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--bg); }
+  .hinweis { font-size: 12px; color: var(--muted); margin: 0; }
+  .rolle { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+  th { text-align: left; font-weight: 500; font-size: 11.5px; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td { padding: 7px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  .r { text-align: right; } td.r { font-family: var(--mono); }
+  .auf { animation: auf .8s ease-out; } .ab { animation: ab .8s ease-out; }
+  @keyframes auf { from { background: color-mix(in srgb, var(--ok) 32%, transparent); } to { background: transparent; } }
+  @keyframes ab { from { background: color-mix(in srgb, var(--bad) 32%, transparent); } to { background: transparent; } }
+  @media (prefers-reduced-motion: reduce) { .auf, .ab, .punkt.an { animation: none; } }
+  @media (min-width: 760px) { .paar > button { grid-template-columns: 80px 70px minmax(0, 1fr) minmax(0, 1fr) 20px; padding: 12px 16px; } .kerzen { height: 380px; } .chartbox { height: 260px; } }
+</style>
+</head>
+<body>
+<div class="seite">
+  <div class="leiste" role="status">
+    <span><span class="punkt" id="punkt"></span><span id="status">Verbinde mit der Börse …</span></span>
+    <span>UTC <b id="uhr">–</b></span>
+    <span>Bot-Stand <b id="botalter">–</b></span>
+    <span>Nächste Signalprüfung in <b id="naechste">–</b></span>
+  </div>
+
+  <div class="kopf">
+    <h1>PAPIER-KONTO · 14-TAGE-TREND · 10 COINS · HEBEL <span id="hebel">–</span></h1>
+    <div class="gross" id="konto">—</div>
+    <div class="unter"><span id="netto">—</span> <span class="ruhig">seit Start, nach Kosten mit Rebate</span></div>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <h2>Konto-Verlauf seit Start (% des Startkapitals, mit Rebate)</h2>
+  <div class="kasten"><div class="chartbox" id="verlauf"></div></div>
+
+  <h2>Positionen · antippen für Chart und Details</h2>
+  <div class="kasten" id="paare"></div>
+
+  <h2>Alle Orders</h2>
+  <div class="kasten rolle"><table>
+    <thead><tr><th>Zeit (UTC)</th><th>Coin</th><th>Seite</th><th>Anlass</th><th class="r">Kurs</th><th class="r">Menge</th><th class="r">Volumen</th></tr></thead>
+    <tbody id="orders"><tr><td colspan="7" class="ruhig">Lade …</td></tr></tbody>
+  </table></div>
+
+  <p class="hinweis">Papierhandel ohne echtes Geld. Live-Kurse und Kerzen: Binance-Futures, direkt in deinem Browser. Einstiege, Gebühren, Rebate und Funding: Papier-Bot, gerechnet am Yubit-Orderbuch, Stand wird stündlich nachgeladen. Zwischen Binance und Yubit gibt es kleine Kursunterschiede. Keine Anlageberatung.</p>
+</div>
+
+<script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+<script>
+(() => {
+  const STAND = ['stand.json', 'https://raw.githubusercontent.com/julienbaltrocco-bit/OdinGate-Botv134/claude/intelligent-sagan-2cviug/docs/stand.json'];
+  const REST = 'https://fapi.binance.com', WS = 'wss://fstream.binance.com';
+  const $ = (id) => document.getElementById(id);
+  const de = (n) => new Intl.NumberFormat('de-DE', {minimumFractionDigits: n, maximumFractionDigits: n});
+  const vz = (x, n) => (x > 0 ? '+' : x < 0 ? '−' : '') + de(n).format(Math.abs(x));
+  const kurs = (x) => x == null || !isFinite(x) ? '–' : new Intl.NumberFormat('de-DE', {maximumSignificantDigits: 7}).format(x);
+  const farbe = (x) => x > 1e-9 ? 'gut' : x < -1e-9 ? 'schlecht' : 'ruhig';
+  const zwei = (n) => String(n).padStart(2, '0');
+  const dauer = (ms) => { const s = Math.max(0, Math.floor(ms / 1000)), h = Math.floor(s / 3600); return (h ? h + ':' : '') + zwei(Math.floor(s % 3600 / 60)) + ':' + zwei(s % 60); };
+  const el = (tag, klasse, text) => { const e = document.createElement(tag); if (klasse) e.className = klasse; if (text != null) e.textContent = text; return e; };
+
+  let S = null;                       // Stand des Bots
+  const P = {}, TAG = {}, SIG = {};   // Live-Kurs, 24-h-Veränderung, Signal je Coin
+  const Z = {};                       // DOM je Coin
+  let wsOffen = false, letzterTick = 0, offenerCoin = null, raster = '1h';
+  let kerzenChart = null, kerzenSerie = null, kerzenWs = null, verlaufChart = null, verlaufSerie = null;
+  const vorher = new Map();
+
+  const setze = (e, text, wert, klasse) => {
+    if (e.textContent !== text) {
+      e.textContent = text;
+      const alt = vorher.get(e);
+      if (alt != null && wert != null && wert !== alt) { e.classList.remove('auf', 'ab'); void e.offsetWidth; e.classList.add(wert > alt ? 'auf' : 'ab'); }
+    }
+    if (wert != null) vorher.set(e, wert);
+    if (klasse != null) { e.classList.remove('gut', 'schlecht', 'ruhig'); e.classList.add(klasse); }
+  };
+
+  // ---------------------------------------------------------------- Rechnen ----
+  function konto() {
+    if (!S) return null;
+    const k = S.kennzahlen[0];
+    let brutto = 0, offen = 0, wert = 0, vollstaendig = true;
+    S.positionen.forEach((p) => {
+      const preis = P[p.coin] ?? p.kurs;
+      if (P[p.coin] == null) vollstaendig = false;
+      brutto += p.kasse + p.menge * preis;
+      if (p.menge) { offen += p.menge * (preis - p.einstieg); wert += Math.abs(p.menge) * preis; }
+    });
+    const ohne = brutto - k.gebuehr_usd + k.funding_usd, mit = ohne + k.rebate_usd;
+    return {brutto, offen, wert, ohne, mit, vollstaendig, kapital: k.kapital, k};
+  }
+
+  // ---------------------------------------------------------------- Anzeige ----
+  const STATS = [['offen', 'Offene Positionen'], ['ohne', 'Netto ohne Rebate'], ['vor', 'Handel vor Gebühren'], ['wert', 'Positionswert'], ['margin', 'Gebundene Margin'],
+                 ['rebate', 'Rebate (85 %)'], ['gebuehr', 'Gebühr gezahlt'], ['funding', 'Funding'], ['volumen', 'Handelsvolumen'], ['orders', 'Orders'],
+                 ['dd', 'Größter Einbruch'], ['ls', 'Long / Short'], ['tage', 'Laufzeit'], ['slip', 'Slippage je Order']];
+  const stat = {};
+  STATS.forEach(([id, name]) => { const d = el('div', 'stat'); d.appendChild(el('span', 'n', name)); stat[id] = d.appendChild(el('span', 'w', '—')); stat[id + '_z'] = d.appendChild(el('span', 'z', ' ')); $('stats').appendChild(d); });
+
+  function zeigeKonto() {
+    const a = konto();
+    if (!a) return;
+    const k = a.k, pz = (x) => x / a.kapital * 100;
+    $('hebel').textContent = de(0).format(k.hebel);
+    setze($('konto'), de(2).format(a.kapital + a.mit) + ' $', a.mit);
+    setze($('netto'), `${vz(a.mit, 2)} $ (${vz(pz(a.mit), 3)} %)`, a.mit, farbe(a.mit));
+    setze(stat.offen, vz(a.offen, 2) + ' $', a.offen, farbe(a.offen)); stat.offen_z.textContent = vz(pz(a.offen), 3) + ' % vom Konto';
+    setze(stat.ohne, vz(a.ohne, 2) + ' $', a.ohne, farbe(a.ohne)); stat.ohne_z.textContent = vz(pz(a.ohne), 3) + ' %';
+    setze(stat.vor, vz(a.brutto, 2) + ' $', a.brutto, farbe(a.brutto)); stat.vor_z.textContent = vz(pz(a.brutto), 3) + ' %';
+    setze(stat.wert, de(0).format(a.wert) + ' $', null); stat.wert_z.textContent = de(2).format(a.wert / a.kapital) + ' × Konto';
+    setze(stat.margin, de(0).format(a.wert / k.hebel) + ' $', null); stat.margin_z.textContent = de(0).format(a.wert / k.hebel / a.kapital * 100) + ' % des Kontos';
+    setze(stat.rebate, de(2).format(k.rebate_usd) + ' $', null); stat.rebate_z.textContent = 'auf den Positionswert';
+    setze(stat.gebuehr, de(2).format(k.gebuehr_usd) + ' $', null); stat.gebuehr_z.textContent = 'Taker 0,08 %';
+    setze(stat.funding, vz(k.funding_usd, 2) + ' $', null, farbe(k.funding_usd));
+    setze(stat.volumen, de(0).format(k.volumen_usd) + ' $', null); stat.volumen_z.textContent = de(1).format(k.volumen_usd / a.kapital) + ' × Konto';
+    setze(stat.orders, String(k.orders), null);
+    const live = pz(a.mit), spitze = Math.max(0, ...S.verlauf.map((r) => r.mit_rebate), live);
+    const dd = Math.max(k.einbruch_pct, (spitze - live) / (100 + spitze) * 100);
+    setze(stat.dd, de(2).format(dd) + ' %', null); stat.dd_z.textContent = 'vom Höchststand';
+    setze(stat.ls, `${k.long} / ${k.short}`, null);
+    const tage = (Date.now() - new Date(k.start.replace(' ', 'T') + ':00Z')) / 864e5;
+    setze(stat.tage, tage < 1 ? de(1).format(tage * 24) + ' Std.' : de(1).format(tage) + ' Tage', null); stat.tage_z.textContent = 'Start ' + k.start + ' UTC';
+    setze(stat.slip, de(3).format(k.slippage_orders_bp / 100) + ' %', null); stat.slip_z.textContent = 'gemessen bei Yubit';
+    if (verlaufSerie && a.vollstaendig) {
+      const t = Math.floor(Date.now() / 60000) * 60, letzte = S.verlauf.length ? Math.floor(new Date(S.verlauf[S.verlauf.length - 1].zeit) / 1000) : 0;
+      if (t > letzte) verlaufSerie.update({time: t, value: live});
+    }
+  }
+
+  function bauePaare() {
+    const box = $('paare'); box.replaceChildren();
+    S.positionen.forEach((p) => {
+      const z = Z[p.coin] = {};
+      z.box = el('div', 'paar');
+      const b = el('button'); b.type = 'button'; b.setAttribute('aria-expanded', 'false');
+      b.appendChild(el('span', 'coin', p.coin));
+      z.marke = b.appendChild(el('span', 'marke'));
+      const pr = b.appendChild(el('span', 'preis')); z.preis = pr.appendChild(el('span', null, '–')); z.tag = pr.appendChild(el('small', null, ' '));
+      const pn = b.appendChild(el('span', 'pnl')); z.pnl = pn.appendChild(el('span', null, '–')); z.pnlp = pn.appendChild(el('small', null, ' '));
+      b.appendChild(el('span', 'pfeil', '›'));
+      b.addEventListener('click', () => umschalten(p.coin));
+      z.knopf = b; z.box.appendChild(b);
+      z.detail = z.box.appendChild(el('div', 'detail'));
+      z.werte = z.detail.appendChild(el('div', 'werte'));
+      z.w = {};
+      [['einstieg', 'Einstieg'], ['seit', 'Seit (UTC)'], ['menge', 'Menge'], ['wert', 'Positionswert'], ['trend', '14-Tage-Trend'], ['dreh', 'Signal dreht bei'], ['abstand', 'Kurs zur Drehschwelle']].forEach(([id, name]) => {
+        const d = el('div'); d.appendChild(el('span', null, name)); z.w[id] = d.appendChild(el('span', null, '–')); z.werte.appendChild(d);
+      });
+      z.raster = z.detail.appendChild(el('div', 'raster'));
+      ['5m', '15m', '1h', '4h', '1d'].forEach((r) => { const k = el('button', null, r); k.type = 'button'; k.dataset.r = r; k.addEventListener('click', () => { raster = r; ladeKerzen(p.coin); }); z.raster.appendChild(k); });
+      z.kerzen = z.detail.appendChild(el('div', 'kerzen'));
+      z.detail.appendChild(el('p', 'hinweis', 'Pfeile: Orders des Papier-Bots. Blaue Linie: Einstieg. Gestrichelt: Kurs, an dem sich das Signal beim nächsten Stundenschluss dreht.'));
+      box.appendChild(z.box);
+    });
+    zeigePaare();
+  }
+
+  function zeigePaare() {
+    if (!S) return;
+    S.positionen.forEach((p) => {
+      const z = Z[p.coin]; if (!z) return;
+      const preis = P[p.coin] ?? p.kurs, live = P[p.coin] != null;
+      z.marke.textContent = p.richtung; z.marke.className = 'marke ' + (p.menge > 0 ? 'long' : p.menge < 0 ? 'short' : '');
+      setze(z.preis, kurs(preis), live ? preis : null);
+      if (TAG[p.coin] != null) setze(z.tag, '24 h ' + vz(TAG[p.coin], 2) + ' %', null, farbe(TAG[p.coin]));
+      const g = p.menge ? p.menge * (preis - p.einstieg) : 0, gp = p.menge && p.einstieg ? (preis / p.einstieg - 1) * Math.sign(p.menge) * 100 : 0;
+      setze(z.pnl, vz(g, 2) + ' $', g, farbe(g)); setze(z.pnlp, vz(gp, 2) + ' %', null, farbe(gp));
+      z.w.einstieg.textContent = kurs(p.einstieg); z.w.seit.textContent = p.seit || '–';
+      z.w.menge.textContent = new Intl.NumberFormat('de-DE', {maximumFractionDigits: 6}).format(p.menge);
+      z.w.wert.textContent = de(0).format(Math.abs(p.menge) * preis) + ' $';
+      const s = SIG[p.coin];
+      if (s) {
+        z.w.trend.textContent = vz(s.trend * 100, 2) + ' %'; z.w.trend.className = farbe(s.trend);
+        z.w.dreh.textContent = kurs(s.dreh);
+        const ab = (preis / s.dreh - 1) * 100;
+        z.w.abstand.textContent = vz(ab, 2) + ' %';
+      }
+    });
+  }
+
+  function zeigeOrders() {
+    const tb = $('orders'); tb.replaceChildren();
+    const anlass = {einstieg: 'Einstieg', schliessen: 'Schließen', tageslimit: 'Tageslimit'};
+    [...S.orders_alle].reverse().forEach((o) => {
+      const tr = el('tr');
+      tr.appendChild(el('td', null, o.zeit.slice(0, 16).replace('T', ' '))); tr.appendChild(el('td', null, o.coin));
+      tr.appendChild(el('td', o.kauf ? 'gut' : 'schlecht', o.kauf ? 'Kauf' : 'Verkauf')); tr.appendChild(el('td', null, anlass[o.grund] || o.grund));
+      tr.appendChild(el('td', 'r', kurs(o.kurs))); tr.appendChild(el('td', 'r', new Intl.NumberFormat('de-DE', {maximumFractionDigits: 6}).format(o.menge))); tr.appendChild(el('td', 'r', de(0).format(o.volumen) + ' $'));
+      tb.appendChild(tr);
+    });
+    if (!S.orders_alle.length) { const tr = el('tr'); const td = el('td', 'ruhig', 'Noch keine Orders.'); td.colSpan = 7; tr.appendChild(td); tb.appendChild(tr); }
+  }
+
+  // ----------------------------------------------------------------- Charts ----
+  const chartOpt = (box) => ({ width: box.clientWidth, height: box.clientHeight, layout: {background: {color: 'transparent'}, textColor: '#8b99a8', fontSize: 11},
+    grid: {vertLines: {color: '#18222d'}, horzLines: {color: '#18222d'}}, rightPriceScale: {borderColor: '#24303c'},
+    timeScale: {borderColor: '#24303c', timeVisible: true, secondsVisible: false}, crosshair: {mode: 0}, handleScale: {axisPressedMouseMove: false} });
+
+  function zeigeVerlauf() {
+    if (!window.LightweightCharts) return;
+    const box = $('verlauf');
+    if (!verlaufChart) {
+      verlaufChart = LightweightCharts.createChart(box, chartOpt(box));
+      verlaufSerie = verlaufChart.addBaselineSeries({baseValue: {type: 'price', price: 0}, topLineColor: '#2fd39a', bottomLineColor: '#ff6b5e',
+        topFillColor1: 'rgba(47,211,154,.25)', topFillColor2: 'rgba(47,211,154,.02)', bottomFillColor1: 'rgba(255,107,94,.02)', bottomFillColor2: 'rgba(255,107,94,.25)',
+        priceFormat: {type: 'custom', formatter: (v) => vz(v, 2) + ' %', minMove: 0.001}});
+      new ResizeObserver(() => verlaufChart.applyOptions({width: box.clientWidth, height: box.clientHeight})).observe(box);
+    }
+    const punkte = new Map();
+    S.verlauf.forEach((r) => punkte.set(Math.floor(new Date(r.zeit) / 60000) * 60, r.mit_rebate));
+    verlaufSerie.setData([...punkte.entries()].sort((a, b) => a[0] - b[0]).map(([time, value]) => ({time, value})));
+    verlaufChart.timeScale().fitContent();
+  }
+
+  const SEK = {'5m': 300, '15m': 900, '1h': 3600, '4h': 14400, '1d': 86400};
+  function schliesseKerzen() {
+    if (kerzenWs) { try { kerzenWs.onclose = null; kerzenWs.close(); } catch (e) {} kerzenWs = null; }
+    if (kerzenChart) { kerzenChart.remove(); kerzenChart = null; kerzenSerie = null; }
+  }
+  function umschalten(coin) {
+    const war = offenerCoin;
+    if (war) { Z[war].box.classList.remove('offen'); Z[war].knopf.setAttribute('aria-expanded', 'false'); schliesseKerzen(); }
+    offenerCoin = war === coin ? null : coin;
+    if (offenerCoin) { Z[coin].box.classList.add('offen'); Z[coin].knopf.setAttribute('aria-expanded', 'true'); ladeKerzen(coin); }
+  }
+  async function ladeKerzen(coin) {
+    schliesseKerzen();
+    const z = Z[coin], box = z.kerzen, r = raster;
+    z.raster.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.r === r)));
+    if (!window.LightweightCharts) { box.textContent = 'Chart-Bibliothek konnte nicht geladen werden.'; return; }
+    box.replaceChildren();
+    let daten;
+    try {
+      const a = await (await fetch(`${REST}/fapi/v1/klines?symbol=${coin}USDT&interval=${r}&limit=500`)).json();
+      daten = a.map((k) => ({time: Math.floor(k[0] / 1000), open: +k[1], high: +k[2], low: +k[3], close: +k[4]}));
+    } catch (e) { box.textContent = 'Kerzen konnten nicht geladen werden. Bitte später erneut öffnen.'; return; }
+    if (offenerCoin !== coin || raster !== r) return;
+    if (!Array.isArray(daten) || !daten.length) { box.textContent = 'Für diesen Coin kamen keine Kerzen zurück.'; return; }
+    const lk = daten[daten.length - 1].close, stellen = lk < 1 ? 5 : lk < 100 ? 3 : 1;
+    kerzenChart = LightweightCharts.createChart(box, chartOpt(box));
+    kerzenSerie = kerzenChart.addCandlestickSeries({upColor: '#2fd39a', downColor: '#ff6b5e', borderVisible: false, wickUpColor: '#2fd39a', wickDownColor: '#ff6b5e',
+      priceFormat: {type: 'price', precision: stellen, minMove: Math.pow(10, -stellen)}});
+    kerzenSerie.setData(daten);
+    const s = SEK[r], erste = daten.length ? daten[0].time : 0;
+    const marken = S.orders_alle.filter((o) => o.coin === coin).map((o) => ({time: Math.floor(new Date(o.zeit) / 1000 / s) * s, kauf: o.kauf, kurs: o.kurs, grund: o.grund}))
+      .filter((m) => m.time >= erste).sort((a, b) => a.time - b.time)
+      .map((m) => ({time: m.time, position: m.kauf ? 'belowBar' : 'aboveBar', color: m.kauf ? '#2fd39a' : '#ff6b5e', shape: m.kauf ? 'arrowUp' : 'arrowDown',
+                    text: (m.kauf ? 'Kauf ' : 'Verkauf ') + kurs(m.kurs)}));
+    kerzenSerie.setMarkers(marken);
+    const p = S.positionen.find((x) => x.coin === coin);
+    if (p && p.menge) kerzenSerie.createPriceLine({price: p.einstieg, color: '#5cb3ee', lineWidth: 1, lineStyle: 0, axisLabelVisible: true, title: 'Einstieg ' + p.richtung});
+    if (SIG[coin]) kerzenSerie.createPriceLine({price: SIG[coin].dreh, color: '#f0b34a', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: 'Signal dreht'});
+    new ResizeObserver(() => kerzenChart && kerzenChart.applyOptions({width: box.clientWidth, height: box.clientHeight})).observe(box);
+    try {
+      kerzenWs = new WebSocket(`${WS}/ws/${coin.toLowerCase()}usdt@kline_${r}`);
+      kerzenWs.onmessage = (ev) => { const k = JSON.parse(ev.data).k; if (k && kerzenSerie) kerzenSerie.update({time: Math.floor(k.t / 1000), open: +k.o, high: +k.h, low: +k.l, close: +k.c}); };
+    } catch (e) {}
+  }
+
+  // ------------------------------------------------------------------ Daten ----
+  async function ladeStand() {
+    for (const url of STAND) {
+      try {
+        const r = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Math.floor(Date.now() / 30000), {cache: 'no-store'});
+        if (!r.ok) continue;
+        const d = await r.json();
+        if (!d.kennzahlen || !d.positionen) continue;
+        const neu = !S || d.geschrieben !== S.geschrieben, ersterLauf = !S;
+        S = d;
+        if (ersterLauf) bauePaare();
+        if (neu) { zeigeOrders(); zeigeVerlauf(); zeigePaare(); zeigeKonto(); if (offenerCoin && !ersterLauf) ladeKerzen(offenerCoin); }
+        return;
+      } catch (e) {}
+    }
+    if (!S) $('status').textContent = 'Bot-Stand konnte nicht geladen werden';
+  }
+
+  async function ladeSignale() {
+    if (!S) return;
+    await Promise.all(S.positionen.map(async (p) => {
+      try {
+        const a = await (await fetch(`${REST}/fapi/v1/klines?symbol=${p.coin}USDT&interval=1h&limit=340`)).json();
+        const n = a.length; if (n < 339) return;
+        SIG[p.coin] = {trend: +a[n - 2][4] / +a[n - 2 - 336][4] - 1, dreh: +a[n - 337][4]};
+      } catch (e) {}
+    }));
+    zeigePaare();
+  }
+
+  function verbinde() {
+    if (!S) return;
+    let ws;
+    try { ws = new WebSocket(`${WS}/stream?streams=` + S.positionen.map((p) => p.coin.toLowerCase() + 'usdt@miniTicker').join('/')); } catch (e) { setTimeout(verbinde, 5000); return; }
+    ws.onopen = () => { wsOffen = true; };
+    ws.onmessage = (ev) => {
+      const d = JSON.parse(ev.data).data; if (!d || !d.s) return;
+      const coin = d.s.replace('USDT', '');
+      P[coin] = +d.c; if (+d.o) TAG[coin] = (+d.c / +d.o - 1) * 100;
+      letzterTick = Date.now(); schmutzig = true;
+    };
+    ws.onclose = () => { wsOffen = false; setTimeout(verbinde, 3000); };
+    ws.onerror = () => { try { ws.close(); } catch (e) {} };
+  }
+  async function pollen() {                                   // Rückfall, falls der Datenstrom nicht steht
+    if (wsOffen && Date.now() - letzterTick < 8000) return;
+    try {
+      const a = await (await fetch(`${REST}/fapi/v1/ticker/24hr`)).json();
+      a.forEach((t) => { const coin = t.symbol.replace('USDT', ''); if (Z[coin] && t.symbol.endsWith('USDT')) { P[coin] = +t.lastPrice; TAG[coin] = +t.priceChangePercent; } });
+      letzterTick = Date.now(); schmutzig = true;
+    } catch (e) {}
+  }
+
+  let schmutzig = false;
+  setInterval(() => { if (schmutzig) { schmutzig = false; zeigeKonto(); zeigePaare(); } }, 500);
+  setInterval(() => {
+    const j = new Date();
+    $('uhr').textContent = zwei(j.getUTCHours()) + ':' + zwei(j.getUTCMinutes()) + ':' + zwei(j.getUTCSeconds());
+    const alter = Date.now() - letzterTick, p = $('punkt');
+    if (letzterTick && alter < 10000) { p.className = 'punkt an'; $('status').textContent = 'Live · Kurse im Sekundentakt'; }
+    else if (letzterTick) { p.className = 'punkt aus'; $('status').textContent = 'Kurse stehen seit ' + dauer(alter); }
+    if (S && S.geschrieben) $('botalter').textContent = 'vor ' + dauer(Date.now() - new Date(S.geschrieben));
+    const naechste = new Date(j); naechste.setUTCMinutes(4, 0, 0); if (naechste <= j) naechste.setUTCHours(naechste.getUTCHours() + 1);
+    $('naechste').textContent = dauer(naechste - j);
+  }, 1000);
+
+  (async () => {
+    await ladeStand();
+    verbinde(); pollen(); ladeSignale();
+    setInterval(ladeStand, 60000); setInterval(pollen, 4000); setInterval(ladeSignale, 300000);
+  })();
+})();
+</script>
+</body>
+</html>
