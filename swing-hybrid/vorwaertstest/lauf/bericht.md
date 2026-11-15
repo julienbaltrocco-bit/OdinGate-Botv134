@@ -2,23 +2,23 @@
 
 Historische bzw. Papier-Messung, keine Anlageberatung. Stufe „papier“ setzt keine echten Orders.
 
-- Zeitraum: 2026-11-15 13:21 bis 2026-11-15 15:11 UTC (0,1 Tage, 23 Durchläufe)
+- Zeitraum: 2026-11-15 13:21 bis 2026-11-15 15:16 UTC (0,1 Tage, 24 Durchläufe)
 - Kapital 5.000 $, Hebel 3,00, 10 Coins, Modus papier
 
 ## Was eine Order zur vollen Stunde gekostet hätte
 
-Gemessen am echten Orderbuch, Order in Standardgröße, 230 Messungen.
+Gemessen am echten Orderbuch, Order in Standardgröße, 235 Messungen.
 
 - **Slippage im Mittel: 0,016 %** (unter der Annahme aus dem Backtest (0,05 %))
 - Median 0,008 %, schlechteste 10 % ab 0,068 %
 
 | Coin | Messungen | Slippage im Mittel | Schlechteste 10 % ab | Spanne Geld/Brief im Mittel |
 |---|---|---|---|---|
-| BTC | 23 | 0,001 % | 0,001 % | 0,002 % |
-| ETH | 23 | 0,001 % | 0,001 % | 0,003 % |
-| SOL | 23 | 0,007 % | 0,007 % | 0,014 % |
-| XRP | 23 | 0,005 % | 0,006 % | 0,010 % |
-| DOT | 23 | 0,072 % | 0,088 % | 0,136 % |
+| BTC | 24 | 0,001 % | 0,001 % | 0,002 % |
+| ETH | 24 | 0,001 % | 0,001 % | 0,003 % |
+| SOL | 24 | 0,007 % | 0,007 % | 0,014 % |
+| XRP | 24 | 0,005 % | 0,006 % | 0,010 % |
+| DOT | 24 | 0,072 % | 0,088 % | 0,136 % |
 | DOGE | 23 | 0,008 % | 0,009 % | 0,017 % |
 | ADA | 23 | 0,032 % | 0,033 % | 0,065 % |
 | LINK | 23 | 0,007 % | 0,010 % | 0,011 % |
@@ -36,13 +36,13 @@ Gemessen am echten Orderbuch, Order in Standardgröße, 230 Messungen.
 
 | | Betrag | Anteil am Kapital |
 |---|---|---|
-| Handel vor Gebühren | +274,20 $ | 5,48 % |
+| Handel vor Gebühren | +286,15 $ | 5,72 % |
 | Gebühr | −11,94 $ | −0,24 % |
 | Funding | +0,00 $ | 0,00 % |
-| Nach voller Gebühr, ohne Rebate | +262,26 $ | 5,25 % |
+| Nach voller Gebühr, ohne Rebate | +274,21 $ | 5,48 % |
 | Rebate (85 %, gerechnet) | +10,15 $ | 0,20 % |
-| **Netto mit Rebate** | +272,41 $ | 5,45 % |
+| **Netto mit Rebate** | +284,36 $ | 5,69 % |
 
-Offen: 0 Long, 10 Short, Einsatz 14.651 $.
+Offen: 0 Long, 10 Short, Einsatz 14.640 $.
 
 Wenige Wochen sagen über den Gewinn fast nichts. Aussagekräftig ist hier vor allem die Slippage.
