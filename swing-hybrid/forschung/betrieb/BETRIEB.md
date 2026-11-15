@@ -17,8 +17,9 @@ Stand 15.11.2026. Dieses Blatt sagt, was wie läuft, was ohne KI weiterläuft un
 ## Wie der Dauerbetrieb heute gelöst ist
 
 - **Zeitgeber:** zwei geplante Aufgaben im Claude-Konto. Die tägliche Aufgabe „Papier-Lauf“ führt `papier/tag.sh` aus
-  und trägt den Stand in die Übersicht ein. Die Aufgabe „Forschungszyklus“ startet eine frische Forschungssitzung,
-  die nach `engine/AUFTRAG.md` arbeitet. Beide verbrauchen Kontingent des Claude-Abos, keine zusätzliche bezahlte
+  und trägt den Stand in die Übersicht ein (täglich 09:17 UTC, eigene Sitzung auf einem kleinen Modell, erster Lauf
+  am 15.11.2026 in rund 25 Sekunden erfolgreich). Die Aufgabe „Forschungszyklus“ weckt täglich um 01:43 UTC eine
+  eigene Forschungssitzung, die nach `engine/AUFTRAG.md` höchstens drei Experimente rechnet. Beide verbrauchen Kontingent des Claude-Abos, keine zusätzliche bezahlte
   Schnittstelle. Beide lassen sich in der Claude-App unter den geplanten Aufgaben pausieren oder löschen.
 - **Zustand der Papier-Tests:** Jeder Lauf rechnet den Test vollständig aus den öffentlichen Archivdaten neu. Ein
   ausgefallener oder doppelter Lauf kann deshalb nichts verlieren und nichts verdoppeln. Innerhalb eines Laufs wird
