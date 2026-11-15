@@ -1132,3 +1132,63 @@ die gemeinsame Zufallsprüfung in Runde 21 hatte das richtig angezeigt.
 - Weitere Varianten auf denselben Daten zu testen, bis eine besteht, würde bei einer 5-%-Hürde im Schnitt nach
   etwa 20 Versuchen einen Zufallstreffer liefern. Neue Belege können nur aus neuen Daten kommen: Vorwärtstest,
   langer Export des Signal-Dienstes.
+
+---
+
+# Runde 23: „Short nach Pump“ mit eigenem Signal auf vielen kleinen Coins (festgelegt vor dem ersten Ergebnis)
+
+**Begründung:** Auf den zehn großen Coins ist nach 101 Versuchen nichts mehr von Zufall zu trennen, weil eine
+einzige Zeitreihe von dreieinhalb Jahren zu wenig Belege liefert. Ein Ansatz mit **tausenden voneinander
+weitgehend unabhängigen Einzelereignissen** hat diese Schwäche nicht. Der stärkste Hinweis der ganzen Suche
+(Runde 18: +0,92 % je Trade) stammt aus genau so einem Ansatz, hing dort aber am undurchsichtigen Score eines
+Anbieters und an 90 Tagen. Hier wird die Idee mit eigenen, offenen Regeln auf mehreren Jahren geprüft.
+
+**Daten:** alle Krypto-Kontrakte, die bei Yubit gelistet sind und Binance-Historie haben, ohne die 49 großen Coins
+der Gruppen A–D und ohne Nicht-Krypto-Kontrakte: 281 Coins. 5-Minuten-Kerzen und Funding von Binance für jeden
+Monat ab 01/2023, in dem der Coin laut Tageskerzen einen Sprung von rund 15–18 % hatte (plus Nachbarmonate).
+Entwicklung 01/2023–03/2025, Prüfzeitraum 04/2025–10/2026.
+
+**Grundregel (wie Runde 18, ohne Score):** Signal, sobald der Schluss einer 5-Minuten-Kerze mindestens 20 % über dem
+von vor 24 Stunden liegt. Short zur nächsten Eröffnung, Ziel 10 % (Limit), Stop 8 % (Market), beide in einer Kerze
+= Stop, nach 72 Stunden glatt, je Coin eine Position. Kosten: Taker 0,08 % / Maker 0,04 % mit 85 % Rebate, Slippage
+2 × halbe Yubit-Spanne des Coins, echtes Binance-Funding. Je Trade 10 % des Kontos.
+
+**15 Varianten, je eine Einstellung.** Die Merkmale sind an die Feldnamen des Dienstes angelehnt (Tempo, Funding,
+Volumen, Trend, Liquidität), die Schwellen sind runde Werte ohne Raster:
+
+| # | Name | Zusatzbedingung beim Signal |
+|---|---|---|
+| 0 | roh | keine |
+| 1 | ab30 | Anstieg ≥ 30 % |
+| 2 | ab50 | Anstieg ≥ 50 % |
+| 3 | schnell | mindestens die Hälfte des Anstiegs in den letzten 4 Stunden |
+| 4 | langsam | weniger als die Hälfte in den letzten 4 Stunden |
+| 5 | funding_plus | letzter Funding-Satz > 0 (Longs zahlen) |
+| 6 | funding_hoch | letzter Funding-Satz ≥ 0,03 % |
+| 7 | funding_minus | letzter Funding-Satz < 0 (Shorts zahlen schon) |
+| 8 | gedreht | Kurs liegt schon ≥ 5 % unter dem 24-Stunden-Hoch |
+| 9 | am_hoch | Kurs liegt höchstens 2 % unter dem 24-Stunden-Hoch |
+| 10 | volumen_fällt | Umsatz der letzten Stunde unter dem Stundenmittel der 24 Stunden davor |
+| 11 | aus_dem_tief | 7-Tage-Rendite vor dem Anstieg (bis 24 h zuvor) < 0 |
+| 12 | im_lauf | 7-Tage-Rendite vor dem Anstieg ≥ +20 % |
+| 13 | liquide | 24-Stunden-Umsatz ≥ 20 Mio. $ |
+| 14 | dünn | 24-Stunden-Umsatz < 5 Mio. $ |
+
+**Stufen:**
+1. Entwicklung: mindestens 300 Trades, netto mit Rebate > 0 in beiden Hälften (Teilung 01.03.2024).
+2. Gemeinsame Zufallsprüfung über alle 15 in der Entwicklung (White's Reality Check, Tagesergebnisse, stationärer
+   Bootstrap mit Blöcken von im Mittel 5 Tagen, 5.000 Ziehungen): Tagesmittel über dem 95-%-Wert des größten
+   Zufallswerts. Nullhypothese: kein Ertrag.
+3. Doppelte Slippage: netto > 0 in der Entwicklung.
+4. Prüfzeitraum, je Variante einmal: netto > 0, vor Kosten > 0, mindestens 100 Trades, und Mittelwert je Trade > 0
+   in mindestens 95 % von 2.000 Ziehungen ganzer Tage.
+5. Kein Coin über 25 % des Gewinns im Prüfzeitraum; größter Konto-Einbruch über alles < 15 %.
+
+**Vorwissen und Schwächen, vorab benannt:**
+- Aus Runde 18 kenne ich das Ergebnis für 51 Coins von 08–11/2026 mit dem Score des Dienstes; dessen Statistik
+  sagt, dass alle Signale zusammen nur in 32 % der Fälle −10 % erreichen. Die Roh-Regel erwarte ich daher schwach.
+- Auswahl der Coins von heute: Coins, die inzwischen von der Börse genommen wurden, fehlen. Das sind oft Coins, die
+  nach einem Pump zusammenbrachen (für Shorts günstig); die Verzerrung wirkt eher gegen die Strategie.
+- Kurse von Binance, Handel wäre bei Yubit; Spannen aus einer Stichprobe; in dünnen Coins ist der Stop bei Yubit
+  womöglich teurer. Yubit verlangt für Bots eine Freigabe.
+Gesamtzahl der Versuche danach: 116 plus Massentest.
