@@ -1,0 +1,13 @@
+=== (1) Groessentest: wahre Mittel = 0, k Spalten mit gemeinsamer Komponente und ungleicher Streuung, AR(1) = 0,1; n = 1325
+k=14: Ablehnungsquote 0.057 (Soll 0,05 +- 0.025); mittlerer p-Wert 0.505; Anteil p<0,10: 0.107
+k=11: Ablehnungsquote 0.057 (Soll 0,05 +- 0.025); mittlerer p-Wert 0.491; Anteil p<0,10: 0.107
+Trennschaerfe: eine von 14 Spalten mit wahrem Vorsprung von 0,12 Standardabweichungen je Tag (deutlich), sonst wie oben
+   erkannt in 1.00 der Faelle
+
+=== (2) Auswahl in Runde 3: 10 Trend-Einstellungen, Entwicklung 15.08.2021-31.03.2025, sofortige Ausfuehrung, ohne Tageslimit; Massstab null
+5 bp (Stand der Auswahl in Runde 3): beste = tsmom_L336_biasFalse (+0.505/Jahr, Sharpe 0.804); Sharpe aller 10: [-0.42, -0.03, 0.21, 0.41, 0.35, 0.51, 0.8, 0.77, -0.89, -0.59]
+   p allein (ohne Korrektur) 0.0710 | White ueber 10 (Projektfunktion) 0.1232 | White studentisiert 0.1922 | Hansen SPA 0.1884
+Yubit-Kosten (ab Runde 6): beste = tsmom_L336_biasFalse (+0.594/Jahr, Sharpe 0.946); Sharpe aller 10: [0.01, 0.31, 0.52, 0.66, 0.57, 0.68, 0.95, 0.9, -0.35, -0.17]
+   p allein (ohne Korrektur) 0.0416 | White ueber 10 (Projektfunktion) 0.0744 | White studentisiert 0.1256 | Hansen SPA 0.1256
+
+fertig nach 152 s

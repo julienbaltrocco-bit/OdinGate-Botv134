@@ -1,0 +1,42 @@
+{
+ "runde21": {
+  "schwelle": 0.0012172194688303585,
+  "p": 0.8426,
+  "json_schwelle": 0.0012172194688303585,
+  "json_p": 0.8426,
+  "beste": "funding_filter",
+  "eigen_p": 0.8302,
+  "eigen_schwelle": 0.0012252921167927205,
+  "p_studentisiert": 0.7106,
+  "max_abweichung": 0.0
+ },
+ "runde24": {
+  "schwelle": 0.0016627681268359612,
+  "p": 0.54,
+  "json_schwelle": 0.0016627681268359612,
+  "json_p": 0.54,
+  "beste": "sl5_tp15",
+  "eigen_p": 0.5554,
+  "eigen_schwelle": 0.0016656774146631696,
+  "p_studentisiert": 0.9068,
+  "max_abweichung": 0.0
+ },
+ "groessentest": {
+  "ablehnungsquote": 0.0275,
+  "p_mittel": 0.46726,
+  "wiederholungen": 400
+ },
+ "runde3_rc_Rohertrag": {
+  "beste": "tsmom_L336_biasFalse",
+  "mittel_jahr": 0.5051569959862252,
+  "schwelle_jahr": 0.6542718800345829,
+  "p": 0.1232
+ },
+ "runde3_rc_gleiche Schwankung": {
+  "beste": "tsmom_L336_biasFalse",
+  "mittel_jahr": 0.5051569959862245,
+  "schwelle_jahr": 0.7364582379440535,
+  "p": 0.167
+ },
+ "runde3_p_allein": 0.071
+}

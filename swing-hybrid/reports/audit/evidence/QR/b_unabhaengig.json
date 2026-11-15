@@ -1,0 +1,285 @@
+{
+ "slip_bp": {
+  "BTC": 0.5,
+  "ETH": 0.5,
+  "SOL": 1.3657568381229228,
+  "XRP": 1.1386443935635169,
+  "DOT": 13.215697630830624,
+  "DOGE": 1.6521636426368476,
+  "ADA": 6.418963472357196,
+  "LINK": 1.0888718581607013,
+  "AVAX": 1.4508322296574665,
+  "LTC": 2.1837640376441514
+ },
+ "luecken": {
+  "BTC": {
+   "erste": "2021-07-01 00:00:00",
+   "letzte": "2026-10-31 23:55:00",
+   "fehlende_5m": 0,
+   "doppelte": 0,
+   "leere_stunden": 0
+  },
+  "ETH": {
+   "erste": "2021-07-01 00:00:00",
+   "letzte": "2026-10-31 23:55:00",
+   "fehlende_5m": 0,
+   "doppelte": 0,
+   "leere_stunden": 0
+  },
+  "SOL": {
+   "erste": "2021-07-01 00:00:00",
+   "letzte": "2026-10-31 23:55:00",
+   "fehlende_5m": 1440,
+   "doppelte": 0,
+   "leere_stunden": 120
+  },
+  "XRP": {
+   "erste": "2021-07-01 00:00:00",
+   "letzte": "2026-10-31 23:55:00",
+   "fehlende_5m": 1440,
+   "doppelte": 0,
+   "leere_stunden": 120
+  },
+  "DOT": {
+   "erste": "2021-07-01 00:00:00",
+   "letzte": "2026-10-31 23:55:00",
+   "fehlende_5m": 0,
+   "doppelte": 0,
+   "leere_stunden": 0
+  },
+  "DOGE": {
+   "erste": "2021-07-01 00:00:00",
+   "letzte": "2026-10-31 23:55:00",
+   "fehlende_5m": 0,
+   "doppelte": 0,
+   "leere_stunden": 0
+  },
+  "ADA": {
+   "erste": "2021-07-01 00:00:00",
+   "letzte": "2026-10-31 23:55:00",
+   "fehlende_5m": 0,
+   "doppelte": 0,
+   "leere_stunden": 0
+  },
+  "LINK": {
+   "erste": "2021-07-01 00:00:00",
+   "letzte": "2026-10-31 23:55:00",
+   "fehlende_5m": 0,
+   "doppelte": 0,
+   "leere_stunden": 0
+  },
+  "AVAX": {
+   "erste": "2021-07-01 00:00:00",
+   "letzte": "2026-10-31 23:55:00",
+   "fehlende_5m": 0,
+   "doppelte": 0,
+   "leere_stunden": 0
+  },
+  "LTC": {
+   "erste": "2021-07-01 00:00:00",
+   "letzte": "2026-10-31 23:55:00",
+   "fehlende_5m": 1440,
+   "doppelte": 0,
+   "leere_stunden": 120
+  }
+ },
+ "fenster": {
+  "D1": {
+   "tage": 685,
+   "N": 0.6002517349870887,
+   "jahr": 0.31984216535808374,
+   "sharpe": 0.5348186595400167,
+   "dd_tag": 0.24954495945716998,
+   "dd_stunde": 0.25882668841970163,
+   "N_ohne_rebate": 0.08853624343228006,
+   "sharpe_ohne_rebate": 0.07848629315056575,
+   "N_vor_gebuehr": 0.6905544687908782
+  },
+  "D2": {
+   "tage": 640,
+   "N": 1.5251829566165807,
+   "jahr": 0.8698309049453936,
+   "sharpe": 1.316511965447224,
+   "dd_tag": 0.25498380699006035,
+   "dd_stunde": 0.2912948063040059,
+   "N_ohne_rebate": 1.0168070450828277,
+   "sharpe_ohne_rebate": 0.8741166601960346,
+   "N_vor_gebuehr": 1.6148963527695965
+  },
+  "Entwicklung": {
+   "tage": 1325,
+   "N": 2.1254346916036693,
+   "jahr": 0.5854971037247844,
+   "sharpe": 0.9308160867328202,
+   "dd_tag": 0.24954495945716998,
+   "dd_stunde": 0.25882668841970163,
+   "N_ohne_rebate": 1.105343288515108,
+   "sharpe_ohne_rebate": 0.48189121333565593,
+   "N_vor_gebuehr": 2.3054508215604748
+  },
+  "Pruefung": {
+   "tage": 571,
+   "N": 0.25893074587051323,
+   "jahr": 0.16551615103806888,
+   "sharpe": 0.3375190854681339,
+   "dd_tag": 0.31299300674042313,
+   "dd_stunde": 0.3282969236616712,
+   "N_ohne_rebate": -0.194580429634719,
+   "sharpe_ohne_rebate": -0.25237104667355836,
+   "N_vor_gebuehr": 0.3389621297832006
+  },
+  "Gesamt": {
+   "tage": 1896,
+   "N": 2.3843654374741825,
+   "jahr": 0.4590154982479307,
+   "sharpe": 0.7771258380846905,
+   "dd_tag": 0.24954495945716998,
+   "dd_stunde": 0.25882668841970163,
+   "N_ohne_rebate": 0.9107628588803891,
+   "sharpe_ohne_rebate": 0.2954703264035656,
+   "N_vor_gebuehr": 2.6444129513436754
+  }
+ },
+ "je_coin": {
+  "BTC": {
+   "orders": 1154,
+   "umsatz": 230.83083291751757,
+   "gebuehr_voll": 0.18466466633401407,
+   "funding": -0.016695137994684948,
+   "netto_mit": 0.13517818746463672,
+   "netto_ohne": -0.021786778919275246,
+   "brutto_inkl_slip_funding": 0.16287788741473883
+  },
+  "ETH": {
+   "orders": 1048,
+   "umsatz": 209.6033738359998,
+   "gebuehr_voll": 0.16768269906879976,
+   "funding": -0.019069470848493076,
+   "netto_mit": 0.3418925123743866,
+   "netto_ohne": 0.1993622181659068,
+   "brutto_inkl_slip_funding": 0.36704491723470656
+  },
+  "SOL": {
+   "orders": 976,
+   "umsatz": 192.7515598276763,
+   "gebuehr_voll": 0.15420124786214098,
+   "funding": -0.05444084765218593,
+   "netto_mit": 0.5109976199163159,
+   "netto_ohne": 0.37992655923349605,
+   "brutto_inkl_slip_funding": 0.534127807095637
+  },
+  "XRP": {
+   "orders": 1195,
+   "umsatz": 235.2334710449654,
+   "gebuehr_voll": 0.1881867768359725,
+   "funding": -0.020697652724838263,
+   "netto_mit": 0.3778811093349946,
+   "netto_ohne": 0.21792234902441793,
+   "brutto_inkl_slip_funding": 0.40610912586039044
+  },
+  "DOT": {
+   "orders": 1053,
+   "umsatz": 206.18701854281503,
+   "gebuehr_voll": 0.16494961483425155,
+   "funding": -0.0362881663848031,
+   "netto_mit": 0.013480915316414845,
+   "netto_ohne": -0.12672625729269898,
+   "brutto_inkl_slip_funding": 0.03822335754155258
+  },
+  "DOGE": {
+   "orders": 1273,
+   "umsatz": 250.4529763420139,
+   "gebuehr_voll": 0.20036238107361082,
+   "funding": -0.022543363985445944,
+   "netto_mit": 0.36332547377762425,
+   "netto_ohne": 0.1930174498650551,
+   "brutto_inkl_slip_funding": 0.3933798309386659
+  },
+  "ADA": {
+   "orders": 1086,
+   "umsatz": 211.09768366213856,
+   "gebuehr_voll": 0.16887814692971095,
+   "funding": -0.02116066289843996,
+   "netto_mit": 0.08747978253227766,
+   "netto_ohne": -0.05606664235797665,
+   "brutto_inkl_slip_funding": 0.1128115045717343
+  },
+  "LINK": {
+   "orders": 1066,
+   "umsatz": 211.8028624357917,
+   "gebuehr_voll": 0.16944228994863353,
+   "funding": -0.01961395932844601,
+   "netto_mit": 0.1388799737531508,
+   "netto_ohne": -0.005145972703187673,
+   "brutto_inkl_slip_funding": 0.16429631724544586
+  },
+  "AVAX": {
+   "orders": 1063,
+   "umsatz": 211.2028730831724,
+   "gebuehr_voll": 0.16896229846653815,
+   "funding": -0.03625213273264083,
+   "netto_mit": 0.46277334650936464,
+   "netto_ohne": 0.3191553928128072,
+   "brutto_inkl_slip_funding": 0.48811769127934534
+  },
+  "LTC": {
+   "orders": 1065,
+   "umsatz": 207.89996388701766,
+   "gebuehr_voll": 0.1663199711096141,
+   "funding": -0.019825496941242023,
+   "netto_mit": -0.04752348350498361,
+   "netto_ohne": -0.1888954589481556,
+   "brutto_inkl_slip_funding": -0.022575487838541488
+  }
+ },
+ "orders": 10979,
+ "umsatz_je_tag": 1.1429655145459432,
+ "signal_null_coinstunden": 147,
+ "korrelation_tagesrenditen": {
+  "einfach_Gesamt": 0.6753049457483878,
+  "einfach_Entwicklung": 0.6484115277313095,
+  "einfach_seit_04_2025": 0.7852657107670047,
+  "log_Gesamt": 0.6954157839934091,
+  "log_Entwicklung": 0.6710850041102496,
+  "log_seit_04_2025": 0.7936487183789557,
+  "stunde_Gesamt": 0.6981896709539287,
+  "stunde_seit_04_2025": 0.7705796034693271
+ },
+ "gleiche_richtung": {
+  "D1": {
+   "alle_gleich": 0.3907542579075426,
+   "alle_long": 0.15328467153284672,
+   "alle_short": 0.23746958637469587,
+   "mind_8_gleich": 0.7615571776155717,
+   "mittel_abs_netto": 0.7202433090024332
+  },
+  "D2": {
+   "alle_gleich": 0.38717447916666664,
+   "alle_long": 0.20865885416666666,
+   "alle_short": 0.178515625,
+   "mind_8_gleich": 0.7116536458333333,
+   "mittel_abs_netto": 0.6879817708333333
+  },
+  "Entwicklung": {
+   "alle_gleich": 0.3890251572327044,
+   "alle_long": 0.1800314465408805,
+   "alle_short": 0.2089937106918239,
+   "mind_8_gleich": 0.7374528301886792,
+   "mittel_abs_netto": 0.7046603773584905
+  },
+  "Pruefung": {
+   "alle_gleich": 0.4774518388791594,
+   "alle_long": 0.2134413309982487,
+   "alle_short": 0.2640105078809107,
+   "mind_8_gleich": 0.7634997081144191,
+   "mittel_abs_netto": 0.7371789258610625
+  },
+  "Gesamt": {
+   "alle_gleich": 0.4156557665260197,
+   "alle_long": 0.19009317862165964,
+   "alle_short": 0.22556258790436007,
+   "mind_8_gleich": 0.7452971167369902,
+   "mittel_abs_netto": 0.7144536744022504
+  }
+ }
+}

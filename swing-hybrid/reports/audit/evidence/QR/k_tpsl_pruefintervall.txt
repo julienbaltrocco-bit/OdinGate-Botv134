@@ -1,0 +1,4 @@
+kandidat           Sharpe D1/D2/Entw 0.568 / 1.317 / 0.947 | Ertrag/Jahr 0.595 | Einbruch 0.245 | im Markt 0.997 | Orders 7581 | Ausstiege {'stop': 0, 'ziel': 0}
+sl5_tp15_stunde    Sharpe D1/D2/Entw 1.427 / 0.838 / 1.162 | Ertrag/Jahr 0.341 | Einbruch 0.142 | im Markt 0.566 | Orders 8178 | Ausstiege {'stop': 236, 'ziel': 371}
+sl5_tp15_5min      Sharpe D1/D2/Entw 1.289 / 0.732 / 1.038 | Ertrag/Jahr 0.298 | Einbruch 0.166 | im Markt 0.542 | Orders 8322 | Ausstiege {'stop': 373, 'ziel': 379}
+gespeichert Runde 24 sl5_tp15: {'D1': 1.387, 'D2': 0.8257, 'Entwicklung': 1.1345, 'jahr': 0.3327, 'dd': 0.1456, 'im_markt': 0.5638}

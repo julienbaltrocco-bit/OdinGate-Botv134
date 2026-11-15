@@ -1,0 +1,10 @@
+T=2022-06-01 00:00 basis           Gewichte bis T gleich: True | Konto vor T gleich: True | Konto ab T verschieden (Test wirkt): True
+T=2022-06-01 00:00 sl5_tp15        Gewichte bis T gleich: True | Konto vor T gleich: True | Konto ab T verschieden (Test wirkt): True
+T=2022-06-01 00:00 funding_filter  Gewichte bis T gleich: True | Konto vor T gleich: True | Konto ab T verschieden (Test wirkt): True
+T=2023-03-17 13:00 basis           Gewichte bis T gleich: True | Konto vor T gleich: True | Konto ab T verschieden (Test wirkt): True
+T=2023-03-17 13:00 sl5_tp15        Gewichte bis T gleich: True | Konto vor T gleich: True | Konto ab T verschieden (Test wirkt): True
+T=2023-03-17 13:00 funding_filter  Gewichte bis T gleich: True | Konto vor T gleich: True | Konto ab T verschieden (Test wirkt): True
+T=2025-10-10 21:00 basis           Gewichte bis T gleich: True | Konto vor T gleich: True | Konto ab T verschieden (Test wirkt): True
+T=2025-10-10 21:00 sl5_tp15        Gewichte bis T gleich: True | Konto vor T gleich: True | Konto ab T verschieden (Test wirkt): True
+T=2025-10-10 21:00 funding_filter  Gewichte bis T gleich: True | Konto vor T gleich: True | Konto ab T verschieden (Test wirkt): True
+ERGEBNIS: kein Blick voraus gefunden

@@ -1,0 +1,30 @@
+=== 1. Punkt- und Intervallschaetzung (Hebel 1, Yubit-Kosten mit 85 % Rebate, ohne Tageslimit, Gruppe A)
+Entwicklung                  Tage 1325  Ertrag/Jahr +0.594  Sharpe 0.946  t 1.80  AK1 -0.022  90-%-Band Ertrag/Jahr [+0.078, +1.169]  Sharpe [+0.13, +1.73]  Anteil Ziehungen mit Mittel <= 0: 0.027
+Pruefzeitraum                Tage 571  Ertrag/Jahr +0.165  Sharpe 0.337  t 0.42  AK1 -0.001  90-%-Band Ertrag/Jahr [-0.381, +0.732]  Sharpe [-0.83, +1.43]  Anteil Ziehungen mit Mittel <= 0: 0.314
+Pruefzeitraum ohne Rebate    Tage 571  Ertrag/Jahr -0.125  Sharpe -0.254  t -0.32  AK1 +0.004  90-%-Band Ertrag/Jahr [-0.698, +0.468]  Sharpe [-1.51, +0.90]  Anteil Ziehungen mit Mittel <= 0: 0.637
+Entwicklung ohne Rebate      Tage 1325  Ertrag/Jahr +0.314  Sharpe 0.497  t 0.95  AK1 -0.015  90-%-Band Ertrag/Jahr [-0.215, +0.902]  Sharpe [-0.37, +1.33]  Anteil Ziehungen mit Mittel <= 0: 0.177
+
+=== 2. Unterschied Entwicklung gegen Pruefzeitraum
+Tagesmittel Entwicklung +0.594/Jahr, Pruefzeitraum +0.165/Jahr; Differenz t = 0.84
+
+=== 3. Zufallstest des Projekts (Signal zeitlich verschoben), nur Pruefzeitraum, Yubit-Kosten, 200 Verschiebungen, seed 11
+{"pruef_perzentil": 80.5, "pruef_echt": 0.2584911262410919, "pruef_median": -0.158786311635428, "pruef_p90": 0.49048660075645406, "entw_perzentil": 100.0, "entw_echt": 2.1563627494333995, "entw_median": -0.6821697825415748, "entw_p90": 0.4858539841375208}
+
+=== 4. Einbruch: Konventionen und Hebel 3
+Entwicklung    Hebel 1: Einbruch relativ zum Hoechststand 0.258; groesster Rueckgang in Einheiten des Startkapitals 0.569; dasselbe bei Hebel 3: 1.707
+Pruefzeitraum  Hebel 1: Einbruch relativ zum Hoechststand 0.331; groesster Rueckgang in Einheiten des Startkapitals 0.543; dasselbe bei Hebel 3: 1.628
+Gesamt         Hebel 1: Einbruch relativ zum Hoechststand 0.258; groesster Rueckgang in Einheiten des Startkapitals 0.569; dasselbe bei Hebel 3: 1.707
+Hebel 3, ohne Tageslimit (wie config_lauf.json), Entwicklung: N +6.469, Einbruch relativ zum Hoechststand 0.384, Sharpe 0.946
+Hebel 3, ohne Tageslimit (wie config_lauf.json), Pruefzeitraum: N +0.775, Einbruch relativ zum Hoechststand 0.558, Sharpe 0.337
+Anteil der Starttage (Tagesschlusswerte, Hebel 3, feste Groesse), nach denen das Konto um >= 50 % des Startkapitals faellt: binnen 365 Tagen 0.454, bis Datenende 0.461
+Anteil der Starttage (Tagesschlusswerte, Hebel 3, feste Groesse), nach denen das Konto um >= 75 % des Startkapitals faellt: binnen 365 Tagen 0.289, bis Datenende 0.297
+Anteil der Starttage (Tagesschlusswerte, Hebel 3, feste Groesse), nach denen das Konto um >= 100 % des Startkapitals faellt: binnen 365 Tagen 0.118, bis Datenende 0.120
+Schlechtester Tag Hebel 1: -0.2968175055160929 2024-12-09 | schlechteste 7 Tage: -0.3084117397759242 | schlechteste 30 Tage: -0.3257491670324584
+
+=== 5. Korrelation der zehn Coins
+mittlere paarweise Korrelation gesamt      : Stundenrenditen 0.703, Tagesrenditen 0.697, Tagesergebnis der Strategie je Coin 0.347
+mittlere paarweise Korrelation Entwicklung : Stundenrenditen 0.688, Tagesrenditen 0.673, Tagesergebnis der Strategie je Coin 0.330
+mittlere paarweise Korrelation ab 04/2025  : Stundenrenditen 0.772, Tagesrenditen 0.794, Tagesergebnis der Strategie je Coin 0.458
+Anteil der Stunden, in denen mindestens 8 von 10 Positionen dieselbe Richtung haben: 0.7433192686357243 | alle 10: 0.413721870604782
+
+fertig nach 51 s
