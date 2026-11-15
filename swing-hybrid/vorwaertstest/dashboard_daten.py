@@ -9,6 +9,8 @@ from pathlib import Path
 
 from . import bot
 
+TAKT_MINUTEN = 15
+
 
 def bauen(cfg: dict, daten: Path) -> dict:
     st, pr, sp = bot.lesen(daten / "stand.csv"), bot.lesen(daten / "protokoll.csv"), bot.lesen(daten / "spannen.csv")
@@ -53,7 +55,12 @@ def bauen(cfg: dict, daten: Path) -> dict:
                    "slippage_orders_bp": round(slip, 3), "slippage_messung_bp": round(sum(mess) / len(mess), 3) if mess else 0.0,
                    "messungen": len(mess), "long": int(l["long"]), "short": int(l["short"]),
                    "einsatz_pct": round(float(l["einsatz"]) / kap * 100, 1), "einbruch_pct": round(dd, 3)}]
-    return {"kennzahlen": kennzahlen, "verlauf": verlauf, "positionen": positionen, "orders": orders}
+    if len(verlauf) > 400:                                  # ältere Punkte ausdünnen, die letzten 120 bleiben vollständig
+        alt, neu = verlauf[:-120], verlauf[-120:]
+        schritt = -(-len(alt) // 280)
+        verlauf = alt[::schritt] + neu
+    return {"kennzahlen": kennzahlen, "verlauf": verlauf, "positionen": positionen, "orders": orders, "takt_minuten": TAKT_MINUTEN,
+            "geschrieben": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}
 
 
 def main(argv=None) -> None:
