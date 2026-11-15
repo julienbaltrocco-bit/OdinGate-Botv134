@@ -1192,3 +1192,8 @@ Volumen, Trend, Liquidität), die Schwellen sind runde Werte ohne Raster:
 - Kurse von Binance, Handel wäre bei Yubit; Spannen aus einer Stichprobe; in dünnen Coins ist der Stop bei Yubit
   womöglich teurer. Yubit verlangt für Bots eine Freigabe.
 Gesamtzahl der Versuche danach: 116 plus Massentest.
+
+**Nachtrag zu Runde 23, vor dem ersten Ergebnis:** (1) Es sind 280 Coins, nicht 281. (2) Höchstens 10 Positionen
+gleichzeitig (10 × 10 % = Einsatz 100 %), weitere Signale verfallen; ohne diese Grenze könnten in einer
+Altcoin-Rallye beliebig viele Shorts offen sein. (3) Trades, deren Kursdaten vor dem Ausstieg abreißen (Coin-Monat
+nicht im Archiv), werden verworfen und gezählt.
