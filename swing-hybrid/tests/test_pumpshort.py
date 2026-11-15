@@ -51,3 +51,10 @@ def test_kosten_und_funding():
     raten = pd.Series([0.001, 0.002, 0.003], index=pd.to_datetime(["2026-09-01 00:00", "2026-09-01 08:00", "2026-09-01 16:00"]))
     f = P.funding(t, raten, pd.Series([0.0, -0.0005]), pd.Timestamp("2026-11-01"))
     assert abs(f[0] - 0.005) < 1e-12 and abs(f[1] - 3 * -0.0005) < 1e-12
+
+
+def test_ziel_und_stop_je_signal():
+    k = _k(np.r_[np.full(5, 100.0), np.linspace(100, 97, 600), np.full(5, 97.0), np.linspace(97, 99.5, 600)])
+    t = P.trades_coin(k, [k.index[0], k.index[612]], tp=np.array([0.025, 0.05]), sl=np.array([0.02, 0.02]))
+    assert [x["art"] for x in t] == ["ziel", "stop"]
+    assert abs(t[0]["roh"] - 0.025) < 1e-9 and abs(t[1]["roh"] + 0.02) < 1e-9

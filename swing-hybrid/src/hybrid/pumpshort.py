@@ -9,18 +9,21 @@ import pandas as pd
 
 
 def trades_coin(k: pd.DataFrame, signale, tp=0.10, sl=0.08, max_h=72) -> list[dict]:
-    """k: Minutenkerzen (open/high/low/close, Index = Kerzenbeginn). signale: aufsteigend sortierte Zeitpunkte."""
+    """k: Kerzen (open/high/low/close, Index = Kerzenbeginn). signale: aufsteigend sortierte Zeitpunkte.
+    tp / sl: eine Zahl oder ein Wert je Signal."""
     zeit = k.index.to_numpy()
     o, h, l, c = (k[x].to_numpy() for x in ("open", "high", "low", "close"))
     out, frei_ab = [], 0
-    for s in signale:
+    tps = np.broadcast_to(np.asarray(tp, float), (len(signale),))
+    sls = np.broadcast_to(np.asarray(sl, float), (len(signale),))
+    for nr, s in enumerate(signale):
         i = int(np.searchsorted(zeit, np.datetime64(s), side="right"))    # erste Kerze, die nach dem Signal beginnt
         if i >= len(zeit) or i < frei_ab:
             continue
         if (zeit[i] - np.datetime64(s)) > np.timedelta64(10, "m"):       # Datenlücke: kein Einstieg
             continue
         ein = o[i]
-        ziel, stop = ein * (1 - tp), ein * (1 + sl)
+        ziel, stop = ein * (1 - tps[nr]), ein * (1 + sls[nr])
         ende = int(np.searchsorted(zeit, zeit[i] + np.timedelta64(max_h, "h"), side="left"))
         art, aus, j = "zeit", None, i
         for j in range(i, min(ende, len(zeit))):
@@ -36,7 +39,7 @@ def trades_coin(k: pd.DataFrame, signale, tp=0.10, sl=0.08, max_h=72) -> list[di
             if ende >= len(zeit):
                 art = "ende"
         out.append({"signal": pd.Timestamp(s), "ein_zeit": pd.Timestamp(zeit[i]), "aus_zeit": pd.Timestamp(zeit[j]),
-                    "ein": ein, "aus": aus, "art": art, "roh": (ein - aus) / ein})
+                    "ein": ein, "aus": aus, "art": art, "tp": float(tps[nr]), "sl": float(sls[nr]), "roh": (ein - aus) / ein})
         frei_ab = j + 1
     return out
 

@@ -947,3 +947,22 @@ Yubit-Spanne. Je Trade 10 % des Kontos.
 Vorwissen: Gegenbewegungs-Regeln auf Gruppe A sind in Runde 1 gescheitert (andere Bauart, ohne festes Ziel/Stop).
 Der Kandidat ist ein Trendfolger; ein Short nach starkem Anstieg handelt gegen ihn. Aus Runde 18 kenne ich das
 Ergebnis für kleine Coins. Gesamtzahl der Versuche danach: 81 plus Massentest.
+
+# Runde 19: Ergebnis (15.11.2026)
+
+Zahlen in `suche_runde19.json`. **Stufe 1: keine der vier Einstellungen besteht.** Prüfzeitraum und Gruppe B
+wurden nicht angesehen.
+
+| Einstellung | Trades (Entwicklung) | Ziel erreicht | Konto D1 | Konto D2 | vor Kosten je Trade |
+|---|---|---|---|---|---|
+| fest5 (5 %) | 16.064 | 44,8 % | −25,3 % | −43,5 % | +0,02 % |
+| sigma2 (im Mittel 7,9 %) | 3.806 | 43,1 % | +19,8 % | −32,0 % | +0,04 % |
+| sigma25 (9,7 %) | 2.043 | 42,1 % | +12,6 % | −21,5 % | +0,03 % |
+| sigma3 (11,5 %) | 1.179 | 41,7 % | +8,8 % | −5,5 % | +0,10 % |
+
+Bei Ziel 0,5 × und Stop 0,4 × Schwelle braucht es vor Kosten 44,4 % Treffer. Die großen Coins liegen mit 42–45 %
+genau an dieser Grenze: Nach einem starken Anstieg fällt der Kurs dort nicht häufiger, als der Zufall erwarten
+lässt. D1 (bis Mitte 2023) war bei den Sigma-Einstellungen positiv, D2 durchweg negativ.
+
+**Runde 19: durchgefallen.** Der Effekt aus Runde 18 hängt an kleinen, dünn gehandelten Coins und überträgt sich
+nicht auf die zehn großen. Stand: 81 Einzelhypothesen plus Massentest.
