@@ -495,3 +495,15 @@ als Prüfung, V2 nie zur Steuerung. Jede Variante trägt die Kennung ihrer Elter
 
 **Zählung.** Erzeugt, gerechnet, verworfen (mit Grund), bestanden je Stufe werden gespeichert. Als „getestet“ gilt
 ein Kandidat erst, wenn seine Rechnung abgeschlossen und gespeichert ist.
+
+### Nachtrag zu Abschnitt 19, festgelegt nach der ersten Generation und vor Stufe 3 und vor Öffnung von V2 (15.11.2026)
+
+Beobachtung aus Generation 1 (nur T und V1): Viele Überlebende sind Regeln mit langer Haltedauer und Trendfiltern.
+Solche Regeln können in steigenden Märkten allein dadurch verdienen, dass sie überwiegend long sind. Deshalb kommt
+in Stufe 3 eine **strengere** Bedingung hinzu (eine Verschärfung vor der Schlussprüfung, keine Lockerung):
+
+- **Marktbereinigung:** Das Tagesergebnis des Kandidaten wird auf die Tagesrendite seines Marktes (gleichgewichtetes
+  Mittel seiner Coins) bezogen. Der verbleibende Ertrag (Alpha) muss über T und V1 zusammen positiv sein mit t ≥ 2.
+- Zusätzlich berichtet (ohne Hürde): bei der Überanpassungsprüfung der Anteil der Aufteilungen, in denen der im
+  einen Teil beste Kandidat im anderen Teil verliert. Die reine PBO-Zahl ist hier wenig aussagekräftig, weil die
+  meisten Kandidaten schon an den Kosten scheitern und „besser als der mittlere Kandidat“ deshalb leicht ist.
