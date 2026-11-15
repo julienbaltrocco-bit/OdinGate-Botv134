@@ -966,3 +966,24 @@ lässt. D1 (bis Mitte 2023) war bei den Sigma-Einstellungen positiv, D2 durchweg
 
 **Runde 19: durchgefallen.** Der Effekt aus Runde 18 hängt an kleinen, dünn gehandelten Coins und überträgt sich
 nicht auf die zehn großen. Stand: 81 Einzelhypothesen plus Massentest.
+
+---
+
+# Runde 20: Dasselbe mit nachgezogenem Stop statt festem Ziel (festgelegt vor dem ersten Ergebnis)
+
+**Anlass:** Laut User schließt der Dienst nicht bei 10 %, sondern zieht ab 8 % Gewinn den Stop in 5-%-Schritten
+nach. Regel, vom User bestätigt: Stop 8 % über dem Einstieg; bei 8 % Gewinn Stop auf 3 % gesicherten Gewinn; bei
+13 %, 18 %, 23 % … jeweils 5 % weiter; kein festes Ziel.
+
+**Teil A, Plimaflow-Signale:** alles wie Runde 18 (Score ≥ 0,60, Minutenkerzen, Kosten, 72 Stunden, vier Hürden),
+nur der Ausstieg ist ersetzt. Ausstieg über den nachgezogenen Stop zählt als Market-Order (Taker plus Slippage).
+**Teil B, Gruppe A:** alles wie Runde 19 (vier Schwellen, Ablauf in fünf Stufen), Ausstieg im selben Verhältnis
+zur Schwelle: Stop 0,4 ×, Nachziehen ab 0,4 × Gewinn, Schritte 0,25 ×.
+
+**Reihenfolge innerhalb einer Kerze (vorsichtig):** Zuerst wird der bisherige Stop geprüft. Danach werden neue
+Stufen aus dem Tief der Kerze gesetzt. Schließt die Kerze über dem neuen Stop, gilt er als in dieser Kerze
+ausgelöst.
+
+**Einordnung, vorab:** Für Teil A ist das der zweite Blick auf dieselben 90 Tage, für Teil B der zweite auf die
+Entwicklung von Gruppe A (Prüfzeitraum dort weiter unberührt). Ein Bestehen zählt deshalb weniger als in Runde 18/19.
+Gesamtzahl der Versuche danach: 86 plus Massentest.
