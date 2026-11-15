@@ -438,3 +438,60 @@ nicht angesehen. Bericht: `bericht_runde1.md`. Register aller Strategien: `regis
 - **Kennzeichnung:** formal bestanden, schwach belegt, nur mit Rebate positiv. Art: Schattentest, keine Füllungen
   bei Yubit. Start 16.11.2026 00:00 UTC, 5.000 $ Papier-Kapital, Hebel 3. Plan mit Erfolgs- und Abbruchkriterien:
   `papier/OS-1.1/plan.md`.
+
+---
+
+## 19. Strategie-Fabrik: Festlegung vor der ersten Massenrechnung (15.11.2026)
+
+Auftrag vom 15.11.2026 („Massive Parallel Alpha Discovery Engine“): sehr viele Strategiekandidaten automatisch
+erzeugen, zurückrechnen, aussieben. Bei Zehntausenden Kandidaten entstehen zwangsläufig Zufallsgewinner; die Regeln
+unten stehen deshalb fest, bevor die erste Zahl vorliegt.
+
+**Aufbau eines Kandidaten.** Signal (Familie, Länge) · Schwelle · Richtung (mit oder gegen das Signal) · Filter
+(Marktphase) · Takt (alle 5, 15 oder 60 Minuten geprüft) · Ausstieg (Haltedauer, Stop, Ziel, Nachziehen oder
+Signal-Ausstieg) · Markt (BTC/ETH/SOL, alle zehn Coins, sieben Altcoins). Der Hebel ist kein eigener Kandidat: er
+skaliert nur und wird erst in der Risikoprüfung bestimmt. Jeder Kandidat hat eine Kennung aus dem Hash seiner
+Einstellung; gleiche Einstellungen werden nur einmal gerechnet.
+
+**Zeiträume.**
+| | Kurs-, Volumen-, Derivate-Signale | Orderbuch- und Orderfluss-Signale mit Tiefe (Daten ab 2023) |
+|---|---|---|
+| Training T | 15.08.2021 – 30.06.2023 | 01.01.2023 – 31.12.2023 |
+| Auswahlprüfung V1 | 01.07.2023 – 30.06.2024 | 01.01.2024 – 30.06.2024 |
+| Schlussprüfung V2 | 01.07.2024 – 31.03.2025 | 01.07.2024 – 31.03.2025 |
+| Tresor | ab 01.04.2025: wird nicht geladen | ebenso |
+
+T und V1 wurden in früheren Runden für andere Regeln schon gesehen. V2 ist für Orderbuch-Regeln durch E08 und E13
+teilweise gesehen; Orderbuch-Kandidaten tragen deshalb den Vermerk „Schlussprüfung nicht unberührt“.
+Die Massenrechnung liest nur T und V1. V2 wird erst für die eingefrorene Auswahl geöffnet, einmal.
+
+**Ausführung und Kosten.** Signal am Schluss einer 5-Minuten-Kerze, Einstieg zur Eröffnung der nächsten, alle Orders
+Taker. Gebühr 16 bp je Trade, mit 85 % Rebate 2,4 bp. Slippage 2 × gemessene halbe Yubit-Spanne je Coin und Order.
+Funding gebucht. Stops gegen Hoch und Tief jeder Kerze, bei Lücke der schlechtere Eröffnungskurs. Eine Position je
+Coin. Maker-Einstiege werden nicht unterstellt (höchstens als gekennzeichnete Nebenrechnung für die Auswahl).
+
+**Trichter.**
+1. **Stufe 1, Schnellsieb (T):** mindestens 200 Trades; Kursbewegung nach Slippage und Funding, vor Gebühr, im
+   Mittel positiv mit t ≥ 2 (nach Tagen gebündelt). Sonst verworfen, mit Grund.
+2. **Stufe 2, volle Kosten (T):** netto mit Rebate positiv mit t ≥ 2; in beiden Hälften von T positiv; auch bei
+   doppelter Slippage positiv.
+3. **Stufe 3, Robustheit:** in V1 netto mit Rebate positiv mit t ≥ 1; eine Kerze Verzögerung in T und V1 zusammen
+   weiter positiv; mindestens die Hälfte der Nachbar-Einstellungen (gleiches Signal, benachbarte Länge oder
+   Schwelle) in T positiv. Danach werden stark gleichlaufende Kandidaten (Korrelation der Tagesergebnisse über 0,8)
+   zu Gruppen zusammengefasst; je Gruppe geht nur der beste nach V1 weiter.
+4. **Stufe 4, Schlussprüfung (V2, einmal, Regel eingefroren):** einseitiger p-Wert der Tagesergebnisse netto mit
+   Rebate; über alle Finalisten gemeinsam korrigiert (Benjamini-Hochberg, Fehlentdeckungsrate 10 %); zusätzlich
+   positiv bei doppelter Slippage. Wer besteht, heißt „validiert“, nicht „bewiesen“.
+5. **Stufe 5, Papier-Test:** validierte Kandidaten, höchstens einer je Gruppe, ohne Liquidation über alle Starttage
+   beim gewählten Hebel (höchstens 3). Automatischer Start als Schattentest.
+
+**Zusätzliche Prüfgrößen (Bericht, ohne eigene Hürde):** Anteil der Kandidaten, die Stufe 1 bestehen, gegen die
+Zufallserwartung (rund 2,3 %); White's Reality Check auf dem besten Kandidaten über alle gerechneten; Deflated
+Sharpe Ratio mit der Zahl aller Versuche; Wahrscheinlichkeit der Überanpassung (PBO) über Zeitblöcke.
+
+**Evolution.** Neue Varianten entstehen nur aus Kandidaten, die Stufe 2 bestanden haben (also allein aus T):
+Nachbar-Längen und -Schwellen, andere Ausstiege, andere Filter, zwei Signale als gemeinsame Bedingung. V1 dient nur
+als Prüfung, V2 nie zur Steuerung. Jede Variante trägt die Kennung ihrer Eltern.
+
+**Zählung.** Erzeugt, gerechnet, verworfen (mit Grund), bestanden je Stufe werden gespeichert. Als „getestet“ gilt
+ein Kandidat erst, wenn seine Rechnung abgeschlossen und gespeichert ist.
