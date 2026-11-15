@@ -1104,3 +1104,31 @@ Portfolio zusammengefasst.
 
 Besteht die Variante, gilt sie als belegter kleiner Ausbau und geht in den Vorwärtstest. Gesamtzahl der Versuche
 danach: 101 plus Massentest.
+
+# Runde 22: Ergebnis (15.11.2026)
+
+Zahlen in `suche_runde22.json`. **Nicht bestanden (Hürden 1, 3 und 4 verfehlt).**
+
+| Unabhängige Daten | Sharpe Kandidat | Sharpe mit Funding-Filter |
+|---|---|---|
+| Prüfzeitraum 04/2025–10/2026, 49 Coins | 0,38 | 0,44 |
+| Vorperiode 02/2020–08/2021, 44 Coins | 1,31 | 0,48 |
+
+- Im Prüfzeitraum ist der Filter in allen vier Gruppen etwas besser (Hürde 2 bestanden).
+- In der Vorperiode ist er in allen vier Gruppen deutlich schlechter: Im Bullenmarkt 2020/21 war das Funding
+  gerade in den stärksten Trends hoch, der Filter nimmt genau diese Positionen heraus.
+- Zufallstest: Vorsprung nur in 8 % der Ziehungen positiv, im Mittel −40 Punkte pro Jahr bei gleicher Schwankung.
+- Mit doppelten Kosten dasselbe Bild.
+
+**Runde 22: kein Ausbau.** Der Vorsprung aus der Entwicklung war ein Zufallstreffer bzw. hängt an der Marktphase;
+die gemeinsame Zufallsprüfung in Runde 21 hatte das richtig angezeigt.
+
+# Stand nach 22 Runden und 101 Versuchen
+
+- Der einfache 14-Tage-Trend bleibt der einzige belegte Baustein. 14 Abwandlungen haben ihn nicht verbessert.
+- Positiv für die Belastbarkeit: Fünf andere Bauarten desselben Gedankens (EMA-Kreuz, Donchian, stetige Größe,
+  ohne letzten Tag, 70/30) erreichen in der Entwicklung Sharpe 0,78 bis 0,94 gegen 0,95. Der Vorteil hängt also
+  nicht an einer Einstellung.
+- Weitere Varianten auf denselben Daten zu testen, bis eine besteht, würde bei einer 5-%-Hürde im Schnitt nach
+  etwa 20 Versuchen einen Zufallstreffer liefern. Neue Belege können nur aus neuen Daten kommen: Vorwärtstest,
+  langer Export des Signal-Dienstes.
