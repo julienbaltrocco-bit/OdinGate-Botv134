@@ -1004,3 +1004,55 @@ netto negativ und, anders als mit festem Ziel, drei davon schon vor Kosten. Prü
 
 **Runde 20: durchgefallen.** In beiden Datensätzen ist das Nachziehen schlechter als das feste Ziel.
 Stand: 86 Einzelhypothesen plus Massentest.
+
+---
+
+# Runde 21: Mutations-Batterie für den Kandidaten mit gemeinsamer Zufallsprüfung (festgelegt vor dem ersten Ergebnis)
+
+**Auftrag des Users:** Zusätze und Abwandlungen der vorhandenen Strategie recherchieren und ausprobieren; melden,
+sobald der vorhandene Vorteil ausgebaut ist, ohne dass es ein Zufallstreffer ist.
+
+**Das Problem:** Nach 86 Versuchen findet sich unter vielen Varianten fast immer eine, die zufällig besser aussieht.
+Deshalb werden alle Varianten dieser Runde **gemeinsam** geprüft: Die beste muss besser sein, als es die beste von
+gleich vielen wirkungslosen Varianten zufällig wäre (White's Reality Check, 2000). Danach folgen frische Coins.
+
+**Maßstab:** der Kandidat unverändert (Schluss gegen den vor 336 Stunden, long/short, stündlich, Gruppe A, sofortige
+Ausführung, Yubit-Kosten mit Rebate, Einsatz 100 %, ohne Tageslimit).
+
+**14 Varianten, je genau eine Einstellung** (aus Literatur und Praxis; Recherche: Man Group „In Crypto We Trend“,
+Zarattini/Pagani/Barbon 2025, Han/Kang/Ryu, AdaptiveTrend 2026, Turtle-Regeln, Kaufman):
+
+| # | Name | Änderung gegenüber dem Kandidaten |
+|---|---|---|
+| 1 | nur_long | Shorts entfallen |
+| 2 | asym_70_30 | Longs × 1,4, Shorts × 0,6 |
+| 3 | band | Richtung wechselt erst, wenn die 14-Tage-Rendite 0,5 übliche Schwankungen (90 Tage) jenseits von null liegt |
+| 4 | ema_kreuz | Vorzeichen von EMA(84 h) − EMA(336 h) statt Punkt-zu-Punkt |
+| 5 | donchian | long beim 336-h-Hoch, short beim 336-h-Tief; Ausstieg am 168-h-Gegenextrem |
+| 6 | stetig | Größe = 14-Tage-Rendite / übliche Schwankung, begrenzt auf ±1, in Stufen von 0,25 |
+| 7 | ohne_letzten_tag | Rendite von vor 336 h bis vor 24 h |
+| 8 | breite | Position nur, wenn mindestens 7 von 10 Coins dieselbe Richtung haben |
+| 9 | btc_regime | Longs nur, wenn BTC über seinem 200-Tage-Mittel liegt, Shorts nur darunter |
+| 10 | effizienz | Position nur, wenn Kaufmans Effizienz (336 h) über ihrem Median der letzten 180 Tage liegt |
+| 11 | volumen | Position nur, wenn der 14-Tage-Umsatz über dem 90-Tage-Umsatz liegt |
+| 12 | funding_filter | keine Position, die im 3-Tage-Mittel mehr als 0,03 % je 8 Stunden Funding zahlt |
+| 13 | markt_trend | alle Coins folgen dem 14-Tage-Trend des gleichgewichteten Korbs |
+| 14 | relativ_staerke | stärkere Hälfte der Trends (|Rendite| / Schwankung) × 1,5, schwächere × 0,5 |
+
+**Vergleichsgröße:** Tagesergebnis netto mit Rebate, jede Variante auf dieselbe Schwankung wie der Kandidat gebracht
+(Faktor aus der Entwicklung). Damit zählt nur Ertrag je Risiko.
+
+**Stufen:**
+1. Entwicklung, Gruppe A: höherer Sharpe als der Kandidat in D1 **und** D2.
+2. Gemeinsame Zufallsprüfung in der Entwicklung über **alle 14**: Stationärer Bootstrap (mittlere Blocklänge
+   20 Tage, 5.000 Ziehungen) der Tagesdifferenzen zum Kandidaten. Eine Variante besteht, wenn ihr mittlerer
+   Vorsprung über dem 95-%-Wert des jeweils größten Zufalls-Vorsprungs aller 14 liegt.
+3. Bestätigung, je einmal: Prüfzeitraum Gruppe A, Gruppen B, C und D je über den ganzen Zeitraum, Vorperiode
+   02/2020–08/2021 (Gruppe A). Überall höherer Sharpe als der Kandidat.
+
+Nur eine Variante, die alle drei Stufen besteht, gilt als Ausbau des Vorteils. Berichtet wird alles.
+
+**Vorwissen, offen benannt:** Ich kenne den Verlauf des Kandidaten in allen Zeiträumen und Gruppen (Prüfzeitraum
+schwach, vermutlich Seitwärtsphasen). Die Liste ist davon gefärbt (mehrere Filter gegen Fehlsignale). Runde 5
+(Größe nach Schwankung, Mischung von Rückblicken, Carry) und Runde 16 (QQQ-Filter) sind schon gescheitert und
+deshalb nicht dabei. Gesamtzahl der Versuche danach: 100 plus Massentest.
