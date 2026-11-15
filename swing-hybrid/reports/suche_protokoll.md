@@ -908,3 +908,42 @@ Zahlen in `suche_runde18.json`, alle Trades in `suche_runde18_trades.csv`. 51 vo
 **Runde 18: nach den festgelegten Regeln nicht bestanden (3 von 4 Hürden), aber der bisher stärkste Hinweis.**
 Kein Nachjustieren. Sinnvoll sind: der lange Export des Users als frische Daten und das Mitschreiben des
 Live-Streams ab jetzt.
+
+---
+
+# Runde 19: „Short nach Pump“ auf unseren zehn Coins, im Maßstab angepasst (festgelegt vor dem ersten Ergebnis)
+
+**Auftrag des Users:** Die Idee des Signal-Dienstes auf die großen Coins übertragen. 20 % in 24 Stunden kommen dort
+kaum vor; die Schwelle soll dem entsprechen, was bei großen Coins als großer Anstieg gilt (Vorschlag des Users: 5 %).
+
+**Übertragung:** Der Dienst nimmt 20 % Anstieg, 10 % Ziel, 8 % Stop. Ziel und Stop sind also das 0,5- und
+0,4-Fache der Schwelle. Dieses Verhältnis bleibt fest. Variiert wird nur die Schwelle:
+
+| Name | Schwelle für den 24-Stunden-Anstieg | Ziel / Stop |
+|---|---|---|
+| fest5 | 5 % (Vorschlag des Users) | 2,5 % / 2,0 % |
+| sigma2 | 2,0 × übliche Tagesschwankung des Coins | 0,5 × / 0,4 × Schwelle |
+| sigma25 | 2,5 × übliche Tagesschwankung | wie oben |
+| sigma3 | 3,0 × übliche Tagesschwankung | wie oben |
+
+Übliche Tagesschwankung = Standardabweichung der Tagesrenditen der letzten 90 abgeschlossenen UTC-Tage.
+
+**Feste Bauteile (wie Runde 18):** Signal, sobald der Schlusskurs einer 5-Minuten-Kerze mindestens um die Schwelle
+über dem von vor 24 Stunden liegt; Short zur Eröffnung der nächsten Kerze; je Coin eine Position; Ziel als Limit,
+Stop als Market; beide in einer Kerze = Stop; nach 72 Stunden glatt; danach wieder frei. Gruppe A, 5-Minuten-Kerzen
+von Binance, echtes Funding. Kosten: Taker 0,08 % / Maker 0,04 % mit 85 % Rebate, Slippage = 2 × halbe
+Yubit-Spanne. Je Trade 10 % des Kontos.
+
+**Ablauf:**
+1. Entwicklung (bis 31.03.2025), Gruppe A: netto mit Rebate > 0 in D1 und D2 und mindestens 100 Trades. Unter den
+   Einstellungen, die das schaffen, kommt genau eine weiter: die mit dem besseren schlechteren Halbzeit-Ertrag je Trade.
+2. Doppelte Slippage: netto > 0 in D1 und D2.
+3. Bestätigung, je einmal: Prüfzeitraum Gruppe A vor Kosten > 0 und netto > 0; Gruppe B netto > 0 in Entwicklung und
+   Prüfzeitraum.
+4. Zufallstest über den ganzen Zeitraum: Mittelwert je Trade > 0 in mindestens 95 % von 2.000 Ziehungen ganzer Tage.
+5. Zusammen mit dem Kandidaten (Trend): Tagesergebnisse auf gleiche Schwankung gebracht und je zur Hälfte gemischt;
+   höherer Sharpe als der Kandidat allein in Entwicklung und Prüfzeitraum.
+
+Vorwissen: Gegenbewegungs-Regeln auf Gruppe A sind in Runde 1 gescheitert (andere Bauart, ohne festes Ziel/Stop).
+Der Kandidat ist ein Trendfolger; ein Short nach starkem Anstieg handelt gegen ihn. Aus Runde 18 kenne ich das
+Ergebnis für kleine Coins. Gesamtzahl der Versuche danach: 81 plus Massentest.
