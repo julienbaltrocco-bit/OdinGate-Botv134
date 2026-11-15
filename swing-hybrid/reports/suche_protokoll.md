@@ -1056,3 +1056,51 @@ Nur eine Variante, die alle drei Stufen besteht, gilt als Ausbau des Vorteils. B
 schwach, vermutlich Seitwärtsphasen). Die Liste ist davon gefärbt (mehrere Filter gegen Fehlsignale). Runde 5
 (Größe nach Schwankung, Mischung von Rückblicken, Carry) und Runde 16 (QQQ-Filter) sind schon gescheitert und
 deshalb nicht dabei. Gesamtzahl der Versuche danach: 100 plus Massentest.
+
+# Runde 21: Ergebnis (15.11.2026)
+
+Zahlen in `suche_runde21.json`. Kandidat in der Entwicklung: Sharpe 0,56 (D1), 1,32 (D2), 0,95 (gesamt).
+
+- **Stufe 1:** 13 von 14 Varianten sind in mindestens einer Hälfte schlechter als der Kandidat. Nur der
+  **Funding-Filter** ist in beiden besser (0,66 / 1,59 / 1,11).
+- **Stufe 2 (gemeinsame Zufallsprüfung): keine Variante besteht.** Der Vorsprung des Funding-Filters entspricht
+  +10 Prozentpunkten pro Jahr bei gleicher Schwankung; die beste von 14 wirkungslosen Varianten käme zufällig in
+  84 % der Fälle mindestens so weit. Die Schwelle läge bei +44 Punkten.
+- Stufe 3 wurde nicht gerechnet. Der Prüfzeitraum blieb für alle 14 unberührt.
+
+**Was das bedeutet:** Mit dreieinhalb Jahren Entwicklung lässt sich ein realistischer Vorsprung (einige Zehntel
+Sharpe) innerhalb derselben Daten nicht von Zufall trennen. Die Prüfung ist nicht zu streng, die Daten sind zu kurz.
+Unterscheiden können das nur Daten, die bei der Auswahl keine Rolle gespielt haben.
+
+**Runde 21: kein Ausbau.** Auffällig: Nur-Long, Bänder, Filter und andere Trend-Maße sind fast alle schlechter als
+die einfache Regel. Stand: 100 Einzelhypothesen plus Massentest.
+
+---
+
+# Runde 22: Funding-Filter auf zeitlich unabhängigen Daten (festgelegt vor dem ersten Ergebnis)
+
+**Begründung:** Der Funding-Filter ist die einzige Variante aus Runde 21, die in beiden Hälften besser war, und
+er hat einen sachlichen Grund: Er vermeidet Positionen, die laufend hohe Finanzierungskosten zahlen. Innerhalb
+der Entwicklung ist das nicht von Zufall zu trennen. Geprüft wird deshalb genau diese eine Variante, unverändert
+(Grenze 0,03 % je 8 Stunden im 3-Tage-Mittel), auf Daten, die bei ihrer Auswahl keine Rolle spielten.
+
+**Offen benannt:** Das weicht vom Ablauf der Runde 21 ab (dort wäre nach Stufe 2 Schluss). Es ist eine neue,
+eigene Prüfung mit genau einer Hypothese. Gruppen B, C, D im Entwicklungszeitraum zählen **nicht** als unabhängig,
+weil hohe Funding-Phasen alle Coins gleichzeitig treffen; sie werden nicht gewertet.
+
+**Unabhängige Daten:** (a) Prüfzeitraum 04/2025–10/2026, alle 49 Coins (Gruppen A, B, C, D);
+(b) Vorperiode 02/2020–08/2021, alle Coins mit Kursen.
+
+**Rechnung:** je Gruppe Kandidat und Variante, Tagesergebnis netto mit Rebate, Variante auf die Schwankung des
+Kandidaten gebracht (Faktor aus der Entwicklung der jeweiligen Gruppe); Gruppen nach Coin-Zahl gewichtet zu einem
+Portfolio zusammengefasst.
+
+**Hürden (alle nötig):**
+1. Portfolio-Sharpe der Variante höher als der des Kandidaten im Prüfzeitraum **und** in der Vorperiode.
+2. Im Prüfzeitraum in mindestens 3 der 4 Gruppen höherer Sharpe.
+3. Zufallstest auf den zusammengelegten unabhängigen Tagen (Vorperiode + Prüfzeitraum): mittlerer Tagesvorsprung
+   > 0 in mindestens 95 % von 5.000 Ziehungen (stationärer Bootstrap, Blöcke im Mittel 20 Tage).
+4. Doppelte Kosten: Hürde 1 gilt auch dann.
+
+Besteht die Variante, gilt sie als belegter kleiner Ausbau und geht in den Vorwärtstest. Gesamtzahl der Versuche
+danach: 101 plus Massentest.
