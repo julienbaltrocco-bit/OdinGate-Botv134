@@ -1264,3 +1264,35 @@ Risiko senken, auch wenn sie den Ertrag je Risiko nicht verbessern.
 
 Vorwissen: Runde 21 hat gezeigt, dass frühere Ausstiege (Band, Donchian) den Kandidaten nicht verbessern, und dass
 sich kleine Verbesserungen in diesen Daten nicht von Zufall trennen lassen. Gesamtzahl der Versuche danach: 127.
+
+# Runde 24: Ergebnis (15.11.2026)
+
+Zahlen in `suche_runde24.json`. Kandidat in der Entwicklung: Sharpe 0,56 (D1) / 1,32 (D2) / 0,95, Ertrag 59 % pro
+Jahr, Einbruch 24,6 % (Einsatz 100 %, ohne Hebel).
+
+| Variante | Sharpe D1 | Sharpe D2 | Sharpe gesamt | Ertrag/Jahr | Einbruch | Zeit im Markt |
+|---|---|---|---|---|---|---|
+| Kandidat | 0,56 | 1,32 | 0,95 | 59 % | 24,6 % | 100 % |
+| sl5 | 0,48 | 1,31 | 0,90 | 54 % | 26,1 % | 93 % |
+| sl10 | 0,52 | 1,30 | 0,92 | 57 % | 25,4 % | 99 % |
+| sl15 | 0,57 | 1,31 | 0,94 | 59 % | 24,5 % | 100 % |
+| tp10 | 1,44 | 0,57 | 1,05 | 27 % | 16,2 % | 48 % |
+| tp20 | 1,01 | 0,89 | 0,96 | 35 % | 17,1 % | 70 % |
+| tp30 | 0,55 | 0,94 | 0,72 | 31 % | 22,7 % | 82 % |
+| sl5_tp15 | 1,39 | 0,83 | 1,13 | 33 % | 14,6 % | 56 % |
+| sl10_tp20 | 0,91 | 0,86 | 0,89 | 32 % | 17,3 % | 70 % |
+| sl15_tp30 | 0,55 | 0,93 | 0,72 | 31 % | 22,6 % | 82 % |
+| trail10 | 0,39 | 0,95 | 0,66 | 24 % | 19,3 % | 66 % |
+| trail15 | 0,46 | 0,65 | 0,55 | 25 % | 23,2 % | 80 % |
+
+- **Stufe 1: keine Variante ist in beiden Hälften besser.** Stufe 2 (gemeinsame Zufallsprüfung): die beste käme
+  zufällig in 54 % der Fälle so weit. Stufe 3 nicht gerechnet, Prüfzeitraum unberührt.
+- **Stops ändern fast nichts.** Das Drehsignal schließt Verlierer meist, bevor ein Stop von 10–15 % greift; ein
+  enger Stop (5 %) wirft Positionen heraus, die später noch gewinnen.
+- **Gewinnziele tauschen Ertrag gegen Ruhe.** Sie halbieren den Ertrag ungefähr, weil die großen Trends
+  abgeschnitten werden, senken aber den Einbruch (14–17 % statt 25 %). In der trendarmen ersten Hälfte sind sie klar
+  besser (Sharpe bis 1,4 gegen 0,56), in der trendstarken zweiten klar schlechter (0,57–0,89 gegen 1,32).
+- **Nachgezogene Stops** sind in beiden Hälften schlechter.
+
+**Runde 24: kein belegter Vorteil.** Gewinnziele sind eine Wette darauf, dass künftig Seitwärtsphasen überwiegen.
+Dashboard und Papier-Test bleiben unverändert. Stand: 127 Einzelhypothesen plus Massentest.
