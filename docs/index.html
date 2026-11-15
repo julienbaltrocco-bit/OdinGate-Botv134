@@ -174,6 +174,7 @@
   const P = {}, TAG = {}, SIG = {};   // Live-Kurs, 24-h-Veränderung, Signal je Coin
   const Z = {};                       // DOM je Coin
   let wsOffen = false, letzterTick = 0, offenerCoin = null, raster = '1h';
+  let tpslImBild = true;              // Test 2: Kursskala bis TP und SL erweitern
   let kerzenChart = null, kerzenSerie = null, kerzenWs = null, verlaufChart = null, verlaufSerie = null;
   const vorher = new Map();
 
@@ -269,8 +270,18 @@
       });
       z.raster = z.detail.appendChild(el('div', 'raster'));
       ['5m', '15m', '1h', '4h', '1d'].forEach((r) => { const k = el('button', null, r); k.type = 'button'; k.dataset.r = r; k.addEventListener('click', () => { raster = r; ladeKerzen(p.coin); }); z.raster.appendChild(k); });
+      if (S.kennzahlen[0].tp || S.kennzahlen[0].sl) {   // nur Test 2: Skala bis TP und SL erweitern (an) oder nur auf die Kerzen (aus)
+        const k = el('button', null, 'TP/SL im Bild'); k.type = 'button'; k.dataset.tpsl = '1'; k.setAttribute('aria-pressed', String(tpslImBild));
+        k.addEventListener('click', () => {
+          tpslImBild = !tpslImBild;
+          document.querySelectorAll('button[data-tpsl]').forEach((b) => b.setAttribute('aria-pressed', String(tpslImBild)));
+          if (offenerCoin) ladeKerzen(offenerCoin);
+        });
+        z.raster.appendChild(k);
+      }
       z.kerzen = z.detail.appendChild(el('div', 'kerzen'));
-      z.detail.appendChild(el('p', 'hinweis', 'Pfeile: Orders des Papier-Bots. Blaue Linie: Einstieg. Gestrichelt: Kurs, an dem sich das Signal beim nächsten Stundenschluss dreht.'));
+      z.detail.appendChild(el('p', 'hinweis', 'Pfeile: Orders des Papier-Bots. Blaue Linie: Einstieg. Gelb gestrichelt: Kurs, an dem sich das Signal beim nächsten Stundenschluss dreht.'
+        + ((S.kennzahlen[0].tp || S.kennzahlen[0].sl) ? ' Grün gestrichelt: Gewinnziel (TP). Rot gestrichelt: Stop (SL). Mit „TP/SL im Bild“ reicht die Kursskala bis zu beiden Linien; ausgeschaltet zeigt sie nur die Kerzen in voller Größe.' : '')));
       box.appendChild(z.box);
     });
     zeigePaare();
@@ -349,7 +360,7 @@
   async function ladeKerzen(coin) {
     schliesseKerzen();
     const z = Z[coin], box = z.kerzen, r = raster;
-    z.raster.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.r === r)));
+    z.raster.querySelectorAll('button[data-r]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.r === r)));
     if (!window.LightweightCharts) { box.textContent = 'Chart-Bibliothek konnte nicht geladen werden.'; return; }
     box.replaceChildren();
     let daten;
@@ -372,8 +383,15 @@
     kerzenSerie.setMarkers(marken);
     const p = S.positionen.find((x) => x.coin === coin);
     if (p && p.menge) kerzenSerie.createPriceLine({price: p.einstieg, color: '#5cb3ee', lineWidth: 1, lineStyle: 0, axisLabelVisible: true, title: 'Einstieg ' + p.richtung});
-    if (p && p.ziel_kurs) kerzenSerie.createPriceLine({price: p.ziel_kurs, color: '#2fd39a', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: 'Ziel'});
-    if (p && p.stop_kurs) kerzenSerie.createPriceLine({price: p.stop_kurs, color: '#ff6b5e', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: 'Stop'});
+    // Test 2: Gewinnziel (TP) und Stop (SL) einzeichnen und die Kursskala so erweitern, dass beide Linien immer im Bild sind
+    const grenzen = [];
+    if (p && p.ziel_kurs) { kerzenSerie.createPriceLine({price: p.ziel_kurs, color: '#2fd39a', lineWidth: 2, lineStyle: 2, axisLabelVisible: true, title: 'TP'}); grenzen.push(p.ziel_kurs); }
+    if (p && p.stop_kurs) { kerzenSerie.createPriceLine({price: p.stop_kurs, color: '#ff6b5e', lineWidth: 2, lineStyle: 2, axisLabelVisible: true, title: 'SL'}); grenzen.push(p.stop_kurs); }
+    if (grenzen.length) kerzenSerie.applyOptions({autoscaleInfoProvider: (original) => {
+      const res = original();
+      if (!tpslImBild || !res || !res.priceRange) return res;
+      return {priceRange: {minValue: Math.min(res.priceRange.minValue, ...grenzen), maxValue: Math.max(res.priceRange.maxValue, ...grenzen)}, margins: res.margins};
+    }});
     if (SIG[coin]) kerzenSerie.createPriceLine({price: SIG[coin].dreh, color: '#f0b34a', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: 'Signal dreht'});
     new ResizeObserver(() => kerzenChart && kerzenChart.applyOptions({width: box.clientWidth, height: box.clientHeight})).observe(box);
     try {
