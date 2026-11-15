@@ -4,7 +4,7 @@
   minuten  : 1-Minuten-Kerzen mit Kauf-Marktorder-Volumen, 10 Coins
   tiefe    : Orderbuch-Tiefe (bookDepth, ab 01.01.2023), je 5 Minuten gemittelt, BTC/ETH/SOL
 
-Aufruf: python -I forschung/experimente/daten_laden.py premium|minuten|tiefe
+Aufruf: python -I forschung/experimente/daten_laden.py premium|minuten|tiefe [Coins für tiefe]
 """
 import io
 import sys
@@ -88,7 +88,7 @@ def tiefe(coin):
 if __name__ == "__main__":
     art = sys.argv[1]
     (ZIEL / {"premium": "premium_5m", "minuten": "1m", "tiefe": "tiefe_5m"}[art]).mkdir(parents=True, exist_ok=True)
-    fn, coins = {"premium": (premium, COINS), "minuten": (minuten, COINS), "tiefe": (tiefe, ["BTC", "ETH", "SOL"])}[art]
+    fn, coins = {"premium": (premium, COINS), "minuten": (minuten, COINS), "tiefe": (tiefe, sys.argv[2:] or ["BTC", "ETH", "SOL"])}[art]
     with ThreadPoolExecutor(3) as ex:
         for coin, n in ex.map(fn, coins):
             print(art, coin, n, flush=True)

@@ -192,3 +192,62 @@ Zweck: verstehen, woher der Effekt kommt, und daraus genau eine Regel für die V
 **Entscheidungsregel vorab:** In die Vollprüfung (E08) geht die Einstellung mit dem höchsten t(N85), deren rohe
 Kursbewegung in beiden Hälften positiv ist. Liegt der gemeinsame p-Wert über 0,10, gibt es keinen Kandidaten; das
 Signal bleibt dann „interessant, unbestätigt“ (B). Die Validierung V bleibt bis E08 ungeöffnet.
+
+---
+
+## 9. Ergebnisse E06 und E07 (nur Entwicklung, 15.11.2026)
+
+**E06 Funding-Abgriff kurz: verworfen (A).** 1.229 Trades, Funding +7,8 bp, aber Kurs −2,8 bp gegen die Position
+(auf der Long-Seite −14 bp), N85 −0,1 bp, t = 0,0. Der Kurs gibt das Funding am Termin im Mittel zurück. Damit ist
+auch die Idee „Funding kurz abgreifen“ erledigt. Gesehene Einstellungen: 3.
+
+**E07 Orderbuch-Tiefe, Ursachenanalyse.** 17 Einstellungen, BTC/ETH/SOL, 01/2023 bis 03/2024.
+
+| Tiefe | 15 min: roh / t | 60 min: roh / t / N85 | 240 min: roh / t / N85 |
+|---|---|---|---|
+| 1 % | +1,9 / 4,2 | +0,9 / 0,8 / −3,2 | −0,2 / −0,1 / −4,3 |
+| 2 % | +1,8 / 4,5 | +4,0 / 3,4 / +0,1 | +6,4 / 2,1 / +2,4 |
+| 3 % | +2,3 / 5,9 | +5,2 / 4,0 / +1,2 | +10,8 / 3,5 / +6,7 |
+| 4 % | +2,4 / 6,5 | +4,9 / 4,1 / +0,9 | +11,0 / 3,5 / +6,9 |
+| 5 % | +2,4 / 6,7 | +5,7 / 4,7 / +1,7 | +9,5 / 3,0 / +5,4 |
+| 5 %, z ≥ 1 | | +2,6 / 4,3 / −1,4 | |
+| 5 %, z ≥ 3 | | +9,8 / 3,8 / **+5,9** (t 2,3) | |
+
+- Die **rohe Vorhersagekraft ist statistisch deutlich** und in beiden Hälften positiv: je tiefer das Orderbuch
+  betrachtet wird und je länger die Haltedauer, desto größer. Sie wächst mit der Schwelle (z ≥ 1: 2,6 bp, z ≥ 3: 9,8 bp).
+- **Nach Kosten bleibt nur mit Rebate etwas übrig**, und nur bei strenger Schwelle oder langer Haltedauer. Ohne Rebate
+  ist jede Einstellung negativ (beste: −6,7 bp je Trade).
+- Gemeinsame Zufallsprüfung über alle 17 Einstellungen (N85): p = 0,090; bei gleicher Schwankung gerechnet 0,106.
+  Das liegt **knapp** an der vorab gesetzten Grenze von 0,10. Nach der festgelegten Regel (White, p ≤ 0,10) geht ein
+  Kandidat in die Vollprüfung; das Ergebnis ist ausdrücklich grenzwertig.
+- **Wahl nach Regel:** Tiefe 5 %, z ≥ 3, 60 Minuten. 1.508 Trades (3,3 je Tag über drei Coins), roh +9,8 bp, N85
+  +5,9 bp, N50 +0,3 bp, N0 −7,7 bp, Gewinnquote 57 %, Profit Factor 1,24.
+- Zerlegung der Wahl: SOL +17,9 bp, ETH +3,7 bp, BTC −1,2 bp (N85). Long +8,8, Short +3,1. Drei von fünf Quartalen
+  positiv. 77 % der Trades laufen gegen die Kursbewegung der letzten Stunde (roh +10,7 bp), 23 % mit ihr (+6,5 bp).
+  Bester Tag: 16 % des Gesamtgewinns.
+
+Gesehene Einstellungen in E07: 17 (davon 4 aus E01). Stand: 7 Experimente, 44 Einstellungen.
+
+## 10. Festlegung E08 und E09 (vor der Rechnung, Validierung bisher ungeöffnet)
+
+### E08 Vollprüfung „Orderbuch-Stütze“ Version 1.0 (Stufe 1)
+- **Regel, eingefroren:** U5 = (K − V) / (K + V) mit Auftragswert bis 5 % unter und über dem Kurs, 5-Minuten-Mittel;
+  z gegen die eigenen 24 Stunden. z ≥ +3 → Long, z ≤ −3 → Short. Haltedauer 60 Minuten, kein Stop, eine Position je
+  Coin. BTC, ETH, SOL. Einstieg zur Eröffnung der nächsten 5-Minuten-Kerze, alle Orders Taker.
+- **Zeiträume:** E 02.01.2023 bis 31.03.2024, V 01.04.2024 bis 31.03.2025 (wird hier zum ersten und einzigen Mal für
+  diese Regel geöffnet).
+- **Bericht:** Kennzahlen je Zeitraum und Coin; doppelte Slippage; eine Kerze Verzögerung; Tagesreihe (Sharpe,
+  größter Rückgang, Anteil des besten Tages, längste Verlustserie); Hebel 1, 3 und 5 mit fester Größe je Coin
+  (Kapital × Hebel / 3) und Liquidation bei gemeinsamer Margin, Erhaltungsmargin 1 % (Annahme), geprüft gegen Hoch
+  und Tief jeder 5-Minuten-Kerze; jeder Kalendertag als Starttag.
+- **Kontrolle:** „Gegenbewegung ohne Orderbuch“: auf denselben Coins gegen die Stundenbewegung handeln, Schwelle so
+  gewählt, dass in E gleich viele Trades entstehen (nicht nach Ergebnis). Zeigt, ob das Orderbuch mehr weiß als der Kurs.
+- **Hürden (Abschnitt 4):** N85 > 0 in E und in V; t ≥ 2 über E und V zusammen; kein Tag über 20 % des Gewinns; kein
+  Starttag mit Liquidation beim gewählten Hebel. Bestanden → D, sonst B oder A.
+- Unabhängig vom Ausgang wird N0 genannt. Ist N0 negativ, trägt die Regel den Zusatz „nur mit Rebate“.
+
+### E09 Bestätigung auf Coins, die nicht zur Auswahl dienten
+- Dieselbe eingefrorene Regel auf XRP, DOGE, LINK, AVAX, LTC, ADA, DOT (Orderbuch-Tiefe wird dafür neu geladen),
+  E und V.
+- **Hürde:** rohe Kursbewegung > 0 mit t ≥ 2 über beide Zeiträume zusammen. N85 wird für alle sieben Coins berichtet
+  und zusätzlich für die fünf mit Slippage je Trade bis 5 bp (ohne ADA und DOT), weil nur diese handelbar wären.
