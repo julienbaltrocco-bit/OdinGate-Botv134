@@ -1197,3 +1197,37 @@ Gesamtzahl der Versuche danach: 116 plus Massentest.
 gleichzeitig (10 × 10 % = Einsatz 100 %), weitere Signale verfallen; ohne diese Grenze könnten in einer
 Altcoin-Rallye beliebig viele Shorts offen sein. (3) Trades, deren Kursdaten vor dem Ausstieg abreißen (Coin-Monat
 nicht im Archiv), werden verworfen und gezählt.
+
+# Runde 23: Ergebnis (15.11.2026)
+
+Zahlen in `suche_runde23.json`. 280 Coins, Entwicklung 01/2023–03/2025. **Keine der 15 Varianten besteht Stufe 1.**
+Der Prüfzeitraum wurde nicht angesehen.
+
+| Variante | Trades | Ziel erreicht | vor Kosten je Trade | netto je Trade | Konto H1 | Konto H2 |
+|---|---|---|---|---|---|---|
+| roh (≥ 20 %) | 4.440 | 40,8 % | −0,35 % | −0,57 % | −170 % | −82 % |
+| ab30 | 2.399 | 43,4 % | −0,19 % | −0,41 % | −101 % | +4 % |
+| ab50 | 811 | 44,0 % | −0,27 % | −0,48 % | −30 % | −9 % |
+| schnell | 2.019 | 43,4 % | +0,03 % | −0,18 % | −35 % | −2 % |
+| langsam | 3.785 | 40,4 % | −0,35 % | −0,57 % | −171 % | −45 % |
+| funding_plus | 3.554 | 41,7 % | −0,05 % | −0,26 % | −97 % | +5 % |
+| funding_hoch | 1.187 | 43,6 % | +0,14 % | −0,04 % | −26 % | +21 % |
+| funding_minus | 1.412 | 39,6 % | −0,80 % | −1,03 % | −115 % | −30 % |
+| gedreht | 2.762 | 42,0 % | −0,31 % | −0,53 % | −100 % | −47 % |
+| am_hoch | 3.188 | 40,9 % | −0,20 % | −0,42 % | −105 % | −28 % |
+| volumen_fällt | 2.162 | 41,2 % | −0,13 % | −0,34 % | −80 % | +6 % |
+| aus_dem_tief | 1.715 | 40,4 % | −0,22 % | −0,45 % | −39 % | −37 % |
+| im_lauf | 1.597 | 43,1 % | −0,10 % | −0,28 % | −66 % | +22 % |
+| liquide | 4.431 | 40,8 % | −0,35 % | −0,57 % | −171 % | −82 % |
+| dünn | 0 | – | – | – | – | – |
+
+- Nötig wären vor Kosten 44,4 % Treffer. Die Roh-Regel liegt bei 40,8 %, die beste Variante bei 44,0 %. Das deckt
+  sich mit der eigenen Statistik des Signal-Dienstes (32–42 %).
+- Wer in einen Pump hinein shortet, ohne mehr zu wissen, verliert. Am teuersten ist es, wenn die Shorts schon
+  Funding zahlen (funding_minus: −1,0 % je Trade), also wenn viele andere dieselbe Idee haben.
+- Die erste Hälfte (2023 bis Anfang 2024) ist bei allen Varianten negativ, die zweite bei einigen leicht positiv.
+- „Dünn“ hat keinen Fall: Während eines Pumps liegt der Tagesumsatz bei Binance praktisch immer über 5 Mio. $.
+
+**Runde 23: durchgefallen.** Mit einfachen, offenen Regeln steckt in „Short nach Pump“ kein Vorteil. Falls die
+Signale des Dienstes einen haben, steckt er in dessen Score, und das ist nur mit dem langen Export oder live
+prüfbar. Stand: 116 Einzelhypothesen plus Massentest.
