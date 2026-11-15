@@ -882,3 +882,29 @@ selbst kenne ich Anzahl und Coins, keine Kursverläufe.
 Zusätzlich berichtet, ohne Hürde: nur Coins, die bei Yubit gelistet sind; Ergebnis ohne Rebate; Anteil Ziel / Stop
 / Zeit. Einschränkung: 90 Tage sind kurz, und die Kurse sind von Binance, nicht von der Börse des Dienstes.
 Gesamtzahl der Versuche danach: 77 plus Massentest.
+
+# Runde 18: Ergebnis (15.11.2026)
+
+Zahlen in `suche_runde18.json`, alle Trades in `suche_runde18_trades.csv`. 51 von 54 Coins mit Binance-Kursen
+(ohne HNT, CNPY, BEAM). Die 24-Stunden-Veränderung laut Dienst passt zu Binance (Korrelation 0,95).
+
+- **173 Trades in 90 Tagen**, im Median 1,7 Stunden gehalten, höchstens 3 gleichzeitig. Ziel erreicht 51,4 %,
+  Stop 46,8 %, Zeitausstieg 1,7 %.
+- Je Trade: vor Kosten +1,40 %, Funding −0,31 %, Kosten 0,17 %, **netto mit Rebate +0,92 %** (ohne Rebate +0,80 %).
+  Bei 10 % Einsatz je Trade: Konto +15,9 % in 90 Tagen, größter Einbruch 4,0 %.
+- Hürde 1 bestanden (Hälften +12,8 % und +3,0 %, 173 Trades). Hürde 2 bestanden (doppelte Slippage +13,3 %).
+  Hürde 4 bestanden (größter Coin 26 % des Gewinns).
+- **Hürde 3 nicht bestanden:** In 92,9 % der Ziehungen ganzer Tage ist der Mittelwert positiv, verlangt waren 95 %.
+- Nach Monaten fällt der Ertrag je Trade: +1,4 %, +1,8 %, +0,4 %, +0,1 % (August bis November).
+- Nur Yubit-Coins (85 Trades): erste Hälfte +13,7 %, zweite Hälfte −4,1 %.
+
+**Offene Punkte, die das Ergebnis entwerten können:**
+- Die Historie trägt für alle Einträge die Modell-Version „v4.5“, der Live-Scanner zeigt „v5.7“ mit anderen Scores
+  für denselben Coin. Ob der Score in der Historie zum damaligen Zeitpunkt vergeben oder später nachgerechnet wurde,
+  ist nicht prüfbar. Ein nachgerechneter Score wäre ein Blick in die Zukunft.
+- Eigene Statistik des Dienstes für echten Handel: Rendite 0, 4 von 10 Monaten im Plus.
+- 90 Tage, 64 Handelstage. Der Einstieg weicht von der Regel des Dienstes ab (sofort statt Limit am Hoch).
+
+**Runde 18: nach den festgelegten Regeln nicht bestanden (3 von 4 Hürden), aber der bisher stärkste Hinweis.**
+Kein Nachjustieren. Sinnvoll sind: der lange Export des Users als frische Daten und das Mitschreiben des
+Live-Streams ab jetzt.
