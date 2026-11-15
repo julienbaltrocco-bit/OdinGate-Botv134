@@ -10,6 +10,7 @@
     --ok: #2fd39a; --bad: #ff6b5e; --warn: #f0b34a; --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
     --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color-scheme: dark; }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html { -webkit-text-size-adjust: 100%; }
   body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 14.5px; line-height: 1.45;
     padding: max(12px, env(safe-area-inset-top, 0px)) max(14px, env(safe-area-inset-right, 0px)) 48px max(14px, env(safe-area-inset-left, 0px)); }
@@ -67,16 +68,35 @@
   @keyframes auf { from { background: color-mix(in srgb, var(--ok) 32%, transparent); } to { background: transparent; } }
   @keyframes ab { from { background: color-mix(in srgb, var(--bad) 32%, transparent); } to { background: transparent; } }
   @media (prefers-reduced-motion: reduce) { .auf, .ab, .punkt.an { animation: none; } }
+  .tor { position: fixed; inset: 0; background: var(--bg); display: grid; place-items: center; padding: 24px; z-index: 50; }
+  .tor form { width: min(340px, 100%); display: grid; gap: 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+  .tor h2 { margin: 0; font-size: 15px; color: var(--fg); text-transform: none; letter-spacing: 0; }
+  .tor label { font-size: 12.5px; color: var(--muted); }
+  .tor input { font: inherit; font-size: 16px; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); width: 100%; }
+  .tor input:focus-visible, .tor button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .tor button { font: inherit; font-weight: 600; padding: 10px 12px; border-radius: 8px; border: 0; background: var(--accent); color: #06121c; cursor: pointer; }
+  .tor .fehler { color: var(--bad); font-size: 12.5px; min-height: 1.2em; margin: 0; }
+  .abmelden { all: unset; cursor: pointer; text-decoration: underline; }
   @media (min-width: 760px) { .paar > button { grid-template-columns: 80px 70px minmax(0, 1fr) minmax(0, 1fr) 20px; padding: 12px 16px; } .kerzen { height: 380px; } .chartbox { height: 260px; } }
 </style>
 </head>
 <body>
-<div class="seite">
+<div class="tor" id="tor">
+  <form id="torform" autocomplete="off">
+    <h2>Trading Board · Vorwärtstest</h2>
+    <label for="pw">Passwort</label>
+    <input id="pw" type="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" required>
+    <button type="submit" id="torknopf">Öffnen</button>
+    <p class="fehler" id="torfehler" role="alert"></p>
+  </form>
+</div>
+<div class="seite" id="seite" hidden>
   <div class="leiste" role="status">
     <span><span class="punkt" id="punkt"></span><span id="status">Verbinde mit der Börse …</span></span>
     <span>UTC <b id="uhr">–</b></span>
     <span>Bot-Stand <b id="botalter">–</b></span>
     <span>Nächste Signalprüfung in <b id="naechste">–</b></span>
+    <button class="abmelden" id="abmelden" type="button">Sperren</button>
   </div>
 
   <div class="kopf">
@@ -99,13 +119,32 @@
     <tbody id="orders"><tr><td colspan="7" class="ruhig">Lade …</td></tr></tbody>
   </table></div>
 
-  <p class="hinweis">Papierhandel ohne echtes Geld. Live-Kurse und Kerzen: Binance-Futures, direkt in deinem Browser. Einstiege, Gebühren, Rebate und Funding: Papier-Bot, gerechnet am Yubit-Orderbuch, Stand wird stündlich nachgeladen. Zwischen Binance und Yubit gibt es kleine Kursunterschiede. Keine Anlageberatung.</p>
+  <p class="hinweis">Papierhandel ohne echtes Geld. Live-Kurse und Kerzen: Binance-Futures, direkt in deinem Browser. Einstiege, Gebühren, Rebate und Funding: Papier-Bot, gerechnet am Yubit-Orderbuch, Stand wird stündlich nachgeladen und liegt verschlüsselt vor. Zwischen Binance und Yubit gibt es kleine Kursunterschiede. Keine Anlageberatung.</p>
 </div>
 
 <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 <script>
 (() => {
-  const STAND = ['stand.json', 'https://raw.githubusercontent.com/julienbaltrocco-bit/OdinGate-Botv134/claude/intelligent-sagan-2cviug/docs/stand.json'];
+  const STAND = ['stand.enc.json'];
+  const b64 = (t) => Uint8Array.from(atob(t), (c) => c.charCodeAt(0));
+  let privat = null;                  // RSA-Schlüssel, nach richtiger Passworteingabe
+
+  async function ableiten(passwort, info) {             // Passwort -> 48 Byte (AES-Schlüssel + IV)
+    const roh = await crypto.subtle.importKey('raw', new TextEncoder().encode(passwort), 'PBKDF2', false, ['deriveBits']);
+    return new Uint8Array(await crypto.subtle.deriveBits({name: 'PBKDF2', hash: 'SHA-256', salt: b64(info.salz), iterations: info.runden}, roh, 384));
+  }
+  async function oeffnen(bits) {                         // wirft bei falschem Passwort
+    const info = await (await fetch('schluessel.json', {cache: 'no-store'})).json();
+    const b = bits || null;
+    const key = await crypto.subtle.importKey('raw', b.slice(0, 32), 'AES-CBC', false, ['decrypt']);
+    const der = await crypto.subtle.decrypt({name: 'AES-CBC', iv: b.slice(32, 48)}, key, b64(info.d));
+    privat = await crypto.subtle.importKey('pkcs8', der, {name: 'RSA-OAEP', hash: 'SHA-256'}, false, ['decrypt']);
+  }
+  async function entschluesseln(paket) {
+    const k = await crypto.subtle.decrypt({name: 'RSA-OAEP'}, privat, b64(paket.k));
+    const key = await crypto.subtle.importKey('raw', k, 'AES-CBC', false, ['decrypt']);
+    return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name: 'AES-CBC', iv: b64(paket.iv)}, key, b64(paket.d))));
+  }
   const REST = 'https://fapi.binance.com', WS = 'wss://fstream.binance.com';
   const $ = (id) => document.getElementById(id);
   const de = (n) => new Intl.NumberFormat('de-DE', {minimumFractionDigits: n, maximumFractionDigits: n});
@@ -321,7 +360,7 @@
       try {
         const r = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Math.floor(Date.now() / 30000), {cache: 'no-store'});
         if (!r.ok) continue;
-        const d = await r.json();
+        const d = await entschluesseln(await r.json());
         if (!d.kennzahlen || !d.positionen) continue;
         const neu = !S || d.geschrieben !== S.geschrieben, ersterLauf = !S;
         S = d;
@@ -381,10 +420,37 @@
     $('naechste').textContent = dauer(naechste - j);
   }, 1000);
 
-  (async () => {
+  let gestartet = false;
+  async function starten() {
+    if (gestartet) return; gestartet = true;
+    $('tor').hidden = true; $('seite').hidden = false;
     await ladeStand();
     verbinde(); pollen(); ladeSignale();
     setInterval(ladeStand, 60000); setInterval(pollen, 4000); setInterval(ladeSignale, 300000);
+  }
+  const merken = { lesen: () => { try { return localStorage.getItem('board-schluessel'); } catch (e) { return null; } },
+                   setzen: (v) => { try { v ? localStorage.setItem('board-schluessel', v) : localStorage.removeItem('board-schluessel'); } catch (e) {} } };
+  $('torform').addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    $('torfehler').textContent = ''; $('torknopf').disabled = true; $('torknopf').textContent = 'Prüfe …';
+    try {
+      const info = await (await fetch('schluessel.json', {cache: 'no-store'})).json();
+      const bits = await ableiten($('pw').value, info);
+      await oeffnen(bits);
+      merken.setzen(btoa(String.fromCharCode(...bits)));
+      $('pw').value = '';
+      starten();
+    } catch (e) {
+      $('torfehler').textContent = (e && e.name === 'TypeError') ? 'Schlüsseldatei konnte nicht geladen werden.' : 'Falsches Passwort.';
+    }
+    $('torknopf').disabled = false; $('torknopf').textContent = 'Öffnen';
+  });
+  $('abmelden').addEventListener('click', () => { merken.setzen(null); location.reload(); });
+  (async () => {
+    if (!window.crypto || !crypto.subtle) { $('torfehler').textContent = 'Dieser Browser kann die Seite nicht entschlüsseln (https nötig).'; return; }
+    const g = merken.lesen();
+    if (g) { try { await oeffnen(b64(g)); starten(); return; } catch (e) { merken.setzen(null); } }
+    $('pw').focus();
   })();
 })();
 </script>

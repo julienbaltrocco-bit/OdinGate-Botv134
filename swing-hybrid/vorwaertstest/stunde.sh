@@ -9,8 +9,8 @@ git pull -q --ff-only origin "$ZWEIG" || true
 cd swing-hybrid
 python3 -m vorwaertstest.bot schritt --config vorwaertstest/config_lauf.json --daten vorwaertstest/lauf
 python3 -m vorwaertstest.dashboard_daten --config vorwaertstest/config_lauf.json --daten vorwaertstest/lauf
-mkdir -p ../docs && cp vorwaertstest/lauf/dashboard.json ../docs/stand.json
-git add vorwaertstest/lauf ../docs/stand.json
+python3 -m vorwaertstest.board_verschluesseln --quelle vorwaertstest/lauf/dashboard.json --ziel ../docs/stand.enc.json
+git add vorwaertstest/lauf ../docs/stand.enc.json
 git commit -q -m "Vorwärtstest (Papier) $(date -u '+%F %H:%M') UTC
 
 Co-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>
