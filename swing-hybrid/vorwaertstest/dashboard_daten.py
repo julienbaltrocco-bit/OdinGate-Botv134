@@ -9,7 +9,7 @@ from pathlib import Path
 
 from . import bot
 
-TAKT_MINUTEN = 15
+TAKT_MINUTEN = 5
 
 
 def bauen(cfg: dict, daten: Path) -> dict:
@@ -54,7 +54,10 @@ def bauen(cfg: dict, daten: Path) -> dict:
                    "funding_usd": round(float(l["funding"]), 2), "orders": len(pr), "volumen_usd": round(vol, 0),
                    "slippage_orders_bp": round(slip, 3), "slippage_messung_bp": round(sum(mess) / len(mess), 3) if mess else 0.0,
                    "messungen": len(mess), "long": int(l["long"]), "short": int(l["short"]),
-                   "einsatz_pct": round(float(l["einsatz"]) / kap * 100, 1), "einbruch_pct": round(dd, 3)}]
+                   "einsatz_pct": round(float(l["einsatz"]) / kap * 100, 1), "einbruch_pct": round(dd, 3),
+                   "hebel": cfg["hebel"], "positionswert_usd": round(float(l["einsatz"]), 0),
+                   "margin_usd": round(float(l["einsatz"]) / cfg["hebel"], 0),
+                   "margin_pct": round(float(l["einsatz"]) / cfg["hebel"] / kap * 100, 1)}]
     if len(verlauf) > 400:                                  # ältere Punkte ausdünnen, die letzten 120 bleiben vollständig
         alt, neu = verlauf[:-120], verlauf[-120:]
         schritt = -(-len(alt) // 280)

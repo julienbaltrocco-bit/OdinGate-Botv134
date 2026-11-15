@@ -2,15 +2,15 @@
 
 Historische bzw. Papier-Messung, keine Anlageberatung. Stufe „papier“ setzt keine echten Orders.
 
-- Zeitraum: 2026-11-15 13:00 bis 2026-11-15 13:00 UTC (0,0 Tage, 1 Durchläufe)
-- Kapital 5.000 $, Hebel 1,00, 10 Coins, Modus papier
+- Zeitraum: 2026-11-15 13:21 bis 2026-11-15 13:21 UTC (0,0 Tage, 1 Durchläufe)
+- Kapital 5.000 $, Hebel 3,00, 10 Coins, Modus papier
 
 ## Was eine Order zur vollen Stunde gekostet hätte
 
 Gemessen am echten Orderbuch, Order in Standardgröße, 10 Messungen.
 
 - **Slippage im Mittel: 0,015 %** (unter der Annahme aus dem Backtest (0,05 %))
-- Median 0,007 %, schlechteste 10 % ab 0,068 %
+- Median 0,008 %, schlechteste 10 % ab 0,068 %
 
 | Coin | Messungen | Slippage im Mittel | Schlechteste 10 % ab | Spanne Geld/Brief im Mittel |
 |---|---|---|---|---|
@@ -22,27 +22,27 @@ Gemessen am echten Orderbuch, Order in Standardgröße, 10 Messungen.
 | DOGE | 1 | 0,008 % | 0,008 % | 0,017 % |
 | ADA | 1 | 0,032 % | 0,032 % | 0,064 % |
 | LINK | 1 | 0,005 % | 0,005 % | 0,011 % |
-| AVAX | 1 | 0,007 % | 0,007 % | 0,014 % |
+| AVAX | 1 | 0,010 % | 0,010 % | 0,014 % |
 | LTC | 1 | 0,011 % | 0,011 % | 0,022 % |
 
 ## Orders des Kandidaten
 
-- 10 Orders, Volumen 4.945 $
+- 10 Orders, Volumen 14.926 $
 - Slippage nach Volumen gewichtet: 0,015 %
-- Gebühr gezahlt: 3,96 $ (das sind 0,080 % vom Volumen)
+- Gebühr gezahlt: 11,94 $ (das sind 0,080 % vom Volumen)
 - Hinweis: Erst 10 Orders. Unter etwa 200 ist das Mittel noch unsicher.
 
 ## Ergebnis seit Start
 
 | | Betrag | Anteil am Kapital |
 |---|---|---|
-| Handel vor Gebühren | −0,73 $ | −0,01 % |
-| Gebühr | −3,96 $ | −0,08 % |
+| Handel vor Gebühren | −2,18 $ | −0,04 % |
+| Gebühr | −11,94 $ | −0,24 % |
 | Funding | +0,00 $ | 0,00 % |
-| Nach voller Gebühr, ohne Rebate | −4,68 $ | −0,09 % |
-| Rebate (85 %, gerechnet) | +3,36 $ | 0,07 % |
-| **Netto mit Rebate** | −1,32 $ | −0,03 % |
+| Nach voller Gebühr, ohne Rebate | −14,12 $ | −0,28 % |
+| Rebate (85 %, gerechnet) | +10,15 $ | 0,20 % |
+| **Netto mit Rebate** | −3,97 $ | −0,08 % |
 
-Offen: 0 Long, 10 Short, Einsatz 4.945 $.
+Offen: 0 Long, 10 Short, Einsatz 14.928 $.
 
 Wenige Wochen sagen über den Gewinn fast nichts. Aussagekräftig ist hier vor allem die Slippage.
