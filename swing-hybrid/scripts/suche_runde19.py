@@ -10,6 +10,7 @@ from hybrid import pumpshort as P, research as R, runner, tagestrend as T
 
 ROOT = Path(__file__).resolve().parents[1]
 pd.set_option("display.width", 220)
+TRAIL = len(sys.argv) > 1 and sys.argv[1] == "trail"
 EINSATZ = 0.10
 START, ENDE, D1, SPLIT = (pd.Timestamp(x) for x in (R.START, R.ENDE, R.D1_ENDE, R.SPLIT))
 FEN = {"D1": (START, D1), "D2": (D1, SPLIT), "Entwicklung": (START, SPLIT), "Pruefung": (SPLIT, ENDE), "Gesamt": (START, ENDE)}
@@ -39,7 +40,10 @@ def trades(coins, name, slip_faktor=1.0):
         zeiten = list(k.index[ok] + pd.Timedelta(minutes=4, seconds=59))     # bekannt bei Kerzenschluss
         if not zeiten:
             continue
-        t = pd.DataFrame(P.trades_coin(k, zeiten, tp=0.5 * schwelle[ok], sl=0.4 * schwelle[ok]))
+        if TRAIL:
+            t = pd.DataFrame(P.trades_coin_trail(k, zeiten, sl=0.4 * schwelle[ok], akt=0.4 * schwelle[ok], schritt=0.25 * schwelle[ok]))
+        else:
+            t = pd.DataFrame(P.trades_coin(k, zeiten, tp=0.5 * schwelle[ok], sl=0.4 * schwelle[ok]))
         if t.empty:
             continue
         t["coin"] = coin
@@ -59,7 +63,7 @@ def block(t, f):
     x = t[(t.ein_zeit >= a) & (t.ein_zeit < b)]
     if x.empty:
         return {"trades": 0, "netto_mittel": 0.0, "konto": 0.0, "vor_mittel": 0.0, "konto_vor": 0.0}
-    return {"trades": int(len(x)), "ziel": float((x.art == "ziel").mean()), "stop": float((x.art == "stop").mean()),
+    return {"trades": int(len(x)), "ziel": float(x.art.isin(["ziel", "trail"]).mean()), "stop": float((x.art == "stop").mean()),
             "schwelle_mittel": float(x.tp.mean() * 2), "vor_mittel": float(x.vor.mean()), "netto_mittel": float(x.netto.mean()),
             "konto_vor": float(x.vor.sum() * EINSATZ), "konto": float(x.netto.sum() * EINSATZ),
             "konto_ohne_rebate": float(x.netto_ohne.sum() * EINSATZ)}
@@ -81,7 +85,7 @@ best = [n for n in EINST if out["stufe1"][n]["ok"]]
 
 
 def schluss():
-    (ROOT / "reports/suche_runde19.json").write_text(json.dumps(out, indent=1, default=float))
+    (ROOT / ("reports/suche_runde20b.json" if TRAIL else "reports/suche_runde19.json")).write_text(json.dumps(out, indent=1, default=float))
     sys.exit(0)
 
 

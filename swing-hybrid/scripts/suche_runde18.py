@@ -10,6 +10,8 @@ from hybrid import pumpshort as P
 
 ROOT = Path(__file__).resolve().parents[1]
 pd.set_option("display.width", 220)
+TRAIL = len(sys.argv) > 1 and sys.argv[1] == "trail"
+NAME = "suche_runde20a" if TRAIL else "suche_runde18"
 EINSATZ, TEILUNG, ERSATZ_AB = 0.10, pd.Timestamp("2026-10-01"), pd.Timestamp("2026-11-01")
 h = pd.read_parquet(ROOT / "data/raw/plimaflow/historie.parquet")
 q = h[h.p_win >= 0.6].sort_values("signal_time")
@@ -27,7 +29,7 @@ for c in coins:
     if not p.exists():
         ohne_kurs.append(c); continue
     s = q[q.sym == c]
-    t = pd.DataFrame(P.trades_coin(pd.read_parquet(p), list(s.signal_time)))
+    t = pd.DataFrame((P.trades_coin_trail if TRAIL else P.trades_coin)(pd.read_parquet(p), list(s.signal_time)))
     if t.empty:
         continue
     slip = float(slip_y.get(c, slip_median))
@@ -43,13 +45,13 @@ t["netto"] = t["roh"] + t["funding"] - t["k_mit"]
 t["netto_ohne"] = t["roh"] + t["funding"] - t["k_ohne"]
 t["netto_stress"] = t["roh"] + t["funding"] - t["k_stress"]
 t["stunden"] = (t["aus_zeit"] - t["ein_zeit"]).dt.total_seconds() / 3600
-t.to_csv(ROOT / "reports/suche_runde18_trades.csv", index=False)
+t.to_csv(ROOT / f"reports/{NAME}_trades.csv", index=False)
 
 
 def block(x):
     if x.empty:
         return {"trades": 0}
-    return {"trades": int(len(x)), "coins": int(x.coin.nunique()), "ziel": float((x.art == "ziel").mean()), "stop": float((x.art == "stop").mean()),
+    return {"trades": int(len(x)), "coins": int(x.coin.nunique()), "ziel": float(x.art.isin(["ziel", "trail"]).mean()), "roh_max": float(x.roh.max()), "ueber_10": float((x.roh > 0.10).mean()), "stop": float((x.art == "stop").mean()),
             "zeit": float(x.art.isin(["zeit", "ende"]).mean()), "roh_mittel": float(x.roh.mean()), "funding_mittel": float(x.funding.mean()),
             "kosten_mittel": float(x.k_mit.mean()), "netto_mittel": float(x.netto.mean()), "netto_ohne_mittel": float(x.netto_ohne.mean()),
             "netto_stress_mittel": float(x.netto_stress.mean()), "konto_netto": float(x.netto.sum() * EINSATZ),
@@ -80,4 +82,4 @@ print("Zufallstest:", out["zufall"]); print("Hürden:", out["huerden"], "| grö�
 print(pd.concat([je.head(6), je.tail(6)]).round(3).to_string())
 m = t.groupby(t.ein_zeit.dt.to_period("M"))["netto"].agg(["sum", "count", "mean"]); print(m.round(4).to_string())
 out["monate"] = {str(k): v for k, v in m.round(5).to_dict("index").items()}
-(ROOT / "reports/suche_runde18.json").write_text(json.dumps(out, indent=1, default=float))
+(ROOT / f"reports/{NAME}.json").write_text(json.dumps(out, indent=1, default=float))

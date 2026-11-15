@@ -987,3 +987,20 @@ ausgelöst.
 **Einordnung, vorab:** Für Teil A ist das der zweite Blick auf dieselben 90 Tage, für Teil B der zweite auf die
 Entwicklung von Gruppe A (Prüfzeitraum dort weiter unberührt). Ein Bestehen zählt deshalb weniger als in Runde 18/19.
 Gesamtzahl der Versuche danach: 86 plus Massentest.
+
+# Runde 20: Ergebnis (15.11.2026)
+
+Zahlen in `suche_runde20a.json` (Plimaflow-Signale) und `suche_runde20b.json` (Gruppe A).
+
+**Teil A, Plimaflow-Signale mit nachgezogenem Stop: alle vier Hürden verfehlt.**
+- 185 Trades. Netto je Trade +0,14 % (festes Ziel: +0,92 %). Konto +2,5 % in 90 Tagen (festes Ziel: +15,9 %),
+  ohne Rebate ±0, mit doppelter Slippage −1,2 %. Hälften +3,7 % und −1,1 %. Zufallstest 59 %.
+- Monate schwanken stark: −0,2 %, +1,0 %, −0,9 %, +1,6 % je Trade.
+- Grund: Viele Trades, die bei 10 % sauber geschlossen worden wären, laufen zurück und enden bei +3 % oder +8 %.
+  Die wenigen großen Abstürze gleichen das in diesen 90 Tagen nicht aus.
+
+**Teil B, Gruppe A mit nachgezogenem Stop: Stufe 1 von keiner Einstellung bestanden.** Alle vier sind in D1 und D2
+netto negativ und, anders als mit festem Ziel, drei davon schon vor Kosten. Prüfzeitraum und Gruppe B nicht angesehen.
+
+**Runde 20: durchgefallen.** In beiden Datensätzen ist das Nachziehen schlechter als das feste Ziel.
+Stand: 86 Einzelhypothesen plus Massentest.

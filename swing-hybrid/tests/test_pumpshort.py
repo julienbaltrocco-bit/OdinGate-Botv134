@@ -58,3 +58,27 @@ def test_ziel_und_stop_je_signal():
     t = P.trades_coin(k, [k.index[0], k.index[612]], tp=np.array([0.025, 0.05]), sl=np.array([0.02, 0.02]))
     assert [x["art"] for x in t] == ["ziel", "stop"]
     assert abs(t[0]["roh"] - 0.025) < 1e-9 and abs(t[1]["roh"] + 0.02) < 1e-9
+
+
+def _pfad(punkte, schritte=400):
+    teile = [np.linspace(a, b, schritte) for a, b in zip(punkte[:-1], punkte[1:])]
+    return _k(np.r_[np.full(3, punkte[0]), np.concatenate(teile)])
+
+
+def test_trail_stufen():
+    # fällt auf 91 (−9 %): Stufe 1, Stop bei 97; steigt wieder -> Ausstieg bei 97 = +3 %
+    t = P.trades_coin_trail(_pfad([100, 91, 99]), [pd.Timestamp("2026-09-01")])
+    assert t[0]["art"] == "trail" and t[0]["stufen"] == 1 and abs(t[0]["roh"] - 0.03) < 1e-9
+    # fällt auf 81 (−19 %): Stufen bei 8, 13, 18 % -> Stop bei 87 = +13 %
+    t = P.trades_coin_trail(_pfad([100, 81, 95]), [pd.Timestamp("2026-09-01")])
+    assert t[0]["stufen"] == 3 and abs(t[0]["roh"] - 0.13) < 1e-9
+    # nie 8 % Gewinn: ursprünglicher Stop
+    t = P.trades_coin_trail(_pfad([100, 93, 110]), [pd.Timestamp("2026-09-01")])
+    assert t[0]["art"] == "stop" and abs(t[0]["roh"] + 0.08) < 1e-9
+
+
+def test_trail_kerze_schliesst_ueber_neuem_stop():
+    k = _k(np.full(10, 100.0))
+    k.iloc[4, k.columns.get_loc("low")] = 91.0            # Docht nach unten, Schluss wieder bei 100
+    t = P.trades_coin_trail(k, [k.index[0]])
+    assert t[0]["art"] == "trail" and abs(t[0]["roh"] - 0.03) < 1e-9 and t[0]["aus_zeit"] == k.index[4]

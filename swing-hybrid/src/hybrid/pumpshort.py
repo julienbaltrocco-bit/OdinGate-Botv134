@@ -68,3 +68,50 @@ def funding(t: pd.DataFrame, raten: pd.Series | None, ersatz_rate: pd.Series, er
             summe += float(ers) * len(raster)
         werte.append(summe)
     return pd.Series(werte, index=t.index)
+
+
+def trades_coin_trail(k: pd.DataFrame, signale, sl=0.08, akt=0.08, schritt=0.05, max_h=72) -> list[dict]:
+    """Wie `trades_coin`, aber ohne festes Ziel: ab `akt` Gewinn wird der Stop auf (akt − schritt) Gewinn gesetzt,
+    danach bei jedem weiteren `schritt` Gewinn um `schritt` nachgezogen. sl / akt / schritt: Zahl oder Wert je Signal.
+
+    Innerhalb einer Kerze: erst der bisherige Stop, dann neue Stufen aus dem Tief; schließt die Kerze über dem neuen
+    Stop, gilt er als in dieser Kerze ausgelöst.
+    """
+    zeit = k.index.to_numpy()
+    o, h, l, c = (k[x].to_numpy() for x in ("open", "high", "low", "close"))
+    n = len(signale)
+    sls, akts, schr = (np.broadcast_to(np.asarray(x, float), (n,)) for x in (sl, akt, schritt))
+    out, frei_ab = [], 0
+    for nr, s in enumerate(signale):
+        i = int(np.searchsorted(zeit, np.datetime64(s), side="right"))
+        if i >= len(zeit) or i < frei_ab:
+            continue
+        if (zeit[i] - np.datetime64(s)) > np.timedelta64(10, "m"):
+            continue
+        ein = o[i]
+        stop = ein * (1 + sls[nr])
+        stufe = 0                                               # Zahl der erreichten Gewinnstufen
+        ende = int(np.searchsorted(zeit, zeit[i] + np.timedelta64(max_h, "h"), side="left"))
+        art, aus, j = "zeit", None, i
+        for j in range(i, min(ende, len(zeit))):
+            if o[j] >= stop and j > i:
+                art, aus = ("trail" if stufe else "stop"), o[j]; break
+            if h[j] >= stop:
+                art, aus = ("trail" if stufe else "stop"), stop; break
+            gewinn = (ein - l[j]) / ein
+            neu = 0 if gewinn < akts[nr] else 1 + int((gewinn - akts[nr]) / schr[nr] + 1e-12)
+            if neu > stufe:
+                stufe = neu
+                stop = ein * (1 - (akts[nr] + (stufe - 2) * schr[nr]))
+                if c[j] >= stop:
+                    art, aus = "trail", stop; break
+        if aus is None:
+            j = min(ende, len(zeit) - 1)
+            aus = o[j] if ende < len(zeit) else c[-1]
+            if ende >= len(zeit):
+                art = "ende"
+        out.append({"signal": pd.Timestamp(s), "ein_zeit": pd.Timestamp(zeit[i]), "aus_zeit": pd.Timestamp(zeit[j]),
+                    "ein": ein, "aus": aus, "art": art, "tp": float(akts[nr]) / 0.8, "sl": float(sls[nr]), "stufen": stufe,
+                    "roh": (ein - aus) / ein})
+        frei_ab = j + 1
+    return out
