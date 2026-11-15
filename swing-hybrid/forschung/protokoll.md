@@ -251,3 +251,88 @@ Gesehene Einstellungen in E07: 17 (davon 4 aus E01). Stand: 7 Experimente, 44 Ei
   E und V.
 - **Hürde:** rohe Kursbewegung > 0 mit t ≥ 2 über beide Zeiträume zusammen. N85 wird für alle sieben Coins berichtet
   und zusätzlich für die fünf mit Slippage je Trade bis 5 bp (ohne ADA und DOT), weil nur diese handelbar wären.
+
+---
+
+## 11. Ergebnis E08: Vollprüfung „Orderbuch-Stütze“ 1.0 (15.11.2026)
+
+Die Validierung V wurde hier zum ersten und einzigen Mal für diese Regel geöffnet. Zahlen je Trade in bp.
+
+| Zeitraum | Trades (je Tag) | roh | t(roh) | N0 ohne Rebate | N50 | N85 | t(N85) | Gewinnquote | Profit Factor |
+|---|---|---|---|---|---|---|---|---|---|
+| E 01/2023–03/2024 | 1.509 (3,3) | +9,8 | 3,8 | −7,7 | +0,3 | **+5,9** | 2,3 | 57 % | 1,24 |
+| V 04/2024–03/2025 | 1.239 (3,4) | +6,8 | 2,6 | −10,7 | −2,7 | **+2,9** | 1,1 | 52 % | 1,10 |
+| E und V | 2.748 (3,4) | +8,5 | 4,6 | −9,0 | −1,0 | **+4,6** | 2,5 | 55 % | 1,17 |
+
+- **In V sind alle drei Coins positiv** (BTC +2,6, ETH +3,6, SOL +2,6 bp N85), Long und Short etwa gleich. Der hohe
+  SOL-Wert aus E (+18 bp) hat sich nicht wiederholt; der Effekt in V ist etwa halb so groß wie in E.
+- **Für sich allein ist V nicht gesichert** (t = 1,1 für N85). Gesichert ist die rohe Kursbewegung (t = 2,6 in V,
+  4,6 über beide Zeiträume).
+- **Ohne Rebate verliert die Regel** (−9,0 bp je Trade, rund −37 % pro Jahr bei Hebel 1). Sie braucht ein Rebate von
+  etwa 57 %, um die Kosten zu decken.
+- Stress in V: doppelte Slippage +1,4 bp, eine Kerze später +1,4 bp. Positiv, aber dünn.
+- Quartale (N85): +5,8 · +8,8 · −2,7 · +20,6 · −1,3 · −6,1 · −5,6 · +11,6 · +14,1. Drei Verlustquartale in Folge 2024.
+- Konto bei Hebel 1 (feste Größe, je Coin ein Drittel): E +23,7 % pro Jahr, Sharpe 2,0, größter Rückgang 6,6 %;
+  V +12,1 %, Sharpe 1,1, Rückgang 13,9 %; zusammen +18,6 %, Sharpe 1,6, Rückgang 16,8 %. Längste Verlustserie 9 Trades.
+- Starttage (jeder Kalendertag als Start): tiefster Kontostand bei Hebel 1 85 %, bei Hebel 3 56 %, bei Hebel 5 27 %
+  des Startkapitals. Keine Liquidation in keinem Fall. Bei Hebel 5 fällt in V jeder achte Start unter die Hälfte.
+  Größte Bewegung gegen einen einzelnen Trade: 12,5 %.
+- **Kontrolle:** dieselbe Zahl Trades nur gegen die Stundenbewegung, ohne Orderbuch: roh +4,0 bp (t 1,0) in E und
+  +4,5 bp (t 0,9) in V, N85 rund null. Etwa die Hälfte der rohen Bewegung ließe sich also auch mit einer einfachen
+  Gegenbewegung erklären, die für sich nicht gesichert ist; das Orderbuch fügt den Rest hinzu.
+
+**Hürden:** N85 > 0 in E und V: ja · t ≥ 2 über E und V: ja (2,5) · kein Tag über 20 % des Gewinns: ja (11 %) ·
+keine Liquidation bei Hebel 3: ja. **Formal bestanden, Einstufung D mit Zusatz „nur mit Rebate“.**
+
+Was das **nicht** bedeutet: kein Beweis eines dauerhaften Vorteils. Die Auswahl lag knapp an der Zufallsgrenze
+(p = 0,09), V allein trägt nicht, und das Signal stammt aus dem Binance-Orderbuch, gehandelt würde bei Yubit.
+
+## 12. Ergebnis E09: Bestätigung auf sieben Coins, die nicht zur Auswahl dienten (15.11.2026)
+
+| Gruppe | Zeitraum | Trades | roh | t(roh) | N0 | N85 | t(N85) |
+|---|---|---|---|---|---|---|---|
+| alle sieben | E | 3.363 | +5,3 | 3,0 | −18,7 | −5,1 | −2,9 |
+| alle sieben | V | 3.036 | +1,7 | 0,6 | −22,2 | −8,6 | −2,8 |
+| alle sieben | E und V | 6.399 | +3,6 | 2,1 | −20,4 | −6,8 | −3,9 |
+| fünf handelbare (ohne ADA, DOT) | E | 2.369 | +7,6 | 3,3 | −11,4 | +2,2 | 1,0 |
+| fünf handelbare | V | 2.177 | +2,2 | 0,7 | −16,8 | −3,2 | −1,1 |
+| fünf handelbare | E und V | 4.546 | +5,0 | 2,7 | −14,0 | −0,4 | −0,2 |
+
+- **Vorab gesetzte Hürde (roh > 0, t ≥ 2 über beide Zeiträume): knapp bestanden** (t = 2,1). Die rohe Kursbewegung
+  geht also auch auf fremden Coins in die erwartete Richtung, ist aber nur etwa halb so groß wie auf BTC, ETH, SOL.
+- **Nach Kosten bleibt auf den frischen Coins nichts**, auch nicht mit 85 % Rebate (fünf handelbare: −0,4 bp).
+  In V allein ist der Effekt dort praktisch null (+2,2 bp roh, t 0,7). Je Coin in V: XRP +7,6, DOGE +2,5,
+  LINK +14,8, AVAX −9,3, LTC −4,6, ADA +3,5, DOT −2,5 bp roh.
+- **Folgerung:** Die Information im Orderbuch ist echt, aber klein. Handelbar wäre sie höchstens auf den drei
+  liquidesten Coins mit den niedrigsten Kosten, und auch dort nur mit Rebate. Die schwächere Bestätigung senkt das
+  Vertrauen in E08. Stand: 9 Experimente, 44 Einstellungen plus die eingefrorene Regel.
+
+## 13. Festlegung E10 bis E12 (vor der Rechnung)
+
+### E10 Ausstiegs-Engine (nur Entwicklung, BTC/ETH/SOL, Einstiege unverändert wie Version 1.0)
+σ = Schwankung der 60-Minuten-Rendite über die letzten 24 Stunden, bekannt beim Einstieg.
+
+| Variante | Ausstieg |
+|---|---|
+| X0 | Basis: nach 60 Minuten |
+| X1, X2 | nach 120 bzw. 240 Minuten |
+| X3 | Signal-Ausstieg: sobald z unter 1 fällt, spätestens nach 240 Minuten |
+| X4 | fester Stop bei 2 σ gegen die Position, sonst 240 Minuten |
+| X5 | nachgezogener Stop mit Abstand 1,5 σ vom besten Kurs, sonst 240 Minuten |
+| X6 | nachgezogenes Gewinnziel: ab 1 σ Gewinn Stop 0,5 σ hinter dem besten Kurs, sonst 240 Minuten |
+| X7 | Break-even: ab 1 σ Gewinn Stop auf den Einstiegskurs, sonst 240 Minuten |
+
+Stops sind Market-Orders: geprüft gegen Hoch und Tief jeder 5-Minuten-Kerze, Ausführung zum Stopkurs, bei Kurslücke
+zum schlechteren Eröffnungskurs, zuzüglich Slippage. Der nachgezogene Stop kennt nur frühere Kerzen.
+**Entscheidungsregel:** Eine Variante ersetzt die Basis nur, wenn ihr Vorsprung in der Tagesreihe N85 die gemeinsame
+Zufallsprüfung über alle sieben Varianten besteht (p ≤ 0,10) und beide Hälften positiv sind. Nur dann wird sie
+einmal in V gegen die Basis geprüft. Sonst bleibt X0.
+
+### E11 Kombination mit dem bisherigen 14-Tage-Trend (beschreibend, 01/2023 bis 03/2025)
+Korrelation der Tagesergebnisse, Kennzahlen einzeln und als Mischung mit gleichem Risiko, mit und ohne Rebate.
+Keine Auswahl, keine Hürde. Der Trend wird mit dem vorhandenen Rechenkern unverändert gerechnet.
+
+### E12 Marktphasen (beschreibend, nur Entwicklung)
+Trades der Version 1.0 getrennt nach Schwankung der letzten 24 Stunden (Drittel, eingeordnet nur in vergangene
+90 Tage), nach Richtung des 14-Tage-Trends und nach Tageszeit. Keine Auswahl; ein Filter wäre eine neue Regel für
+eine spätere Runde.
