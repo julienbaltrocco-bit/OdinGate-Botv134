@@ -845,3 +845,40 @@ Prüfzeitraum. Der Verlust im Prüfzeitraum kommt aus Gold/Silber (−3,6 %).
   und in der Entwicklung verdient der Baustein kaum etwas (+5,3 % in dreieinhalb Jahren).
 
 **Runde 17: keine Verbesserung nach den festgelegten Regeln.** Stand: 76 Einzelhypothesen plus Massentest.
+
+---
+
+# Runde 18: Fremde Signale „Short nach Pump“ (Plimaflow) nachrechnen (festgelegt vor dem ersten Ergebnis)
+
+**Anlass:** Der User hat Zugriff auf einen Signal-Dienst und will wissen, ob in den Signalen ein Vorteil steckt.
+Abgerufen über die Lese-Schnittstelle: 254.696 Scanner-Einträge, 17.08.–15.11.2026, 503 Coins. Die Einträge
+enthalten nur „größter Rückgang danach“ und „−5 % / −10 % erreicht“, keinen Stop. Deshalb eigene Rechnung auf
+Minutenkursen.
+
+**Vorwissen, offen benannt:** Die Statistik des Anbieters kenne ich (617 echte Trades, 51,5 % Treffer, Rendite 0,
+4 von 10 Monaten im Plus; −10 % erreicht bei 32 % aller und 42 % der qualifizierten Signale). Von den Signalen
+selbst kenne ich Anzahl und Coins, keine Kursverläufe.
+
+**Regel (eine Einstellung, aus der Beschreibung des Dienstes):**
+- Signal: Eintrag mit Score (p_win) ≥ 0,60, die Schwelle des Live-Streams. Das sind 1.758 Einträge auf 54 Coins.
+- Je Coin höchstens eine Position. Einstieg short zur Eröffnung der ersten Minutenkerze nach dem Signal. Der Dienst
+  nennt „Limit am Sweep-Hoch“; das ist nicht nachbildbar, weil die Definition fehlt.
+- Ziel 10 % unter dem Einstieg (Limit), Stop 8 % über dem Einstieg (Market). Liegen beide in derselben Minute, zählt
+  der Stop. Eröffnet eine Kerze jenseits des Stops, gilt deren Eröffnung. Spätestens nach 72 Stunden glatt (Market).
+  Nach dem Ausstieg ist der Coin für neue Signale wieder frei.
+- Kurse: Binance-USD-M-Futures, Minutenkerzen. Coins ohne Binance-Kontrakt fallen weg und werden gezählt.
+- Kosten: Einstieg, Stop und Zeitausstieg Taker 0,08 % plus Slippage (2 × halbe Yubit-Spanne des Coins, mindestens
+  0,005 %; ohne Yubit-Wert der Median der Signal-Coins mit Wert); Ziel Maker 0,04 % ohne Slippage. Rebate 85 %.
+  Funding: echte Binance-Sätze, soweit im Archiv (bis 10/2026), danach der Satz aus dem Signal alle 8 Stunden.
+- Größe: jeder Trade 10 % des Kontos. Berichtet wird das Ergebnis je Trade und die Summe.
+
+**Hürden:**
+1. Netto mit Rebate > 0 in beiden Hälften des Zeitraums (Teilung am 01.10.2026) und mindestens 100 Trades.
+2. Doppelte Slippage: netto > 0 über den ganzen Zeitraum.
+3. Zufallstest: Mittelwert je Trade > 0 in mindestens 95 % von 2.000 Ziehungen, gezogen werden ganze Kalendertage
+   (Trades eines Tages hängen zusammen).
+4. Kein Coin trägt mehr als 50 % des Gewinns.
+
+Zusätzlich berichtet, ohne Hürde: nur Coins, die bei Yubit gelistet sind; Ergebnis ohne Rebate; Anteil Ziel / Stop
+/ Zeit. Einschränkung: 90 Tage sind kurz, und die Kurse sind von Binance, nicht von der Börse des Dienstes.
+Gesamtzahl der Versuche danach: 77 plus Massentest.
