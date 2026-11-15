@@ -16,3 +16,4 @@ Co-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01Ti9KuBStbgAKmCzGpRA6zL" || true
 git push -q origin "$ZWEIG"
 echo "gesichert: $(git rev-parse --short HEAD)"
+bash vorwaertstest/live_start.sh || true
