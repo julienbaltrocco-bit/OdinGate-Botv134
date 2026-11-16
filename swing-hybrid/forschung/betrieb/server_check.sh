@@ -3,7 +3,7 @@
 # gibt keine Namen, Adressen oder Dateien des Servers aus. Aufruf siehe forschung/betrieb/BETRIEB.md.
 echo "=== OdinGate Server-Prüfung $(date -u '+%F %H:%M') UTC ==="
 z() { printf '%-28s %s\n' "$1" "$2"; }
-code() { curl -s -o /dev/null -m 12 -w '%{http_code}' "$1" 2>/dev/null || echo "kein Kontakt"; }
+code() { c=$(curl -s -o /dev/null -m 12 -w '%{http_code}' "$1" 2>/dev/null); if [ -z "$c" ] || [ "$c" = 000 ]; then echo "kein Kontakt"; else echo "$c"; fi; }
 z "System" "$( (. /etc/os-release 2>/dev/null && echo "$PRETTY_NAME") || uname -s) / $(uname -m)"
 z "Rechenkerne" "$(nproc 2>/dev/null || echo '?')"
 z "Arbeitsspeicher frei (MB)" "$(free -m 2>/dev/null | awk '/^Mem/ {print $7 " von " $2}')"
