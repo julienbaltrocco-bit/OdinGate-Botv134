@@ -8,7 +8,12 @@ set -u
 cd "$(dirname "$0")/../.."
 fehler=0
 PY=python3
-if grep -ql '"strategie": "fabrik"' forschung/papier/*/konfiguration.json 2>/dev/null; then
+pausiert() { grep -q '"status": "pausiert"' "$(dirname "$1")/steuerung.json" 2>/dev/null; }
+fabrik_aktiv=0
+for cfg in forschung/papier/*/konfiguration.json; do
+  if grep -q '"strategie": "fabrik"' "$cfg" && ! pausiert "$cfg"; then fabrik_aktiv=1; fi
+done
+if [ "$fabrik_aktiv" = 1 ]; then
   if [ ! -x .venv-papier/bin/python ]; then
     python3 -m venv .venv-papier && .venv-papier/bin/pip -q install numpy pandas numba || { echo "Python-Umgebung für Fabrik-Tests konnte nicht angelegt werden"; fehler=1; }
   fi
@@ -17,6 +22,9 @@ fi
 for cfg in forschung/papier/*/konfiguration.json; do
   id=$(basename "$(dirname "$cfg")")
   if grep -q '"strategie": "fabrik"' "$cfg"; then lauf="$PY"; else lauf=python3; fi
+  if [ "$lauf" = python3 ] && grep -q '"strategie": "fabrik"' "$cfg" && pausiert "$cfg"; then
+    echo "$id: vorbereitet oder pausiert, kein Lauf (wartet auf Freigabe)"; continue
+  fi
   timeout 2400 "$lauf" -m forschung.papier.runner "$id" || fehler=1
 done
 timeout 300 python3 -m forschung.papier.spiegel || fehler=1

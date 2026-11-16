@@ -50,10 +50,14 @@ zusammengefassten Ergebnisse. Werte nie einzelne Kandidaten der Reihe nach sprac
    bestanden hat und was nicht), Eintrag in `engine/experimente.json` (eine Generation zählt als ein Experiment),
    `python3 -m forschung.engine.zusammenfassung`, committen und pushen.
 7. **Papier-Test:** nur für Kandidaten mit Status `validiert`, höchstens einer je Gruppe, nach den Bedingungen unten.
+   Nicht validierte Kandidaten startest du nie selbst, auch nicht als „Beobachtungstest“. Der vorbereitete Test
+   `papier/B-24332e4d/` (Status „pausiert“) wartet auf die Freigabe des Auftraggebers: weder starten noch ändern.
 8. Am Ende eine kurze Antwort: erzeugt, gerechnet, je Stufe bestanden, validiert, neue Papier-Tests.
 
 **Stand nach Generation 1 und 2 (16.11.2026):** 522.660 Kandidaten, 1.199 Finalisten, in der Schlussprüfung kein einziger validiert
-(60 mit p unter 5 % bei 60 zufällig erwarteten). Mehr Varianten derselben Bausteine sind deshalb ausdrücklich NICHT das Ziel.
+(60 mit p unter 5 % bei 60 zufällig erwarteten; mit der milderen Kostenannahme 123 und ein knapper Treffer, siehe Protokoll
+Abschnitt 22). Die Schlussprüfung ist damit für diese 1.199 Finalisten verbraucht; ihre Ergebnisse dürfen keine neue
+Generation steuern. Mehr Varianten derselben Bausteine sind deshalb ausdrücklich NICHT das Ziel.
 Eine neue Generation braucht eine neue Informationsquelle oder einen neuen Mechanismus und soll klein sein (höchstens einige
 hundert Kandidaten), sonst zehrt die Korrektur für die vielen Versuche jeden echten Effekt auf. Die Ergebnis-Datenbank für
 neue Läufe liegt unter `data/fabrik/` (oder dem Ordner in der Umgebungsvariable `FABRIK_AUS`). Vor `stufe3` in einer frischen

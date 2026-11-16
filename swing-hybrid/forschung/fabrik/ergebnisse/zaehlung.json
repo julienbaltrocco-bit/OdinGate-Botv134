@@ -1,5 +1,5 @@
 {
- "stand": "2026-11-16 00:52 UTC",
+ "stand": "2026-11-16 01:00 UTC",
  "erzeugt": 522660,
  "eindeutig": 522660,
  "berechnet": 522660,
@@ -124,9 +124,18 @@
   "validiert_ohne_rebate_positiv": 0,
   "validiert_streng_by": 0,
   "validierte_einstiegsregeln": 0,
-  "validierte_einstiegsregeln_streng": 0
+  "validierte_einstiegsregeln_streng": 0,
+  "zusatz_einfache_slippage": {
+   "hinweis": "Zusatzangabe nach Abschnitt 19, zweiter Nachtrag: Schlussprüfung mit der einfachen (ruhig gemessenen) Slippage. Ändert keinen Status.",
+   "finalisten": 1199,
+   "positiv": 696,
+   "p_unter_5pct": 123,
+   "zufallserwartung": 60.0,
+   "bh_bestanden": 1,
+   "by_bestanden": 0
+  }
  },
- "einordnung": "Schlussprüfung auf bis dahin ungelesenen Daten: Von 1.199 Finalisten haben 60 einen p-Wert unter 5 %; rein zufällig wären 60 zu erwarten. Nach Korrektur für die vielen Versuche bestehen 0. Kein Kandidat ist validiert; es wurde kein neuer Papier-Test gestartet.",
+ "einordnung": "Schlussprüfung auf bis dahin ungelesenen Daten: Von 1.199 Finalisten haben 60 einen p-Wert unter 5 %; rein zufällig wären 60 zu erwarten. Nach Korrektur für die vielen Versuche bestehen 0. Kein Kandidat ist validiert; es wurde kein neuer Papier-Test gestartet. Zusatzangabe: Mit der milderen Kostenannahme (ruhiger Markt) wären es 123 statt 60, und 1 Kandidat bestünde die übliche Korrektur, 0 die strenge. Das Ergebnis hängt also teilweise an den Kosten in bewegtem Markt.",
  "statistik": {
   "Kurs, Volumen, Derivate (T 08/2021–06/2023)": {
    "grundmenge": "Generation 1 (ohne Auswahl erzeugt)",

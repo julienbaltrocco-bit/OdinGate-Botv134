@@ -649,3 +649,13 @@ und nur neue Daten können klären, ob etwas daran ist. Er wird deshalb als **Be
 Vermerk „nicht validiert“ im Namen, in der Übersicht und im Register. Das ist keine Validierung und kein Erfolg der
 Fabrik; es ist die Messung, die als einzige noch unabhängige Evidenz liefern kann. Weitere Beobachtungstests aus
 dieser Charge gibt es nicht.
+
+**Korrektur am selben Tag, vor dem ersten Lauf:** Der Beobachtungstest wird **nicht** selbstständig gestartet. Die
+Freigabe des Auftraggebers für automatische Papier-Tests gilt für Kandidaten, die die vorab festgelegten Kriterien
+erfüllen; dieser erfüllt sie nicht. Ein Start aus eigener Entscheidung wäre eine nachträgliche Lockerung der eigenen
+Regel. Der Test `B-24332e4d` ist deshalb nur vorbereitet: Regel und Code eingefroren am 16.11.2026 (Prüfsumme),
+Wertung ab 17.11.2026 00:00 UTC, Status „pausiert“. Er läuft erst, wenn der Auftraggeber ihn ausdrücklich freigibt
+(`steuerung.json` auf „laufend“). Weil jeder Lauf vollständig neu rechnet und die Regel vor dem Startdatum im
+Repository festgeschrieben ist, geht durch eine spätere Freigabe nichts verloren und nichts wird nachträglich
+angepasst. Risiko in der Rückrechnung bei Hebel 3: tiefster Kontostand 62 %, an 6 % der Starttage unter der
+Abbruchgrenze von 70 %, keine Liquidation.

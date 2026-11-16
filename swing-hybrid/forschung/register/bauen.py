@@ -101,11 +101,16 @@ for pfad in sorted((ROOT / "forschung/papier").glob("*/konfiguration.json")):
     if c.get("strategie") != "fabrik":
         continue
     r = c["rueckrechnung"]
-    eintraege.insert(3, {"id": c["id"], "name": c["name"], "version": c["version"], "familie": "Strategie-Fabrik", "kategorie": "laufend", "einstufung": "D",
-                         "status": f"Papier-Test (Schattentest) seit {c['start'][:10]}", "richtung": "Long und Short", "maerkte": ", ".join(c["coins"]),
+    beob = bool(c.get("beobachtung"))
+    wartet = json.loads((pfad.parent / "steuerung.json").read_text())["status"] == "pausiert"
+    eintraege.insert(3, {"id": c["id"], "name": c["name"], "version": c["version"], "familie": "Strategie-Fabrik", "kategorie": "vorbereitet" if wartet else "laufend",
+                         "einstufung": "B" if beob else "D",
+                         "status": (f"Beobachtungstest vorbereitet, nicht validiert, wartet auf Freigabe" if beob and wartet else
+                                    f"{'Beobachtungstest, nicht validiert' if beob else 'Papier-Test'} (Schattentest) {'pausiert' if wartet else 'seit ' + c['start'][:10]}"), "richtung": "Long und Short", "maerkte": ", ".join(c["coins"]),
                          "daten": "Binance-Archiv: Kerzen" + (", " + ", ".join(c["daten"]) if c["daten"] else ""), "gebuehren": KOSTEN + "; in bewegtem Markt mindestens 5 % der Spanne der letzten Kerze je Order",
                          "algorithmus": c["regel"], "parameter": c["kandidat"], "hebel": c["hebel"], "validierung": c["validierung"],
-                         "vertrauen": "gering bis mittel; Kosten in bewegtem Markt nur als Annahme", "ergebnisdateien": [f"forschung/papier/{c['id']}/", "forschung/fabrik/ergebnisse/schlusspruefung.json"],
+                         "vertrauen": "gering: nicht validiert, bestes von 1.199 Ergebnissen" if beob else "gering bis mittel; Kosten in bewegtem Markt nur als Annahme",
+                         "ergebnisdateien": [f"forschung/papier/{c['id']}/", "forschung/fabrik/ergebnisse/schlusspruefung.json"],
                          "kennzahlen": {"zeitraum": "Schlussprüfung 07/2024–03/2025", "n85_bp": r["n85_v2"], "n0_bp": r["n0_v2"], "t_n85": r["t85_v2"], "haltedauer_min": r["haltedauer_min"],
                                         "ertrag_jahr_pct_hebel1": r["ertrag_jahr_pct_hebel1_v2"]}})
 fz = ROOT / "forschung/fabrik/ergebnisse/zaehlung.json"

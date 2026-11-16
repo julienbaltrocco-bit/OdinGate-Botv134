@@ -181,5 +181,18 @@
    "forschung/fabrik/ergebnisse/schlusspruefung.json",
    "forschung/fabrik/ergebnisse/finalisten.json"
   ]
+ },
+ {
+  "nr": 16,
+  "id": "E16",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Yubit-Kosten in bewegten Minuten (Messung, 1.264 Punkte) und Zusatzrechnung der Schlussprüfung mit milder Kostenannahme",
+  "einstufung": "B",
+  "kurz": "Kosten je Order 1–2,4 bp, kein Anstieg bis 100 bp Kerzenspanne (heftige Kerzen fehlen noch); mit milden Kosten 123 statt 60 p-Werte unter 5 %, ein Kandidat besteht die übliche, keiner die strenge Korrektur; kein Status geändert",
+  "dateien": [
+   "forschung/ergebnisse/e16_yubit_kosten_bewegung.json",
+   "forschung/fabrik/ergebnisse/schlusspruefung_einfache_slippage.json"
+  ]
  }
 ]

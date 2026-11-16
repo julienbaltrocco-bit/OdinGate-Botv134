@@ -1,6 +1,6 @@
 # OdinGate Strategie-Fabrik: Bericht nach den ersten zwei Generationen
 
-Stand: 16.11.2026, 01:00 UTC. Zweig `claude/alpha-forschung-r1`, Ordner `swing-hybrid/forschung/fabrik/`. Alles ist
+Stand: 16.11.2026, 01:05 UTC. Zweig `claude/alpha-forschung-r1`, Ordner `swing-hybrid/forschung/fabrik/`. Alles ist
 Rückrechnung auf historischen Daten. Kein echtes Geld, keine Orders, keine Anlageberatung. Die bestehenden Tests 1
 und 2, der Papier-Test OS-1.1 und das bisherige Board sind unverändert.
 
@@ -17,6 +17,12 @@ und 2, der Papier-Test OS-1.1 und das bisherige Board sind unverändert.
 5. **Einzige Auffälligkeit bleibt die Orderbuch-Tiefe.** Sie stellt den besten Finalisten und ein Viertel der
    kleinsten p-Werte, besteht aber die Korrektur für die vielen Versuche nicht. Diese Idee läuft bereits als
    Papier-Test OS-1.1.
+6. **Das negative Ergebnis hängt teilweise an einer Kostenannahme.** Mit der milderen Annahme (Kosten wie im ruhigen
+   Markt) hätten 123 statt 60 Finalisten einen p-Wert unter 5 %, und einer bestünde die übliche Korrektur, aber nicht
+   die strenge. Eine erste Messung bei Yubit (1.264 Messpunkte, ein ruhiger Tag) spricht eher für die mildere
+   Annahme, reicht für heftige Kerzen aber noch nicht aus. Siehe Abschnitt „Nachtrag: die Kostenfrage“.
+7. **Ein Beobachtungstest ist vorbereitet, aber nicht gestartet.** Der beste Finalist ist nicht validiert. Seine
+   Regel ist eingefroren (`papier/B-24332e4d/`); er läuft nur, wenn der Auftraggeber das ausdrücklich freigibt.
 
 Ein Basispunkt (bp) ist ein Hundertstel Prozent. „p-Wert“ ist die Wahrscheinlichkeit, ein so gutes Ergebnis rein
 zufällig zu sehen.
@@ -30,7 +36,7 @@ zufällig zu sehen.
 | 3 | Wie viele wurden aussortiert? | alle. 103.152 hatten zu wenige Trades, 401.116 keinen Vorteil vor Gebühr, 7.536 scheiterten an den Kosten, 7.194 an der Robustheit; die übrigen 3.662 bilden 1.199 Gruppen, deren Vertreter alle an der Schlussprüfung scheiterten |
 | 4 | Wie viele sind nach Kosten positiv? | im Training 103.913 mit Rebate (29.341 ohne). Das ist die Zahl vor jeder Prüfung und sagt wenig. In der Schlussprüfung sind 521 der 1.199 Finalisten positiv (43 %) |
 | 5 | Wie viele überstehen die robusten Prüfungen? | 3.662 bestehen Stufe 3 (in 1.199 Gruppen). Die Schlussprüfung besteht keiner |
-| 6 | Wie viele gingen ins Paper Trading? | 0 neue. Es laufen weiter Test 1, Test 2 und OS-1.1 |
+| 6 | Wie viele gingen ins Paper Trading? | 0 neue. Es laufen weiter Test 1, Test 2 und OS-1.1. Ein Beobachtungstest (nicht validiert) ist vorbereitet und wartet auf Freigabe |
 | 7 | Welche Familien zeigen mögliche Vorteile? | belegt keine. Auffällig, aber nicht gesichert: Orderbuch-Tiefe bei hoher Schwankung |
 | 8 | Welche brauchen das Rebate? | praktisch alle. Ohne Rebate sind in der Schlussprüfung nur 240 der 1.199 Finalisten positiv, keiner davon gesichert |
 | 9 | Welche funktionieren ohne Rebate? | keine nachweislich |
@@ -87,6 +93,34 @@ geöffnet, für die zuvor eingefrorene Liste.
 Auch im Training selbst hob sich nichts vom Zufall ab: Der beste von 275.596 Kurs-Kandidaten hat einen t-Wert von
 4,6; unter so vielen Versuchen ist das gewöhnlich (Reality Check p = 0,98, Deflated Sharpe Ratio 0,00).
 
+## Nachtrag: die Kostenfrage
+
+Maßgeblich für „validiert“ war, vorab festgelegt, die strenge Kostenannahme (je Order mindestens 5 % der Spanne der
+letzten Kerze). Die folgenden zwei Punkte sind Zusatzangaben und ändern keinen Status.
+
+| Schlussprüfung der 1.199 Finalisten | strenge Annahme (maßgeblich) | milde Annahme (Zusatz) |
+|---|---|---|
+| positiv | 521 | 696 |
+| p-Wert unter 5 % (zufällig erwartet: 60) | 60 | 123 |
+| besteht die übliche Korrektur (Benjamini-Hochberg) | 0 | 1 |
+| besteht die strenge Korrektur (Benjamini-Yekutieli) | 0 | 0 |
+
+- Der eine Kandidat ist in beiden Rechnungen derselbe und der beste: Orderbuch-Tiefe 3 %, hohe Schwankung,
+  stündlich geprüft, BTC/ETH/SOL (Kennung `24332e4d3769`). Schlussprüfung: 524 Trades, mit Rebate +21,6 bp je Trade
+  (strenge Kosten) bzw. +25,4 bp (milde Kosten), ohne Rebate +8,0 bp.
+- **Messung E16 bei Yubit:** 1.264 Messpunkte des Papier-Bots (15.11. mittags bis 16.11. nachts, zehn Coins, Order
+  über 1.500 $). Die Kosten je Order liegen bei 1 bis 2,4 bp und steigen mit der Kerzenspanne nicht erkennbar an;
+  im bewegtesten Fünftel sind es 2,4 % der Spanne, nicht 5 %. Grenze: nur zwei Kerzen über 100 bp, ein ruhiger
+  Sonntag. Für heftige Kerzen gibt es noch keine Messung; die Reihe wächst täglich.
+- **Was das heißt:** Wer die milde Annahme für richtig hält, sieht doppelt so viele kleine p-Werte wie zufällig und
+  einen knappen Treffer. Wer die strenge für richtig hält, sieht nichts. Entscheiden können das nur mehr Messungen
+  in bewegtem Markt und neue Daten. Ein Beleg für eine profitable Strategie ist beides nicht.
+- **Beobachtungstest B-24332e4d:** Für diesen einen Kandidaten ist ein Schattentest vorbereitet (Regel und Code
+  eingefroren am 16.11.2026, Wertung ab 17.11.2026, Hebel 3, 5.000 $ Papier-Kapital). Er erfüllt die vorab
+  festgelegte Bedingung für einen automatischen Papier-Test nicht und startet deshalb nur nach ausdrücklicher
+  Freigabe. In der Rückrechnung wäre er bei Hebel 3 an 6 % der Starttage unter die Abbruchgrenze von 70 % gefallen,
+  ohne Liquidation.
+
 ## Unabhängige Gegenprüfung
 
 Drei Prüfer haben Signale, Buchung und Statistik mit eigenem Code nachgerechnet, bevor die Schlussprüfung geöffnet
@@ -100,8 +134,8 @@ wurde. Belege unter `fabrik/pruefung/`.
 - **Wichtigster Einwand, kein Rechenfehler:** Die meisten Finalisten handeln direkt nach heftigen Kerzen. Die
   Slippage stammt aus einer ruhigen Messung und beträgt dort nur rund 2 % der Kerzenspanne. Deshalb gilt in Stufe 3
   und 4 ein strengeres Kostenmodell: je Order mindestens 5 % der Spanne der letzten Kerze. Das ist eine Annahme.
-  Mit der einfachen Slippage wären in der Schlussprüfung 696 statt 521 Finalisten positiv; validiert wäre auch dann
-  nicht automatisch jemand, das wurde nicht gerechnet.
+  Mit der einfachen Slippage wären in der Schlussprüfung 696 statt 521 Finalisten positiv (nachgerechnet, siehe
+  „Nachtrag: die Kostenfrage“).
 - **Einordnung des Prüfers:** Die Stufen 1 bis 3 halten Zufallstreffer kaum auf; allein aus Generation 1 wären je
   nach Annahme 50 bis 1.000 „robuste“ Zufallstreffer zu erwarten. Die Zahl der Finalisten ist daher kein Beleg.
 
@@ -132,9 +166,9 @@ wurde. Belege unter `fabrik/pruefung/`.
 
 1. **Nicht mehr Varianten, sondern neue Information.** 1.199 gleichzeitig geprüfte Regeln machen die Schlussprüfung
    fast unbestehbar. Die nächsten Generationen sollen klein sein und eine begründete neue Idee prüfen.
-2. **Kosten in bewegtem Markt messen** (H15): Der bestehende Papier-Bot misst die Yubit-Spanne alle fünf Minuten.
-   Daraus lässt sich ablesen, ob 5 % der Kerzenspanne zu streng oder zu milde ist. Davon hängt die ganze Familie
-   „Handeln nach heftigen Kerzen“ ab.
+2. **Kosten in bewegtem Markt weiter messen** (H15, erste Messung E16 liegt vor): Der bestehende Papier-Bot misst
+   die Yubit-Spanne alle fünf Minuten. Sobald genug heftige Kerzen dabei sind, lässt sich entscheiden, ob 5 % der
+   Kerzenspanne zu streng ist. Davon hängt die ganze Familie „Handeln nach heftigen Kerzen“ ab.
 3. **Orderbuch-Tiefe vertiefen** (H16): mehr Information aus der einzigen Quelle, die immer wieder vorn liegt, mit
    wenigen vorab festgelegten Kandidaten.
 4. **OS-1.1 laufen lassen.** Der Papier-Test prüft genau diese Idee auf neuen Daten.
@@ -144,11 +178,13 @@ wurde. Belege unter `fabrik/pruefung/`.
 
 | Pfad unter `swing-hybrid/forschung/` | Inhalt |
 |---|---|
-| `protokoll.md`, Abschnitte 19 und 20 | Regeln vor der Rechnung, drei Nachträge vor der Schlussprüfung, Ergebnis |
+| `protokoll.md`, Abschnitte 19 bis 22 | Regeln vor der Rechnung, drei Nachträge vor der Schlussprüfung, Ergebnis, Kostenmessung und Zusatzangabe |
 | `fabrik/` | Programme der Fabrik |
 | `fabrik/ergebnisse/kandidaten.parquet` | alle 522.660 Kandidaten mit Kennzahlen und Verwerfungsgrund |
 | `fabrik/ergebnisse/zaehlung.json`, `statistik.json` | Zählung, Durchsatz, Zufallsprüfungen |
 | `fabrik/ergebnisse/finalisten.json`, `finalisten_reihen.npz`, `schlusspruefung.json` | eingefrorene Finalisten und Ergebnis der Schlussprüfung |
+| `fabrik/ergebnisse/schlusspruefung_einfache_slippage.json`, `ergebnisse/e16_yubit_kosten_bewegung.json` | Zusatzrechnung mit milder Kostenannahme; Yubit-Kostenmessung |
+| `papier/B-24332e4d/` | vorbereiteter Beobachtungstest (nicht validiert, wartet auf Freigabe) |
 | `fabrik/pruefung/` | Skripte, Ausgaben und Urteile der drei unabhängigen Prüfer |
 | `tests/test_fabrik_*.py` | Simulator gegen Referenzrechnung, Störungstest, Verzögerungstest |
 | `engine/AUFTRAG.md`, `engine/hypothesen.json` | Dauerauftrag und Ideenliste für die nächsten Zyklen |

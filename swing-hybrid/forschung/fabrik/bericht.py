@@ -68,6 +68,12 @@ def haupt():
         z["einordnung"] = (f"Schlussprüfung auf bis dahin ungelesenen Daten: Von {sp['finalisten_gesamt']:,} Finalisten haben {sp['p_unter_5pct']} einen p-Wert unter 5 %; "
                            f"rein zufällig wären {sp['zufallserwartung_p_unter_5pct']:.0f} zu erwarten. Nach Korrektur für die vielen Versuche bestehen {sp['validiert']}. "
                            + ("Kein Kandidat ist validiert; es wurde kein neuer Papier-Test gestartet." if sp["validiert"] == 0 else f"{sp['validiert']} Kandidaten sind validiert.")).replace(",", ".")
+        ze = ERG / "schlusspruefung_einfache_slippage.json"
+        if ze.exists():                                             # reine Zusatzangabe, ändert keinen Status
+            e = json.loads(ze.read_text())
+            z["schlusspruefung"]["zusatz_einfache_slippage"] = {x: e[x] for x in e if x != "ergebnisse" and not isinstance(e[x], list)}
+            z["einordnung"] += (f" Zusatzangabe: Mit der milderen Kostenannahme (ruhiger Markt) wären es {e['p_unter_5pct']} statt {sp['p_unter_5pct']}, und {e['bh_bestanden']} "
+                                f"Kandidat bestünde die übliche Korrektur, {e['by_bestanden']} die strenge. Das Ergebnis hängt also teilweise an den Kosten in bewegtem Markt.")
     st = json.loads((ERG / "statistik.json").read_text()) if (ERG / "statistik.json").exists() else None
     if st:
         z["statistik"] = st["gruppen"]
