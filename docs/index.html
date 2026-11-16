@@ -166,7 +166,8 @@
     <tbody id="s-trades"></tbody>
   </table></div>
 
-  <p class="hinweis">Schattentest: Papierhandel ohne echtes Geld und ohne Orders. Die Signale stammen aus den täglichen Binance-Archivdaten und liegen deshalb einen Tag zurück; der Stand wird einmal täglich aktualisiert (gegen 10:20 Uhr deutscher Zeit) und liegt verschlüsselt vor. Kosten nach festem Modell: Yubit-Gebühr, 85 % Rebate angenommen, Slippage. „Nicht validiert“ heißt: Die Regel hat die strenge Prüfung nicht bestanden und wird nur beobachtet. Keine Anlageberatung.</p>
+  <p class="hinweis" id="s-hinweis-archiv">Schattentest: Papierhandel ohne echtes Geld und ohne Orders. Die Signale stammen aus den täglichen Binance-Archivdaten und liegen deshalb einen Tag zurück; der Stand wird einmal täglich aktualisiert (gegen 10:20 Uhr deutscher Zeit) und liegt verschlüsselt vor. Kosten nach festem Modell: Yubit-Gebühr, 85 % Rebate angenommen, Slippage. „Nicht validiert“ heißt: Die Regel hat die strenge Prüfung nicht bestanden und wird nur beobachtet. Keine Anlageberatung.</p>
+  <p class="hinweis" id="s-hinweis-live" hidden>Live-Papierhandel ohne echtes Geld und ohne Orders. Die Signale werden alle fünf Minuten aus Binance-Daten in Echtzeit auf dem eigenen Server gerechnet; ein Einstieg oder Ausstieg erscheint hier wenige Minuten später. Die Kosten im Kontostand folgen dem festen Modell (Yubit-Gebühr, 85 % Rebate angenommen, Slippage); zusätzlich wird bei jedem Einstieg am Yubit-Orderbuch gemessen, was er wirklich gekostet hätte. Einmal täglich wird der Live-Stand gegen die Archivdaten geprüft. Fällt der Server aus, zeigt diese Seite wieder den täglichen Stand. „Nicht validiert“ heißt: Die Regel hat die strenge Prüfung nicht bestanden und wird nur beobachtet. Keine Anlageberatung.</p>
   </div>
 </div>
 
@@ -178,7 +179,9 @@
   let aktiv = 'basis';
   // Schattentests (Forschung): ein verschlüsseltes Bündel aus dem Forschungszweig, einmal täglich aktualisiert
   const SCHATTEN_URL = 'https://raw.githubusercontent.com/julienbaltrocco-bit/OdinGate-Botv134/claude/alpha-forschung-r1/swing-hybrid/forschung/papier/board/schattentests.enc.json';
-  let SCH = null, schatten = null, sChart = null, sSerie = null;
+  // Live-Fassungen einzelner Tests vom eigenen Server (alle fünf Minuten); ersetzen die Anzeige des Schattentests, solange sie den neueren Datenstand haben
+  const LIVE_URL = 'https://raw.githubusercontent.com/julienbaltrocco-bit/OdinGate-Botv134/odingate-live/live.enc.json';
+  let SCH = null, ARCHIVSTAND = null, LIVESTAND = null, schatten = null, sChart = null, sSerie = null;
   const b64 = (t) => Uint8Array.from(atob(t), (c) => c.charCodeAt(0));
   let privat = null;                  // RSA-Schlüssel, nach richtiger Passworteingabe
 
@@ -478,7 +481,8 @@
   // ------------------------------------------------------------ Schattentests ----
   const S_STATS = [['status', 'Status'], ['ohne', 'Netto ohne Rebate'], ['trades', 'Abgeschlossene Trades'], ['quote', 'Gewinnquote'], ['je', 'Netto je Trade'],
                    ['offen', 'Offene Positionen'], ['dd', 'Größter Rückgang'], ['gebuehr', 'Gebühr gezahlt'], ['rebate', 'Rebate (85 %, angenommen)'], ['funding', 'Funding'],
-                   ['slip', 'Slippage'], ['volumen', 'Handelsvolumen'], ['groesse', 'Größe je Position'], ['tage', 'Laufzeit'], ['daten', 'Daten bis'], ['lauf', 'Letzter Lauf']];
+                   ['slip', 'Slippage'], ['volumen', 'Handelsvolumen'], ['groesse', 'Größe je Position'], ['tage', 'Laufzeit'], ['daten', 'Daten bis'], ['lauf', 'Letzter Lauf'],
+                   ['yubit', 'Yubit-Kosten je Einstieg'], ['kontrolle', 'Kontrolle gegen Archiv']];
   const sStat = {};
   S_STATS.forEach(([id, name]) => { const d = el('div', 'stat'); d.appendChild(el('span', 'n', name)); sStat[id] = d.appendChild(el('span', 'w', '—')); sStat[id + '_z'] = d.appendChild(el('span', 'z', ' ')); $('s-stats').appendChild(d); });
   const sTest = () => SCH && SCH.tests.find((t) => t.id === schatten);
@@ -494,7 +498,7 @@
         $('tabs').appendChild(b);
       }
       b.querySelector('.t').textContent = t.kurz || t.name;
-      b.querySelector('.s').textContent = (t.untertitel ? t.untertitel + ' · ' : '') + 'seit ' + String(t.start).slice(5, 10).split('-').reverse().join('.') + '.';
+      b.querySelector('.s').textContent = (t.untertitel ? t.untertitel + ' · ' : '') + (t.live ? 'live · ' : '') + 'seit ' + String(t.start).slice(5, 10).split('-').reverse().join('.') + '.';
       const w = b.querySelector('.w'), r = t.rendite_mit_rebate_pct;
       w.textContent = t.trades || (t.offene_positionen || []).length ? vz(r, 2) + ' %' : t.status;
       w.className = 'w ' + (t.trades ? farbe(r) : 'ruhig');
@@ -535,8 +539,12 @@
     satz('volumen', de(0).format(t.volumen_usd) + ' $', de(1).format(t.volumen_usd / t.kapital) + ' × Konto');
     satz('groesse', de(0).format(t.positionsgroesse_usd) + ' $', de(0).format(t.kapital) + ' $ Kapital');
     satz('tage', de(1).format(t.laufzeit_tage) + ' Tage', 'Start ' + zeit16(t.start) + ' UTC');
-    satz('daten', t.daten_bis ? String(t.daten_bis).slice(5, 16) : '–', 'ein Tag Verzug');
-    satz('lauf', t.letzter_lauf ? String(t.letzter_lauf).slice(5, 16) : '–', 'UTC, täglich');
+    satz('daten', t.daten_bis ? String(t.daten_bis).slice(5, 16) : '–', t.live ? 'in Echtzeit' : 'ein Tag Verzug');
+    satz('lauf', t.letzter_lauf ? String(t.letzter_lauf).slice(5, 16) : '–', t.live ? 'UTC, alle 5 Minuten' : 'UTC, täglich');
+    const y = t.yubit, k = t.kontrolle;
+    satz('yubit', y ? de(3).format(y.mittel_bp / 100) + ' %' : '–', y ? `${y.anzahl} gemessen · Modell ${de(3).format(y.modell_bp / 100)} %` : (t.live ? 'noch kein Einstieg' : 'nur im Live-Betrieb'), y ? (y.mittel_bp <= y.modell_bp ? 'gut' : 'schlecht') : '');
+    satz('kontrolle', k ? (k.ok ? 'stimmt überein' : 'Abweichung') : '–', k ? `${k.gleich} von ${k.archiv} Trades · bis ${String(k.stand).slice(5)}` : (t.live ? 'erste Prüfung steht aus' : 'nur im Live-Betrieb'), k ? (k.ok ? 'gut' : 'schlecht') : '');
+    $('s-hinweis-live').hidden = !t.live; $('s-hinweis-archiv').hidden = !!t.live;
     // Konto-Verlauf (Tagesstände)
     const box = $('s-verlauf'), punkte = (t.verlauf || []).map((r) => ({time: r.tag, value: (r.kontostand / t.kapital - 1) * 100}));
     const leer = !punkte.length || !window.LightweightCharts;
@@ -562,15 +570,29 @@
     (t.letzte_trades || []).forEach((x) => zeile(tt, [[zeit16(x.aus)], [x.coin], [x.richtung, x.richtung === 'Long' ? 'gut' : 'schlecht'], [zeit16(x.ein)], [vz(x.netto_bp / 100, 2) + ' %', 'r ' + farbe(x.netto_bp)], [vz(x.usd, 2) + ' $', 'r ' + farbe(x.usd)]]));
     if (!(t.letzte_trades || []).length) leerzeile(tt, 'Noch keine abgeschlossenen Trades. Gewertet wird ab ' + zeit16(t.start) + ' UTC; die Daten kommen mit einem Tag Verzug.', 6);
   }
-  async function ladeSchatten() {
+  async function ladeBuendel(url, takt) {
     try {
-      const r = await fetch(SCHATTEN_URL + '?t=' + Math.floor(Date.now() / 300000), {cache: 'no-store'});
-      if (!r.ok) return;
+      const r = await fetch(url + '?t=' + Math.floor(Date.now() / takt), {cache: 'no-store'});
+      if (!r.ok) return null;
       const d = await entschluesseln(await r.json());
-      if (!d || !Array.isArray(d.tests)) return;
-      SCH = d; baueSchattenTabs();
-      if (schatten) zeigeSchatten();
-    } catch (e) {}
+      return d && Array.isArray(d.tests) ? d : null;
+    } catch (e) { return null; }
+  }
+  async function ladeSchatten() {
+    const [a, l] = await Promise.all([ladeBuendel(SCHATTEN_URL, 300000), ladeBuendel(LIVE_URL, 60000)]);
+    if (a) ARCHIVSTAND = a;
+    if (l) LIVESTAND = l;
+    if (!ARCHIVSTAND && !LIVESTAND) return;
+    const live = (LIVESTAND ? LIVESTAND.tests : []).filter((t) => t && t.id && t.status !== 'Fehler'), benutzt = new Set();
+    const tests = (ARCHIVSTAND ? ARCHIVSTAND.tests : []).map((t) => {
+      const x = live.find((v) => v.ersetzt === t.id);
+      if (!x) return t;
+      benutzt.add(x.id);
+      return String(x.daten_bis || '') > String(t.daten_bis || '') ? {...x, id: t.id, live_id: x.id} : t;      // der neuere Datenstand gewinnt
+    });
+    live.filter((x) => !benutzt.has(x.id) && !x.ersetzt).forEach((x) => tests.push(x));
+    SCH = {tests}; baueSchattenTabs();
+    if (schatten) zeigeSchatten();
   }
 
   async function ladeSignale() {
@@ -629,7 +651,7 @@
     $('tor').hidden = true; $('seite').hidden = false;
     await ladeStand();
     verbinde(); pollen(); ladeSignale(); ladeSchatten();
-    setInterval(ladeStand, 60000); setInterval(pollen, 4000); setInterval(ladeSignale, 300000); setInterval(ladeSchatten, 600000);
+    setInterval(ladeStand, 60000); setInterval(pollen, 4000); setInterval(ladeSignale, 300000); setInterval(ladeSchatten, 120000);
   }
   const merken = { lesen: () => { try { return localStorage.getItem('board-schluessel'); } catch (e) { return null; } },
                    setzen: (v) => { try { v ? localStorage.setItem('board-schluessel', v) : localStorage.removeItem('board-schluessel'); } catch (e) {} } };
