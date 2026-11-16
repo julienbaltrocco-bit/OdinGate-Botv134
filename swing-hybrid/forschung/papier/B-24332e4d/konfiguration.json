@@ -1,6 +1,6 @@
 {
  "id": "B-24332e4d",
- "name": "Beobachtung (nicht validiert): tiefe_3, vol_hoch",
+ "name": "Beobachtung (nicht validiert): Orderbuch-Tiefe 3 % bei hoher Schwankung",
  "version": "1.0",
  "strategie": "fabrik",
  "art": "Schattentest (Binance-Archiv, ein Tag Verzug, keine Orders)",

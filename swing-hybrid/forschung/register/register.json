@@ -1,5 +1,5 @@
 {
- "stand": "2026-11-16 01:01 UTC",
+ "stand": "2026-11-16 01:02 UTC",
  "runde": 1,
  "experimente": 16,
  "kategorien": {
@@ -122,7 +122,7 @@
   },
   {
    "id": "B-24332e4d",
-   "name": "Beobachtung (nicht validiert): tiefe_3, vol_hoch",
+   "name": "Beobachtung (nicht validiert): Orderbuch-Tiefe 3 % bei hoher Schwankung",
    "version": "1.0",
    "familie": "Strategie-Fabrik",
    "kategorie": "vorbereitet",

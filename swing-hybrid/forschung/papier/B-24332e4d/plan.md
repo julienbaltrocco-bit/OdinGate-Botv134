@@ -1,4 +1,4 @@
-# Papier-Test B-24332e4d: Beobachtung (nicht validiert): tiefe_3, vol_hoch
+# Papier-Test B-24332e4d: Beobachtung (nicht validiert): Orderbuch-Tiefe 3 % bei hoher Schwankung
 
 Festgelegt am 2026-11-16, vor dem Start. **Nicht validiert.** Der Test ist nur vorbereitet und läuft erst nach ausdrücklicher Freigabe des Auftraggebers. Die Regel ist ab heute eingefroren; gewertet wird ab dem Startdatum, auch wenn die Freigabe später kommt (jeder Lauf rechnet vollständig neu, es geht nichts verloren). Nur Papierhandel, keine Orders.
 
