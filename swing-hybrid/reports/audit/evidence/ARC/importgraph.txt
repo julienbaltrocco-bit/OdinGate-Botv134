@@ -1,0 +1,130 @@
+== Interne Abhaengigkeiten ==
+hybrid/__init__                        -> -
+hybrid/config                          -> -
+hybrid/data                            -> hybrid.config, hybrid.swing
+hybrid/engine                          -> -
+hybrid/engine2                         -> -
+hybrid/fees                            -> -
+hybrid/listings                        -> -
+hybrid/massentest                      -> -
+hybrid/mutationen                      -> hybrid.research
+hybrid/niedrigrisiko                   -> hybrid.research
+hybrid/positionierung                  -> hybrid.config, hybrid.research
+hybrid/pumpmerkmale                    -> -
+hybrid/pumpshort                       -> -
+hybrid/research                        -> hybrid.config, hybrid.engine2, hybrid.runner
+hybrid/runner                          -> hybrid.config, hybrid.data, hybrid.engine, hybrid.fees
+hybrid/statarb                         -> -
+hybrid/swing                           -> hybrid.config
+hybrid/tagestrend                      -> -
+hybrid/tpsl                            -> hybrid.mutationen, hybrid.research
+hybrid/tradfi_neutral                  -> -
+hybrid/walkforward                     -> hybrid.config, hybrid.runner
+scripts/aktien_laden                   -> -
+scripts/baseline                       -> hybrid.data, hybrid.runner
+scripts/bericht                        -> -
+scripts/cache_inventur                 -> -
+scripts/diagnose_frequenz              -> hybrid.research
+scripts/diagnose_huerde                -> hybrid.research
+scripts/diagnose_kapital               -> hybrid.research, hybrid.runner
+scripts/fuellmodell_diagnose           -> hybrid.engine, hybrid.research, hybrid.runner
+scripts/fusion_yubit                   -> hybrid.data, hybrid.research, hybrid.runner, hybrid.statarb, hybrid.swing
+scripts/gegenpruefung                  -> hybrid.data, hybrid.runner, hybrid.swing, hybrid.walkforward
+scripts/gesamt_60                      -> hybrid.research, hybrid.runner
+scripts/intake                         -> -
+scripts/kandidat_pruefen               -> hybrid.research, hybrid.runner
+scripts/kerzen_laden                   -> -
+scripts/listings_laden                 -> -
+scripts/positionierung_laden           -> -
+scripts/pump_kerzen_laden              -> -
+scripts/pump_universum_laden           -> -
+scripts/raster                         -> hybrid.data, hybrid.runner
+scripts/rebate_sicht                   -> hybrid.runner, hybrid.walkforward
+scripts/signal_check                   -> hybrid.swing
+scripts/statarb_bericht                -> -
+scripts/suche_bericht                  -> -
+scripts/suche_runde10                  -> hybrid.config, hybrid.listings
+scripts/suche_runde11                  -> hybrid.massentest, hybrid.research
+scripts/suche_runde12                  -> hybrid.data, hybrid.research, hybrid.runner, hybrid.statarb, hybrid.swing
+scripts/suche_runde13                  -> hybrid.niedrigrisiko, hybrid.research, hybrid.runner
+scripts/suche_runde14                  -> hybrid.research, hybrid.runner, hybrid.tagestrend
+scripts/suche_runde16                  -> hybrid.research, hybrid.runner, hybrid.tagestrend
+scripts/suche_runde17                  -> hybrid.research, hybrid.runner, hybrid.tagestrend, hybrid.tradfi_neutral
+scripts/suche_runde18                  -> hybrid.pumpshort
+scripts/suche_runde19                  -> hybrid.pumpshort, hybrid.research, hybrid.runner, hybrid.tagestrend
+scripts/suche_runde2                   -> hybrid.research, hybrid.runner
+scripts/suche_runde21                  -> hybrid.mutationen, hybrid.research, hybrid.runner, hybrid.tagestrend
+scripts/suche_runde22                  -> hybrid.mutationen, hybrid.research, hybrid.runner
+scripts/suche_runde23                  -> hybrid.mutationen, hybrid.pumpmerkmale, hybrid.pumpshort
+scripts/suche_runde24                  -> hybrid.mutationen, hybrid.research, hybrid.runner, hybrid.tagestrend, hybrid.tpsl
+scripts/suche_runde3                   -> hybrid.research, hybrid.runner
+scripts/suche_runde4                   -> hybrid.config, hybrid.research, hybrid.runner
+scripts/suche_runde5                   -> hybrid.config, hybrid.research, hybrid.runner
+scripts/suche_runde6                   -> hybrid.research, hybrid.runner
+scripts/suche_runde7                   -> hybrid.positionierung, hybrid.research, hybrid.runner
+scripts/suche_runde8                   -> hybrid.research, hybrid.runner
+scripts/suche_runde9                   -> hybrid.research, hybrid.runner
+scripts/suche_stufe1                   -> hybrid.research
+scripts/suche_stufe2bis5               -> hybrid.research, hybrid.runner
+scripts/tageskurse_laden               -> -
+scripts/uebersicht                     -> -
+scripts/vorwaertstest_auswerten        -> -
+scripts/walkforward                    -> hybrid.runner, hybrid.walkforward
+scripts/yubit_spannen_sammeln          -> -
+vorwaertstest/__init__                 -> -
+vorwaertstest/board_verschluesseln     -> -
+vorwaertstest/bot                      -> vorwaertstest.kern, vorwaertstest.yubit
+vorwaertstest/dashboard_daten          -> vorwaertstest.bot
+vorwaertstest/kern                     -> -
+vorwaertstest/live_server              -> vorwaertstest.bot, vorwaertstest.kern, vorwaertstest.yubit
+vorwaertstest/yubit                    -> -
+tests/test_engine                      -> hybrid.engine
+tests/test_engine2                     -> hybrid.engine2
+tests/test_fees                        -> hybrid.config, hybrid.fees
+tests/test_listings                    -> hybrid.listings
+tests/test_massentest                  -> hybrid.massentest
+tests/test_mutationen                  -> hybrid.mutationen
+tests/test_niedrigrisiko               -> hybrid.niedrigrisiko
+tests/test_positionierung              -> hybrid.positionierung
+tests/test_pumpmerkmale                -> hybrid.pumpmerkmale
+tests/test_pumpshort                   -> hybrid.pumpshort
+tests/test_rangfolge                   -> hybrid.research
+tests/test_statarb                     -> hybrid.statarb
+tests/test_tagestrend                  -> hybrid.tagestrend
+tests/test_tpsl                        -> hybrid.tpsl
+tests/test_tradfi_neutral              -> hybrid.tradfi_neutral
+tests/test_vorwaertstest               -> -
+tests/test_vorwaertstest_bot           -> vorwaertstest.bot, vorwaertstest.kern, vorwaertstest.yubit
+
+== Externe Pakete je Gruppe ==
+hybrid | Drittanbieter: ['numba', 'numpy', 'pandas', 'yaml'] | Standardbibliothek: ['dataclasses', 'json', 'pathlib', 'pickle', 'statistics', 'types']
+scripts | Drittanbieter: ['kern', 'kerzen_laden', 'numpy', 'pandas', 'requests', 'yubit'] | Standardbibliothek: ['collections', 'concurrent', 'csv', 'io', 'json', 'pathlib', 'pickle', 're', 'statistics', 'sys', 'time', 'urllib', 'zipfile']
+vorwaertstest | Drittanbieter: [] | Standardbibliothek: ['argparse', 'base64', 'collections', 'csv', 'datetime', 'hashlib', 'hmac', 'http', 'json', 'math', 'os', 'pathlib', 'secrets', 'statistics', 'subprocess', 'sys', 'threading', 'time', 'urllib']
+tests | Drittanbieter: ['numpy', 'pandas', 'pytest', 'vorwaertstest_auswerten'] | Standardbibliothek: ['hashlib', 'hmac', 'io', 'json', 'pathlib', 'sys', 'types']
+
+== Wer nutzt welches hybrid-Modul (eingehende Kanten) ==
+hybrid.config                    <- 10: hybrid/data, hybrid/positionierung, hybrid/research, hybrid/runner, hybrid/swing, hybrid/walkforward, scripts/suche_runde10, scripts/suche_runde4, scripts/suche_runde5, tests/test_fees
+hybrid.data                      <-  6: hybrid/runner, scripts/baseline, scripts/fusion_yubit, scripts/gegenpruefung, scripts/raster, scripts/suche_runde12
+hybrid.engine                    <-  3: hybrid/runner, scripts/fuellmodell_diagnose, tests/test_engine
+hybrid.engine2                   <-  2: hybrid/research, tests/test_engine2
+hybrid.fees                      <-  2: hybrid/runner, tests/test_fees
+hybrid.listings                  <-  2: scripts/suche_runde10, tests/test_listings
+hybrid.massentest                <-  2: scripts/suche_runde11, tests/test_massentest
+hybrid.mutationen                <-  6: hybrid/tpsl, scripts/suche_runde21, scripts/suche_runde22, scripts/suche_runde23, scripts/suche_runde24, tests/test_mutationen
+hybrid.niedrigrisiko             <-  2: scripts/suche_runde13, tests/test_niedrigrisiko
+hybrid.positionierung            <-  2: scripts/suche_runde7, tests/test_positionierung
+hybrid.pumpmerkmale              <-  2: scripts/suche_runde23, tests/test_pumpmerkmale
+hybrid.pumpshort                 <-  4: scripts/suche_runde18, scripts/suche_runde19, scripts/suche_runde23, tests/test_pumpshort
+hybrid.research                  <- 32: hybrid/mutationen, hybrid/niedrigrisiko, hybrid/positionierung, hybrid/tpsl, scripts/diagnose_frequenz, scripts/diagnose_huerde, scripts/diagnose_kapital, scripts/fuellmodell_diagnose, scripts/fusion_yubit, scripts/gesamt_60, scripts/kandidat_pruefen, scripts/suche_runde11, scripts/suche_runde12, scripts/suche_runde13, scripts/suche_runde14, scripts/suche_runde16, scripts/suche_runde17, scripts/suche_runde19, scripts/suche_runde2, scripts/suche_runde21, scripts/suche_runde22, scripts/suche_runde24, scripts/suche_runde3, scripts/suche_runde4, scripts/suche_runde5, scripts/suche_runde6, scripts/suche_runde7, scripts/suche_runde8, scripts/suche_runde9, scripts/suche_stufe1, scripts/suche_stufe2bis5, tests/test_rangfolge
+hybrid.runner                    <- 30: hybrid/research, hybrid/walkforward, scripts/baseline, scripts/diagnose_kapital, scripts/fuellmodell_diagnose, scripts/fusion_yubit, scripts/gegenpruefung, scripts/gesamt_60, scripts/kandidat_pruefen, scripts/raster, scripts/rebate_sicht, scripts/suche_runde12, scripts/suche_runde13, scripts/suche_runde14, scripts/suche_runde16, scripts/suche_runde17, scripts/suche_runde19, scripts/suche_runde2, scripts/suche_runde21, scripts/suche_runde22, scripts/suche_runde24, scripts/suche_runde3, scripts/suche_runde4, scripts/suche_runde5, scripts/suche_runde6, scripts/suche_runde7, scripts/suche_runde8, scripts/suche_runde9, scripts/suche_stufe2bis5, scripts/walkforward
+hybrid.statarb                   <-  3: scripts/fusion_yubit, scripts/suche_runde12, tests/test_statarb
+hybrid.swing                     <-  5: hybrid/data, scripts/fusion_yubit, scripts/gegenpruefung, scripts/signal_check, scripts/suche_runde12
+hybrid.tagestrend                <-  7: scripts/suche_runde14, scripts/suche_runde16, scripts/suche_runde17, scripts/suche_runde19, scripts/suche_runde21, scripts/suche_runde24, tests/test_tagestrend
+hybrid.tpsl                      <-  2: scripts/suche_runde24, tests/test_tpsl
+hybrid.tradfi_neutral            <-  2: scripts/suche_runde17, tests/test_tradfi_neutral
+hybrid.walkforward               <-  3: scripts/gegenpruefung, scripts/rebate_sicht, scripts/walkforward
+vorwaertstest.bot                <-  3: vorwaertstest/dashboard_daten, vorwaertstest/live_server, tests/test_vorwaertstest_bot
+vorwaertstest.kern               <-  3: vorwaertstest/bot, vorwaertstest/live_server, tests/test_vorwaertstest_bot
+vorwaertstest.yubit              <-  3: vorwaertstest/bot, vorwaertstest/live_server, tests/test_vorwaertstest_bot
+
+hybrid-Module ohne eingehende Kante aus scripts/hybrid/vorwaertstest (nur Tests oder niemand):

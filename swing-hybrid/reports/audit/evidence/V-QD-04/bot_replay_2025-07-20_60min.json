@@ -1,0 +1,61 @@
+{
+ "start": "2025-07-20",
+ "tage": 160,
+ "takt_min": 60,
+ "test1": {
+  "config": "config_lauf.json",
+  "hebel": 3.0,
+  "tagesverlust_limit": 1.0,
+  "tp": 0,
+  "sl": 0,
+  "durchlaeufe": 3840,
+  "orders": 1850,
+  "gruende": {
+   "einstieg": 930,
+   "schliessen": 920
+  },
+  "konto_tief_usd": -1161.0591000000004,
+  "konto_tief_zeit": "2025-12-17 15:05:00",
+  "tief_anteil": -1.23221182,
+  "konto_ende_usd": -209.02750000000015,
+  "erstes_konto_le_0": "2025-10-02 19:05:00",
+  "tage_bis_konto_le_0": 74.79513888888889,
+  "durchlaeufe_mit_konto_le_0": 885,
+  "orders_nach_konto_le_0": 1032,
+  "einstiege_nach_konto_le_0": 516,
+  "mittlerer_positionswert_bei_konto_le_0_usd": 14266.710903954803,
+  "max_positionswert_usd": 17135.07,
+  "gesperrt_tag_im_zustand": "",
+  "tageslimit_meldungen": 0,
+  "groesster_verlust_ein_utc_tag_usd": -1332.1028
+ },
+ "test2": {
+  "config": "config_lauf_tpsl.json",
+  "hebel": 3.0,
+  "tagesverlust_limit": 1.0,
+  "tp": 0.15,
+  "sl": 0.05,
+  "durchlaeufe": 3840,
+  "orders": 1853,
+  "gruende": {
+   "einstieg": 930,
+   "schliessen": 846,
+   "stop": 48,
+   "ziel": 29
+  },
+  "konto_tief_usd": 1534.2213000000002,
+  "konto_tief_zeit": "2025-10-10 19:05:00",
+  "tief_anteil": -0.69315574,
+  "konto_ende_usd": 3162.5478000000003,
+  "erstes_konto_le_0": null,
+  "tage_bis_konto_le_0": null,
+  "durchlaeufe_mit_konto_le_0": 0,
+  "orders_nach_konto_le_0": 0,
+  "einstiege_nach_konto_le_0": 0,
+  "mittlerer_positionswert_bei_konto_le_0_usd": null,
+  "max_positionswert_usd": 15964.93,
+  "gesperrt_tag_im_zustand": "",
+  "tageslimit_meldungen": 0,
+  "groesster_verlust_ein_utc_tag_usd": -907.4907
+ }
+}

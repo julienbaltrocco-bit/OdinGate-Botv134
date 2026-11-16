@@ -1,0 +1,61 @@
+Entwicklung 2021-08-15 00:00:00 bis 2025-03-31 23:55:00, Bars 381600, Tage 1325, Taker 0.0008, Rebate 0.85
+Slippage je Coin (bp): {'BTC': 0.5, 'ETH': 0.5, 'SOL': 1.366, 'XRP': 1.139, 'DOT': 13.216, 'DOGE': 1.652, 'ADA': 6.419, 'LINK': 1.089, 'AVAX': 1.451, 'LTC': 2.184}
+
+[A] engine2 direkt
+  Hebel 1: Ende +2.1556 = +0.5938/Jahr; Hebel 3: Ende +6.4669 = +1.7814/Jahr
+  Linearitaet: max |e3 - 3*e1| = 8.88e-15; Sperrtage 0, Stops 0
+  kleinster Kontostand des durchgehenden Laufs (Start 2021-08-15): Hebel 3 +0.887, Hebel 1 +0.962
+
+[B] eigene Stundenrechnung: Signalabweichung zu research.auf_raster 0 Stunden (Variante je Coin fuer sich: 982), Wechsel innerhalb einer Stunde 0
+  Orders (eigene Rechnung) 7581; Kontoverlauf Hebel 3 zum Stundenschluss: max |eigen - engine2| = 6.22e-15 (letzte Stunde ausgenommen: der Kern rechnet dort die Schlussabrechnung)
+
+  Anteil Starttage mit Kontostand <= 0 bzw. <= 50 % (Hebel 3, feste Groesse):
+    mit Rebate   90 Tage, 1235 Starttage | engine2 5-Minuten: <=0   5.7 %, <=50 %  31.7 %, Tief -0.42 | eigene Stundenrechnung: <=0   5.6 %, <=50 %  30.5 %, Tief -0.42 | eigene, Signal je Coin fuer sich: <=0   5.6 %, <=50 %  30.5 %, Tief -0.42
+    mit Rebate  365 Tage, 960 Starttage | engine2 5-Minuten: <=0   8.4 %, <=50 %  46.6 %, Tief -0.53 | eigene Stundenrechnung: <=0   8.2 %, <=50 %  45.1 %, Tief -0.52 | eigene, Signal je Coin fuer sich: <=0   8.2 %, <=50 %  45.1 %, Tief -0.52
+    ohne Rebate  90 Tage, 1235 Starttage | engine2 5-Minuten: <=0  10.0 %, <=50 %  44.0 %, Tief -0.63 | eigene Stundenrechnung: <=0   9.6 %, <=50 %  42.3 %, Tief -0.63 | eigene, Signal je Coin fuer sich: <=0   9.5 %, <=50 %  42.2 %, Tief -0.63
+    ohne Rebate 365 Tage, 960 Starttage | engine2 5-Minuten: <=0  44.9 %, <=50 %  66.8 %, Tief -1.12 | eigene Stundenrechnung: <=0  44.2 %, <=50 %  64.8 %, Tief -1.12 | eigene, Signal je Coin fuer sich: <=0  44.0 %, <=50 %  64.5 %, Tief -1.12
+
+[C] Abkuerzung gegen echten Neustart des Kerns (Hebel 3, 365 Tage, mit Rebate)
+  27 Starttage (jeder 40. plus die 3 schlechtesten): Tiefststand Neustart minus Abkuerzung: min -0.0565, max +0.0686; Konto <= 0: Neustart 4, Abkuerzung 4
+  ALLE 1235 Starttage echt neu gestartet, 90 Tage: mit Rebate <=0   4.9 %, <=50 %  30.6 %, Tief -0.47 | ohne Rebate <=0   9.8 %, <=50 %  43.2 %, Tief -0.69
+  ALLE 960 Starttage echt neu gestartet, 365 Tage: mit Rebate <=0   8.4 %, <=50 %  46.6 %, Tief -0.46 | ohne Rebate <=0  46.5 %, <=50 %  66.5 %, Tief -1.03
+  schlechtester Starttag 2023-02-04: Neustart-Tiefststand -0.462 am 2023-06-28 20:10:00, erstmals <= 0 am 2023-04-25 21:00:00, Ende nach 365 Tagen +1.193
+
+[D] Episoden hinter dem Anteil (Hebel 3, 365 Tage)
+  mit Rebate: 81 von 960 Starttagen; zusammenhaengende Bloecke von Starttagen: 2022-02-10..2022-02-10 (1), 2022-07-30..2022-07-31 (2), 2022-08-13..2022-08-15 (3), 2022-08-29..2022-08-29 (1), 2023-01-15..2023-01-18 (4), 2023-01-20..2023-02-23 (35), 2023-03-09..2023-03-12 (4), 2023-12-09..2023-12-11 (3), 2023-12-14..2023-12-15 (2), 2023-12-17..2023-12-17 (1), 2023-12-22..2023-12-30 (9), 2024-01-02..2024-01-02 (1), 2024-03-05..2024-03-05 (1), 2024-03-08..2024-03-21 (14)
+    Monat, in dem das Konto erstmals <= 0 steht: 2022-03: 1, 2023-04: 28, 2023-06: 21, 2024-01: 1, 2024-10: 25, 2024-11: 5
+    Tage vom Start bis Konto <= 0: Median 132, min 35
+  ohne Rebate: 431 von 960 Starttagen; zusammenhaengende Bloecke von Starttagen: 2021-12-10..2021-12-12 (3), 2021-12-14..2021-12-15 (2), 2021-12-17..2021-12-19 (3), 2022-01-23..2022-01-23 (1), 2022-01-25..2022-01-25 (1), 2022-01-28..2022-01-28 (1), 2022-02-08..2022-02-10 (3), 2022-05-09..2022-10-16 (161), 2022-10-20..2022-10-23 (4), 2022-10-25..2022-10-25 (1), 2022-10-27..2022-10-27 (1), 2022-10-29..2022-11-08 (11), 2022-11-10..2022-11-11 (2), 2022-11-13..2022-11-30 (18), 2023-01-12..2023-03-01 (49), 2023-03-03..2023-03-20 (18), 2023-03-22..2023-03-22 (1), 2023-03-24..2023-03-25 (2), 2023-03-27..2023-03-27 (1), 2023-04-17..2023-04-17 (1), 2023-04-19..2023-04-19 (1), 2023-11-07..2024-03-31 (146)
+    Monat, in dem das Konto erstmals <= 0 steht: 2022-03: 14, 2022-10: 6, 2022-12: 65, 2023-03: 6, 2023-04: 90, 2023-05: 3, 2023-06: 101, 2024-01: 4, 2024-09: 31, 2024-10: 101, 2024-11: 10
+    Tage vom Start bis Konto <= 0: Median 220, min 33
+
+[E] Cross-Margin mit ANGENOMMENER Erhaltungsmargin (Anteil am Positionswert 3,0; Yubit-Wert im Repo nicht belegt)
+  Erhaltungsmargin 0.0 %: Liquidation bei Kontostand <= 0.000 | mit Rebate 90 T:   5.7 % | mit Rebate 365 T:   8.4 % | ohne Rebate 90 T:  10.0 % | ohne Rebate 365 T:  44.9 %
+  Erhaltungsmargin 0.5 %: Liquidation bei Kontostand <= 0.015 | mit Rebate 90 T:   6.1 % | mit Rebate 365 T:   9.2 % | ohne Rebate 90 T:  10.7 % | ohne Rebate 365 T:  46.6 %
+  Erhaltungsmargin 1.0 %: Liquidation bei Kontostand <= 0.030 | mit Rebate 90 T:   6.4 % | mit Rebate 365 T:  10.0 % | ohne Rebate 90 T:  11.7 % | ohne Rebate 365 T:  47.3 %
+  Erhaltungsmargin 2.0 %: Liquidation bei Kontostand <= 0.060 | mit Rebate 90 T:   6.9 % | mit Rebate 365 T:  11.4 % | ohne Rebate 90 T:  12.8 % | ohne Rebate 365 T:  49.1 %
+
+[F] Einbruchskennzahlen
+  Hebel 1: groesster Rueckgang 0.569 Startkapital (Hoch 2024-08-05 06:20:00 bei Konto 2.557, Tief 2024-11-06 08:20:00 bei 1.988); runner.max_drawdown 5-Minuten 0.258; Tagesbasis relativ zur Spitze (Formel Runde 24) 0.2458, Tagesbasis in Startkapital 0.5066
+  Hebel 3: groesster Rueckgang 1.707 Startkapital (Hoch 2024-08-05 06:20:00 bei Konto 5.671, Tief 2024-11-06 08:20:00 bei 3.963); runner.max_drawdown 5-Minuten 0.384; Tagesbasis relativ zur Spitze (Formel Runde 24) 0.3633, Tagesbasis in Startkapital 1.5198
+
+[G] Nur zur Einordnung (NICHT das Verhalten des Bots): Hebel 1 taeglich auf den Kontostand nachgezogen: Endstand 4.22, groesster Einbruch 41.6 %, kleinster Tagesfaktor 0.703
+
+[G] Nur zur Einordnung (NICHT das Verhalten des Bots): Hebel 3 taeglich auf den Kontostand nachgezogen: Endstand 0.49, groesster Einbruch 94.8 %, kleinster Tagesfaktor 0.110
+
+[H] Schlechteste Verluste ueber feste Zeitspannen, Hebel 3, feste Groesse, in Einheiten des Startkapitals (5-Minuten-Basis, mit Rebate)
+  1 Stunde  : -0.830 (von 2024-12-09 20:00:00 bis 2024-12-09 21:00:00); Anzahl Spannen mit Verlust >= 0,5: 1
+  4 Stunden : -0.873 (von 2024-12-09 17:00:00 bis 2024-12-09 21:00:00); Anzahl Spannen mit Verlust >= 0,5: 13
+  24 Stunden: -1.214 (von 2024-12-08 21:00:00 bis 2024-12-09 21:00:00); Anzahl Spannen mit Verlust >= 0,5: 417
+  3 Tage    : -1.220 (von 2024-12-07 16:40:00 bis 2024-12-10 16:40:00); Anzahl Spannen mit Verlust >= 0,5: 1022
+  7 Tage    : -1.239 (von 2024-12-02 21:00:00 bis 2024-12-09 21:00:00); Anzahl Spannen mit Verlust >= 0,5: 4273
+  30 Tage   : -1.022 (von 2024-09-27 14:30:00 bis 2024-10-27 14:30:00); Anzahl Spannen mit Verlust >= 0,5: 23875
+  schlechteste Kalendertage (UTC): 2024-12-09 -0.890, 2024-03-05 -0.417, 2022-11-10 -0.340, 2025-03-02 -0.338, 2022-11-08 -0.327
+  Kalendertage mit Verlust >= 30 % des Startkapitals: 7 von 1325; >= 15 %: 45
+
+[I] Groesste Gegenbewegung je Trade (isolierte Margin haengt vom an der Boerse EINGESTELLTEN Hebel ab, den der Bot nie liest oder setzt)
+  Trades 7483; Median 0.95 %, 99 % 11.4 %, max 38.1 %
+  Boersen-Hebel  3 isoliert (Gegenbewegung >= 33 %, ohne Erhaltungsmargin): 1 Trades = 0.01 %
+  Boersen-Hebel  5 isoliert (Gegenbewegung >= 20 %, ohne Erhaltungsmargin): 8 Trades = 0.11 %
+  Boersen-Hebel 10 isoliert (Gegenbewegung >= 10 %, ohne Erhaltungsmargin): 121 Trades = 1.62 %
+  Boersen-Hebel 20 isoliert (Gegenbewegung >= 5 %, ohne Erhaltungsmargin): 507 Trades = 6.78 %

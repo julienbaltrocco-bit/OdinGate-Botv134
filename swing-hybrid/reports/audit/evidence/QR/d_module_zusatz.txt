@@ -1,0 +1,65 @@
+1) Runde 6 Teil 1, Hebel 0,2 mit Tageslimit 3 %:
+   echt {'Entwicklung': {'N': 0.4133, 'handel': 0.2092, 'G': 0.4494, 'dd_mit': 0.0885, 'sharpe': 0.919}, 'Pruefung': {'N': 0.0517, 'handel': -0.0391, 'G': 0.0677, 'dd_mit': 0.0962, 'sharpe': 0.3369}} Sperrtage 3
+   stress_2x {'Entwicklung': {'N': 0.3279, 'handel': 0.1238, 'G': 0.364, 'dd_mit': 0.1004, 'sharpe': 0.7276}, 'Pruefung': {'N': 0.0122, 'handel': -0.0787, 'G': 0.0282, 'dd_mit': 0.1204, 'sharpe': 0.0791}} Sperrtage 3
+   alt_5bp {'Entwicklung': {'N': 0.3486, 'handel': 0.1445, 'G': 0.3847, 'dd_mit': 0.0968, 'sharpe': 0.7741}, 'Pruefung': {'N': 0.0244, 'handel': -0.0664, 'G': 0.0405, 'dd_mit': 0.1111, 'sharpe': 0.1591}} Sperrtage 3
+   gespeichert: {'Entwicklung': {'N': 0.4133, 'handel': 0.2092, 'G': 0.4494, 'dd_mit': 0.0885, 'sharpe': 0.919}, 'Pruefung': {'N': 0.0517, 'handel': -0.0391, 'G': 0.0677, 'dd_mit': 0.0962, 'sharpe': 0.3369}}
+   Hebelsuche:
+      dd_entwicklung_mit_tageslimit  sperrtage  N_entwicklung  N_pruefung  dd_pruefung
+3                            3.5886     1178.0        -3.6782     -0.6248       0.9766
+2                            1.0181      885.0        -0.9341     -0.1749       0.5837
+1                            0.3816      375.0         0.4785     -0.2650       0.5265
+0.5                          0.1803       64.0         0.8265      0.1656       0.1978
+0.3                          0.1260       16.0         0.5412      0.0830       0.1359
+0.25                         0.1058        7.0         0.4785      0.0669       0.1167
+0.2                          0.0885        3.0         0.4133      0.0517       0.0962
+2) Runde 21:
+                      D1      D2  Entwicklung  vorsprung_jahr
+nur_long          0.1496  1.3947       0.8212         -0.0782
+asym_70_30        0.3868  1.4223       0.9419         -0.0024
+band              0.1989  1.2210       0.7292         -0.1360
+ema_kreuz         0.5190  1.2020       0.8754         -0.0441
+donchian          0.6805  0.9796       0.8322         -0.0712
+stetig            0.3413  1.3692       0.8468         -0.0621
+ohne_letzten_tag  0.2905  1.2676       0.7836         -0.1018
+breite            0.3949  0.8968       0.6418         -0.1909
+btc_regime        0.2907  1.0272       0.6760         -0.1694
+effizienz         0.1838  1.1186       0.6450         -0.1888
+volumen          -0.2819  1.4795       0.7613         -0.1158
+funding_filter    0.6580  1.5907       1.1104          0.1035
+markt_trend       0.2395  1.3438       0.7652         -0.1134
+relativ_staerke   0.4488  1.5157       0.9447         -0.0006
+   Reality Check: {'schwelle_95': 0.0012172194688303585, 'p_beste': 0.8426} gespeichert: {'schwelle_95': 0.0012172194688303585, 'p_beste': 0.8426, 'tage': 1325} max. Sharpe-Abweichung: 0.0
+3) Vorperiode A: {'N': 1.9797, 'G': 2.0463, 'handel': 1.6023, 'dd_mit': 0.3498, 'sharpe': 1.289, 'jahr_N': 1.288, 'trades': 2753} gespeichert: {'N': 1.9797, 'G': 2.0463, 'handel': 1.6023, 'dd_mit': 0.3498, 'sharpe': 1.289, 'jahr_N': 1.288, 'trades': 2753}
+4) Empfindlichkeit (N / Sharpe je Fenster):
+                                        Entwicklung_N  Entwicklung_sharpe  Entwicklung_dd_tag  Pruefung_N  Pruefung_sharpe  Pruefung_dd_tag
+slip_echt|rebate_85                            2.1564              0.9457              0.2458      0.2585           0.3369           0.3130
+slip_echt|rebate_50                            1.7372              0.7605              0.2934      0.0715           0.0930           0.4043
+slip_echt|rebate_0                             1.1383              0.4970              0.3922     -0.1956          -0.2537           0.5428
+slip_2x|rebate_85                              1.7304              0.7573              0.2950      0.0609           0.0791           0.4102
+slip_2x|rebate_50                              1.3112              0.5727              0.3533     -0.1261          -0.1636           0.5058
+slip_2x|rebate_0                               0.7124              0.3103              0.5707     -0.3933          -0.5084           0.6499
+slip_5bp|rebate_85                             1.8338              0.8033              0.2811      0.1222           0.1591           0.3783
+slip_5bp|rebate_50                             1.4146              0.6185              0.3351     -0.0648          -0.0842           0.4738
+slip_5bp|rebate_0                              0.8158              0.3557              0.5199     -0.3319          -0.4300           0.6178
+slip_10bp|rebate_85                            1.0852              0.4738              0.4041     -0.2117          -0.2747           0.5520
+slip_10bp|rebate_50                            0.6660              0.2902              0.5944     -0.3987          -0.5160           0.6550
+slip_10bp|rebate_0                             0.0672              0.0292              0.9174     -0.6658          -0.8585           0.8170
+verzoegerung_5min|slip_echt|rebate_85          2.0977              0.9193              0.2880      0.1747           0.2271           0.3701
+verzoegerung_15min|slip_echt|rebate_85         1.9433              0.8415              0.2960      0.1147           0.1494           0.3923
+verzoegerung_60min|slip_echt|rebate_85         2.2451              0.9796              0.2447      0.0440           0.0572           0.3960
+   Zerlegung Pruefzeitraum: {'umsatz': 667.8274, 'gebuehr_voll': 0.5343, 'rebate': 0.4541, 'vor_gebuehr_inkl_slip_funding': 0.3386, 'funding': -0.0348, 'slippage_summe': 0.1976, 'netto_ohne_rebate': -0.1956, 'netto_mit_rebate': 0.2585}
+   Zerlegung Entwicklung: {'umsatz': 1497.1024, 'gebuehr_voll': 1.1977, 'rebate': 1.018, 'vor_gebuehr_inkl_slip_funding': 2.336, 'funding': -0.2316, 'netto_ohne_rebate': 1.1383, 'netto_mit_rebate': 2.1564}
+5) Hebel 3 ohne Tageslimit:
+            konto_tief            zeit_tief konto_ende einbruch_rel_spitze erstes_konto_null
+D1            0.887289  2021-08-15 07:45:00   2.893539            0.383921              None
+D2            0.859173  2023-07-12 19:40:00   5.575549            0.451984              None
+Entwicklung   0.887289  2021-08-15 07:45:00   7.469088            0.383921              None
+Pruefung      0.843233  2025-04-02 20:15:00   1.775473            0.557836              None
+   Linearitaet |eq(h=3) - 3*eq(h=1)| max: 1.4210854715202004e-14
+6) Bootstrap Sharpe:
+                  sharpe    p05    p50    p95  anteil_sharpe_le_0  t_wert_mittel    tage
+D1                 0.564 -0.443  0.545  1.512               0.180          0.773   685.0
+D2                 1.317  0.002  1.271  2.442               0.050          1.743   640.0
+Entwicklung        0.946  0.094  0.924  1.712               0.032          1.802  1325.0
+Pruefung           0.337 -0.869  0.285  1.428               0.336          0.421   571.0
+Vorperiode_A_5bp   1.289 -0.040  1.267  2.522               0.055          1.598   561.0

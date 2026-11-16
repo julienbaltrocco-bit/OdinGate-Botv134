@@ -1,0 +1,7 @@
+PKCS8 (RSA-2048): 1218 Byte -> Chiffrat 1232 Byte (docs/schluessel.json traegt 1232 Byte; passt zu diesem Format: True)
+1. Erster PBKDF2-Block allein ergibt den AES-Schluessel: True
+   Bloecke 2 bis 5 ohne IV entschluesselt, identisch mit dem echten Klartext: True
+   Block 2 (hex): 0d0101010500048204a8308204a40201 = fester PKCS8-Kopf (rsaEncryption, OCTET STRING, RSAPrivateKey, Version 0)
+2. Entschluesselte Bytes enthalten den oeffentlich bekannten Modulus: True
+   Falscher Kandidat ergibt den festen Kopf: False (Pruefung ist eindeutig)
+Folge: Aufwand je Versuch = 600.000 PBKDF2-Runden (ein Block); der rechtmaessige Nutzer zahlt 1.200.000 (zwei Bloecke).

@@ -1,0 +1,16 @@
+Stunden im gemeinsamen Index: 59904 von 2020-01-01 00:00:00 bis 2026-10-31 23:00:00
+im gemeinsamen Stundenindex fehlende Stunden: 0 []
+BTC   erste Stunde 2020-01-01 00:00:00  fehlende Stunden 0  NaN im Verbund 0  Signal-Abweichungen gesamt 0, ab 2021-08-15 00:00: 0
+ETH   erste Stunde 2020-01-01 00:00:00  fehlende Stunden 0  NaN im Verbund 0  Signal-Abweichungen gesamt 0, ab 2021-08-15 00:00: 0
+SOL   erste Stunde 2020-09-14 07:00:00  fehlende Stunden 120  NaN im Verbund 120  Signal-Abweichungen gesamt 0, ab 2021-08-15 00:00: 0
+       Luecken: ['2022-02-26 00:00:00', '2022-02-26 01:00:00', '2022-02-26 02:00:00', '2022-02-26 03:00:00', '2022-02-26 04:00:00', '2022-02-26 05:00:00'] ...
+XRP   erste Stunde 2020-01-06 08:00:00  fehlende Stunden 120  NaN im Verbund 120  Signal-Abweichungen gesamt 0, ab 2021-08-15 00:00: 0
+       Luecken: ['2022-02-26 00:00:00', '2022-02-26 01:00:00', '2022-02-26 02:00:00', '2022-02-26 03:00:00', '2022-02-26 04:00:00', '2022-02-26 05:00:00'] ...
+DOT   erste Stunde 2020-08-22 07:00:00  fehlende Stunden 0  NaN im Verbund 0  Signal-Abweichungen gesamt 0, ab 2021-08-15 00:00: 0
+DOGE  erste Stunde 2020-07-10 09:00:00  fehlende Stunden 0  NaN im Verbund 0  Signal-Abweichungen gesamt 0, ab 2021-08-15 00:00: 0
+ADA   erste Stunde 2020-01-31 08:00:00  fehlende Stunden 0  NaN im Verbund 0  Signal-Abweichungen gesamt 0, ab 2021-08-15 00:00: 0
+LINK  erste Stunde 2020-01-17 08:00:00  fehlende Stunden 0  NaN im Verbund 0  Signal-Abweichungen gesamt 0, ab 2021-08-15 00:00: 0
+AVAX  erste Stunde 2020-09-23 07:00:00  fehlende Stunden 0  NaN im Verbund 0  Signal-Abweichungen gesamt 0, ab 2021-08-15 00:00: 0
+LTC   erste Stunde 2020-01-09 08:00:00  fehlende Stunden 120  NaN im Verbund 120  Signal-Abweichungen gesamt 0, ab 2021-08-15 00:00: 0
+       Luecken: ['2022-02-26 00:00:00', '2022-02-26 01:00:00', '2022-02-26 02:00:00', '2022-02-26 03:00:00', '2022-02-26 04:00:00', '2022-02-26 05:00:00'] ...
+Stunden mit Signal 0 je Coin ab START: {'BTC': 0, 'ETH': 0, 'SOL': 254, 'XRP': 260, 'DOT': 22, 'DOGE': 21, 'ADA': 30, 'LINK': 7, 'AVAX': 8, 'LTC': 265}

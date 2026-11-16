@@ -1,0 +1,29 @@
+Teil 1: Minimal-Rechnung mit Lueckenbehandlung der Module / Module (a)
+                  N    jahr  sharpe  dd_tag
+D1           0.6354  0.3386  0.5675  0.2453
+D2           1.5252  0.8698  1.3165  0.2550
+Entwicklung  2.1606  0.5952  0.9473  0.2453
+Pruefung     0.2589  0.1655  0.3375  0.3130
+                  N    jahr  sharpe  dd_tag
+D1           0.6312  0.3363  0.5640  0.2458
+D2           1.5252  0.8698  1.3165  0.2550
+Entwicklung  2.1564  0.5940  0.9457  0.2458
+Pruefung     0.2585  0.1652  0.3369  0.3130
+Restabweichung: {'summe': -0.004639968905544783, 'max_abs_tag': 0.003657397013770436, 'tage_ueber_1e-3': 1, 'groesste': {'2021-08-15': -0.003657397013770436}}
+Teil 2: Einsatz (Summe |Position| x Kurs) in Vielfachen des Startkapitals bei Hebel 1
+               mittel    median       p95       max             max_zeit anteil_ueber_1.5 anteil_ueber_2
+D1           1.002178  0.997132  1.281567  1.533799  2021-09-04 08:00:00         0.001521            0.0
+D2           1.068257   1.01672  1.540809  2.178064  2024-12-03 11:00:00         0.059701        0.01276
+Entwicklung  1.034095  1.006242  1.375627  2.178064  2024-12-03 11:00:00         0.029623       0.006164
+Pruefung     0.994544   0.99643  1.197688  1.457002  2025-07-21 14:00:00              0.0            0.0
+Gesamt       1.022184  1.003052  1.318748  2.178064  2024-12-03 11:00:00         0.020701       0.004307
+  je Coin am Maximum: {'BTC': 0.14, 'ETH': 0.109, 'SOL': 0.096, 'XRP': 0.535, 'DOT': 0.241, 'DOGE': 0.106, 'ADA': 0.364, 'LINK': 0.209, 'AVAX': 0.193, 'LTC': 0.185}
+Teil 3: Verluste in Einheiten des Startkapitals, Hebel 1
+            schlechtester_tag         tag tage_unter_-10% tage_unter_-5% schlechteste_7_tage         bis schlechteste_30_tage       bis30 abs_rueckgang_tag abs_rueckgang_tag_tief abs_rueckgang_stunde hebel3_anteil_starttage_konto_null hebel3_anteil_starttage_minus50  tage
+D1                  -0.113357  2022-11-10               2             26           -0.176762  2021-09-13            -0.266411  2022-03-11          0.506613             2023-06-28             0.532036                           0.074453                        0.481752   685
+D2                  -0.296818  2024-12-09               5             19           -0.308412  2024-12-09            -0.325749  2024-10-27            0.4692             2024-11-01             0.558163                           0.179688                           0.475   640
+Entwicklung         -0.296818  2024-12-09               7             45           -0.308412  2024-12-09            -0.325749  2024-10-27          0.506613             2023-06-28             0.558163                           0.125283                        0.478491  1325
+Pruefung            -0.111495  2025-07-23               2             13            -0.15595  2025-07-29            -0.269666  2025-08-21          0.501417             2026-08-13             0.536045                           0.105079                         0.41331   571
+  schlechtester Tag je Coin: {'BTC': -0.0057, 'ETH': -0.0089, 'SOL': 0.0086, 'XRP': -0.0733, 'DOT': -0.0506, 'DOGE': -0.0116, 'ADA': -0.0543, 'LINK': -0.0331, 'AVAX': -0.0339, 'LTC': -0.0339}
+  Kursaenderung an dem Tag: {'BTC': -0.0381, 'ETH': -0.0736, 'SOL': -0.0868, 'XRP': -0.1502, 'DOT': -0.186, 'DOGE': -0.1131, 'ADA': -0.1602, 'LINK': -0.1485, 'AVAX': -0.1674, 'LTC': -0.1819}
+  Einsatz am Vortag: 2.108 Konto (1 + Gewinn) am Vortag: 3.283

@@ -1,0 +1,70 @@
+=== 1. Entfernung bis zur Liquidation, reine Formel ===
+  Isolierte Margin, je Position (Bewegung gegen den Einstieg bis zur Liquidation):
+    Börsenhebel  3x: MMR 0.5%: 32.8%, MMR 1.0%: 32.3%, MMR 2.5%: 30.8%; Margin je Position bei 1.500 $ Positionswert: 500 $ (10% des Kontos), alle zehn: 5000 $
+    Börsenhebel  5x: MMR 0.5%: 19.5%, MMR 1.0%: 19.0%, MMR 2.5%: 17.5%; Margin je Position bei 1.500 $ Positionswert: 300 $ (6% des Kontos), alle zehn: 3000 $
+    Börsenhebel 10x: MMR 0.5%: 9.5%, MMR 1.0%: 9.0%, MMR 2.5%: 7.5%; Margin je Position bei 1.500 $ Positionswert: 150 $ (3% des Kontos), alle zehn: 1500 $
+    Börsenhebel 20x: MMR 0.5%: 4.5%, MMR 1.0%: 4.0%, MMR 2.5%: 2.5%; Margin je Position bei 1.500 $ Positionswert: 75 $ (2% des Kontos), alle zehn: 750 $
+  Gemeinsame Margin, Konto 5.000 $, zehn Positionen je 1.500 $, alle in derselben Richtung (wie beide Papier-Tests am 15.11.2026):
+    MMR 0.5%: Liquidation, wenn der Korb um 32.7% steigt (alle Short) bzw. um 33.0% fällt (alle Long); Erhaltungsmargin am Start 75 $
+    MMR 1.0%: Liquidation, wenn der Korb um 32.0% steigt (alle Short) bzw. um 32.7% fällt (alle Long); Erhaltungsmargin am Start 150 $
+    MMR 2.5%: Liquidation, wenn der Korb um 30.1% steigt (alle Short) bzw. um 31.6% fällt (alle Long); Erhaltungsmargin am Start 375 $
+
+=== 2. Aktueller Stand der beiden Papier-Tests (gelesen, nicht verändert) ===
+  Test 1: letzter Lauf 2026-11-15 18:58, 0 Long / 10 Short, Positionswert 14,658 $, Konto (Start + Ergebnis mit Rebate) 5,265 $, Positionswert/Konto 2.78; bei Börsenhebel 3x wären 4,886 $ Margin gebunden, frei 379 $
+      Cross-Liquidation (alle Short, gleichmäßiger Anstieg aller zehn Kurse): MMR 0.5%: +35.2%, MMR 1.0%: +34.6%, MMR 2.5%: +32.6%
+      Taktgeber laut stand.csv: 64 Läufe, Abstand Median 5 min, größter Abstand 13 min (bis 2026-11-15 16:04:00), Abstände über 15 min: 0
+  Test 2: letzter Lauf 2026-11-15 18:58, 0 Long / 10 Short, Positionswert 14,967 $, Konto (Start + Ergebnis mit Rebate) 4,990 $, Positionswert/Konto 3.00; bei Börsenhebel 3x wären 4,989 $ Margin gebunden, frei 1 $
+      Cross-Liquidation (alle Short, gleichmäßiger Anstieg aller zehn Kurse): MMR 0.5%: +32.7%, MMR 1.0%: +32.0%, MMR 2.5%: +30.1%
+      Taktgeber laut stand.csv: 14 Läufe, Abstand Median 5 min, größter Abstand 9 min (bis 2026-11-15 18:05:00), Abstände über 15 min: 0
+
+=== 3. Gemeinsame Margin: Anteil der Starttage mit Liquidation des ganzen Kontos (Kontostand <= MMR x Positionswert) ===
+  Jeder Kalendertag als Start eines neuen Kontos mit frischen Positionen (wie s02), 5-Minuten-Schlusskurse.
+  Hebel 1:
+    30 Tage  Starts Vorperiode    ( 561): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    30 Tage  Starts Entwicklung   (1325): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    30 Tage  Starts Pruefzeitraum ( 542): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    30 Tage  Starts alle          (2428): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    90 Tage  Starts Vorperiode    ( 561): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    90 Tage  Starts Entwicklung   (1325): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    90 Tage  Starts Pruefzeitraum ( 482): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    90 Tage  Starts alle          (2368): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    180 Tage Starts Vorperiode    ( 561): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    180 Tage Starts Entwicklung   (1325): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    180 Tage Starts Pruefzeitraum ( 392): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    180 Tage Starts alle          (2278): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    365 Tage Starts Vorperiode    ( 561): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    365 Tage Starts Entwicklung   (1325): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    365 Tage Starts Pruefzeitraum ( 207): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    365 Tage Starts alle          (2093): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+  Hebel 3:
+    30 Tage  Starts Vorperiode    ( 561): Liquidation bei MMR 0.5%:  3.2%, MMR 1.0%:  3.6%, MMR 2.5%:  3.6%
+    30 Tage  Starts Entwicklung   (1325): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.3%
+    30 Tage  Starts Pruefzeitraum ( 542): Liquidation bei MMR 0.5%:  0.0%, MMR 1.0%:  0.0%, MMR 2.5%:  0.0%
+    30 Tage  Starts alle          (2428): Liquidation bei MMR 0.5%:  0.7%, MMR 1.0%:  0.8%, MMR 2.5%:  1.0%
+    90 Tage  Starts Vorperiode    ( 561): Liquidation bei MMR 0.5%:  9.1%, MMR 1.0%: 10.3%, MMR 2.5%: 11.9%
+    90 Tage  Starts Entwicklung   (1325): Liquidation bei MMR 0.5%:  5.1%, MMR 1.0%:  5.2%, MMR 2.5%:  6.5%
+    90 Tage  Starts Pruefzeitraum ( 482): Liquidation bei MMR 0.5%:  5.8%, MMR 1.0%:  6.2%, MMR 2.5%:  7.7%
+    90 Tage  Starts alle          (2368): Liquidation bei MMR 0.5%:  6.2%, MMR 1.0%:  6.6%, MMR 2.5%:  8.0%
+    180 Tage Starts Vorperiode    ( 561): Liquidation bei MMR 0.5%: 10.7%, MMR 1.0%: 11.4%, MMR 2.5%: 13.5%
+    180 Tage Starts Entwicklung   (1325): Liquidation bei MMR 0.5%: 12.2%, MMR 1.0%: 12.6%, MMR 2.5%: 14.8%
+    180 Tage Starts Pruefzeitraum ( 392): Liquidation bei MMR 0.5%: 14.8%, MMR 1.0%: 15.6%, MMR 2.5%: 17.3%
+    180 Tage Starts alle          (2278): Liquidation bei MMR 0.5%: 12.2%, MMR 1.0%: 12.8%, MMR 2.5%: 14.9%
+    365 Tage Starts Vorperiode    ( 561): Liquidation bei MMR 0.5%: 13.7%, MMR 1.0%: 14.8%, MMR 2.5%: 18.0%
+    365 Tage Starts Entwicklung   (1325): Liquidation bei MMR 0.5%: 15.7%, MMR 1.0%: 16.8%, MMR 2.5%: 20.1%
+    365 Tage Starts Pruefzeitraum ( 207): Liquidation bei MMR 0.5%:  8.2%, MMR 1.0%:  9.2%, MMR 2.5%: 10.6%
+    365 Tage Starts alle          (2093): Liquidation bei MMR 0.5%: 14.4%, MMR 1.0%: 15.5%, MMR 2.5%: 18.6%
+
+=== 4. Isolierte Margin: Zahl der Haltephasen des Kandidaten, die liquidiert worden wären (13571 Trades in 6.7 Jahren, Vorperiode bis Prüfzeitraum) ===
+  Basis: 5-Minuten-Hochs/-Tiefs des letzten Preises (in Klammern: nur 5-Minuten-Schlusskurse). Verlust je Liquidation = Margin der Position = 30 % / L des Kontos bei Hebel 3.
+    Börsenhebel  3x, MMR 0.5% (Distanz 32.8%): 5 Trades (0.7 pro Jahr; nur Schlusskurse 4); je Fenster {'Vorperiode': 4, 'Pruefzeitraum': 1}; davon im Backtest mit Gewinn beendet 0; Backtest-Ergebnis dadurch zu gut um +6.0% des Startkapitals (Hebel 3, ganze Historie)
+    Börsenhebel  3x, MMR 1.0% (Distanz 32.3%): 6 Trades (0.9 pro Jahr; nur Schlusskurse 4); je Fenster {'Vorperiode': 4, 'Entwicklung': 1, 'Pruefzeitraum': 1}; davon im Backtest mit Gewinn beendet 0; Backtest-Ergebnis dadurch zu gut um +7.8% des Startkapitals (Hebel 3, ganze Historie)
+    Börsenhebel  3x, MMR 2.5% (Distanz 30.8%): 7 Trades (1.0 pro Jahr; nur Schlusskurse 4); je Fenster {'Vorperiode': 5, 'Entwicklung': 1, 'Pruefzeitraum': 1}; davon im Backtest mit Gewinn beendet 0; Backtest-Ergebnis dadurch zu gut um +11.0% des Startkapitals (Hebel 3, ganze Historie)
+    Börsenhebel  5x, MMR 0.5% (Distanz 19.5%): 29 Trades (4.3 pro Jahr; nur Schlusskurse 15); je Fenster {'Vorperiode': 21, 'Entwicklung': 7, 'Pruefzeitraum': 1}; davon im Backtest mit Gewinn beendet 1; Backtest-Ergebnis dadurch zu gut um +42.8% des Startkapitals (Hebel 3, ganze Historie)
+    Börsenhebel  5x, MMR 1.0% (Distanz 19.0%): 36 Trades (5.4 pro Jahr; nur Schlusskurse 19); je Fenster {'Vorperiode': 23, 'Entwicklung': 12, 'Pruefzeitraum': 1}; davon im Backtest mit Gewinn beendet 1; Backtest-Ergebnis dadurch zu gut um +52.9% des Startkapitals (Hebel 3, ganze Historie)
+    Börsenhebel  5x, MMR 2.5% (Distanz 17.5%): 47 Trades (7.0 pro Jahr; nur Schlusskurse 29); je Fenster {'Vorperiode': 28, 'Entwicklung': 18, 'Pruefzeitraum': 1}; davon im Backtest mit Gewinn beendet 2; Backtest-Ergebnis dadurch zu gut um +82.2% des Startkapitals (Hebel 3, ganze Historie)
+    Börsenhebel 10x, MMR 0.5% (Distanz 9.5%): 283 Trades (42.1 pro Jahr; nur Schlusskurse 223); je Fenster {'Vorperiode': 132, 'Entwicklung': 126, 'Pruefzeitraum': 25}; davon im Backtest mit Gewinn beendet 29; Backtest-Ergebnis dadurch zu gut um +457.1% des Startkapitals (Hebel 3, ganze Historie)
+    Börsenhebel 10x, MMR 1.0% (Distanz 9.0%): 319 Trades (47.4 pro Jahr; nur Schlusskurse 265); je Fenster {'Vorperiode': 147, 'Entwicklung': 142, 'Pruefzeitraum': 30}; davon im Backtest mit Gewinn beendet 34; Backtest-Ergebnis dadurch zu gut um +504.2% des Startkapitals (Hebel 3, ganze Historie)
+    Börsenhebel 10x, MMR 2.5% (Distanz 7.5%): 470 Trades (69.9 pro Jahr; nur Schlusskurse 380); je Fenster {'Entwicklung': 220, 'Vorperiode': 197, 'Pruefzeitraum': 53}; davon im Backtest mit Gewinn beendet 50; Backtest-Ergebnis dadurch zu gut um +834.7% des Startkapitals (Hebel 3, ganze Historie)
+    Börsenhebel 20x, MMR 0.5% (Distanz 4.5%): 1178 Trades (175.2 pro Jahr; nur Schlusskurse 999); je Fenster {'Entwicklung': 578, 'Vorperiode': 413, 'Pruefzeitraum': 187}; davon im Backtest mit Gewinn beendet 123; Backtest-Ergebnis dadurch zu gut um +717.8% des Startkapitals (Hebel 3, ganze Historie)
+    Börsenhebel 20x, MMR 1.0% (Distanz 4.0%): 1432 Trades (213.0 pro Jahr; nur Schlusskurse 1210); je Fenster {'Entwicklung': 692, 'Vorperiode': 492, 'Pruefzeitraum': 248}; davon im Backtest mit Gewinn beendet 153; Backtest-Ergebnis dadurch zu gut um +981.8% des Startkapitals (Hebel 3, ganze Historie)
+    Börsenhebel 20x, MMR 2.5% (Distanz 2.5%): 2639 Trades (392.5 pro Jahr; nur Schlusskurse 2274); je Fenster {'Entwicklung': 1356, 'Vorperiode': 830, 'Pruefzeitraum': 453}; davon im Backtest mit Gewinn beendet 314; Backtest-Ergebnis dadurch zu gut um +2550.7% des Startkapitals (Hebel 3, ganze Historie)

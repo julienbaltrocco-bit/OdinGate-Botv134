@@ -1,0 +1,21 @@
+=== E5: Standardwerte von research.lauf ===
+  Signatur: (m, w: numpy.ndarray, hebel=1.0, stop_atr=0.0, eps=None, adverse=0.0, delay=0, ttl=3, taker=False, slip=None, day_limit=None)
+  runner.SLIP = 0.0005 | runner.EPS = 0.0001 | CFG['risiko'] = {'hebel_standard': 3, 'hebel_max': 5, 'max_position_pro_paar': 1.0, 'tagesverlust_limit': 0.03}
+  Yubit-Slippage je Coin (yubit_kosten): {'BTC': np.float64(0.5), 'ETH': np.float64(0.5), 'SOL': np.float64(1.37), 'XRP': np.float64(1.14), 'DOT': np.float64(13.22), 'DOGE': np.float64(1.65), 'ADA': np.float64(6.42), 'LINK': np.float64(1.09), 'AVAX': np.float64(1.45), 'LTC': np.float64(2.18)} bp
+  Entwicklungszeitraum 2021-08-15 00:00:00 bis 2025-04-01 (Gruppe A, sofortige Ausfuehrung, Yubit-Kosten, mit Rebate):
+  Hebel 1, day_limit=9.0 (so in Runde 21/24 gerechnet)       N=+2.156 jahr_N=+0.594 Sharpe=0.946 dd=0.258 Sperrtage=0
+  Hebel 1, Standardaufruf (day_limit aus config.yaml = 0.03) N=+0.478 jahr_N=+0.132 Sharpe=0.248 dd=0.382 Sperrtage=375
+  Hebel 3, day_limit=9.0 (entspricht config_lauf.json)       N=+6.469 jahr_N=+1.782 Sharpe=0.946 dd=0.384 Sperrtage=0
+  Hebel 3, Standardaufruf (day_limit 0.03)                   N=-3.678 jahr_N=-1.013 Sharpe=-0.910 dd=3.589 Sperrtage=1178
+  Hebel 1, Standard-Slippage runner.SLIP statt Yubit-Messung N=+1.834 jahr_N=+0.505 Sharpe=0.803 dd=0.293 Sperrtage=0
+
+=== E6: runner.order_statistik / runner.kennzahlen auf einem engine2-Lauf (Beschriftung aus Kern 1) ===
+  engine2-Zaehler st (Kommentar engine2.py:40: 5 = Stops): [2.0, 2.0, 0.0, 1000000000.0, 0.0, 1.0, 1.0, 2.0]
+  runner.order_statistik: {'orders': 2, 'fills': 2, 'stornos': 0, 'order_zu_fill': 1.0, 'min_standzeit_min': nan, 'sperrtage': 0, 'verstoesse_beide_seiten': 1, 'max_position_anteil': 1.0, 'market_orders': 2}
+  runner.kennzahlen: trades = 1 | trades_kern = 0 | trades_taktik = 0 | Trade-Arten im Lauf: {'stop': 1}
+  Tagesverlust-Limit: Kern 1 schliesst nur die Taktik (engine.py Kopf), Kern 2 schliesst alles (engine2.py:62-77);
+  beide lesen denselben Schluessel risiko.tagesverlust_limit.
+
+real	0m6.415s
+user	0m5.101s
+sys	0m2.630s

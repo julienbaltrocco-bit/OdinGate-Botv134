@@ -1,0 +1,6 @@
+Start 2021-08-15: Konto-Tief 0.910 am 2021-08-15 07:00:00, erstes Konto <= 0: nie, erstes <= 0,5: nie, Ende 8.717
+Start 2024-08-05: Konto-Tief -0.116 am 2024-11-06 14:00:00, erstes Konto <= 0: 2024-10-15 13:00:00, erstes <= 0,5: 2024-09-18 08:00:00, Ende 3.472
+Start 2023-02-01: Konto-Tief -0.157 am 2023-06-28 23:00:00, erstes Konto <= 0: 2023-04-27 18:00:00, erstes <= 0,5: 2023-02-27 05:00:00, Ende 5.240
+Start 2025-04-01: Konto-Tief 0.877 am 2025-04-02 16:00:00, erstes Konto <= 0: nie, erstes <= 0,5: nie, Ende 2.412
+Start 2025-07-20: Konto-Tief -0.043 am 2025-10-13 20:00:00, erstes Konto <= 0: 2025-10-13 17:00:00, erstes <= 0,5: 2025-09-07 22:00:00, Ende 0.897
+Start 2026-02-25: Konto-Tief -0.128 am 2026-08-14 04:00:00, erstes Konto <= 0: 2026-08-03 14:00:00, erstes <= 0,5: 2026-03-22 11:00:00, Ende 0.487

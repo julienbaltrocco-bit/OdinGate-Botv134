@@ -1,0 +1,37 @@
+== 1. Matrix der drei Schranken (modus x YUBIT_LIVE x Schluessel) ==
+modus   YUBIT_LIVE  Schluessel -> Ergebnis | private Aufrufe
+papier  'None'      False      -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  'None'      True       -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  'nein'      False      -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  'nein'      True       -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  'JA'        False      -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  'JA'        True       -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  'ja '       False      -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  'ja '       True       -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  '1'         False      -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  '1'         True       -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  'true'      False      -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  'true'      True       -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  'ja'        False      -> modus=papier orders=2                                        | privat=0 echte_orders=0
+papier  'ja'        True       -> modus=papier orders=2                                        | privat=0 echte_orders=0
+live    'None'      False      -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    'None'      True       -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    'nein'      False      -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    'nein'      True       -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    'JA'        False      -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    'JA'        True       -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    'ja '       False      -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    'ja '       True       -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    '1'         False      -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    '1'         True       -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    'true'      False      -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    'true'      True       -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    'ja'        False      -> SystemExit: modus ist 'live', aber YUBIT_LIVE=ja oder der API-Schlüssel fehlt. Abb | privat=0 echte_orders=0
+live    'ja'        True       -> modus=live orders=2                                          | privat=5 echte_orders=2
+
+== 2. Live-Modus: Sicherheitsdeckel max_order_usd gilt auch fuer das Schliessen ==
+Einstieg: modus=live orders=2 | Positionen: {'AAA': -15.0, 'BBB': -30.0}
+Nach +40 %, Signal dreht auf Long: modus=live orders=0
+  Warnungen: ['AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (2102 > 2000 USDT))']
+  Position AAA laut Buch nach dem Lauf: -15.0 (Short bleibt offen)
+  private Aufrufe: ['positionen']

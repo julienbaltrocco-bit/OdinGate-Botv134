@@ -1,0 +1,6 @@
+Hebel 3, Tageslimit 3 % (wie diagnose_kapital.py)  : Entwicklung -1.013/Jahr, Einbruch 3.589 | Pruefzeitraum -0.399/Jahr, Einbruch 0.977 | Sperrtage 1178 | tiefster Kontostand (Start = 1) -3.642
+      gespeichert: Entwicklung -1.013/Jahr, Einbruch 3.589 | Pruefzeitraum -0.399/Jahr, Einbruch 0.977 | Sperrtage 1178
+Hebel 3, Limit 1,0 (wie config_lauf.json)          : Entwicklung +1.659/Jahr, Einbruch 0.384 | Pruefzeitraum +0.496/Jahr, Einbruch 0.558 | Sperrtage 1 | tiefster Kontostand (Start = 1) +0.887
+Hebel 3, Limit aus                                 : Entwicklung +1.782/Jahr, Einbruch 0.384 | Pruefzeitraum +0.496/Jahr, Einbruch 0.558 | Sperrtage 0 | tiefster Kontostand (Start = 1) +0.887
+Hebel 0.2, Tageslimit 3 %, Hebel 0,2 (regelkonform)  : Entwicklung +0.114/Jahr, Einbruch 0.088 | Pruefzeitraum +0.033/Jahr, Einbruch 0.096 | Sperrtage 3 | tiefster Kontostand (Start = 1) +0.992
+      gespeichert: Entwicklung +0.114/Jahr, Einbruch 0.088 | Pruefzeitraum +0.033/Jahr, Einbruch 0.096 | Sperrtage 3

@@ -1,0 +1,231 @@
+{
+ "A_short_dreh_blockiert": {
+  "einstieg_modus": "live",
+  "einstieg_orders": [
+   [
+    "AAAUSDT",
+    "Sell",
+    1.0,
+    99.9,
+    false
+   ]
+  ],
+  "pos_boerse": -1.0,
+  "nach_dreh": {
+   "signal": 1,
+   "warnungen": [
+    "AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (160 > 150 USDT))"
+   ],
+   "orders_an_boerse": [],
+   "pos_boerse": -1.0,
+   "pos_protokoll": {
+    "AAA": -1.0
+   },
+   "protokoll_zeilen": 1,
+   "netto_ohne_rebate": -60.13,
+   "ausgabe": [
+    "2027-01-15 01:05 UTC [live] 0 Orders, 0 Long / 1 Short, Einsatz 160 USDT, netto mit Rebate -60.13 USDT (0 Abrufe)",
+    "  Hinweis: AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (160 > 150 USDT))"
+   ]
+  },
+  "folgestunden": [
+   {
+    "kurs": 200.0,
+    "orders": [],
+    "pos_boerse": -1.0,
+    "warnungen": [
+     "AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (200 > 150 USDT))"
+    ],
+    "netto_ohne_rebate": -100.13
+   },
+   {
+    "kurs": 300.0,
+    "orders": [],
+    "pos_boerse": -1.0,
+    "warnungen": [
+     "AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (300 > 150 USDT))"
+    ],
+    "netto_ohne_rebate": -200.13
+   },
+   {
+    "kurs": 500.0,
+    "orders": [],
+    "pos_boerse": -1.0,
+    "warnungen": [
+     "AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (500 > 150 USDT))"
+    ],
+    "netto_ohne_rebate": -400.13
+   }
+  ],
+  "kurs_zurueck_unter_deckel_149": {
+   "orders": [
+    [
+     "AAAUSDT",
+     "Buy",
+     1.0,
+     149.13,
+     true
+    ],
+    [
+     "AAAUSDT",
+     "Buy",
+     0.6,
+     149.13,
+     false
+    ]
+   ],
+   "pos_boerse": 0.6,
+   "warnungen": []
+  }
+ },
+ "B_kontrolle_hoher_deckel": {
+  "orders": [
+   [
+    "AAAUSDT",
+    "Buy",
+    1.0,
+    160.14,
+    true
+   ],
+   [
+    "AAAUSDT",
+    "Buy",
+    0.6,
+    160.14,
+    false
+   ]
+  ],
+  "pos_boerse": 0.6,
+  "warnungen": []
+ },
+ "C_kontrolle_unter_deckel": {
+  "orders": [
+   [
+    "AAAUSDT",
+    "Buy",
+    1.0,
+    140.13,
+    true
+   ],
+   [
+    "AAAUSDT",
+    "Buy",
+    0.7,
+    140.13,
+    false
+   ]
+  ],
+  "pos_boerse": 0.7,
+  "warnungen": []
+ },
+ "D_tageslimit_blockiert": {
+  "signal": -1,
+  "gesperrt_tag": "2027-01-15",
+  "orders": [],
+  "pos_boerse": -1.0,
+  "warnungen": [
+   "AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (160 > 150 USDT))"
+  ],
+  "ausgabe": [
+   "Tagesverlust-Limit erreicht (-60.13 USDT): alles schließen, heute Pause.",
+   "2027-01-15 01:05 UTC [live] 0 Orders, 0 Long / 1 Short, Einsatz 160 USDT, netto mit Rebate -60.13 USDT (0 Abrufe)",
+   "  Hinweis: AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (160 > 150 USDT))"
+  ],
+  "folgestunde_warnungen": [
+   "AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (160 > 150 USDT))"
+  ]
+ },
+ "E_stop_blockiert": {
+  "orders": [],
+  "pos_boerse": -1.0,
+  "warnungen": [
+   "AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (152 > 150 USDT))"
+  ],
+  "sperre": {
+   "AAA": -1
+  }
+ },
+ "F_long_gewinn_blockiert": {
+  "pos_nach_einstieg": 1.0,
+  "signal": -1,
+  "orders": [],
+  "pos_boerse": 1.0,
+  "warnungen": [
+   "AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (160 > 150 USDT))"
+  ],
+  "kurs_faellt_auf_149": {
+   "orders": [
+    [
+     "AAAUSDT",
+     "Sell",
+     1.0,
+     148.87,
+     true
+    ],
+    [
+     "AAAUSDT",
+     "Sell",
+     0.6,
+     148.87,
+     false
+    ]
+   ],
+   "pos_boerse": -0.6,
+   "warnungen": []
+  }
+ },
+ "G_config_lauf_im_live_modus": {
+  "nominal_je_coin": 1500.0,
+  "deckel": 2000,
+  "kurs_133.0": {
+   "menge": 15.0,
+   "orders": [
+    [
+     "AAAUSDT",
+     "Buy",
+     15.0,
+     133.12,
+     true
+    ],
+    [
+     "AAAUSDT",
+     "Buy",
+     11.2,
+     133.12,
+     false
+    ]
+   ],
+   "pos_boerse": 11.2,
+   "warnungen": []
+  },
+  "kurs_133.3": {
+   "menge": 15.0,
+   "orders": [],
+   "pos_boerse": -15.0,
+   "warnungen": [
+    "AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (2001 > 2000 USDT))"
+   ]
+  },
+  "kurs_134.0": {
+   "menge": 15.0,
+   "orders": [],
+   "pos_boerse": -15.0,
+   "warnungen": [
+    "AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (2012 > 2000 USDT))"
+   ]
+  }
+ },
+ "H_papier_gleiche_zahlen": {
+  "modus": "papier",
+  "pos_protokoll": {
+   "AAA": 0.6000000000000001
+  },
+  "warnungen": [],
+  "gruende": [
+   "einstieg",
+   "schliessen",
+   "einstieg"
+  ],
+  "orders_an_boerse": 0
+ }
+}

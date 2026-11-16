@@ -1,0 +1,227 @@
+{
+ "summary": "Der Passwortschutz des Trading Boards schützt derzeit nichts: Der Stand, der für docs/stand*.enc.json verschlüsselt wird, liegt im selben Commit unverschlüsselt unter swing-hybrid/vorwaertstest/lauf*/ (88 von 88 geprüften Paaren längengleich), und docs/stand.json wird zusätzlich im Klartext mitveröffentlicht. Heute sind das nur Papierdaten, bei echtem Geld wären Positionen, Größen und Stop-Kurse öffentlich. Geheimnisse (API-Schlüssel, Tokens, private Schlüssel) wurden in 144 Commits und 922 Blobs nicht gefunden; Schlüssel werden nur aus Umgebungsvariablen gelesen und tauchen weder in Dateien noch in Fehlertexten auf. Die drei Schranken vor echten Orders (modus, YUBIT_LIVE=ja, Schlüssel) wirken in allen 28 getesteten Kombinationen; ein Pfad zu versehentlichem Live-Handel wurde nicht gefunden. Im Live-Pfad selbst blockiert der Sicherheitsdeckel max_order_usd aber auch das Schließen: Ein Short lässt sich bei den laufenden Einstellungen nach rund +33 % nicht mehr schließen (nachgestellt reproduziert). Die Stärke der Schlüsseldatei gegen Offline-Angriffe hängt allein am unbekannten Passwort; das Regelrisiko bei Yubit (Bot-Genehmigung, Rebate-Klausel) ist im Repo benannt, aber nicht ausgeräumt.",
+ "findings": [
+  {
+   "id": "SEC-01",
+   "title": "Passwortschutz des Boards ist wirkungslos: derselbe Stand liegt unverschlüsselt im selben öffentlichen Repo",
+   "priority": "P0",
+   "confidence": "hoch",
+   "evidence": "swing-hybrid/vorwaertstest/stunde.sh:12-13 und 25-26: board_verschluesseln liest vorwaertstest/lauf/dashboard.json, danach `git add vorwaertstest/lauf ../docs/stand.enc.json` (Klartext und Chiffrat im selben Commit). `git ls-files` führt lauf/, lauf_tpsl/ und lauf_hebel1_archiv/ mit dashboard.json, zustand.json, protokoll.csv, stand.csv, spannen.csv, bericht.md. Längenvergleich ohne Entschlüsselung: in 88 von 88 Paaren über die ganze Historie ist bytes(Chiffrat) = (bytes(dashboard.json)//16+1)*16, z. B. Commit be1f4dd: 12896 zu 12890 und 7376 zu 7370 (evidence/SEC/chiffrat_vs_klartext_laengen.txt). Klartext Test 2 am HEAD: BTC Short, Einstieg 64599.2, Menge -0.023, stop_kurs 67829.16, ziel_kurs 54909.32. Historie: 68 Fassungen von lauf/dashboard.json, 65 von lauf/zustand.json (evidence/SEC/fassungen_in_historie.txt). Zusätzlich offen: config_lauf*.json (Kapital, Hebel, Stop/Ziel) und reports/ (Regel, alle Ergebnisse).",
+   "impact": "Wer das Repo liest, sieht ohne Passwort alle Positionen, Stückzahlen, Einstiege, Stop- und Zielkurse, jede Order und den Kontoverlauf, lückenlos seit Start. Die Passwortabfrage hält nur Besucher der Pages-Adresse ab, die das Repo nicht öffnen. Aktuell betrifft das Papierdaten (Schaden gering, aber falsches Sicherheitsgefühl). Mit derselben Kette und echtem Geld wäre es ein Vertraulichkeitsvorfall.",
+   "recommendation": "Entscheiden, ob die Daten vertraulich sein sollen. Wenn ja: Laufdaten (lauf*/) nicht mehr in ein öffentliches Repo schreiben, sondern in ein privates Daten-Repo oder auf einen Server; öffentlich nur index.html, schluessel.json und *.enc.json. Die bisherige Historie bleibt öffentlich lesbar; entweder so akzeptieren (Papierdaten) oder Repo privat stellen bzw. Historie bereinigen. Wenn nein: Passwortabfrage entfernen, damit kein Schutz vorgetäuscht wird. Vor Stufe live zwingend klären.",
+   "reproduce": "cd /home/user/OdinGate-Botv134 && python3 -I swing-hybrid/reports/audit/evidence/SEC/laengenvergleich.py . | tail -1 ; git show HEAD:swing-hybrid/vorwaertstest/lauf_tpsl/dashboard.json | head -c 600"
+  },
+  {
+   "id": "SEC-02",
+   "title": "Live-Pfad: Sicherheitsdeckel max_order_usd blockiert auch Schließ-Orders, Position bleibt offen",
+   "priority": "P0",
+   "confidence": "hoch",
+   "evidence": "swing-hybrid/vorwaertstest/bot.py:130-131 prüft `menge * preis > cfg[\"max_order_usd\"]` für jede Order; Schließ-Orders (bot.py:232-233, reduce_only) laufen über dieselbe Funktion (bot.py:244), ebenso das Schließen beim Tagesverlust-Limit und bei Stop/Ziel. Nachgestellt (Stufe live, nachgestellte Börse, temporäres Verzeichnis): Short 15 Stück zu 100 (1500 USDT), Kurs steigt auf 140, Signal dreht auf Long -> Warnung 'AAA: Order fehlgeschlagen (Order über dem Sicherheitsdeckel (2102 > 2000 USDT))', Position laut Buch danach weiter -15.0, keine Order gesendet (evidence/SEC/live_schranken.txt, Teil 2). Laufende Einstellungen: Zielbetrag 1500 USDT je Coin (5000 x 3 / 10), Deckel 2000 (config_lauf.json, config_lauf_tpsl.json) -> Schwelle rund +33 %; config.json: 100 zu 150 -> +50 %.",
+   "impact": "Betrifft nur Stufe live, die nicht aktiv ist. Dort ließe sich eine Position, deren Wert über den Deckel gewachsen ist, weder beim Umkehrsignal noch per Stop oder Tagesverlust-Limit schließen; der Bot wiederholt den Fehlversuch jede Stunde. Bei einem Short ist der Verlust dann nach oben offen, bis von Hand eingegriffen oder liquidiert wird. Die Sicherung wirkt genau im Ernstfall gegen den Betreiber.",
+   "recommendation": "Deckel nur auf eröffnende Orders anwenden; reduce-only-Orders immer zulassen (höchstens gegen die Positionsgröße laut Börse prüfen). Regressionstest aus evidence/SEC/live_schranken.py in tests/ übernehmen, bevor bot.py geändert wird. Vor jedem Live-Betrieb beheben. Überschneidung mit dem Prüfbereich Trading Engine möglich.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && env -u YUBIT_LIVE -u YUBIT_API_KEY -u YUBIT_API_SECRET .venv/bin/python -I -B reports/audit/evidence/SEC/live_schranken.py . | tail -6"
+  },
+  {
+   "id": "SEC-03",
+   "title": "docs/stand.json: unverschlüsselter Stand liegt weiter im veröffentlichten Ordner",
+   "priority": "P1",
+   "confidence": "hoch",
+   "evidence": "`git ls-files docs/` enthält docs/stand.json. Verlauf: 360fa1b (13:32) angelegt, 1695511 (13:41:56, 'Stand nur noch verschlüsselt in docs/') gelöscht, 4dc3256 (13:44:41, automatischer Lauf 'Vorwärtstest (Papier)') wieder angelegt: Ein noch laufender Durchlauf mit der alten stunde.sh (`cp ... ../docs/stand.json; git add`) hat die Datei drei Minuten nach der Umstellung erneut eingecheckt. Inhalt am HEAD: geschrieben 2026-11-15T13:44:41Z, 10 Positionen mit Einstieg, Menge, Kasse, 10 Orders, Kapital 5000, Hebel 3.",
+   "impact": "Wenn GitHub Pages den Ordner /docs ausliefert, ist dieser Stand unter <Pages-Adresse>/stand.json ohne Passwort abrufbar, direkt neben dem geschützten Board. Die Commit-Nachricht von 1695511 behauptet das Gegenteil. Der Vorfall zeigt außerdem, dass Code-Umstellungen und der 5-Minuten-Lauf sich gegenseitig überschreiben können.",
+   "recommendation": "docs/stand.json per `git rm` entfernen (durch den Betreiber, nicht im Audit). Vor Änderungen an stunde.sh den Takt anhalten. Prüfschritt ergänzen, der fehlschlägt, wenn unter docs/ eine andere JSON-Datei als schluessel.json und *.enc.json liegt.",
+   "reproduce": "cd /home/user/OdinGate-Botv134 && git log --format='%h %ad %s' --date=format:'%H:%M:%S' --name-status -- docs/stand.json && git show HEAD:docs/stand.json | head -c 400"
+  },
+  {
+   "id": "SEC-04",
+   "title": "Schlüsseldatei des Boards: Schutz gegen Offline-Angriff hängt allein am Passwort, kein Schlüsselwechsel möglich",
+   "priority": "P1",
+   "confidence": "mittel",
+   "evidence": "docs/schluessel.json: PBKDF2-HMAC-SHA256, runden 600000, Salz 16 Byte, Chiffrat 1232 Byte (= AES-256-CBC über PKCS8 RSA-2048). docs/index.html:147-150 leitet 384 Bit ab (Schlüssel + IV), 154-156 entschlüsselt und importiert. Nachbau mit Wegwerf-Schlüssel und erfundenem Passwort (evidence/SEC/kdf_nachbau.txt): (1) Zum Prüfen eines Kandidaten genügt der erste PBKDF2-Block, der IV ist unnötig; der Angreifer zahlt 600.000 Runden, der Nutzer 1.200.000. (2) Der Klartext ist bekannt (fester PKCS8-Kopf 0d0101010500048204a8308204a40201, Modulus aus vorwaertstest/board_pub.pem), die Prüfung ist eindeutig. Gemessen: 0,105 s je Versuch auf einem CPU-Kern (9,5/s). Annahme für eine aktuelle Grafikkarte rund 14.800 Versuche/s (veröffentlichte hashcat-Werte, nicht hier gemessen): 6 Ziffern 1,1 Min., 10 Mio. häufige Passwörter 11 Min., 6 Kleinbuchstaben 5,8 Std., 8 Kleinbuchstaben 163 Tage (100 Karten: 1,6 Tage), 8 Zeichen Groß/Klein/Ziffern 467 Jahre, 5 Zufallswörter praktisch unerreichbar (evidence/SEC/transport_und_kdf.txt). Historie: schluessel.json 1 Fassung, 46 + 14 Fassungen der *.enc.json (evidence/SEC/fassungen_in_historie.txt). board_verschluesseln.py:20-28: AES-CBC ohne Integritätsschutz, keine Signatur der Pakete.",
+   "impact": "Die Parameter entsprechen dem üblichen Mindestwert für PBKDF2, das Verfahren ist aber auf Grafikkarten gut parallelisierbar. Ein kurzes oder gängiges Passwort fällt in Minuten bis Stunden, unbemerkt und ohne Zugriffsversuche auf die Seite. Schlüsseldatei und alle bisherigen Chiffrate bleiben in der öffentlichen git-Historie: Ein späterer Passwortwechsel schützt alte Stände nicht, und mit dem einen statischen RSA-Schlüssel sind alle künftigen Stände lesbar. Da der öffentliche Schlüssel im Repo liegt, kann jeder mit Schreibzugriff gültige Stand-Pakete erzeugen; das Board erkennt nicht, ob Daten vom Bot stammen. Solange SEC-01 besteht, ist der Angriff allerdings gar nicht nötig.",
+   "recommendation": "Passwort als lange Zufallsphrase wählen (mindestens 5 Zufallswörter oder 14 zufällige Zeichen) und nirgends sonst verwenden. Bei Neuaufsetzen: neues RSA-Schlüsselpaar, speicherhartes Verfahren (Argon2id oder scrypt) oder zumindest nur 256 Bit ableiten und IV zufällig beilegen; AES-GCM statt CBC; Pakete zusätzlich vom Bot signieren. Erzeugung der Schlüsseldatei als Skript ins Repo legen, damit sie prüfbar ist.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && python3 -I reports/audit/evidence/SEC/kdf_nachbau.py && .venv/bin/python -I -B reports/audit/evidence/SEC/transport_und_kdf.py . | sed -n '8,30p'"
+  },
+  {
+   "id": "SEC-05",
+   "title": "Regelrisiko Yubit: Bot nur mit Genehmigung, Rebate-Klausel trifft den Kern des Ansatzes, kein Beleg einer Freigabe",
+   "priority": "P1",
+   "confidence": "mittel",
+   "evidence": "swing-hybrid/vorwaertstest/YUBIT_REGELN.md:8-10 (automatisierte Orders nur mit vorheriger Genehmigung; verboten sei das Verschleiern der Herkunft über VPN, Proxy oder Rechenzentrums-IPs), :19-24 (Rebate-Arbitrage untersagt, Maßnahmen: Rebate abziehen, Gewinne streichen, Konto sperren), :27 ('Sein Gewinn stammt aber überwiegend aus dem Rebate'), :30-33 (verbundene Konten). swing-hybrid/reports/suche_bericht.md:19-21: im Prüfzeitraum +9,1 % Rebate gegen +2,4 % Nettogewinn, ohne Rebate −6,6 %. Im Repo findet sich keine Bestätigung von Yubit (Suche nach genehmig/zusage/partner: nur Hinweise, selbst nachzufragen). Der Papier-Bot ruft die öffentlichen Kursdaten derzeit aus einer Cloud-Sitzung ab; die Workflow-Datei würde von GitHub-Servern abrufen.",
+   "impact": "Bei echtem Geld kann die Börse nach eigener Regel Rebate und Gewinne einziehen oder das Konto sperren. Das Ergebnis 'mit Rebate' steht damit unter einem Vorbehalt, den der Betreiber nicht selbst kontrolliert. Für den Papierbetrieb ohne Konto ist das Risiko auf eine IP-Sperre begrenzt.",
+   "recommendation": "Vor Stufe live schriftliche Bestätigung von Yubit einholen: stündlich laufendes Programm über die offizielle Schnittstelle, Rebate-Satz und -Weg, Zulässigkeit eines Partner-Kontos, IP-Freigabe. Bestätigung außerhalb des öffentlichen Repos ablegen. Entscheidungen auf der Kennzahl ohne Rebate aufbauen, solange keine Zusage vorliegt.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && sed -n 6,33p vorwaertstest/YUBIT_REGELN.md && sed -n 19,21p reports/suche_bericht.md"
+  },
+  {
+   "id": "SEC-06",
+   "title": "Board lädt fremdes Skript ohne Integritätsprüfung vor der Passworteingabe; abgeleiteter Schlüssel dauerhaft in localStorage",
+   "priority": "P2",
+   "confidence": "hoch",
+   "evidence": "docs/index.html:138 `<script src=\"https://unpkg.com/lightweight-charts@4.2.0/...\">` ohne integrity/crossorigin, eingebunden vor dem Skript mit der Passwortabfrage. Keine Content-Security-Policy und keine Referrer-Vorgabe im Dokument (grep: 0 Treffer). docs/index.html:490-491 und 499: die 48 abgeleiteten Byte (AES-Schlüssel + IV zum privaten Schlüssel) werden als 'board-schluessel' unbefristet in localStorage abgelegt; 507 löscht sie nur bei 'Sperren'. Kein docs/CNAME: Die Seite liegt damit voraussichtlich unter <konto>.github.io, dessen Projektseiten sich einen Ursprung und damit denselben localStorage teilen. Verbindungen zu Dritten: unpkg.com, fapi.binance.com, fstream.binance.com (index.html:163, 369, 399, 438, 449, 463).",
+   "impact": "Wird die Auslieferung über unpkg manipuliert, läuft fremder Code mit vollem Zugriff auf Passwortfeld, gespeicherten Schlüssel und entschlüsselte Daten. Der gespeicherte Wert ersetzt das Passwort: Wer das Browserprofil oder eine andere Seite desselben github.io-Kontos kontrolliert, kann das Board öffnen. Binance und unpkg sehen IP-Adresse und Aufrufzeiten der Betrachter.",
+   "recommendation": "Bibliothek in docs/ selbst ablegen oder integrity-Hash (sha384) und crossorigin=anonymous setzen. Content-Security-Policy per meta-Element (script-src 'self' plus Hash des Inline-Skripts, connect-src nur die beiden Binance-Hosts). Schlüssel in sessionStorage statt localStorage oder als nicht exportierbaren CryptoKey in IndexedDB halten und befristen. Eigene Domain oder eigenes Pages-Konto für das Board.",
+   "reproduce": "cd /home/user/OdinGate-Botv134 && grep -n -E '<script src|integrity|Content-Security-Policy|localStorage' docs/index.html"
+  },
+  {
+   "id": "SEC-07",
+   "title": "Betriebsmodell: Code und Grenzwerte kommen bei jedem Lauf ungeprüft aus dem öffentlichen Zweig",
+   "priority": "P2",
+   "confidence": "mittel",
+   "evidence": "swing-hybrid/vorwaertstest/stunde.sh:6-8 holt den Zweig (`git fetch`, `checkout`, `pull --ff-only`, Fehler werden mit `|| true` übergangen), 10-12 und 23-25 führen danach Python-Module aus diesem Stand aus, 18 und 31 pushen. bot.py:41-47 prüft in der Konfiguration nur `modus` und `0 < hebel <= 5`; kapital_usd, max_order_usd, coins, tagesverlust_limit (in config_lauf*.json auf 1.0, also 100 %) sind unbegrenzt. Alle drei Konfigurationsdateien sind eingecheckt. Der Lauf findet laut Betreiber in einer KI-Sitzung mit Push-Recht statt (uebergabe_fuer_dritte.md:57). Branch-Schutz und Schreibberechtigte sind aus dem Repo nicht ersichtlich.",
+   "impact": "Heute: Wer in den Zweig schreiben kann, bestimmt, welcher Code alle fünf Minuten in der Laufumgebung ausgeführt wird, und kann Papier-Ergebnisse und Board verändern. Würde dieselbe Kette mit Schlüsseln und YUBIT_LIVE=ja betrieben, hingen die verbleibende dritte Schranke (modus) und alle Größenbegrenzungen an Schreibrechten auf ein öffentliches Repo. Der dokumentierte Live-Weg (systemd, installieren.sh) zieht nicht automatisch nach, nutzt aber ebenfalls die eingecheckte config.json.",
+   "recommendation": "Für Stufe live: kein automatisches Nachziehen; festen, geprüften Commit ausrollen. Live-Konfiguration außerhalb des Repos (z. B. /etc) und harte Obergrenzen für Kapital, Ordergröße und Hebel im Code. Branch-Schutz mit Prüfpflicht. Laufdaten mit einem eigenen, eng begrenzten Schlüssel in ein getrenntes Daten-Repo schreiben statt mit den Rechten der KI-Sitzung.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && sed -n 4,13p vorwaertstest/stunde.sh && sed -n 41,47p vorwaertstest/bot.py"
+  },
+  {
+   "id": "SEC-08",
+   "title": "live_server.py lauscht auf allen Schnittstellen ohne Anmeldung und ohne TLS",
+   "priority": "P2",
+   "confidence": "hoch",
+   "evidence": "swing-hybrid/vorwaertstest/live_server.py:108 `ThreadingHTTPServer((\"0.0.0.0\", a.port), Handler)`; 86-95: /api/stand liefert Konto, Positionen, Einstiege, Ergebnis und die letzten 12 Orders an jeden Aufrufer, ohne Prüfung; 97-98 schaltet das Zugriffsprotokoll ab. live_start.sh:5-6 startet ihn im Hintergrund auf Port 8765 und schreibt nach /tmp/vorwaertstest_live.log (fester Name in /tmp). Auf dieser Maschine liegt eine solche Logdatei vom 15.11. 13:14 UTC; aktuell läuft kein Prozess und kein Port ist offen.",
+   "impact": "Auf einem Server mit öffentlicher Adresse oder in einem geteilten Netz ist der vollständige Kontostand für jeden lesbar, der Port 8765 erreicht; Zugriffe hinterlassen keine Spur. Nur lesend, kein Eingriff in den Bot möglich.",
+   "recommendation": "Standardbindung 127.0.0.1, Adresse als Parameter; Zugriff von außen nur über SSH-Tunnel oder vorgeschalteten Proxy mit Anmeldung und TLS. Logdatei in ein eigenes Verzeichnis mit engen Rechten. Zugriffsprotokoll einschalten.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && grep -n -E '0\\.0\\.0\\.0|api/stand|log_message' vorwaertstest/live_server.py && cat vorwaertstest/live_start.sh"
+  },
+  {
+   "id": "SEC-09",
+   "title": "Daten eines fremden Signal-Dienstes im öffentlichen Repo",
+   "priority": "P2",
+   "confidence": "mittel",
+   "evidence": "swing-hybrid/reports/suche_runde18_trades.csv (173 Zeilen) und suche_runde20a_trades.csv (185 Zeilen): Spalte `signal` mit den Zeitstempeln des Dienstes auf Mikrosekunden (z. B. 2026-08-17 11:58:26.072946), 51 Coins, 17.08. bis 14.11.2026; erzeugt in scripts/suche_runde18.py:16-17 aus data/raw/plimaflow/historie.parquet mit Filter p_win >= 0,6. reports/suche_protokoll.md:853-859 nennt den Anbieter, den Abruf 'über die Lese-Schnittstelle' (254.696 Einträge) und dessen interne Statistik (617 echte Trades, 51,5 % Treffer, Rendite 0). Die Rohseiten tragen ein Feld meta.tier (abgestufter Zugang). Die Rohdaten selbst (rund 96 MB) sind nicht in git; ein Abrufskript fehlt im Repo.",
+   "impact": "Die qualifizierten Signale eines zugangsbeschränkten Dienstes samt dessen Leistungszahlen sind öffentlich nachlesbar. Je nach Nutzungsbedingungen kann das eine Vertragsverletzung sein und den Zugang kosten. Die Bedingungen liegen dem Audit nicht vor.",
+   "recommendation": "Nutzungsbedingungen des Dienstes prüfen. Bis zur Klärung die beiden CSV-Dateien und die Anbieter-Statistik aus dem öffentlichen Repo nehmen (nur aggregierte Kennzahlen behalten) oder das Repo privat stellen. Abrufweg dokumentieren, Zugangsdaten dabei außerhalb des Repos halten.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && head -3 reports/suche_runde18_trades.csv && wc -l reports/suche_runde18_trades.csv reports/suche_runde20a_trades.csv && sed -n 853,859p reports/suche_protokoll.md"
+  },
+  {
+   "id": "SEC-10",
+   "title": "Lieferkette: nur 8 von 89 Paketen festgeschrieben, ungenutztes freqtrade bringt 70 Pakete mit",
+   "priority": "P2",
+   "confidence": "hoch",
+   "evidence": "swing-hybrid/requirements.txt: 8 Zeilen mit ==, keine Hashes, keine Sperrdatei. .venv: 89 Pakete (evidence/SEC/venv_pakete.txt). Abhängigkeitsabschluss: ohne freqtrade 18 Pakete, 70 nur wegen freqtrade (ccxt, fastapi, uvicorn, aiohttp, python-telegram-bot, SQLAlchemy, cryptography u. a.; evidence/SEC/venv_abhaengigkeiten.txt). `grep freqtrade` in src, scripts, vorwaertstest, tests, labor_strategie: kein Import. .github/workflows/vorwaertstest.yml:23-24 bindet actions/checkout@v4 und setup-python@v5 per verschiebbarem Tag ein, bei `contents: write` (11-12). scripts/kerzen_laden.py:42-45 und die übrigen Ladeskripte prüfen die CHECKSUM-Dateien des Binance-Archivs nicht. src/hybrid/walkforward.py:28-29 lädt Pickle-Dateien aus data/processed/laeufe (eigene Zwischenergebnisse aus scripts/raster.py:29-30).",
+   "impact": "Indirekte Abhängigkeiten können sich bei jeder Neuinstallation ändern; Forschungsergebnisse sind dann nicht bitgenau wiederholbar, und ein kompromittiertes Paket liefe in der Umgebung, die auch den Bot startet. Der Bot selbst nutzt nur die Standardbibliothek, was die Angriffsfläche des Teils, der später Schlüssel hält, klein hält. Pickle führt beim Laden beliebigen Code aus, falls jemand die Dateien im als nicht vertrauenswürdig eingestuften data/-Ordner austauscht.",
+   "recommendation": "freqtrade aus requirements.txt streichen, sofern nicht gebraucht. Sperrdatei mit Hashes erzeugen (pip-compile --generate-hashes oder uv lock) und mit --require-hashes installieren. Bot und Forschung in getrennten Umgebungen halten. Actions auf Commit-SHA festlegen. Archiv-Prüfsummen prüfen. Zwischenergebnisse als Parquet/NPZ statt Pickle speichern. Regelmäßig pip-audit laufen lassen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && cat requirements.txt && .venv/bin/python -I -m pip list --format=freeze | wc -l && cat reports/audit/evidence/SEC/venv_abhaengigkeiten.txt"
+  },
+  {
+   "id": "SEC-11",
+   "title": "Yubit-Client folgt Weiterleitungen und reicht signierte Kopfzeilen an fremde Hosts weiter; Schema der Basisadresse ungeprüft",
+   "priority": "P3",
+   "confidence": "hoch",
+   "evidence": "swing-hybrid/vorwaertstest/yubit.py:39-42 nimmt jede `basis` an (auch http://) und nutzt urllib.request.urlopen mit Standard-Weiterleitung; 76-78 sendet mit timeout=20. Lokaler Versuch mit zwei Testservern auf 127.0.0.1 und erfundenem Schlüssel: Nach einer 302-Weiterleitung auf einen anderen Hostnamen kommen dort Mf-Access-Api-Key, Mf-Access-Timestamp, Mf-Access-Recv-Window und Mf-Access-Sign an (evidence/SEC/transport_und_kdf.txt, Teil a). Die Zertifikats- und Hostnamenprüfung selbst ist nicht abgeschaltet (kein verify=False, kein eigener SSL-Kontext).",
+   "impact": "Gering: Ein Angriff setzt voraus, dass der Börsen-Host selbst eine Weiterleitung ausliefert. Dann gingen API-Schlüssel und eine für fünf Sekunden gültige Signatur an einen fremden Host, das Secret nicht. urllib erlaubt dabei auch den Wechsel von https auf http.",
+   "recommendation": "Eigenen Opener ohne Weiterleitungen verwenden (HTTPRedirectHandler, der abbricht) und im Konstruktor prüfen, dass `basis` mit https:// beginnt. Als Regressionstest den lokalen Versuch aus evidence/SEC/transport_und_kdf.py übernehmen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/SEC/transport_und_kdf.py . | sed -n 1,6p"
+  },
+  {
+   "id": "SEC-12",
+   "title": "Kleinere Punkte: Sitzungsadresse in Commit-Nachrichten, mitveröffentlichte Fremddokumente, Schlüssel auf der Kommandozeile, Entpacker, systemd",
+   "priority": "P3",
+   "confidence": "hoch",
+   "evidence": "(a) 144 Commit-Nachrichten tragen 'Claude-Session: https://claude.ai/code/session_…' (drei verschiedene Sitzungen; stunde.sh:14-17 und 27-30 schreiben sie fest hinein). (b) docs/ enthält neben dem Board API.md, ARCHITECTURE.md, BLOCKERS.md, COMPLIANCE.md, ROADMAP.md, SETUP.md der Next.js-Anwendung; ohne .nojekyll werden sie mitveröffentlicht (Inhalt geprüft: keine Zugangsdaten). (c) board_verschluesseln.py:21 übergibt den AES-Schlüssel je Stand als Argument `-K <hex>` an openssl; er ist für die Laufzeit in der Prozessliste sichtbar. (d) scripts/intake.py:19-20 überspringt nur die Datei mit exakt dem Namen '.env' (nicht .env.local o. ä.) und begrenzt weder Größe noch Anzahl entpackter Dateien; der Parameter <name> wird nicht geprüft. (e) server/installieren.sh:28-37 erzeugt eine systemd-Einheit ohne Abschottung (kein NoNewPrivileges, ProtectSystem, PrivateTmp), ausgeführt aus einem vom Nutzer beschreibbaren Checkout. (f) docs/index.html:6 `noindex` gilt nur für die HTML-Seite, nicht für die JSON-Dateien.",
+   "impact": "Jeweils gering. (a) verrät Sitzungskennungen, die ohne Anmeldung des Besitzers nicht nutzbar sind. (c) betrifft nur Mehrbenutzer-Maschinen. (d) kann bei einem präparierten Archiv die Platte füllen oder eine Zugangsdatei mit anderem Namen entpacken. (e) vergrößert den Schaden, falls der Bot-Code kompromittiert wird.",
+   "recommendation": "(a) Sitzungszeile in automatischen Commits weglassen, sofern keine Vorgabe sie verlangt. (b) Board in einen eigenen Ordner oder ein eigenes Repo legen, das nur Board-Dateien enthält. (c) Schlüssel über eine Datei mit Modus 600 oder über die Standardeingabe übergeben, oder die Verschlüsselung mit der Bibliothek cryptography rechnen. (d) Muster '.env*', Schlüssel- und Zertifikatsendungen überspringen, Obergrenzen für Größe und Anzahl setzen. (e) Abschottungsoptionen ergänzen, Checkout für den Dienstnutzer nur lesbar machen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134 && git log --format=%B | grep -o 'Claude-Session: [^ ]*' | sort | uniq -c ; ls docs ; sed -n 20,21p swing-hybrid/vorwaertstest/board_verschluesseln.py ; sed -n 19,36p swing-hybrid/scripts/intake.py"
+  }
+ ],
+ "reproduced": [
+  {
+   "claim": "Commit 1695511: 'Passwortabfrage, Stand nur noch verschlüsselt in docs/'; Übergabebericht: 'passwortgeschütztes Live-Board'",
+   "result": "abweichend",
+   "command": "cd /home/user/OdinGate-Botv134 && git ls-files docs/ && python3 -I swing-hybrid/reports/audit/evidence/SEC/laengenvergleich.py . | tail -1",
+   "detail": "docs/stand.json liegt weiter unverschlüsselt im veröffentlichten Ordner (durch Commit 4dc3256 drei Minuten später wieder angelegt). Der verschlüsselte Inhalt liegt zudem in jedem Commit als Klartext unter vorwaertstest/lauf*/dashboard.json: 88 von 88 Paaren längengleich."
+  },
+  {
+   "claim": "README.md:44: Ohne YUBIT_LIVE=ja und modus live und Schlüssel wird nie geordert",
+   "result": "reproduziert",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && env -u YUBIT_LIVE .venv/bin/python -I -B reports/audit/evidence/SEC/live_schranken.py . | sed -n 1,30p",
+   "detail": "28 Kombinationen aus modus (papier, live), YUBIT_LIVE (nicht gesetzt, nein, JA, 'ja ', 1, true, ja) und Schlüssel (ja, nein) mit nachgestellter Börse: Private Aufrufe und Orders gibt es nur bei modus=live, YUBIT_LIVE exakt 'ja' und gesetztem Schlüssel (5 private Aufrufe, 2 Orders). modus=live ohne die beiden anderen Bedingungen bricht mit SystemExit ab."
+  },
+  {
+   "claim": "README.md:9: Stufe papier setzt keine Orders, braucht kein Konto und keinen Schlüssel",
+   "result": "reproduziert",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && env -u YUBIT_LIVE .venv/bin/python -I -B reports/audit/evidence/SEC/live_schranken.py . | grep '^papier'",
+   "detail": "In allen 14 Papier-Kombinationen, auch mit gesetztem Schlüssel und YUBIT_LIVE=ja, 0 private Aufrufe. Alle drei eingecheckten Konfigurationen stehen auf modus papier. In dieser Sitzung sind keine YUBIT_*-Variablen gesetzt."
+  },
+  {
+   "claim": "README.md:45: Jede Order ist gedeckelt (max_order_usd) als Sicherung im Live-Betrieb",
+   "result": "abweichend",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && env -u YUBIT_LIVE .venv/bin/python -I -B reports/audit/evidence/SEC/live_schranken.py . | tail -6",
+   "detail": "Der Deckel greift, aber auch für Schließ-Orders: Short über 1500 USDT nach +40 % nicht mehr schließbar ('2102 > 2000 USDT'), Position bleibt offen (bot.py:130-131)."
+  },
+  {
+   "claim": "Commit 1695511: 'Passwort liegt nicht im Repo'; keine Schlüssel im Repo",
+   "result": "reproduziert",
+   "command": "cat /home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/geheimnis_suche.txt",
+   "detail": "144 Commits, 922 Blobs aller Zweige nach 13 Mustern durchsucht (private Schlüssel, AWS, GitHub, Anthropic/OpenAI, Slack, Google, JWT, Telegram, YUBIT_API_*, Signaturen, Passwort-Zuweisungen): 0 echte Treffer, 2 Fehlalarme (Base64-Chiffrat, Testpasswort der Next.js-Tests). Im Repo liegt allerdings der passwortverschlüsselte private Schlüssel (docs/schluessel.json), siehe SEC-04."
+  },
+  {
+   "claim": "Bot-Schlüssel werden nur aus Umgebungsvariablen gelesen und nicht protokolliert",
+   "result": "reproduziert",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && env -u YUBIT_LIVE .venv/bin/python -I -B reports/audit/evidence/SEC/schluessel_leck.py .",
+   "detail": "bot.py:394 liest YUBIT_API_KEY und YUBIT_API_SECRET. Live-Lauf mit erfundenen Schlüsseln und nachgestellter Börse: weder in zustand.json, protokoll.csv, stand.csv, spannen.csv, bericht.md noch in Meldungen oder Fehlertexten (HTTP 401) enthalten."
+  },
+  {
+   "claim": "yubit.py / README: Bot braucht nur die Standardbibliothek",
+   "result": "reproduziert",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && grep -h -E '^(import|from) ' vorwaertstest/*.py | sort -u",
+   "detail": "Alle Importe in vorwaertstest/*.py stammen aus der Standardbibliothek; board_verschluesseln.py ruft zusätzlich das Programm openssl auf."
+  },
+  {
+   "claim": "Signatur wie im offiziellen Yubit-Paket (HMAC-SHA256 über Zeitstempel + Schlüssel + Fenster + Nutzlast)",
+   "result": "ungeklaert",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_vorwaertstest_bot.py",
+   "detail": "Der Test test_signatur_wie_im_offiziellen_paket ist grün (11 von 11 Tests der Datei) und belegt, dass der Code die im Test beschriebene Formel rechnet. Ob diese Formel der echten Schnittstelle entspricht, ist ohne das offizielle Paket und ohne Konto nicht prüfbar; laut README.md:50-51 lief der Live-Teil noch nie gegen ein echtes Konto."
+  },
+  {
+   "claim": "Betreiber: Repo ist öffentlich, GitHub Pages veröffentlicht /docs dieses Zweigs, die Workflow-Datei liegt nicht im Standard-Zweig",
+   "result": "ungeklaert",
+   "detail": "Nicht über das Netz geprüft. Belege nur aus dem Repo: uebergabe_fuer_dritte.md:76 nennt das Repo öffentlich; der zweite bekannte Zweig origin/feature/content-engine-mvp enthält weder .github noch swing-hybrid; der Standard-Zweig ist lokal nicht bestimmbar (origin/HEAD fehlt); kein docs/CNAME."
+  }
+ ],
+ "correct": [
+  "Keine API-Schlüssel, Tokens, Passwörter oder privaten Schlüssel in der git-Historie: 144 Commits, 922 Blobs, 13 Muster, 0 echte Treffer (swing-hybrid/reports/audit/evidence/SEC/geheimnis_suche.txt). Jemals eingecheckte einschlägige Dateinamen: nur .env.example (leer), docs/schluessel.json, board_pub.pem (öffentlicher Schlüssel), board_verschluesseln.py.",
+  "Kein unverschlüsselter privater Schlüssel des Boards im Arbeitsverzeichnis sowie unter /tmp, /home, /root gefunden; git-Remote ohne eingebettete Zugangsdaten.",
+  ".gitignore (Wurzel, Zeilen 25 und 34) schließt *.pem und .env* aus; swing-hybrid/.gitignore schließt data/raw, data/download, data/candles, data/processed und vorwaertstest/daten aus (mit git check-ignore geprüft).",
+  "Drei unabhängige Schranken vor echten Orders (bot.py:107-108, 156-158): modus=live, YUBIT_LIVE exakt 'ja', Schlüssel und Secret gesetzt. In 28 Kombinationen geprüft; kein Pfad zu versehentlichem Live-Handel gefunden. Private Endpunkte werden nur in yubit.py angesprochen; live_server.py und die Skripte unter scripts/ nutzen nur öffentliche Kursdaten.",
+  "Abweichung zwischen Börse und Protokoll führt zum Abbruch ohne Order (bot.py:177-182); die Datei STOPP hält den Lauf an (bot.py:151-153, Test in tests/test_vorwaertstest_bot.py:104-112).",
+  "API-Schlüssel kommen ausschließlich aus Umgebungsvariablen (bot.py:394) und erscheinen weder in Laufdateien noch in Meldungen oder Fehlertexten (evidence/SEC/schluessel_leck.txt). yubit.py:80-85 gibt nur Pfad und Antworttext aus.",
+  "Transport: BASIS ist https (yubit.py:18), urllib prüft Zertifikat und Hostnamen standardmäßig, nirgends abgeschaltet (grep nach verify=, CERT_NONE, _create_unverified: 0 Treffer in src, scripts, vorwaertstest); Zeitlimit 20 s (yubit.py:78); HMAC-SHA256 mit Zeitstempel und Empfangsfenster 5 s (yubit.py:47-51); Order-Kennung mit secrets.token_hex (yubit.py:132).",
+  "Board: keine Stelle, an der Daten als HTML eingefügt werden (kein innerHTML, eval, document.write in docs/index.html); Anzeige nur über textContent und createElement (index.html:171, 181-189). Die einzige innerHTML-Stelle (vorwaertstest/live_seite.html:125) setzt nur selbst berechnete Zahlen ein.",
+  "Board-Kryptografie in den Grundbausteinen stimmig: RSA-2048 mit OAEP/SHA-256 auf beiden Seiten gleich (board_verschluesseln.py:26-27, index.html:156 und 159), AES-256 mit Zufallsschlüssel und Zufalls-IV je Stand (board_verschluesseln.py:25), PBKDF2 mit 600.000 Runden und 16 Byte Zufallssalz, privater Schlüssel im Browser nicht exportierbar importiert (index.html:156).",
+  "Falsches Passwort: Entschlüsselung bzw. Import schlägt fehl, Meldung 'Falsches Passwort.', nichts wird gespeichert oder angezeigt (index.html:492-506); ein ungültiger gespeicherter Schlüssel wird verworfen (index.html:511).",
+  "installieren.sh: Schlüsseldatei /etc/vorwaertstest.env mit Modus 600, YUBIT_LIVE=nein voreingestellt, Hinweis auf Schlüssel ohne Auszahlungsrecht (Zeilen 12-22); README.md:36-39 verlangt Schlüssel ohne Auszahlung und 'nie in den Chat, nie ins Repo'.",
+  "Workflow .github/workflows/vorwaertstest.yml: nur schedule und workflow_dispatch, keine Secrets, kein pull_request_target, concurrency-Gruppe, Papier-Lauf ohne Schlüssel; Schreibrecht nur für contents.",
+  "scripts/intake.py:29-36 weist absolute Pfade und '..' ab und überspringt Symlinks; fremde Uploads werden nur als JSON, CSV und Parquet gelesen (src/hybrid/swing.py:25-41), kein Import fremden Codes; YAML mit safe_load (src/hybrid/config.py:11); pyarrow 26.0.1 liegt weit über den Versionen mit der bekannten Parquet-Deserialisierungslücke.",
+  "Rohdaten des Signal-Dienstes (data/raw/plimaflow, rund 96 MB) sind nicht in git.",
+  "Die 8 direkten Abhängigkeiten in requirements.txt sind exakt festgeschrieben und stimmen mit der installierten Umgebung überein; der Papier-Bot selbst kommt ohne Fremdpakete aus."
+ ],
+ "unclear": [
+  "Länge und Qualität des Board-Passworts sind unbekannt (und wurden bewusst nicht geprüft). Die Widerstandskraft gegen einen Offline-Angriff lässt sich daher nur als Tabelle je Passwortklasse angeben (SEC-04). Die Rate je Grafikkarte ist eine Annahme aus veröffentlichten Benchmarks, hier nicht gemessen.",
+  "Wie Schlüsselpaar und docs/schluessel.json erzeugt wurden, ist nicht nachvollziehbar (kein Skript im Repo). Ob Passwort oder privater Schlüssel in einem Chat-Verlauf, einer Shell-Historie oder einer anderen Sitzung im Klartext vorlagen oder vorliegen, ist nicht prüfbar.",
+  "Ob das Repo tatsächlich öffentlich ist, ob GitHub Pages /docs dieses Zweigs ausliefert und ob <Pages-Adresse>/stand.json abrufbar ist, wurde nicht über das Netz geprüft (Angabe des Betreibers und uebergabe_fuer_dritte.md:76).",
+  "Standard-Zweig, Branch-Schutz, Liste der Schreibberechtigten sowie Status von Secret Scanning und Dependabot auf GitHub sind aus dem lokalen Repo nicht ersichtlich.",
+  "Ob Yubit dem Betreiber eine Genehmigung für ein automatisches Programm, den Rebate-Satz von 85 % oder ein Partner-Konto erteilt hat, ist nicht belegt. Die Regeln sind nur in der Wiedergabe von YUBIT_REGELN.md geprüft, nicht an der Originalquelle. Ob der Abruf öffentlicher Kurse aus Rechenzentrums-Adressen unter die Klausel fällt, ist offen.",
+  "Ob Endpunkte und Signatur von yubit.py der echten Schnittstelle entsprechen: nicht prüfbar ohne Konto und ohne das offizielle Paket; der Live-Teil lief laut README noch nie gegen ein echtes Konto.",
+  "Nutzungsbedingungen des Signal-Dienstes und die Art des Zugangs zur Lese-Schnittstelle (Zugangsdaten, Tarif) liegen nicht vor; ein Abrufskript fehlt im Repo.",
+  "Bekannte Schwachstellen in den 89 installierten Paketen wurden nicht geprüft (kein pip-audit ohne Netz; die Versionen sind jünger als mein Wissensstand).",
+  "Ob unter demselben github.io-Konto weitere Projektseiten liegen, die sich den localStorage mit dem Board teilen.",
+  "Ob live_server.py in der Betriebsumgebung von außen erreichbar war: Auf dieser Maschine zeigt /tmp/vorwaertstest_live.log einen Start am 15.11. um 13:14 UTC; die Netzlage der Umgebung ist unbekannt.",
+  "Die Laufumgebung der separaten KI-Sitzung (welche Rechte, Verbindungen und Zugangsdaten dort neben dem Push-Recht vorhanden sind) war nicht einsehbar."
+ ],
+ "evidence_files": [
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/chiffrat_vs_klartext_laengen.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/laengenvergleich.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/fassungen_in_historie.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/geheimnis_suche.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/live_schranken.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/live_schranken_boerse.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/live_schranken.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/schluessel_leck.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/schluessel_leck.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/kdf_nachbau.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/kdf_nachbau.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/transport_und_kdf.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/transport_und_kdf.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/venv_pakete.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/SEC/venv_abhaengigkeiten.txt"
+ ]
+}

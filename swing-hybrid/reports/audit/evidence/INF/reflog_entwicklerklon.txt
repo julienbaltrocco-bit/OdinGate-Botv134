@@ -1,0 +1,37 @@
+# Lokales reflog dieses Klons (Entwickler-/Audit-Klon), gelesen 2026-11-15T19:47:57Z. Nur lokal vorhanden, deshalb hier gesichert.
+# Zahl der Eintraege 'commit: Vorwärtstest ...' (Bot-Laeufe, die in DIESEM Klon erzeugt wurden): 0
+# Eintraege mit rebase/pull seit Start des Papier-Tests:
+3dfd5b2 HEAD@{2026-11-15 19:03:04 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug (finish): returning to refs/heads/claude/intelligent-sagan-2cviug
+3dfd5b2 HEAD@{2026-11-15 19:03:04 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug (pick): Audit: Zwischenstand der Evidenzdateien (Lauf noch nicht abgeschlossen)
+be1f4dd HEAD@{2026-11-15 19:03:04 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug (start): checkout be1f4dd0bd569963c934ec332a25363ab5966196
+d8ac61d HEAD@{2026-11-15 19:03:03 +0000}: commit: Audit: Zwischenstand der Evidenzdateien (Lauf noch nicht abgeschlossen)
+0e92022 HEAD@{2026-11-15 18:39:59 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug: Fast-forward
+b569b73 HEAD@{2026-11-15 18:31:20 +0000}: commit: swing-hybrid: Übergabebericht für Dritte (Stand, Methode, offene Fragen)
+808b9aa HEAD@{2026-11-15 18:30:43 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug: Fast-forward
+eb94715 HEAD@{2026-11-15 18:26:48 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug (finish): returning to refs/heads/claude/intelligent-sagan-2cviug
+eb94715 HEAD@{2026-11-15 18:26:48 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug (pick): Trading Board, Test 2: Schalter „TP/SL im Bild“ baut den Chart nicht mehr neu auf; Hinweis
+5093997 HEAD@{2026-11-15 18:26:48 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug (start): checkout 5093997e956a1e16b41c1ab2529cf1b061e366e0
+4f5dab7 HEAD@{2026-11-15 18:26:47 +0000}: commit: Trading Board, Test 2: Schalter „TP/SL im Bild“ baut den Chart nicht mehr neu auf; Hinweistext von Test 1 wieder wie zuvor
+a6bf357 HEAD@{2026-11-15 18:06:30 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug (finish): returning to refs/heads/claude/intelligent-sagan-2cviug
+a6bf357 HEAD@{2026-11-15 18:06:30 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug (pick): Trading Board, Test 2: TP und SL immer im Chart sichtbar (Kursskala bis zu beiden Linien), Sch
+c599c1a HEAD@{2026-11-15 18:06:30 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug (start): checkout c599c1a77683d3548f938bd4a1de4d1eb90a99af
+3e1194a HEAD@{2026-11-15 18:06:29 +0000}: commit: Trading Board, Test 2: TP und SL immer im Chart sichtbar (Kursskala bis zu beiden Linien), Schalter „TP/SL im Bild“
+02c6193 HEAD@{2026-11-15 18:03:07 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug: Fast-forward
+b8795b3 HEAD@{2026-11-15 17:45:49 +0000}: commit: Zweites Papier-Konto (Stop 5 %, Gewinnziel 15 %) als getrennter Test; Board mit Umschalter zwischen Test 1 und Test 2
+ae074c0 HEAD@{2026-11-15 17:43:22 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug: Fast-forward
+42c2168 HEAD@{2026-11-15 17:40:34 +0000}: commit: swing-hybrid: Runde 24 (Gewinnziel und Stop) gerechnet, kein belegter Vorteil
+30443cd HEAD@{2026-11-15 17:39:54 +0000}: commit: swing-hybrid: Protokoll Runde 24 (Gewinnziel und Stop für den Kandidaten) festgelegt
+a35341f HEAD@{2026-11-15 17:39:54 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug: Fast-forward
+cf1f1cb HEAD@{2026-11-15 15:00:40 +0000}: commit: Trading Board: öffentlichen Schlüssel ins Repo aufgenommen (war durch .gitignore ausgeschlossen), Stand neu verschlüsselt
+2529dd4 HEAD@{2026-11-15 15:00:40 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug: Fast-forward
+1695511 HEAD@{2026-11-15 13:41:56 +0000}: commit: Trading Board: Passwortabfrage, Stand nur noch verschlüsselt in docs/ (Passwort liegt nicht im Repo)
+dcc1158 HEAD@{2026-11-15 13:40:59 +0000}: pull -q --rebase origin claude/intelligent-sagan-2cviug: Fast-forward
+360fa1b HEAD@{2026-11-15 13:32:45 +0000}: rebase (finish): returning to refs/heads/claude/intelligent-sagan-2cviug
+360fa1b HEAD@{2026-11-15 13:32:45 +0000}: rebase (continue): Trading Board (docs/): Live-Kurse und Kerzen im Browser, Einstiege und Konto vom Papier-Bot; Bot-Stand wird nach docs/stand.json kopiert
+c1bb945 HEAD@{2026-11-15 13:32:40 +0000}: rebase (start): checkout origin/claude/intelligent-sagan-2cviug
+61e25de HEAD@{2026-11-15 13:32:35 +0000}: commit: Trading Board (docs/): Live-Kurse und Kerzen im Browser, Einstiege und Konto vom Papier-Bot; Bot-Stand wird nach docs/stand.json kopiert
+1127c2a HEAD@{2026-11-15 13:27:20 +0000}: pull -q --ff-only origin claude/intelligent-sagan-2cviug: Fast-forward
+4276791 HEAD@{2026-11-15 13:21:52 +0000}: commit: swing-hybrid: Papier-Vorwärtstest neu gestartet mit Hebel 3, Lauf mit Hebel 1 archiviert, Dashboard zeigt Positionswert und Margin
+7807c84 HEAD@{2026-11-15 13:15:25 +0000}: commit: swing-hybrid: Live-Server für den Papier-Vorwärtstest (Yubit-Kurse alle 3 Sekunden, Konto laufend neu bewertet)
+35eb665 HEAD@{2026-11-15 13:10:36 +0000}: commit: swing-hybrid: Live-Dashboard (lädt neue Durchläufe selbst nach), Daten mit Takt und Zeitstempel
+caee215 HEAD@{2026-11-15 13:04:26 +0000}: commit: swing-hybrid: Papier-Vorwärtstest gestartet (voller Einsatz), Dashboard-Daten, Dashboard-Seite, Stundenskript

@@ -1,0 +1,38 @@
+1) Entwicklung: groesster absoluter Rueckgang (5-min-Schluss, Hebel 1) 0.5691 Startkapital, Hoch 2024-08-05 06:20:00 -> Tief 2024-11-06 08:20:00 | x3 = 1.707
+1) Pruefzeitraum: groesster absoluter Rueckgang (5-min-Schluss, Hebel 1) 0.5425 Startkapital, Hoch 2026-02-25 21:35:00 -> Tief 2026-08-16 15:25:00 | x3 = 1.628
+2) 09.12.2024, Hebel 3, feste Groesse am Startkapital, frischer Start am ...:
+     start  konto_vorabend  einsatz_vorabend  einsatz/konto  tagesergebnis_startkap  tagesergebnis_%konto  tagestief_%konto
+2021-08-15           7.955             6.323          0.795                  -0.890               -11.194           -16.193
+2023-07-01           6.046             6.323          1.046                  -0.890               -14.729           -21.307
+2024-01-01           4.059             6.323          1.558                  -0.890               -21.936           -31.733
+2024-06-01           4.003             6.323          1.580                  -0.890               -22.245           -32.179
+2024-09-01           3.993             6.323          1.583                  -0.890               -22.299           -32.258
+2024-10-01           4.129             6.323          1.531                  -0.890               -21.563           -31.194
+2024-11-01           4.750             6.323          1.331                  -0.890               -18.747           -27.119
+2024-11-15           3.197             5.164          1.615                  -0.704               -22.028           -31.891
+2024-12-01           1.406             3.480          2.475                  -0.432               -30.702           -44.547
+2024-12-05           1.036             3.085          2.976                  -0.367               -35.382           -51.255
+2024-12-08           1.034             3.033          2.935                  -0.359               -34.757           -50.341
+   Starttage 01.11.2023 bis 08.12.2024 mit Konto > 0 bis zum Vorabend: 266; Tagesergebnis 09.12.2024 in % des Vorabend-Kontos: schlechtestes -36.3 %, Median -21.1 %, bestes -17.7 %
+3) Groesse am laufenden Kontostand:
+   Entwicklung Hebel 1, Einstieg = Konto x Hebel/10, Stueckzahl fest bis Wechsel: Ende 4.066, CAGR 47.2 %, Einbruch 42.7 %, Tief 0.966, schlechtester Tag -14.0 % (2024-12-09), Konto <= 0: False
+   Entwicklung Hebel 1, zusaetzlich taeglich 00:00 auf Konto x Hebel/10 zurueckgestellt: Ende 2.482, CAGR 28.5 %, Einbruch 54.2 %, Tief 0.966, schlechtester Tag -17.7 % (2022-11-10), Konto <= 0: False
+   Entwicklung Hebel 3, Einstieg = Konto x Hebel/10, Stueckzahl fest bis Wechsel: Ende 4.336, CAGR 49.8 %, Einbruch 84.4 %, Tief 0.808, schlechtester Tag -32.3 % (2025-03-02), Konto <= 0: False
+   Entwicklung Hebel 3, zusaetzlich taeglich 00:00 auf Konto x Hebel/10 zurueckgestellt: Ende 0.357, CAGR -24.7 %, Einbruch 98.2 %, Tief 0.079, schlechtester Tag -53.2 % (2022-11-10), Konto <= 0: False
+   Pruefzeitraum Hebel 1, Einstieg = Konto x Hebel/10, Stueckzahl fest bis Wechsel: Ende 1.142, CAGR 8.9 %, Einbruch 43.1 %, Tief 0.946, schlechtester Tag -8.9 % (2025-04-09), Konto <= 0: False
+   Pruefzeitraum Hebel 1, zusaetzlich taeglich 00:00 auf Konto x Hebel/10 zurueckgestellt: Ende 1.076, CAGR 4.8 %, Einbruch 45.3 %, Tief 0.935, schlechtester Tag -12.4 % (2026-02-06), Konto <= 0: False
+   Pruefzeitraum Hebel 3, Einstieg = Konto x Hebel/10, Stueckzahl fest bis Wechsel: Ende 0.799, CAGR -13.4 %, Einbruch 85.6 %, Tief 0.530, schlechtester Tag -21.4 % (2025-04-09), Konto <= 0: False
+   Pruefzeitraum Hebel 3, zusaetzlich taeglich 00:00 auf Konto x Hebel/10 zurueckgestellt: Ende 0.349, CAGR -49.0 %, Einbruch 91.4 %, Tief 0.251, schlechtester Tag -37.3 % (2026-02-06), Konto <= 0: False
+4) sl5_tp15 Entwicklung: Hebel 1 Einbruch rel. Spitze 0.1504, absoluter Rueckgang 0.3187 (x3 = 0.956); Hebel 3 frischer Start je Tag: Konto <= 0 bei 0.0 %, <= 0,5 bei 19.7 % der 1325 Starttage, schlechtestes Tief 0.065
+4) sl5_tp15 Pruefzeitraum: Hebel 1 Einbruch rel. Spitze 0.3121, absoluter Rueckgang 0.5054 (x3 = 1.516); Hebel 3 frischer Start je Tag: Konto <= 0 bei 9.3 %, <= 0,5 bei 63.7 % der 571 Starttage, schlechtestes Tief -0.429
+5) Stunde 10.10.2025 21:00 UTC (12 Kerzen): Zielgewicht, Tief und Schluss gegen Schluss der Vorstunde
+   BTC   Ziel +1  Tief -0.111  Hoch +0.008  Schluss -0.008
+   ETH   Ziel -1  Tief -0.120  Hoch +0.030  Schluss +0.020
+   SOL   Ziel -1  Tief -0.282  Hoch +0.035  Schluss -0.031
+   XRP   Ziel -1  Tief -0.528  Hoch +0.021  Schluss -0.068
+   DOT   Ziel -1  Tief -0.745  Hoch +0.014  Schluss -0.219
+   DOGE  Ziel -1  Tief -0.617  Hoch +0.010  Schluss -0.151
+   ADA   Ziel -1  Tief -0.618  Hoch +0.014  Schluss -0.138
+   LINK  Ziel -1  Tief -0.582  Hoch +0.013  Schluss -0.129
+   AVAX  Ziel -1  Tief -0.663  Hoch +0.014  Schluss -0.126
+   LTC   Ziel +1  Tief -0.575  Hoch +0.016  Schluss -0.184

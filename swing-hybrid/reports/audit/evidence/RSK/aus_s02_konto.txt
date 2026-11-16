@@ -1,0 +1,207 @@
+KONTOVERLAUF DES KANDIDATEN (Gruppe A, 5-Minuten-Raster, frischer Start am Fensterbeginn, Konto = 1, feste Größe = Startkapital x Hebel / 10)
+Kosten: Taker 0.0800% x (1 - Rebate 85%) = 0.0120% je Seite, Slippage je Coin aus der Yubit-Stichprobe.
+Ohne Zinseszins: Gewinne und Verluste in Punkten des Startkapitals. Vorperiode: bis 10/2020 handeln erst 5 bis 9 der zehn Coins (kleinerer Einsatz).
+Kein Liquidationsmodell: das Konto darf rechnerisch unter null fallen (wie im Rechenkern der Forschung und im Papier-Bot).
+
+Vorperiode 02/2020-08/2021
+  Hebel 1: Ergebnis  +209.2% (+136.1%/Jahr, Sharpe 1.36) | größter Einbruch  32.3% vom Höchststand (Spitze 2020-11-24, Tief 2020-11-26 17:25), größter Rückgang in Punkten des Startkapitals 79.9% | tiefster Kontostand 93.7% am 2020-11-15 22:10
+           in Punkten des Startkapitals: schlechtester Tag -21.0% (2021-04-17), Tagestief gegen Vortagesschluss -41.2% (2021-01-11); Woche -20.9% (bis 2021-02-28); Monat -32.4% (bis 2021-03-31); negative Monate 8/19
+           relativ zum Kontostand davor: schlechtester Tag -16.8% (2020-11-26); Woche -11.3% (bis 2020-11-08); Monat -11.7% (bis 2021-03-31); 1-%-Quantil Tag -6.79%, 0,1-%-Quantil -13.66%
+           rollierend (Punkte des Startkapitals): 1 h -29.3% (2021-04-18 03:30), 24 h -46.4% (2021-01-30 03:55), 7 Tage -67.2% (2021-04-23), 30 Tage -62.4% (2021-03-22)
+           rollierend (relativ zum Kontostand am Fensteranfang): 1 h -14.3% (2020-11-26 03:35), 24 h -27.3% (2020-11-26 19:15), 7 Tage -19.9% (2020-12-02), 30 Tage -21.9% (2020-12-24)
+           Tagesergebnis (Punkte des Startkapitals): Std 5.23%, 5-%-Quantil -6.84%, 1-%-Quantil -14.60%, 0,1-%-Quantil -21.00%, Mittel der schlechtesten 1 % -19.06% (561 Tage)
+           längste Zeit unter dem Höchststand 208 Tage (2020-04-30 bis 2020-11-24)
+           Positionswert / Startkapital: Start 0.50, Median 0.91, Maximum 2.35 (2021-02-10); Positionswert / laufendes Konto: Median 0.56, 95-%-Quantil 1.07, Maximum 1.27 (2020-12-04); Zeitanteil über Nennhebel 7%
+           Konto < 50 % des Startkapitals: 0 Tage / 0 Stunden (erstmals None); < 25 %: 0 Tage / 0 Stunden (erstmals None); < 0 %: 0 Tage / 0 Stunden (erstmals None)
+  Hebel 3: Ergebnis  +627.5% (+408.3%/Jahr, Sharpe 1.36) | größter Einbruch  61.7% vom Höchststand (Spitze 2020-04-30, Tief 2020-11-15 22:10), größter Rückgang in Punkten des Startkapitals 239.7% | tiefster Kontostand 81.1% am 2020-11-15 22:10
+           in Punkten des Startkapitals: schlechtester Tag -63.1% (2021-04-17), Tagestief gegen Vortagesschluss -123.6% (2021-01-11); Woche -62.8% (bis 2021-02-28); Monat -97.3% (bis 2021-03-31); negative Monate 8/19
+           relativ zum Kontostand davor: schlechtester Tag -36.1% (2020-11-26); Woche -28.6% (bis 2020-11-08); Monat -15.5% (bis 2021-03-31); 1-%-Quantil Tag -13.23%, 0,1-%-Quantil -25.83%
+           rollierend (Punkte des Startkapitals): 1 h -88.0% (2021-04-18 03:30), 24 h -139.2% (2021-01-30 03:55), 7 Tage -201.5% (2021-04-23), 30 Tage -187.2% (2021-03-22)
+           rollierend (relativ zum Kontostand am Fensteranfang): 1 h -31.4% (2020-11-26 03:35), 24 h -54.1% (2020-11-26 19:15), 7 Tage -38.7% (2020-12-02), 30 Tage -40.8% (2020-12-24)
+           Tagesergebnis (Punkte des Startkapitals): Std 15.68%, 5-%-Quantil -20.51%, 1-%-Quantil -43.81%, 0,1-%-Quantil -62.99%, Mittel der schlechtesten 1 % -57.17% (561 Tage)
+           längste Zeit unter dem Höchststand 208 Tage (2020-04-30 bis 2020-11-24)
+           Positionswert / Startkapital: Start 1.51, Median 2.72, Maximum 7.05 (2021-02-10); Positionswert / laufendes Konto: Median 1.23, 95-%-Quantil 2.55, Maximum 3.84 (2020-11-15); Zeitanteil über Nennhebel 4%
+           Konto < 50 % des Startkapitals: 0 Tage / 0 Stunden (erstmals None); < 25 %: 0 Tage / 0 Stunden (erstmals None); < 0 %: 0 Tage / 0 Stunden (erstmals None)
+
+Entwicklung 08/2021-03/2025
+  Hebel 1: Ergebnis  +215.6% ( +59.4%/Jahr, Sharpe 0.95) | größter Einbruch  25.8% vom Höchststand (Spitze 2023-02-02, Tief 2023-06-28 20:10), größter Rückgang in Punkten des Startkapitals 56.9% | tiefster Kontostand 96.2% am 2021-08-15 07:45
+           in Punkten des Startkapitals: schlechtester Tag -29.7% (2024-12-09), Tagestief gegen Vortagesschluss -42.9% (2024-12-09); Woche -25.6% (bis 2024-12-15); Monat -27.1% (bis 2024-10-31); negative Monate 20/44
+           relativ zum Kontostand davor: schlechtester Tag -9.0% (2024-12-09); Woche -8.9% (bis 2024-10-06); Monat -11.9% (bis 2024-10-31); 1-%-Quantil Tag -4.53%, 0,1-%-Quantil -6.38%
+           rollierend (Punkte des Startkapitals): 1 h -27.7% (2024-12-09 21:00), 24 h -40.5% (2024-12-09 21:00), 7 Tage -41.3% (2024-12-09), 30 Tage -34.1% (2024-10-27)
+           rollierend (relativ zum Kontostand am Fensteranfang): 1 h -8.9% (2021-10-27 08:05), 24 h -12.6% (2021-09-08 07:50), 7 Tage -16.5% (2021-09-14), 30 Tage -18.8% (2022-03-10)
+           Tagesergebnis (Punkte des Startkapitals): Std 3.29%, 5-%-Quantil -4.35%, 1-%-Quantil -7.65%, 0,1-%-Quantil -13.06%, Mittel der schlechtesten 1 % -11.31% (1325 Tage)
+           längste Zeit unter dem Höchststand 279 Tage (2023-02-02 bis 2023-11-09)
+           Positionswert / Startkapital: Start 1.00, Median 1.01, Maximum 2.18 (2024-12-03); Positionswert / laufendes Konto: Median 0.55, 95-%-Quantil 0.82, Maximum 1.08 (2021-08-29); Zeitanteil über Nennhebel 2%
+           Konto < 50 % des Startkapitals: 0 Tage / 0 Stunden (erstmals None); < 25 %: 0 Tage / 0 Stunden (erstmals None); < 0 %: 0 Tage / 0 Stunden (erstmals None)
+  Hebel 3: Ergebnis  +646.7% (+178.1%/Jahr, Sharpe 0.95) | größter Einbruch  38.4% vom Höchststand (Spitze 2021-09-07, Tief 2021-10-27 08:05), größter Rückgang in Punkten des Startkapitals 170.7% | tiefster Kontostand 88.7% am 2021-08-15 07:45
+           in Punkten des Startkapitals: schlechtester Tag -89.0% (2024-12-09), Tagestief gegen Vortagesschluss -128.8% (2024-12-09); Woche -76.9% (bis 2024-12-15); Monat -81.3% (bis 2024-10-31); negative Monate 20/44
+           relativ zum Kontostand davor: schlechtester Tag -11.7% (2021-09-07); Woche -14.4% (bis 2022-01-02); Monat -17.4% (bis 2022-02-28); 1-%-Quantil Tag -7.91%, 0,1-%-Quantil -11.23%
+           rollierend (Punkte des Startkapitals): 1 h -83.0% (2024-12-09 21:00), 24 h -121.4% (2024-12-09 21:00), 7 Tage -123.9% (2024-12-09), 30 Tage -102.2% (2024-10-27)
+           rollierend (relativ zum Kontostand am Fensteranfang): 1 h -17.8% (2021-10-27 08:05), 24 h -22.3% (2021-09-08 07:50), 7 Tage -28.8% (2021-09-14), 30 Tage -31.3% (2022-03-10)
+           Tagesergebnis (Punkte des Startkapitals): Std 9.86%, 5-%-Quantil -13.04%, 1-%-Quantil -22.95%, 0,1-%-Quantil -39.19%, Mittel der schlechtesten 1 % -33.92% (1325 Tage)
+           längste Zeit unter dem Höchststand 279 Tage (2023-02-02 bis 2023-11-09)
+           Positionswert / Startkapital: Start 3.00, Median 3.02, Maximum 6.53 (2024-12-03); Positionswert / laufendes Konto: Median 0.86, 95-%-Quantil 1.68, Maximum 3.26 (2021-08-15); Zeitanteil über Nennhebel 0%
+           Konto < 50 % des Startkapitals: 0 Tage / 0 Stunden (erstmals None); < 25 %: 0 Tage / 0 Stunden (erstmals None); < 0 %: 0 Tage / 0 Stunden (erstmals None)
+
+davon D1 08/2021-06/2023
+  Hebel 1: Ergebnis   +63.0% ( +33.6%/Jahr, Sharpe 0.56) | größter Einbruch  25.8% vom Höchststand (Spitze 2023-02-02, Tief 2023-06-28 20:10), größter Rückgang in Punkten des Startkapitals 53.9% | tiefster Kontostand 96.2% am 2021-08-15 07:45
+           in Punkten des Startkapitals: schlechtester Tag -11.3% (2022-11-10), Tagestief gegen Vortagesschluss -12.3% (2022-11-10); Woche -12.5% (bis 2022-01-02); Monat -20.9% (bis 2023-02-28); negative Monate 12/23
+           relativ zum Kontostand davor: schlechtester Tag -6.4% (2021-09-07); Woche -8.1% (bis 2022-01-02); Monat -10.4% (bis 2023-02-28); 1-%-Quantil Tag -4.77%, 0,1-%-Quantil -6.30%
+           rollierend (Punkte des Startkapitals): 1 h -12.6% (2021-09-07 15:00), 24 h -19.5% (2021-09-08 07:50), 7 Tage -25.6% (2021-09-14), 30 Tage -31.5% (2022-03-10)
+           rollierend (relativ zum Kontostand am Fensteranfang): 1 h -8.9% (2021-10-27 08:05), 24 h -12.6% (2021-09-08 07:50), 7 Tage -16.5% (2021-09-14), 30 Tage -18.8% (2022-03-10)
+           Tagesergebnis (Punkte des Startkapitals): Std 3.12%, 5-%-Quantil -4.42%, 1-%-Quantil -7.38%, 0,1-%-Quantil -11.03%, Mittel der schlechtesten 1 % -9.19% (685 Tage)
+           längste Zeit unter dem Höchststand 168 Tage (2022-07-30 bis 2023-01-14)
+           Positionswert / Startkapital: Start 1.00, Median 1.00, Maximum 1.53 (2021-09-04); Positionswert / laufendes Konto: Median 0.60, 95-%-Quantil 0.88, Maximum 1.08 (2021-08-29); Zeitanteil über Nennhebel 3%
+           Konto < 50 % des Startkapitals: 0 Tage / 0 Stunden (erstmals None); < 25 %: 0 Tage / 0 Stunden (erstmals None); < 0 %: 0 Tage / 0 Stunden (erstmals None)
+  Hebel 3: Ergebnis  +189.0% (+100.7%/Jahr, Sharpe 0.56) | größter Einbruch  38.4% vom Höchststand (Spitze 2021-09-07, Tief 2021-10-27 08:05), größter Rückgang in Punkten des Startkapitals 161.7% | tiefster Kontostand 88.7% am 2021-08-15 07:45
+           in Punkten des Startkapitals: schlechtester Tag -34.0% (2022-11-10), Tagestief gegen Vortagesschluss -37.0% (2022-11-10); Woche -37.4% (bis 2022-01-02); Monat -62.6% (bis 2023-02-28); negative Monate 12/23
+           relativ zum Kontostand davor: schlechtester Tag -11.7% (2021-09-07); Woche -14.4% (bis 2022-01-02); Monat -17.4% (bis 2022-02-28); 1-%-Quantil Tag -8.55%, 0,1-%-Quantil -11.40%
+           rollierend (Punkte des Startkapitals): 1 h -37.9% (2021-09-07 15:00), 24 h -58.5% (2021-09-08 07:50), 7 Tage -76.7% (2021-09-14), 30 Tage -94.6% (2022-03-10)
+           rollierend (relativ zum Kontostand am Fensteranfang): 1 h -17.8% (2021-10-27 08:05), 24 h -22.3% (2021-09-08 07:50), 7 Tage -28.8% (2021-09-14), 30 Tage -31.3% (2022-03-10)
+           Tagesergebnis (Punkte des Startkapitals): Std 9.36%, 5-%-Quantil -13.25%, 1-%-Quantil -22.14%, 0,1-%-Quantil -33.09%, Mittel der schlechtesten 1 % -27.56% (685 Tage)
+           längste Zeit unter dem Höchststand 168 Tage (2022-07-30 bis 2023-01-14)
+           Positionswert / Startkapital: Start 3.00, Median 2.99, Maximum 4.60 (2021-09-04); Positionswert / laufendes Konto: Median 0.98, 95-%-Quantil 1.76, Maximum 3.26 (2021-08-15); Zeitanteil über Nennhebel 0%
+           Konto < 50 % des Startkapitals: 0 Tage / 0 Stunden (erstmals None); < 25 %: 0 Tage / 0 Stunden (erstmals None); < 0 %: 0 Tage / 0 Stunden (erstmals None)
+
+davon D2 07/2023-03/2025
+  Hebel 1: Ergebnis  +152.1% ( +86.7%/Jahr, Sharpe 1.31) | größter Einbruch  29.6% vom Höchststand (Spitze 2024-08-05, Tief 2024-11-06 08:20), größter Rückgang in Punkten des Startkapitals 56.9% | tiefster Kontostand 95.2% am 2023-07-12 19:40
+           in Punkten des Startkapitals: schlechtester Tag -29.7% (2024-12-09), Tagestief gegen Vortagesschluss -42.9% (2024-12-09); Woche -25.6% (bis 2024-12-15); Monat -27.1% (bis 2024-10-31); negative Monate 8/21
+           relativ zum Kontostand davor: schlechtester Tag -11.1% (2024-12-09); Woche -12.2% (bis 2024-10-06); Monat -16.5% (bis 2024-10-31); 1-%-Quantil Tag -4.43%, 0,1-%-Quantil -9.11%
+           rollierend (Punkte des Startkapitals): 1 h -27.7% (2024-12-09 21:00), 24 h -40.5% (2024-12-09 21:00), 7 Tage -41.3% (2024-12-09), 30 Tage -34.1% (2024-10-27)
+           rollierend (relativ zum Kontostand am Fensteranfang): 1 h -10.9% (2024-12-09 21:00), 24 h -15.2% (2024-12-09 21:00), 7 Tage -15.5% (2024-12-09), 30 Tage -19.8% (2024-10-27)
+           Tagesergebnis (Punkte des Startkapitals): Std 3.46%, 5-%-Quantil -4.08%, 1-%-Quantil -8.31%, 0,1-%-Quantil -19.59%, Mittel der schlechtesten 1 % -13.30% (640 Tage)
+           längste Zeit unter dem Höchststand 118 Tage (2024-12-03 bis 2025-03-31, am Fensterende noch offen)
+           Positionswert / Startkapital: Start 1.00, Median 1.01, Maximum 2.18 (2024-12-03); Positionswert / laufendes Konto: Median 0.66, 95-%-Quantil 0.97, Maximum 1.05 (2023-07-27); Zeitanteil über Nennhebel 4%
+           Konto < 50 % des Startkapitals: 0 Tage / 0 Stunden (erstmals None); < 25 %: 0 Tage / 0 Stunden (erstmals None); < 0 %: 0 Tage / 0 Stunden (erstmals None)
+  Hebel 3: Ergebnis  +456.3% (+260.2%/Jahr, Sharpe 1.31) | größter Einbruch  45.3% vom Höchststand (Spitze 2024-08-05, Tief 2024-11-06 08:20), größter Rückgang in Punkten des Startkapitals 170.7% | tiefster Kontostand 85.7% am 2023-07-12 19:40
+           in Punkten des Startkapitals: schlechtester Tag -89.0% (2024-12-09), Tagestief gegen Vortagesschluss -128.8% (2024-12-09); Woche -76.9% (bis 2024-12-15); Monat -81.3% (bis 2024-10-31); negative Monate 8/21
+           relativ zum Kontostand davor: schlechtester Tag -14.7% (2024-12-09); Woche -20.1% (bis 2024-10-06); Monat -27.7% (bis 2024-10-31); 1-%-Quantil Tag -7.55%, 0,1-%-Quantil -13.61%
+           rollierend (Punkte des Startkapitals): 1 h -83.0% (2024-12-09 21:00), 24 h -121.4% (2024-12-09 21:00), 7 Tage -123.9% (2024-12-09), 30 Tage -102.2% (2024-10-27)
+           rollierend (relativ zum Kontostand am Fensteranfang): 1 h -14.9% (2024-12-09 21:00), 24 h -20.4% (2024-12-09 21:00), 7 Tage -21.5% (2024-10-06), 30 Tage -32.4% (2024-10-27)
+           Tagesergebnis (Punkte des Startkapitals): Std 10.37%, 5-%-Quantil -12.24%, 1-%-Quantil -24.94%, 0,1-%-Quantil -58.77%, Mittel der schlechtesten 1 % -39.91% (640 Tage)
+           längste Zeit unter dem Höchststand 118 Tage (2024-12-03 bis 2025-03-31, am Fensterende noch offen)
+           Positionswert / Startkapital: Start 2.99, Median 3.04, Maximum 6.53 (2024-12-03); Positionswert / laufendes Konto: Median 1.10, 95-%-Quantil 2.52, Maximum 3.49 (2023-07-12); Zeitanteil über Nennhebel 2%
+           Konto < 50 % des Startkapitals: 0 Tage / 0 Stunden (erstmals None); < 25 %: 0 Tage / 0 Stunden (erstmals None); < 0 %: 0 Tage / 0 Stunden (erstmals None)
+
+Pruefzeitraum 04/2025-10/2026
+  Hebel 1: Ergebnis   +26.1% ( +16.7%/Jahr, Sharpe 0.34) | größter Einbruch  33.0% vom Höchststand (Spitze 2026-02-25, Tief 2026-08-16 15:25), größter Rückgang in Punkten des Startkapitals 54.3% | tiefster Kontostand 94.9% am 2025-04-02 20:15
+           in Punkten des Startkapitals: schlechtester Tag -11.1% (2025-07-23), Tagestief gegen Vortagesschluss -14.3% (2025-07-23); Woche -10.6% (bis 2026-03-22); Monat -20.2% (bis 2026-07-31); negative Monate 9/19
+           relativ zum Kontostand davor: schlechtester Tag -9.0% (2025-04-09); Woche -9.6% (bis 2025-04-13); Monat -14.8% (bis 2026-07-31); 1-%-Quantil Tag -4.92%, 0,1-%-Quantil -7.82%
+           rollierend (Punkte des Startkapitals): 1 h -18.0% (2025-10-10 22:15), 24 h -18.4% (2025-10-11 21:15), 7 Tage -19.2% (2025-04-14), 30 Tage -29.0% (2025-08-20)
+           rollierend (relativ zum Kontostand am Fensteranfang): 1 h -12.9% (2025-10-10 22:15), 24 h -13.1% (2025-10-11 21:15), 7 Tage -16.1% (2025-04-14), 30 Tage -18.8% (2025-10-13)
+           Tagesergebnis (Punkte des Startkapitals): Std 2.57%, 5-%-Quantil -3.77%, 1-%-Quantil -6.46%, 0,1-%-Quantil -10.60%, Mittel der schlechtesten 1 % -8.19% (571 Tage)
+           längste Zeit unter dem Höchststand 240 Tage (2026-02-25 bis 2026-10-23, am Fensterende noch offen)
+           Positionswert / Startkapital: Start 1.00, Median 1.00, Maximum 1.46 (2025-07-21); Positionswert / laufendes Konto: Median 0.79, 95-%-Quantil 1.01, Maximum 1.10 (2025-04-02); Zeitanteil über Nennhebel 6%
+           Konto < 50 % des Startkapitals: 0 Tage / 0 Stunden (erstmals None); < 25 %: 0 Tage / 0 Stunden (erstmals None); < 0 %: 0 Tage / 0 Stunden (erstmals None)
+  Hebel 3: Ergebnis   +78.4% ( +50.1%/Jahr, Sharpe 0.34) | größter Einbruch  55.6% vom Höchststand (Spitze 2026-02-25, Tief 2026-08-16 15:25), größter Rückgang in Punkten des Startkapitals 162.8% | tiefster Kontostand 84.7% am 2025-04-02 20:15
+           in Punkten des Startkapitals: schlechtester Tag -33.4% (2025-07-23), Tagestief gegen Vortagesschluss -43.0% (2025-07-23); Woche -31.8% (bis 2026-03-22); Monat -60.7% (bis 2026-07-31); negative Monate 9/19
+           relativ zum Kontostand davor: schlechtester Tag -21.7% (2025-04-09); Woche -24.2% (bis 2025-04-13); Monat -28.9% (bis 2026-07-31); 1-%-Quantil Tag -10.34%, 0,1-%-Quantil -16.12%
+           rollierend (Punkte des Startkapitals): 1 h -54.1% (2025-10-10 22:15), 24 h -55.2% (2025-10-11 21:15), 7 Tage -57.6% (2025-04-14), 30 Tage -87.0% (2025-08-20)
+           rollierend (relativ zum Kontostand am Fensteranfang): 1 h -24.5% (2025-10-10 22:15), 24 h -24.9% (2025-10-11 21:15), 7 Tage -36.6% (2025-04-14), 30 Tage -36.6% (2025-10-13)
+           Tagesergebnis (Punkte des Startkapitals): Std 7.71%, 5-%-Quantil -11.32%, 1-%-Quantil -19.37%, 0,1-%-Quantil -31.81%, Mittel der schlechtesten 1 % -24.56% (571 Tage)
+           längste Zeit unter dem Höchststand 240 Tage (2026-02-25 bis 2026-10-23, am Fensterende noch offen)
+           Positionswert / Startkapital: Start 2.99, Median 2.99, Maximum 4.39 (2025-07-21); Positionswert / laufendes Konto: Median 1.66, 95-%-Quantil 2.55, Maximum 3.69 (2025-04-02); Zeitanteil über Nennhebel 1%
+           Konto < 50 % des Startkapitals: 0 Tage / 0 Stunden (erstmals None); < 25 %: 0 Tage / 0 Stunden (erstmals None); < 0 %: 0 Tage / 0 Stunden (erstmals None)
+  [Vergleich Forschung, durchlaufende Positionen] Ergebnis Hebel 1 +25.8% (+16.5%/Jahr); frischer Start +26.1%
+
+Hauptzeitraum durchgehend 08/2021-10/2026
+  Hebel 1: Ergebnis  +241.5% ( +46.5%/Jahr, Sharpe 0.79) | größter Einbruch  25.8% vom Höchststand (Spitze 2023-02-02, Tief 2023-06-28 20:10), größter Rückgang in Punkten des Startkapitals 56.9% | tiefster Kontostand 96.2% am 2021-08-15 07:45
+           in Punkten des Startkapitals: schlechtester Tag -29.7% (2024-12-09), Tagestief gegen Vortagesschluss -42.9% (2024-12-09); Woche -25.6% (bis 2024-12-15); Monat -27.1% (bis 2024-10-31); negative Monate 29/63
+           relativ zum Kontostand davor: schlechtester Tag -9.0% (2024-12-09); Woche -8.9% (bis 2024-10-06); Monat -11.9% (bis 2024-10-31); 1-%-Quantil Tag -3.86%, 0,1-%-Quantil -6.26%
+           rollierend (Punkte des Startkapitals): 1 h -27.7% (2024-12-09 21:00), 24 h -40.5% (2024-12-09 21:00), 7 Tage -41.3% (2024-12-09), 30 Tage -34.1% (2024-10-27)
+           rollierend (relativ zum Kontostand am Fensteranfang): 1 h -8.9% (2021-10-27 08:05), 24 h -12.6% (2021-09-08 07:50), 7 Tage -16.5% (2021-09-14), 30 Tage -18.8% (2022-03-10)
+           Tagesergebnis (Punkte des Startkapitals): Std 3.09%, 5-%-Quantil -4.14%, 1-%-Quantil -7.38%, 0,1-%-Quantil -11.60%, Mittel der schlechtesten 1 % -10.63% (1896 Tage)
+           längste Zeit unter dem Höchststand 279 Tage (2023-02-02 bis 2023-11-09)
+           Positionswert / Startkapital: Start 1.00, Median 1.00, Maximum 2.18 (2024-12-03); Positionswert / laufendes Konto: Median 0.47, 95-%-Quantil 0.77, Maximum 1.08 (2021-08-29); Zeitanteil über Nennhebel 1%
+           Konto < 50 % des Startkapitals: 0 Tage / 0 Stunden (erstmals None); < 25 %: 0 Tage / 0 Stunden (erstmals None); < 0 %: 0 Tage / 0 Stunden (erstmals None)
+  Hebel 3: Ergebnis  +724.5% (+139.5%/Jahr, Sharpe 0.79) | größter Einbruch  38.4% vom Höchststand (Spitze 2021-09-07, Tief 2021-10-27 08:05), größter Rückgang in Punkten des Startkapitals 170.7% | tiefster Kontostand 88.7% am 2021-08-15 07:45
+           in Punkten des Startkapitals: schlechtester Tag -89.0% (2024-12-09), Tagestief gegen Vortagesschluss -128.8% (2024-12-09); Woche -76.9% (bis 2024-12-15); Monat -81.3% (bis 2024-10-31); negative Monate 29/63
+           relativ zum Kontostand davor: schlechtester Tag -11.7% (2021-09-07); Woche -14.4% (bis 2022-01-02); Monat -17.4% (bis 2022-02-28); 1-%-Quantil Tag -6.73%, 0,1-%-Quantil -11.21%
+           rollierend (Punkte des Startkapitals): 1 h -83.0% (2024-12-09 21:00), 24 h -121.4% (2024-12-09 21:00), 7 Tage -123.9% (2024-12-09), 30 Tage -102.2% (2024-10-27)
+           rollierend (relativ zum Kontostand am Fensteranfang): 1 h -17.8% (2021-10-27 08:05), 24 h -22.3% (2021-09-08 07:50), 7 Tage -28.8% (2021-09-14), 30 Tage -31.3% (2022-03-10)
+           Tagesergebnis (Punkte des Startkapitals): Std 9.26%, 5-%-Quantil -12.42%, 1-%-Quantil -22.13%, 0,1-%-Quantil -34.81%, Mittel der schlechtesten 1 % -31.90% (1896 Tage)
+           längste Zeit unter dem Höchststand 279 Tage (2023-02-02 bis 2023-11-09)
+           Positionswert / Startkapital: Start 3.00, Median 3.01, Maximum 6.53 (2024-12-03); Positionswert / laufendes Konto: Median 0.69, 95-%-Quantil 1.48, Maximum 3.26 (2021-08-15); Zeitanteil über Nennhebel 0%
+           Konto < 50 % des Startkapitals: 0 Tage / 0 Stunden (erstmals None); < 25 %: 0 Tage / 0 Stunden (erstmals None); < 0 %: 0 Tage / 0 Stunden (erstmals None)
+
+Fenster fertig nach 6 s
+
+Start-Tag-Simulation fertig nach 12 s (2457 Starttage, exakt neu gerechnet)
+
+START-TAG-ANALYSE: Jeder Kalendertag (00:00 UTC) als möglicher Starttag eines neuen Kontos, alle Positionen frisch eröffnet.
+Tabelle: Anteil der Starttage, nach denen das Konto innerhalb des Horizonts mindestens einmal unter die Schwelle fällt (5-Minuten-Schlusskurse).
+Hinweis: Starttage überlappen sich stark (keine unabhängigen Stichproben); bis 10/2020 sind weniger als zehn Coins handelbar.
+
+  Hebel 0.2 (regelkonformer Hebel der Forschung, Runde 3)
+    30 Tage  Starts Vorperiode    ( 561): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  98%, schlechtestes Zwanzigstel   94%, schlechtester Start 2021-02-20 ->   90%; Endstand Median 101%, Anteil Endstand im Minus  44%
+    30 Tage  Starts Entwicklung   (1325): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  98%, schlechtestes Zwanzigstel   96%, schlechtester Start 2024-09-29 ->   94%; Endstand Median 100%, Anteil Endstand im Minus  43%
+    30 Tage  Starts Pruefzeitraum ( 542): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  98%, schlechtestes Zwanzigstel   96%, schlechtester Start 2025-09-14 ->   95%; Endstand Median 100%, Anteil Endstand im Minus  49%
+    30 Tage  Starts alle          (2428): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  98%, schlechtestes Zwanzigstel   96%, schlechtester Start 2021-02-20 ->   90%; Endstand Median 100%, Anteil Endstand im Minus  45%
+    90 Tage  Starts Vorperiode    ( 561): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  97%, schlechtestes Zwanzigstel   93%, schlechtester Start 2021-02-13 ->   89%; Endstand Median 103%, Anteil Endstand im Minus  33%
+    90 Tage  Starts Entwicklung   (1325): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  98%, schlechtestes Zwanzigstel   93%, schlechtester Start 2024-08-06 ->   90%; Endstand Median 102%, Anteil Endstand im Minus  30%
+    90 Tage  Starts Pruefzeitraum ( 482): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  97%, schlechtestes Zwanzigstel   93%, schlechtester Start 2025-07-23 ->   91%; Endstand Median 100%, Anteil Endstand im Minus  54%
+    90 Tage  Starts alle          (2368): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  98%, schlechtestes Zwanzigstel   93%, schlechtester Start 2021-02-13 ->   89%; Endstand Median 102%, Anteil Endstand im Minus  35%
+    180 Tage Starts Vorperiode    ( 561): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  96%, schlechtestes Zwanzigstel   93%, schlechtester Start 2021-02-13 ->   89%; Endstand Median 117%, Anteil Endstand im Minus  15%
+    180 Tage Starts Entwicklung   (1325): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  98%, schlechtestes Zwanzigstel   92%, schlechtester Start 2024-08-06 ->   90%; Endstand Median 104%, Anteil Endstand im Minus  20%
+    180 Tage Starts Pruefzeitraum ( 392): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  97%, schlechtestes Zwanzigstel   92%, schlechtester Start 2026-02-26 ->   90%; Endstand Median 101%, Anteil Endstand im Minus  41%
+    180 Tage Starts alle          (2278): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  97%, schlechtestes Zwanzigstel   92%, schlechtester Start 2021-02-13 ->   89%; Endstand Median 104%, Anteil Endstand im Minus  22%
+    365 Tage Starts Vorperiode    ( 561): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  96%, schlechtestes Zwanzigstel   93%, schlechtester Start 2021-02-13 ->   89%; Endstand Median 131%, Anteil Endstand im Minus   0%
+    365 Tage Starts Entwicklung   (1325): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  97%, schlechtestes Zwanzigstel   92%, schlechtester Start 2024-08-06 ->   90%; Endstand Median 109%, Anteil Endstand im Minus   9%
+    365 Tage Starts Pruefzeitraum ( 207): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  97%, schlechtestes Zwanzigstel   93%, schlechtester Start 2025-07-23 ->   91%; Endstand Median 101%, Anteil Endstand im Minus  39%
+    365 Tage Starts alle          (2093): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  97%, schlechtestes Zwanzigstel   92%, schlechtester Start 2021-02-13 ->   89%; Endstand Median 112%, Anteil Endstand im Minus  10%
+
+  Hebel 1.0 (Messbasis der Forschung)
+    30 Tage  Starts Vorperiode    ( 561): < 50 % bei  0.4%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  92%, schlechtestes Zwanzigstel   72%, schlechtester Start 2021-02-20 ->   49%; Endstand Median 104%, Anteil Endstand im Minus  44%
+    30 Tage  Starts Entwicklung   (1325): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  92%, schlechtestes Zwanzigstel   79%, schlechtester Start 2024-09-29 ->   68%; Endstand Median 102%, Anteil Endstand im Minus  43%
+    30 Tage  Starts Pruefzeitraum ( 542): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  92%, schlechtestes Zwanzigstel   82%, schlechtester Start 2025-09-14 ->   75%; Endstand Median 100%, Anteil Endstand im Minus  49%
+    30 Tage  Starts alle          (2428): < 50 % bei  0.1%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  92%, schlechtestes Zwanzigstel   78%, schlechtester Start 2021-02-20 ->   49%; Endstand Median 102%, Anteil Endstand im Minus  45%
+    90 Tage  Starts Vorperiode    ( 561): < 50 % bei  0.7%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  87%, schlechtestes Zwanzigstel   64%, schlechtester Start 2021-02-13 ->   47%; Endstand Median 114%, Anteil Endstand im Minus  33%
+    90 Tage  Starts Entwicklung   (1325): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  89%, schlechtestes Zwanzigstel   67%, schlechtester Start 2024-08-06 ->   51%; Endstand Median 110%, Anteil Endstand im Minus  30%
+    90 Tage  Starts Pruefzeitraum ( 482): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  86%, schlechtestes Zwanzigstel   67%, schlechtester Start 2025-07-23 ->   57%; Endstand Median  99%, Anteil Endstand im Minus  54%
+    90 Tage  Starts alle          (2368): < 50 % bei  0.2%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  89%, schlechtestes Zwanzigstel   66%, schlechtester Start 2021-02-13 ->   47%; Endstand Median 109%, Anteil Endstand im Minus  35%
+    180 Tage Starts Vorperiode    ( 561): < 50 % bei  0.7%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  81%, schlechtestes Zwanzigstel   63%, schlechtester Start 2021-02-13 ->   47%; Endstand Median 187%, Anteil Endstand im Minus  15%
+    180 Tage Starts Entwicklung   (1325): < 50 % bei  0.1%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  88%, schlechtestes Zwanzigstel   61%, schlechtester Start 2024-08-06 ->   50%; Endstand Median 122%, Anteil Endstand im Minus  20%
+    180 Tage Starts Pruefzeitraum ( 392): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  87%, schlechtestes Zwanzigstel   61%, schlechtester Start 2026-02-26 ->   50%; Endstand Median 105%, Anteil Endstand im Minus  41%
+    180 Tage Starts alle          (2278): < 50 % bei  0.2%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  87%, schlechtestes Zwanzigstel   61%, schlechtester Start 2021-02-13 ->   47%; Endstand Median 122%, Anteil Endstand im Minus  22%
+    365 Tage Starts Vorperiode    ( 561): < 50 % bei  0.7%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  80%, schlechtestes Zwanzigstel   63%, schlechtester Start 2021-02-13 ->   47%; Endstand Median 253%, Anteil Endstand im Minus   0%
+    365 Tage Starts Entwicklung   (1325): < 50 % bei  0.1%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  84%, schlechtestes Zwanzigstel   60%, schlechtester Start 2024-08-06 ->   50%; Endstand Median 147%, Anteil Endstand im Minus   9%
+    365 Tage Starts Pruefzeitraum ( 207): < 50 % bei  0.0%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  87%, schlechtestes Zwanzigstel   64%, schlechtester Start 2025-07-23 ->   56%; Endstand Median 107%, Anteil Endstand im Minus  39%
+    365 Tage Starts alle          (2093): < 50 % bei  0.2%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  83%, schlechtestes Zwanzigstel   61%, schlechtester Start 2021-02-13 ->   47%; Endstand Median 162%, Anteil Endstand im Minus  10%
+
+  Hebel 3.0 (Papier-Tests)
+    30 Tage  Starts Vorperiode    ( 561): < 50 % bei 23.4%, < 25 % bei  7.7%, < 0 % bei  2.7%; tiefster Stand Median  75%, schlechtestes Zwanzigstel   15%, schlechtester Start 2021-02-20 ->  -53%; Endstand Median 111%, Anteil Endstand im Minus  44%
+    30 Tage  Starts Entwicklung   (1325): < 50 % bei 13.6%, < 25 % bei  1.4%, < 0 % bei  0.0%; tiefster Stand Median  77%, schlechtestes Zwanzigstel   36%, schlechtester Start 2024-09-29 ->    3%; Endstand Median 105%, Anteil Endstand im Minus  43%
+    30 Tage  Starts Pruefzeitraum ( 542): < 50 % bei  9.8%, < 25 % bei  0.0%, < 0 % bei  0.0%; tiefster Stand Median  76%, schlechtestes Zwanzigstel   45%, schlechtester Start 2025-09-14 ->   26%; Endstand Median 101%, Anteil Endstand im Minus  49%
+    30 Tage  Starts alle          (2428): < 50 % bei 15.0%, < 25 % bei  2.5%, < 0 % bei  0.6%; tiefster Stand Median  77%, schlechtestes Zwanzigstel   34%, schlechtester Start 2021-02-20 ->  -53%; Endstand Median 105%, Anteil Endstand im Minus  45%
+    90 Tage  Starts Vorperiode    ( 561): < 50 % bei 38.3%, < 25 % bei 18.9%, < 0 % bei  7.7%; tiefster Stand Median  62%, schlechtestes Zwanzigstel   -7%, schlechtester Start 2021-02-13 ->  -58%; Endstand Median 141%, Anteil Endstand im Minus  33%
+    90 Tage  Starts Entwicklung   (1325): < 50 % bei 28.6%, < 25 % bei 12.6%, < 0 % bei  4.5%; tiefster Stand Median  67%, schlechtestes Zwanzigstel    2%, schlechtester Start 2024-08-06 ->  -47%; Endstand Median 130%, Anteil Endstand im Minus  30%
+    90 Tage  Starts Pruefzeitraum ( 482): < 50 % bei 41.9%, < 25 % bei 19.5%, < 0 % bei  5.2%; tiefster Stand Median  59%, schlechtestes Zwanzigstel   -0%, schlechtester Start 2025-07-23 ->  -28%; Endstand Median  96%, Anteil Endstand im Minus  54%
+    90 Tage  Starts alle          (2368): < 50 % bei 33.6%, < 25 % bei 15.5%, < 0 % bei  5.4%; tiefster Stand Median  66%, schlechtestes Zwanzigstel   -2%, schlechtester Start 2021-02-13 ->  -58%; Endstand Median 127%, Anteil Endstand im Minus  35%
+    180 Tage Starts Vorperiode    ( 561): < 50 % bei 54.5%, < 25 % bei 28.7%, < 0 % bei  9.3%; tiefster Stand Median  44%, schlechtestes Zwanzigstel  -10%, schlechtester Start 2021-02-13 ->  -58%; Endstand Median 360%, Anteil Endstand im Minus  15%
+    180 Tage Starts Entwicklung   (1325): < 50 % bei 37.1%, < 25 % bei 24.3%, < 0 % bei 11.4%; tiefster Stand Median  64%, schlechtestes Zwanzigstel  -18%, schlechtester Start 2024-08-06 ->  -50%; Endstand Median 167%, Anteil Endstand im Minus  20%
+    180 Tage Starts Pruefzeitraum ( 392): < 50 % bei 44.1%, < 25 % bei 30.9%, < 0 % bei 14.5%; tiefster Stand Median  61%, schlechtestes Zwanzigstel  -18%, schlechtester Start 2026-02-26 ->  -49%; Endstand Median 115%, Anteil Endstand im Minus  41%
+    180 Tage Starts alle          (2278): < 50 % bei 42.6%, < 25 % bei 26.5%, < 0 % bei 11.4%; tiefster Stand Median  60%, schlechtestes Zwanzigstel  -16%, schlechtester Start 2021-02-13 ->  -58%; Endstand Median 165%, Anteil Endstand im Minus  22%
+    365 Tage Starts Vorperiode    ( 561): < 50 % bei 60.2%, < 25 % bei 34.9%, < 0 % bei 11.8%; tiefster Stand Median  41%, schlechtestes Zwanzigstel  -11%, schlechtester Start 2021-02-13 ->  -58%; Endstand Median 558%, Anteil Endstand im Minus   0%
+    365 Tage Starts Entwicklung   (1325): < 50 % bei 48.3%, < 25 % bei 31.2%, < 0 % bei 14.2%; tiefster Stand Median  53%, schlechtestes Zwanzigstel  -21%, schlechtester Start 2024-08-06 ->  -50%; Endstand Median 242%, Anteil Endstand im Minus   9%
+    365 Tage Starts Pruefzeitraum ( 207): < 50 % bei 40.1%, < 25 % bei 23.2%, < 0 % bei  7.7%; tiefster Stand Median  62%, schlechtestes Zwanzigstel   -8%, schlechtester Start 2025-07-23 ->  -32%; Endstand Median 120%, Anteil Endstand im Minus  39%
+    365 Tage Starts alle          (2093): < 50 % bei 50.7%, < 25 % bei 31.4%, < 0 % bei 12.9%; tiefster Stand Median  49%, schlechtestes Zwanzigstel  -17%, schlechtester Start 2021-02-13 ->  -58%; Endstand Median 286%, Anteil Endstand im Minus  10%
+
+  Hebel 5.0 (Obergrenze laut config.yaml / bot.konfig)
+    30 Tage  Starts Vorperiode    ( 561): < 50 % bei 45.3%, < 25 % bei 28.7%, < 0 % bei 13.5%; tiefster Stand Median  59%, schlechtestes Zwanzigstel  -42%, schlechtester Start 2021-02-20 -> -154%; Endstand Median 119%, Anteil Endstand im Minus  44%
+    30 Tage  Starts Entwicklung   (1325): < 50 % bei 38.4%, < 25 % bei 17.9%, < 0 % bei  6.6%; tiefster Stand Median  62%, schlechtestes Zwanzigstel   -6%, schlechtester Start 2024-09-29 ->  -61%; Endstand Median 108%, Anteil Endstand im Minus  43%
+    30 Tage  Starts Pruefzeitraum ( 542): < 50 % bei 40.4%, < 25 % bei 15.3%, < 0 % bei  3.3%; tiefster Stand Median  60%, schlechtestes Zwanzigstel    9%, schlechtester Start 2025-09-14 ->  -24%; Endstand Median 102%, Anteil Endstand im Minus  49%
+    30 Tage  Starts alle          (2428): < 50 % bei 40.4%, < 25 % bei 19.8%, < 0 % bei  7.5%; tiefster Stand Median  61%, schlechtestes Zwanzigstel  -10%, schlechtester Start 2021-02-20 -> -154%; Endstand Median 109%, Anteil Endstand im Minus  45%
+    90 Tage  Starts Vorperiode    ( 561): < 50 % bei 57.6%, < 25 % bei 42.4%, < 0 % bei 28.3%; tiefster Stand Median  37%, schlechtestes Zwanzigstel  -78%, schlechtester Start 2021-02-13 -> -164%; Endstand Median 169%, Anteil Endstand im Minus  33%
+    90 Tage  Starts Entwicklung   (1325): < 50 % bei 54.7%, < 25 % bei 33.0%, < 0 % bei 21.7%; tiefster Stand Median  46%, schlechtestes Zwanzigstel  -64%, schlechtester Start 2024-08-06 -> -145%; Endstand Median 150%, Anteil Endstand im Minus  30%
+    90 Tage  Starts Pruefzeitraum ( 482): < 50 % bei 63.1%, < 25 % bei 45.2%, < 0 % bei 32.4%; tiefster Stand Median  32%, schlechtestes Zwanzigstel  -67%, schlechtester Start 2025-07-23 -> -113%; Endstand Median  93%, Anteil Endstand im Minus  54%
+    90 Tage  Starts alle          (2368): < 50 % bei 57.1%, < 25 % bei 37.7%, < 0 % bei 25.4%; tiefster Stand Median  43%, schlechtestes Zwanzigstel  -69%, schlechtester Start 2021-02-13 -> -164%; Endstand Median 144%, Anteil Endstand im Minus  35%
+    180 Tage Starts Vorperiode    ( 561): < 50 % bei 67.2%, < 25 % bei 57.2%, < 0 % bei 44.0%; tiefster Stand Median   7%, schlechtestes Zwanzigstel  -84%, schlechtester Start 2021-02-13 -> -164%; Endstand Median 534%, Anteil Endstand im Minus  15%
+    180 Tage Starts Entwicklung   (1325): < 50 % bei 61.2%, < 25 % bei 40.3%, < 0 % bei 32.0%; tiefster Stand Median  40%, schlechtestes Zwanzigstel  -97%, schlechtester Start 2024-08-06 -> -151%; Endstand Median 212%, Anteil Endstand im Minus  20%
+    180 Tage Starts Pruefzeitraum ( 392): < 50 % bei 60.7%, < 25 % bei 46.9%, < 0 % bei 41.3%; tiefster Stand Median  35%, schlechtestes Zwanzigstel  -97%, schlechtester Start 2026-02-26 -> -148%; Endstand Median 125%, Anteil Endstand im Minus  41%
+    180 Tage Starts alle          (2278): < 50 % bei 62.6%, < 25 % bei 45.6%, < 0 % bei 36.6%; tiefster Stand Median  34%, schlechtestes Zwanzigstel  -94%, schlechtester Start 2021-02-13 -> -164%; Endstand Median 208%, Anteil Endstand im Minus  22%
+    365 Tage Starts Vorperiode    ( 561): < 50 % bei 71.1%, < 25 % bei 62.4%, < 0 % bei 49.6%; tiefster Stand Median   1%, schlechtestes Zwanzigstel  -85%, schlechtester Start 2021-02-13 -> -164%; Endstand Median 864%, Anteil Endstand im Minus   0%
+    365 Tage Starts Entwicklung   (1325): < 50 % bei 69.9%, < 25 % bei 52.4%, < 0 % bei 40.9%; tiefster Stand Median  22%, schlechtestes Zwanzigstel -102%, schlechtester Start 2024-08-06 -> -151%; Endstand Median 337%, Anteil Endstand im Minus   9%
+    365 Tage Starts Pruefzeitraum ( 207): < 50 % bei 66.2%, < 25 % bei 44.4%, < 0 % bei 36.7%; tiefster Stand Median  37%, schlechtestes Zwanzigstel  -80%, schlechtester Start 2025-07-23 -> -120%; Endstand Median 134%, Anteil Endstand im Minus  39%
+    365 Tage Starts alle          (2093): < 50 % bei 69.9%, < 25 % bei 54.3%, < 0 % bei 42.8%; tiefster Stand Median  15%, schlechtestes Zwanzigstel  -95%, schlechtester Start 2021-02-13 -> -164%; Endstand Median 409%, Anteil Endstand im Minus  10%
+
+fertig nach 12 s

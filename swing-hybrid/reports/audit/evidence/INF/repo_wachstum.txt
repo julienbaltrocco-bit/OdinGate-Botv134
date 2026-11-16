@@ -1,0 +1,27 @@
+Commits gesamt: 144 | davon Bot-Commits: 76
+Neue Blob-Bytes auf Platte je Bot-Commit (komprimiert, Stand des lokalen Objektspeichers): Median 11016, Mittel 13356, max 30523
+Datei                                                    Vers.  roh zuletzt  disk Mittel disk Summe
+docs/stand.enc.json                                         44        17593        10599     466365
+swing-hybrid/vorwaertstest/lauf/spannen.csv                 63        39143         3357     211510
+docs/stand_tpsl.enc.json                                    13        10233         7118      92537
+swing-hybrid/vorwaertstest/lauf/dashboard.json              63        12890         1323      83341
+swing-hybrid/vorwaertstest/lauf/stand.csv                   63         5415          566      35687
+swing-hybrid/vorwaertstest/lauf/bericht.md                  63         1797          517      32562
+swing-hybrid/vorwaertstest/lauf_tpsl/dashboard.json         13         7370         1826      23744
+swing-hybrid/vorwaertstest/lauf_tpsl/spannen.csv            13         8699         1606      20878
+swing-hybrid/vorwaertstest/lauf/zustand.json                63         1206          329      20734
+swing-hybrid/vorwaertstest/lauf_tpsl/bericht.md             13         1803          974      12664
+swing-hybrid/vorwaertstest/lauf_tpsl/zustand.json           13         1396          597       7762
+swing-hybrid/vorwaertstest/lauf_tpsl/stand.csv              13         1204          317       4117
+docs/stand.json                                              2         5847         1570       3141
+Summe neue Blob-Bytes aller Bot-Commits: 1015042
+
+========== Hochrechnung (Annahmen ausgewiesen, keine Messung der Zukunft)
+Zeit mit zwei Konten (ab 17:50 UTC): 13 Laeufe, neue Blob-Bytes je stunde.sh-Lauf (zwei Commits, komprimiert): Median 41070, max 44993
+Bei 288 Laeufen pro Tag (5-Minuten-Takt): 11.8 MB pro Tag, 355 MB pro Monat, 576 Commits pro Tag, 210240 Commits pro Jahr
+Bei 24 Laeufen pro Tag (Stundentakt laut README): 0.99 MB pro Tag
+dashboard.json Test 1 heute 12890 Bytes bei 64 Verlaufspunkten (113 Bytes je Punkt); bei 400 Punkten rund 50858 Bytes
+  -> stand.enc.json dann rund 68432 Bytes je Lauf und Konto, als git-Objekt (zlib ueber Base64-Zufallsdaten) rund 51395 Bytes; nicht delta-komprimierbar, weil jeder Lauf neuen AES-Schluessel und IV zieht (board_verschluesseln.py:25)
+  -> zwei Konten: rund 103 kB je Lauf allein fuer die verschluesselten Staende = 30 MB pro Tag, 0.89 GB pro Monat bei 5-Minuten-Takt
+spannen.csv: 60.6 Bytes je Zeile, 10 Zeilen je Lauf -> 175 kB pro Tag und Konto bei 5-Minuten-Takt, 64 MB pro Jahr; 50 MB nach 286 Tagen, 100 MB nach 573 Tagen
+  bei Stundentakt: 5.3 MB pro Jahr

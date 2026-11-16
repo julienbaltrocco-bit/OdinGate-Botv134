@@ -1,0 +1,97 @@
+{
+ "bis": "2021-09-13 23:55:00",
+ "ergebnis": {
+  "echter Bot, Lauf 1x je Stunde (hh:00)": {
+   "laeufe": 720,
+   "tage": 30,
+   "jahr": -0.0866,
+   "sharpe": -0.319,
+   "einbruch": 0.0719,
+   "orders": 382,
+   "stops": 13,
+   "ziele": 13,
+   "einstiege": 193,
+   "schliessen_signal": 163,
+   "umsatz_tag": 1.2764,
+   "funding": -0.00156,
+   "warnungen": 9,
+   "warnungen_arten": {
+    "DOGE: nur 362581.5808556919 von 362581.580855692 gef\u00fcllt": 1,
+    "DOGE: nur 368568.48002358794 von 368568.480023588 gef\u00fcllt": 1,
+    "DOGE: nur 352100.27815921896 von 352100.278159219 gef\u00fcllt": 1,
+    "DOGE: nur 345053.65584348293 von 345053.655843483 gef\u00fcllt": 1,
+    "ADA: nur 38785.24609238599 von 38785.246092386 gef\u00fcllt": 1,
+    "ADA: nur 38633.90511512899 von 38633.905115129 gef\u00fcllt": 1,
+    "XRP: nur 91835.79759390198 von 91835.797593902 gef\u00fcllt": 1,
+    "XRP: nur 91937.11501332998 von 91937.11501333 gef\u00fcllt": 1,
+    "ADA: nur 39088.457178594996 von 39088.457178595 gef\u00fcllt": 1
+   },
+   "sekunden": 1
+  },
+  "echter Bot, Lauf alle 5 Minuten": {
+   "laeufe": 8640,
+   "tage": 30,
+   "jahr": -0.2655,
+   "sharpe": -1.128,
+   "einbruch": 0.0633,
+   "orders": 382,
+   "stops": 23,
+   "ziele": 12,
+   "einstiege": 193,
+   "schliessen_signal": 154,
+   "umsatz_tag": 1.2766,
+   "funding": -0.0009,
+   "warnungen": 9,
+   "warnungen_arten": {
+    "DOGE: nur 362581.5808556919 von 362581.580855692 gef\u00fcllt": 1,
+    "DOGE: nur 368568.48002358794 von 368568.480023588 gef\u00fcllt": 1,
+    "DOGE: nur 352100.27815921896 von 352100.278159219 gef\u00fcllt": 1,
+    "DOGE: nur 345053.65584348293 von 345053.655843483 gef\u00fcllt": 1,
+    "ADA: nur 38785.24609238599 von 38785.246092386 gef\u00fcllt": 1,
+    "ADA: nur 38633.90511512899 von 38633.905115129 gef\u00fcllt": 1,
+    "XRP: nur 91835.79759390198 von 91835.797593902 gef\u00fcllt": 1,
+    "XRP: nur 91937.11501332998 von 91937.11501333 gef\u00fcllt": 1,
+    "ADA: nur 39088.457178594996 von 39088.457178595 gef\u00fcllt": 1
+   },
+   "sekunden": 6
+  },
+  "echter Bot, Lauf 1x je Stunde (hh:05)": {
+   "laeufe": 720,
+   "tage": 30,
+   "jahr": 0.0758,
+   "sharpe": 0.278,
+   "einbruch": 0.0437,
+   "orders": 382,
+   "stops": 13,
+   "ziele": 14,
+   "einstiege": 193,
+   "schliessen_signal": 162,
+   "umsatz_tag": 1.2772,
+   "funding": -0.0016,
+   "warnungen": 16,
+   "warnungen_arten": {
+    "DOGE: nur 362213.85105766397 von 362213.851057664 gef\u00fcllt": 1,
+    "DOGE: nur 360633.27202567697 von 360633.272025677 gef\u00fcllt": 1,
+    "DOGE: nur 360087.8614381899 von 360087.86143819 gef\u00fcllt": 1,
+    "DOGE: nur 349393.80175395595 von 349393.801753956 gef\u00fcllt": 1,
+    "XRP: nur 86273.83314640599 von 86273.833146406 gef\u00fcllt": 1,
+    "DOGE: nur 351172.91754459793 von 351172.917544598 gef\u00fcllt": 1,
+    "DOGE: nur 333133.45326137595 von 333133.453261376 gef\u00fcllt": 1,
+    "DOGE: nur 331840.05309440795 von 331840.053094408 gef\u00fcllt": 1,
+    "DOGE: nur 332203.84027639293 von 332203.840276393 gef\u00fcllt": 1,
+    "DOGE: nur 330633.1625061989 von 330633.162506199 gef\u00fcllt": 1,
+    "DOGE: nur 319203.26864146994 von 319203.26864147 gef\u00fcllt": 1,
+    "ADA: nur 38565.36829926699 von 38565.368299267 gef\u00fcllt": 1,
+    "ADA: nur 39840.63745019899 von 39840.637450199 gef\u00fcllt": 1,
+    "XRP: nur 91583.47834050699 von 91583.478340507 gef\u00fcllt": 1,
+    "ADA: nur 40030.42312157199 von 40030.423121572 gef\u00fcllt": 1,
+    "ADA: nur 39251.08921772499 von 39251.089217725 gef\u00fcllt": 1
+   },
+   "sekunden": 1
+  },
+  "differenz_5min_minus_stuendlich": {
+   "jahr": -0.1789,
+   "t": -0.45
+  }
+ }
+}

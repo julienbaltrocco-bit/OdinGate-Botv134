@@ -1,0 +1,18 @@
+Antwort des Servers                         -> was Yubit.ticker() wirft
+  gueltige Antwort                         -> kein Fehler
+  HTTP 429                                 -> vorwaertstest.yubit.YubitFehler: "HTTP 429 bei /oapi/contract/market/public/v1/tickers: b'too "  -> wird in bot.py:172 abgefangen (Coin wird uebersprungen)
+  code != 0                                -> vorwaertstest.yubit.YubitFehler: 'Yubit meldet Fehler bei /oapi/contract/market/public/v1/tick'  -> wird in bot.py:172 abgefangen (Coin wird uebersprungen)
+  HTML statt JSON                          -> vorwaertstest.yubit.YubitFehler: 'Keine brauchbare Antwort von /oapi/contract/market/public/v1'  -> wird in bot.py:172 abgefangen (Coin wird uebersprungen)
+  keine Antwort (Zeitlimit)                -> vorwaertstest.yubit.YubitFehler: 'Keine brauchbare Antwort von /oapi/contract/market/public/v1'  -> wird in bot.py:172 abgefangen (Coin wird uebersprungen)
+  leere Liste                              -> builtins.IndexError: 'list index out of range'  -> wird in bot.py:172 abgefangen (Coin wird uebersprungen)
+  Verbindung ohne Antwort geschlossen      -> http.client.RemoteDisconnected: 'Remote end closed connection without response'  -> NICHT abgefangen: der ganze Lauf bricht ab
+  TCP-Reset                                -> builtins.ConnectionResetError: '[Errno 104] Connection reset by peer'  -> NICHT abgefangen: der ganze Lauf bricht ab
+  Antwort bricht mitten im Text ab         -> http.client.IncompleteRead: 'IncompleteRead(13 bytes read, 987 more expected)'  -> NICHT abgefangen: der ganze Lauf bricht ab
+  JSON-Liste statt Objekt                  -> builtins.AttributeError: "'list' object has no attribute 'get'"  -> NICHT abgefangen: der ganze Lauf bricht ab
+  Feld bidPrice ist null                   -> builtins.TypeError: "float() argument must be a string or a real number, not 'Non"  -> NICHT abgefangen: der ganze Lauf bricht ab
+
+Ganzer Durchlauf bot.schritt mit zehn Coins, wenn EINE Verbindung ohne Antwort geschlossen wird:
+  Ausnahme verlaesst bot.schritt: RemoteDisconnected: Remote end closed connection without response  | geschriebene Dateien: []
+
+Zeitlimit je Abruf laut yubit.py:78: 20 s; Abrufe je Coin in bot.markt_lesen: 5 (bot.py:84,91,94,97,98); keine Wiederholung, kein Gesamtlimit.
+Rechnerische Obergrenze eines Laufs bei haengender Schnittstelle: 10 Coins x 5 Abrufe x 20 s = 1000 s je Konto, also bis 2000 s je stunde.sh-Lauf (Takt: rund 300 s).

@@ -1,0 +1,16 @@
+Märkte geladen nach 5 s; Vorperiode 2020-02-01 00:00:00 .. 2021-08-14 23:55:00, Haupt 2021-08-15 00:00:00 .. 2026-10-23 23:55:00
+Yubit-Slippage je Coin (Anteil): {'BTC': np.float64(5e-05), 'ETH': np.float64(5e-05), 'SOL': np.float64(0.000137), 'XRP': np.float64(0.000114), 'DOT': np.float64(0.001322), 'DOGE': np.float64(0.000165), 'ADA': np.float64(0.000642), 'LINK': np.float64(0.000109), 'AVAX': np.float64(0.000145), 'LTC': np.float64(0.000218)} nicht gefunden: []
+Gebühren: Taker 0.0008 Rebate 0.85 -> effektiv 0.00012000000000000003
+
+[vor] Lauf fertig nach 8 s. Sperrtage (Tageslimit ausgelöst): H1 0, H3 0; Trades H1 2753; größte Abweichung eq(H3) - 3*eq(H1): 7.994e-15
+[vor] Nachbau gegen Rechenkern: größte Abweichung Kontoverlauf 0.000e+00, brutto 0.000e+00, Volumen 0.000e+00, Funding 0.000e+00; Maker-Volumen im Kern 0.000e+00
+  Vorperiode Tage 561  N +2.0917  pro Jahr +1.3609  Sharpe 1.3628
+  erste Stundenkerze je Coin: {'BTC': '2020-01-01 00:00:00', 'ETH': '2020-01-01 00:00:00', 'SOL': '2020-09-14 07:00:00', 'XRP': '2020-01-06 08:00:00', 'DOT': '2020-08-22 07:00:00', 'DOGE': '2020-07-10 09:00:00', 'ADA': '2020-01-31 08:00:00', 'LINK': '2020-01-17 08:00:00', 'AVAX': '2020-09-23 07:00:00', 'LTC': '2020-01-09 08:00:00'}
+
+[haupt] Lauf fertig nach 13 s. Sperrtage (Tageslimit ausgelöst): H1 0, H3 0; Trades H1 10818; größte Abweichung eq(H3) - 3*eq(H1): 1.421e-14
+[haupt] Nachbau gegen Rechenkern: größte Abweichung Kontoverlauf 0.000e+00, brutto 0.000e+00, Volumen 0.000e+00, Funding 0.000e+00; Maker-Volumen im Kern 0.000e+00
+  D1             Tage   685  N +0.6312  pro Jahr +0.3363  Sharpe 0.5640  Einbruch (Tagesschluss, wie Runde 24) 0.2458
+  D2             Tage   640  N +1.5252  pro Jahr +0.8698  Sharpe 1.3165  Einbruch (Tagesschluss, wie Runde 24) 0.2550
+  Entwicklung    Tage  1325  N +2.1564  pro Jahr +0.5940  Sharpe 0.9457  Einbruch (Tagesschluss, wie Runde 24) 0.2458
+  Pruefzeitraum  Tage   571  N +0.2585  pro Jahr +0.1652  Sharpe 0.3369  Einbruch (Tagesschluss, wie Runde 24) 0.3130
+fertig nach 30 s

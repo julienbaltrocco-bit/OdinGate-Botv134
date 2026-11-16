@@ -1,0 +1,26 @@
+=== (a) Engagement: Summe |Stueckzahl x Kurs| in Einheiten des Startkapitals, Hebel 1
+gesamt         Brutto-Engagement / Startkapital: Mittel 1.020, Median 1.002, 95-%-Wert 1.318, Maximum 2.178 am 2024-12-03 11:55:00
+Entwicklung    Brutto-Engagement / Startkapital: Mittel 1.031, Median 1.005, 95-%-Wert 1.375, Maximum 2.178 am 2024-12-03 11:55:00
+Pruefzeitraum  Brutto-Engagement / Startkapital: Mittel 0.995, Median 0.996, 95-%-Wert 1.198, Maximum 1.465 am 2025-07-21 15:20:00
+Brutto-Engagement / laufender Kontostand: Mittel 0.471, Maximum 1.081
+Am 2024-12-09 00:00: Brutto-Engagement 2.103, Netto-Engagement 1.907, Kontostand 3.309 (Startkapital = 1)
+fuenf schlechteste Tage (Hebel 1, Anteil am Startkapital): {'2024-12-09': -0.2968, '2024-03-05': -0.1389, '2022-11-10': -0.1134, '2025-03-02': -0.1127, '2025-07-23': -0.1115}
+
+=== (b) Neustart mit Hebel 3, feste Groesse je Einstieg, ohne Tageslimit (wie config_lauf.json), Yubit-Kosten mit Rebate
+    Start an jedem 7. Tag; betrachtet wird der Kontoverlauf (5-Minuten-Werte) der folgenden 365 Tage bzw. bis Datenende
+alle Starttage                               n=267  Anteil mit Kontotief <= -30 %: 0.70  <= -50 %: 0.47  <= -75 %: 0.32  <= -100 %: 0.16  Median Tief -0.46  Median Stand nach 365 Tagen +1.02
+nur Starts mit vollen 365 Tagen              n=219  Anteil mit Kontotief <= -30 %: 0.69  <= -50 %: 0.47  <= -75 %: 0.32  <= -100 %: 0.16  Median Tief -0.47  Median Stand nach 365 Tagen +1.30
+Starts im Pruefzeitraum                      n= 77  Anteil mit Kontotief <= -30 %: 0.71  <= -50 %: 0.45  <= -75 %: 0.31  <= -100 %: 0.13  Median Tief -0.42  Median Stand nach 365 Tagen +0.07
+Starts in der Entwicklung (volle 365 Tage)   n=190  Anteil mit Kontotief <= -30 %: 0.69  <= -50 %: 0.48  <= -75 %: 0.32  <= -100 %: 0.17  Median Tief -0.48  Median Stand nach 365 Tagen +1.46
+
+=== (c) Coins, die wegen unvollstaendiger Historie (Delisting) aus Gruppe D ausgeschlossen wurden; Kandidat unveraendert, 5 bp Slippage, Hebel 1, ohne Tageslimit
+   LRC: Kerzen 2021-07-01 00:00:00 bis 2026-10-31 23:55:00
+   OCEAN: Kerzen 2021-07-01 00:00:00 bis 2026-10-31 23:55:00
+   STORJ: Kerzen 2021-07-01 00:00:00 bis 2026-10-31 23:55:00
+   ICX: Kerzen 2021-07-01 00:00:00 bis 2026-10-31 23:55:00
+   DENT: Kerzen 2021-07-01 00:00:00 bis 2026-10-31 23:55:00
+   Entwicklung: ausgeschlossene 5 Coins N +2.246 (G +2.421, Sharpe 0.68) | Gruppe D laut suche_runde5.json N +1.093 (G +1.271, Sharpe 0.42)
+   Pruefung: ausgeschlossene 5 Coins N -0.032 (G +0.020, Sharpe -0.04) | Gruppe D laut suche_runde5.json N -0.001 (G +0.082, Sharpe -0.00)
+   je Coin, Pruefzeitraum N: {'LRC': 0.005, 'OCEAN': 0.0, 'STORJ': -0.315, 'ICX': -0.125, 'DENT': 0.403} | Entwicklung N: {'LRC': 1.729, 'OCEAN': 0.364, 'STORJ': 0.031, 'ICX': 0.214, 'DENT': -0.092}
+
+fertig nach 65 s

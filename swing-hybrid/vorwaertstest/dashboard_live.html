@@ -1,0 +1,288 @@
+<title>Vorwärtstest Trend-Strategie</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: Statusleiste mit Live-Zähler, darunter Lage-Satz, Kennzahlen-Raster, Kurve, zwei Tabellen. */
+  :root {
+    --bg: #f3f5f7; --panel: #ffffff; --fg: #15202b; --muted: #5b6876; --line: #d9dfe5;
+    --accent: #0f6fb3; --accent2: #8a94a0; --ok: #12805c; --bad: #c0392b; --warn: #a66a00;
+    --display: "Space Grotesk", "Inter", system-ui, sans-serif;
+    --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #0e141a; --panel: #161e27; --fg: #e6ecf2; --muted: #93a1b0; --line: #283340;
+    --accent: #5cb3ee; --accent2: #6f7c8a; --ok: #3ecf9a; --bad: #ff7a6b; --warn: #f0b34a; color-scheme: dark } }
+  :root[data-theme="dark"] {
+    --bg: #0e141a; --panel: #161e27; --fg: #e6ecf2; --muted: #93a1b0; --line: #283340;
+    --accent: #5cb3ee; --accent2: #6f7c8a; --ok: #3ecf9a; --bad: #ff7a6b; --warn: #f0b34a; color-scheme: dark }
+  body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5;
+    padding-block: 20px 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .seite { max-width: 1040px; margin: 0 auto; display: grid; gap: 22px; min-width: 0; }
+  .leiste { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; font-family: var(--mono); font-size: 12.5px; color: var(--muted);
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+  .leiste b { color: var(--fg); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .punkt { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--accent2); margin-right: 7px; vertical-align: baseline; }
+  .punkt.an { background: var(--ok); }
+  .punkt.spaet { background: var(--warn); }
+  .punkt.aus { background: var(--bad); }
+  @media (prefers-reduced-motion: no-preference) {
+    .punkt.an { animation: puls 2s ease-in-out infinite; }
+    @keyframes puls { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 55%, transparent); } 50% { box-shadow: 0 0 0 6px transparent; } }
+    .neu { animation: blitz 1.2s ease-out; }
+    @keyframes blitz { from { background: color-mix(in srgb, var(--accent) 28%, transparent); } to { background: transparent; } }
+  }
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 4.5vw, 32px); line-height: 1.15; margin: 0; text-wrap: balance; }
+  h2 { font-family: var(--display); font-weight: 500; font-size: 17px; margin: 0; }
+  .lage { margin: 6px 0 0; max-width: 66ch; }
+  .klein { font-size: 12.5px; color: var(--muted); margin: 0; }
+  .karten { display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr)); gap: 12px; }
+  .karte { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+  .karte .name { font-size: 12.5px; color: var(--muted); }
+  .karte .wert { font-family: var(--display); font-weight: 600; font-size: 24px; font-variant-numeric: tabular-nums; border-radius: 4px; }
+  .karte .neben { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .gut { color: var(--ok); } .schlecht { color: var(--bad); }
+  section { display: grid; gap: 10px; min-width: 0; }
+  .chart { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 6px 4px; min-height: 300px; }
+  .chart svg { display: block; width: 100%; height: 280px; overflow: visible; }
+  .chart .leer { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: 13px; text-align: center; padding: 20px; }
+  .achse text { fill: var(--muted); font-size: 11.5px; font-family: var(--mono); }
+  .achse path, .achse line { stroke: var(--line); }
+  .gitter line { stroke: var(--line); stroke-dasharray: 2 4; }
+  .null { stroke: var(--muted); stroke-dasharray: 4 4; }
+  .tip { position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
+    font-size: 12.5px; font-variant-numeric: tabular-nums; white-space: nowrap; box-shadow: 0 6px 18px rgb(0 0 0 / .18); }
+  .tip .z { color: var(--muted); font-family: var(--mono); font-size: 11.5px; }
+  .legende { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--muted); }
+  .legende i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+  .rolle { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+  th { text-align: left; font-weight: 500; font-size: 12px; color: var(--muted); padding: 9px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  .r { text-align: right; }
+  td.r { font-family: var(--mono); font-size: 12.5px; }
+  .marke { display: inline-block; padding: 1px 9px; border-radius: 999px; font-size: 12px; border: 1px solid var(--line); }
+  .marke.long { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, transparent); }
+  .marke.short { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 45%, transparent); }
+  .leerzeile td { color: var(--muted); text-align: center; padding: 18px; }
+  details { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  summary { cursor: pointer; font-weight: 500; }
+  summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  details ul { margin: 10px 0 0; padding-left: 1.2em; display: grid; gap: 5px; max-width: 72ch; font-size: 13.5px; color: var(--muted); }
+</style>
+
+<div class="seite">
+  <div class="leiste" role="status" aria-live="polite">
+    <span><span class="punkt" id="punkt"></span><span id="verbindung">Verbinde …</span></span>
+    <span>Letzter Durchlauf <b id="alter">–</b></span>
+    <span>Nächster in <b id="naechster">–</b></span>
+    <span>Jetzt <b id="uhr">–</b> UTC</span>
+  </div>
+
+  <header>
+    <h1>Vorwärtstest Trend-Strategie</h1>
+    <p class="lage" id="lage">Sobald der erste Durchlauf geladen ist, steht hier der aktuelle Stand des Papier-Kontos.</p>
+    <p class="klein" id="unterzeile">Papierhandel ohne echtes Geld, gerechnet am echten Yubit-Orderbuch.</p>
+  </header>
+
+  <div class="karten" id="karten">
+    <div class="karte"><span class="name">Netto mit Rebate, seit Start</span><span class="wert" id="k-mit">—</span><span class="neben" id="k-mit-usd">&nbsp;</span></div>
+    <div class="karte"><span class="name">Netto ohne Rebate, seit Start</span><span class="wert" id="k-ohne">—</span><span class="neben" id="k-ohne-usd">&nbsp;</span></div>
+    <div class="karte"><span class="name">Handel vor Gebühren, seit Start</span><span class="wert" id="k-vor">—</span><span class="neben" id="k-vor-usd">&nbsp;</span></div>
+    <div class="karte"><span class="name">Größter Einbruch, seit Start</span><span class="wert" id="k-dd">—</span><span class="neben">vom Höchststand, mit Rebate</span></div>
+    <div class="karte"><span class="name">Positionswert bei Hebel <span id="k-hebel">–</span></span><span class="wert" id="k-pos">—</span><span class="neben" id="k-margin">&nbsp;</span></div>
+    <div class="karte"><span class="name">Handelsvolumen, seit Start</span><span class="wert" id="k-vol">—</span><span class="neben" id="k-orders">&nbsp;</span></div>
+    <div class="karte"><span class="name">Rebate (85 %), seit Start</span><span class="wert" id="k-rebate">—</span><span class="neben" id="k-kosten">&nbsp;</span></div>
+    <div class="karte"><span class="name">Slippage je Order, seit Start</span><span class="wert" id="k-slip">—</span><span class="neben" id="k-slip-mess">&nbsp;</span></div>
+  </div>
+
+  <section>
+    <h2>Konto-Entwicklung in Prozent des Startkapitals</h2>
+    <div class="legende"><span><i style="background: var(--accent)"></i>Netto mit Rebate</span><span><i style="background: var(--accent2)"></i>Netto ohne Rebate</span></div>
+    <div class="chart" id="chart"><div class="leer">Die Kurve erscheint mit dem ersten Durchlauf und wächst mit jedem weiteren.</div></div>
+    <p class="klein">Ein Punkt je Durchlauf. Startkapital 5.000 $ auf Papier, Positionen bis zum Dreifachen des Kontos (Hebel 3).</p>
+  </section>
+
+  <section>
+    <h2>Offene Positionen</h2>
+    <div class="rolle"><table>
+      <thead><tr><th>Coin</th><th>Richtung</th><th>Seit (UTC)</th><th class="r">Einstieg</th><th class="r">Kurs</th><th class="r">Betrag</th><th class="r">Ergebnis</th><th class="r">in %</th></tr></thead>
+      <tbody id="positionen"><tr class="leerzeile"><td colspan="8">Noch keine Positionen geladen.</td></tr></tbody>
+    </table></div>
+    <p class="klein">Ergebnis der offenen Position vor Gebühren. Kurse vom letzten Durchlauf, nicht in Echtzeit.</p>
+  </section>
+
+  <section>
+    <h2>Letzte Orders</h2>
+    <div class="rolle"><table>
+      <thead><tr><th>Zeit (UTC)</th><th>Coin</th><th>Seite</th><th>Anlass</th><th class="r">Kurs</th><th class="r">Volumen</th><th class="r">Slippage</th></tr></thead>
+      <tbody id="orders"><tr class="leerzeile"><td colspan="7">Noch keine Orders geladen.</td></tr></tbody>
+    </table></div>
+    <p class="klein">Die letzten 60 Orders. Slippage: wie viel schlechter als der Mittelkurs gefüllt wurde.</p>
+  </section>
+
+  <details>
+    <summary>Was hier gemessen wird und was nicht</summary>
+    <ul>
+      <li>Regel: Schlusskurs der letzten vollen Stunde gegen den von vor 14 Tagen, zehn große Coins, jeder gleich groß. Long, wenn der Kurs höher steht, sonst Short.</li>
+      <li>Jede Order wird gegen das echte Yubit-Orderbuch gerechnet, mit Taker-Gebühr 0,08 % und 85 % Rebate. Es wird keine echte Order gesetzt.</li>
+      <li>Die Seite lädt neue Durchläufe von selbst nach. Zwischen zwei Durchläufen bleiben Kurse und Ergebnis stehen.</li>
+      <li>Hebel 3: Jede Position ist rund 1.500 $ groß, zusammen etwa das Dreifache des Kontos. Gebühren und Rebate fallen auf diesen Positionswert an, nicht auf die Margin. Gewinne und Verluste sind dreimal so groß wie ohne Hebel; fällt der Korb der Coins rund 33 % gegen die Positionen, ist das Konto aufgebraucht.</li>
+      <li>Funding wird mit dem jeweils aktuellen Yubit-Satz angenähert.</li>
+      <li>Zum Vergleich die Rückrechnung ohne Hebel: rund +16,5 % pro Jahr im Prüfzeitraum ab April 2025, mit Einbrüchen bis 31 %. Mit Hebel 3 verdreifacht sich beides rechnerisch, ein solcher Einbruch hätte das Konto fast aufgebraucht. Belastbar wird der Test erst nach mehreren Monaten.</li>
+      <li>Keine Anlageberatung.</li>
+    </ul>
+  </details>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const de = (n) => new Intl.NumberFormat('de-DE', {minimumFractionDigits: n, maximumFractionDigits: n});
+  const vz = (x, n) => (x > 0 ? '+' : x < 0 ? '−' : '') + de(n).format(Math.abs(x));
+  const pct = (x) => vz(x, 2) + ' %';
+  const usd = (x) => vz(x, 2) + ' $';
+  const usd0 = (x) => de(0).format(x) + ' $';
+  const bp = (x) => de(3).format(x / 100) + ' %';
+  const kurs = (x) => x == null ? '–' : new Intl.NumberFormat('de-DE', {maximumSignificantDigits: 6}).format(x);
+  const zeitUtc = (s) => new Date(String(s).replace(' ', 'T') + (String(s).endsWith('Z') ? '' : ':00Z'));
+  const zwei = (n) => String(n).padStart(2, '0');
+  const dauer = (ms) => { const s = Math.max(0, Math.floor(ms / 1000)); const h = Math.floor(s / 3600); return (h ? h + ':' : '') + zwei(Math.floor(s % 3600 / 60)) + ':' + zwei(s % 60); };
+
+  let stand = null, verbunden = null, letzteVersion = '';
+
+  const setze = (id, text, klasse) => {
+    const el = $(id);
+    if (el.textContent !== text) {
+      el.textContent = text;
+      if (stand && letzteVersion) { el.classList.remove('neu'); void el.offsetWidth; el.classList.add('neu'); }
+    }
+    el.classList.remove('gut', 'schlecht');
+    if (klasse) el.classList.add(klasse);
+  };
+  const farbe = (x) => x > 0 ? 'gut' : x < 0 ? 'schlecht' : '';
+  const zelle = (tr, text, klasse) => { const td = document.createElement('td'); td.textContent = text; if (klasse) td.className = klasse; tr.appendChild(td); return td; };
+
+  function zeichneKurve(v) {
+    const el = $('chart');
+    el.replaceChildren();
+    if (!v || !v.length) { const l = document.createElement('div'); l.className = 'leer'; l.textContent = 'Noch kein Durchlauf gespeichert.'; el.appendChild(l); return; }
+    const rows = v.map((r) => ({t: new Date(r.zeit), a: +r.mit_rebate, b: +r.ohne_rebate}));
+    const w = Math.max(el.clientWidth - 12, 240), h = 280;
+    const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${w} ${h}`).attr('role', 'img')
+      .attr('aria-label', 'Konto-Entwicklung in Prozent des Startkapitals, netto mit und ohne Rebate, je Durchlauf');
+    const yMin = Math.min(0, d3.min(rows, (r) => Math.min(r.a, r.b))), yMax = Math.max(0, d3.max(rows, (r) => Math.max(r.a, r.b)));
+    const pad = Math.max((yMax - yMin) * 0.12, 0.05);
+    const y = d3.scaleLinear().domain([yMin - pad, yMax + pad]).nice();
+    const fein = Math.abs(y.domain()[1] - y.domain()[0]) < 2 ? 2 : 1;
+    const yFmt = (d) => vz(d, fein) + ' %';
+    const probe = svg.append('g').attr('class', 'achse').append('text');
+    const links = Math.ceil(d3.max(y.ticks(5), (d) => probe.text(yFmt(d)).node().getComputedTextLength())) + 14;
+    probe.remove();
+    const m = {l: links, r: 14, t: 10, b: 26};
+    y.range([h - m.b, m.t]);
+    let t0 = rows[0].t, t1 = rows[rows.length - 1].t;
+    if (+t0 === +t1) { t0 = new Date(+t0 - 36e5); t1 = new Date(+t1 + 36e5); }
+    const x = d3.scaleUtc().domain([t0, t1]).range([m.l, w - m.r]);
+    const tage = (t1 - t0) / 864e5;
+    svg.append('g').attr('class', 'gitter').selectAll('line').data(y.ticks(5)).join('line').attr('x1', m.l).attr('x2', w - m.r).attr('y1', (d) => y(d)).attr('y2', (d) => y(d));
+    svg.append('g').attr('class', 'achse').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(yFmt).tickSize(0).tickPadding(8)).call((g) => g.select('.domain').remove());
+    svg.append('g').attr('class', 'achse').attr('transform', `translate(0,${h - m.b})`)
+      .call(d3.axisBottom(x).ticks(Math.max(2, Math.min(6, Math.floor((w - m.l) / 96)))).tickFormat(d3.utcFormat(tage > 3 ? '%d.%m.' : '%d.%m. %H:%M')).tickSizeOuter(0));
+    svg.append('line').attr('class', 'null').attr('x1', m.l).attr('x2', w - m.r).attr('y1', y(0)).attr('y2', y(0));
+    [['b', 'var(--accent2)'], ['a', 'var(--accent)']].forEach(([k, c]) => {
+      svg.append('path').datum(rows).attr('fill', 'none').style('stroke', c).attr('stroke-width', 2).attr('d', d3.line().x((r) => x(r.t)).y((r) => y(r[k])));
+      const l = rows[rows.length - 1];
+      svg.append('circle').attr('cx', x(l.t)).attr('cy', y(l[k])).attr('r', 4).style('fill', c);
+    });
+    const tip = d3.select(el).append('div').attr('class', 'tip').attr('hidden', '');
+    const marke = svg.append('line').attr('class', 'null').attr('y1', m.t).attr('y2', h - m.b).attr('visibility', 'hidden');
+    const f = d3.utcFormat('%d.%m.%Y %H:%M UTC');
+    const zeigen = (ev) => {
+      const box = svg.node().getBoundingClientRect();
+      const sx = (ev.clientX - box.left) * (w / box.width);
+      const r = rows[d3.leastIndex(rows, (q) => Math.abs(x(q.t) - sx))];
+      marke.attr('x1', x(r.t)).attr('x2', x(r.t)).attr('visibility', 'visible');
+      const n = tip.attr('hidden', null).node();
+      n.replaceChildren();
+      const z = document.createElement('div'); z.className = 'z'; z.textContent = f(r.t); n.appendChild(z);
+      [['Mit Rebate', r.a], ['Ohne Rebate', r.b]].forEach(([name, wert]) => { const d = document.createElement('div'); d.textContent = name + ': ' + pct(wert); n.appendChild(d); });
+      const cx = x(r.t) * (box.width / w) + 6, breit = n.offsetWidth;
+      tip.style('left', Math.max(0, Math.min(el.clientWidth - breit, cx + 12 + breit > el.clientWidth ? cx - breit - 12 : cx + 12)) + 'px').style('top', '10px');
+    };
+    svg.on('pointermove', zeigen).on('pointerdown', zeigen).on('pointerleave', () => { tip.attr('hidden', ''); marke.attr('visibility', 'hidden'); });
+  }
+
+  function zeichne(d) {
+    const k = d.kennzahlen && d.kennzahlen[0];
+    if (!k) return;
+    $('lage').textContent = `Das Papier-Konto steht nach ${de(1).format(k.tage)} Tagen bei ${pct(k.mit_rebate_pct)} nach allen Kosten mit Rebate. Offen sind ${k.long} Long- und ${k.short} Short-Positionen im Wert von ${usd0(k.positionswert_usd)} bei Hebel ${de(0).format(k.hebel)}; dafür sind ${usd0(k.margin_usd)} Margin gebunden.`;
+    $('unterzeile').textContent = `Papierhandel ohne echtes Geld, gerechnet am echten Yubit-Orderbuch. Start ${k.start} UTC, ${k.laeufe} Durchläufe bisher.`;
+    setze('k-mit', pct(k.mit_rebate_pct), farbe(k.mit_rebate_pct)); setze('k-mit-usd', usd(k.mit_rebate_usd));
+    setze('k-ohne', pct(k.ohne_rebate_pct), farbe(k.ohne_rebate_pct)); setze('k-ohne-usd', usd(k.ohne_rebate_usd));
+    setze('k-vor', pct(k.vor_gebuehren_pct), farbe(k.vor_gebuehren_pct)); setze('k-vor-usd', usd(k.vor_gebuehren_usd));
+    setze('k-dd', de(2).format(k.einbruch_pct) + ' %');
+    $('k-hebel').textContent = de(0).format(k.hebel);
+    setze('k-pos', usd0(k.positionswert_usd)); setze('k-margin', `Margin ${usd0(k.margin_usd)} (${de(0).format(k.margin_pct)} % des Kontos)`);
+    setze('k-vol', usd0(k.volumen_usd)); setze('k-orders', de(0).format(k.orders) + ' Orders');
+    setze('k-rebate', de(2).format(k.rebate_usd) + ' $'); setze('k-kosten', `Gebühr ${de(2).format(k.gebuehr_usd)} $, Funding ${usd(k.funding_usd)}`);
+    setze('k-slip', bp(k.slippage_orders_bp)); setze('k-slip-mess', `laufende Messung ${bp(k.slippage_messung_bp)}`);
+
+    const tp = $('positionen'); tp.replaceChildren();
+    (d.positionen || []).forEach((r) => {
+      const tr = document.createElement('tr');
+      zelle(tr, r.coin);
+      const m = document.createElement('span'); m.className = 'marke ' + (r.richtung === 'Long' ? 'long' : r.richtung === 'Short' ? 'short' : ''); m.textContent = r.richtung; zelle(tr, '').appendChild(m);
+      zelle(tr, r.seit || '–'); zelle(tr, kurs(r.einstieg), 'r'); zelle(tr, kurs(r.kurs), 'r'); zelle(tr, usd0(r.betrag), 'r');
+      zelle(tr, usd(r.ergebnis), 'r ' + farbe(r.ergebnis)); zelle(tr, pct(r.ergebnis_pct), 'r ' + farbe(r.ergebnis_pct));
+      tp.appendChild(tr);
+    });
+    const to = $('orders'); to.replaceChildren();
+    (d.orders || []).forEach((r) => {
+      const tr = document.createElement('tr');
+      zelle(tr, r.zeit); zelle(tr, r.coin); zelle(tr, r.seite); zelle(tr, r.grund); zelle(tr, kurs(r.kurs), 'r'); zelle(tr, usd0(r.volumen), 'r'); zelle(tr, bp(r.slippage_bp), 'r');
+      to.appendChild(tr);
+    });
+    if (!(d.orders || []).length) { const tr = document.createElement('tr'); tr.className = 'leerzeile'; const td = zelle(tr, 'Noch keine Orders.'); td.colSpan = 7; to.appendChild(tr); }
+    zeichneKurve(d.verlauf);
+    letzteVersion = d.geschrieben || '1';
+  }
+
+  function tick() {
+    const jetzt = new Date();
+    $('uhr').textContent = zwei(jetzt.getUTCHours()) + ':' + zwei(jetzt.getUTCMinutes()) + ':' + zwei(jetzt.getUTCSeconds());
+    const p = $('punkt'); p.className = 'punkt';
+    const k = stand && stand.kennzahlen && stand.kennzahlen[0];
+    if (verbunden === false) { p.classList.add('aus'); $('verbindung').textContent = 'Nicht verbunden. Bitte bei claude.ai anmelden und die Seite neu laden.'; }
+    if (!k) { $('alter').textContent = '–'; $('naechster').textContent = '–'; if (verbunden) { $('verbindung').textContent = 'Verbunden, wartet auf den ersten Durchlauf'; } return; }
+    const letzter = stand.geschrieben ? new Date(stand.geschrieben) : zeitUtc(k.letzter_lauf);
+    const alt = jetzt - letzter, takt = (stand.takt_minuten || 60) * 60000;
+    $('alter').textContent = 'vor ' + dauer(alt);
+    const rest = takt - alt;
+    $('naechster').textContent = rest > 0 ? dauer(rest) : 'überfällig seit ' + dauer(-rest);
+    if (verbunden) {
+      const spaet = alt > 2.5 * takt;
+      p.classList.add(spaet ? 'spaet' : 'an');
+      $('verbindung').textContent = spaet ? 'Verbunden, aber der Bot hat länger nichts geliefert' : 'Live verbunden, lädt neue Durchläufe von selbst';
+    }
+  }
+  setInterval(tick, 1000); tick();
+
+  let breite = 0;
+  new ResizeObserver(() => { const b = $('chart').clientWidth; if (stand && Math.abs(b - breite) > 8) { breite = b; zeichneKurve(stand.verlauf); } }).observe($('chart'));
+
+  const start = async () => {
+    const db = window.claude && window.claude.use ? await window.claude.use('db') : null;
+    if (!db) { verbunden = false; tick(); return; }
+    verbunden = true; tick();
+    db.doc('stand/aktuell').onSnapshot((snap) => {
+      if (!snap.exists) return;
+      stand = snap.data();
+      zeichne(stand); tick();
+    }, () => { verbunden = false; tick(); });
+  };
+  start();
+})();
+</script>

@@ -1,0 +1,37 @@
+Audit OdinGate, Prüfbereich RSK (Risk Engineering), Stand 15.11.2026, Repo-Stand 3dfd5b2 (Zweig claude/intelligent-sagan-2cviug)
+
+Inhalt dieses Ordners (nur Belege; keine Änderung an Code, Konfiguration, Papier-Daten oder gespeicherten Ergebnissen)
+
+  rsk_common.py            gemeinsame Bausteine: Kandidat wie in scripts/suche_runde21/24.py, unabhängiger Nachbau der
+                           Positionsführung, frischer Start, Start-Tag-Simulation, Einbruch-Kennzahlen
+  s01_laeufe.py            Kandidat bei Hebel 1 und 3 durch den Rechenkern, Nachbau-Abgleich   -> aus_s01_laeufe.txt
+  s02_konto.py             Kontoverlauf je Zeitraum, Schwellen, Start-Tag-Analyse              -> aus_s02_konto.txt
+  s03_gleichzeitig.py      gleichzeitige Verluste, Bewegung gegen die Position, je Trade        -> aus_s03_gleichzeitig.txt
+  s04_korrelation.py       Korrelationsmatrix, effektive Wetten, Richtungen, Beta               -> aus_s04_korrelation.txt
+  s05_test2.py             Test 2: Stop-Logik des Bots je Prüfabstand, Wiedereinstieg           -> aus_s05_test2.txt
+  s06_funding.py           Funding als Risiko                                                  -> aus_s06_funding.txt
+  s07_liquidation.py       Liquidationsrechnung unter ANNAHMEN, Stand der Papier-Tests (gelesen) -> aus_s07_liquidation.txt
+  s08_repro_hebel.py       Hebel-Tabelle der Forschung (diagnose_kapital.json) nachgerechnet    -> aus_s08_repro_hebel.txt
+  s09_gegenprobe.py        Start-Tag-Simulation gegen den Rechenkern geprüft, Tagesverluste      -> aus_s09_gegenprobe.txt
+  s10_uebersicht.py        Übersichtstabellen aus den Zwischenergebnissen                        -> aus_s10_uebersicht.txt
+  test_rsk_risiko.py       12 ausführbare Regressionstests (Ist-Zustand der risikorelevanten Berechnungen)
+
+Nachrechnen (aus swing-hybrid/; braucht die lokalen Marktdaten unter data/, die nicht in git liegen):
+
+  export RSK_SCRATCH=/tmp/rsk_audit NUMBA_CACHE_DIR=/tmp/rsk_audit/numba; mkdir -p $RSK_SCRATCH
+  for s in s01_laeufe s02_konto s03_gleichzeitig s04_korrelation s05_test2 s06_funding s07_liquidation s08_repro_hebel s09_gegenprobe s10_uebersicht; do
+      .venv/bin/python -I -B reports/audit/evidence/RSK/$s.py > $RSK_SCRATCH/$s.txt; done
+  .venv/bin/python -B -m pytest -q -p no:cacheprovider reports/audit/evidence/RSK/test_rsk_risiko.py
+
+Laufzeit zusammen rund 90 Sekunden. Zwischenspeicher (rund 150 MB) landen in RSK_SCRATCH, nicht im Repo.
+Die Tests brauchen keine Marktdaten und kein Netz.
+
+Wichtige Einschränkungen der Zahlen
+  - Kurse und Funding: Binance-Futures (letzter Preis, 5-Minuten-Kerzen). Yubit-Historie, Mark-Preis, Margin-Modus,
+    Erhaltungsmargin und Liquidationsregeln von Yubit liegen im Repo nicht vor. Alle Liquidationszahlen sind Szenarien.
+  - Ohne Zinseszins, feste Größe ab Einstieg, kein Liquidationsmodell: genau wie Rechenkern und Papier-Bot rechnen.
+  - Starttage der Start-Tag-Analyse überlappen sich stark; die Anteile sind Häufigkeiten in EINER Historie, keine
+    unabhängigen Wahrscheinlichkeiten.
+  - s05 zeigt die Variante sl5_tp15 auch im Prüfzeitraum ab 04/2025 (laut Protokoll bis dahin unberührt). Der Prüfzeitraum
+    ist für diese Variante damit eingesehen.
+  - s07 liest vorwaertstest/lauf*/zustand.json und stand.csv zum Zeitpunkt des Laufs (letzter Lauf dort: 15.11.2026 18:58 UTC).

@@ -1,0 +1,43 @@
+=== 1. Durchgehender Lauf ab 2021-08-15, Hebel 1, ohne Limit, Takt stuendlich (Abgleich mit dem Protokoll, Runde 24)
+Test 1 (nur Umkehr)            Entwicklung    Ertrag/Jahr +0.578  Sharpe 0.92  Einbruch rel. 0.300  groesster Rueckgang (Startkapital) 0.619
+Test 1 (nur Umkehr)            Pruefzeitraum  Ertrag/Jahr +0.112  Sharpe 0.23  Einbruch rel. 0.380  groesster Rueckgang (Startkapital) 0.621
+Test 2 (Stop 5 % / Ziel 15 %)  Entwicklung    Ertrag/Jahr +0.297  Sharpe 0.99  Einbruch rel. 0.182  groesster Rueckgang (Startkapital) 0.347
+Test 2 (Stop 5 % / Ziel 15 %)  Pruefzeitraum  Ertrag/Jahr +0.138  Sharpe 0.42  Einbruch rel. 0.335  groesster Rueckgang (Startkapital) 0.553
+   Protokoll Runde 24 (Entwicklung): Kandidat Sharpe 0,95 / 59 % / Einbruch 24,6 %; sl5_tp15 Sharpe 1,13 / 33 % / Einbruch 14,6 %
+
+=== 2. Neustart mit Hebel 3 (wie config_lauf.json / config_lauf_tpsl.json), Start an jedem 7. Tag und an jedem Tag
+    Kontotief = tiefster Stand netto mit Rebate (5-Minuten-Schlusskurse) in den 365 Tagen nach dem Start, in Einheiten des Startkapitals
+  test                      limit       takt  raster_tage  starts  le50  le75  le100  pruef_le50  pruef_le75  pruef_le100  median_tief  schlechtestes_tief  median_ende_voll  starts_mit_sperrtag
+Test 1                  Limit aus stuendlich            7     267 0.562 0.382  0.206       0.558       0.377        0.143       -0.591              -1.690             1.197                    0
+Test 1                  Limit aus stuendlich            1    1866 0.559 0.383  0.202       0.558       0.353        0.155       -0.584              -1.704             1.119                    0
+Test 1                  Limit aus alle 5 min            7     267 0.472 0.318  0.161       0.455       0.312        0.130       -0.463              -1.447             1.297                    0
+Test 1                  Limit aus alle 5 min            1    1866 0.472 0.303  0.135       0.445       0.283        0.113       -0.462              -1.521             1.266                    0
+Test 1 Limit 1,0 wie konfiguriert stuendlich            7     267 0.562 0.382  0.206       0.558       0.377        0.143       -0.591              -1.690             1.197                   48
+Test 1 Limit 1,0 wie konfiguriert stuendlich            1    1866 0.559 0.383  0.202       0.558       0.353        0.155       -0.584              -1.704             1.119                  341
+Test 1 Limit 1,0 wie konfiguriert alle 5 min            7     267 0.472 0.318  0.161       0.455       0.312        0.130       -0.463              -1.447             1.297                   48
+Test 1 Limit 1,0 wie konfiguriert alle 5 min            1    1866 0.472 0.303  0.135       0.445       0.283        0.113       -0.462              -1.521             1.266                  341
+Test 2                  Limit aus stuendlich            7     267 0.412 0.191  0.041       0.701       0.481        0.130       -0.390              -1.405             0.519                    0
+Test 2                  Limit aus stuendlich            1    1866 0.393 0.183  0.043       0.680       0.447        0.137       -0.390              -1.588             0.513                    0
+Test 2                  Limit aus alle 5 min            7     267 0.348 0.135  0.030       0.494       0.247        0.078       -0.358              -1.324             0.648                    0
+Test 2                  Limit aus alle 5 min            1    1866 0.337 0.124  0.028       0.486       0.214        0.081       -0.351              -1.497             0.658                    0
+Test 2 Limit 1,0 wie konfiguriert stuendlich            7     267 0.412 0.191  0.041       0.701       0.481        0.130       -0.390              -1.405             0.519                    0
+Test 2 Limit 1,0 wie konfiguriert stuendlich            1    1866 0.393 0.183  0.043       0.680       0.447        0.137       -0.390              -1.588             0.513                    0
+Test 2 Limit 1,0 wie konfiguriert alle 5 min            7     267 0.348 0.135  0.030       0.494       0.247        0.078       -0.358              -1.324             0.648                    0
+Test 2 Limit 1,0 wie konfiguriert alle 5 min            1    1866 0.337 0.124  0.028       0.486       0.214        0.081       -0.351              -1.497             0.658                    0
+
+=== 3. Einzelne Starttage fuer den Abgleich mit dem Replay des echten Bot-Codes (bot_replay.py), Limit 1,0 wie konfiguriert
+     start  tage   test             takt  tief_5min  tief_stundenmarken           tief_zeit  erstes_le_minus100    ende  sperrtage  stop_ziel_ausstiege
+2025-07-20   160 Test 1 stuendlich hh:05    -1.2486             -1.2275 2025-12-17 15:10:00 2025-10-02 18:15:00 -1.0411          0                    0
+2025-07-20   160 Test 1       alle 5 min    -1.1542             -1.1332 2025-12-17 15:10:00 2025-10-10 15:25:00 -0.9486          0                    0
+2025-07-20   160 Test 2 stuendlich hh:05    -0.6997             -0.6990 2025-10-10 18:10:00                     -0.3698          0                   77
+2025-07-20   160 Test 2       alle 5 min    -0.6408             -0.6393 2025-10-10 20:25:00                      0.1225          0                   91
+2026-02-08   255 Test 1 stuendlich hh:05    -1.2612             -1.2609 2026-08-14 05:00:00 2026-07-29 18:50:00 -0.8494          0                    0
+2026-02-08   255 Test 1       alle 5 min    -1.1302             -1.1300 2026-08-16 15:25:00 2026-08-04 02:30:00 -0.7175          0                    0
+2026-02-08   255 Test 2 stuendlich hh:05    -1.2824             -1.2818 2026-08-14 04:15:00 2026-07-29 04:55:00 -0.9803          0                   69
+2026-02-08   255 Test 2       alle 5 min    -1.1594             -1.1588 2026-08-14 04:15:00 2026-08-02 05:00:00 -0.8630          0                   92
+2024-06-23   160 Test 1 stuendlich hh:05    -1.2904             -1.2889 2024-11-06 16:20:00 2024-10-12 10:20:00  1.6866          0                    0
+2024-06-23   160 Test 1       alle 5 min    -1.2571             -1.2531 2024-11-06 08:20:00 2024-10-14 09:35:00  1.7157          0                    0
+2024-06-23   160 Test 2 stuendlich hh:05    -0.3754             -0.3748 2024-11-06 14:50:00                      0.0830          0                   81
+2024-06-23   160 Test 2       alle 5 min    -0.4503             -0.4495 2024-11-06 08:20:00                     -0.0156          0                   88
+
+fertig nach 93 s

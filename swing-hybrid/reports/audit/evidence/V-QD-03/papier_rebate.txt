@@ -1,0 +1,11 @@
+Modus: papier | Orders im Protokoll: 4
+Gebuehr gesamt: 22.787052 | Rebate gesamt: 19.368994 | Verhaeltnis: 0.85
+je Order Rebate/Gebuehr: [0.85]
+netto_mit_rebate - netto_ohne_rebate: 19.368994 (= Rebate, sofort im Stand)
+
+Live-Zweig im Quelltext von bot.schritt (nur gelesen, nicht ausgefuehrt):
+if live:
+                    kurs, q, gebuehr = live_order(api, m, kauf, menge, idx, reduce, cfg)
+                    rebate = 0.0                       # wird von Yubit getrennt gutgeschrieben, hier nicht sichtbar
+               
+Stellen in yubit.py mit 'rebate': 0

@@ -1,0 +1,138 @@
+Gepruefter Stand des echten Repos: 3dfd5b2 2026-11-15T19:03:04+00:00
+stunde.sh im Arbeitsverzeichnis == stunde.sh in HEAD (cmp: gleich)
+
+################ Szenario s1_fremder_commit (stunde.sh aus Commit HEAD)
+Kopie von stunde.sh ist byte-gleich mit dem Original
+--- Lauf 1 (ungestoert): Rueckgabewert 0
+      | [Stellvertreter-Bot] lauf: Lauf 1
+      | gesichert: a3a84e1
+      | [Stellvertreter-Bot] lauf_tpsl: Lauf 1
+      | gesichert (Variante): 073b216
+--- Lauf 2 (ungestoert): Rueckgabewert 0
+      | [Stellvertreter-Bot] lauf: Lauf 2
+      | gesichert: e31348a
+      | [Stellvertreter-Bot] lauf_tpsl: Lauf 2
+      | gesichert (Variante): 42bbfd3
+    Stand: Runner-HEAD 42bbfd3 | origin 42bbfd3 | Runner voraus/zurueck 0/0
+    stand.csv Test 1: lokal 2 Zeilen, auf origin 2 | Test 2: lokal 2, auf origin 2
+--- Lauf 3 (waehrend des Laufs pusht ein anderer Klon einen Commit): Rueckgabewert 1
+      | [Stellvertreter-Bot] lauf: Lauf 3
+      | [fremder Commit gepusht]
+      | To /tmp/claude-0/-home-user-OdinGate-Botv134/47fc44e2-7331-5a93-8908-3cf4accd9a35/scratchpad/audit/INF/gitsim/s1_fremder_commit/origin.git
+      |  ! [rejected]        claude/intelligent-sagan-2cviug -> claude/intelligent-sagan-2cviug (fetch first)
+      | error: failed to push some refs to '/tmp/claude-0/-home-user-OdinGate-Botv134/47fc44e2-7331-5a93-8908-3cf4accd9a35/scratchpad/audit/INF/gitsim/s1_fremder_commit/origin.git'
+      | hint: Updates were rejected because the remote contains work that you do not
+      | hint: have locally. This is usually caused by another repository pushing to
+      | hint: the same ref. If you want to integrate the remote changes, use
+      | hint: 'git pull' before pushing again.
+      | hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+    Stand: Runner-HEAD 25d1f46 | origin 7ed32fc | Runner voraus/zurueck 1/1
+    stand.csv Test 1: lokal 3 Zeilen, auf origin 2 | Test 2: lokal 2, auf origin 2
+--- Lauf 4 (ungestoert): Rueckgabewert 1
+      | hint: Diverging branches can't be fast-forwarded, you need to either:
+      | hint: 
+      | hint: 	git merge --no-ff
+      | hint: 
+      | hint: or:
+      | hint: 
+      | hint: 	git rebase
+      | hint: 
+      | hint: Disable this message with "git config advice.diverging false"
+      | fatal: Not possible to fast-forward, aborting.
+      | [Stellvertreter-Bot] lauf: Lauf 4
+      | To /tmp/claude-0/-home-user-OdinGate-Botv134/47fc44e2-7331-5a93-8908-3cf4accd9a35/scratchpad/audit/INF/gitsim/s1_fremder_commit/origin.git
+    Stand: Runner-HEAD 18bbdfd | origin 7ed32fc | Runner voraus/zurueck 2/1
+    stand.csv Test 1: lokal 4 Zeilen, auf origin 2 | Test 2: lokal 2, auf origin 2
+--- Lauf 5 (ungestoert): Rueckgabewert 1
+      | hint: Diverging branches can't be fast-forwarded, you need to either:
+      | hint: 
+      | hint: 	git merge --no-ff
+      | hint: 
+      | hint: or:
+      | hint: 
+      | hint: 	git rebase
+      | hint: 
+      | hint: Disable this message with "git config advice.diverging false"
+      | fatal: Not possible to fast-forward, aborting.
+      | [Stellvertreter-Bot] lauf: Lauf 5
+      | To /tmp/claude-0/-home-user-OdinGate-Botv134/47fc44e2-7331-5a93-8908-3cf4accd9a35/scratchpad/audit/INF/gitsim/s1_fremder_commit/origin.git
+    Stand: Runner-HEAD 9a7a71c | origin 7ed32fc | Runner voraus/zurueck 3/1
+    stand.csv Test 1: lokal 5 Zeilen, auf origin 2 | Test 2: lokal 2, auf origin 2
+    Frischer Klon (z. B. neue KI-Sitzung nach Verlust des Runners): stand.csv Test 1 hat 2 Zeilen, zustand.json: {"lauf": 2} ; im Runner: {"lauf": 5}
+
+################ Szenario s2_netzausfall (stunde.sh aus Commit HEAD)
+--- Lauf 1 (ungestoert): Rueckgabewert 0
+      | [Stellvertreter-Bot] lauf: Lauf 1
+      | gesichert: 3d846ee
+      | [Stellvertreter-Bot] lauf_tpsl: Lauf 1
+      | gesichert (Variante): 0c9cb00
+    Stand: Runner-HEAD 0c9cb00 | origin 0c9cb00 | Runner voraus/zurueck 0/0
+    stand.csv Test 1: lokal 1 Zeilen, auf origin 1 | Test 2: lokal 1, auf origin 1
+--- Lauf 2 (origin nicht erreichbar): Rueckgabewert 128
+      | fatal: '/tmp/claude-0/-home-user-OdinGate-Botv134/47fc44e2-7331-5a93-8908-3cf4accd9a35/scratchpad/audit/INF/gitsim/s2_netzausfall/origin.git' does not appear to be a git repository
+      | fatal: Could not read from remote repository.
+      | Please make sure you have the correct access rights
+      | and the repository exists.
+      | fatal: '/tmp/claude-0/-home-user-OdinGate-Botv134/47fc44e2-7331-5a93-8908-3cf4accd9a35/scratchpad/audit/INF/gitsim/s2_netzausfall/origin.git' does not appear to be a git repository
+      | fatal: Could not read from remote repository.
+      | Please make sure you have the correct access rights
+      | and the repository exists.
+      | [Stellvertreter-Bot] lauf: Lauf 2
+      | fatal: '/tmp/claude-0/-home-user-OdinGate-Botv134/47fc44e2-7331-5a93-8908-3cf4accd9a35/scratchpad/audit/INF/gitsim/s2_netzausfall/origin.git' does not appear to be a git repository
+      | fatal: Could not read from remote repository.
+      | Please make sure you have the correct access rights
+    Stand: Runner-HEAD 9ea2b4b | origin 0c9cb00 | Runner voraus/zurueck 1/0
+    stand.csv Test 1: lokal 2 Zeilen, auf origin 1 | Test 2: lokal 1, auf origin 1
+--- Lauf 3 (origin wieder da): Rueckgabewert 0
+      | [Stellvertreter-Bot] lauf: Lauf 3
+      | gesichert: 6616054
+      | [Stellvertreter-Bot] lauf_tpsl: Lauf 2
+      | gesichert (Variante): 7ffcd54
+    Stand: Runner-HEAD 7ffcd54 | origin 7ffcd54 | Runner voraus/zurueck 0/0
+    stand.csv Test 1: lokal 3 Zeilen, auf origin 3 | Test 2: lokal 2, auf origin 2
+
+################ Szenario s3_schluessel_fehlt (stunde.sh aus Commit HEAD)
+--- Lauf 1 (board_pub.pem fehlt im Runner): Rueckgabewert 1
+      | [Stellvertreter-Bot] lauf: Lauf 1
+      | openssl: oeffentlicher Schluessel board_pub.pem fehlt
+    Stand: Runner-HEAD 63eab4c | origin 63eab4c | Runner voraus/zurueck 0/0
+    stand.csv Test 1: lokal 1 Zeilen, auf origin 0 | Test 2: lokal 0, auf origin 0
+    Runner: nicht gesicherte Aenderungen: ?? swing-hybrid/vorwaertstest/lauf/;
+--- Lauf 2 (board_pub.pem fehlt im Runner): Rueckgabewert 1
+      | [Stellvertreter-Bot] lauf: Lauf 2
+      | openssl: oeffentlicher Schluessel board_pub.pem fehlt
+    Stand: Runner-HEAD 63eab4c | origin 63eab4c | Runner voraus/zurueck 0/0
+    stand.csv Test 1: lokal 2 Zeilen, auf origin 0 | Test 2: lokal 0, auf origin 0
+    Runner: nicht gesicherte Aenderungen: ?? swing-hybrid/vorwaertstest/lauf/;
+
+################ Szenario s4_selbstaenderung (stunde.sh aus Commit 360fa1b)
+--- Lauf 1 (alte Fassung: kopiert Klartext nach docs/stand.json): Rueckgabewert 0
+      | [Stellvertreter-Bot] lauf: Lauf 1
+      | gesichert: b80f82d
+    docs/ auf origin: docs/index.html docs/stand.json 
+    Entwickler-Klon hat die neue Fassung gepusht. docs/ auf origin: docs/index.html docs/stand.enc.json 
+--- Lauf 2 (Runner startet die alte Datei, pull ersetzt sie waehrend des Laufs): Rueckgabewert 0
+      | [Stellvertreter-Bot] lauf: Lauf 2
+      | gesichert: bdbef68
+    docs/ auf origin nach Lauf 2: docs/index.html docs/stand.enc.json docs/stand.json 
+    stunde.sh im Runner ist jetzt die neue Fassung: 1 Treffer fuer board_verschluesseln
+    letzter Commit auf origin: Vorwärtstest (Papier) 2026-11-15 19:42 UTC | geaenderte Dateien: docs/stand.json swing-hybrid/vorwaertstest/lauf/dashboard.json swing-hybrid/vorwaertstest/lauf/stand.csv swing-hybrid/vorwaertstest/lauf/zustand.json 
+
+################ Szenario s5_commit_scheitert (stunde.sh aus Commit HEAD)
+--- Lauf 1 (ungestoert): Rueckgabewert 0
+      | [Stellvertreter-Bot] lauf: Lauf 1
+      | gesichert: 3c43f7e
+      | [Stellvertreter-Bot] lauf_tpsl: Lauf 1
+      | gesichert (Variante): 37f1b13
+    Stand: Runner-HEAD 37f1b13 | origin 37f1b13 | Runner voraus/zurueck 0/0
+    stand.csv Test 1: lokal 1 Zeilen, auf origin 1 | Test 2: lokal 1, auf origin 1
+--- Lauf 2 (git commit scheitert): Rueckgabewert 0
+      | [Stellvertreter-Bot] lauf: Lauf 2
+      | pre-commit: simulierter Fehler (z. B. Signatur nicht moeglich)
+      | gesichert: 37f1b13
+      | [Stellvertreter-Bot] lauf_tpsl: Lauf 2
+      | pre-commit: simulierter Fehler (z. B. Signatur nicht moeglich)
+      | gesichert (Variante): 37f1b13
+    Stand: Runner-HEAD 37f1b13 | origin 37f1b13 | Runner voraus/zurueck 0/0
+    stand.csv Test 1: lokal 2 Zeilen, auf origin 1 | Test 2: lokal 2, auf origin 1
+    Runner: nicht gesicherte Aenderungen: M  docs/stand.enc.json;M  docs/stand_tpsl.enc.json;M  swing-hybrid/vorwaertstest/lauf/dashboard.json;M  swing-hybrid/vorwaertstest/lauf/stand.csv;M  swing-hybrid/vorwaertstest/lauf/zustand.json;M  swing-hybrid/vorwaertstest/lauf_tpsl/dashboard.json;M  swing-hybrid/vorwaertstest/lauf_tpsl/stand.csv;M  swing-hybrid/vorwaertstest/lauf_tpsl/zustand.json;

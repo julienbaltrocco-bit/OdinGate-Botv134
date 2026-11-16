@@ -1,0 +1,67 @@
+
+=== Vorperiode (2020-02-01 bis 2021-08-14) ===
+  Funding gesamt bei Hebel 1: -45.38% des Startkapitals (-29.55% pro Jahr; Hebel 3: -88.6% pro Jahr); Netto-Ergebnis im Fenster +209.2%
+  Schlechteste 30 Tage: -14.95% (Hebel 3: -44.8%) bis 2021-03-03; schlechteste 90 Tage: -26.05% (Hebel 3: -78.2%) bis 2021-05-03; schlechtester Tag -1.39% (Hebel 3: -4.2%) am 2021-02-20; beste 30 Tage +0.48%
+
+=== Entwicklung (2021-08-15 bis 2025-03-31) ===
+  Funding gesamt bei Hebel 1: -23.16% des Startkapitals (-6.39% pro Jahr; Hebel 3: -19.2% pro Jahr); Netto-Ergebnis im Fenster +215.6%
+  Schlechteste 30 Tage: -4.32% (Hebel 3: -12.9%) bis 2024-03-15; schlechteste 90 Tage: -5.37% (Hebel 3: -16.1%) bis 2021-11-12; schlechtester Tag -1.05% (Hebel 3: -3.1%) am 2022-11-10; beste 30 Tage +0.49%
+
+=== Pruefzeitraum (2025-04-01 bis 2026-10-23) ===
+  Funding gesamt bei Hebel 1: -3.48% des Startkapitals (-2.23% pro Jahr; Hebel 3: -6.7% pro Jahr); Netto-Ergebnis im Fenster +25.8%
+  Schlechteste 30 Tage: -0.83% (Hebel 3: -2.5%) bis 2025-07-31; schlechteste 90 Tage: -1.06% (Hebel 3: -3.2%) bis 2025-07-29; schlechtester Tag -0.10% (Hebel 3: -0.3%) am 2025-10-11; beste 30 Tage +0.14%
+
+=== Je Abrechnung (alle Coins) ===
+  Vorperiode   : 13507 Abrechnungen mit Position; Position zahlt in 62%, zahlt mindestens 0,03 % in 27.1%; mittlerer Satz, wenn Long: +0.0448% (Long zahlt), wenn Short: +0.0105% (Short erhält); Summe Long -51.13%, Summe Short +5.75% des Startkapitals (Hebel 1)
+      größte Einzelzahlung: DOGE Long am 2021-02-08 16:00, Satz +0.378%, Position 7.0x Standardgröße, kostet -0.263% des Startkapitals (Hebel 1), -0.79% bei Hebel 3
+  Entwicklung  : 39713 Abrechnungen mit Position; Position zahlt in 57%, zahlt mindestens 0,03 % in 5.8%; mittlerer Satz, wenn Long: +0.0118% (Long zahlt), wenn Short: +0.0015% (Short erhält); Summe Long -28.12%, Summe Short +4.95% des Startkapitals (Hebel 1)
+      größte Einzelzahlung: SOL Short am 2022-11-10 20:00, Satz -1.793%, Position 0.6x Standardgröße, kostet -0.112% des Startkapitals (Hebel 1), -0.34% bei Hebel 3
+  Pruefzeitraum: 17124 Abrechnungen mit Position; Position zahlt in 57%, zahlt mindestens 0,03 % in 0.7%; mittlerer Satz, wenn Long: +0.0045% (Long zahlt), wenn Short: +0.0003% (Short erhält); Summe Long -3.96%, Summe Short +0.48% des Startkapitals (Hebel 1)
+      größte Einzelzahlung: DOT Short am 2026-04-15 00:00, Satz -0.323%, Position 0.9x Standardgröße, kostet -0.030% des Startkapitals (Hebel 1), -0.09% bei Hebel 3
+  alle         : 70344 Abrechnungen mit Position; Position zahlt in 58%, zahlt mindestens 0,03 % in 8.7%; mittlerer Satz, wenn Long: +0.0178% (Long zahlt), wenn Short: +0.0026% (Short erhält); Summe Long -83.21%, Summe Short +11.18% des Startkapitals (Hebel 1)
+      größte Einzelzahlung: DOGE Long am 2021-02-08 16:00, Satz +0.378%, Position 7.0x Standardgröße, kostet -0.263% des Startkapitals (Hebel 1), -0.79% bei Hebel 3
+
+=== Längste Phasen mit hohem Funding gegen die Position (mindestens 0,03 % je Abrechnung, Position zahlt, ohne Unterbrechung) ===
+  XRP   Long  2021-03-28 bis 2021-04-18: 63 Abrechnungen in Folge (21.0 Tage), Summe der Sätze 9.43% der Positionsgröße (höchster 0.300%), Kosten -2.338% des Startkapitals (Hebel 1), -7.01% bei Hebel 3
+  BTC   Long  2021-02-04 bis 2021-02-22: 56 Abrechnungen in Folge (18.7 Tage), Summe der Sätze 6.25% der Positionsgröße (höchster 0.249%), Kosten -0.823% des Startkapitals (Hebel 1), -2.47% bei Hebel 3
+  XRP   Long  2021-01-29 bis 2021-02-15: 50 Abrechnungen in Folge (16.7 Tage), Summe der Sätze 7.88% der Positionsgröße (höchster 0.314%), Kosten -1.267% des Startkapitals (Hebel 1), -3.80% bei Hebel 3
+  LTC   Long  2020-07-23 bis 2020-08-07: 46 Abrechnungen in Folge (15.3 Tage), Summe der Sätze 3.55% der Positionsgröße (höchster 0.165%), Kosten -0.427% des Startkapitals (Hebel 1), -1.28% bei Hebel 3
+  DOT   Long  2021-04-02 bis 2021-04-17: 45 Abrechnungen in Folge (15.0 Tage), Summe der Sätze 7.07% der Positionsgröße (höchster 0.346%), Kosten -0.818% des Startkapitals (Hebel 1), -2.45% bei Hebel 3
+  LTC   Long  2021-04-04 bis 2021-04-18: 42 Abrechnungen in Folge (14.0 Tage), Summe der Sätze 6.21% der Positionsgröße (höchster 0.310%), Kosten -0.786% des Startkapitals (Hebel 1), -2.36% bei Hebel 3
+  LINK  Long  2021-04-04 bis 2021-04-18: 42 Abrechnungen in Folge (14.0 Tage), Summe der Sätze 5.97% der Positionsgröße (höchster 0.302%), Kosten -0.705% des Startkapitals (Hebel 1), -2.11% bei Hebel 3
+  AVAX  Long  2021-03-09 bis 2021-03-23: 41 Abrechnungen in Folge (13.7 Tage), Summe der Sätze 5.10% der Positionsgröße (höchster 0.288%), Kosten -0.551% des Startkapitals (Hebel 1), -1.65% bei Hebel 3
+  AVAX  Long  2021-04-05 bis 2021-04-18: 39 Abrechnungen in Folge (13.0 Tage), Summe der Sätze 7.37% der Positionsgröße (höchster 0.342%), Kosten -0.815% des Startkapitals (Hebel 1), -2.44% bei Hebel 3
+  ADA   Long  2021-04-05 bis 2021-04-18: 38 Abrechnungen in Folge (12.7 Tage), Summe der Sätze 6.18% der Positionsgröße (höchster 0.378%), Kosten -0.682% des Startkapitals (Hebel 1), -2.05% bei Hebel 3
+  Je Coin die längste Phase:
+      XRP  : 63 Abrechnungen (21.0 Tage) ab 2021-03-28, Long, Summe 9.43%
+      BTC  : 56 Abrechnungen (18.7 Tage) ab 2021-02-04, Long, Summe 6.25%
+      LTC  : 46 Abrechnungen (15.3 Tage) ab 2020-07-23, Long, Summe 3.55%
+      DOT  : 45 Abrechnungen (15.0 Tage) ab 2021-04-02, Long, Summe 7.07%
+      LINK : 42 Abrechnungen (14.0 Tage) ab 2021-04-04, Long, Summe 5.97%
+      AVAX : 41 Abrechnungen (13.7 Tage) ab 2021-03-09, Long, Summe 5.10%
+      ADA  : 38 Abrechnungen (12.7 Tage) ab 2021-04-05, Long, Summe 6.18%
+      DOGE : 34 Abrechnungen (11.3 Tage) ab 2021-03-11, Long, Summe 3.72%
+      ETH  : 29 Abrechnungen (9.7 Tage) ab 2021-01-02, Long, Summe 4.22%
+      SOL  : 24 Abrechnungen (8.0 Tage) ab 2021-04-10, Long, Summe 2.23%
+  Die fünf teuersten Phasen:
+      XRP   Long  2021-03-28 bis 2021-04-18: 63 Abrechnungen, Summe der Sätze 9.43%, Kosten -2.338% (Hebel 1), -7.01% (Hebel 3)
+      DOGE  Long  2021-02-05 bis 2021-02-10: 16 Abrechnungen, Summe der Sätze 2.38%, Kosten -1.401% (Hebel 1), -4.20% (Hebel 3)
+      XRP   Long  2021-01-29 bis 2021-02-15: 50 Abrechnungen, Summe der Sätze 7.88%, Kosten -1.267% (Hebel 1), -3.80% (Hebel 3)
+      SOL   Short 2022-11-08 bis 2022-11-10: 16 Abrechnungen, Summe der Sätze 22.33%, Kosten -1.210% (Hebel 1), -3.63% (Hebel 3)
+      AVAX  Long  2021-02-11 bis 2021-02-15: 11 Abrechnungen, Summe der Sätze 3.16%, Kosten -1.123% (Hebel 1), -3.37% (Hebel 3)
+
+=== Portfolio: längste Folgen von Abrechnungszeitpunkten, an denen das Portfolio netto Funding zahlt ===
+  vor: Portfolio zahlt an 69% der Zeitpunkte; längste Folge 90 Abrechnungen (30 Tage) 2020-07-23 bis 2020-08-22, Kosten -3.05% (Hebel 1) / -9.2% (Hebel 3); teuerste Folge 63 Abrechnungen 2021-02-01 bis 2021-02-22, Kosten -14.71% (Hebel 1) / -44.1% (Hebel 3)
+  haupt: Portfolio zahlt an 62% der Zeitpunkte; längste Folge 127 Abrechnungen (42 Tage) 2024-02-05 bis 2024-03-18, Kosten -4.68% (Hebel 1) / -14.0% (Hebel 3); teuerste Folge 127 Abrechnungen 2024-02-05 bis 2024-03-18, Kosten -4.68% (Hebel 1) / -14.0% (Hebel 3)
+
+=== Binance-Funding der zehn Coins: Extremwerte und Abstand der Abrechnungen ===
+  BTC  : 7488 Abrechnungen, Minimum -0.300% am 2020-03-13, Maximum +0.300% am 2020-02-12, Betrag ab 0,03 % in 8.6%; Abstand in Stunden: {8.0: 7487}
+  ETH  : 7488 Abrechnungen, Minimum -0.356% am 2021-05-19, Maximum +0.375% am 2021-01-04, Betrag ab 0,03 % in 10.4%; Abstand in Stunden: {8.0: 7487}
+  SOL  : 6793 Abrechnungen, Minimum -2.000% am 2022-11-09, Maximum +0.332% am 2021-02-10, Betrag ab 0,03 % in 11.9%; Abstand in Stunden: {8.0: 6691, 2.0: 98, 4.0: 3}
+  XRP  : 7472 Abrechnungen, Minimum -0.502% am 2020-12-11, Maximum +0.488% am 2020-01-06, Betrag ab 0,03 % in 11.9%; Abstand in Stunden: {8.0: 7471}
+  DOT  : 6791 Abrechnungen, Minimum -0.331% am 2025-10-11, Maximum +0.380% am 2021-01-04, Betrag ab 0,03 % in 11.3%; Abstand in Stunden: {8.0: 6790}
+  DOGE : 6914 Abrechnungen, Minimum -0.750% am 2021-01-29, Maximum +0.378% am 2021-02-08, Betrag ab 0,03 % in 9.9%; Abstand in Stunden: {8.0: 6913}
+  ADA  : 7432 Abrechnungen, Minimum -0.487% am 2021-05-19, Maximum +0.397% am 2020-02-06, Betrag ab 0,03 % in 11.2%; Abstand in Stunden: {8.0: 7431}
+  LINK : 7439 Abrechnungen, Minimum -0.487% am 2021-05-19, Maximum +0.444% am 2020-02-13, Betrag ab 0,03 % in 11.0%; Abstand in Stunden: {8.0: 7438}
+  AVAX : 6691 Abrechnungen, Minimum -0.750% am 2021-05-19, Maximum +0.518% am 2021-02-13, Betrag ab 0,03 % in 11.2%; Abstand in Stunden: {8.0: 6690}
+  LTC  : 7463 Abrechnungen, Minimum -0.487% am 2021-05-19, Maximum +0.381% am 2020-02-12, Betrag ab 0,03 % in 10.4%; Abstand in Stunden: {8.0: 7462}

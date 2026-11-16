@@ -1,0 +1,30 @@
+=== E1: Stop/Ziel im Bot (jeder Aufruf, Mittelkurs) gegen Forschung tpsl._zustand (nur Stundenschluesse) ===
+  Aufruf +10 min, Kurs  98.00: Orders 0, Position 150.000, Sperre {}
+  Aufruf +15 min, Kurs  94.00: Orders 1, Position 0.000, Sperre {'AAA': 1}
+  Aufruf +20 min, Kurs  96.00: Orders 0, Position 0.000, Sperre {'AAA': 1}
+  Aufruf +55 min, Kurs  97.00: Orders 0, Position 0.000, Sperre {'AAA': 1}
+  Bot-Protokoll (Grund): [('08:05', 'einstieg'), ('08:20', 'stop')]
+  Forschung, Stundenschluesse 100 -> 97 -> 98, sl=5 %, tp=15 %: Position [np.float64(1.0), np.float64(1.0), np.float64(1.0)] (kein Stop)
+  Stuendlicher Aufruf (wie in bot.py-Kopf und README beschrieben) haette denselben Kursverlauf NICHT gestoppt:
+   Aufruf +60 min, Kurs 97.00: Orders 0 Position 150.0
+
+=== E2: Absturz zwischen CSV-Anhaengen und Zustand-Speichern (bot.py:276-281) ===
+  1. Lauf: simulierter Abbruch vor zustand.json | zustand.json vorhanden: False | Zeilen protokoll.csv: 2
+  2. Lauf: zustand.orders = 2 | Zeilen protokoll.csv = 4 | Zeilen stand.csv = 2
+  Zustand: Gebuehr 12.0000 | Summe Gebuehr im Protokoll 24.0000
+  Dashboard: orders = 4 | volumen_usd = 30000.0 | tatsaechlich gehandelt laut Zustand: 15000
+
+=== E3: Sicherheitsdeckel max_order_usd gilt auch fuer schliessende Orders (bot.live_order, ohne Netz, Attrappe) ===
+  Schliessen einer Short-Position (1.500 $ Einstieg, Kurs +40 %): Order über dem Sicherheitsdeckel (2102 > 2000 USDT)
+  Im Papier-Modus wird der Deckel nicht geprueft (bot.py:246-253): Stellen im Code, die max_order_usd lesen:
+    bot.py:127: preis = -(-buch["brief"][0][0] * (1 + cfg["preisgrenze"]) // tick) * tick      # aufrunden
+    bot.py:129: preis = (buch["geld"][0][0] * (1 - cfg["preisgrenze"]) // tick) * tick          # abrunden
+    bot.py:130: if menge * preis > cfg["max_order_usd"]:
+    bot.py:131: raise YubitFehler(f"Order über dem Sicherheitsdeckel ({menge * preis:.0f} > {cfg['max_order_usd']} USDT)")
+
+=== E4: Tagesverlust-Limit 1.0 (config_lauf*.json) ===
+  config.json              hebel 0.2  tagesverlust_limit 0.03  -> Schwelle     -150 $ | Nominal je Coin    100 $ | max_order_usd 150 | tp - sl -
+  config_lauf.json         hebel 3.0  tagesverlust_limit 1.0   -> Schwelle    -5000 $ | Nominal je Coin   1500 $ | max_order_usd 2000 | tp - sl -
+  config_lauf_tpsl.json    hebel 3.0  tagesverlust_limit 1.0   -> Schwelle    -5000 $ | Nominal je Coin   1500 $ | max_order_usd 2000 | tp 0.15 sl 0.05
+  Papier-Konto nach -30 % Kursfall bei Hebel 3: netto -4512 $ von 5000 $ Kapital, gesperrt_tag = '', Positionen offen: {'AAA': 75.0, 'BBB': 150.0}
+  nach -50 %: netto -7518 $ (Konto rechnerisch -2518 $), gesperrt_tag = '2027-01-15', Positionen offen: {'AAA': 0.0, 'BBB': 0.0}

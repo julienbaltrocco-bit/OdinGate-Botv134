@@ -1,0 +1,20 @@
+=== (a) Kandidat je Gruppe, Hebel 1, ohne Tageslimit, 5 bp (gesamt_60.json) und Yubit-Kosten, nur bei Yubit gelistete Coins (suche_runde22.json)
+Gruppe A (10 Coins) 5 bp: Entwicklung N +1.8338 (JSON +1.8338), Pruefzeitraum N +0.1222 (JSON +0.1222), Sharpe 0.803/0.159
+         (10 bei Yubit) Yubit-Kosten: Sharpe Entwicklung 0.946, Pruefzeitraum 0.3369 (JSON Runde 22: 0.3369); Ertrag/Jahr +0.594 / +0.165
+Gruppe B (10 Coins) 5 bp: Entwicklung N +1.0512 (JSON +1.0512), Pruefzeitraum N +0.0248 (JSON +0.0248), Sharpe 0.477/0.037
+         (10 bei Yubit) Yubit-Kosten: Sharpe Entwicklung 0.592, Pruefzeitraum 0.1968 (JSON Runde 22: 0.1968); Ertrag/Jahr +0.359 / +0.084
+Gruppe C (20 Coins) 5 bp: Entwicklung N +1.8054 (JSON +1.8054), Pruefzeitraum N +0.4752 (JSON +0.4752), Sharpe 0.666/0.581
+         (19 bei Yubit) Yubit-Kosten: Sharpe Entwicklung 0.706, Pruefzeitraum 0.6402 (JSON Runde 22: 0.6402); Ertrag/Jahr +0.529 / +0.344
+Gruppe D (20 Coins) 5 bp: Entwicklung N +1.0929 (JSON +1.0929), Pruefzeitraum N -0.0007 (JSON -0.0007), Sharpe 0.422/-0.001
+         (10 bei Yubit) Yubit-Kosten: Sharpe Entwicklung 0.731, Pruefzeitraum -0.0457 (JSON Runde 22: -0.0457); Ertrag/Jahr +0.581 / -0.029
+Vorperiode 02/2020-08/2021, 40 Coins, 5 bp: N +1.8184 (JSON +1.8184), Sharpe 1.350
+
+=== (b) Verzoegerte Ausfuehrung: Gruppe A, Hebel 1, Yubit-Kosten, ohne Tageslimit; Gewichte um k Kerzen (je 5 Minuten) spaeter
+Verzoegerung   0 Minuten: Entwicklung +0.594/Jahr, Sharpe 0.946 | Pruefzeitraum +0.165/Jahr, Sharpe 0.337
+Verzoegerung   5 Minuten: Entwicklung +0.578/Jahr, Sharpe 0.919 | Pruefzeitraum +0.112/Jahr, Sharpe 0.227
+Verzoegerung  10 Minuten: Entwicklung +0.511/Jahr, Sharpe 0.797 | Pruefzeitraum +0.112/Jahr, Sharpe 0.228
+Verzoegerung  15 Minuten: Entwicklung +0.535/Jahr, Sharpe 0.842 | Pruefzeitraum +0.073/Jahr, Sharpe 0.149
+Verzoegerung  30 Minuten: Entwicklung +0.572/Jahr, Sharpe 0.900 | Pruefzeitraum -0.003/Jahr, Sharpe -0.006
+Verzoegerung  60 Minuten: Entwicklung +0.618/Jahr, Sharpe 0.980 | Pruefzeitraum +0.028/Jahr, Sharpe 0.057
+
+fertig nach 64 s

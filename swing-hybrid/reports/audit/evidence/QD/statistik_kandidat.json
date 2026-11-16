@@ -1,0 +1,137 @@
+{
+ "Entwicklung": {
+  "tage": 1325,
+  "ertrag_jahr": 0.5940169083344836,
+  "sharpe": 0.9456583342989,
+  "t_wert": 1.8017551054673808,
+  "t_naeherung_sharpe_mal_wurzel_jahre": 1.8017551054673797,
+  "autokorr_lag1": -0.02181882839089682,
+  "bootstrap_ertrag_jahr_5_95": [
+   0.0783956867810274,
+   1.1685802817312927
+  ],
+  "bootstrap_sharpe_5_95": [
+   0.1349897650246667,
+   1.729689329849116
+  ],
+  "bootstrap_anteil_mittel_le_0": 0.0274
+ },
+ "Pruefzeitraum": {
+  "tage": 571,
+  "ertrag_jahr": 0.16523513323642475,
+  "sharpe": 0.3369477716263708,
+  "t_wert": 0.42143850283129936,
+  "t_naeherung_sharpe_mal_wurzel_jahre": 0.42143850283129947,
+  "autokorr_lag1": -0.0013403604364673524,
+  "bootstrap_ertrag_jahr_5_95": [
+   -0.38127815685451555,
+   0.7322829973267223
+  ],
+  "bootstrap_sharpe_5_95": [
+   -0.8342943930324895,
+   1.4307640316260537
+  ],
+  "bootstrap_anteil_mittel_le_0": 0.3138
+ },
+ "Pruefzeitraum ohne Rebate": {
+  "tage": 571,
+  "ertrag_jahr": -0.12505339697619752,
+  "sharpe": -0.25373721621337597,
+  "t_wert": -0.3173626345632071,
+  "t_naeherung_sharpe_mal_wurzel_jahre": -0.3173626345632071,
+  "autokorr_lag1": 0.003761509517535923,
+  "bootstrap_ertrag_jahr_5_95": [
+   -0.6980323281049575,
+   0.4683168419792339
+  ],
+  "bootstrap_sharpe_5_95": [
+   -1.5137615619361366,
+   0.9007561283970328
+  ],
+  "bootstrap_anteil_mittel_le_0": 0.6375
+ },
+ "Entwicklung ohne Rebate": {
+  "tage": 1325,
+  "ertrag_jahr": 0.3135785534033183,
+  "sharpe": 0.49697383144387497,
+  "t_wert": 0.9468801845346656,
+  "t_naeherung_sharpe_mal_wurzel_jahre": 0.9468801845346654,
+  "autokorr_lag1": -0.015369920161563655,
+  "bootstrap_ertrag_jahr_5_95": [
+   -0.21459009452426003,
+   0.9022395297332528
+  ],
+  "bootstrap_sharpe_5_95": [
+   -0.3676184661364342,
+   1.3251246718421585
+  ],
+  "bootstrap_anteil_mittel_le_0": 0.1775
+ },
+ "differenz_t": 0.8370298655988728,
+ "zufall_verschoben": {
+  "pruef_perzentil": 80.5,
+  "pruef_echt": 0.2584911262410919,
+  "pruef_median": -0.158786311635428,
+  "pruef_p90": 0.49048660075645406,
+  "entw_perzentil": 100.0,
+  "entw_echt": 2.1563627494333995,
+  "entw_median": -0.6821697825415748,
+  "entw_p90": 0.4858539841375208
+ },
+ "einbruch_Entwicklung": {
+  "relativ_hebel1": 0.25786855294685285,
+  "absolut_hebel1": 0.5690696813237432,
+  "absolut_hebel3": 1.7072090439712297
+ },
+ "einbruch_Pruefzeitraum": {
+  "relativ_hebel1": 0.33095983115714445,
+  "absolut_hebel1": 0.542502701976944,
+  "absolut_hebel3": 1.6275081059308318
+ },
+ "einbruch_Gesamt": {
+  "relativ_hebel1": 0.25786855294685285,
+  "absolut_hebel1": 0.5690696813237432,
+  "absolut_hebel3": 1.7072090439712297
+ },
+ "hebel3_Entwicklung": {
+  "N": 6.469088248300205,
+  "dd": 0.3839210928092053,
+  "sharpe": 0.9456583342989006
+ },
+ "hebel3_Pruefzeitraum": {
+  "N": 0.7754733787232757,
+  "dd": 0.5578358062450662,
+  "sharpe": 0.33694777162637124
+ },
+ "neustart_hebel3_verlust_50": {
+  "365_tage": 0.45391211146838156,
+  "bis_ende": 0.4608788853161844
+ },
+ "neustart_hebel3_verlust_75": {
+  "365_tage": 0.28885316184351556,
+  "bis_ende": 0.29689174705251875
+ },
+ "neustart_hebel3_verlust_100": {
+  "365_tage": 0.11789924973204716,
+  "bis_ende": 0.12004287245444802
+ },
+ "schlechtester_tag_hebel1": -0.2968175055160929,
+ "schlechteste_30_tage_hebel1": -0.3257491670324584,
+ "korrelation_gesamt": {
+  "stundenrenditen": 0.703482149210036,
+  "tagesrenditen": 0.6970508257237421,
+  "tages_pnl_je_coin_strategie": 0.3468323116079445
+ },
+ "korrelation_Entwicklung": {
+  "stundenrenditen": 0.6882950149942348,
+  "tagesrenditen": 0.6727986696236666,
+  "tages_pnl_je_coin_strategie": 0.32995525898020134
+ },
+ "korrelation_ab 04/2025": {
+  "stundenrenditen": 0.7717613112254743,
+  "tagesrenditen": 0.7938186181971159,
+  "tages_pnl_je_coin_strategie": 0.45768432377327084
+ },
+ "gleiche_richtung_8von10": 0.7433192686357243,
+ "gleiche_richtung_10von10": 0.413721870604782
+}

@@ -1,0 +1,3 @@
+lauf: 64 Laeufe; Laeufe mit weniger als 10 Coins in spannen.csv: {'2026-11-15 15:16': 5}
+   vorhanden: ['BTC', 'ETH', 'SOL', 'XRP', 'DOT'] | Zeile in stand.csv: {'zeit': '2026-11-15 15:16', 'brutto': '286.1479', 'gebuehr': '11.9405', 'rebate': '10.1495', 'funding': '0.0', 'netto_ohne_rebate': '274.2073', 'netto_mit_rebate': '284.3568', 'long': '0', 'short': '10', 'einsatz': '14639.53', 'orders': '10'}
+lauf_tpsl: 14 Laeufe; Laeufe mit weniger als 10 Coins in spannen.csv: {}

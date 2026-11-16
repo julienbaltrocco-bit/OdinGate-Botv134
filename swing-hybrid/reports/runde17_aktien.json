@@ -1,0 +1,1184 @@
+{
+ "AAOI": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 3.1711356267744533,
+  "boerse": "NGM"
+ },
+ "AAPL": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 1.4033708968946592,
+  "boerse": "NMS"
+ },
+ "ADBE": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 13.745131932441117,
+  "boerse": "NMS"
+ },
+ "AGPU": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 25.12562814070298,
+  "boerse": "NCM"
+ },
+ "AKAM": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 8.134332694208052,
+  "boerse": "NMS"
+ },
+ "ALAB": {
+  "ok": true,
+  "von": "2024-03-20",
+  "tage": 652,
+  "spanne_bp": 4.27218569767182,
+  "boerse": "NMS"
+ },
+ "AMAT": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 6.39661813580349,
+  "boerse": "NMS"
+ },
+ "AMC": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 25.498305295562623,
+  "boerse": "NYQ"
+ },
+ "AMD": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 0.3858359647494269,
+  "boerse": "NMS"
+ },
+ "AMZN": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 0.3810031813783837,
+  "boerse": "NMS"
+ },
+ "ANET": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 33.06297463449844,
+  "boerse": "NYQ"
+ },
+ "ANTHROPIC": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "APLD": {
+  "ok": true,
+  "von": "2022-04-13",
+  "tage": 1137,
+  "spanne_bp": 19.512195121951958,
+  "boerse": "NMS"
+ },
+ "APP": {
+  "ok": true,
+  "von": "2021-04-15",
+  "tage": 1389,
+  "spanne_bp": 17.536518187379354,
+  "boerse": "NMS"
+ },
+ "ARM": {
+  "ok": true,
+  "von": "2023-09-14",
+  "tage": 781,
+  "spanne_bp": 4.353504571180481,
+  "boerse": "NMS"
+ },
+ "ASML": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 11.324255737168675,
+  "boerse": "NMS"
+ },
+ "ASTS": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 3.2232070910561044,
+  "boerse": "NMS"
+ },
+ "AVGO": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 3.8785708958005656,
+  "boerse": "NMS"
+ },
+ "AXTI": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 5.065856129686709,
+  "boerse": "NMS"
+ },
+ "BABA": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 4.33181719731495,
+  "boerse": "NYQ"
+ },
+ "BAC": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 3.9215686274502,
+  "boerse": "NYQ"
+ },
+ "BBX": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "BE": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 2.9798478662158536,
+  "boerse": "NYQ"
+ },
+ "BITO": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "BMNR": {
+  "ok": true,
+  "von": "2025-06-05",
+  "tage": 349,
+  "spanne_bp": 6.3877355477481865,
+  "boerse": "NYQ"
+ },
+ "BNC": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 5.369127516777932,
+  "boerse": "NCM"
+ },
+ "BOT": {
+  "ok": true,
+  "von": "2026-05-11",
+  "tage": 116,
+  "spanne_bp": 11.614401858304051,
+  "boerse": "NGM"
+ },
+ "BRKB": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "BSP": {
+  "ok": true,
+  "von": "2026-07-01",
+  "tage": 81,
+  "spanne_bp": 9.79671809943648,
+  "boerse": "NMS"
+ },
+ "BWET": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "BX": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 9.269012007583688,
+  "boerse": "NYQ"
+ },
+ "BYD": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 24.0096038415361,
+  "boerse": "NYQ"
+ },
+ "BZ": {
+  "ok": true,
+  "von": "2021-06-11",
+  "tage": 1349,
+  "spanne_bp": 1.0753266304645535,
+  "boerse": "NMS"
+ },
+ "CAT": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 8.547509909245404,
+  "boerse": "NYQ"
+ },
+ "CBRS": {
+  "ok": true,
+  "von": "2026-05-14",
+  "tage": 113,
+  "spanne_bp": 2.8866971373587815,
+  "boerse": "NMS"
+ },
+ "CEG": {
+  "ok": true,
+  "von": "2022-01-19",
+  "tage": 1196,
+  "spanne_bp": 16.16989166172546,
+  "boerse": "NMS"
+ },
+ "CIEN": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 19.568387823294856,
+  "boerse": "NYQ"
+ },
+ "CL": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 3.434655675768634,
+  "boerse": "NYQ"
+ },
+ "COHR": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 2.383040386029698,
+  "boerse": "NYQ"
+ },
+ "COIN": {
+  "ok": true,
+  "von": "2021-04-14",
+  "tage": 1390,
+  "spanne_bp": 1.7145306472349782,
+  "boerse": "NMS"
+ },
+ "COPPER": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "COST": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 21.72198562383183,
+  "boerse": "NMS"
+ },
+ "CRCL": {
+  "ok": true,
+  "von": "2025-06-05",
+  "tage": 349,
+  "spanne_bp": 1.793239544798495,
+  "boerse": "NYQ"
+ },
+ "CRDO": {
+  "ok": true,
+  "von": "2022-01-27",
+  "tage": 1190,
+  "spanne_bp": 3.165590040952016,
+  "boerse": "NMS"
+ },
+ "CRML": {
+  "ok": true,
+  "von": "2022-02-07",
+  "tage": 1183,
+  "spanne_bp": 8.195041999591163,
+  "boerse": "NGM"
+ },
+ "CRM": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 3.7049043671566015,
+  "boerse": "NYQ"
+ },
+ "CRWD": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 4.84357455802317,
+  "boerse": "NMS"
+ },
+ "CRWV": {
+  "ok": true,
+  "von": "2025-03-28",
+  "tage": 396,
+  "spanne_bp": 2.9723571375256297,
+  "boerse": "NMS"
+ },
+ "CSCO": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 5.328502158043071,
+  "boerse": "NMS"
+ },
+ "CVNA": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 13.906271728548786,
+  "boerse": "NYQ"
+ },
+ "CXMT": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "CYPH": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 20.95539540493958,
+  "boerse": "NCM"
+ },
+ "DELL": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 4.788985333733164,
+  "boerse": "NYQ"
+ },
+ "DIS": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 2.550911951022587,
+  "boerse": "NYQ"
+ },
+ "DJT": {
+  "ok": true,
+  "von": "2021-09-30",
+  "tage": 1272,
+  "spanne_bp": 6.632032718028326,
+  "boerse": "NGM"
+ },
+ "DKNG": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 5.320563979782688,
+  "boerse": "NMS"
+ },
+ "DRAM": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "EBAY": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 4.9763622791729345,
+  "boerse": "NMS"
+ },
+ "EWJ": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "EWT": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "EWY": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "FLEX": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 6.777363605557053,
+  "boerse": "NMS"
+ },
+ "FLNC": {
+  "ok": true,
+  "von": "2021-10-28",
+  "tage": 1252,
+  "spanne_bp": 6.673340006673593,
+  "boerse": "NMS"
+ },
+ "FWDI": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 12.449712461471869,
+  "boerse": "NCM"
+ },
+ "GDX": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "GEV": {
+  "ok": true,
+  "von": "2024-03-27",
+  "tage": 647,
+  "spanne_bp": 5.705088358127837,
+  "boerse": "NYQ"
+ },
+ "GIGADEV": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "GLW": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 5.469462169553534,
+  "boerse": "NYQ"
+ },
+ "GME": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 11.88354129530645,
+  "boerse": "NYQ"
+ },
+ "GOOGL": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 1.0305913876923187,
+  "boerse": "NMS"
+ },
+ "GPRO": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 32.31017770597741,
+  "boerse": "NMS"
+ },
+ "GS": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 1.7577974797575135,
+  "boerse": "NYQ"
+ },
+ "HD": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 9.504745172022666,
+  "boerse": "NYQ"
+ },
+ "HIMS": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 15.843675732768725,
+  "boerse": "NYQ"
+ },
+ "HK0700": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "HK0992": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "HK1810": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "HOOD": {
+  "ok": true,
+  "von": "2021-07-29",
+  "tage": 1316,
+  "spanne_bp": 1.3425521917152319,
+  "boerse": "NMS"
+ },
+ "HPE": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 2.1184196589340134,
+  "boerse": "NYQ"
+ },
+ "HUT": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 5.3826141562754355,
+  "boerse": "NMS"
+ },
+ "HYUNDAI": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "IBKR": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 7.367387033399101,
+  "boerse": "NMS"
+ },
+ "INTC": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 5.293806287901479,
+  "boerse": "NMS"
+ },
+ "INTW": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "IONQ": {
+  "ok": true,
+  "von": "2021-01-04",
+  "tage": 1459,
+  "spanne_bp": 14.255167498217801,
+  "boerse": "NYQ"
+ },
+ "IREN": {
+  "ok": true,
+  "von": "2021-11-17",
+  "tage": 1238,
+  "spanne_bp": 5.982650314087951,
+  "boerse": "NMS"
+ },
+ "IWM": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "JPM": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 4.938773731534532,
+  "boerse": "NYQ"
+ },
+ "KORU": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "KSTR": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "KUAISHOU": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "LITE": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 0.5263342575443899,
+  "boerse": "NMS"
+ },
+ "LLY": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 17.488790799920505,
+  "boerse": "NYQ"
+ },
+ "LRCX": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 25.055235405324602,
+  "boerse": "NMS"
+ },
+ "LYTE": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "MARA": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 30.257186081695107,
+  "boerse": "NCM"
+ },
+ "MCD": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 4.792715073088737,
+  "boerse": "NYQ"
+ },
+ "MEITUAN": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "META": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 0.1585816465677522,
+  "boerse": "NMS"
+ },
+ "MINIMAX": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "MOONSHOT": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "MP": {
+  "ok": true,
+  "von": "2020-06-22",
+  "tage": 1594,
+  "spanne_bp": 12.97185108314883,
+  "boerse": "NYQ"
+ },
+ "MRK": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 5.428513265928213,
+  "boerse": "NYQ"
+ },
+ "MRNA": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 3.6643459142548784,
+  "boerse": "NMS"
+ },
+ "MRVL": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 2.67451190157933,
+  "boerse": "NMS"
+ },
+ "MSFT": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 1.7304198190756066,
+  "boerse": "NMS"
+ },
+ "MSTR": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 1.0345541099478135,
+  "boerse": "NMS"
+ },
+ "MSTU": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "MU": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 2.4040387851599174,
+  "boerse": "NMS"
+ },
+ "MUU": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "MVLL": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "NATGAS": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "NBIS": {
+  "ok": true,
+  "von": "2024-10-21",
+  "tage": 504,
+  "spanne_bp": 3.6812074360395965,
+  "boerse": "NMS"
+ },
+ "NET": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 12.135723305508783,
+  "boerse": "NYQ"
+ },
+ "NFLX": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 2.4386939474913323,
+  "boerse": "NMS"
+ },
+ "NKE": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 2.6556898154290294,
+  "boerse": "NYQ"
+ },
+ "NOK": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 12.714558169103352,
+  "boerse": "NYQ"
+ },
+ "NOW": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 4.016467516819586,
+  "boerse": "NYQ"
+ },
+ "NVDA": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 1.8929236205319833,
+  "boerse": "NMS"
+ },
+ "NVO": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 2.4263011039665194,
+  "boerse": "NYQ"
+ },
+ "OKLO": {
+  "ok": true,
+  "von": "2021-07-08",
+  "tage": 1331,
+  "spanne_bp": 8.654262224145207,
+  "boerse": "NYQ"
+ },
+ "ONDS": {
+  "ok": true,
+  "von": "2020-12-04",
+  "tage": 1478,
+  "spanne_bp": 2.022858298776846,
+  "boerse": "NCM"
+ },
+ "OPENAI": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "ORCL": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 7.38643358365164,
+  "boerse": "NYQ"
+ },
+ "PANW": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 8.284877030944992,
+  "boerse": "NMS"
+ },
+ "PATH": {
+  "ok": true,
+  "von": "2021-04-21",
+  "tage": 1385,
+  "spanne_bp": 15.220700152206675,
+  "boerse": "NYQ"
+ },
+ "PAYP": {
+  "ok": true,
+  "von": "2026-03-12",
+  "tage": 157,
+  "spanne_bp": 7.1352122725649565,
+  "boerse": "NMS"
+ },
+ "PDD": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 2.5490695895992888,
+  "boerse": "NMS"
+ },
+ "PENG": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 8.72600349040121,
+  "boerse": "NMS"
+ },
+ "PLTR": {
+  "ok": true,
+  "von": "2020-09-30",
+  "tage": 1524,
+  "spanne_bp": 0.6126700165037997,
+  "boerse": "NMS"
+ },
+ "PYPL": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 6.805035726437418,
+  "boerse": "NMS"
+ },
+ "QCOM": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 0.5880796341160262,
+  "boerse": "NMS"
+ },
+ "QNTX": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "QQQ": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "RAM": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "RDDT": {
+  "ok": true,
+  "von": "2024-03-21",
+  "tage": 651,
+  "spanne_bp": 32.12934653054902,
+  "boerse": "NYQ"
+ },
+ "RDW": {
+  "ok": true,
+  "von": "2021-01-14",
+  "tage": 1451,
+  "spanne_bp": 26.59574468085168,
+  "boerse": "NYQ"
+ },
+ "RIVN": {
+  "ok": true,
+  "von": "2021-11-10",
+  "tage": 1243,
+  "spanne_bp": 8.399832003359753,
+  "boerse": "NMS"
+ },
+ "RKLB": {
+  "ok": true,
+  "von": "2020-11-24",
+  "tage": 1485,
+  "spanne_bp": 3.385240352065526,
+  "boerse": "NMS"
+ },
+ "RUM": {
+  "ok": true,
+  "von": "2021-04-14",
+  "tage": 1390,
+  "spanne_bp": 12.275317843052276,
+  "boerse": "NGM"
+ },
+ "SAMSUNG": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "SECZ": {
+  "ok": true,
+  "von": "2026-07-02",
+  "tage": 80,
+  "spanne_bp": 12.730744748568648,
+  "boerse": "NYQ"
+ },
+ "SHAZ": {
+  "ok": true,
+  "von": "2026-02-18",
+  "tage": 173,
+  "spanne_bp": 36.56307129798987,
+  "boerse": "NCM"
+ },
+ "SHOP": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 4.137931034482915,
+  "boerse": "NMS"
+ },
+ "SKDD": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "SKHYNIX": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "SKHY": {
+  "ok": true,
+  "von": "2026-07-10",
+  "tage": 75,
+  "spanne_bp": 2.3431093060492154,
+  "boerse": "NMS"
+ },
+ "SKUU": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "SMCI": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 11.53624303018694,
+  "boerse": "NMS"
+ },
+ "SMH": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "SNDK": {
+  "ok": true,
+  "von": "2025-02-13",
+  "tage": 426,
+  "spanne_bp": 1.5396732339651376,
+  "boerse": "NMS"
+ },
+ "SNPS": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 15.706400911413235,
+  "boerse": "NMS"
+ },
+ "SNXX": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "SOFI": {
+  "ok": true,
+  "von": "2021-01-04",
+  "tage": 1459,
+  "spanne_bp": 26.31578947368482,
+  "boerse": "NMS"
+ },
+ "SOXL": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "SOXS": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "SPCX": {
+  "ok": true,
+  "von": "2026-06-12",
+  "tage": 93,
+  "spanne_bp": 2.226427696760632,
+  "boerse": "NMS"
+ },
+ "SPY": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "SQQQ": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "STRC": {
+  "ok": true,
+  "von": "2025-07-30",
+  "tage": 312,
+  "spanne_bp": 1.0174492547189413,
+  "boerse": "NMS"
+ },
+ "STXX": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "TBT": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "TEM": {
+  "ok": true,
+  "von": "2024-06-14",
+  "tage": 592,
+  "spanne_bp": 5.716735743889101,
+  "boerse": "NMS"
+ },
+ "TENCENT": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "TER": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 7.861472577942269,
+  "boerse": "NMS"
+ },
+ "TMF": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "TQQQ": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "TSLA": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 1.3043761820912114,
+  "boerse": "NMS"
+ },
+ "TSM": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 3.5890993924163963,
+  "boerse": "NYQ"
+ },
+ "TTWO": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 6.09119387399871,
+  "boerse": "NMS"
+ },
+ "TWST": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 9.124087591241654,
+  "boerse": "NMS"
+ },
+ "TXN": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 2.661609608412048,
+  "boerse": "NMS"
+ },
+ "UBER": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 14.505366985783917,
+  "boerse": "NYQ"
+ },
+ "UNH": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 6.128727798683549,
+  "boerse": "NYQ"
+ },
+ "UNITREE": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "URNM": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "USAR": {
+  "ok": true,
+  "von": "2023-07-17",
+  "tage": 823,
+  "spanne_bp": 25.412960609910513,
+  "boerse": "NGM"
+ },
+ "USDEX": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "UVXY": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "VKTX": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 17.226528854436076,
+  "boerse": "NCM"
+ },
+ "VST": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 13.018340544471993,
+  "boerse": "NYQ"
+ },
+ "V": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 5.66398414084462,
+  "boerse": "NYQ"
+ },
+ "WDC": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 3.5000525007863175,
+  "boerse": "NMS"
+ },
+ "WEN": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 8.49153878813571,
+  "boerse": "NMS"
+ },
+ "WMT": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 5.47752259478017,
+  "boerse": "NMS"
+ },
+ "XAG": {
+  "ok": false,
+  "grund": "Typ ECNQUOTE"
+ },
+ "XAUT": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "XBI": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "XOM": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 0.5822585810353085,
+  "boerse": "NYQ"
+ },
+ "XPD": {
+  "ok": false,
+  "grund": "Typ ECNQUOTE"
+ },
+ "XPT": {
+  "ok": false,
+  "grund": "Typ ECNQUOTE"
+ },
+ "ZCSH": {
+  "ok": false,
+  "grund": "Typ ETF"
+ },
+ "ZHIPU": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "ZHONGJI": {
+  "ok": false,
+  "grund": "HTTP Error 404: Not Found"
+ },
+ "ZM": {
+  "ok": true,
+  "von": "2020-01-02",
+  "tage": 1712,
+  "spanne_bp": 5.061497190868772,
+  "boerse": "NMS"
+ }
+}

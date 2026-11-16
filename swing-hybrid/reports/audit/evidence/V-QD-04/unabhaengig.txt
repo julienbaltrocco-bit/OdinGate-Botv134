@@ -1,0 +1,65 @@
+/tmp/claude-0/-home-user-OdinGate-Botv134/47fc44e2-7331-5a93-8908-3cf4accd9a35/scratchpad/audit/V-QD-04/unabhaengig.py:156: UserWarning: obj.round has no effect with datetime, timedelta, or period dtypes. Use obj.dt.round(...) instead.
+  z7.round(4).to_csv(AUS / "neustart_hebel3_unabhaengig.csv")
+/tmp/claude-0/-home-user-OdinGate-Botv134/47fc44e2-7331-5a93-8908-3cf4accd9a35/scratchpad/audit/V-QD-04/unabhaengig.py:159: UserWarning: obj.round has no effect with datetime, timedelta, or period dtypes. Use obj.dt.round(...) instead.
+  z1.round(4).to_csv(AUS / "neustart_hebel3_taeglich.csv")
+Slippage je Coin (bp): {'BTC': np.float64(0.5), 'ETH': np.float64(0.5), 'SOL': np.float64(1.37), 'XRP': np.float64(1.14), 'DOT': np.float64(13.22), 'DOGE': np.float64(1.65), 'ADA': np.float64(6.42), 'LINK': np.float64(1.09), 'AVAX': np.float64(1.45), 'LTC': np.float64(2.18)}
+Datenluecken: {'BTC': {'fehlende_5m_kerzen': 0, 'fehlende_stunden': 0}, 'ETH': {'fehlende_5m_kerzen': 0, 'fehlende_stunden': 0}, 'SOL': {'fehlende_5m_kerzen': 1440, 'fehlende_stunden': 120}, 'XRP': {'fehlende_5m_kerzen': 1440, 'fehlende_stunden': 120}, 'DOT': {'fehlende_5m_kerzen': 0, 'fehlende_stunden': 0}, 'DOGE': {'fehlende_5m_kerzen': 0, 'fehlende_stunden': 0}, 'ADA': {'fehlende_5m_kerzen': 0, 'fehlende_stunden': 0}, 'LINK': {'fehlende_5m_kerzen': 0, 'fehlende_stunden': 0}, 'AVAX': {'fehlende_5m_kerzen': 0, 'fehlende_stunden': 0}, 'LTC': {'fehlende_5m_kerzen': 1440, 'fehlende_stunden': 120}}
+
+=== 1. Durchgehender Lauf ab 2021-08-15 (eigener Rechenkern)
+Hebel 1 Entwicklung    N +2.161 (+0.595/Jahr) Sharpe 0.947  Einbruch rel. zum Hoechststand 0.257  groesster Rueckgang (Startkapital) 0.569  schlechtester Tag -0.297 am 2024-12-09
+Hebel 1 Pruefzeitraum  N +0.259 (+0.166/Jahr) Sharpe 0.338  Einbruch rel. zum Hoechststand 0.331  groesster Rueckgang (Startkapital) 0.543  schlechtester Tag -0.111 am 2025-07-23
+Hebel 1: groesster Verlust innerhalb eines UTC-Tags (ohne Rebate, 5-Minuten-Werte) -0.425 am 2024-12-09 21:00:00
+Hebel 3 Entwicklung    N +6.482 (+1.786/Jahr) Sharpe 0.947  Einbruch rel. zum Hoechststand 0.382  groesster Rueckgang (Startkapital) 1.707  schlechtester Tag -0.890 am 2024-12-09
+Hebel 3 Pruefzeitraum  N +0.777 (+0.497/Jahr) Sharpe 0.338  Einbruch rel. zum Hoechststand 0.558  groesster Rueckgang (Startkapital) 1.628  schlechtester Tag -0.334 am 2025-07-23
+Hebel 3: groesster Verlust innerhalb eines UTC-Tags (ohne Rebate, 5-Minuten-Werte) -1.274 am 2024-12-09 21:00:00
+
+=== 2. Neustart mit Hebel 3, feste Groesse, kein Tageslimit; Kontotief (5-Minuten-Schlusskurse) in den folgenden 365 Tagen
+
+--- Start an jedem 7. Tag (Raster des Pruefers)
+alle Starttage                               n= 267  <= -30 %: 0.697  <= -50 %: 0.472  <= -75 %: 0.318  <= -100 %: 0.161  Median Tief -0.46  Median Stand am Ende +1.02
+nur volle 365 Tage                           n= 219  <= -30 %: 0.694  <= -50 %: 0.475  <= -75 %: 0.315  <= -100 %: 0.164  Median Tief -0.47  Median Stand am Ende +1.30
+Starts im Pruefzeitraum                      n=  77  <= -30 %: 0.714  <= -50 %: 0.455  <= -75 %: 0.312  <= -100 %: 0.130  Median Tief -0.42  Median Stand am Ende +0.07
+Starts in der Entwicklung (volle 365 Tage)   n= 190  <= -30 %: 0.689  <= -50 %: 0.479  <= -75 %: 0.321  <= -100 %: 0.174  Median Tief -0.48  Median Stand am Ende +1.46
+
+--- Start an jedem Tag
+alle Starttage                               n=1866  <= -30 %: 0.701  <= -50 %: 0.472  <= -75 %: 0.303  <= -100 %: 0.135  Median Tief -0.46  Median Stand am Ende +1.00
+nur volle 365 Tage                           n=1532  <= -30 %: 0.696  <= -50 %: 0.472  <= -75 %: 0.301  <= -100 %: 0.135  Median Tief -0.46  Median Stand am Ende +1.27
+Starts im Pruefzeitraum                      n= 541  <= -30 %: 0.701  <= -50 %: 0.445  <= -75 %: 0.283  <= -100 %: 0.113  Median Tief -0.44  Median Stand am Ende +0.05
+Starts in der Entwicklung (volle 365 Tage)   n=1325  <= -30 %: 0.701  <= -50 %: 0.482  <= -75 %: 0.312  <= -100 %: 0.144  Median Tief -0.47  Median Stand am Ende +1.42
+
+groesster Verlust innerhalb eines UTC-Tags ueber alle Neustart-Pfade (ohne Rebate): 7-Tage-Raster -1.274, taeglich -1.274  -> Limit des Bots (-1,00) waere ausgeloest worden
+
+=== 3. Wie viele unabhaengige Ereignisse stecken hinter den Totalverlusten? (taegliche Starts)
+Monat, in dem das Konto erstmals <= -100 % steht -> Anzahl betroffener Starttage:
+         starts erster_start letzter_start  median_tage_bis
+monat                                                      
+2022-03       3   2021-12-14    2022-01-28        53.500000
+2022-12       1   2022-06-19    2022-06-19       177.718750
+2023-04      32   2023-01-15    2023-03-12        80.395833
+2023-06      17   2022-07-31    2023-03-09       140.583333
+2024-10     118   2023-12-09    2024-09-08       135.168403
+2024-11      20   2023-12-16    2024-09-09       153.340278
+2025-10      14   2025-07-18    2025-08-03        77.758681
+2025-12       2   2025-07-30    2025-08-04       138.126736
+2026-05       9   2026-02-06    2026-03-01        82.836806
+2026-07       9   2026-02-11    2026-03-17       158.072917
+2026-08      27   2026-02-07    2026-06-11       152.222222
+Tage vom Start bis zum ersten Stand <= -100 %: Minimum 37.6, Median 114.5, Maximum 332.8
+Anteil der Totalverlust-Starts, bei denen das Konto vor dem Tief nie ueber +10 % lag: 0.17
+
+nach Startjahr (taegliche Starts): Anteil mit Kontotief <= -50 % / <= -100 %
+      starts   le50  le100
+jahr                      
+2021     139  0.223  0.007
+2022     365  0.488  0.022
+2023     365  0.438  0.162
+2024     366  0.735  0.336
+2025     365  0.244  0.044
+2026     266  0.575  0.169
+
+=== 4. Dieselbe Neustart-Rechnung fuer andere Hebel (nur zur Einordnung, keine Auswahl)
+Hebel 0.2: <= -30 %: 0.000  <= -50 %: 0.000  <= -75 %: 0.000  <= -100 %: 0.000  Median Tief -0.031  schlechtestes Tief -0.096
+Hebel 1: <= -30 %: 0.202  <= -50 %: 0.000  <= -75 %: 0.000  <= -100 %: 0.000  Median Tief -0.154  schlechtestes Tief -0.482
+Hebel 2: <= -30 %: 0.506  <= -50 %: 0.318  <= -75 %: 0.075  <= -100 %: 0.000  Median Tief -0.308  schlechtestes Tief -0.964
+
+fertig nach 56 s
