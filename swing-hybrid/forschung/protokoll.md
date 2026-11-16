@@ -837,3 +837,16 @@ dieselben Trades bilden wie die Rückrechnung.
 nach 150 Trades oder zwölf Monaten. Erfolg heißt jeweils: netto mit Rebate im Mittel positiv; das gilt als „nicht
 widerlegt“, nicht als Beweis. Abbruch bei Kontostand unter 70 % oder Liquidation im Modell. Ergebnisse dieser Tests
 steuern keine Auswahl neuer Fabrik-Kandidaten.
+
+**Nachtrag zu Abschnitt 28: Bedingungen geprüft, beide Tests angelegt (16.11.2026, 12:15 UTC).**
+- `B-24332e4d` (Orderbuch-Tiefe): Parität 12 von 12 Trades gleich (Fenster 10. bis 20.06.2024); Risiko bei Hebel 3
+  wie in Abschnitt 22 (tiefster Kontostand 62 %, keine Liquidation). Status „laufend“.
+- `B-dc1d27a3` (Kaufdruck, Kennung `dc1d27a31f5f`, mit Bestätigung durch eine Volumenspitze, sieben Altcoins,
+  alle 5 Minuten geprüft, Ausstieg nach spätestens 12 Stunden mit Ziel und Nachzug, kein Stop): Parität 19 von 19
+  Trades gleich (Fenster 01.11. bis 20.12.2023; im Standardfenster lag nur ein Trade). Risiko über 1.271 Starttage
+  bei Hebel 3: tiefster Kontostand 54 %, an 8,8 % der Starttage unter der Abbruchgrenze von 70 %, keine Liquidation;
+  schlechtester Einzeltrade −18 %. Rund sieben Trades im Monat, in Schüben. Status „laufend“.
+- Der Papier-Rechner (`fabrik/papier_fabrik.py`) kannte die zwei Datenreihen der Generation 4 nicht; ergänzt, bevor
+  der zweite Test angelegt wurde. Der eingefrorene Code von `B-24332e4d` ist davon unberührt (Prüfsumme gültig).
+- Voller täglicher Ablauf (`papier/tag.sh`) einmal durchgelaufen: fünf Tests, kein Fehler. Erste Trades frühestens
+  am 18.11., weil die Archivdaten einen Tag Verzug haben.

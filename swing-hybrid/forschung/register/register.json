@@ -1,5 +1,5 @@
 {
- "stand": "2026-11-16 12:00 UTC",
+ "stand": "2026-11-16 12:17 UTC",
  "runde": 1,
  "experimente": 18,
  "kategorien": {
@@ -118,6 +118,59 @@
     "sharpe": 1.01,
     "rueckgang_pct": 50.7,
     "hinweis": "Entwicklung 08/2021–03/2025: +59 % pro Jahr, Sharpe 0,95; 04/2025–10/2026: +16,5 %, Sharpe 0,34, ohne Rebate −12,5 %"
+   }
+  },
+  {
+   "id": "B-dc1d27a3",
+   "name": "Beobachtung (nicht validiert): Gegen einseitigen Kaufdruck, Altcoins",
+   "version": "1.0",
+   "familie": "Strategie-Fabrik",
+   "kategorie": "laufend",
+   "einstufung": "B",
+   "status": "Beobachtungstest, nicht validiert (Schattentest) seit 2026-11-17",
+   "richtung": "Long und Short",
+   "maerkte": "XRP, DOT, DOGE, ADA, LINK, AVAX, LTC",
+   "daten": "Binance-Archiv: Kerzen, minuten",
+   "gebuehren": "Taker 0,08 % je Order, Rebate 85 % angenommen (unbestätigt); Slippage 2 x gemessene halbe Yubit-Spanne; in bewegtem Markt mindestens 5 % der Spanne der letzten Kerze je Order",
+   "algorithmus": "Signal kaufdruck_48, Schwelle 3.5, gegen das Signal, Filter vol_hoch, geprüft alle 5 Minuten, Ausstieg h720_zielnachzug, Bestätigung durch volspitze_1.",
+   "parameter": {
+    "signal": "kaufdruck_48",
+    "th": 3.5,
+    "r": -1,
+    "f": "vol_hoch",
+    "k": 1,
+    "ausstieg": [
+     144,
+     0,
+     0,
+     0.5,
+     1.0,
+     null
+    ],
+    "ausstieg_name": "h720_zielnachzug",
+    "markt": "alt7",
+    "best": [
+     "volspitze_1",
+     1.0,
+     -1
+    ],
+    "kennung": "dc1d27a31f5f",
+    "generation": "gen2"
+   },
+   "hebel": 3.0,
+   "validierung": "NICHT validiert. Regel der Strategie-Fabrik, in Training, Auswahl- und Schlussprüfung positiv (Schlussprüfung netto mit Rebate +181,8 bp je Trade, ohne Rebate +168,2 bp), aber nur 50 Trades in neun Monaten: nicht von Glück zu unterscheiden (p = 0,07) und nach Korrektur für die vielen gleichzeitig geprüften Regeln nicht bestanden. Ausgewählt nach dem besten Ergebnis in der Auswahlprüfung, nicht nach der Schlussprüfung. Beobachtungstest: Nur neue Daten können klären, ob etwas daran ist. Die Regel handelt selten (rund sieben Trades im Monat) und ohne Stop.",
+   "vertrauen": "gering: nicht validiert, bestes von 1.199 Ergebnissen",
+   "ergebnisdateien": [
+    "forschung/papier/B-dc1d27a3/",
+    "forschung/fabrik/ergebnisse/schlusspruefung.json"
+   ],
+   "kennzahlen": {
+    "zeitraum": "Schlussprüfung 07/2024–03/2025",
+    "n85_bp": 181.84,
+    "n0_bp": 168.24,
+    "t_n85": 1.48,
+    "haltedauer_min": 167.0,
+    "ertrag_jahr_pct_hebel1": 17.3
    }
   },
   {
