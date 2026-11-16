@@ -714,7 +714,7 @@ Stichprobe vom 14.11.2026 liegt nicht im Repository). Siehe `engine/offene_frage
 
 ## 25. Festlegung Generation 4 (vor der Rechnung, 16.11.2026): Orderbuch-Tiefe aus dem letzten Schnappschuss (H16, H07)
 
-- **Mechanismus:** Das Tiefe-Signal verfällt schnell (E10: fünf Minuten Verzug kosten rund 40 %). Bisher geht das
+- **Mechanismus:** Das Tiefe-Signal verfällt schnell (frühere Messung, siehe H07: fünf Minuten Verzug kosten rund 40 %). Bisher geht das
   Mittel aller 30-Sekunden-Schnappschüsse einer 5-Minuten-Kerze ein; es ist beim Einstieg im Schnitt 2,5 Minuten alt.
   Der letzte Schnappschuss vor Kerzenschluss ist höchstens 30 Sekunden alt und enthält die jüngste Verschiebung des
   Orderbuchs. Das ist neue Information aus derselben Quelle, keine weitere Einstellung der alten Signale.
@@ -730,3 +730,36 @@ Stichprobe vom 14.11.2026 liegt nicht im Repository). Siehe `engine/offene_frage
 - **Vergleichsgröße (nur Bericht, keine Hürde):** dieselben 144 Einstellungen mit dem alten Signal `tiefe_1` aus dem
   Archiv der Generation 1, soweit dort gerechnet. Ist das frische Signal im Training nicht besser als das alte, gilt
   die Idee als nicht bestätigt, auch wenn einzelne Kandidaten weiterkommen.
+
+---
+
+## 26. Ergebnis Generation 4: Orderbuch-Tiefe aus dem letzten Schnappschuss (16.11.2026)
+
+**Gerechnet:** 288 Kandidaten (48 Einstiegsregeln × 3 Ausstiege × 2 Märkte), eine Sekunde Rechenzeit. Störungstest grün.
+
+| Stufe | übrig |
+|---|---|
+| erzeugt und gerechnet | 288 |
+| mindestens 200 Trades im Training | 240 |
+| Stufe 1: Vorteil vor Gebühr (t ≥ 2) | **0** |
+
+- 42 von 240 Kandidaten sind im Training vor Gebühr positiv, der beste erreicht t = 1,4. Median vor Gebühr:
+  `tiefe_letzt_1` mit dem Signal −1,9 bp, dagegen −6,7 bp; `tiefe_frisch_1` in beiden Richtungen rund −4,5 bp.
+- **Vergleich mit dem alten Signal (`tiefe_1`, Kerzenmittel, 102 gleiche Einstellungen aus Generation 1):** Das frische
+  Signal ist im Median 0,05 bp schlechter und nur in 48 % der Paare besser. Die beiden Signale laufen zu 85 bis 95 %
+  gleich. Der letzte Schnappschuss bringt also keine zusätzliche Information; die Vermutung, ein früherer Einstieg
+  über frischere Daten rette den schnell verfallenden Effekt, ist auf 5-Minuten-Raster nicht bestätigt.
+- Die Richtung „mit dem Signal“ auf BTC/ETH/SOL bleibt wie in allen früheren Prüfungen leicht vorn (Median vor Gebühr
+  0,0 bp im Training, +5,2 bp in der Auswahlprüfung), aber weit unter den Kosten. Das ist die bekannte Spur, die als
+  Papier-Test OS-1.1 bereits läuft, kein neuer Befund.
+- **Einstufung A (verworfen).** Keine Finalisten, keine Schlussprüfung, kein Papier-Test. `trichter.py stufe3` wie
+  bei Generation 3 nicht ausgeführt (kein Kandidat aus Stufe 2).
+
+**Stand der Fabrik:** 523.056 Kandidaten gerechnet, 1.199 Finalisten, 0 validiert (unverändert). Die Zählung führt die
+drei Größen „im Training netto positiv“ als alten Stand plus neue Generationen fort, weil das Archiv auf zwei
+Nachkommastellen gerundet ist und eine Neuzählung daraus 17 Grenzfälle verlöre. `auswahl.json` ist unverändert.
+
+**Folgerung für die nächsten Zyklen:** H07 und H16 sind in der Form „frischere Daten auf 5-Minuten-Raster“ erledigt.
+Offen bleibt nur die echte 1-Minuten- oder 30-Sekunden-Ausführung (Einstieg innerhalb der Kerze); sie braucht einen
+Simulator auf Minutenraster und passt nicht in den Baukasten. Ohne die Antworten in `engine/offene_fragen.md` und ohne
+Messung der Yubit-Kosten in heftigen Kerzen (E16 wächst täglich) ist das die sinnvollste verbleibende Arbeit.

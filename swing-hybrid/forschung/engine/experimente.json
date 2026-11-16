@@ -194,5 +194,31 @@
    "forschung/ergebnisse/e16_yubit_kosten_bewegung.json",
    "forschung/fabrik/ergebnisse/schlusspruefung_einfache_slippage.json"
   ]
+ },
+ {
+  "nr": 17,
+  "id": "E17",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Strategie-Fabrik, Generation 3: wiederkehrende Tageszeit-Muster (H10), 108 Kandidaten",
+  "einstufung": "A",
+  "kurz": "kein Kandidat mit Vorteil vor Gebühr (bester t 1,7); beide Richtungen verlieren, Median −5,4 bp je Trade im Training; keine Finalisten",
+  "dateien": [
+   "forschung/fabrik/ergebnisse/zaehlung.json",
+   "forschung/fabrik/ergebnisse/kandidaten.parquet"
+  ]
+ },
+ {
+  "nr": 18,
+  "id": "E18",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Strategie-Fabrik, Generation 4: Orderbuch-Tiefe aus dem letzten 30-Sekunden-Schnappschuss (H16, H07), 288 Kandidaten",
+  "einstufung": "A",
+  "kurz": "kein Kandidat mit Vorteil vor Gebühr (bester t 1,4); frisches Signal nicht besser als das Kerzenmittel (Median −0,05 bp, in 48 % der Paare besser); keine Finalisten",
+  "dateien": [
+   "forschung/fabrik/ergebnisse/zaehlung.json",
+   "forschung/fabrik/ergebnisse/kandidaten.parquet"
+  ]
  }
 ]

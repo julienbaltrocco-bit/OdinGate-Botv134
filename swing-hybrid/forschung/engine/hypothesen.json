@@ -5,8 +5,9 @@
   "mechanismus": "Das Signal verfällt schnell (5 Minuten Verzug kosten 40 %). Feinere Auflösung könnte früher einsteigen.",
   "daten": "bookDepth (vorhanden), 1-Minuten-Kerzen (vorhanden bis 03/2025)",
   "aufwand": "gering",
-  "status": "offen",
-  "hinweis": "Nur Entwicklung 01/2023–03/2024 zur Auswahl. Die Validierung 04/2024–03/2025 ist für Orderbuch-Regeln bereits zweimal geöffnet worden und taugt nur noch eingeschränkt."
+  "status": "teilweise geprüft",
+  "hinweis": "Nur Entwicklung 01/2023–03/2024 zur Auswahl. Die Validierung 04/2024–03/2025 ist für Orderbuch-Regeln bereits zweimal geöffnet worden und taugt nur noch eingeschränkt.",
+  "ergebnis": "E18: Letzter 30-Sekunden-Schnappschuss auf 5-Minuten-Raster bringt nichts. Offen nur noch der Einstieg innerhalb der Kerze (Simulator auf Minutenraster nötig)."
  },
  {
   "id": "H08",
@@ -31,7 +32,8 @@
   "mechanismus": "Wiederkehrende Orderströme großer Teilnehmer.",
   "daten": "vorhanden",
   "aufwand": "gering",
-  "status": "offen"
+  "status": "verworfen",
+  "ergebnis": "E17 (Generation 3, 16.11.2026): kein Brutto-Vorteil in 98 gültigen Kandidaten."
  },
  {
   "id": "H11",
@@ -81,8 +83,9 @@
   "mechanismus": "Die Orderbuch-Tiefe ist die einzige Familie, die in jeder Prüfung vorn liegt (bester Finalist der Schlussprüfung, p 0,0003), aber nie die Korrektur für die vielen Versuche besteht. Mehr Information aus derselben Quelle statt mehr Varianten.",
   "daten": "bookDepth (30-Sekunden-Schnappschüsse, vorhanden)",
   "aufwand": "mittel",
-  "status": "offen",
-  "hinweis": "Eigene Generation mit wenigen, vorab festgelegten Kandidaten, damit die Korrektur nicht wieder alles aufzehrt."
+  "status": "teilweise geprüft",
+  "hinweis": "Eigene Generation mit wenigen, vorab festgelegten Kandidaten, damit die Korrektur nicht wieder alles aufzehrt.",
+  "ergebnis": "E18: feinere Zeitauflösung der 1-%-Stufe verworfen. Offen: weitere Preisstufen (2 % und 4 %); wenig aussichtsreich, da 1, 3 und 5 % schon geprüft sind."
  },
  {
   "id": "H17",
