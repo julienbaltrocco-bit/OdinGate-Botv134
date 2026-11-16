@@ -923,3 +923,58 @@ und Tief einer Minute beide Grenzen, gilt die ungünstige. Kosten: vier Orders j
 Slippage je Order wie im Kostenmodell der Fabrik. Berichtet werden je Paar: Ergebnis vor Kosten, mit und ohne Rebate
 (in bp des Werts einer Seite), Trefferquote der Gewinnerseite. Erwartung: vor Kosten nahe null, nach Kosten negativ
 in Höhe der Kosten. Kein Nachbessern mit Filtern; neun Zahlen (drei Coins, drei Abstände), keine Auswahl.
+
+---
+
+## 32. Ergebnisse E19 und E20 (16.11.2026)
+
+**E19: gleichzeitig Long und Short, Verlierer früh schließen** (`ergebnisse/e19_gegenlaeufiges_paar.json`; je Coin
+rund 6.300 Paare, 08/2021 bis 06/2024; alle Zahlen in bp des Werts einer Seite je Paar).
+
+| Coin | Stop | vor Kosten | mit Rebate | ohne Rebate | Gewinnerseite erreicht Ziel |
+|---|---|---|---|---|---|
+| BTC | 0,2 % | −2,7 | −9,5 | −36,7 | 62 % |
+| BTC | 0,5 % | −4,2 | −11,0 | −38,2 | 61 % |
+| BTC | 1,0 % | −3,1 | −9,9 | −37,1 | 52 % |
+| ETH | 0,2 % | −2,4 | −9,2 | −36,4 | 63 % |
+| ETH | 0,5 % | −3,6 | −10,4 | −37,6 | 63 % |
+| ETH | 1,0 % | −3,3 | −10,1 | −37,3 | 58 % |
+| SOL | 0,2 % | −2,5 | −12,8 | −40,0 | 63 % |
+| SOL | 0,5 % | −4,6 | −14,9 | −42,1 | 64 % |
+| SOL | 1,0 % | −0,0 | −10,3 | −37,5 | 66 % |
+
+- Vor Kosten null bis leicht negativ, wie erwartet: Damit das Paar bei Chance zu Risiko 2:1 aufgeht, müsste die
+  Gewinnerseite in zwei von drei Fällen (66,7 %) ihr Ziel erreichen; gemessen sind 52 bis 66 %. Die Kursbewegung setzt
+  sich nach dem ersten Ausschlag also nicht öfter fort, als der Zufall erwarten lässt.
+- Nach Kosten verliert jedes Paar rund 9 bis 15 bp mit Rebate und 36 bis 42 bp ohne. Bei engem Stop (0,2 %) ist das
+  rund die Hälfte des Stop-Abstands je Versuch.
+- Das Rebate ist kein Ertrag: Es erstattet 85 % der selbst gezahlten Gebühr. Mehr Handelsfrequenz vervielfacht den
+  Verlust, nicht den Gewinn. **Einstufung A (verworfen).** Unabhängig davon stünde die Struktur gegen drei Regeln
+  des Auftraggebers (Abschnitt 31).
+
+**E20: Idee 1 im Archiv der Fabrik** (Auszählung der schon gerechneten Kandidaten mit Filter `trend_mit`, also
+Einstieg nur in Richtung des 14-Tage-Trends; bp je Trade im Training, Median über die gültigen Kandidaten).
+
+| Einstieg in Trendrichtung | gerechnet | vor Gebühr positiv | Median vor Gebühr | mit Rebate | Stufe 1 | Finalisten |
+|---|---|---|---|---|---|---|
+| nach kurzer Gegenbewegung (Rücksetzer), alle Ausstiege | 5.430 | 23 % | −4,2 | −6,6 | 29 | 1 |
+| Rücksetzer, nur mit Stop, Ziel oder Nachzug | 2.706 | 12 % | −5,7 | −8,1 | 3 | 0 |
+| mit der kurzen Bewegung (Fortsetzung), alle Ausstiege | 15.600 | 36 % | −3,8 | −6,2 | 550 | 61 |
+| Fortsetzung, nur mit Stop, Ziel oder Nachzug | 7.656 | 38 % | −3,2 | −5,6 | 390 | 36 |
+| Scalping-nah (alle 5 Minuten geprüft, höchstens 60 Minuten gehalten) | 2.358 | 19 % | −5,0 | −7,4 | 27 | 1 |
+
+- **Rücksetzer in Trendrichtung handeln** (der Kern der Idee) hat schon vor Gebühren einen negativen Erwartungswert;
+  enge Stops und Ziele verschlechtern ihn. Von 5.430 Varianten erreicht eine die Schlussprüfung und ist dort negativ.
+- **Besser ist das Gegenteil:** in Trendrichtung einsteigen, wenn der Kurs gerade stark in Trendrichtung gelaufen
+  ist. Von den 61 Finalisten dieser Art sind in der Schlussprüfung 75 % positiv (Median +7,4 bp mit Rebate), fünf mit
+  p unter 5 % bei 3,1 zufällig erwarteten; keiner validiert. Vorn liegt ein langsames Muster, kein Scalping:
+  12-Stunden-Momentum (`mom_144`), stündlich geprüft, Ausstieg über nachgezogenes Ziel, alle zehn Coins. Bester:
+  `4628c5a0dc9b` mit +23 / +18 / +36 bp je Trade mit Rebate (Training / Auswahl- / Schlussprüfung), +23 bp ohne Rebate
+  in der Schlussprüfung, 250 Trades in neun Monaten, p = 0,005. Drei der sechs kleinsten p-Werte aller 1.199
+  Finalisten gehören zu diesem Muster. Wie bei den beiden anderen Mustern (Abschnitt 28) gilt: nachträglich gebildete
+  Gruppe, Hinweis und kein Beleg.
+- **Hebel 15 bis 20:** ändert den Erwartungswert je Trade nicht. Test 1 bindet bei Hebel 3 schon rund 97 % der Margin;
+  zusätzliche Positionen mit hohem Hebel im selben Konto erhöhen vor allem das Liquidationsrisiko des Ganzen.
+- **Einstufung:** Rücksetzer-Scalping A (verworfen). Fortsetzung in Trendrichtung B (interessant, unbestätigt); als
+  dritter Beobachtungstest möglich, wenn der Auftraggeber das will. Eine neue Generation wird dafür nicht gerechnet:
+  Die Bausteine sind dieselben, weitere Varianten erhöhten nur die Hürde für alle späteren Prüfungen.

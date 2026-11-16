@@ -94,5 +94,21 @@
   "daten": "–",
   "aufwand": "gering",
   "status": "offen"
+ },
+ {
+  "id": "H18",
+  "titel": "Trend-Scalping zusätzlich zur Swing-Position (Idee des Auftraggebers)",
+  "mechanismus": "Kurze Zusatzpositionen in Richtung des 14-Tage-Trends. E20: Einstieg nach Rücksetzern ist schon vor Gebühr negativ; Einstieg nach Stärke (12-Stunden-Momentum, nachgezogenes Ziel) ist das beste Muster, nicht validiert. Keine neue Generation mit denselben Bausteinen.",
+  "daten": "5-Minuten-Kerzen",
+  "aufwand": "gering",
+  "status": "teilweise geprüft (E20); Beobachtungstest nur auf Wunsch des Auftraggebers"
+ },
+ {
+  "id": "H19",
+  "titel": "Gegenläufiges Paar über zwei Börsen mit frühem Schließen der Verliererseite (Idee des Auftraggebers)",
+  "mechanismus": "Rechnerisch ein Ausbruchshandel mit doppelten Kosten; ohne Vorhersagekraft Erwartungswert null vor Kosten. E19: −9 bis −15 bp je Paar mit Rebate. Steht zudem gegen die Regeln des Auftraggebers (keine gegenläufigen Positionen, kein Volumen ohne Handelsgrund).",
+  "daten": "Minutenkerzen",
+  "aufwand": "gering",
+  "status": "verworfen (E19)"
  }
 ]

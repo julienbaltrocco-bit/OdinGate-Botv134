@@ -220,5 +220,29 @@
    "forschung/fabrik/ergebnisse/zaehlung.json",
    "forschung/fabrik/ergebnisse/kandidaten.parquet"
   ]
+ },
+ {
+  "nr": 19,
+  "id": "E19",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Idee des Auftraggebers: gleichzeitig Long und Short (zwei Börsen), Verlierer früh schließen, Ziel 2:1",
+  "einstufung": "A",
+  "kurz": "vor Kosten null bis leicht negativ (Gewinnerseite erreicht Ziel in 52–66 % statt der nötigen 67 %); nach Kosten −9 bis −15 bp je Paar mit Rebate, −36 bis −42 bp ohne",
+  "dateien": [
+   "forschung/ergebnisse/e19_gegenlaeufiges_paar.json"
+  ]
+ },
+ {
+  "nr": 20,
+  "id": "E20",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Idee des Auftraggebers: Scalping in Richtung des 14-Tage-Trends (Auszählung von 21.030 schon gerechneten Kandidaten)",
+  "einstufung": "B",
+  "kurz": "Rücksetzer handeln: vor Gebühr negativ (Median −4,2 bp, 1 Finalist); Fortsetzung handeln: 61 Finalisten, 75 % in der Schlussprüfung positiv, bestes Muster 12-Stunden-Momentum mit Nachzug, nicht validiert",
+  "dateien": [
+   "forschung/protokoll.md"
+  ]
  }
 ]
