@@ -892,3 +892,34 @@ Der Auftraggeber stellt einen eigenen Server bereit (Standort Nürnberg; Binance
   (gemessen auf dem Server), die Regeln brauchen ±3 % bzw. ±5 %; diese Tiefe gibt es nur im Archiv.
 - **Betrieb:** ein Docker-Container mit Obergrenzen (0,6 Kerne, 800 MB), alles unter `/opt/odingate`, keine
   Handelsschlüssel, keine Orders. Einrichten `live/install.sh`, ansehen `live/status.sh`, entfernen `live/entfernen.sh`.
+
+---
+
+## 31. Zwei neue Ideen des Auftraggebers: Trend-Scalping und Cross-Exchange-Hedge (16.11.2026)
+
+**Die Ideen (H18, H19).** (1) Zur bestehenden Swing-Position zusätzliche, kurz gehaltene Positionen in Trendrichtung
+eröffnen, wenn der Kurs kurzfristig gegen den Trend läuft, mit engen Stops und Gewinnzielen und hohem Hebel (15 bis
+20). (2) Gleichzeitig Long auf Börse A und Short auf Börse B eröffnen, die verlierende Seite früh schließen, die
+gewinnende bis zum Ziel laufen lassen (Chance zu Risiko 2:1), bei hoher Handelsfrequenz.
+
+**Einordnung vor jeder Rechnung.**
+- Idee 1 ist im Kern schon gerechnet: Der Filter `trend_mit` der Fabrik ist derselbe 14-Tage-Trend wie in Test 1.
+  „Rücksetzer in Trendrichtung handeln“ sind die Kandidaten mit diesem Filter, die gegen eine kurze Bewegung
+  einsteigen; „Fortsetzung handeln“ die, die mit ihr einsteigen. Das wird aus dem Archiv ausgezählt (E20). Diese
+  Auszählung ist beschreibend; sie enthält Ergebnisse der Schlussprüfung und steuert keine neue Generation.
+- Hebel ist kein Ertragsfaktor: Er vervielfacht Ertrag und Verlust je Trade gleichermaßen. Ob eine Regel verdient,
+  entscheidet sich bei Hebel 1. Die Obergrenze des Auftraggebers (Hebel höchstens 5) gilt weiter.
+- Idee 2 ist rechnerisch ein Ausbruchshandel mit doppelten Kosten: Wer gleichzeitig Long und Short eröffnet und die
+  Verliererseite beim Stop schließt, steht danach genau so da, als wäre er erst beim Ausbruch in dessen Richtung
+  eingestiegen, hat aber zwei Positionen bezahlt. Ohne Vorhersagekraft ist der Erwartungswert vor Kosten null.
+  Zusätzlich berührt sie drei Regeln des Auftraggebers (keine gegenläufigen Positionen, keine Cross-Exchange-Konstrukte,
+  kein Handelsvolumen ohne eigenen Handelsgrund) und üblicherweise die Rebate-Bedingungen der Börsen.
+
+**E19, festgelegt vor der Rechnung: der Kern von Idee 2 an echten Kursen.** BTC, ETH, SOL, Minutenkerzen,
+15.08.2021 bis 30.06.2024 (Training und Auswahlprüfung; Schlussprüfung und Tresor bleiben zu). Alle vier Stunden wird
+ein Paar eröffnet (Long und Short zum selben Kurs). Stop-Abstand s = 0,2 %, 0,5 % oder 1,0 %; Ziel 2 s. Die Seite, die
+zuerst s verliert, wird geschlossen; die andere läuft bis +2 s, zurück bis −s oder höchstens 24 Stunden. Berühren Hoch
+und Tief einer Minute beide Grenzen, gilt die ungünstige. Kosten: vier Orders je Paar, Taker 0,08 %, Rebate 85 %,
+Slippage je Order wie im Kostenmodell der Fabrik. Berichtet werden je Paar: Ergebnis vor Kosten, mit und ohne Rebate
+(in bp des Werts einer Seite), Trefferquote der Gewinnerseite. Erwartung: vor Kosten nahe null, nach Kosten negativ
+in Höhe der Kosten. Kein Nachbessern mit Filtern; neun Zahlen (drei Coins, drei Abstände), keine Auswahl.
