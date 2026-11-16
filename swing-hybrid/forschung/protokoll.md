@@ -799,3 +799,41 @@ Kostenbasis in voller Genauigkeit in `fabrik/slippage_gemessen.json` und ist die
   keine Datenbank): jeweils dieselbe Zählung, 523.056 Kandidaten.
 - `engine/AUFTRAG.md`: Anleitung zur Arbeitsumgebung ergänzt, Aufgabenliste wird künftig mit der Festlegung
   gesichert, Reihenfolge der nächsten sinnvollen Schritte. Die drei Fragen in `engine/offene_fragen.md` sind beantwortet.
+
+---
+
+## 28. Zwei Beobachtungstests, vom Auftraggeber freigegeben (16.11.2026, vor dem Anlegen festgelegt)
+
+**Anlass.** Eine Aufschlüsselung der 1.199 Finalisten nach Signalart (nach der Schlussprüfung, also nur beschreibend)
+zeigt zwei Gruppen, die sich vom Zufall abheben:
+- Orderbuch-Tiefe, mit dem Signal, BTC/ETH/SOL: 97 Finalisten, 66 % in der Schlussprüfung positiv, 15 mit p unter
+  5 % bei 4,9 zufällig erwarteten; gegen das Signal nur 9 % positiv. Median vor Gebühr rund +6 bp je Trade.
+- `kaufdruck_48`, gegen das Signal, hohe Schwankung (nach vier Stunden einseitiger Marktorders dagegen handeln):
+  acht Finalisten, Varianten einer Regel, alle in Training, Auswahl- und Schlussprüfung positiv (Schlussprüfung +6 bis
+  +200 bp je Trade mit Rebate), aber nur 50 bis 120 Trades in neun Monaten bei sieben der acht; p zwischen 5 und 33 %.
+
+**Einordnung.** Die Gruppen wurden nach Kenntnis der Ergebnisse gebildet; bei der Orderbuch-Tiefe überschneidet sich
+die Schlussprüfung mit Daten der ersten Runde. Beides ist ein Hinweis, kein Beleg. Kein Kandidat ist validiert, und
+aus der Schlussprüfung werden keine neuen Regeln abgeleitet. Unabhängige Evidenz liefern nur neue Daten.
+
+**Entscheidung des Auftraggebers (16.11.2026):** Beide Muster kommen als Beobachtungstests in den Papierhandel.
+Reiner Schattentest, keine Orders, eigene Konten, klar als „nicht validiert“ geführt. Tests 1 und 2 sowie OS-1.1
+bleiben unverändert und werden nicht vermischt.
+
+**Welche Regeln, festgelegt ohne Blick auf die Schlussprüfung:**
+1. `B-24332e4d` (Orderbuch-Tiefe 3 %, hohe Schwankung, stündlich, Signal-Ausstieg, BTC/ETH/SOL): wie in Abschnitt 22
+   vorbereitet, Regel seit 16.11. eingefroren. Er war der beste Finalist nach p-Wert; diese Wahl stammt aus der
+   Schlussprüfung und ist deshalb vermerkt.
+2. Kaufdruck: Unter den Finalisten mit `kaufdruck_48` wird derjenige genommen, der in der **Auswahlprüfung** das
+   beste Sharpe-Verhältnis hatte (dasselbe Kriterium, nach dem die Fabrik Gruppenvertreter wählt): `dc1d27a31f5f`.
+   Die Ergebnisse der Schlussprüfung spielen für diese Wahl keine Rolle. Nur dieser eine; keine weiteren Varianten.
+
+**Bedingungen vor dem Start (sonst kein Test):** Risikoprüfung über alle Starttage ohne Liquidation und mit
+Kontostand über 50 % beim gewählten Hebel (höchstens 3); der Papier-Runner muss auf einem historischen Fenster
+dieselben Trades bilden wie die Rückrechnung.
+
+**Wertung.** Start beider Tests 17.11.2026 00:00 UTC. Orderbuch-Tiefe: Zwischenwertung nach 100, Hauptwertung nach
+300 Trades oder zwölf Monaten. Kaufdruck (seltene Trades, rund zehn im Monat): Zwischenwertung nach 50, Hauptwertung
+nach 150 Trades oder zwölf Monaten. Erfolg heißt jeweils: netto mit Rebate im Mittel positiv; das gilt als „nicht
+widerlegt“, nicht als Beweis. Abbruch bei Kontostand unter 70 % oder Liquidation im Modell. Ergebnisse dieser Tests
+steuern keine Auswahl neuer Fabrik-Kandidaten.
