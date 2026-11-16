@@ -2,28 +2,28 @@
 
 Historische bzw. Papier-Messung, keine Anlageberatung. Stufe „papier“ setzt keine echten Orders.
 
-- Zeitraum: 2026-11-15 13:21 bis 2026-11-16 04:41 UTC (0,6 Tage, 171 Durchläufe)
+- Zeitraum: 2026-11-15 13:21 bis 2026-11-16 04:46 UTC (0,6 Tage, 172 Durchläufe)
 - Kapital 5.000 $, Hebel 3,00, 10 Coins, Modus papier
 
 ## Was eine Order zur vollen Stunde gekostet hätte
 
-Gemessen am echten Orderbuch, Order in Standardgröße, 1694 Messungen.
+Gemessen am echten Orderbuch, Order in Standardgröße, 1704 Messungen.
 
 - **Slippage im Mittel: 0,016 %** (unter der Annahme aus dem Backtest (0,05 %))
 - Median 0,008 %, schlechteste 10 % ab 0,065 %
 
 | Coin | Messungen | Slippage im Mittel | Schlechteste 10 % ab | Spanne Geld/Brief im Mittel |
 |---|---|---|---|---|
-| BTC | 170 | 0,001 % | 0,001 % | 0,002 % |
-| ETH | 169 | 0,001 % | 0,001 % | 0,003 % |
-| SOL | 170 | 0,007 % | 0,007 % | 0,014 % |
-| XRP | 170 | 0,005 % | 0,005 % | 0,010 % |
-| DOT | 169 | 0,072 % | 0,079 % | 0,137 % |
-| DOGE | 170 | 0,008 % | 0,009 % | 0,017 % |
-| ADA | 169 | 0,033 % | 0,033 % | 0,065 % |
-| LINK | 168 | 0,007 % | 0,010 % | 0,011 % |
-| AVAX | 169 | 0,010 % | 0,014 % | 0,014 % |
-| LTC | 170 | 0,012 % | 0,011 % | 0,022 % |
+| BTC | 171 | 0,001 % | 0,001 % | 0,002 % |
+| ETH | 170 | 0,001 % | 0,001 % | 0,003 % |
+| SOL | 171 | 0,007 % | 0,007 % | 0,014 % |
+| XRP | 171 | 0,005 % | 0,005 % | 0,010 % |
+| DOT | 170 | 0,072 % | 0,079 % | 0,137 % |
+| DOGE | 171 | 0,008 % | 0,009 % | 0,017 % |
+| ADA | 170 | 0,033 % | 0,033 % | 0,065 % |
+| LINK | 169 | 0,007 % | 0,010 % | 0,011 % |
+| AVAX | 170 | 0,010 % | 0,014 % | 0,014 % |
+| LTC | 171 | 0,012 % | 0,011 % | 0,022 % |
 
 ## Orders des Kandidaten
 
@@ -36,13 +36,13 @@ Gemessen am echten Orderbuch, Order in Standardgröße, 1694 Messungen.
 
 | | Betrag | Anteil am Kapital |
 |---|---|---|
-| Handel vor Gebühren | +236,34 $ | 4,73 % |
+| Handel vor Gebühren | +255,62 $ | 5,11 % |
 | Gebühr | −11,94 $ | −0,24 % |
 | Funding | −1,32 $ | −0,03 % |
-| Nach voller Gebühr, ohne Rebate | +223,08 $ | 4,46 % |
+| Nach voller Gebühr, ohne Rebate | +242,36 $ | 4,85 % |
 | Rebate (85 %, gerechnet) | +10,15 $ | 0,20 % |
-| **Netto mit Rebate** | +233,23 $ | 4,66 % |
+| **Netto mit Rebate** | +252,51 $ | 5,05 % |
 
-Offen: 0 Long, 10 Short, Einsatz 14.689 $.
+Offen: 0 Long, 10 Short, Einsatz 14.670 $.
 
 Wenige Wochen sagen über den Gewinn fast nichts. Aussagekräftig ist hier vor allem die Slippage.
