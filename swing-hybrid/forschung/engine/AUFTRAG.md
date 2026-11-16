@@ -45,11 +45,19 @@ zusammengefassten Ergebnisse. Werte nie einzelne Kandidaten der Reihe nach sprac
    `trichter.py stufe3` und, nur wenn es neue Finalisten gibt, einmal `trichter.py stufe4`. Die Schlussprüfung
    rechnet die Korrektur über alle jemals geprüften Finalisten; jeder Finalist wird nur einmal geprüft. Ergebnisse
    der Schlussprüfung dürfen keine neue Generation steuern.
-6. **Sichern:** `.venv/bin/python -I forschung/fabrik/bericht.py`, Ergebnis ins Protokoll (Zählung, Durchsatz, was
+6. **Sichern:** `.venv/bin/python -I forschung/fabrik/bericht.py`, danach die Übersicht aktualisieren (ArtifactData, Sammlung `fabrik`: Dokument
+   `zaehlung` aus `fabrik/ergebnisse/zaehlung.json`, Dokument `auswahl` aus `auswahl.json`; vorher die Version lesen), Ergebnis ins Protokoll (Zählung, Durchsatz, was
    bestanden hat und was nicht), Eintrag in `engine/experimente.json` (eine Generation zählt als ein Experiment),
    `python3 -m forschung.engine.zusammenfassung`, committen und pushen.
 7. **Papier-Test:** nur für Kandidaten mit Status `validiert`, höchstens einer je Gruppe, nach den Bedingungen unten.
 8. Am Ende eine kurze Antwort: erzeugt, gerechnet, je Stufe bestanden, validiert, neue Papier-Tests.
+
+**Stand nach Generation 1 und 2 (16.11.2026):** 522.660 Kandidaten, 1.199 Finalisten, in der Schlussprüfung kein einziger validiert
+(60 mit p unter 5 % bei 60 zufällig erwarteten). Mehr Varianten derselben Bausteine sind deshalb ausdrücklich NICHT das Ziel.
+Eine neue Generation braucht eine neue Informationsquelle oder einen neuen Mechanismus und soll klein sein (höchstens einige
+hundert Kandidaten), sonst zehrt die Korrektur für die vielen Versuche jeden echten Effekt auf. Die Ergebnis-Datenbank für
+neue Läufe liegt unter `data/fabrik/` (oder dem Ordner in der Umgebungsvariable `FABRIK_AUS`). Vor `stufe3` in einer frischen
+Sitzung nichts löschen: `finalisten.json`, `finalisten_reihen.npz` und `schlusspruefung.json` im Repository sind das Gedächtnis.
 
 Höchstens zwei neue Generationen je Sitzung. Einzelne Handrechnungen nach dem alten Muster (`experimente/eNN_*.py`)
 bleiben erlaubt, wenn eine Idee nicht in den Baukasten passt; dann gelten Stufe 0 und 1 aus Abschnitt 4.

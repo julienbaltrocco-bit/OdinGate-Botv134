@@ -1,0 +1,178 @@
+{
+ "stand": "2026-11-16 00:52 UTC",
+ "erzeugt": 522660,
+ "eindeutig": 522660,
+ "berechnet": 522660,
+ "gueltig_mind_200_trades": 419508,
+ "nach_status": {
+  "Stufe 1: kein Brutto-Vorteil": 401116,
+  "zu wenige Trades": 103152,
+  "Stufe 2: Kosten": 7536,
+  "Stufe 3: nicht robust": 7194,
+  "Stufe 3 bestanden (in einer Gruppe vertreten)": 2463,
+  "Schlussprüfung nicht bestanden": 1199
+ },
+ "stufe1_bestanden": 18392,
+ "stufe2_bestanden": 10856,
+ "stufe3_bestanden": 3662,
+ "finalisten": 1199,
+ "validiert": 0,
+ "training_netto_mit_rebate_positiv": 103913,
+ "training_netto_ohne_rebate_positiv": 29341,
+ "training_und_v1_mit_rebate_positiv": 49761,
+ "laeufe": [
+  {
+   "gen": "gen1",
+   "begonnen": "2026-11-16T00:15:14Z",
+   "beendet": "2026-11-16T00:20:31Z",
+   "aufgaben": 11340,
+   "kandidaten": 340200,
+   "sekunden": 317.5,
+   "kandidaten_je_minute": 64293.0,
+   "kerne": 4
+  },
+  {
+   "gen": "gen2",
+   "begonnen": "2026-11-16T00:20:33Z",
+   "beendet": "2026-11-16T00:23:28Z",
+   "aufgaben": 5546,
+   "kandidaten": 182460,
+   "sekunden": 174.2,
+   "kandidaten_je_minute": 62827.0,
+   "kerne": 4
+  }
+ ],
+ "kandidaten_je_minute": 63778.0,
+ "rueckrechnungen_je_sekunde": 3543.0,
+ "rechenkerne": 4,
+ "zeitraeume": {
+  "training": "15.08.2021–30.06.2023 (Tiefe-Signale: 2023)",
+  "auswahlpruefung": "01.07.2023–30.06.2024 (Tiefe: 01–06/2024)",
+  "schlusspruefung": "01.07.2024–31.03.2025",
+  "tresor": "ab 01.04.2025, nicht geladen"
+ },
+ "je_familie": {
+  "Cross-Asset": {
+   "gueltig": 54098,
+   "stufe1": 1457,
+   "stufe2": 891,
+   "stufe3": 269,
+   "validiert": 0
+  },
+  "Derivate": {
+   "gueltig": 58441,
+   "stufe1": 410,
+   "stufe2": 189,
+   "stufe3": 76,
+   "validiert": 0
+  },
+  "Mean Reversion": {
+   "gueltig": 67274,
+   "stufe1": 4243,
+   "stufe2": 2639,
+   "stufe3": 1238,
+   "validiert": 0
+  },
+  "Mikrostruktur": {
+   "gueltig": 59487,
+   "stufe1": 2340,
+   "stufe2": 1204,
+   "stufe3": 329,
+   "validiert": 0
+  },
+  "Momentum": {
+   "gueltig": 153306,
+   "stufe1": 9329,
+   "stufe2": 5624,
+   "stufe3": 1714,
+   "validiert": 0
+  },
+  "Volatilität": {
+   "gueltig": 26902,
+   "stufe1": 613,
+   "stufe2": 309,
+   "stufe3": 36,
+   "validiert": 0
+  }
+ },
+ "gruende": {
+  "kein Brutto-Vorteil": 401116,
+  "netto nicht gesichert": 7010,
+  "V1 nicht positiv genug": 6102,
+  "Schlussprüfung": 1199,
+  "eine Kerze Verzögerung": 784,
+  "eine Hälfte negativ": 508,
+  "Kosten in bewegtem Markt": 220,
+  "Nachbar-Einstellungen überwiegend negativ": 84,
+  "doppelte Slippage": 18,
+  "nach Abzug des Marktes kein gesicherter Ertrag": 4
+ },
+ "schlusspruefung": {
+  "chargen": [
+   {
+    "charge": 1,
+    "geoeffnet": "2026-11-16 00:48 UTC",
+    "neue_finalisten": 1199
+   }
+  ],
+  "finalisten_gesamt": 1199,
+  "positiv_in_v2": 521,
+  "p_unter_5pct": 60,
+  "zufallserwartung_p_unter_5pct": 60.0,
+  "bh_bestanden": 0,
+  "validiert": 0,
+  "validiert_ohne_rebate_positiv": 0,
+  "validiert_streng_by": 0,
+  "validierte_einstiegsregeln": 0,
+  "validierte_einstiegsregeln_streng": 0
+ },
+ "einordnung": "Schlussprüfung auf bis dahin ungelesenen Daten: Von 1.199 Finalisten haben 60 einen p-Wert unter 5 %; rein zufällig wären 60 zu erwarten. Nach Korrektur für die vielen Versuche bestehen 0. Kein Kandidat ist validiert; es wurde kein neuer Papier-Test gestartet.",
+ "statistik": {
+  "Kurs, Volumen, Derivate (T 08/2021–06/2023)": {
+   "grundmenge": "Generation 1 (ohne Auswahl erzeugt)",
+   "gueltige_kandidaten": 275596,
+   "stufe1_bestanden": 3374,
+   "anteil_stufe1": 0.0122,
+   "zufallserwartung_stufe1": "0,5 % (Streuung 0,4), wenn die Regeln nichts wissen und die Slippage verlieren; 2,8 % (Streuung 1,5) bei Erwartungswert null (Bootstrap der Gegenprüfung)",
+   "stufe2_bestanden": 1460,
+   "anteil_stufe2": 0.0053,
+   "spaetere_generationen": {
+    "gueltig": 94502,
+    "anteil_stufe1": 0.1302,
+    "hinweis": "aus Gewinnern des Trainings abgeleitet, daher kein Zufallsvergleich"
+   },
+   "deflated_sharpe_ratio": 0.0,
+   "deflated_sharpe_hinweis": "gesichert gälte ein Wert über 0,95",
+   "bester_t_wert_T": 4.58,
+   "reality_check_p": 0.98,
+   "zufalls_maximum_median": 8.93,
+   "zufalls_maximum_95": 23.0,
+   "pbo": 0.032,
+   "pbo_kombinationen": 252,
+   "bester_verliert_im_anderen_teil": 0.246
+  },
+  "Orderbuch-Tiefe (T 2023)": {
+   "grundmenge": "Generation 1 (ohne Auswahl erzeugt)",
+   "gueltige_kandidaten": 26330,
+   "stufe1_bestanden": 463,
+   "anteil_stufe1": 0.0176,
+   "zufallserwartung_stufe1": "0,5 % (Streuung 0,4), wenn die Regeln nichts wissen und die Slippage verlieren; 2,8 % (Streuung 1,5) bei Erwartungswert null (Bootstrap der Gegenprüfung)",
+   "stufe2_bestanden": 162,
+   "anteil_stufe2": 0.00615,
+   "spaetere_generationen": {
+    "gueltig": 23080,
+    "anteil_stufe1": 0.0975,
+    "hinweis": "aus Gewinnern des Trainings abgeleitet, daher kein Zufallsvergleich"
+   },
+   "deflated_sharpe_ratio": 0.0,
+   "deflated_sharpe_hinweis": "gesichert gälte ein Wert über 0,95",
+   "bester_t_wert_T": 3.73,
+   "reality_check_p": 0.8175,
+   "zufalls_maximum_median": 4.35,
+   "zufalls_maximum_95": 6.16,
+   "pbo": 0.02,
+   "pbo_kombinationen": 252,
+   "bester_verliert_im_anderen_teil": 0.262
+  }
+ }
+}

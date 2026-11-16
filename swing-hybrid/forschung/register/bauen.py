@@ -95,6 +95,25 @@ eintraege = [
     stufe0("e06_funding_kurz", "haupt_0.03", id="E06", name="Funding-Abgriff, 10 Minuten", version="0.2", familie="Funding", richtung="Long und Short", maerkte="acht günstige Coins",
            daten="Funding, Aufschlag", algorithmus="5 Minuten vor bis 5 Minuten nach dem Funding-Termin"),
 ]
+# Papier-Tests aus der Strategie-Fabrik: jeder Ordner papier/F-*/ erscheint automatisch
+for pfad in sorted((ROOT / "forschung/papier").glob("*/konfiguration.json")):
+    c = json.loads(pfad.read_text())
+    if c.get("strategie") != "fabrik":
+        continue
+    r = c["rueckrechnung"]
+    eintraege.insert(3, {"id": c["id"], "name": c["name"], "version": c["version"], "familie": "Strategie-Fabrik", "kategorie": "laufend", "einstufung": "D",
+                         "status": f"Papier-Test (Schattentest) seit {c['start'][:10]}", "richtung": "Long und Short", "maerkte": ", ".join(c["coins"]),
+                         "daten": "Binance-Archiv: Kerzen" + (", " + ", ".join(c["daten"]) if c["daten"] else ""), "gebuehren": KOSTEN + "; in bewegtem Markt mindestens 5 % der Spanne der letzten Kerze je Order",
+                         "algorithmus": c["regel"], "parameter": c["kandidat"], "hebel": c["hebel"], "validierung": c["validierung"],
+                         "vertrauen": "gering bis mittel; Kosten in bewegtem Markt nur als Annahme", "ergebnisdateien": [f"forschung/papier/{c['id']}/", "forschung/fabrik/ergebnisse/schlusspruefung.json"],
+                         "kennzahlen": {"zeitraum": "Schlussprüfung 07/2024–03/2025", "n85_bp": r["n85_v2"], "n0_bp": r["n0_v2"], "t_n85": r["t85_v2"], "haltedauer_min": r["haltedauer_min"],
+                                        "ertrag_jahr_pct_hebel1": r["ertrag_jahr_pct_hebel1_v2"]}})
+fz = ROOT / "forschung/fabrik/ergebnisse/zaehlung.json"
+if fz.exists():
+    z = json.loads(fz.read_text())
+    eintraege.append({"id": "FAB", "name": "Strategie-Fabrik (Massensuche)", "version": "Generationen 1–2", "familie": "alle Familien", "kategorie": "backtest", "einstufung": "–",
+                      "status": f"{z['berechnet']:,} Kandidaten gerechnet".replace(",", "."), "validierung": f"{z['validiert']} validiert nach fünf Stufen; siehe Übersicht „Forschungsdurchsatz“",
+                      "vertrauen": "–", "ergebnisdateien": ["forschung/fabrik/ergebnisse/zaehlung.json", "forschung/fabrik/ergebnisse/kandidaten.parquet", "forschung/fabrik/ergebnisse/schlusspruefung.json"]})
 for exp, name in (("E07", "Ursachenanalyse Orderbuch-Tiefe (17 Einstellungen)"), ("E09", "Bestätigung auf sieben frischen Coins"), ("E10", "Ausstiegs-Engine (8 Varianten)"),
                   ("E11", "Kombination mit dem 14-Tage-Trend"), ("E12", "Marktphasen")):
     eintraege.append({"id": exp, "name": name, "version": "–", "familie": "Orderbuch / Liquidität", "kategorie": "backtest", "einstufung": "–", "status": "Analyse abgeschlossen",

@@ -65,6 +65,9 @@ def haupt():
         v2 = pd.DataFrame(sp["ergebnisse"])[["id", "gen", "n_v2", "n85_v2", "n0_v2", "n85_2x_v2", "t85_v2", "p_v2", "sharpe_v2", "ertrag_jahr_pct"]]
         auswahl = auswahl.merge(v2, on=["id", "gen"], how="left")
         z["schlusspruefung"] = {x: sp[x] for x in sp if x != "ergebnisse"}
+        z["einordnung"] = (f"Schlussprüfung auf bis dahin ungelesenen Daten: Von {sp['finalisten_gesamt']:,} Finalisten haben {sp['p_unter_5pct']} einen p-Wert unter 5 %; "
+                           f"rein zufällig wären {sp['zufallserwartung_p_unter_5pct']:.0f} zu erwarten. Nach Korrektur für die vielen Versuche bestehen {sp['validiert']}. "
+                           + ("Kein Kandidat ist validiert; es wurde kein neuer Papier-Test gestartet." if sp["validiert"] == 0 else f"{sp['validiert']} Kandidaten sind validiert.")).replace(",", ".")
     st = json.loads((ERG / "statistik.json").read_text()) if (ERG / "statistik.json").exists() else None
     if st:
         z["statistik"] = st["gruppen"]
@@ -73,7 +76,7 @@ def haupt():
     auswahl = auswahl.sort_values(["rang", "p_v2" if sp else "sharpe_v", "sharpe_v"], ascending=[True, True, False])
     feld = [c for c in ["id", "gen", "signal", "familie", "th", "r", "f", "k", "x", "m", "best", "n_t", "n85_t", "n0_t", "t85_t", "n_v", "n85_v", "t85_v", "dauer_min", "status",
                         "n_v2", "n85_v2", "n0_v2", "t85_v2", "p_v2", "sharpe_v2", "ertrag_jahr_pct"] if c in auswahl.columns]
-    (ERG / "auswahl.json").write_text(json.dumps({"stand": z["stand"], "gesamt": int(len(auswahl)), "kandidaten": json.loads(auswahl[feld].head(400).to_json(orient="records"))}, ensure_ascii=False))
+    (ERG / "auswahl.json").write_text(json.dumps({"stand": z["stand"], "gesamt": int(len(auswahl)), "kandidaten": json.loads(auswahl[feld].head(300).to_json(orient="records"))}, ensure_ascii=False))
     (ERG / "zaehlung.json").write_text(json.dumps(z, ensure_ascii=False, indent=1))
     print(json.dumps({x: z[x] for x in ("erzeugt", "gueltig_mind_200_trades", "stufe1_bestanden", "stufe2_bestanden", "stufe3_bestanden", "finalisten", "validiert",
                                          "training_netto_mit_rebate_positiv", "training_netto_ohne_rebate_positiv", "kandidaten_je_minute", "rueckrechnungen_je_sekunde")}, ensure_ascii=False))

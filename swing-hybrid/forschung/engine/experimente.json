@@ -154,5 +154,32 @@
   "dateien": [
    "forschung/ergebnisse/e13_version11.json"
   ]
+ },
+ {
+  "nr": 14,
+  "id": "E14",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Strategie-Fabrik, Generation 1: 340.200 Kandidaten aus 63 Signalen in sechs Familien",
+  "einstufung": "A",
+  "kurz": "1.622 bestehen die Kostenstufe im Training; bester t-Wert 4,6 liegt im Zufallsbereich (Reality Check p 0,98)",
+  "dateien": [
+   "forschung/fabrik/ergebnisse/zaehlung.json",
+   "forschung/fabrik/ergebnisse/statistik.json",
+   "forschung/fabrik/ergebnisse/kandidaten.parquet"
+  ]
+ },
+ {
+  "nr": 15,
+  "id": "E15",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Strategie-Fabrik, Generation 2 (Evolution, 182.460 Kandidaten) und Schlussprüfung der 1.199 Finalisten",
+  "einstufung": "A",
+  "kurz": "Schlussprüfung: 60 mit p unter 5 % bei 60 zufällig erwarteten; keiner validiert; Median netto −2,5 bp je Trade",
+  "dateien": [
+   "forschung/fabrik/ergebnisse/schlusspruefung.json",
+   "forschung/fabrik/ergebnisse/finalisten.json"
+  ]
  }
 ]

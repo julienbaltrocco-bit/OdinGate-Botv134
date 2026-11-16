@@ -264,14 +264,14 @@ def stufe3():
     print("verworfen in Stufe 3:", grund_zahl, "| übrig:", len(weiter), flush=True)
     # Gruppen: gleichlaufende Kandidaten (Korrelation der Tagesergebnisse > 0,8 über T und V1); je Gruppe der beste nach V1
     weiter.sort(key=lambda z: -z["sharpe_v"])
+    weiter = [z for z in weiter if z["status"] == "stufe2"]
     reihen, final, gruppen = [], [], []
     frueher = json.loads((ERG / "schlusspruefung.json").read_text())["ergebnisse"] if (ERG / "schlusspruefung.json").exists() else []
+    archiv = np.load(ERG / "finalisten_reihen.npz") if (ERG / "finalisten_reihen.npz").exists() else None
+    alt_fin = {f["id"]: f for f in json.loads((ERG / "finalisten.json").read_text())["finalisten"]} if (ERG / "finalisten.json").exists() else {}
     for e in frueher:                                              # schon geprüfte Finalisten: neue, gleichlaufende Kandidaten schließen sich ihnen an
-        zz = con.execute("SELECT * FROM kandidaten WHERE id = ?", (e["id"],)).fetchone()
-        if zz is not None:
-            seg = L.SEGMENTE["t" if e.get("tiefe") else "k"]
-            r = np.asarray(np.load(L.AUS / f"tage_{zz['gen']}.npy", mmap_mode="r")[zz["zeile"]], dtype=np.float64)
-            reihen.append(np.where(np.arange(len(r)) >= seg[0], r, 0.0)); final.append(zz); gruppen.append([zz["id"]])
+        if archiv is not None and e["id"] in archiv.files and e["id"] in alt_fin:   # Tagesreihen liegen im Repository, auch ohne lokale Datenbank
+            reihen.append(archiv[e["id"]].astype(np.float64)); final.append(alt_fin[e["id"]]); gruppen.append([e["id"]])
     n_frueher = len(final)
     for z in weiter:
         seg = L.SEGMENTE["t" if (z["braucht"] == "t" or (z["best"] and ("tiefe" in z["best"] or "liq_entzug" in z["best"]))) else "k"]
@@ -284,7 +284,7 @@ def stufe3():
                 treffer = gi
                 break
         if treffer is None:
-            reihen.append(r); final.append(z); gruppen.append([z["id"]])
+            reihen.append(r); final.append({k: z[k] for k in z.keys()}); gruppen.append([z["id"]])
             con.execute("UPDATE kandidaten SET status = 'final', grund = ? WHERE id = ? AND gen = ?", (f"Gruppe {len(final)}", z["id"], z["gen"]))
         else:
             gruppen[treffer].append(z["id"])
@@ -293,7 +293,8 @@ def stufe3():
     ERG.mkdir(parents=True, exist_ok=True)
     (ERG / "finalisten.json").write_text(json.dumps({"eingefroren": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "datenbank": str(L.DB), "stufe2": len(kand), "verworfen": grund_zahl,
         "robust": len(weiter), "gruppen": len(final), "davon_frueher_geprueft": n_frueher,
-        "finalisten": [{k: z[k] for k in z.keys()} | {"gruppengroesse": len(g)} for z, g in zip(final, gruppen)]}, ensure_ascii=False, indent=1))
+        "finalisten": [dict(z) | {"gruppengroesse": len(g)} for z, g in zip(final, gruppen)]}, ensure_ascii=False, indent=1))
+    np.savez_compressed(ERG / "finalisten_reihen.npz", **{z["id"]: r.astype(np.float32) for z, r in zip(final, reihen)})   # für spätere Zyklen in frischen Sitzungen
     print("Finalisten (Gruppen):", len(final), "| davon schon früher geprüft:", n_frueher, flush=True)
     for z, g in list(zip(final, gruppen))[:40]:
         print(f"  {z['id']} {z['signal']:<20} th {z['th']} r {z['r']:+d} {z['f']:<11} k{z['k']:<2} {z['x']:<20} {z['m']:<6} | T n85 {z['n85_t']:>6} t {z['t85_t']:>5} | V1 n85 {z['n85_v']:>6} t {z['t85_v']:>5} | Gruppe {len(g)}")

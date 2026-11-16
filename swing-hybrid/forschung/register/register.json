@@ -1,7 +1,7 @@
 {
- "stand": "2026-11-15 22:23 UTC",
+ "stand": "2026-11-16 00:49 UTC",
  "runde": 1,
- "experimente": 13,
+ "experimente": 15,
  "kategorien": {
   "backtest": "Historische Rückrechnung, kein laufender Test",
   "kandidat": "Neue Strategie, für einen Vorwärtstest vorbereitet, nicht gestartet",
@@ -423,6 +423,22 @@
    "maerkte": "acht günstige Coins",
    "daten": "Funding, Aufschlag",
    "algorithmus": "5 Minuten vor bis 5 Minuten nach dem Funding-Termin"
+  },
+  {
+   "id": "FAB",
+   "name": "Strategie-Fabrik (Massensuche)",
+   "version": "Generationen 1–2",
+   "familie": "alle Familien",
+   "kategorie": "backtest",
+   "einstufung": "–",
+   "status": "522.660 Kandidaten gerechnet",
+   "validierung": "0 validiert nach fünf Stufen; siehe Übersicht „Forschungsdurchsatz“",
+   "vertrauen": "–",
+   "ergebnisdateien": [
+    "forschung/fabrik/ergebnisse/zaehlung.json",
+    "forschung/fabrik/ergebnisse/kandidaten.parquet",
+    "forschung/fabrik/ergebnisse/schlusspruefung.json"
+   ]
   },
   {
    "id": "E07",

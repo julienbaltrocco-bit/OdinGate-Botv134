@@ -560,3 +560,49 @@ V2 wurde für ihn nicht geöffnet.
    bleiben Vertreter ihrer Gruppen; schon gerechnete Einstellungen werden nicht doppelt gespeichert.
 
 Wegen 5 wird Stufe 3 noch einmal gerechnet (V2 bleibt bis dahin geschlossen).
+
+---
+
+## 20. Ergebnis der Strategie-Fabrik, Generationen 1 und 2 (16.11.2026)
+
+**Gerechnet.** Lauf A (vor den Korrekturen der Gegenprüfung, verworfen): 522.360 Kandidaten. Lauf B (maßgeblich):
+522.660 Kandidaten, davon Generation 1 mit 340.200 (63 Signale × 3 Schwellen × 2 Richtungen × 10 Filter × 3 Takte ×
+10 Ausstiege × 3 Märkte) und Generation 2 mit 182.460 (Evolution aus den 300 besten Einstiegsregeln des Trainings).
+Durchsatz: rund 64.000 Kandidaten je Minute auf vier Kernen, das sind rund 3.500 Coin-Rückrechnungen je Sekunde.
+
+**Trichter (Lauf B).**
+
+| Stufe | übrig | verworfen, häufigster Grund |
+|---|---|---|
+| erzeugt und gerechnet | 522.660 | |
+| mindestens 200 Trades im Training | 419.508 | 103.152 mit zu wenigen Trades |
+| Stufe 1: Vorteil vor Gebühr | 18.392 | 401.116 ohne Brutto-Vorteil |
+| Stufe 2: nach vollen Kosten | 10.856 | 7.536 (netto nicht gesichert, eine Hälfte negativ, doppelte Slippage) |
+| Stufe 3: robust | 3.662 | 6.102 in V1 nicht positiv genug · 784 Verzögerung · 220 Kosten in bewegtem Markt · 84 Nachbarn · 4 Markt |
+| Finalisten (eine je Gruppe) | 1.199 | |
+| Stufe 4: Schlussprüfung V2 | **0** | |
+
+**Zufallsprüfungen im Training (nur Generation 1).** Anteil mit Vorteil vor Gebühr: 1,2 % (Kurs-Signale) und 1,8 %
+(Orderbuch-Tiefe); zufällig wären je nach Annahme 0,5 bis 2,8 % zu erwarten. Bester t-Wert 4,6 bzw. 3,7; der
+Reality Check ergibt p = 0,98 bzw. 0,82, die Deflated Sharpe Ratio 0,00. Im Training hebt sich also nichts vom
+Zufall ab.
+
+**Schlussprüfung V2 (01.07.2024 bis 31.03.2025, einmal geöffnet am 16.11.2026, 00:48 UTC).**
+- Von 1.199 Finalisten sind 521 (43 %) netto mit Rebate positiv. Median je Trade: Training +28,9 bp, Auswahlprüfung
+  +24,9 bp, **Schlussprüfung −2,5 bp**.
+- p-Wert unter 5 %: **60**. Rein zufällig zu erwarten: **60**.
+- Kleinster p-Wert 0,0003 (Orderbuch-Tiefe 3 %, hohe Schwankung, Signal-Ausstieg, BTC/ETH/SOL); nötig wären unter
+  0,00008. **Benjamini-Hochberg besteht keiner, validiert ist keiner.**
+- Ohne Rebate positiv: 240 von 1.199. Mit der einfachen (ruhigen) Slippage wären 696 positiv; die Annahme zu den
+  Kosten in bewegtem Markt entscheidet also über einen großen Teil.
+- Nach Familie (Finalisten / positiv / p unter 5 %): Momentum 524 / 44 % / 28 · Mean Reversion 294 / 49 % / 14 ·
+  Cross-Asset 163 / 29 % / 1 · Mikrostruktur 152 / 49 % / 15 · Derivate 37 / 59 % / 2 · Volatilität 29 / 0 % / 0.
+
+**Folgen.**
+- Kein Kandidat erfüllt die Bedingungen für einen Papier-Test. Es wurde **kein neuer Papier-Test gestartet**.
+- V2 ist für diese 1.199 Regeln verbraucht. Der Tresor ab 04/2025 ist weiterhin ungeöffnet.
+- Auffällig bleibt allein die Orderbuch-Tiefe: Sie stellt den besten Finalisten und 15 der 60 kleinsten p-Werte bei
+  nur 13 % der Finalisten. Das reicht nicht für eine Validierung, deckt sich aber mit E07 bis E13. Diese Idee läuft
+  bereits als Papier-Test OS-1.1.
+- Lehre für die nächsten Zyklen: Mehr Kandidaten machen die Suche nicht besser, sondern die Schlussprüfung
+  schwerer. Neue Generationen sollen klein sein und neue Information bringen (siehe `engine/hypothesen.json`, H15 bis H17).

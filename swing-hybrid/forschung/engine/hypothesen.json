@@ -65,5 +65,31 @@
   "aufwand": "mittel",
   "status": "offen",
   "hinweis": "Braucht einen dauerhaft laufenden Prozess; die Spanne der zehn Coins misst bereits der bestehende Papier-Bot alle fünf Minuten."
+ },
+ {
+  "id": "H15",
+  "titel": "Yubit-Spannen in bewegten Phasen messen",
+  "mechanismus": "Fast alle Finalisten der Fabrik handeln direkt nach heftigen Kerzen. Ob dort bei Yubit überhaupt zu vertretbaren Kosten gehandelt werden kann, entscheidet über die ganze Familie.",
+  "daten": "Spannen-Messungen des bestehenden Papier-Bots (alle fünf Minuten, zehn Coins), nach Schwankung ausgewertet",
+  "aufwand": "gering",
+  "status": "offen",
+  "hinweis": "Liefert die Grundlage für das Kostenmodell; ersetzt die Annahme von 5 % der Kerzenspanne."
+ },
+ {
+  "id": "H16",
+  "titel": "Orderbuch-Tiefe in feinerer Auflösung und über mehr Preisstufen",
+  "mechanismus": "Die Orderbuch-Tiefe ist die einzige Familie, die in jeder Prüfung vorn liegt (bester Finalist der Schlussprüfung, p 0,0003), aber nie die Korrektur für die vielen Versuche besteht. Mehr Information aus derselben Quelle statt mehr Varianten.",
+  "daten": "bookDepth (30-Sekunden-Schnappschüsse, vorhanden)",
+  "aufwand": "mittel",
+  "status": "offen",
+  "hinweis": "Eigene Generation mit wenigen, vorab festgelegten Kandidaten, damit die Korrektur nicht wieder alles aufzehrt."
+ },
+ {
+  "id": "H17",
+  "titel": "Weniger Kandidaten, schärfere Vorauswahl",
+  "mechanismus": "Lehre aus Generation 1 und 2: Die Stufen 1 bis 3 halten Zufallstreffer kaum auf; 1.199 Finalisten machen die Schlussprüfung fast unbestehbar. Künftige Generationen sollten klein sein (höchstens einige hundert Kandidaten aus einer begründeten Idee).",
+  "daten": "–",
+  "aufwand": "gering",
+  "status": "offen"
  }
 ]
