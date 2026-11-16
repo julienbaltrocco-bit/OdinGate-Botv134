@@ -850,3 +850,18 @@ steuern keine Auswahl neuer Fabrik-Kandidaten.
   der zweite Test angelegt wurde. Der eingefrorene Code von `B-24332e4d` ist davon unberührt (Prüfsumme gültig).
 - Voller täglicher Ablauf (`papier/tag.sh`) einmal durchgelaufen: fünf Tests, kein Fehler. Erste Trades frühestens
   am 18.11., weil die Archivdaten einen Tag Verzug haben.
+
+---
+
+## 29. Schattentests auf dem Trading Board (16.11.2026, auf Wunsch des Auftraggebers)
+
+Der Auftraggeber möchte die neuen Papier-Tests auf derselben GitHub-Seite sehen wie Test 1 und 2.
+- **Daten:** `papier/board.py` bündelt den Stand aller Schattentests (`OS-1.1`, `B-24332e4d`, `B-dc1d27a3` und künftige)
+  und verschlüsselt ihn mit dem öffentlichen Schlüssel des Boards (`papier/board_pub.pem`, derselbe wie für Test 1
+  und 2; das Passwort liegt nicht im Repository). Ergebnis: `papier/board/schattentests.enc.json`, einmal täglich nach
+  dem Papier-Lauf gesichert (`papier/veroeffentlichen.sh`).
+- **Seite:** Das Board liest diese eine Datei direkt aus dem Forschungszweig. In den Zweig des Bots wird dafür täglich
+  nichts geschrieben; der Bot für Test 1 und 2 bleibt unberührt. Am Board selbst kommen Tabs und eine eigene Ansicht
+  für Schattentests hinzu; Rechnung und Anzeige von Test 1 und 2 sind unverändert (im Browser geprüft: Anmeldung,
+  Umschalten zwischen allen Tests und zurück, Handy-Breite, keine Fehler).
+- **Kennzeichnung:** Beobachtungstests tragen auf dem Board die Marke „nicht validiert“.
