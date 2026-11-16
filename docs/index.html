@@ -84,6 +84,10 @@
   .tabs .t { font-weight: 600; font-size: 13.5px; } .tabs .s { font-size: 11.5px; color: var(--muted); }
   .tabs .w { font-family: var(--mono); font-size: 15px; font-variant-numeric: tabular-nums; }
   .regelzeile { font-size: 12.5px; color: var(--muted); margin: 2px 0 0; }
+  .teil { display: contents; }
+  .tabs button[data-s] .t { font-size: 13px; }
+  .marke.warn { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 50%, transparent); }
+  .leer { padding: 16px 12px; color: var(--muted); font-size: 12.5px; }
   @media (min-width: 760px) { .paar > button { grid-template-columns: 80px 70px minmax(0, 1fr) minmax(0, 1fr) 20px; padding: 12px 16px; } .kerzen { height: 380px; } .chartbox { height: 260px; } }
 </style>
 </head>
@@ -101,8 +105,8 @@
   <div class="leiste" role="status">
     <span><span class="punkt" id="punkt"></span><span id="status">Verbinde mit der Börse …</span></span>
     <span>UTC <b id="uhr">–</b></span>
-    <span>Bot-Stand <b id="botalter">–</b></span>
-    <span>Nächste Signalprüfung in <b id="naechste">–</b></span>
+    <span><span id="standname">Bot-Stand</span> <b id="botalter">–</b></span>
+    <span id="l-naechste">Nächste Signalprüfung in <b id="naechste">–</b></span>
     <button class="abmelden" id="abmelden" type="button">Sperren</button>
   </div>
 
@@ -111,6 +115,7 @@
     <button type="button" id="tab-tpsl" aria-pressed="false"><span class="t">Test 2 · Stop 5 % und Ziel 15 %</span><span class="s" id="tabs-tpsl">getrenntes Konto</span><span class="w" id="tabw-tpsl">—</span></button>
   </div>
 
+  <div class="teil" id="ansicht-bot">
   <div class="kopf">
     <h1>PAPIER-KONTO · 14-TAGE-TREND · 10 COINS · HEBEL <span id="hebel">–</span></h1>
     <div class="gross" id="konto">—</div>
@@ -133,6 +138,36 @@
   </table></div>
 
   <p class="hinweis">Papierhandel ohne echtes Geld. Live-Kurse und Kerzen: Binance-Futures, direkt in deinem Browser. Einstiege, Gebühren, Rebate und Funding: Papier-Bot, gerechnet am Yubit-Orderbuch, Stand wird stündlich nachgeladen und liegt verschlüsselt vor. Zwischen Binance und Yubit gibt es kleine Kursunterschiede. Keine Anlageberatung.</p>
+  </div>
+
+  <div class="teil" id="ansicht-schatten" hidden>
+  <div class="kopf">
+    <h1 id="s-titel">SCHATTENTEST</h1>
+    <div class="gross" id="s-konto">—</div>
+    <div class="unter"><span id="s-netto">—</span> <span class="ruhig">seit Start, nach Kosten mit Rebate</span></div>
+    <p class="regelzeile"><span class="marke" id="s-marke"></span> <span id="s-regel"></span></p>
+    <p class="regelzeile" id="s-pruef"></p>
+  </div>
+
+  <div class="stats" id="s-stats"></div>
+
+  <h2>Konto-Verlauf seit Start (% des Startkapitals, mit Rebate, je Tag)</h2>
+  <div class="kasten"><div class="chartbox" id="s-verlauf"></div><div class="leer" id="s-verlauf-leer" hidden>Noch keine abgeschlossenen Trades.</div></div>
+
+  <h2>Offene Positionen</h2>
+  <div class="kasten rolle"><table>
+    <thead><tr><th>Coin</th><th>Seite</th><th>Seit (UTC)</th><th class="r">Einstieg</th><th class="r">Ergebnis</th></tr></thead>
+    <tbody id="s-offen"></tbody>
+  </table></div>
+
+  <h2>Letzte Trades</h2>
+  <div class="kasten rolle"><table>
+    <thead><tr><th>Ausstieg (UTC)</th><th>Coin</th><th>Seite</th><th>Einstieg (UTC)</th><th class="r">Ergebnis</th><th class="r">in $</th></tr></thead>
+    <tbody id="s-trades"></tbody>
+  </table></div>
+
+  <p class="hinweis">Schattentest: Papierhandel ohne echtes Geld und ohne Orders. Die Signale stammen aus den täglichen Binance-Archivdaten und liegen deshalb einen Tag zurück; der Stand wird einmal täglich aktualisiert (gegen 10:20 Uhr deutscher Zeit) und liegt verschlüsselt vor. Kosten nach festem Modell: Yubit-Gebühr, 85 % Rebate angenommen, Slippage. „Nicht validiert“ heißt: Die Regel hat die strenge Prüfung nicht bestanden und wird nur beobachtet. Keine Anlageberatung.</p>
+  </div>
 </div>
 
 <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
@@ -141,6 +176,9 @@
   const DATEIEN = {basis: 'stand.enc.json', tpsl: 'stand_tpsl.enc.json'};
   const SS = {basis: null, tpsl: null};
   let aktiv = 'basis';
+  // Schattentests (Forschung): ein verschlüsseltes Bündel aus dem Forschungszweig, einmal täglich aktualisiert
+  const SCHATTEN_URL = 'https://raw.githubusercontent.com/julienbaltrocco-bit/OdinGate-Botv134/claude/alpha-forschung-r1/swing-hybrid/forschung/papier/board/schattentests.enc.json';
+  let SCH = null, schatten = null, sChart = null, sSerie = null;
   const b64 = (t) => Uint8Array.from(atob(t), (c) => c.charCodeAt(0));
   let privat = null;                  // RSA-Schlüssel, nach richtiger Passworteingabe
 
@@ -422,7 +460,13 @@
     if (!S) $('status').textContent = 'Bot-Stand konnte nicht geladen werden';
   }
   function waehle(id) {
-    if (id === aktiv || !SS[id]) return;
+    if (!SS[id]) return;
+    if (schatten) {                     // zurück von einem Schattentest
+      schatten = null;
+      $('ansicht-schatten').hidden = true; $('ansicht-bot').hidden = false; $('l-naechste').hidden = false; $('standname').textContent = 'Bot-Stand';
+      document.querySelectorAll('#tabs button[data-s]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      if (id === aktiv) { $('tab-' + id).setAttribute('aria-pressed', 'true'); return; }
+    } else if (id === aktiv) return;
     if (offenerCoin) umschalten(offenerCoin);
     aktiv = id; S = SS[id];
     Object.keys(SS).forEach((k) => $('tab-' + k).setAttribute('aria-pressed', String(k === id)));
@@ -430,6 +474,104 @@
     bauePaare(); zeigeOrders(); zeigeVerlauf(); zeigeKonto();
   }
   Object.keys(DATEIEN).forEach((id) => $('tab-' + id).addEventListener('click', () => waehle(id)));
+
+  // ------------------------------------------------------------ Schattentests ----
+  const S_STATS = [['status', 'Status'], ['ohne', 'Netto ohne Rebate'], ['trades', 'Abgeschlossene Trades'], ['quote', 'Gewinnquote'], ['je', 'Netto je Trade'],
+                   ['offen', 'Offene Positionen'], ['dd', 'Größter Rückgang'], ['gebuehr', 'Gebühr gezahlt'], ['rebate', 'Rebate (85 %, angenommen)'], ['funding', 'Funding'],
+                   ['slip', 'Slippage'], ['volumen', 'Handelsvolumen'], ['groesse', 'Größe je Position'], ['tage', 'Laufzeit'], ['daten', 'Daten bis'], ['lauf', 'Letzter Lauf']];
+  const sStat = {};
+  S_STATS.forEach(([id, name]) => { const d = el('div', 'stat'); d.appendChild(el('span', 'n', name)); sStat[id] = d.appendChild(el('span', 'w', '—')); sStat[id + '_z'] = d.appendChild(el('span', 'z', ' ')); $('s-stats').appendChild(d); });
+  const sTest = () => SCH && SCH.tests.find((t) => t.id === schatten);
+  const zeit16 = (t) => t ? String(t).slice(0, 16).replace('T', ' ') : '–';
+
+  function baueSchattenTabs() {
+    SCH.tests.forEach((t) => {
+      let b = document.querySelector(`#tabs button[data-s="${CSS.escape(t.id)}"]`);
+      if (!b) {
+        b = el('button'); b.type = 'button'; b.dataset.s = t.id; b.setAttribute('aria-pressed', 'false');
+        b.appendChild(el('span', 't')); b.appendChild(el('span', 's')); b.appendChild(el('span', 'w'));
+        b.addEventListener('click', () => waehleSchatten(t.id));
+        $('tabs').appendChild(b);
+      }
+      b.querySelector('.t').textContent = t.kurz || t.name;
+      b.querySelector('.s').textContent = (t.untertitel ? t.untertitel + ' · ' : '') + 'seit ' + String(t.start).slice(5, 10).split('-').reverse().join('.') + '.';
+      const w = b.querySelector('.w'), r = t.rendite_mit_rebate_pct;
+      w.textContent = t.trades || (t.offene_positionen || []).length ? vz(r, 2) + ' %' : t.status;
+      w.className = 'w ' + (t.trades ? farbe(r) : 'ruhig');
+    });
+  }
+  function waehleSchatten(id) {
+    if (!SCH || !SCH.tests.some((t) => t.id === id)) return;
+    if (offenerCoin) umschalten(offenerCoin);
+    schatten = id;
+    $('ansicht-bot').hidden = true; $('ansicht-schatten').hidden = false; $('l-naechste').hidden = true; $('standname').textContent = 'Stand';
+    Object.keys(SS).forEach((k) => $('tab-' + k).setAttribute('aria-pressed', 'false'));
+    document.querySelectorAll('#tabs button[data-s]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.s === id)));
+    zeigeSchatten();
+    window.scrollTo({top: 0});
+  }
+  function zeigeSchatten() {
+    const t = sTest(); if (!t) return;
+    const pz = (usd) => usd / t.kapital * 100, gewinn = t.kontostand - t.kapital;
+    $('s-titel').textContent = `PAPIER-KONTO · SCHATTENTEST · ${(t.kurz || t.name || '').toUpperCase()} · ${t.maerkte.length} COINS · HEBEL ${de(0).format(t.hebel)}`;
+    $('s-konto').textContent = de(2).format(t.kontostand) + ' $';
+    const n = $('s-netto'); n.textContent = `${vz(gewinn, 2)} $ (${vz(t.rendite_mit_rebate_pct, 3)} %)`; n.className = farbe(gewinn);
+    const m = $('s-marke'); m.textContent = t.beobachtung ? 'nicht validiert' : 'Prüfung formal bestanden'; m.className = 'marke ' + (t.beobachtung ? 'warn' : '');
+    $('s-regel').textContent = (t.klartext || t.regel || '') + ' Märkte: ' + t.maerkte.join(', ') + '.';
+    $('s-pruef').textContent = 'Prüfstand: ' + (t.validierung || '–');
+    const satz = (id, text, zusatz, klasse) => { sStat[id].textContent = text; sStat[id].className = 'w ' + (klasse || ''); sStat[id + '_z'].textContent = zusatz || ' '; };
+    const schlecht = ['gescheitert', 'abgebrochen', 'Fehler'].includes(t.status);
+    satz('status', t.status, t.ereignis || ((t.fehler || []).length ? t.fehler[0] : (t.datenluecken || []).length ? t.datenluecken.length + ' Datenlücken' : 'keine Fehler'), schlecht ? 'schlecht' : '');
+    satz('ohne', vz(t.rendite_ohne_rebate_pct, 3) + ' %', 'volle Gebühr, kein Rebate', farbe(t.rendite_ohne_rebate_pct));
+    satz('trades', String(t.trades), t.trades_je_tag != null ? de(1).format(t.trades_je_tag) + ' je Tag' : ' ');
+    satz('quote', t.gewinnquote != null ? de(0).format(t.gewinnquote * 100) + ' %' : '–', t.profit_factor != null ? 'Gewinn zu Verlust ' + de(2).format(t.profit_factor) : ' ');
+    satz('je', t.netto_je_trade_bp != null ? vz(t.netto_je_trade_bp / 100, 3) + ' %' : '–', t.haltedauer_min != null ? 'Haltedauer ' + de(0).format(t.haltedauer_min) + ' Min.' : ' ', t.netto_je_trade_bp != null ? farbe(t.netto_je_trade_bp) : '');
+    satz('offen', String((t.offene_positionen || []).length), vz(t.unrealisiert_usd, 2) + ' $ offen', '');
+    satz('dd', de(2).format(t.rueckgang_max_pct) + ' %', 'aktuell ' + de(2).format(t.rueckgang_aktuell_pct) + ' %');
+    satz('gebuehr', de(2).format(t.gebuehr_usd) + ' $', 'Taker 0,08 %');
+    satz('rebate', de(2).format(t.rebate_usd_angenommen) + ' $', 'noch nicht von Yubit bestätigt');
+    satz('funding', vz(t.funding_usd, 2) + ' $', t.funding_ausstehend ? t.funding_ausstehend + ' Trades noch ohne Funding' : ' ', farbe(t.funding_usd));
+    satz('slip', de(2).format(t.slippage_usd) + ' $', 'festes Modell');
+    satz('volumen', de(0).format(t.volumen_usd) + ' $', de(1).format(t.volumen_usd / t.kapital) + ' × Konto');
+    satz('groesse', de(0).format(t.positionsgroesse_usd) + ' $', de(0).format(t.kapital) + ' $ Kapital');
+    satz('tage', de(1).format(t.laufzeit_tage) + ' Tage', 'Start ' + zeit16(t.start) + ' UTC');
+    satz('daten', t.daten_bis ? String(t.daten_bis).slice(5, 16) : '–', 'ein Tag Verzug');
+    satz('lauf', t.letzter_lauf ? String(t.letzter_lauf).slice(5, 16) : '–', 'UTC, täglich');
+    // Konto-Verlauf (Tagesstände)
+    const box = $('s-verlauf'), punkte = (t.verlauf || []).map((r) => ({time: r.tag, value: (r.kontostand / t.kapital - 1) * 100}));
+    const leer = !punkte.length || !window.LightweightCharts;
+    box.hidden = leer; $('s-verlauf-leer').hidden = !leer;
+    if (!leer) {
+      if (!sChart) {
+        sChart = LightweightCharts.createChart(box, chartOpt(box));
+        sSerie = sChart.addBaselineSeries({baseValue: {type: 'price', price: 0}, topLineColor: '#2fd39a', bottomLineColor: '#ff6b5e',
+          topFillColor1: 'rgba(47,211,154,.25)', topFillColor2: 'rgba(47,211,154,.02)', bottomFillColor1: 'rgba(255,107,94,.02)', bottomFillColor2: 'rgba(255,107,94,.25)',
+          priceFormat: {type: 'custom', formatter: (v) => vz(v, 2) + ' %', minMove: 0.001}});
+        new ResizeObserver(() => sChart.applyOptions({width: box.clientWidth, height: box.clientHeight})).observe(box);
+      }
+      sSerie.setData([{time: String(t.start).slice(0, 10) < punkte[0].time ? String(t.start).slice(0, 10) : punkte[0].time, value: 0}, ...punkte].filter((p, i, a) => !i || p.time > a[i - 1].time));
+      sChart.timeScale().fitContent();
+    }
+    // Tabellen
+    const zeile = (tb, zellen) => { const tr = el('tr'); zellen.forEach(([text, klasse]) => tr.appendChild(el('td', klasse || null, text))); tb.appendChild(tr); };
+    const leerzeile = (tb, text, spalten) => { const tr = el('tr'), td = el('td', 'ruhig', text); td.colSpan = spalten; tr.appendChild(td); tb.appendChild(tr); };
+    const to = $('s-offen'); to.replaceChildren();
+    (t.offene_positionen || []).forEach((p) => zeile(to, [[p.coin], [p.richtung, p.richtung === 'Long' ? 'gut' : 'schlecht'], [zeit16(p.seit)], [kurs(p.einstieg), 'r'], [vz(p.ergebnis_usd, 2) + ' $', 'r ' + farbe(p.ergebnis_usd)]]));
+    if (!(t.offene_positionen || []).length) leerzeile(to, 'Keine offene Position (Stand: ' + (t.daten_bis || '–') + ').', 5);
+    const tt = $('s-trades'); tt.replaceChildren();
+    (t.letzte_trades || []).forEach((x) => zeile(tt, [[zeit16(x.aus)], [x.coin], [x.richtung, x.richtung === 'Long' ? 'gut' : 'schlecht'], [zeit16(x.ein)], [vz(x.netto_bp / 100, 2) + ' %', 'r ' + farbe(x.netto_bp)], [vz(x.usd, 2) + ' $', 'r ' + farbe(x.usd)]]));
+    if (!(t.letzte_trades || []).length) leerzeile(tt, 'Noch keine abgeschlossenen Trades. Gewertet wird ab ' + zeit16(t.start) + ' UTC; die Daten kommen mit einem Tag Verzug.', 6);
+  }
+  async function ladeSchatten() {
+    try {
+      const r = await fetch(SCHATTEN_URL + '?t=' + Math.floor(Date.now() / 300000), {cache: 'no-store'});
+      if (!r.ok) return;
+      const d = await entschluesseln(await r.json());
+      if (!d || !Array.isArray(d.tests)) return;
+      SCH = d; baueSchattenTabs();
+      if (schatten) zeigeSchatten();
+    } catch (e) {}
+  }
 
   async function ladeSignale() {
     if (!S) return;
@@ -474,7 +616,9 @@
     const alter = Date.now() - letzterTick, p = $('punkt');
     if (letzterTick && alter < 10000) { p.className = 'punkt an'; $('status').textContent = 'Live · Kurse im Sekundentakt'; }
     else if (letzterTick) { p.className = 'punkt aus'; $('status').textContent = 'Kurse stehen seit ' + dauer(alter); }
-    if (S && S.geschrieben) $('botalter').textContent = 'vor ' + dauer(Date.now() - new Date(S.geschrieben));
+    const st = schatten ? sTest() : null;
+    if (st && st.aktualisiert) $('botalter').textContent = 'vor ' + dauer(Date.now() - new Date(st.aktualisiert));
+    else if (S && S.geschrieben) $('botalter').textContent = 'vor ' + dauer(Date.now() - new Date(S.geschrieben));
     const naechste = new Date(j); naechste.setUTCMinutes(4, 0, 0); if (naechste <= j) naechste.setUTCHours(naechste.getUTCHours() + 1);
     $('naechste').textContent = dauer(naechste - j);
   }, 1000);
@@ -484,8 +628,8 @@
     if (gestartet) return; gestartet = true;
     $('tor').hidden = true; $('seite').hidden = false;
     await ladeStand();
-    verbinde(); pollen(); ladeSignale();
-    setInterval(ladeStand, 60000); setInterval(pollen, 4000); setInterval(ladeSignale, 300000);
+    verbinde(); pollen(); ladeSignale(); ladeSchatten();
+    setInterval(ladeStand, 60000); setInterval(pollen, 4000); setInterval(ladeSignale, 300000); setInterval(ladeSchatten, 600000);
   }
   const merken = { lesen: () => { try { return localStorage.getItem('board-schluessel'); } catch (e) { return null; } },
                    setzen: (v) => { try { v ? localStorage.setItem('board-schluessel', v) : localStorage.removeItem('board-schluessel'); } catch (e) {} } };
