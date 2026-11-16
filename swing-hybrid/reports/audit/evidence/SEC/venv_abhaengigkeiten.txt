@@ -1,0 +1,5 @@
+Pakete in .venv gesamt: 89
+in requirements.txt festgeschrieben (==): 8
+Abschluss ueber alle 8 direkten: 88 | ohne freqtrade: 18 | nur wegen freqtrade: 70
+nur wegen freqtrade: aiofiles, aiohappyeyeballs, aiohttp, aiohttp-fast-zlib, aiosignal, annotated-doc, annotated-types, anyio, ast-comments, attrs, bottleneck, cachetools, ccxt, cffi, click, cloudpickle, coincurve, cryptography, fastapi, freqtrade, freqtrade-client, frozenlist, ft-pandas-ta, h11, httpcore, httpx, humanize, janus, jinja2, joblib, jsonschema, jsonschema-specifications, markdown-it-py, markupsafe, mdurl, multidict, numexpr, opentelemetry-api, orjson, prompt-toolkit, propcache, psutil, pycoingecko, pycparser, pydantic, pydantic-core, pyjwt, python-rapidjson, python-telegram-bot, pytz, questionary, referencing, rich, rpds-py, schedule, scipy, sdnotify, sqlalchemy, starlette, ta-lib, tabulate, technical, typing-extensions, typing-inspection, uvicorn, uvloop, wcwidth, websockets, yarl, zlib-ng
+nicht ueber requirements.txt erklaerbar: pip

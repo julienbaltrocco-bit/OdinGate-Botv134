@@ -1,0 +1,11 @@
+papier/.cache/
+papier/zustand/
+papier/ausgabe/
+papier/protokolle/
+engine/protokolle/
+papier/.cache_paritaet/
+fabrik/pruefung/*/tmp/
+fabrik/pruefung/*/roh/
+fabrik/pruefung/*/tmp_speicher/
+fabrik/pruefung/**/*.npy
+fabrik/protokolle/

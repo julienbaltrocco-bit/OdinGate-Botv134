@@ -1,0 +1,29 @@
+Spalten: ['id', 'gen', 'signal', 'familie', 'braucht', 'th', 'r', 'f', 'k', 'x', 'm', 'best', 'eltern', 'zeile', 'n_t', 'roh_t', 'n85_t', 't_roh_t', 't85_t', 'n85_h1', 'n85_h2', 'n85_2x_t', 'n0_t', 'sharpe_t', 'pf_t', 'quote_t', 'dauer_min', 'rueck_t', 'n_v', 'roh_v', 'n85_v', 't85_v', 'sharpe_v', 'status', 'grund']
+{'gen': 'gen1', 'status': 'stufe2', 'c': 1604}
+{'gen': 'gen1', 'status': 'ungültig', 'c': 38055}
+{'gen': 'gen1', 'status': 'verworfen_1', 'c': 298370}
+{'gen': 'gen1', 'status': 'verworfen_2', 'c': 2171}
+{'gen': 'gen2', 'status': 'stufe2', 'c': 9425}
+{'gen': 'gen2', 'status': 'ungültig', 'c': 64080}
+{'gen': 'gen2', 'status': 'verworfen_1', 'c': 103259}
+{'gen': 'gen2', 'status': 'verworfen_2', 'c': 5396}
+gen1 Zeilen: (340200, 340200, 0, 340199)
+gen1 x: ['h15', 'h60', 'h240', 'h720', 'h240_stop2', 'h240_stop1.5_ziel3', 'h60_stop1.5_ziel1.5', 'h720_nachzug2', 'h720_zielnachzug', 'signal_h720']
+gen1 m: ['top3', 'alle10', 'alt7']
+I_T, I_TIEFE, I_V1, I_ENDE, N_TAGE, D.N: 12960 158112 210240 315648 1051 394560
+SEGMENTE: {'k': (0, 685, 1051), 't': (504, 869, 1051)}
+RASTER[I_T], [I_V1], [I_ENDE]: 2021-08-15 00:00:00 2023-07-01 00:00:00 2024-07-01 00:00:00
+COINS: ['BTC', 'ETH', 'SOL', 'XRP', 'DOT', 'DOGE', 'ADA', 'LINK', 'AVAX', 'LTC']
+slip_bp: [ 0.5         0.5         1.36575684  1.13864439 13.21569763  1.65216364
+  6.41896347  1.08887186  1.45083223  2.18376404]
+tage_gen1: (340200, 1051) float32
+  BTC   ungültige Kerzen in [I_T, I_ENDE): 0  erste gültige: 0
+  ETH   ungültige Kerzen in [I_T, I_ENDE): 0  erste gültige: 0
+  SOL   ungültige Kerzen in [I_T, I_ENDE): 1440  erste gültige: 0
+  XRP   ungültige Kerzen in [I_T, I_ENDE): 1440  erste gültige: 0
+  DOT   ungültige Kerzen in [I_T, I_ENDE): 0  erste gültige: 0
+  DOGE  ungültige Kerzen in [I_T, I_ENDE): 0  erste gültige: 0
+  ADA   ungültige Kerzen in [I_T, I_ENDE): 0  erste gültige: 0
+  LINK  ungültige Kerzen in [I_T, I_ENDE): 0  erste gültige: 0
+  AVAX  ungültige Kerzen in [I_T, I_ENDE): 0  erste gültige: 0
+  LTC   ungültige Kerzen in [I_T, I_ENDE): 1440  erste gültige: 0

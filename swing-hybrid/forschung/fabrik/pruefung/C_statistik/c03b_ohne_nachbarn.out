@@ -1,0 +1,14 @@
+4b4ba60796e9 gen2 vwap_288 th 3.0 r -1 btc_ab k 3 h120 top3 | n_t 223 n85_t 46.998 t85_t 2.318 V1 47.858 2.592
+     alle Zeilen derselben Regel (gen, th, n_t, n85_t, status, mit Bestätigung): [('gen2', 3.0, 223, 46.998, 'verworfen_3', 0), ('gen2', 3.5, 80, 44.434, 'ungültig', 0), ('gen2', 4.0, 29, -25.703, 'ungültig', 0)]
+b446a828602c gen2 vwap_288 th 3.0 r -1 btc_ab k 3 h240_stop3 top3 | n_t 241 n85_t 42.467 t85_t 2.103 V1 47.184 1.814
+     alle Zeilen derselben Regel (gen, th, n_t, n85_t, status, mit Bestätigung): [('gen2', 3.0, 241, 42.467, 'verworfen_3', 0), ('gen2', 3.5, 95, 46.158, 'ungültig', 0), ('gen2', 4.0, 36, 18.079, 'ungültig', 0)]
+2552fc799579 gen2 vwap_288 th 3.0 r -1 vol_hoch k 3 signal0_h720 alt7 | n_t 241 n85_t 117.797 t85_t 2.826 V1 136.745 1.898
+     alle Zeilen derselben Regel (gen, th, n_t, n85_t, status, mit Bestätigung): [('gen2', 3.0, 241, 117.797, 'verworfen_3', 0), ('gen2', 3.5, 112, 275.053, 'ungültig', 0), ('gen2', 4.0, 43, 507.605, 'ungültig', 0)]
+4a286ba896c7 gen2 vwap_288 th 3.0 r -1 vol_hoch k 3 signal1_h720 alle10 | n_t 355 n85_t 98.192 t85_t 2.42 V1 82.63 1.868
+     alle Zeilen derselben Regel (gen, th, n_t, n85_t, status, mit Bestätigung): [('gen2', 3.0, 355, 98.192, 'verworfen_3', 0), ('gen2', 3.5, 161, 199.42, 'ungültig', 0), ('gen2', 4.0, 61, 309.225, 'ungültig', 0)]
+4eb078e7465c gen2 vwap_288 th 3.0 r -1 vol_hoch k 3 signal1_h720 alt7 | n_t 243 n85_t 118.642 t85_t 2.615 V1 115.919 1.998
+     alle Zeilen derselben Regel (gen, th, n_t, n85_t, status, mit Bestätigung): [('gen2', 3.0, 243, 118.642, 'verworfen_3', 0), ('gen2', 3.5, 113, 248.694, 'ungültig', 0), ('gen2', 4.0, 43, 444.576, 'ungültig', 0)]
+e09334f6af51 gen2 vwap_288 th 3.0 r -1 vol_hoch k 3 signal0.5_h240 alle10 | n_t 406 n85_t 75.896 t85_t 2.101 V1 80.505 2.002
+     alle Zeilen derselben Regel (gen, th, n_t, n85_t, status, mit Bestätigung): [('gen2', 3.0, 406, 75.896, 'verworfen_3', 0), ('gen2', 3.5, 169, 158.384, 'ungültig', 0), ('gen2', 4.0, 61, 283.061, 'ungültig', 0)]
+ced07618fd19 gen2 vwap_288 th 3.0 r -1 vol_hoch k 3 signal0.5_h240 alt7 | n_t 272 n85_t 86.925 t85_t 2.086 V1 91.592 1.857
+     alle Zeilen derselben Regel (gen, th, n_t, n85_t, status, mit Bestätigung): [('gen2', 3.0, 272, 86.925, 'verworfen_3', 0), ('gen2', 3.5, 117, 186.676, 'ungültig', 0), ('gen2', 4.0, 43, 393.515, 'ungültig', 0)]

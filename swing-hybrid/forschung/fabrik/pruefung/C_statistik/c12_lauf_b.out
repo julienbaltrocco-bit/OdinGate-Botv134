@@ -1,0 +1,11 @@
+Code-Stand: trichter:0bfc2db0 lauf:4a548736 kern:43e6339a evolution:6386a868
+statistik.json Stand: 2026-11-16 00:23 UTC
+Läufe: [('gen1', '2026-11-16T00:15:14Z', 340200), ('gen2', '2026-11-16T00:20:33Z', 182460)]
+Kurs/Volumen/Derivate gen1: gültig 275596, Stufe 1 bestanden 3374 = 0.0122
+Kurs/Volumen/Derivate gen2: gültig 94502, Stufe 1 bestanden 12304 = 0.1302
+   statistik.json weist aus: anteil_stufe1 0.0424 gegen zufallserwartung_stufe1 0.0228
+   Reality Check: bestes t 4.942 | wie trichter p = 0.4150 (statistik.json: 0.415, t 4.94) | mit eigener Streuung je Stichprobe p = 0.9575
+Orderbuch-Tiefe gen1: gültig 26330, Stufe 1 bestanden 463 = 0.0176
+Orderbuch-Tiefe gen2: gültig 23080, Stufe 1 bestanden 2251 = 0.0975
+   statistik.json weist aus: anteil_stufe1 0.0549 gegen zufallserwartung_stufe1 0.0228
+   Reality Check: bestes t 4.469 | wie trichter p = 0.1675 (statistik.json: 0.1675, t 4.47) | mit eigener Streuung je Stichprobe p = 0.7675

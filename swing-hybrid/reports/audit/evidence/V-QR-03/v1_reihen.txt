@@ -1,0 +1,11 @@
+Einstellungen Runde 1: 30 | Runde 2/3: 10 | verschieden zusammen: 32
+neu in Runde 2/3: ['tsmom_L336_biasFalse', 'tsmom_L336_biasTrue']
+Yubit-Slippage je Coin: {'BTC': np.float64(5e-05), 'ETH': np.float64(5e-05), 'SOL': np.float64(0.000137), 'XRP': np.float64(0.000114), 'DOT': np.float64(0.001322), 'DOGE': np.float64(0.000165), 'ADA': np.float64(0.000642), 'LINK': np.float64(0.000109), 'AVAX': np.float64(0.000145), 'LTC': np.float64(0.000218)}
+slip_5bp (1896, 32) von 2021-08-15 bis 2026-10-23
+slip_yubit (1896, 32) von 2021-08-15 bis 2026-10-23
+Vorperiode (561, 2) 2020-02-01 2021-08-14
+fertig
+
+real	0m49.251s
+user	0m31.679s
+sys	0m19.546s

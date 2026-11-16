@@ -1,0 +1,20 @@
+V-ENG-01: Gegenpruefung von ENG-01 (Sicherheitsdeckel max_order_usd blockiert Schliess-Orders im Live-Modus)
+Alle Befehle aus /home/user/OdinGate-Botv134/swing-hybrid, nur lesend gegen das Repo; Bot-Laeufe schreiben in mktemp-Verzeichnisse.
+
+1) Eigene Nachstellung mit eigener Konto-Attrappe (kein Netz, kein Schluessel):
+   .venv/bin/python -I -B reports/audit/evidence/V-ENG-01/repro_deckel.py            -> repro_deckel.txt
+2) Test des Erstpruefers:
+   NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B -m pytest -q -p no:cacheprovider --basetemp=$(mktemp -d) \
+       reports/audit/evidence/ENG/test_eng_ausgangsverhalten.py -k sicherheitsdeckel  -> 1 passed, 17 deselected
+3) Zaehlung auf Stundenschluessen vor 2025-04-01 (kein Pruefzeitraum, keine Parameterwahl):
+   NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/V-ENG-01/historie_deckel.py  -> historie_deckel.txt
+   NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/V-ENG-01/historie_detail.py  -> historie_detail.txt
+   NUMBA_CACHE_DIR=$(mktemp -d) .venv/bin/python -I -B reports/audit/evidence/V-ENG-01/historie_ada.py     -> historie_ada.txt
+
+Hinweise zur Lesart:
+- historie_deckel.txt: die Spalten stunden_blockiert und hoechstes_verh_solange_blockiert sind eine Vereinfachung (Dauer, bis der
+  Stundenschluss wieder unter der Deckel-Schwelle liegt; ein zwischenzeitlicher Rueckwechsel des Signals ist nicht beruecksichtigt).
+  Belastbar ist die Anzahl der beim ersten Versuch abgelehnten Schliess-Orders.
+- historie_detail.txt: der Aufruf detail("ADA", ...) benutzt die Zeitstempel aus g_hebel3_entwicklung.txt als Kerzen-Etikett und liegt
+  dadurch eine Stunde zu spaet; massgeblich fuer den ADA-Fall ist historie_ada.txt.
+- Einstieg/Ausstieg zum Stundenschluss ist eine Naeherung; der Bot handelt einige Minuten nach der vollen Stunde zum dann gueltigen Kurs.

@@ -1,0 +1,240 @@
+== BTC
+  o: ungleich 0 (gültig 315648)
+  h: ungleich 0 (gültig 315648)
+  l: ungleich 0 (gültig 315648)
+  c: ungleich 0 (gültig 315648)
+  qv: ungleich 0 (gültig 315648)
+  gueltig==Zeile vorhanden: True, Lücken 0
+  Lücken mit letztem Schluss gefüllt: True
+  tq: ungleich 0 (gültig 315648)
+  tqv: ungleich 0 (gültig 315648)
+  prem: ungleich 0 (gültig 313623)
+  frate (letzte Rate strikt vor Kerzen-Eröffnung): ungleich 0 (gültig 315647); kleinstes Alter 0 days 00:05:00
+  fcum: ungleich 0 (gültig 315648); Termine nicht auf 5-min-Raster: 0; doppelte nach floor: 0
+  oi: ungleich 0 (gültig 315408); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  konten_ls: ungleich 0 (gültig 309780); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  profis_ls: ungleich 0 (gültig 223416); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  taker_log: ungleich 0 (gültig 278292); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  b1: ungleich 0 (gültig 154089)
+  a1: ungleich 0 (gültig 154089)
+  b3: ungleich 0 (gültig 154089)
+  a3: ungleich 0 (gültig 154089)
+  b5: ungleich 0 (gültig 154089)
+  a5: ungleich 0 (gültig 154089)
+  Tiefe-Zeitstempel auf 5-min-Raster: True; 5m-Kerzen auf Raster: True; metrics auf Stundenraster: True
+== ETH
+  o: ungleich 0 (gültig 315648)
+  h: ungleich 0 (gültig 315648)
+  l: ungleich 0 (gültig 315648)
+  c: ungleich 0 (gültig 315648)
+  qv: ungleich 0 (gültig 315648)
+  gueltig==Zeile vorhanden: True, Lücken 0
+  Lücken mit letztem Schluss gefüllt: True
+  tq: ungleich 0 (gültig 315648)
+  tqv: ungleich 0 (gültig 315648)
+  prem: ungleich 0 (gültig 313624)
+  frate (letzte Rate strikt vor Kerzen-Eröffnung): ungleich 0 (gültig 315647); kleinstes Alter 0 days 00:05:00
+  fcum: ungleich 0 (gültig 315648); Termine nicht auf 5-min-Raster: 0; doppelte nach floor: 0
+  oi: ungleich 0 (gültig 271344); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  konten_ls: ungleich 0 (gültig 265716); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  profis_ls: ungleich 0 (gültig 179352); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  taker_log: ungleich 0 (gültig 234228); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  b1: ungleich 0 (gültig 154377)
+  a1: ungleich 0 (gültig 154377)
+  b3: ungleich 0 (gültig 154377)
+  a3: ungleich 0 (gültig 154377)
+  b5: ungleich 0 (gültig 154377)
+  a5: ungleich 0 (gültig 154377)
+  Tiefe-Zeitstempel auf 5-min-Raster: True; 5m-Kerzen auf Raster: True; metrics auf Stundenraster: True
+== SOL
+  o: ungleich 0 (gültig 314208)
+  h: ungleich 0 (gültig 314208)
+  l: ungleich 0 (gültig 314208)
+  c: ungleich 0 (gültig 314208)
+  qv: ungleich 0 (gültig 314208)
+  gueltig==Zeile vorhanden: True, Lücken 1440
+  Lücken mit letztem Schluss gefüllt: True
+  tq: ungleich 1440 (gültig 315648)
+  tqv: ungleich 1440 (gültig 315648)
+  prem: ungleich 0 (gültig 313912)
+  frate (letzte Rate strikt vor Kerzen-Eröffnung): ungleich 0 (gültig 315647); kleinstes Alter 0 days 00:05:00
+  fcum: ungleich 0 (gültig 315648); Termine nicht auf 5-min-Raster: 0; doppelte nach floor: 0
+  oi: ungleich 0 (gültig 271344); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  konten_ls: ungleich 0 (gültig 265716); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  profis_ls: ungleich 0 (gültig 179352); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  taker_log: ungleich 0 (gültig 234228); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  b1: ungleich 0 (gültig 153801)
+  a1: ungleich 0 (gültig 153801)
+  b3: ungleich 0 (gültig 153801)
+  a3: ungleich 0 (gültig 153801)
+  b5: ungleich 0 (gültig 153801)
+  a5: ungleich 0 (gültig 153801)
+  Tiefe-Zeitstempel auf 5-min-Raster: True; 5m-Kerzen auf Raster: True; metrics auf Stundenraster: True
+== XRP
+  o: ungleich 0 (gültig 314208)
+  h: ungleich 0 (gültig 314208)
+  l: ungleich 0 (gültig 314208)
+  c: ungleich 0 (gültig 314208)
+  qv: ungleich 0 (gültig 314208)
+  gueltig==Zeile vorhanden: True, Lücken 1440
+  Lücken mit letztem Schluss gefüllt: True
+  tq: ungleich 1440 (gültig 315648)
+  tqv: ungleich 1440 (gültig 315648)
+  prem: ungleich 0 (gültig 313912)
+  frate (letzte Rate strikt vor Kerzen-Eröffnung): ungleich 0 (gültig 315647); kleinstes Alter 0 days 00:05:00
+  fcum: ungleich 0 (gültig 315648); Termine nicht auf 5-min-Raster: 0; doppelte nach floor: 0
+  oi: ungleich 0 (gültig 271344); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  konten_ls: ungleich 0 (gültig 265716); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  profis_ls: ungleich 0 (gültig 179640); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  taker_log: ungleich 0 (gültig 234516); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  b1: ungleich 0 (gültig 154088)
+  a1: ungleich 0 (gültig 154088)
+  b3: ungleich 0 (gültig 154088)
+  a3: ungleich 0 (gültig 154088)
+  b5: ungleich 0 (gültig 154088)
+  a5: ungleich 0 (gültig 154088)
+  Tiefe-Zeitstempel auf 5-min-Raster: True; 5m-Kerzen auf Raster: True; metrics auf Stundenraster: True
+== DOT
+  o: ungleich 0 (gültig 315648)
+  h: ungleich 0 (gültig 315648)
+  l: ungleich 0 (gültig 315648)
+  c: ungleich 0 (gültig 315648)
+  qv: ungleich 0 (gültig 315648)
+  gueltig==Zeile vorhanden: True, Lücken 0
+  Lücken mit letztem Schluss gefüllt: True
+  tq: ungleich 0 (gültig 315648)
+  tqv: ungleich 0 (gültig 315648)
+  prem: ungleich 0 (gültig 313624)
+  frate (letzte Rate strikt vor Kerzen-Eröffnung): ungleich 0 (gültig 315647); kleinstes Alter 0 days 00:05:00
+  fcum: ungleich 0 (gültig 315648); Termine nicht auf 5-min-Raster: 0; doppelte nach floor: 0
+  oi: ungleich 0 (gültig 271344); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  konten_ls: ungleich 0 (gültig 265716); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  profis_ls: ungleich 0 (gültig 179352); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  taker_log: ungleich 0 (gültig 234228); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  b1: ungleich 0 (gültig 154089)
+  a1: ungleich 0 (gültig 154089)
+  b3: ungleich 0 (gültig 154089)
+  a3: ungleich 0 (gültig 154089)
+  b5: ungleich 0 (gültig 154089)
+  a5: ungleich 0 (gültig 154089)
+  Tiefe-Zeitstempel auf 5-min-Raster: True; 5m-Kerzen auf Raster: True; metrics auf Stundenraster: True
+== DOGE
+  o: ungleich 0 (gültig 315648)
+  h: ungleich 0 (gültig 315648)
+  l: ungleich 0 (gültig 315648)
+  c: ungleich 0 (gültig 315648)
+  qv: ungleich 0 (gültig 315648)
+  gueltig==Zeile vorhanden: True, Lücken 0
+  Lücken mit letztem Schluss gefüllt: True
+  tq: ungleich 0 (gültig 315648)
+  tqv: ungleich 0 (gültig 315648)
+  prem: ungleich 0 (gültig 313623)
+  frate (letzte Rate strikt vor Kerzen-Eröffnung): ungleich 0 (gültig 315647); kleinstes Alter 0 days 00:05:00
+  fcum: ungleich 0 (gültig 315648); Termine nicht auf 5-min-Raster: 0; doppelte nach floor: 0
+  oi: ungleich 0 (gültig 271344); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  konten_ls: ungleich 0 (gültig 265716); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  profis_ls: ungleich 0 (gültig 179352); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  taker_log: ungleich 0 (gültig 234228); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  b1: ungleich 0 (gültig 154088)
+  a1: ungleich 0 (gültig 154088)
+  b3: ungleich 0 (gültig 154088)
+  a3: ungleich 0 (gültig 154088)
+  b5: ungleich 0 (gültig 154088)
+  a5: ungleich 0 (gültig 154088)
+  Tiefe-Zeitstempel auf 5-min-Raster: True; 5m-Kerzen auf Raster: True; metrics auf Stundenraster: True
+== ADA
+  o: ungleich 0 (gültig 315648)
+  h: ungleich 0 (gültig 315648)
+  l: ungleich 0 (gültig 315648)
+  c: ungleich 0 (gültig 315648)
+  qv: ungleich 0 (gültig 315648)
+  gueltig==Zeile vorhanden: True, Lücken 0
+  Lücken mit letztem Schluss gefüllt: True
+  tq: ungleich 0 (gültig 315648)
+  tqv: ungleich 0 (gültig 315648)
+  prem: ungleich 0 (gültig 313624)
+  frate (letzte Rate strikt vor Kerzen-Eröffnung): ungleich 0 (gültig 315647); kleinstes Alter 0 days 00:05:00
+  fcum: ungleich 0 (gültig 315648); Termine nicht auf 5-min-Raster: 0; doppelte nach floor: 0
+  oi: ungleich 0 (gültig 271344); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  konten_ls: ungleich 0 (gültig 265716); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  profis_ls: ungleich 0 (gültig 179352); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  taker_log: ungleich 0 (gültig 234228); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  b1: ungleich 0 (gültig 154088)
+  a1: ungleich 0 (gültig 154088)
+  b3: ungleich 0 (gültig 154088)
+  a3: ungleich 0 (gültig 154088)
+  b5: ungleich 0 (gültig 154088)
+  a5: ungleich 0 (gültig 154088)
+  Tiefe-Zeitstempel auf 5-min-Raster: True; 5m-Kerzen auf Raster: True; metrics auf Stundenraster: True
+== LINK
+  o: ungleich 0 (gültig 315648)
+  h: ungleich 0 (gültig 315648)
+  l: ungleich 0 (gültig 315648)
+  c: ungleich 0 (gültig 315648)
+  qv: ungleich 0 (gültig 315648)
+  gueltig==Zeile vorhanden: True, Lücken 0
+  Lücken mit letztem Schluss gefüllt: True
+  tq: ungleich 0 (gültig 315648)
+  tqv: ungleich 0 (gültig 315648)
+  prem: ungleich 0 (gültig 313623)
+  frate (letzte Rate strikt vor Kerzen-Eröffnung): ungleich 0 (gültig 315647); kleinstes Alter 0 days 00:05:00
+  fcum: ungleich 0 (gültig 315648); Termine nicht auf 5-min-Raster: 0; doppelte nach floor: 0
+  oi: ungleich 0 (gültig 271344); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  konten_ls: ungleich 0 (gültig 265716); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  profis_ls: ungleich 0 (gültig 179352); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  taker_log: ungleich 0 (gültig 234228); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  b1: ungleich 0 (gültig 154089)
+  a1: ungleich 0 (gültig 154089)
+  b3: ungleich 0 (gültig 154089)
+  a3: ungleich 0 (gültig 154089)
+  b5: ungleich 0 (gültig 154089)
+  a5: ungleich 0 (gültig 154089)
+  Tiefe-Zeitstempel auf 5-min-Raster: True; 5m-Kerzen auf Raster: True; metrics auf Stundenraster: True
+== AVAX
+  o: ungleich 0 (gültig 315648)
+  h: ungleich 0 (gültig 315648)
+  l: ungleich 0 (gültig 315648)
+  c: ungleich 0 (gültig 315648)
+  qv: ungleich 0 (gültig 315648)
+  gueltig==Zeile vorhanden: True, Lücken 0
+  Lücken mit letztem Schluss gefüllt: True
+  tq: ungleich 0 (gültig 315648)
+  tqv: ungleich 0 (gültig 315648)
+  prem: ungleich 0 (gültig 313624)
+  frate (letzte Rate strikt vor Kerzen-Eröffnung): ungleich 0 (gültig 315647); kleinstes Alter 0 days 00:05:00
+  fcum: ungleich 0 (gültig 315648); Termine nicht auf 5-min-Raster: 0; doppelte nach floor: 0
+  oi: ungleich 0 (gültig 271344); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  konten_ls: ungleich 0 (gültig 265716); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  profis_ls: ungleich 0 (gültig 179352); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  taker_log: ungleich 0 (gültig 234228); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  b1: ungleich 0 (gültig 154089)
+  a1: ungleich 0 (gültig 154089)
+  b3: ungleich 0 (gültig 154089)
+  a3: ungleich 0 (gültig 154089)
+  b5: ungleich 0 (gültig 154089)
+  a5: ungleich 0 (gültig 154089)
+  Tiefe-Zeitstempel auf 5-min-Raster: True; 5m-Kerzen auf Raster: True; metrics auf Stundenraster: True
+== LTC
+  o: ungleich 0 (gültig 314208)
+  h: ungleich 0 (gültig 314208)
+  l: ungleich 0 (gültig 314208)
+  c: ungleich 0 (gültig 314208)
+  qv: ungleich 0 (gültig 314208)
+  gueltig==Zeile vorhanden: True, Lücken 1440
+  Lücken mit letztem Schluss gefüllt: True
+  tq: ungleich 1440 (gültig 315648)
+  tqv: ungleich 1440 (gültig 315648)
+  prem: ungleich 0 (gültig 313911)
+  frate (letzte Rate strikt vor Kerzen-Eröffnung): ungleich 0 (gültig 315647); kleinstes Alter 0 days 00:05:00
+  fcum: ungleich 0 (gültig 315648); Termine nicht auf 5-min-Raster: 0; doppelte nach floor: 0
+  oi: ungleich 0 (gültig 271344); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  konten_ls: ungleich 0 (gültig 265716); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  profis_ls: ungleich 0 (gültig 179352); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  taker_log: ungleich 0 (gültig 234228); Alter der Stundenbeschriftung zur Kerzen-Eröffnung: min 0 days 00:00:00 max 0 days 00:55:00
+  b1: ungleich 0 (gültig 154089)
+  a1: ungleich 0 (gültig 154089)
+  b3: ungleich 0 (gültig 154089)
+  a3: ungleich 0 (gültig 154089)
+  b5: ungleich 0 (gültig 154089)
+  a5: ungleich 0 (gültig 154089)
+  Tiefe-Zeitstempel auf 5-min-Raster: True; 5m-Kerzen auf Raster: True; metrics auf Stundenraster: True

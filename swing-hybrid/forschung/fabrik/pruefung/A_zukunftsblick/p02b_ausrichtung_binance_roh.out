@@ -1,0 +1,70 @@
+##### 1. Kerzen 1m / 5m: open_time und close_time der Rohdatei
+  SOL 2023-03-01 tq : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  SOL 2023-03-01 tqv: Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  SOL 2023-03-01 o  : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  SOL 2023-03-01 h  : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  SOL 2023-03-01 l  : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  SOL 2023-03-01 c  : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  SOL 2023-03-01: späteste verwendete Minutenkerze schließt 0 s nach dem Kerzenschluss (0 = genau am Schluss)
+  DOGE 2024-02-10 tq : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  DOGE 2024-02-10 tqv: Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  DOGE 2024-02-10 o  : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  DOGE 2024-02-10 h  : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  DOGE 2024-02-10 l  : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  DOGE 2024-02-10 c  : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  DOGE 2024-02-10: späteste verwendete Minutenkerze schließt 0 s nach dem Kerzenschluss (0 = genau am Schluss)
+  BTC 2022-06-14 tq : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  BTC 2022-06-14 tqv: Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  BTC 2022-06-14 o  : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  BTC 2022-06-14 h  : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  BTC 2022-06-14 l  : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  BTC 2022-06-14 c  : Speicher == aus Minutenkerzen, die bis zum Kerzenschluss geschlossen sind: True
+  BTC 2022-06-14: späteste verwendete Minutenkerze schließt 0 s nach dem Kerzenschluss (0 = genau am Schluss)
+  5m-Rohdatei: close_time - open_time (ms): [299999] | Speicher c == close der Zeile mit open_time = RASTER[i]: True
+
+##### 2. Aufschlag (premiumIndexKlines 5m)
+  Speicher prem[i] == close der Aufschlag-Kerze, die bei RASTER[i]+5min schließt: True | Zeilen 8928 | close_time-open_time (ms): [299999]
+  Gegenprobe (Folgekerze): 0.005264336917562724 Anteil gleich (erwartet nahe 0)
+  Korrelation close[i] mit open[i+1]: 0.765 | close[i] mit open[i]: 0.45
+
+##### 3. Funding
+  Termine laut Rohdatei: 93 | Buchungskerzen im Speicher: 93
+  fcum-Sprung an der Kerze, die zum Termin öffnet == Rate: True | frate zeigt die Rate ab der Kerze NACH dem Termin: True | Abstand Termin -> Schluss der ersten Kerze mit dieser Rate: min 600 s
+  frate an der Terminkerze selbst == neue Rate (wäre unkritisch, da Rate am Termin feststeht): 26 von 93 (gleich nur, wenn alte und neue Rate zufällig gleich)
+
+##### 4. Stundenwerte (metrics): Rohmessung alle 5 Minuten, create_time
+  SOL oi        : Speicher == letzte Messung vor dem Stundenbeginn der Kerze: 552/552 | Alter der Messung am Kerzenschluss: min 10 min, max 65 min | passt stattdessen zu einer späteren Messung: 0
+  SOL konten_ls : Speicher == letzte Messung vor dem Stundenbeginn der Kerze: 552/552 | Alter der Messung am Kerzenschluss: min 10 min, max 65 min | passt stattdessen zu einer späteren Messung: 0
+  SOL profis_ls : Speicher == letzte Messung vor dem Stundenbeginn der Kerze: 552/552 | Alter der Messung am Kerzenschluss: min 10 min, max 65 min | passt stattdessen zu einer späteren Messung: 0
+  SOL taker_log : Speicher == Stundenmittel der VORSTUNDE (create_time in [H-1, H)): 552/552 | == Mittel der LAUFENDEN Stunde: 0
+  BTC oi        : Speicher == letzte Messung vor dem Stundenbeginn der Kerze: 552/552 | Alter der Messung am Kerzenschluss: min 10 min, max 65 min | passt stattdessen zu einer späteren Messung: 0
+  BTC konten_ls : Speicher == letzte Messung vor dem Stundenbeginn der Kerze: 552/552 | Alter der Messung am Kerzenschluss: min 10 min, max 65 min | passt stattdessen zu einer späteren Messung: 0
+  BTC profis_ls : Speicher == letzte Messung vor dem Stundenbeginn der Kerze: 552/552 | Alter der Messung am Kerzenschluss: min 10 min, max 65 min | passt stattdessen zu einer späteren Messung: 0
+  BTC taker_log : Speicher == Stundenmittel der VORSTUNDE (create_time in [H-1, H)): 552/552 | == Mittel der LAUFENDEN Stunde: 0
+  DOGE oi        : Speicher == letzte Messung vor dem Stundenbeginn der Kerze: 552/552 | Alter der Messung am Kerzenschluss: min 10 min, max 65 min | passt stattdessen zu einer späteren Messung: 0
+  DOGE konten_ls : Speicher == letzte Messung vor dem Stundenbeginn der Kerze: 552/552 | Alter der Messung am Kerzenschluss: min 10 min, max 65 min | passt stattdessen zu einer späteren Messung: 0
+  DOGE profis_ls : Speicher == letzte Messung vor dem Stundenbeginn der Kerze: 552/552 | Alter der Messung am Kerzenschluss: min 10 min, max 65 min | passt stattdessen zu einer späteren Messung: 0
+  DOGE taker_log : Speicher == Stundenmittel der VORSTUNDE (create_time in [H-1, H)): 552/552 | == Mittel der LAUFENDEN Stunde: 0
+  SOL 2023-03-01: Zeile mit create_time t misst -> Fenster [t-10min, t-5min): Anteil gleich 0.00 | Fenster [t-5min, t+0min): Anteil gleich 0.83 | Fenster [t+0min, t+5min): Anteil gleich 0.00 | Fenster [t+5min, t+10min): Anteil gleich 0.00
+  DOGE 2024-02-10: Zeile mit create_time t misst -> Fenster [t-10min, t-5min): Anteil gleich 0.00 | Fenster [t-5min, t+0min): Anteil gleich 0.96 | Fenster [t+0min, t+5min): Anteil gleich 0.00 | Fenster [t+5min, t+10min): Anteil gleich 0.00
+  BTC 2022-06-14: Zeile mit create_time t misst -> Fenster [t-10min, t-5min): Anteil gleich 0.00 | Fenster [t-5min, t+0min): Anteil gleich 1.00 | Fenster [t+0min, t+5min): Anteil gleich 0.00 | Fenster [t+5min, t+10min): Anteil gleich 0.00
+
+##### 5. Orderbuch-Tiefe (bookDepth): Schnappschüsse etwa alle 30 s
+  SOL 2023-03-01 b5: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 28 bis 89 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  SOL 2023-03-01 a5: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 28 bis 89 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  SOL 2023-03-01 b1: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 28 bis 89 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  SOL 2023-03-01 a1: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 28 bis 89 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  SOL 2023-03-01 b3: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 28 bis 89 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  SOL 2023-03-01 a3: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 28 bis 89 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  BTC 2023-08-17 b5: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 28 bis 30 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  BTC 2023-08-17 a5: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 28 bis 30 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  BTC 2023-08-17 b1: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 28 bis 30 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  BTC 2023-08-17 a1: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 28 bis 30 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  BTC 2023-08-17 b3: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 28 bis 30 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  BTC 2023-08-17 a3: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 28 bis 30 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  LTC 2024-02-10 b5: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 27 bis 30 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  LTC 2024-02-10 a5: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 27 bis 30 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  LTC 2024-02-10 b1: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 27 bis 30 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  LTC 2024-02-10 a1: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 27 bis 30 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  LTC 2024-02-10 b3: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 27 bis 30 s VOR dem Kerzenschluss | passt zum Folgefenster: 0
+  LTC 2024-02-10 a3: Speicher == Mittel der Schnappschüsse innerhalb der Kerze: 288/288 | jüngster Schnappschuss liegt 27 bis 30 s VOR dem Kerzenschluss | passt zum Folgefenster: 0

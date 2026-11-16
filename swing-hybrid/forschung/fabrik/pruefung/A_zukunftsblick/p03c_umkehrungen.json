@@ -1,0 +1,1334 @@
+[
+ {
+  "gen": "gen1",
+  "id": "3919fd1ea230",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.336,
+  "roh_einfach": 2.065
+ },
+ {
+  "gen": "gen1",
+  "id": "7c9443ecd55f",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.22,
+  "roh_einfach": 3.893
+ },
+ {
+  "gen": "gen1",
+  "id": "7eb4dc94bae4",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.951,
+  "roh_einfach": 0.838
+ },
+ {
+  "gen": "gen1",
+  "id": "9d10be6465d5",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.851,
+  "roh_einfach": -0.876
+ },
+ {
+  "gen": "gen1",
+  "id": "ad6783293a7d",
+  "status": "stufe3",
+  "grund": "Gruppe 259, vertreten durch 42538acf029b",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.035,
+  "roh_einfach": 2.382
+ },
+ {
+  "gen": "gen1",
+  "id": "c63cfeba1796",
+  "status": "final",
+  "grund": "Gruppe 894",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.861,
+  "roh_einfach": 1.276
+ },
+ {
+  "gen": "gen1",
+  "id": "cf6f004fe322",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.577,
+  "roh_einfach": -0.08
+ },
+ {
+  "gen": "gen1",
+  "id": "d1b1c2e33626",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.4,
+  "roh_einfach": -0.203
+ },
+ {
+  "gen": "gen1",
+  "id": "ed8d18094f3f",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.908,
+  "roh_einfach": 3.672
+ },
+ {
+  "gen": "gen1",
+  "id": "feb25757b50f",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.068,
+  "roh_einfach": 2.788
+ },
+ {
+  "gen": "gen2",
+  "id": "01d60e452569",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.098,
+  "roh_einfach": -2.148
+ },
+ {
+  "gen": "gen2",
+  "id": "063a1db22149",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.965,
+  "roh_einfach": -4.666
+ },
+ {
+  "gen": "gen2",
+  "id": "0a752d0147c5",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.842,
+  "roh_einfach": -0.887
+ },
+ {
+  "gen": "gen2",
+  "id": "0a77efc33823",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.513,
+  "roh_einfach": 2.943
+ },
+ {
+  "gen": "gen2",
+  "id": "0b9786a4d689",
+  "status": "final",
+  "grund": "Gruppe 377",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.207,
+  "roh_einfach": 2.02
+ },
+ {
+  "gen": "gen2",
+  "id": "0bf19e0be07f",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.339,
+  "roh_einfach": -1.321
+ },
+ {
+  "gen": "gen2",
+  "id": "0c7275bea3ac",
+  "status": "stufe3",
+  "grund": "Gruppe 69, vertreten durch 6a4cea35b1e1",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.639,
+  "roh_einfach": 2.3
+ },
+ {
+  "gen": "gen2",
+  "id": "0ce3c750ed12",
+  "status": "final",
+  "grund": "Gruppe 1027",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.08,
+  "roh_einfach": 0.464
+ },
+ {
+  "gen": "gen2",
+  "id": "0fb18767467f",
+  "status": "final",
+  "grund": "Gruppe 285",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.589,
+  "roh_einfach": -0.743
+ },
+ {
+  "gen": "gen2",
+  "id": "10e3f636c916",
+  "status": "stufe3",
+  "grund": "Gruppe 120, vertreten durch 67d8d2822939",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.079,
+  "roh_einfach": -2.132
+ },
+ {
+  "gen": "gen2",
+  "id": "14486a49f532",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": -0.79,
+  "roh_einfach": 2.54
+ },
+ {
+  "gen": "gen2",
+  "id": "1650f0a14484",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.523,
+  "roh_einfach": 2.773
+ },
+ {
+  "gen": "gen2",
+  "id": "17ea6e5c6db1",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.787,
+  "roh_einfach": -0.699
+ },
+ {
+  "gen": "gen2",
+  "id": "18405b66fc23",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.02,
+  "roh_einfach": 2.89
+ },
+ {
+  "gen": "gen2",
+  "id": "1b7bd0a6a9f3",
+  "status": "stufe3",
+  "grund": "Gruppe 285, vertreten durch 0fb18767467f",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.635,
+  "roh_einfach": -1.35
+ },
+ {
+  "gen": "gen2",
+  "id": "1cd09d7da341",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.111,
+  "roh_einfach": -5.975
+ },
+ {
+  "gen": "gen2",
+  "id": "1d425418eb1f",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.499,
+  "roh_einfach": 1.387
+ },
+ {
+  "gen": "gen2",
+  "id": "1f1da7228266",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.068,
+  "roh_einfach": 2.788
+ },
+ {
+  "gen": "gen2",
+  "id": "1f32a6bfcd99",
+  "status": "stufe3",
+  "grund": "Gruppe 889, vertreten durch ec26b1b14683",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.864,
+  "roh_einfach": 1.264
+ },
+ {
+  "gen": "gen2",
+  "id": "21d500b7bd89",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 5.516,
+  "roh_einfach": 0.355
+ },
+ {
+  "gen": "gen2",
+  "id": "2244fc44a48b",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.753,
+  "roh_einfach": 3.967
+ },
+ {
+  "gen": "gen2",
+  "id": "23bfe0e96b99",
+  "status": "stufe3",
+  "grund": "Gruppe 542, vertreten durch 6cc7f6440ca6",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.737,
+  "roh_einfach": -13.113
+ },
+ {
+  "gen": "gen2",
+  "id": "246ab3c34445",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.951,
+  "roh_einfach": 0.838
+ },
+ {
+  "gen": "gen2",
+  "id": "25b96517dfdf",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.425,
+  "roh_einfach": -1.395
+ },
+ {
+  "gen": "gen2",
+  "id": "27f774f72675",
+  "status": "stufe3",
+  "grund": "Gruppe 780, vertreten durch 5bd9c5f56ab3",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.305,
+  "roh_einfach": 1.185
+ },
+ {
+  "gen": "gen2",
+  "id": "2b594cfbb7e2",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.937,
+  "roh_einfach": 0.803
+ },
+ {
+  "gen": "gen2",
+  "id": "2cb9583eb54d",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.577,
+  "roh_einfach": -0.08
+ },
+ {
+  "gen": "gen2",
+  "id": "2d51abde80f5",
+  "status": "stufe3",
+  "grund": "Gruppe 259, vertreten durch 42538acf029b",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.409,
+  "roh_einfach": 1.297
+ },
+ {
+  "gen": "gen2",
+  "id": "2ef888e39705",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.071,
+  "roh_einfach": -1.56
+ },
+ {
+  "gen": "gen2",
+  "id": "30cb97b87bf9",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 2.222,
+  "roh_einfach": 2.755
+ },
+ {
+  "gen": "gen2",
+  "id": "36d2d648bd80",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.257,
+  "roh_einfach": 3.362
+ },
+ {
+  "gen": "gen2",
+  "id": "3a997708a737",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 2.171,
+  "roh_einfach": 2.758
+ },
+ {
+  "gen": "gen2",
+  "id": "3f2937d6b058",
+  "status": "final",
+  "grund": "Gruppe 364",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.622,
+  "roh_einfach": -2.765
+ },
+ {
+  "gen": "gen2",
+  "id": "42538acf029b",
+  "status": "final",
+  "grund": "Gruppe 259",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.583,
+  "roh_einfach": 1.987
+ },
+ {
+  "gen": "gen2",
+  "id": "44c1574be7f0",
+  "status": "stufe3",
+  "grund": "Gruppe 259, vertreten durch 42538acf029b",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.897,
+  "roh_einfach": 2.024
+ },
+ {
+  "gen": "gen2",
+  "id": "4a36f0e16496",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.339,
+  "roh_einfach": -1.321
+ },
+ {
+  "gen": "gen2",
+  "id": "4a5926414eae",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.608,
+  "roh_einfach": 1.563
+ },
+ {
+  "gen": "gen2",
+  "id": "4eb9144fb793",
+  "status": "stufe3",
+  "grund": "Gruppe 116, vertreten durch d96fbee59e66",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.801,
+  "roh_einfach": -3.031
+ },
+ {
+  "gen": "gen2",
+  "id": "53ca458fdcfc",
+  "status": "stufe3",
+  "grund": "Gruppe 219, vertreten durch 2a3b37e79472",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.637,
+  "roh_einfach": 1.641
+ },
+ {
+  "gen": "gen2",
+  "id": "551eca8f3a51",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.608,
+  "roh_einfach": 1.563
+ },
+ {
+  "gen": "gen2",
+  "id": "580a4f77ef1f",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.946,
+  "roh_einfach": 0.739
+ },
+ {
+  "gen": "gen2",
+  "id": "589c0d314477",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.609,
+  "roh_einfach": -1.532
+ },
+ {
+  "gen": "gen2",
+  "id": "592e649fd45a",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.851,
+  "roh_einfach": -0.876
+ },
+ {
+  "gen": "gen2",
+  "id": "5935dc7689b5",
+  "status": "stufe3",
+  "grund": "Gruppe 379, vertreten durch 8270714b994f",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.329,
+  "roh_einfach": 2.35
+ },
+ {
+  "gen": "gen2",
+  "id": "5abb42644177",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.625,
+  "roh_einfach": -1.168
+ },
+ {
+  "gen": "gen2",
+  "id": "5bd28e840274",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.059,
+  "roh_einfach": 2.551
+ },
+ {
+  "gen": "gen2",
+  "id": "5bd9c5f56ab3",
+  "status": "final",
+  "grund": "Gruppe 780",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.443,
+  "roh_einfach": 1.904
+ },
+ {
+  "gen": "gen2",
+  "id": "5cf6ad2ef924",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.218,
+  "roh_einfach": 1.988
+ },
+ {
+  "gen": "gen2",
+  "id": "5d3be2cd4408",
+  "status": "stufe3",
+  "grund": "Gruppe 120, vertreten durch 67d8d2822939",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.322,
+  "roh_einfach": -0.799
+ },
+ {
+  "gen": "gen2",
+  "id": "5f0f7daee954",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": -5.873,
+  "roh_einfach": 4.327
+ },
+ {
+  "gen": "gen2",
+  "id": "6553b4306a47",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.907,
+  "roh_einfach": 0.487
+ },
+ {
+  "gen": "gen2",
+  "id": "6757d2996038",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.329,
+  "roh_einfach": -0.29
+ },
+ {
+  "gen": "gen2",
+  "id": "69e2486e3b6c",
+  "status": "stufe3",
+  "grund": "Gruppe 780, vertreten durch 5bd9c5f56ab3",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.305,
+  "roh_einfach": 1.185
+ },
+ {
+  "gen": "gen2",
+  "id": "6b2ccde9d3e4",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": -5.247,
+  "roh_einfach": 4.624
+ },
+ {
+  "gen": "gen2",
+  "id": "6bcd3b474047",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.741,
+  "roh_einfach": 3.434
+ },
+ {
+  "gen": "gen2",
+  "id": "6cba8f340569",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.57,
+  "roh_einfach": -1.067
+ },
+ {
+  "gen": "gen2",
+  "id": "6cc7f6440ca6",
+  "status": "final",
+  "grund": "Gruppe 542",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.968,
+  "roh_einfach": -9.393
+ },
+ {
+  "gen": "gen2",
+  "id": "6e116d6d06f6",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 0.126,
+  "roh_einfach": 3.906
+ },
+ {
+  "gen": "gen2",
+  "id": "6fceca8000cc",
+  "status": "final",
+  "grund": "Gruppe 516",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.809,
+  "roh_einfach": -0.186
+ },
+ {
+  "gen": "gen2",
+  "id": "6fd9e8b5535b",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 5.273,
+  "roh_einfach": -2.967
+ },
+ {
+  "gen": "gen2",
+  "id": "70269857ab45",
+  "status": "stufe3",
+  "grund": "Gruppe 116, vertreten durch d96fbee59e66",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 6.471,
+  "roh_einfach": 0.709
+ },
+ {
+  "gen": "gen2",
+  "id": "716351a7abeb",
+  "status": "stufe3",
+  "grund": "Gruppe 120, vertreten durch 67d8d2822939",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 5.12,
+  "roh_einfach": -1.663
+ },
+ {
+  "gen": "gen2",
+  "id": "726e1f481590",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.924,
+  "roh_einfach": -0.896
+ },
+ {
+  "gen": "gen2",
+  "id": "740470740cb4",
+  "status": "final",
+  "grund": "Gruppe 469",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.795,
+  "roh_einfach": -1.102
+ },
+ {
+  "gen": "gen2",
+  "id": "74ba3e20385c",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": -5.311,
+  "roh_einfach": 3.791
+ },
+ {
+  "gen": "gen2",
+  "id": "74dd5cb31437",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.736,
+  "roh_einfach": 3.289
+ },
+ {
+  "gen": "gen2",
+  "id": "77649c0c3658",
+  "status": "stufe3",
+  "grund": "Gruppe 543, vertreten durch b5d0cbda443b",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.772,
+  "roh_einfach": -1.893
+ },
+ {
+  "gen": "gen2",
+  "id": "7a3dfcbb0aad",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.097,
+  "roh_einfach": 0.137
+ },
+ {
+  "gen": "gen2",
+  "id": "7b89495e7024",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.128,
+  "roh_einfach": -1.214
+ },
+ {
+  "gen": "gen2",
+  "id": "7c2bf1c3340e",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.045,
+  "roh_einfach": 2.892
+ },
+ {
+  "gen": "gen2",
+  "id": "7f1b1cf80be6",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.57,
+  "roh_einfach": -1.067
+ },
+ {
+  "gen": "gen2",
+  "id": "8022e77bd345",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.63,
+  "roh_einfach": 1.86
+ },
+ {
+  "gen": "gen2",
+  "id": "81c3bb59a60a",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.562,
+  "roh_einfach": -0.085
+ },
+ {
+  "gen": "gen2",
+  "id": "82edc28b8d38",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": -5.371,
+  "roh_einfach": 2.608
+ },
+ {
+  "gen": "gen2",
+  "id": "867c32e6707b",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.394,
+  "roh_einfach": -0.116
+ },
+ {
+  "gen": "gen2",
+  "id": "87898a23a88f",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.329,
+  "roh_einfach": -0.29
+ },
+ {
+  "gen": "gen2",
+  "id": "8854bfc996ec",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.565,
+  "roh_einfach": -0.147
+ },
+ {
+  "gen": "gen2",
+  "id": "89ea7b490bd9",
+  "status": "stufe3",
+  "grund": "Gruppe 259, vertreten durch 42538acf029b",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.732,
+  "roh_einfach": 1.855
+ },
+ {
+  "gen": "gen2",
+  "id": "8acab4705ada",
+  "status": "final",
+  "grund": "Gruppe 599",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.435,
+  "roh_einfach": 0.849
+ },
+ {
+  "gen": "gen2",
+  "id": "8b9c07513845",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.884,
+  "roh_einfach": -0.481
+ },
+ {
+  "gen": "gen2",
+  "id": "8c9b48ff0129",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.447,
+  "roh_einfach": -6.696
+ },
+ {
+  "gen": "gen2",
+  "id": "90af57a5b146",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 2.2,
+  "roh_einfach": 3.324
+ },
+ {
+  "gen": "gen2",
+  "id": "95ce3588b75c",
+  "status": "stufe3",
+  "grund": "Gruppe 582, vertreten durch ef0001e15411",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.53,
+  "roh_einfach": 0.728
+ },
+ {
+  "gen": "gen2",
+  "id": "95d7c7ed54fd",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.392,
+  "roh_einfach": -0.217
+ },
+ {
+  "gen": "gen2",
+  "id": "97ec14a105ed",
+  "status": "stufe3",
+  "grund": "Gruppe 542, vertreten durch 6cc7f6440ca6",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 5.978,
+  "roh_einfach": -14.454
+ },
+ {
+  "gen": "gen2",
+  "id": "9b75bf04a87e",
+  "status": "stufe3",
+  "grund": "Gruppe 69, vertreten durch 6a4cea35b1e1",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.622,
+  "roh_einfach": -1.152
+ },
+ {
+  "gen": "gen2",
+  "id": "9d9a2860bc01",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.097,
+  "roh_einfach": 0.137
+ },
+ {
+  "gen": "gen2",
+  "id": "9f05bfbf02ee",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.616,
+  "roh_einfach": -2.848
+ },
+ {
+  "gen": "gen2",
+  "id": "9f81aff303c8",
+  "status": "stufe3",
+  "grund": "Gruppe 259, vertreten durch 42538acf029b",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.035,
+  "roh_einfach": 2.382
+ },
+ {
+  "gen": "gen2",
+  "id": "a0176d55fcd2",
+  "status": "stufe3",
+  "grund": "Gruppe 542, vertreten durch 6cc7f6440ca6",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 5.323,
+  "roh_einfach": -10.008
+ },
+ {
+  "gen": "gen2",
+  "id": "a168f6ac4156",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 2.3,
+  "roh_einfach": 2.448
+ },
+ {
+  "gen": "gen2",
+  "id": "a584000ef6ac",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.858,
+  "roh_einfach": -0.949
+ },
+ {
+  "gen": "gen2",
+  "id": "a5bd537183e1",
+  "status": "stufe3",
+  "grund": "Gruppe 469, vertreten durch 740470740cb4",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.943,
+  "roh_einfach": 0.439
+ },
+ {
+  "gen": "gen2",
+  "id": "ab07a9b4ac29",
+  "status": "stufe3",
+  "grund": "Gruppe 498, vertreten durch dfc6dc5d3262",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.772,
+  "roh_einfach": 2.028
+ },
+ {
+  "gen": "gen2",
+  "id": "acd1d7854598",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.336,
+  "roh_einfach": 2.065
+ },
+ {
+  "gen": "gen2",
+  "id": "add13ac2b13e",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 2.088,
+  "roh_einfach": 3.221
+ },
+ {
+  "gen": "gen2",
+  "id": "b07d8561465e",
+  "status": "stufe3",
+  "grund": "Gruppe 236, vertreten durch 8c81a92dcacb",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 5.358,
+  "roh_einfach": 2.058
+ },
+ {
+  "gen": "gen2",
+  "id": "b26fc6cae8db",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.491,
+  "roh_einfach": -0.021
+ },
+ {
+  "gen": "gen2",
+  "id": "b2bb88422265",
+  "status": "final",
+  "grund": "Gruppe 171",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.668,
+  "roh_einfach": -3.166
+ },
+ {
+  "gen": "gen2",
+  "id": "b5d0cbda443b",
+  "status": "final",
+  "grund": "Gruppe 543",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.562,
+  "roh_einfach": -1.946
+ },
+ {
+  "gen": "gen2",
+  "id": "b7ab835852ab",
+  "status": "stufe3",
+  "grund": "Gruppe 116, vertreten durch d96fbee59e66",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.847,
+  "roh_einfach": -2.347
+ },
+ {
+  "gen": "gen2",
+  "id": "bc7bfe17241b",
+  "status": "stufe3",
+  "grund": "Gruppe 377, vertreten durch 0b9786a4d689",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.002,
+  "roh_einfach": 0.909
+ },
+ {
+  "gen": "gen2",
+  "id": "bd52b5ccc638",
+  "status": "stufe3",
+  "grund": "Gruppe 236, vertreten durch 8c81a92dcacb",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 5.096,
+  "roh_einfach": 2.242
+ },
+ {
+  "gen": "gen2",
+  "id": "bf026dad7dce",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.168,
+  "roh_einfach": 3.493
+ },
+ {
+  "gen": "gen2",
+  "id": "bf16ad08d600",
+  "status": "stufe3",
+  "grund": "Gruppe 542, vertreten durch 6cc7f6440ca6",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 7.107,
+  "roh_einfach": -9.556
+ },
+ {
+  "gen": "gen2",
+  "id": "c6751c6a1914",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.4,
+  "roh_einfach": -0.203
+ },
+ {
+  "gen": "gen2",
+  "id": "c88c02974613",
+  "status": "stufe3",
+  "grund": "Gruppe 582, vertreten durch ef0001e15411",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 5.001,
+  "roh_einfach": 2.256
+ },
+ {
+  "gen": "gen2",
+  "id": "c938799a3814",
+  "status": "stufe3",
+  "grund": "Gruppe 259, vertreten durch 42538acf029b",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.908,
+  "roh_einfach": 2.313
+ },
+ {
+  "gen": "gen2",
+  "id": "ca365ddd022d",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.015,
+  "roh_einfach": -1.757
+ },
+ {
+  "gen": "gen2",
+  "id": "caeb12226d84",
+  "status": "final",
+  "grund": "Gruppe 751",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.843,
+  "roh_einfach": 1.365
+ },
+ {
+  "gen": "gen2",
+  "id": "cc469f52c696",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 8.479,
+  "roh_einfach": -0.038
+ },
+ {
+  "gen": "gen2",
+  "id": "ce121f6204e7",
+  "status": "stufe3",
+  "grund": "Gruppe 69, vertreten durch 6a4cea35b1e1",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 5.352,
+  "roh_einfach": 1.796
+ },
+ {
+  "gen": "gen2",
+  "id": "ce9bdd785337",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.174,
+  "roh_einfach": -0.614
+ },
+ {
+  "gen": "gen2",
+  "id": "cede7e064210",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.081,
+  "roh_einfach": -1.218
+ },
+ {
+  "gen": "gen2",
+  "id": "d0ef4549dac1",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.264,
+  "roh_einfach": -0.119
+ },
+ {
+  "gen": "gen2",
+  "id": "d2361122d4f9",
+  "status": "stufe3",
+  "grund": "Gruppe 469, vertreten durch 740470740cb4",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.36,
+  "roh_einfach": -0.972
+ },
+ {
+  "gen": "gen2",
+  "id": "d45c1d792d3d",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.95,
+  "roh_einfach": 1.137
+ },
+ {
+  "gen": "gen2",
+  "id": "d56b30212c45",
+  "status": "final",
+  "grund": "Gruppe 371",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.943,
+  "roh_einfach": 2.398
+ },
+ {
+  "gen": "gen2",
+  "id": "d7292cfb5154",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 2.3,
+  "roh_einfach": 2.448
+ },
+ {
+  "gen": "gen2",
+  "id": "d76f8a6222c1",
+  "status": "stufe3",
+  "grund": "Gruppe 259, vertreten durch 42538acf029b",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.323,
+  "roh_einfach": 1.725
+ },
+ {
+  "gen": "gen2",
+  "id": "d84fa7bfe772",
+  "status": "stufe3",
+  "grund": "Gruppe 116, vertreten durch d96fbee59e66",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 5.894,
+  "roh_einfach": -0.982
+ },
+ {
+  "gen": "gen2",
+  "id": "d8b4a73ced76",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.907,
+  "roh_einfach": 0.487
+ },
+ {
+  "gen": "gen2",
+  "id": "d96fbee59e66",
+  "status": "final",
+  "grund": "Gruppe 116",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.167,
+  "roh_einfach": -4.636
+ },
+ {
+  "gen": "gen2",
+  "id": "dd5e7f4f0ce9",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.884,
+  "roh_einfach": -0.481
+ },
+ {
+  "gen": "gen2",
+  "id": "ddf92796bec5",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.098,
+  "roh_einfach": -2.148
+ },
+ {
+  "gen": "gen2",
+  "id": "e14c4b7e7622",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.912,
+  "roh_einfach": 0.306
+ },
+ {
+  "gen": "gen2",
+  "id": "e2aa8364fd27",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.712,
+  "roh_einfach": -1.043
+ },
+ {
+  "gen": "gen2",
+  "id": "e6533d4fb41d",
+  "status": "stufe3",
+  "grund": "Gruppe 498, vertreten durch dfc6dc5d3262",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.743,
+  "roh_einfach": 2.181
+ },
+ {
+  "gen": "gen2",
+  "id": "e7685b95d0a5",
+  "status": "final",
+  "grund": "Gruppe 1292",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.861,
+  "roh_einfach": -2.925
+ },
+ {
+  "gen": "gen2",
+  "id": "e8fdd6e50497",
+  "status": "stufe3",
+  "grund": "Gruppe 542, vertreten durch 6cc7f6440ca6",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 8.462,
+  "roh_einfach": -10.232
+ },
+ {
+  "gen": "gen2",
+  "id": "ee1b6fa69da6",
+  "status": "stufe3",
+  "grund": "Gruppe 116, vertreten durch d96fbee59e66",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 4.472,
+  "roh_einfach": -2.862
+ },
+ {
+  "gen": "gen2",
+  "id": "f47f09539d0b",
+  "status": "stufe3",
+  "grund": "Gruppe 516, vertreten durch 6fceca8000cc",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.78,
+  "roh_einfach": -0.461
+ },
+ {
+  "gen": "gen2",
+  "id": "f5ec1a346006",
+  "status": "stufe3",
+  "grund": "Gruppe 582, vertreten durch ef0001e15411",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 3.134,
+  "roh_einfach": 1.386
+ },
+ {
+  "gen": "gen2",
+  "id": "f7748ac159c7",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.612,
+  "roh_einfach": 4.875
+ },
+ {
+  "gen": "gen2",
+  "id": "f895d5cc9137",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.937,
+  "roh_einfach": 2.432
+ },
+ {
+  "gen": "gen2",
+  "id": "fbfe1da288b8",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 0.943,
+  "roh_einfach": 2.677
+ },
+ {
+  "gen": "gen2",
+  "id": "fdac0fd481a6",
+  "status": "stufe3",
+  "grund": "Gruppe 371, vertreten durch d56b30212c45",
+  "art": "bestanden, wäre abgelehnt",
+  "roh_doppelt": 2.499,
+  "roh_einfach": 1.387
+ },
+ {
+  "gen": "gen2",
+  "id": "fe517fd39710",
+  "status": "verworfen_3",
+  "grund": "eine Kerze Verzögerung",
+  "art": "abgelehnt, wäre bestanden",
+  "roh_doppelt": 1.903,
+  "roh_einfach": 2.516
+ }
+]

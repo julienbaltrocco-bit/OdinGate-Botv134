@@ -1,0 +1,33 @@
+vor_False
+               tage       N    jahr  sharpe  dd_tag   dd_5m  rendite_brutto  rendite_ohne  rendite_mit  funding  volumen_tag   trades  haltedauer_h  sharpe_ohne  tage_fenster
+D1            685.0  0.6312  0.3363  0.5640  0.2458  0.2579          0.7211        0.1215       0.6312  -0.1140       1.0941   3744.0       43.2842       0.1081         685.0
+D2            640.0  1.5252  0.8698  1.3165  0.2550  0.2955          1.6149        1.0168       1.5252  -0.1176       1.1681   3729.0       41.4712       0.8741         640.0
+Entwicklung  1325.0  2.1564  0.5940  0.9457  0.2458  0.2579          2.3360        1.1383       2.1564  -0.2316       1.1299   7473.0       42.3795       0.4970        1325.0
+Pruefung      571.0  0.2585  0.1652  0.3369  0.3130  0.3310          0.3386       -0.1956       0.2585  -0.0348       1.1696   3345.0       41.0969      -0.2537         571.0
+Gesamt       1896.0  2.4149  0.4649  0.7879  0.2458  0.2579          2.6746        0.9427       2.4149  -0.2665       1.1418  10818.0       41.9829       0.3062        1896.0
+  Orderstatistik: {'orders': 10986, 'fills': 10986, 'stornos': 0, 'order_zu_fill': 1.0, 'min_standzeit_min': nan, 'sperrtage': 0, 'verstoesse_beide_seiten': 0, 'max_position_anteil': 1.0, 'market_orders': 10986} Signal==0-Stunden: 867 fehlende Stunden im H1-Index: 0
+vor_True
+               tage       N    jahr  sharpe  dd_tag   dd_5m  rendite_brutto  rendite_ohne  rendite_mit  funding  volumen_tag   trades  haltedauer_h  sharpe_ohne  tage_fenster
+D1            685.0  0.6312  0.3363  0.5640  0.2458  0.2579          0.7211        0.1215       0.6312  -0.1140       1.0941   3744.0       43.2842       0.1081         685.0
+D2            640.0  1.5252  0.8698  1.3165  0.2550  0.2955          1.6149        1.0168       1.5252  -0.1176       1.1681   3729.0       41.4712       0.8741         640.0
+Entwicklung  1325.0  2.1564  0.5940  0.9457  0.2458  0.2579          2.3360        1.1383       2.1564  -0.2316       1.1299   7473.0       42.3795       0.4970        1325.0
+Pruefung      571.0  0.2585  0.1652  0.3369  0.3130  0.3310          0.3386       -0.1956       0.2585  -0.0348       1.1696   3345.0       41.0969      -0.2537         571.0
+Gesamt       1896.0  2.4149  0.4649  0.7879  0.2458  0.2579          2.6746        0.9427       2.4149  -0.2665       1.1418  10818.0       41.9829       0.3062        1896.0
+  Orderstatistik: {'orders': 10986, 'fills': 10986, 'stornos': 0, 'order_zu_fill': 1.0, 'min_standzeit_min': nan, 'sperrtage': 0, 'verstoesse_beide_seiten': 0, 'max_position_anteil': 1.0, 'market_orders': 10986} Signal==0-Stunden: 867 fehlende Stunden im H1-Index: 0
+max. Abweichung der Tagesreihen vor=False gegen vor=True: 0.0
+Slippage je Coin (bp): {'BTC': 0.5, 'ETH': 0.5, 'SOL': 1.366, 'XRP': 1.139, 'DOT': 13.216, 'DOGE': 1.652, 'ADA': 6.419, 'LINK': 1.089, 'AVAX': 1.451, 'LTC': 2.184}
+Runde 24 nachgerechnet:
+             S_D1    S_D2  S_Entw    jahr      dd  im_markt  vorsprung
+sl5        0.4817  1.3094  0.9047  0.5445  0.2611    0.9310    -0.0257
+sl10       0.5180  1.3039  0.9195  0.5731  0.2545    0.9871    -0.0164
+sl15       0.5703  1.3074  0.9441  0.5929  0.2450    0.9969    -0.0010
+tp10       1.4390  0.5741  1.0456  0.2697  0.1621    0.4832     0.0628
+tp20       1.0131  0.8883  0.9552  0.3506  0.1714    0.7048     0.0060
+tp30       0.5450  0.9405  0.7183  0.3127  0.2269    0.8236    -0.1428
+sl5_tp15   1.3870  0.8257  1.1345  0.3327  0.1456    0.5638     0.1186
+sl10_tp20  0.9051  0.8644  0.8853  0.3217  0.1733    0.6956    -0.0379
+sl15_tp30  0.5531  0.9255  0.7161  0.3116  0.2261    0.8230    -0.1442
+trail10    0.3886  0.9519  0.6567  0.2436  0.1926    0.6638    -0.1815
+trail15    0.4620  0.6481  0.5458  0.2510  0.2324    0.8017    -0.2511
+Reality Check Runde 24: {'schwelle_95': 0.0016627681268359612, 'p_beste': 0.54, 'tage': 1325} gespeichert: {'schwelle_95': 0.0016627681268359612, 'p_beste': 0.54, 'tage': 1325}
+Runde 21 funding_filter: {'D1': 0.658, 'D2': 1.5907, 'Entwicklung': 1.1104} Vorsprung/Jahr 0.1035

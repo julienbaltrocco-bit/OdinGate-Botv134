@@ -1,0 +1,15 @@
+{
+ "hinweis": "Eingefrorene Kostenbasis der Strategie-Fabrik: Slippage je Order in bp (2 x gemessene halbe Yubit-Spanne, mindestens 0,5 bp), in voller Genauigkeit aus der Stichprobe vom 14.11.2026 (data/processed/yubit_spannen_stichprobe.csv, liegt nicht im Repository). Exakt die Werte der Generationen 1 und 2. Nicht ändern: eine neue Kostenbasis wäre eine eigene, vorab im Protokoll festgelegte Entscheidung.",
+ "slippage_bp_je_order": {
+  "BTC": 0.5,
+  "ETH": 0.5,
+  "SOL": 1.3657568381229228,
+  "XRP": 1.1386443935635169,
+  "DOT": 13.215697630830624,
+  "DOGE": 1.6521636426368476,
+  "ADA": 6.418963472357196,
+  "LINK": 1.0888718581607013,
+  "AVAX": 1.4508322296574665,
+  "LTC": 2.1837640376441514
+ }
+}

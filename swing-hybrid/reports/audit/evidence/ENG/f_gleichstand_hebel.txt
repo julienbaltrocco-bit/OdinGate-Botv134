@@ -1,0 +1,19 @@
+(1) Stunden mit exaktem Gleichstand (Schluss == Schluss vor 336 h), je Jahr:
+           BTC  ETH  SOL  XRP  DOT  DOGE  ADA  LINK  AVAX  LTC
+open_time                                                     
+2021         0    0    0    0    0     1    0     0     0    0
+2022         0    0    4    8    2     4    3     2     3    4
+2023         0    0    4    5    4     7    8     2     1    3
+2024         0    0    0    6    0     2    7     0     0    4
+2025         0    0    0    0    1     1    3     0     1    8
+2026         0    0    6    1   15     6    9     3     3    6
+    Ereignisse (zusammenhaengende Gleichstands-Phasen) gesamt: {'BTC': 0, 'ETH': 0, 'SOL': 14, 'XRP': 20, 'DOT': 21, 'DOGE': 21, 'ADA': 30, 'LINK': 7, 'AVAX': 8, 'LTC': 25}
+    mittlerer Kurs 2026: {'BTC': 74032.5853, 'ETH': 2232.1852, 'SOL': 92.5424, 'XRP': 1.3812, 'DOT': 1.2182, 'DOGE': 0.0933, 'ADA': 0.2399, 'LINK': 10.0297, 'AVAX': 8.9139, 'LTC': 55.0184}
+
+(2) Linearitaet: equity(Hebel 3) / equity(Hebel 1) am Ende = 3.000000; groesste Abweichung |e3 - 3*e1| = 1.42e-14
+    mit Rebate: Starttage 1531; Anteil mit Kontostand <= 0 binnen 365 Tagen (Tagesschluss): 11.5 %; <= 50 % des Startkapitals: 45.3 %; schlechtester Fall -0.52; auf 5-Minuten-Basis (jeder 7. Starttag) <= 0: 16.0 %
+    ohne Rebate: Starttage 1531; Anteil mit Kontostand <= 0 binnen 365 Tagen (Tagesschluss): 45.1 %; <= 50 % des Startkapitals: 64.5 %; schlechtester Fall -1.07; auf 5-Minuten-Basis (jeder 7. Starttag) <= 0: 47.5 %
+    Entwicklung: Kontostand Hebel 3 min +0.887 am 2021-08-15 07:45:00, Ende +7.469, groesster Rueckgang in Einheiten des Startkapitals 1.707, runner.max_drawdown (relativ zur Spitze) 0.384
+    Pruefzeitraum (frisches Konto ab 2025-04-01): Kontostand Hebel 3 min +0.843 am 2025-04-02 20:15:00, Ende +1.775, groesster Rueckgang in Einheiten des Startkapitals 1.628, runner.max_drawdown (relativ zur Spitze) 0.558
+
+(3) Entwicklung, Hebel 3: ohne Tageslimit Ertrag/Jahr 1.782, mit Tageslimit 3 % (config.yaml) -1.013; Sperrtage gesamter Lauf 1178 von 1896 Tagen

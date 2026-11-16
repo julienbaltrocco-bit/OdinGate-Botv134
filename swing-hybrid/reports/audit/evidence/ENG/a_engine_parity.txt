@@ -1,0 +1,19 @@
+Slippage-Annahme je Coin (bp): {'BTC': np.float64(0.5), 'ETH': np.float64(0.5), 'SOL': np.float64(1.366), 'XRP': np.float64(1.139), 'DOT': np.float64(13.216), 'DOGE': np.float64(1.652), 'ADA': np.float64(6.419), 'LINK': np.float64(1.089), 'AVAX': np.float64(1.451), 'LTC': np.float64(2.184)}
+engine2 fertig nach 4 s; Bars 546048, Tage 1896
+Arithmetik isoliert (gleiche Zielgewichte): groesste Abweichung Tagesergebnis je Coin engine2 vs. Nachrechnung = 3.331e-16
+Signal: abweichende 5m-Bars je Coin (zeitbasiert vs. research.shift(336)): {'BTC': 0, 'ETH': 0, 'SOL': 1440, 'XRP': 1440, 'DOT': 0, 'DOGE': 0, 'ADA': 0, 'LINK': 0, 'AVAX': 0, 'LTC': 1440}
+Tagesergebnis je Coin: groesste Abweichung engine2 vs. Nachrechnung = 1.330e-02
+Summe Taker-Volumen: engine 2164.929779 / nach 2164.149410;  Funding: engine -0.266462 / nach -0.266839
+Identitaet Summe Tage = equity[-1]: 2.4148538757 vs 2.4148538757
+D1 {"engine2": {"tage": 685, "N": 0.6312, "jahr": 0.3363, "sharpe": 0.564, "dd_rel_spitze": 0.2458, "dd_abs_startkapital": 0.5066}, "nachrechnung": {"tage": 685, "N": 0.6289, "jahr": 0.3351, "sharpe": 0.561, "dd_rel_spitze": 0.2461, "dd_abs_startkapital": 0.5066}}
+D2 {"engine2": {"tage": 640, "N": 1.5252, "jahr": 0.8698, "sharpe": 1.317, "dd_rel_spitze": 0.255, "dd_abs_startkapital": 0.4692}, "nachrechnung": {"tage": 640, "N": 1.5252, "jahr": 0.8698, "sharpe": 1.317, "dd_rel_spitze": 0.255, "dd_abs_startkapital": 0.4692}}
+Entwicklung {"engine2": {"tage": 1325, "N": 2.1564, "jahr": 0.594, "sharpe": 0.946, "dd_rel_spitze": 0.2458, "dd_abs_startkapital": 0.5066}, "nachrechnung": {"tage": 1325, "N": 2.154, "jahr": 0.5934, "sharpe": 0.944, "dd_rel_spitze": 0.2461, "dd_abs_startkapital": 0.5066}}
+Pruefung {"engine2": {"tage": 571, "N": 0.2585, "jahr": 0.1652, "sharpe": 0.337, "dd_rel_spitze": 0.313, "dd_abs_startkapital": 0.5014}, "nachrechnung": {"tage": 571, "N": 0.2585, "jahr": 0.1652, "sharpe": 0.337, "dd_rel_spitze": 0.313, "dd_abs_startkapital": 0.5014}}
+Gesamt {"engine2": {"tage": 1896, "N": 2.4149, "jahr": 0.4649, "sharpe": 0.788, "dd_rel_spitze": 0.2458, "dd_abs_startkapital": 0.5066}, "nachrechnung": {"tage": 1896, "N": 2.4125, "jahr": 0.4644, "sharpe": 0.787, "dd_rel_spitze": 0.2461, "dd_abs_startkapital": 0.5066}}
+  research.sicht D1: N 0.6312 jahr_N 0.3363 sharpe 0.564 dd_mit 0.2579 G 0.7211 F 0.5996 R 0.5097 vol_tag 1.0941 trades 3744 halte_h 43.3
+  research.sicht D2: N 1.5252 jahr_N 0.8698 sharpe 1.317 dd_mit 0.2955 G 1.6149 F 0.5981 R 0.5084 vol_tag 1.1681 trades 3729 halte_h 41.5
+  research.sicht Entwicklung: N 2.1564 jahr_N 0.5940 sharpe 0.946 dd_mit 0.2579 G 2.3360 F 1.1977 R 1.0180 vol_tag 1.1299 trades 7473 halte_h 42.4
+  research.sicht Pruefung: N 0.2585 jahr_N 0.1652 sharpe 0.337 dd_mit 0.3310 G 0.3386 F 0.5343 R 0.4541 vol_tag 1.1696 trades 3345 halte_h 41.1
+  research.sicht Gesamt: N 2.4149 jahr_N 0.4649 sharpe 0.788 dd_mit 0.2579 G 2.6746 F 1.7319 R 1.4722 vol_tag 1.1418 trades 10818 halte_h 42.0
+Gesamt: brutto 2.9411 TV 2164.93 Gebuehr voll 1.7319 Rebate 1.4722 Funding -0.2665
+fertig nach 6 s

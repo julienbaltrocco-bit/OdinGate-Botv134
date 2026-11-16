@@ -1,0 +1,371 @@
+{
+ "signale": 1758,
+ "coins": 54,
+ "ohne_binance_kurs": [
+  "BEAMUSDT",
+  "CNPYUSDT",
+  "HNTUSDT"
+ ],
+ "slip_median": 0.0008411450240138477,
+ "alle": {
+  "trades": 185,
+  "coins": 51,
+  "ziel": 0.5351351351351351,
+  "roh_max": 0.3196706312900275,
+  "ueber_10": 0.13513513513513514,
+  "stop": 0.42702702702702705,
+  "zeit": 0.03783783783783784,
+  "roh_mittel": 0.007615272508386469,
+  "funding_mittel": -0.003971077891891892,
+  "kosten_mittel": 0.0022730092201078207,
+  "netto_mittel": 0.0013711853963867576,
+  "netto_ohne_mittel": 1.636378169246153e-05,
+  "netto_stress_mittel": -0.0006627376564220687,
+  "konto_netto": 0.025366929833155017,
+  "konto_ohne_rebate": 0.00030272996131053834,
+  "konto_stress": -0.01226064664380827,
+  "schlechtester": -0.10188893164994883,
+  "stunden_median": 2.0
+ },
+ "haelfte_1": {
+  "trades": 86,
+  "coins": 31,
+  "ziel": 0.5581395348837209,
+  "roh_max": 0.21867655035255823,
+  "ueber_10": 0.12790697674418605,
+  "stop": 0.38372093023255816,
+  "zeit": 0.05813953488372093,
+  "roh_mittel": 0.011268061622619027,
+  "funding_mittel": -0.004157101976744187,
+  "kosten_mittel": 0.0028636108978905084,
+  "netto_mittel": 0.004247348747984331,
+  "netto_ohne_mittel": 0.002895011029887713,
+  "netto_stress_mittel": 0.0016223856826991104,
+  "konto_netto": 0.03652719923266525,
+  "konto_ohne_rebate": 0.02489709485703433,
+  "konto_stress": 0.01395251687121235,
+  "schlechtester": -0.09459524946903558,
+  "stunden_median": 2.825
+ },
+ "haelfte_2": {
+  "trades": 99,
+  "coins": 24,
+  "ziel": 0.5151515151515151,
+  "roh_max": 0.3196706312900275,
+  "ueber_10": 0.1414141414141414,
+  "stop": 0.46464646464646464,
+  "zeit": 0.020202020202020204,
+  "roh_mittel": 0.00444214257077031,
+  "funding_mittel": -0.0038094812121212125,
+  "kosten_mittel": 0.0017599612979935673,
+  "netto_mittel": -0.0011272999393444675,
+  "netto_ohne_mittel": -0.0024842792823963436,
+  "netto_stress_mittel": -0.002647794294446528,
+  "konto_netto": -0.01116026939951023,
+  "konto_ohne_rebate": -0.024594364895723805,
+  "konto_stress": -0.026213163515020628,
+  "schlechtester": -0.10188893164994883,
+  "stunden_median": 1.5666666666666667
+ },
+ "nur_yubit": {
+  "trades": 94,
+  "coins": 31,
+  "ziel": 0.5425531914893617,
+  "roh_max": 0.2701014832162373,
+  "ueber_10": 0.1595744680851064,
+  "stop": 0.425531914893617,
+  "zeit": 0.031914893617021274,
+  "roh_mittel": 0.010310157263419927,
+  "funding_mittel": -0.0037511380851063835,
+  "kosten_mittel": 0.0026170308360520854,
+  "netto_mittel": 0.003941988342261455,
+  "netto_ohne_mittel": 0.0025889992492005823,
+  "netto_stress_mittel": 0.0015637202873377601,
+  "konto_netto": 0.03705469041725768,
+  "konto_ohne_rebate": 0.024336592942485476,
+  "konto_stress": 0.014698970700974945,
+  "schlechtester": -0.09847018164994895,
+  "stunden_median": 3.3333333333333335
+ },
+ "nur_yubit_h1": {
+  "trades": 55,
+  "coins": 22,
+  "ziel": 0.6181818181818182,
+  "roh_max": 0.21867655035255823,
+  "ueber_10": 0.14545454545454545,
+  "stop": 0.34545454545454546,
+  "zeit": 0.03636363636363636,
+  "roh_mittel": 0.018528241809913405,
+  "funding_mittel": -0.004039797454545455,
+  "kosten_mittel": 0.0033932997905186265,
+  "netto_mittel": 0.011095144564849321,
+  "netto_ohne_mittel": 0.009747743769280066,
+  "netto_stress_mittel": 0.00793962138531351,
+  "konto_netto": 0.061023295106671274,
+  "konto_ohne_rebate": 0.05361259073104037,
+  "konto_stress": 0.04366791761922431,
+  "schlechtester": -0.09459524946903558,
+  "stunden_median": 4.4
+ },
+ "nur_yubit_h2": {
+  "trades": 39,
+  "coins": 12,
+  "ziel": 0.4358974358974359,
+  "roh_max": 0.2701014832162373,
+  "ueber_10": 0.1794871794871795,
+  "stop": 0.5384615384615384,
+  "zeit": 0.02564102564102564,
+  "roh_mittel": -0.0012794491483016468,
+  "funding_mittel": -0.0033440543589743597,
+  "kosten_mittel": 0.0015222925669326043,
+  "netto_mittel": -0.006145796074208609,
+  "netto_ohne_mittel": -0.0075066660996294535,
+  "netto_stress_mittel": -0.007427935107243424,
+  "konto_netto": -0.023968604689413576,
+  "konto_ohne_rebate": -0.029275997788554872,
+  "konto_stress": -0.028968946918249357,
+  "schlechtester": -0.09847018164994895,
+  "stunden_median": 1.9333333333333333
+ },
+ "zufall": {
+  "anteil_positiv": 0.5935,
+  "p5": -0.008491921911160763,
+  "p95": 0.013332262518873449,
+  "handelstage": 63
+ },
+ "groesster_coin_anteil": 1.662898394527526,
+ "je_coin": {
+  "SKRUSDT": {
+   "sum": -0.6328,
+   "count": 16
+  },
+  "IOSTUSDT": {
+   "sum": -0.5294,
+   "count": 12
+  },
+  "APPUSDT": {
+   "sum": -0.1812,
+   "count": 2
+  },
+  "BARDUSDT": {
+   "sum": -0.1573,
+   "count": 6
+  },
+  "ORCAUSDT": {
+   "sum": -0.1391,
+   "count": 3
+  },
+  "PARTIUSDT": {
+   "sum": -0.1365,
+   "count": 3
+  },
+  "ICNTUSDT": {
+   "sum": -0.1342,
+   "count": 3
+  },
+  "POWERUSDT": {
+   "sum": -0.1334,
+   "count": 3
+  },
+  "SANDUSDT": {
+   "sum": -0.1257,
+   "count": 6
+  },
+  "METUSDT": {
+   "sum": -0.0943,
+   "count": 5
+  },
+  "CTUSDT": {
+   "sum": -0.082,
+   "count": 1
+  },
+  "ONEUSDT": {
+   "sum": -0.0809,
+   "count": 11
+  },
+  "SOXSUSDT": {
+   "sum": -0.0806,
+   "count": 1
+  },
+  "FLOCKUSDT": {
+   "sum": -0.0578,
+   "count": 2
+  },
+  "PHAUSDT": {
+   "sum": -0.0574,
+   "count": 4
+  },
+  "KAIAUSDT": {
+   "sum": -0.0542,
+   "count": 3
+  },
+  "INITUSDT": {
+   "sum": -0.0537,
+   "count": 13
+  },
+  "0GUSDT": {
+   "sum": -0.0531,
+   "count": 5
+  },
+  "CAPUSDT": {
+   "sum": -0.0308,
+   "count": 4
+  },
+  "RAREUSDT": {
+   "sum": -0.0086,
+   "count": 6
+  },
+  "PORTALUSDT": {
+   "sum": -0.0066,
+   "count": 2
+  },
+  "RAYUSDT": {
+   "sum": -0.0038,
+   "count": 2
+  },
+  "WAVESUSDT": {
+   "sum": -0.0019,
+   "count": 1
+  },
+  "XTZUSDT": {
+   "sum": 0.0137,
+   "count": 2
+  },
+  "REDUSDT": {
+   "sum": 0.0143,
+   "count": 1
+  },
+  "DEXEUSDT": {
+   "sum": 0.0222,
+   "count": 3
+  },
+  "NILUSDT": {
+   "sum": 0.0244,
+   "count": 1
+  },
+  "MINAUSDT": {
+   "sum": 0.0254,
+   "count": 1
+  },
+  "BIRBUSDT": {
+   "sum": 0.0254,
+   "count": 12
+  },
+  "BATUSDT": {
+   "sum": 0.0281,
+   "count": 1
+  },
+  "LYNUSDT": {
+   "sum": 0.0281,
+   "count": 1
+  },
+  "EGLDUSDT": {
+   "sum": 0.0288,
+   "count": 1
+  },
+  "ORDERUSDT": {
+   "sum": 0.0515,
+   "count": 5
+  },
+  "API3USDT": {
+   "sum": 0.0647,
+   "count": 1
+  },
+  "ZKPUSDT": {
+   "sum": 0.0688,
+   "count": 1
+  },
+  "MOVEUSDT": {
+   "sum": 0.0697,
+   "count": 1
+  },
+  "BANKUSDT": {
+   "sum": 0.0779,
+   "count": 1
+  },
+  "TAKEUSDT": {
+   "sum": 0.0782,
+   "count": 1
+  },
+  "ONTUSDT": {
+   "sum": 0.0803,
+   "count": 2
+  },
+  "XAIUSDT": {
+   "sum": 0.0932,
+   "count": 1
+  },
+  "EDENUSDT": {
+   "sum": 0.099,
+   "count": 2
+  },
+  "ZILUSDT": {
+   "sum": 0.1167,
+   "count": 1
+  },
+  "REZUSDT": {
+   "sum": 0.1285,
+   "count": 1
+  },
+  "RSRUSDT": {
+   "sum": 0.1501,
+   "count": 3
+  },
+  "TACUSDT": {
+   "sum": 0.1536,
+   "count": 2
+  },
+  "KATUSDT": {
+   "sum": 0.173,
+   "count": 1
+  },
+  "ARXUSDT": {
+   "sum": 0.1787,
+   "count": 1
+  },
+  "QUSDT": {
+   "sum": 0.248,
+   "count": 10
+  },
+  "BERAUSDT": {
+   "sum": 0.271,
+   "count": 2
+  },
+  "HOTUSDT": {
+   "sum": 0.3536,
+   "count": 3
+  },
+  "ACEUSDT": {
+   "sum": 0.4218,
+   "count": 9
+  }
+ },
+ "huerden": {
+  "1": false,
+  "2": false,
+  "3": false,
+  "4": false
+ },
+ "monate": {
+  "2026-08": {
+   "sum": -0.08416,
+   "count": 42,
+   "mean": -0.002
+  },
+  "2026-09": {
+   "sum": 0.44943,
+   "count": 44,
+   "mean": 0.01021
+  },
+  "2026-10": {
+   "sum": -0.61834,
+   "count": 68,
+   "mean": -0.00909
+  },
+  "2026-11": {
+   "sum": 0.50673,
+   "count": 31,
+   "mean": 0.01635
+  }
+ }
+}

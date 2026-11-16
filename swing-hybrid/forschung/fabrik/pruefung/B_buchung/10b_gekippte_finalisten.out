@@ -1,0 +1,20 @@
+17 Finalisten bestehen die Verzögerungsprüfung nur wegen des doppelt verzögerten Signal-Ausstiegs:
+  gen1 c63cfeba1796 signal_h720     n85 ohne Verzug  10.91 | kern.sim (verzug=1)   1.46 | genau eine Kerze  -1.12
+  gen2 740470740cb4 signal_h720     n85 ohne Verzug  23.64 | kern.sim (verzug=1)   2.39 | genau eine Kerze  -3.50
+  gen2 6fceca8000cc signal_h720     n85 ohne Verzug  23.66 | kern.sim (verzug=1)   2.41 | genau eine Kerze  -2.59
+  gen2 6cc7f6440ca6 signal_h720     n85 ohne Verzug  34.22 | kern.sim (verzug=1)   0.57 | genau eine Kerze -11.79
+  gen2 42538acf029b signal_h720     n85 ohne Verzug  19.02 | kern.sim (verzug=1)   1.18 | genau eine Kerze  -0.41
+  gen2 d56b30212c45 signal_h720     n85 ohne Verzug  21.77 | kern.sim (verzug=1)   2.54 | genau eine Kerze  -0.00
+  gen2 b2bb88422265 signal_h720     n85 ohne Verzug  19.55 | kern.sim (verzug=1)   0.27 | genau eine Kerze  -5.57
+  gen2 e7685b95d0a5 signal_h720     n85 ohne Verzug  18.23 | kern.sim (verzug=1)   0.46 | genau eine Kerze  -5.33
+  gen2 0b9786a4d689 signal_h720     n85 ohne Verzug  15.52 | kern.sim (verzug=1)   0.81 | genau eine Kerze  -0.38
+  gen2 b5d0cbda443b signal1_h720    n85 ohne Verzug  10.71 | kern.sim (verzug=1)   1.16 | genau eine Kerze  -4.35
+  gen2 d96fbee59e66 signal_h720     n85 ohne Verzug  25.59 | kern.sim (verzug=1)   0.77 | genau eine Kerze  -7.04
+  gen2 3f2937d6b058 signal_h720     n85 ohne Verzug  14.97 | kern.sim (verzug=1)   0.22 | genau eine Kerze  -5.17
+  gen2 0ce3c750ed12 signal_h720     n85 ohne Verzug  11.60 | kern.sim (verzug=1)   0.68 | genau eine Kerze  -1.94
+  gen2 5bd9c5f56ab3 signal_h720     n85 ohne Verzug  10.65 | kern.sim (verzug=1)   1.04 | genau eine Kerze  -0.50
+  gen2 0fb18767467f signal_h720     n85 ohne Verzug  25.54 | kern.sim (verzug=1)   0.19 | genau eine Kerze  -3.14
+  gen2 caeb12226d84 signal_h720     n85 ohne Verzug  12.44 | kern.sim (verzug=1)   0.44 | genau eine Kerze  -1.03
+  gen2 8acab4705ada signal_h720     n85 ohne Verzug  18.26 | kern.sim (verzug=1)   2.04 | genau eine Kerze  -1.55
+30 Kandidaten wurden wegen des Fehlers verworfen, obwohl sie mit genau einer Kerze positiv bleiben (alle Status verworfen_3): {'verworfen_3'}
+Signal-Ausstieg in der Prüfung gesamt: 1450 | final: 222

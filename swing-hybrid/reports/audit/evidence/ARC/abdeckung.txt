@@ -1,0 +1,66 @@
+pytest-Rueckgabe: 0
+Datei                                      Zeilen  getr.     %
+scripts/vorwaertstest_auswerten.py             29     17    59
+src/hybrid/__init__.py                          1      0     0
+src/hybrid/config.py                            8      0     0
+src/hybrid/data.py                             60     25    42
+src/hybrid/engine.py                          240      6     2
+src/hybrid/engine2.py                         136      4     3
+src/hybrid/fees.py                             22     20    91
+src/hybrid/listings.py                         70     55    79
+src/hybrid/massentest.py                      101     68    67
+src/hybrid/mutationen.py                      134    131    98
+src/hybrid/niedrigrisiko.py                    31     29    94
+src/hybrid/positionierung.py                   43     42    98
+src/hybrid/pumpmerkmale.py                     52     51    98
+src/hybrid/pumpshort.py                        93     84    90
+src/hybrid/research.py                        208     49    24
+src/hybrid/runner.py                          112      0     0
+src/hybrid/statarb.py                         176      7     4
+src/hybrid/swing.py                           119     25    21
+src/hybrid/tagestrend.py                       53     47    89
+src/hybrid/tpsl.py                             40     12    30
+src/hybrid/tradfi_neutral.py                   97     94    97
+src/hybrid/walkforward.py                      80      0     0
+vorwaertstest/__init__.py                       1      0     0
+vorwaertstest/board_verschluesseln.py          26      0     0
+vorwaertstest/bot.py                          324    230    71
+vorwaertstest/dashboard_daten.py               75     64    85
+vorwaertstest/kern.py                          59     55    93
+vorwaertstest/live_server.py                   91      0     0
+vorwaertstest/yubit.py                        116     99    85
+
+scripts/vorwaertstest_auswerten.py: teilweise: auswerten:25 (12/14)
+src/hybrid/config.py: von keinem Test ausgefuehrt: load:10
+src/hybrid/data.py: von keinem Test ausgefuehrt: kerzen_5m:34, stunden_atr:38, laden:47
+src/hybrid/engine.py: @njit (fuer trace unsichtbar): _fill, simulate
+src/hybrid/engine2.py: @njit (fuer trace unsichtbar): simulate_target
+src/hybrid/fees.py: teilweise: rate:11 (2/3)
+src/hybrid/listings.py: von keinem Test ausgefuehrt: fenster:76
+src/hybrid/listings.py: teilweise: paar:12 (32/33)
+src/hybrid/massentest.py: @njit (fuer trace unsichtbar): trades_fest, trades_ziel
+src/hybrid/mutationen.py: teilweise: _btc:96 (2/3), _funding:122 (2/3)
+src/hybrid/niedrigrisiko.py: von keinem Test ausgefuehrt: signal:44
+src/hybrid/pumpshort.py: teilweise: trades_coin:11 (30/31), trades_coin_trail:73 (31/38)
+src/hybrid/research.py: von keinem Test ausgefuehrt: _lesen:27, markt:39, auf_raster:70, tagestrend:83, tsmom:89, ensemble:96, reversal:104, querschnitt:127, sicht:170, groesse_coin:195, groesse_markt:203, mischung:211, carry:216, variante:236, yubit_kosten:272
+src/hybrid/research.py: teilweise: lauf:148 (1/19)
+src/hybrid/runner.py: von keinem Test ausgefuehrt: hybrid:28, lauf:60, max_drawdown:79, kennzahlen:86, order_statistik:132, equity:48, daily_pnl:52, delta:94
+src/hybrid/statarb.py: von keinem Test ausgefuehrt: stundenfelder:168, lauf:178, kennzahlen:200
+src/hybrid/statarb.py: @njit (fuer trace unsichtbar): simulate
+src/hybrid/swing.py: von keinem Test ausgefuehrt: labor_params:24, okx_kerzen:29, _atr:56, _rsi:62, _bars_pro_tag:69, _erschoepfung:75, trail_beide:91, momentum_vol_ls:135, signal:148, ziel_ab:153, labor_ziel:160
+src/hybrid/tagestrend.py: von keinem Test ausgefuehrt: netto:57
+src/hybrid/tagestrend.py: teilweise: lauf:51 (1/3), kennzahlen:61 (7/9)
+src/hybrid/tpsl.py: von keinem Test ausgefuehrt: gewichte:43
+src/hybrid/tpsl.py: @njit (fuer trace unsichtbar): _zustand
+src/hybrid/tradfi_neutral.py: teilweise: paar:11 (44/46)
+src/hybrid/walkforward.py: von keinem Test ausgefuehrt: name:23, laden:27, nachbarn:35, waehlen:45, urteil:62, split_datum:84, rollierend:88, z:64
+vorwaertstest/board_verschluesseln.py: von keinem Test ausgefuehrt: aes_cbc:20, verschluesseln:24, main:31
+vorwaertstest/bot.py: von keinem Test ausgefuehrt: konfig:41, live_positionen:111, live_order:122, selbsttest:362, main:386
+vorwaertstest/bot.py: teilweise: lesen:62 (3/4), markt_lesen:81 (17/21), schritt:149 (112/126), bericht:302 (46/50)
+vorwaertstest/dashboard_daten.py: von keinem Test ausgefuehrt: main:76
+vorwaertstest/dashboard_daten.py: teilweise: bauen:15 (55/58)
+vorwaertstest/kern.py: von keinem Test ausgefuehrt: als_text:33
+vorwaertstest/kern.py: teilweise: menge_runden:22 (6/7)
+vorwaertstest/live_server.py: von keinem Test ausgefuehrt: bewerten:25, schleife:59, main:101, _senden:78, do_GET:86, log_message:97
+vorwaertstest/yubit.py: von keinem Test ausgefuehrt: guthaben_roh:124, gebuehren_roh:127, storno:140, offene_orders:143, fills:146
+vorwaertstest/yubit.py: teilweise: _anfrage:53 (25/32), kontrakt:110 (6/7), positionen:120 (1/2), order:130 (6/7)

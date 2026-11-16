@@ -1,0 +1,31 @@
+A) eigener Kern gegen engine2 (Hebel 1, alle Kerzen ausser der Schlussabrechnung): max. Abweichung 3.553e-15
+   Entwicklung: Ertrag/Jahr 0.5940 Sharpe 0.9457 Einbruch rel. Spitze 0.2458 schlechtester Tag -0.2968 (2024-12-09) Tage<-10%: 7 Tage<-5%: 45
+   Pruefung: Ertrag/Jahr 0.1655 Sharpe 0.3375 Einbruch rel. Spitze 0.3130 schlechtester Tag -0.1115 (2025-07-23) Tage<-10%: 2 Tage<-5%: 13
+B) Einsatz in Vielfachen des Startkapitals (Hebel 1, Dauerlauf ab 15.08.2021):
+   Entwicklung: Mittel 1.031 Median 1.005 p95 1.375 Max 2.178 (2024-12-03 11:55:00) Anteil > 1,5: 0.0297 Anteil > 5/3: 0.0144
+   Pruefung: Mittel 0.995 Median 0.996 p95 1.198 Max 1.465 (2025-07-21 15:20:00) Anteil > 1,5: 0.0000 Anteil > 5/3: 0.0000
+   Gesamt: Mittel 1.020 Median 1.002 p95 1.318 Max 2.178 (2024-12-03 11:55:00) Anteil > 1,5: 0.0207 Anteil > 5/3: 0.0101
+   am Maximum: Konto des Dauerlaufs Hebel 1 = 3.364; Hebel 3: Einsatz 6.53, Konto 8.09, Einsatz/Konto 0.81
+   Vorabend 09.12.2024: Einsatz 2.108, Konto Hebel 1 3.314; Hebel 3 Dauerlauf: Konto 7.942, Tagesverlust 09.12. = -0.890 Startkapital = -11.2 % des Kontos vom Vorabend
+C) Entwicklung (Start bis 31.03.2025, Lauf bis 31.03.2025), Hebel 3: 1325 Starttage | Konto <= 0: 14.6 % | Konto <= 0,5: 49.1 % | am unguenstigsten Kerzenkurs <= 0: 16.3 % | Median Konto-Tief 0.519 | schlechtestes Tief -0.521 | Median Ende 4.98
+   Starttage mit Konto <= 0: erster 2021-12-14, letzter 2024-09-09; Tage bis zum Ereignis: Median 113, min 37.6, max 411
+   Ereignistage (Datum: Anzahl betroffener Starttage): {'2022-03-17': 2, '2022-03-21': 1, '2022-12-13': 1, '2023-04-25': 2, '2023-04-26': 13, '2023-04-27': 16, '2023-04-29': 1, '2023-06-06': 7, '2023-06-26': 1, '2023-06-28': 12, '2024-10-04': 1, '2024-10-05': 1, '2024-10-06': 1, '2024-10-11': 8, '2024-10-12': 2, '2024-10-14': 31, '2024-10-15': 46, '2024-10-17': 19, '2024-10-23': 9, '2024-11-06': 20}
+C) Entwicklung (Start bis 31.03.2025, Lauf bis 31.03.2025), Hebel 2: 1325 Starttage | Konto <= 0: 0.1 % | Konto <= 0,5: 32.0 % | am unguenstigsten Kerzenkurs <= 0: 0.2 % | Median Konto-Tief 0.680 | schlechtestes Tief -0.014 | Median Ende 3.65
+C) Entwicklung (Start bis 31.03.2025, Lauf bis 31.03.2025), Hebel 1: 1325 Starttage | Konto <= 0: 0.0 % | Konto <= 0,5: 0.1 % | am unguenstigsten Kerzenkurs <= 0: 0.0 % | Median Konto-Tief 0.840 | schlechtestes Tief 0.493 | Median Ende 2.33
+   Naeherung des Pruefers (Tagesreihe des Dauerlaufs x 3): Konto <= 0 bei 12.4 %, <= 0,5 bei 47.1 % der Starttage
+C) Pruefzeitraum (Start ab 01.04.2025, Lauf bis 23.10.2026), Hebel 3: 571 Starttage | Konto <= 0: 10.7 % | Konto <= 0,5: 42.2 % | am unguenstigsten Kerzenkurs <= 0: 10.9 % | Median Konto-Tief 0.589 | schlechtestes Tief -0.498 | Median Ende 1.03
+   Starttage mit Konto <= 0: erster 2025-07-18, letzter 2026-06-11; Tage bis zum Ereignis: Median 141, min 54.8, max 179
+   Ereignistage (Datum: Anzahl betroffener Starttage): {'2025-10-01': 1, '2025-10-02': 2, '2025-10-10': 4, '2025-10-13': 7, '2025-12-17': 2, '2026-05-07': 2, '2026-05-16': 1, '2026-05-18': 2, '2026-05-21': 2, '2026-05-22': 1, '2026-05-23': 1, '2026-07-28': 1, '2026-07-29': 3, '2026-07-30': 5, '2026-08-02': 3, '2026-08-03': 2, '2026-08-04': 9, '2026-08-05': 5, '2026-08-11': 1, '2026-08-12': 4, '2026-08-13': 3}
+C) Pruefzeitraum (Start ab 01.04.2025, Lauf bis 23.10.2026), Hebel 2: 571 Starttage | Konto <= 0: 0.0 % | Konto <= 0,5: 27.0 % | am unguenstigsten Kerzenkurs <= 0: 0.0 % | Median Konto-Tief 0.726 | schlechtestes Tief 0.002 | Median Ende 1.02
+C) Pruefzeitraum (Start ab 01.04.2025, Lauf bis 23.10.2026), Hebel 1: 571 Starttage | Konto <= 0: 0.0 % | Konto <= 0,5: 0.0 % | am unguenstigsten Kerzenkurs <= 0: 0.0 % | Median Konto-Tief 0.863 | schlechtestes Tief 0.501 | Median Ende 1.01
+   Naeherung des Pruefers (Tagesreihe des Dauerlaufs x 3): Konto <= 0 bei 10.5 %, <= 0,5 bei 41.3 % der Starttage
+C) Entwicklung-Starts, Lauf bis Datenende, Hebel 3: 1325 Starttage | Konto <= 0: 14.6 % | Konto <= 0,5: 49.2 % | am unguenstigsten Kerzenkurs <= 0: 16.3 % | Median Konto-Tief 0.519 | schlechtestes Tief -0.521 | Median Ende 5.76
+   Starttage mit Konto <= 0: erster 2021-12-14, letzter 2024-09-09; Tage bis zum Ereignis: Median 113, min 37.6, max 411
+   Ereignistage (Datum: Anzahl betroffener Starttage): {'2022-03-17': 2, '2022-03-21': 1, '2022-12-13': 1, '2023-04-25': 2, '2023-04-26': 13, '2023-04-27': 16, '2023-04-29': 1, '2023-06-06': 7, '2023-06-26': 1, '2023-06-28': 12, '2024-10-04': 1, '2024-10-05': 1, '2024-10-06': 1, '2024-10-11': 8, '2024-10-12': 2, '2024-10-14': 31, '2024-10-15': 46, '2024-10-17': 19, '2024-10-23': 9, '2024-11-06': 20}
+C) Entwicklung-Starts, Lauf bis Datenende, Hebel 2: 1325 Starttage | Konto <= 0: 0.1 % | Konto <= 0,5: 32.0 % | am unguenstigsten Kerzenkurs <= 0: 0.2 % | Median Konto-Tief 0.679 | schlechtestes Tief -0.014 | Median Ende 4.17
+C) Entwicklung-Starts, Lauf bis Datenende, Hebel 1: 1325 Starttage | Konto <= 0: 0.0 % | Konto <= 0,5: 0.1 % | am unguenstigsten Kerzenkurs <= 0: 0.0 % | Median Konto-Tief 0.840 | schlechtestes Tief 0.493 | Median Ende 2.59
+D) Groesse am laufenden Kontostand (echter Lauf, Einstiegsgroesse = Konto x Hebel / 10, Stueckzahl bis zum Wechsel fest):
+   Entwicklung Hebel 1: Ende 4.066 CAGR 47.2 % | Einbruch vom Hoechststand 42.7 % | Konto-Tief 0.966 | Konto <= 0: False | max Einsatz/Konto 1.29
+   Entwicklung Hebel 3: Ende 4.336 CAGR 49.8 % | Einbruch vom Hoechststand 84.4 % | Konto-Tief 0.808 | Konto <= 0: False | max Einsatz/Konto 5.03
+   Pruefzeitraum Hebel 1: Ende 1.142 CAGR 8.9 % | Einbruch vom Hoechststand 43.1 % | Konto-Tief 0.946 | Konto <= 0: False | max Einsatz/Konto 1.16
+   Pruefzeitraum Hebel 3: Ende 0.799 CAGR -13.4 % | Einbruch vom Hoechststand 85.6 % | Konto-Tief 0.530 | Konto <= 0: False | max Einsatz/Konto 4.38

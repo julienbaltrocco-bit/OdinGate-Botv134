@@ -1,0 +1,18 @@
+# Vorlage, NICHT aktiv. GitHub führt Zeitpläne nur aus dem Standard-Zweig aus; dort läge die Datei unter
+# .github/workflows/papier.yml. Der Lauf rechnet alle Papier-Tests und legt die Stände als Artefakt des Laufs ab.
+name: OdinGate Papier-Lauf
+on:
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+jobs:
+  lauf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    concurrency: { group: odingate-papier, cancel-in-progress: false }
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: claude/alpha-forschung-r1, fetch-depth: 0 }
+      - run: bash swing-hybrid/forschung/papier/tag.sh
+      - uses: actions/upload-artifact@v4
+        with: { name: papier-stand, path: swing-hybrid/forschung/papier/ausgabe/*.json, retention-days: 30 }

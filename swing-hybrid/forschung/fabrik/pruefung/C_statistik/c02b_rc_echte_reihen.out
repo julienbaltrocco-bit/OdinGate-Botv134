@@ -1,0 +1,11 @@
+Stichprobe: (5000, 685) | Tage nur T: 0 bis 685 | größter Spaltenindex gelesen: 684 < N_TAGE 1051
+Schiefe der Tagesreihen: 5 % -5.84  Median -0.37  95 % +4.44 | Anteil negativ 0.57
+Wölbung (Überschuss): Median 21.1  95 % 130.2 | Anteil der Tage mit Ergebnis ungleich null: Median 0.62
+Probe: t85_t aus der Datenbank gegen eigene Rechnung aus der Tagesreihe, größte Abweichung 0.0005
+Zusammenhang Schiefe / t-Wert in den echten Reihen (Rangkorrelation): +0.353
+die 50 Kandidaten der Stichprobe mit dem höchsten t: Schiefe Median +2.62, Anteil negativ 0.08
+
+120 Welten ohne Vorteil: bestes t im Mittel 5.44 (5 %/95 %: 3.43/9.92), Bootstrap-Maximum (Median) im Mittel 3.49
+   wie trichter (feste Streuung):   p<=0,05: 0.525  p<=0,10: 0.633  p<=0,50: 0.942  Mittel 0.136  KS-p 0.0000
+   eigene Streuung je Stichprobe:   p<=0,05: 0.058  p<=0,10: 0.133  p<=0,50: 0.567  Mittel 0.448  KS-p 0.1695
+   Schiefe der Reihe, die in einer Welt ohne Vorteil das höchste t erreicht: Median -2.30, Anteil negativ 0.77

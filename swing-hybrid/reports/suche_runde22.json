@@ -1,0 +1,83 @@
+{
+ "pruefzeitraum": {
+  "kandidat": 0.38459349324770226,
+  "variante": 0.4434062786053202,
+  "N_kandidat": 0.2786567446741315,
+  "N_variante": 0.3697645803908352,
+  "tage": 571
+ },
+ "vorperiode": {
+  "kandidat": 1.3079828210322382,
+  "variante": 0.4829748112433168,
+  "N_kandidat": 1.714466801321898,
+  "N_variante": 0.38744445300355057,
+  "tage": 561,
+  "coins": 44
+ },
+ "gruppen_pruefzeitraum": {
+  "A": {
+   "kandidat": 0.3369477716263708,
+   "variante": 0.379070168831857,
+   "faktor": 1.1244507075682646
+  },
+  "B": {
+   "kandidat": 0.19684261911805404,
+   "variante": 0.23953010178456577,
+   "faktor": 1.1151138160665448
+  },
+  "C": {
+   "kandidat": 0.6401728329058651,
+   "variante": 0.6809128627097786,
+   "faktor": 1.1865026218247041
+  },
+  "D": {
+   "kandidat": -0.04573551397954446,
+   "variante": 0.02564898760004989,
+   "faktor": 1.1949741087112264
+  }
+ },
+ "gruppen_vorperiode": {
+  "A": {
+   "kandidat": 1.3627570511601077,
+   "variante": 0.7325822185235006,
+   "coins": 10
+  },
+  "B": {
+   "kandidat": 0.5868517079189319,
+   "variante": -0.5435756331087968,
+   "coins": 10
+  },
+  "C": {
+   "kandidat": 1.28360729703518,
+   "variante": 0.9290559283578116,
+   "coins": 19
+  },
+  "D": {
+   "kandidat": 0.029541806111533793,
+   "variante": -0.45144237709480267,
+   "coins": 5
+  }
+ },
+ "zufall": {
+  "anteil_positiv": 0.082,
+  "vorsprung_jahr": -0.39850600450494683,
+  "p5_jahr": -0.953185195087353
+ },
+ "doppelte_kosten": {
+  "pruefzeitraum": {
+   "kandidat": -0.17426698260627144,
+   "variante": -0.12225450299899582
+  },
+  "vorperiode": {
+   "kandidat": 1.0896829214443684,
+   "variante": 0.12875985159773573
+  }
+ },
+ "huerden": {
+  "1": false,
+  "2": true,
+  "3": false,
+  "4": false
+ },
+ "bestanden": false
+}

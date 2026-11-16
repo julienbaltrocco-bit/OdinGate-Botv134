@@ -1,0 +1,253 @@
+{
+ "slip_bp": {
+  "BTC": 0.5,
+  "ETH": 0.5,
+  "SOL": 1.366,
+  "XRP": 1.139,
+  "DOT": 13.216,
+  "DOGE": 1.652,
+  "ADA": 6.419,
+  "LINK": 1.089,
+  "AVAX": 1.451,
+  "LTC": 2.184
+ },
+ "luecken": {
+  "BTC": {
+   "fehlende_5m_kerzen": 0,
+   "fehlende_stunden": 0
+  },
+  "ETH": {
+   "fehlende_5m_kerzen": 0,
+   "fehlende_stunden": 0
+  },
+  "SOL": {
+   "fehlende_5m_kerzen": 1440,
+   "fehlende_stunden": 120
+  },
+  "XRP": {
+   "fehlende_5m_kerzen": 1440,
+   "fehlende_stunden": 120
+  },
+  "DOT": {
+   "fehlende_5m_kerzen": 0,
+   "fehlende_stunden": 0
+  },
+  "DOGE": {
+   "fehlende_5m_kerzen": 0,
+   "fehlende_stunden": 0
+  },
+  "ADA": {
+   "fehlende_5m_kerzen": 0,
+   "fehlende_stunden": 0
+  },
+  "LINK": {
+   "fehlende_5m_kerzen": 0,
+   "fehlende_stunden": 0
+  },
+  "AVAX": {
+   "fehlende_5m_kerzen": 0,
+   "fehlende_stunden": 0
+  },
+  "LTC": {
+   "fehlende_5m_kerzen": 1440,
+   "fehlende_stunden": 120
+  }
+ },
+ "durchgehend_hebel1_Entwicklung": {
+  "N": 2.1605630988350315,
+  "N_jahr": 0.59517398571682,
+  "sharpe": 0.9473003846414462,
+  "einbruch_rel": 0.25735127464126945,
+  "rueckgang_abs": 0.5690696813237437,
+  "schlechtester_tag": -0.29681750551609287,
+  "schlechtester_tag_datum": "2024-12-09",
+  "tief_konto": -0.034136878462505856
+ },
+ "durchgehend_hebel1_Pruefzeitraum": {
+  "N": 0.2589307458705137,
+  "N_jahr": 0.16551615103806916,
+  "sharpe": 0.33751908546813497,
+  "einbruch_rel": 0.33095983115714445,
+  "rueckgang_abs": 0.542502701976944,
+  "schlechtester_tag": -0.1114948585298352,
+  "schlechtester_tag_datum": "2025-07-23",
+  "tief_konto": -0.05225559018252435
+ },
+ "intratag_min_hebel1": {
+  "wert": -0.4246648520381514,
+  "zeit": "2024-12-09 21:00:00"
+ },
+ "durchgehend_hebel3_Entwicklung": {
+  "N": 6.481689296505106,
+  "N_jahr": 1.7855219571504632,
+  "sharpe": 0.947300384641448,
+  "einbruch_rel": 0.38219260311747716,
+  "rueckgang_abs": 1.70720904397123,
+  "schlechtester_tag": -0.8904525165482777,
+  "schlechtester_tag_datum": "2024-12-09",
+  "tief_konto": -0.10241063538751759
+ },
+ "durchgehend_hebel3_Pruefzeitraum": {
+  "N": 0.776792237611545,
+  "N_jahr": 0.4965484531142101,
+  "sharpe": 0.33751908546813647,
+  "einbruch_rel": 0.5578358062450647,
+  "rueckgang_abs": 1.627508105930831,
+  "schlechtester_tag": -0.33448457558950384,
+  "schlechtester_tag_datum": "2025-07-23",
+  "tief_konto": -0.15676677054757526
+ },
+ "intratag_min_hebel3": {
+  "wert": -1.2739945561144506,
+  "zeit": "2024-12-09 21:00:00"
+ },
+ "neustart_7_tage": {
+  "alle Starttage": {
+   "starts": 267,
+   "tief_le_30": 0.6966292134831461,
+   "tief_le_50": 0.47191011235955055,
+   "tief_le_75": 0.31835205992509363,
+   "tief_le_100": 0.16104868913857678,
+   "median_tief": -0.4625039966807353,
+   "median_stand_ende": 1.0211647966562238
+  },
+  "nur volle 365 Tage": {
+   "starts": 219,
+   "tief_le_30": 0.6940639269406392,
+   "tief_le_50": 0.4748858447488584,
+   "tief_le_75": 0.3150684931506849,
+   "tief_le_100": 0.1643835616438356,
+   "median_tief": -0.471211015150085,
+   "median_stand_ende": 1.296786939300714
+  },
+  "Starts im Pruefzeitraum": {
+   "starts": 77,
+   "tief_le_30": 0.7142857142857143,
+   "tief_le_50": 0.45454545454545453,
+   "tief_le_75": 0.3116883116883117,
+   "tief_le_100": 0.12987012987012986,
+   "median_tief": -0.41840165431928883,
+   "median_stand_ende": 0.0674977039247175
+  },
+  "Starts in der Entwicklung (volle 365 Tage)": {
+   "starts": 190,
+   "tief_le_30": 0.6894736842105263,
+   "tief_le_50": 0.4789473684210526,
+   "tief_le_75": 0.32105263157894737,
+   "tief_le_100": 0.1736842105263158,
+   "median_tief": -0.47596648226543437,
+   "median_stand_ende": 1.458558703149605
+  }
+ },
+ "neustart_taeglich": {
+  "alle Starttage": {
+   "starts": 1866,
+   "tief_le_30": 0.7009646302250804,
+   "tief_le_50": 0.4715969989281886,
+   "tief_le_75": 0.3033226152197213,
+   "tief_le_100": 0.13504823151125403,
+   "median_tief": -0.46165911687446226,
+   "median_stand_ende": 0.9986234280182902
+  },
+  "nur volle 365 Tage": {
+   "starts": 1532,
+   "tief_le_30": 0.6964751958224543,
+   "tief_le_50": 0.4719321148825065,
+   "tief_le_75": 0.3009138381201044,
+   "tief_le_100": 0.13511749347258487,
+   "median_tief": -0.4613168680300169,
+   "median_stand_ende": 1.2657178516597285
+  },
+  "Starts im Pruefzeitraum": {
+   "starts": 541,
+   "tief_le_30": 0.7005545286506469,
+   "tief_le_50": 0.4454713493530499,
+   "tief_le_75": 0.2828096118299446,
+   "tief_le_100": 0.11275415896487985,
+   "median_tief": -0.4352113409279978,
+   "median_stand_ende": 0.05017619315466386
+  },
+  "Starts in der Entwicklung (volle 365 Tage)": {
+   "starts": 1325,
+   "tief_le_30": 0.7011320754716981,
+   "tief_le_50": 0.48226415094339625,
+   "tief_le_75": 0.31169811320754715,
+   "tief_le_100": 0.14415094339622642,
+   "median_tief": -0.468894325322995,
+   "median_stand_ende": 1.4243693984208219
+  }
+ },
+ "intratag_min_neustart": {
+  "raster7": -1.2739945561144532,
+  "taeglich": -1.2739945561144532
+ },
+ "ruin_monate": {
+  "2022-03": 3,
+  "2022-12": 1,
+  "2023-04": 32,
+  "2023-06": 17,
+  "2024-10": 118,
+  "2024-11": 20,
+  "2025-10": 14,
+  "2025-12": 2,
+  "2026-05": 9,
+  "2026-07": 9,
+  "2026-08": 27
+ },
+ "nach_startjahr": {
+  "2021": {
+   "starts": 139,
+   "le50": 0.223,
+   "le100": 0.0072
+  },
+  "2022": {
+   "starts": 365,
+   "le50": 0.4877,
+   "le100": 0.0219
+  },
+  "2023": {
+   "starts": 365,
+   "le50": 0.4384,
+   "le100": 0.1616
+  },
+  "2024": {
+   "starts": 366,
+   "le50": 0.735,
+   "le100": 0.3361
+  },
+  "2025": {
+   "starts": 365,
+   "le50": 0.2438,
+   "le100": 0.0438
+  },
+  "2026": {
+   "starts": 266,
+   "le50": 0.5752,
+   "le100": 0.1692
+  }
+ },
+ "neustart_hebel0.2": {
+  "tief_le_30": 0.0,
+  "tief_le_50": 0.0,
+  "tief_le_75": 0.0,
+  "tief_le_100": 0.0,
+  "median_tief": -0.03083359977871611,
+  "schlechtestes_tief": -0.09644679586032713
+ },
+ "neustart_hebel1": {
+  "tief_le_30": 0.20224719101123595,
+  "tief_le_50": 0.0,
+  "tief_le_75": 0.0,
+  "tief_le_100": 0.0,
+  "median_tief": -0.15416799889357963,
+  "schlechtestes_tief": -0.48223397930163536
+ },
+ "neustart_hebel2": {
+  "tief_le_30": 0.5056179775280899,
+  "tief_le_50": 0.31835205992509363,
+  "tief_le_75": 0.0749063670411985,
+  "tief_le_100": 0.0,
+  "median_tief": -0.30833599778715925,
+  "schlechtestes_tief": -0.9644679586032707
+ }
+}

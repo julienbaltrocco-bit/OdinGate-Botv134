@@ -1,0 +1,94 @@
+{
+ "id": "B-24332e4d",
+ "name": "Beobachtung (nicht validiert): Orderbuch-Tiefe 3 % bei hoher Schwankung",
+ "version": "1.0",
+ "strategie": "fabrik",
+ "art": "Schattentest (Binance-Archiv, ein Tag Verzug, keine Orders)",
+ "coins": [
+  "BTC",
+  "ETH",
+  "SOL"
+ ],
+ "coin_index": [
+  0,
+  1,
+  2
+ ],
+ "daten": [
+  "tiefe"
+ ],
+ "kandidat": {
+  "signal": "tiefe_3",
+  "th": 1.5,
+  "r": 1,
+  "f": "vol_hoch",
+  "k": 12,
+  "ausstieg": [
+   144,
+   0,
+   0,
+   0,
+   0,
+   0.5
+  ],
+  "ausstieg_name": "signal_h720",
+  "markt": "top3",
+  "best": null,
+  "kennung": "24332e4d3769",
+  "generation": "gen1"
+ },
+ "regel": "Signal tiefe_3, Schwelle 1.5, mit dem Signal, Filter vol_hoch, geprüft alle 60 Minuten, Ausstieg signal_h720.",
+ "start": "2026-11-17T00:00:00Z",
+ "vorlauf_tage": 38,
+ "kapital_usd": 5000,
+ "hebel": 3.0,
+ "kosten": {
+  "taker_bp": 8.0,
+  "rebate": 0.85,
+  "slippage_bp_je_order": {
+   "BTC": 0.5,
+   "ETH": 0.5,
+   "SOL": 1.3657568381229228
+  },
+  "slippage_anteil_spanne": 0.05
+ },
+ "risiko": {
+  "mmr": 0.01,
+  "abbruch_kontostand": 0.7
+ },
+ "validierung": "NICHT validiert. Bester von 1199 Finalisten der Strategie-Fabrik (p = 0.000312), besteht die Korrektur für die vielen gleichzeitig geprüften Regeln aber nur mit der ruhigen Kostenannahme, nicht mit der strengen. Schlussprüfung netto mit Rebate 21.58 bp je Trade, ohne Rebate 7.98 bp. Beobachtungstest: Nur neue Daten können klären, ob etwas daran ist. Schlussprüfung für Orderbuch-Signale nicht unberührt.",
+ "rueckrechnung": {
+  "n85_t": 11.73,
+  "n85_v1": 13.603,
+  "n85_v2": 21.58,
+  "n0_v2": 7.98,
+  "t85_v2": 3.42,
+  "trades_v2": 524,
+  "ertrag_jahr_pct_hebel1_v2": 50.2,
+  "haltedauer_min": 148.3,
+  "risiko_starttage": {
+   "3.0": {
+    "starttage": 788,
+    "tiefster_kontostand": 0.62,
+    "liquidationen": 0,
+    "anteil_unter_70pct": 0.0609
+   },
+   "2.0": {
+    "starttage": 788,
+    "tiefster_kontostand": 0.747,
+    "liquidationen": 0,
+    "anteil_unter_70pct": 0.0
+   },
+   "1.0": {
+    "starttage": 788,
+    "tiefster_kontostand": 0.873,
+    "liquidationen": 0,
+    "anteil_unter_70pct": 0.0
+   }
+  }
+ },
+ "eingefroren": "2026-11-16",
+ "beobachtung": true,
+ "freigabe": "Beobachtungstest, nicht validiert; vom Auftraggeber am 16.11.2026 freigegeben (protokoll.md Abschnitt 28) (nur Papierhandel)",
+ "strategie_sha256": "55788672a3592f8a35dfa8f048257fc3bc50f92774ac9e818236a93e7fe57494"
+}

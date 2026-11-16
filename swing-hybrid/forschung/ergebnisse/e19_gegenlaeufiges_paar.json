@@ -1,0 +1,126 @@
+{
+ "hinweis": "bp des Werts einer Seite je Paar; vier Orders je Paar",
+ "zeitraum": [
+  "2021-08-15",
+  "2024-06-30 23:59"
+ ],
+ "ergebnisse": [
+  {
+   "coin": "BTC",
+   "stop_pct": 0.2,
+   "paare": 6300,
+   "vor_kosten_bp": -2.71,
+   "t_vor_kosten": -7.41,
+   "kosten_mit_rebate_bp": 6.8,
+   "netto_mit_rebate_bp": -9.51,
+   "netto_ohne_rebate_bp": -36.71,
+   "gewinner_erreicht_ziel": 0.62,
+   "dauer_min_median": 32.0,
+   "netto_in_prozent_des_stops": -47.6
+  },
+  {
+   "coin": "BTC",
+   "stop_pct": 0.5,
+   "paare": 6300,
+   "vor_kosten_bp": -4.24,
+   "t_vor_kosten": -4.79,
+   "kosten_mit_rebate_bp": 6.8,
+   "netto_mit_rebate_bp": -11.04,
+   "netto_ohne_rebate_bp": -38.24,
+   "gewinner_erreicht_ziel": 0.613,
+   "dauer_min_median": 191.0,
+   "netto_in_prozent_des_stops": -22.1
+  },
+  {
+   "coin": "BTC",
+   "stop_pct": 1.0,
+   "paare": 6300,
+   "vor_kosten_bp": -3.09,
+   "t_vor_kosten": -1.97,
+   "kosten_mit_rebate_bp": 6.8,
+   "netto_mit_rebate_bp": -9.89,
+   "netto_ohne_rebate_bp": -37.09,
+   "gewinner_erreicht_ziel": 0.522,
+   "dauer_min_median": 681.5,
+   "netto_in_prozent_des_stops": -9.9
+  },
+  {
+   "coin": "ETH",
+   "stop_pct": 0.2,
+   "paare": 6300,
+   "vor_kosten_bp": -2.42,
+   "t_vor_kosten": -6.62,
+   "kosten_mit_rebate_bp": 6.8,
+   "netto_mit_rebate_bp": -9.22,
+   "netto_ohne_rebate_bp": -36.42,
+   "gewinner_erreicht_ziel": 0.626,
+   "dauer_min_median": 20.0,
+   "netto_in_prozent_des_stops": -46.1
+  },
+  {
+   "coin": "ETH",
+   "stop_pct": 0.5,
+   "paare": 6300,
+   "vor_kosten_bp": -3.56,
+   "t_vor_kosten": -3.97,
+   "kosten_mit_rebate_bp": 6.8,
+   "netto_mit_rebate_bp": -10.36,
+   "netto_ohne_rebate_bp": -37.56,
+   "gewinner_erreicht_ziel": 0.632,
+   "dauer_min_median": 128.0,
+   "netto_in_prozent_des_stops": -20.7
+  },
+  {
+   "coin": "ETH",
+   "stop_pct": 1.0,
+   "paare": 6300,
+   "vor_kosten_bp": -3.27,
+   "t_vor_kosten": -1.97,
+   "kosten_mit_rebate_bp": 6.8,
+   "netto_mit_rebate_bp": -10.07,
+   "netto_ohne_rebate_bp": -37.27,
+   "gewinner_erreicht_ziel": 0.576,
+   "dauer_min_median": 442.0,
+   "netto_in_prozent_des_stops": -10.1
+  },
+  {
+   "coin": "SOL",
+   "stop_pct": 0.2,
+   "paare": 6270,
+   "vor_kosten_bp": -2.5,
+   "t_vor_kosten": -6.81,
+   "kosten_mit_rebate_bp": 10.26,
+   "netto_mit_rebate_bp": -12.76,
+   "netto_ohne_rebate_bp": -39.96,
+   "gewinner_erreicht_ziel": 0.625,
+   "dauer_min_median": 5.0,
+   "netto_in_prozent_des_stops": -63.8
+  },
+  {
+   "coin": "SOL",
+   "stop_pct": 0.5,
+   "paare": 6270,
+   "vor_kosten_bp": -4.63,
+   "t_vor_kosten": -5.08,
+   "kosten_mit_rebate_bp": 10.26,
+   "netto_mit_rebate_bp": -14.89,
+   "netto_ohne_rebate_bp": -42.09,
+   "gewinner_erreicht_ziel": 0.636,
+   "dauer_min_median": 42.0,
+   "netto_in_prozent_des_stops": -29.8
+  },
+  {
+   "coin": "SOL",
+   "stop_pct": 1.0,
+   "paare": 6270,
+   "vor_kosten_bp": -0.01,
+   "t_vor_kosten": -0.01,
+   "kosten_mit_rebate_bp": 10.26,
+   "netto_mit_rebate_bp": -10.27,
+   "netto_ohne_rebate_bp": -37.47,
+   "gewinner_erreicht_ziel": 0.656,
+   "dauer_min_median": 173.0,
+   "netto_in_prozent_des_stops": -10.3
+  }
+ ]
+}

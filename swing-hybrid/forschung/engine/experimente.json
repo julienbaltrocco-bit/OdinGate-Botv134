@@ -1,0 +1,248 @@
+[
+ {
+  "nr": 1,
+  "id": "E01",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Orderbuch-Tiefe nahe am Kurs (1 %)",
+  "einstufung": "A",
+  "kurz": "roh +0,9 bp, N85 −3,2 bp",
+  "dateien": [
+   "forschung/ergebnisse/e01_orderbuch_tiefe.json"
+  ]
+ },
+ {
+  "nr": 2,
+  "id": "E02",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Gegenposition bei extremem Aufschlag",
+  "einstufung": "A",
+  "kurz": "roh +0,3 bp, N85 −7,5 bp",
+  "dateien": [
+   "forschung/ergebnisse/e02_aufschlag.json"
+  ]
+ },
+ {
+  "nr": 3,
+  "id": "E03",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Funding-Termin, 60 Minuten davor und danach",
+  "einstufung": "A",
+  "kurz": "Funding +6,6 bp, N85 −0,5 bp",
+  "dateien": [
+   "forschung/ergebnisse/e03_funding_termin.json"
+  ]
+ },
+ {
+  "nr": 4,
+  "id": "E04",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Nachlauf der Altcoins hinter BTC",
+  "einstufung": "A",
+  "kurz": "roh +1,5 bp, N85 −7,4 bp",
+  "dateien": [
+   "forschung/ergebnisse/e04_btc_nachlauf.json"
+  ]
+ },
+ {
+  "nr": 5,
+  "id": "E05",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Erholung nach Zwangsliquidationen",
+  "einstufung": "A",
+  "kurz": "roh +9,2 bp (t 0,6), N85 +1,3 bp",
+  "dateien": [
+   "forschung/ergebnisse/e05_zwangsliquidation.json"
+  ]
+ },
+ {
+  "nr": 6,
+  "id": "E06",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Funding-Abgriff in 10 Minuten",
+  "einstufung": "A",
+  "kurz": "Kurs gibt das Funding zurück, N85 −0,1 bp",
+  "dateien": [
+   "forschung/ergebnisse/e06_funding_kurz.json"
+  ]
+ },
+ {
+  "nr": 7,
+  "id": "E07",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Ursachenanalyse Orderbuch-Tiefe, 17 Einstellungen",
+  "einstufung": "B",
+  "kurz": "roh bis t 6,7; Zufallsprüfung p 0,09",
+  "dateien": [
+   "forschung/ergebnisse/e07_tiefe_ursache.json"
+  ]
+ },
+ {
+  "nr": 8,
+  "id": "E08",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Vollprüfung Orderbuch-Stütze 1.0",
+  "einstufung": "D",
+  "kurz": "Validierung N85 +2,9 bp, ohne Rebate −10,7 bp",
+  "dateien": [
+   "forschung/ergebnisse/e08_vollpruefung.json"
+  ]
+ },
+ {
+  "nr": 9,
+  "id": "E09",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Bestätigung auf sieben frischen Coins",
+  "einstufung": "B",
+  "kurz": "roh +3,6 bp (t 2,1), nach Kosten negativ",
+  "dateien": [
+   "forschung/ergebnisse/e09_frische_coins.json"
+  ]
+ },
+ {
+  "nr": 10,
+  "id": "E10",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Ausstiegs-Engine, 8 Varianten",
+  "einstufung": "B",
+  "kurz": "Signal-Ausstieg vorn (p 0,05); Trailing schadet",
+  "dateien": [
+   "forschung/ergebnisse/e10_ausstiege.json"
+  ]
+ },
+ {
+  "nr": 11,
+  "id": "E11",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Kombination mit dem 14-Tage-Trend",
+  "einstufung": "–",
+  "kurz": "Korrelation −0,03",
+  "dateien": [
+   "forschung/ergebnisse/e11_kombination.json"
+  ]
+ },
+ {
+  "nr": 12,
+  "id": "E12",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Marktphasen",
+  "einstufung": "–",
+  "kurz": "Wirkung vor allem bei hoher Schwankung",
+  "dateien": [
+   "forschung/ergebnisse/e12_marktphasen.json"
+  ]
+ },
+ {
+  "nr": 13,
+  "id": "E13",
+  "runde": 1,
+  "datum": "2026-11-15",
+  "titel": "Orderbuch-Stütze 1.1 in der Validierung",
+  "einstufung": "D",
+  "kurz": "N85 +4,4 bp (t 1,1), ohne Rebate −9,2 bp",
+  "dateien": [
+   "forschung/ergebnisse/e13_version11.json"
+  ]
+ },
+ {
+  "nr": 14,
+  "id": "E14",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Strategie-Fabrik, Generation 1: 340.200 Kandidaten aus 63 Signalen in sechs Familien",
+  "einstufung": "A",
+  "kurz": "1.622 bestehen die Kostenstufe im Training; bester t-Wert 4,6 liegt im Zufallsbereich (Reality Check p 0,98)",
+  "dateien": [
+   "forschung/fabrik/ergebnisse/zaehlung.json",
+   "forschung/fabrik/ergebnisse/statistik.json",
+   "forschung/fabrik/ergebnisse/kandidaten.parquet"
+  ]
+ },
+ {
+  "nr": 15,
+  "id": "E15",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Strategie-Fabrik, Generation 2 (Evolution, 182.460 Kandidaten) und Schlussprüfung der 1.199 Finalisten",
+  "einstufung": "A",
+  "kurz": "Schlussprüfung: 60 mit p unter 5 % bei 60 zufällig erwarteten; keiner validiert; Median netto −2,5 bp je Trade",
+  "dateien": [
+   "forschung/fabrik/ergebnisse/schlusspruefung.json",
+   "forschung/fabrik/ergebnisse/finalisten.json"
+  ]
+ },
+ {
+  "nr": 16,
+  "id": "E16",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Yubit-Kosten in bewegten Minuten (Messung, 1.264 Punkte) und Zusatzrechnung der Schlussprüfung mit milder Kostenannahme",
+  "einstufung": "B",
+  "kurz": "Kosten je Order 1–2,4 bp, kein Anstieg bis 100 bp Kerzenspanne (heftige Kerzen fehlen noch); mit milden Kosten 123 statt 60 p-Werte unter 5 %, ein Kandidat besteht die übliche, keiner die strenge Korrektur; kein Status geändert",
+  "dateien": [
+   "forschung/ergebnisse/e16_yubit_kosten_bewegung.json",
+   "forschung/fabrik/ergebnisse/schlusspruefung_einfache_slippage.json"
+  ]
+ },
+ {
+  "nr": 17,
+  "id": "E17",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Strategie-Fabrik, Generation 3: wiederkehrende Tageszeit-Muster (H10), 108 Kandidaten",
+  "einstufung": "A",
+  "kurz": "kein Kandidat mit Vorteil vor Gebühr (bester t 1,7); beide Richtungen verlieren, Median −5,4 bp je Trade im Training; keine Finalisten",
+  "dateien": [
+   "forschung/fabrik/ergebnisse/zaehlung.json",
+   "forschung/fabrik/ergebnisse/kandidaten.parquet"
+  ]
+ },
+ {
+  "nr": 18,
+  "id": "E18",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Strategie-Fabrik, Generation 4: Orderbuch-Tiefe aus dem letzten 30-Sekunden-Schnappschuss (H16, H07), 288 Kandidaten",
+  "einstufung": "A",
+  "kurz": "kein Kandidat mit Vorteil vor Gebühr (bester t 1,4); frisches Signal nicht besser als das Kerzenmittel (Median −0,05 bp, in 48 % der Paare besser); keine Finalisten",
+  "dateien": [
+   "forschung/fabrik/ergebnisse/zaehlung.json",
+   "forschung/fabrik/ergebnisse/kandidaten.parquet"
+  ]
+ },
+ {
+  "nr": 19,
+  "id": "E19",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Idee des Auftraggebers: gleichzeitig Long und Short (zwei Börsen), Verlierer früh schließen, Ziel 2:1",
+  "einstufung": "A",
+  "kurz": "vor Kosten null bis leicht negativ (Gewinnerseite erreicht Ziel in 52–66 % statt der nötigen 67 %); nach Kosten −9 bis −15 bp je Paar mit Rebate, −36 bis −42 bp ohne",
+  "dateien": [
+   "forschung/ergebnisse/e19_gegenlaeufiges_paar.json"
+  ]
+ },
+ {
+  "nr": 20,
+  "id": "E20",
+  "runde": 2,
+  "datum": "2026-11-16",
+  "titel": "Idee des Auftraggebers: Scalping in Richtung des 14-Tage-Trends (Auszählung von 21.030 schon gerechneten Kandidaten)",
+  "einstufung": "B",
+  "kurz": "Rücksetzer handeln: vor Gebühr negativ (Median −4,2 bp, 1 Finalist); Fortsetzung handeln: 61 Finalisten, 75 % in der Schlussprüfung positiv, bestes Muster 12-Stunden-Momentum mit Nachzug, nicht validiert",
+  "dateien": [
+   "forschung/protokoll.md"
+  ]
+ }
+]

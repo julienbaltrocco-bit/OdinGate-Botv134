@@ -1,0 +1,114 @@
+[
+ {
+  "id": "H07",
+  "titel": "Orderbuch-Signal in 1-Minuten-Auflösung",
+  "mechanismus": "Das Signal verfällt schnell (5 Minuten Verzug kosten 40 %). Feinere Auflösung könnte früher einsteigen.",
+  "daten": "bookDepth (vorhanden), 1-Minuten-Kerzen (vorhanden bis 03/2025)",
+  "aufwand": "gering",
+  "status": "teilweise geprüft",
+  "hinweis": "Nur Entwicklung 01/2023–03/2024 zur Auswahl. Die Validierung 04/2024–03/2025 ist für Orderbuch-Regeln bereits zweimal geöffnet worden und taugt nur noch eingeschränkt.",
+  "ergebnis": "E18: Letzter 30-Sekunden-Schnappschuss auf 5-Minuten-Raster bringt nichts. Offen nur noch der Einstieg innerhalb der Kerze (Simulator auf Minutenraster nötig)."
+ },
+ {
+  "id": "H08",
+  "titel": "Kauf- und Verkaufsdruck je Minute als zweite Bestätigung",
+  "mechanismus": "Aggressive Marktorders in Signalrichtung zeigen, dass die Stütze im Orderbuch tatsächlich angenommen wird.",
+  "daten": "1-Minuten-Kerzen mit Kaufanteil (vorhanden)",
+  "aufwand": "gering",
+  "status": "offen"
+ },
+ {
+  "id": "H09",
+  "titel": "Orderbuch-Stütze nur bei hoher Schwankung",
+  "mechanismus": "E12: Wirkung fast nur im oberen Drittel der Schwankung. Eigene Regel, eigene Version.",
+  "daten": "vorhanden",
+  "aufwand": "gering",
+  "status": "offen",
+  "hinweis": "E12 war nur beschreibend. Als Regel braucht es unberührte Daten: prospektiv als eigener Papier-Test oder einmalig auf 04/2025–10/2026 (nur mit Freigabe des Auftraggebers)."
+ },
+ {
+  "id": "H10",
+  "titel": "Wiederkehrende Tageszeit-Muster (gleiche Uhrzeit an Vortagen)",
+  "mechanismus": "Wiederkehrende Orderströme großer Teilnehmer.",
+  "daten": "vorhanden",
+  "aufwand": "gering",
+  "status": "verworfen",
+  "ergebnis": "E17 (Generation 3, 16.11.2026): kein Brutto-Vorteil in 98 gültigen Kandidaten."
+ },
+ {
+  "id": "H11",
+  "titel": "Eröffnungsspanne der Handelssitzungen",
+  "mechanismus": "Neue Information zu Sitzungsbeginn; Ausbrüche in Runde 11 nur in Trendrichtung getestet.",
+  "daten": "vorhanden",
+  "aufwand": "gering",
+  "status": "offen"
+ },
+ {
+  "id": "H12",
+  "titel": "Lücke der CME-Futures am Wochenende",
+  "mechanismus": "Rückkehr zum Freitagsschluss.",
+  "daten": "vorhanden",
+  "aufwand": "gering",
+  "status": "offen"
+ },
+ {
+  "id": "H13",
+  "titel": "Große Einzelaufträge (Einzeltrade-Daten)",
+  "mechanismus": "Informierte Händler handeln groß und aggressiv.",
+  "daten": "aggTrades, rund 0,8 GB je Coin-Monat",
+  "aufwand": "hoch",
+  "status": "offen"
+ },
+ {
+  "id": "H14",
+  "titel": "Eigener Sammler für das Yubit-Orderbuch",
+  "mechanismus": "Ausführbarkeit bei Yubit messen: Spanne und Tiefe zur Signalzeit; Grundlage für passive Orders.",
+  "daten": "Yubit-Schnittstelle (höchstens 200 Preisstufen)",
+  "aufwand": "mittel",
+  "status": "offen",
+  "hinweis": "Braucht einen dauerhaft laufenden Prozess; die Spanne der zehn Coins misst bereits der bestehende Papier-Bot alle fünf Minuten."
+ },
+ {
+  "id": "H15",
+  "titel": "Yubit-Spannen in bewegten Phasen messen",
+  "mechanismus": "Fast alle Finalisten der Fabrik handeln direkt nach heftigen Kerzen. Ob dort bei Yubit überhaupt zu vertretbaren Kosten gehandelt werden kann, entscheidet über die ganze Familie.",
+  "daten": "Spannen-Messungen des bestehenden Papier-Bots (alle fünf Minuten, zehn Coins), nach Schwankung ausgewertet",
+  "aufwand": "gering",
+  "status": "offen",
+  "hinweis": "Liefert die Grundlage für das Kostenmodell; ersetzt die Annahme von 5 % der Kerzenspanne."
+ },
+ {
+  "id": "H16",
+  "titel": "Orderbuch-Tiefe in feinerer Auflösung und über mehr Preisstufen",
+  "mechanismus": "Die Orderbuch-Tiefe ist die einzige Familie, die in jeder Prüfung vorn liegt (bester Finalist der Schlussprüfung, p 0,0003), aber nie die Korrektur für die vielen Versuche besteht. Mehr Information aus derselben Quelle statt mehr Varianten.",
+  "daten": "bookDepth (30-Sekunden-Schnappschüsse, vorhanden)",
+  "aufwand": "mittel",
+  "status": "teilweise geprüft",
+  "hinweis": "Eigene Generation mit wenigen, vorab festgelegten Kandidaten, damit die Korrektur nicht wieder alles aufzehrt.",
+  "ergebnis": "E18: feinere Zeitauflösung der 1-%-Stufe verworfen. Offen: weitere Preisstufen (2 % und 4 %); wenig aussichtsreich, da 1, 3 und 5 % schon geprüft sind."
+ },
+ {
+  "id": "H17",
+  "titel": "Weniger Kandidaten, schärfere Vorauswahl",
+  "mechanismus": "Lehre aus Generation 1 und 2: Die Stufen 1 bis 3 halten Zufallstreffer kaum auf; 1.199 Finalisten machen die Schlussprüfung fast unbestehbar. Künftige Generationen sollten klein sein (höchstens einige hundert Kandidaten aus einer begründeten Idee).",
+  "daten": "–",
+  "aufwand": "gering",
+  "status": "offen"
+ },
+ {
+  "id": "H18",
+  "titel": "Trend-Scalping zusätzlich zur Swing-Position (Idee des Auftraggebers)",
+  "mechanismus": "Kurze Zusatzpositionen in Richtung des 14-Tage-Trends. E20: Einstieg nach Rücksetzern ist schon vor Gebühr negativ; Einstieg nach Stärke (12-Stunden-Momentum, nachgezogenes Ziel) ist das beste Muster, nicht validiert. Keine neue Generation mit denselben Bausteinen.",
+  "daten": "5-Minuten-Kerzen",
+  "aufwand": "gering",
+  "status": "teilweise geprüft (E20); Beobachtungstest nur auf Wunsch des Auftraggebers"
+ },
+ {
+  "id": "H19",
+  "titel": "Gegenläufiges Paar über zwei Börsen mit frühem Schließen der Verliererseite (Idee des Auftraggebers)",
+  "mechanismus": "Rechnerisch ein Ausbruchshandel mit doppelten Kosten; ohne Vorhersagekraft Erwartungswert null vor Kosten. E19: −9 bis −15 bp je Paar mit Rebate. Steht zudem gegen die Regeln des Auftraggebers (keine gegenläufigen Positionen, kein Volumen ohne Handelsgrund).",
+  "daten": "Minutenkerzen",
+  "aufwand": "gering",
+  "status": "verworfen (E19)"
+ }
+]

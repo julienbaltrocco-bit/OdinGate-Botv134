@@ -1,0 +1,42 @@
+{
+ "id": "OS-1.1",
+ "name": "Orderbuch-Stütze",
+ "version": "1.1",
+ "strategie": "orderbuch_stuetze",
+ "art": "Schattentest (Binance-Archiv, ein Tag Verzug, keine Orders)",
+ "coins": [
+  "BTC",
+  "ETH",
+  "SOL"
+ ],
+ "parameter": {
+  "tiefe_pct": 5,
+  "fenster": 288,
+  "min_perioden": 200,
+  "einstieg_z": 3.0,
+  "ausstieg_z": 1.0,
+  "zeitlimit": 48
+ },
+ "regel": "Einstieg, wenn das Übergewicht der Aufträge bis 5 % um den Kurs mindestens 3 Standardabweichungen vom eigenen 24-Stunden-Mittel abweicht; Ausstieg, sobald es unter 1 fällt, spätestens nach 240 Minuten.",
+ "start": "2026-11-16T00:00:00Z",
+ "vorlauf_tage": 2,
+ "kapital_usd": 5000,
+ "hebel": 3.0,
+ "kosten": {
+  "taker_bp": 8.0,
+  "rebate": 0.85,
+  "slippage_bp_je_order": {
+   "BTC": 0.5,
+   "ETH": 0.5,
+   "SOL": 1.3657568381229228
+  }
+ },
+ "risiko": {
+  "mmr": 0.01,
+  "abbruch_kontostand": 0.7
+ },
+ "validierung": "Rückrechnung formal bestanden (Entwicklung und Validierung), schwach belegt, nur mit Rebate positiv. Vorwärtstest ohne Beweiskraft vor rund 400 Trades.",
+ "eingefroren": "2026-11-15",
+ "freigabe": "automatisch nach Auftrag vom 15.11.2026 (nur Papierhandel)",
+ "strategie_sha256": "c1bd222a06e3508e150246027cc74890649c260a1054d64093db412dbc7f5d67"
+}

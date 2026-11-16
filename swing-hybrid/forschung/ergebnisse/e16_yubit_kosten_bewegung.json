@@ -1,0 +1,90 @@
+{
+ "experiment": "e16_yubit_kosten_bewegung",
+ "gerechnet": "2026-11-16T00:53:30Z",
+ "rechenzeit_s": 5.0,
+ "messungen": 1264,
+ "zeitraum": [
+  "2026-11-15 13:21",
+  "2026-11-16 00:47"
+ ],
+ "kerzen_ueber_100bp": 2,
+ "kerzen_ueber_50bp": 141,
+ "groesste_spanne_bp": 110.3,
+ "fuenftel": [
+  {
+   "spanne_kerze_bp_mittel": 14.8,
+   "kosten_bp_mittel": 1.14,
+   "kosten_anteil_spanne": 0.077,
+   "n": 252
+  },
+  {
+   "spanne_kerze_bp_mittel": 22.5,
+   "kosten_bp_mittel": 1.04,
+   "kosten_anteil_spanne": 0.046,
+   "n": 253
+  },
+  {
+   "spanne_kerze_bp_mittel": 28.2,
+   "kosten_bp_mittel": 2.42,
+   "kosten_anteil_spanne": 0.086,
+   "n": 253
+  },
+  {
+   "spanne_kerze_bp_mittel": 36.6,
+   "kosten_bp_mittel": 1.86,
+   "kosten_anteil_spanne": 0.051,
+   "n": 253
+  },
+  {
+   "spanne_kerze_bp_mittel": 55.2,
+   "kosten_bp_mittel": 1.33,
+   "kosten_anteil_spanne": 0.024,
+   "n": 253
+  }
+ ],
+ "anteil_kosten_ueber_5pct_der_spanne": 0.269,
+ "je_coin": {
+  "ADA": {
+   "kosten_bp": 3.25,
+   "spanne_kerze_bp": 32.1
+  },
+  "AVAX": {
+   "kosten_bp": 1.0,
+   "spanne_kerze_bp": 37.5
+  },
+  "BTC": {
+   "kosten_bp": 0.12,
+   "spanne_kerze_bp": 24.2
+  },
+  "DOGE": {
+   "kosten_bp": 0.85,
+   "spanne_kerze_bp": 29.5
+  },
+  "DOT": {
+   "kosten_bp": 7.23,
+   "spanne_kerze_bp": 32.7
+  },
+  "ETH": {
+   "kosten_bp": 0.14,
+   "spanne_kerze_bp": 30.7
+  },
+  "LINK": {
+   "kosten_bp": 0.69,
+   "spanne_kerze_bp": 31.0
+  },
+  "LTC": {
+   "kosten_bp": 1.13,
+   "spanne_kerze_bp": 28.2
+  },
+  "SOL": {
+   "kosten_bp": 0.7,
+   "spanne_kerze_bp": 35.6
+  },
+  "XRP": {
+   "kosten_bp": 0.53,
+   "spanne_kerze_bp": 33.3
+  }
+ },
+ "steigung_kosten_je_bp_spanne": 0.0066,
+ "korrelation": 0.048
+}

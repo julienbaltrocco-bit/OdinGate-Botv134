@@ -1,0 +1,12 @@
+Finalisten im Kurs-Segment: 1147
+Häufigster bester Tag (Tag, Zahl der Finalisten, mittlerer Anteil am T-Ergebnis über ALLE Finalisten):
+  2021-09-07:  169 Finalisten, mittlerer Anteil 0.039 | Tagesspanne Hoch/Tief in bp: BTC 2581, ETH 3522, SOL 5040, XRP 5539, DOT 7163, DOGE 5415, ADA 5704, LINK 6054, AVAX 6369, LTC 4276 | ungültige Kerzen: 0
+  2022-11-08:  162 Finalisten, mittlerer Anteil 0.042 | Tagesspanne Hoch/Tief in bp: BTC 2291, ETH 3224, SOL 7332, XRP 4174, DOT 2412, DOGE 4811, ADA 2255, LINK 4652, AVAX 2393, LTC 2872 | ungültige Kerzen: 0
+  2022-05-11:  110 Finalisten, mittlerer Anteil 0.035 | Tagesspanne Hoch/Tief in bp: BTC 1644, ETH 2247, SOL 5894, XRP 4353, DOT 4755, DOGE 5757, ADA 4054, LINK 3548, AVAX 7785, LTC 2933 | ungültige Kerzen: 0
+  2021-09-21:   76 Finalisten, mittlerer Anteil 0.036 | Tagesspanne Hoch/Tief in bp: BTC 1044, ETH 1739, SOL 2519, XRP 1178, DOT 1916, DOGE 1070, ADA 1674, LINK 1720, AVAX 2617, LTC 1239 | ungültige Kerzen: 0
+  2022-11-09:   59 Finalisten, mittlerer Anteil 0.022 | Tagesspanne Hoch/Tief in bp: BTC 2013, ETH 2477, SOL 15279, XRP 3193, DOT 1951, DOGE 3125, ADA 2165, LINK 3715, AVAX 3545, LTC 2615 | ungültige Kerzen: 0
+  2023-01-13:   56 Finalisten, mittlerer Anteil -0.005 | Tagesspanne Hoch/Tief in bp: BTC 688, ETH 463, SOL 1491, XRP 528, DOT 510, DOGE 887, ADA 853, LINK 582, AVAX 1106, LTC 546 | ungültige Kerzen: 0
+  2022-05-12:   42 Finalisten, mittlerer Anteil 0.017 | Tagesspanne Hoch/Tief in bp: BTC 1362, ETH 2356, SOL 4644, XRP 2787, DOT 3130, DOGE 3136, ADA 3717, LINK 3434, AVAX 4540, LTC 2872 | ungültige Kerzen: 0
+  2021-12-04:   30 Finalisten, mittlerer Anteil -0.001 | Tagesspanne Hoch/Tief in bp: BTC 3180, ETH 2506, SOL 2811, XRP 6041, DOT 4304, DOGE 5951, ADA 3247, LINK 5543, AVAX 4500, LTC 4705 | ungültige Kerzen: 0
+Die 10 Tage mit dem größten mittleren Anteil am T-Ergebnis: [('2022-11-08', 0.042), ('2021-09-07', 0.039), ('2021-09-21', 0.036), ('2022-05-11', 0.035), ('2021-11-16', 0.032), ('2022-01-05', 0.027), ('2021-10-27', 0.022), ('2022-11-11', 0.022), ('2021-11-10', 0.022), ('2022-11-09', 0.022)] | Summe 0.299
+t85 in T ohne diese 10 von 685 Tagen: Median 2.02 (mit: 2.37); unter 2: 559 von 1147; nicht mehr positiv: 0

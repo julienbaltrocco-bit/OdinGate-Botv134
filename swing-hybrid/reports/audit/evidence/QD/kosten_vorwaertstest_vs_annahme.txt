@@ -1,0 +1,16 @@
+QD-Audit (nur lesend): im Papier-Test 1 gemessene Kosten gegen die Annahme der Rueckrechnung (2 x halbe Spanne der Stichprobe vom 14.11.2026)
+Messungen: 635 | Zeitraum: 2026-11-15 13:21 bis 2026-11-15 18:58 | Ordergroesse (USDT) Median: 1499.89
+       n  halbe_spanne_bp  kauf_bp  verkauf_bp  max_bp  gemessen_je_order_bp  annahme_bp  verhaeltnis
+coin                                                                                                 
+BTC   64            0.121    0.121       0.121   0.418                 0.121       0.500        0.241
+ETH   64            0.138    0.153       0.138   1.029                 0.145       0.500        0.290
+SOL   64            0.699    0.699       0.699   0.706                 0.699       1.366        0.512
+XRP   64            0.523    0.537       0.530   1.132                 0.534       1.139        0.469
+DOT   64            6.823    6.823       7.754   6.873                 7.289      13.216        0.552
+DOGE  63            0.852    0.852       0.852   0.859                 0.852       1.652        0.516
+ADA   63            3.258    3.258       3.258   3.286                 3.258       6.419        0.508
+LINK  63            0.542    0.655       0.745   1.551                 0.700       1.089        0.643
+AVAX  63            0.717    0.951       1.063   2.765                 1.007       1.451        0.694
+LTC   63            1.113    1.150       1.171   2.547                 1.161       2.184        0.532
+Mittel ueber 10 Coins: gemessen je Order 1.577 bp | Annahme 2.951 bp
+tatsaechliche Papier-Orders Test 1: 10 | mittlere Slippage gegen Signalkurs (bp): 1.457 | Volumen je Order (USDT): 1492.6

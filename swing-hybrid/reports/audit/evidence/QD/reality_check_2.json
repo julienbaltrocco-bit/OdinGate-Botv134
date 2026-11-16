@@ -1,0 +1,51 @@
+{
+ "groesse_k14": {
+  "ablehnung": 0.056666666666666664,
+  "p_mittel": 0.5053666666666667,
+  "p_lt_10": 0.10666666666666667,
+  "rep": 300
+ },
+ "groesse_k11": {
+  "ablehnung": 0.056666666666666664,
+  "p_mittel": 0.49104666666666663,
+  "p_lt_10": 0.10666666666666667,
+  "rep": 300
+ },
+ "trennschaerfe": 1.0,
+ "5 bp (Stand der Auswahl in Runde 3)": {
+  "p_allein": 0.071,
+  "p_white": 0.1232,
+  "p_white_stud": 0.1922,
+  "p_spa": 0.1884,
+  "sharpe": {
+   "tsmom_L48_biasFalse": -0.415585831085567,
+   "tsmom_L48_biasTrue": -0.03010914906292333,
+   "tsmom_L96_biasFalse": 0.20856954472427236,
+   "tsmom_L96_biasTrue": 0.414447727192892,
+   "tsmom_L168_biasFalse": 0.3538774086559783,
+   "tsmom_L168_biasTrue": 0.5071761553493267,
+   "tsmom_L336_biasFalse": 0.8035770237696429,
+   "tsmom_L336_biasTrue": 0.7727679088309601,
+   "ensemble_biasFalse": -0.891393303402079,
+   "ensemble_biasTrue": -0.5934678411311484
+  }
+ },
+ "Yubit-Kosten (ab Runde 6)": {
+  "p_allein": 0.0416,
+  "p_white": 0.0744,
+  "p_white_stud": 0.1256,
+  "p_spa": 0.1256,
+  "sharpe": {
+   "tsmom_L48_biasFalse": 0.014836123005719987,
+   "tsmom_L48_biasTrue": 0.3052643614376848,
+   "tsmom_L96_biasFalse": 0.5153904295910771,
+   "tsmom_L96_biasTrue": 0.6572483149791939,
+   "tsmom_L168_biasFalse": 0.5665657094087035,
+   "tsmom_L168_biasTrue": 0.6807717684817272,
+   "tsmom_L336_biasFalse": 0.9460153886194553,
+   "tsmom_L336_biasTrue": 0.896311168380197,
+   "ensemble_biasFalse": -0.35180126142108853,
+   "ensemble_biasTrue": -0.17216048658161404
+  }
+ }
+}

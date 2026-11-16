@@ -1,0 +1,24 @@
+C13 Fundstellen: wo wird im Ordner forschung/fabrik (und in den Fabrik-Tests) auf Kerzen ab 2024-07-01 zugegriffen? (Textsuche, Stand 00:26 UTC)
+--- I_V2 / I_V2ENDE:
+forschung/fabrik/trichter.py:21:I_V2, I_V2ENDE = L.idx("2024-07-01"), D.N                       # Schlussprüfung V2: 01.07.2024 bis 31.03.2025
+forschung/fabrik/trichter.py:290:        pb, n, roh_basis = tagesreihe(z, I_V2, I_V2ENDE)                    # gemessene Slippage (Bericht)
+forschung/fabrik/trichter.py:291:        p, n, roh = tagesreihe(z, I_V2, I_V2ENDE, modell="bewegt")          # maßgeblich: Slippage wächst mit der Spanne der letzten Kerze
+forschung/fabrik/trichter.py:292:        _, _, roh2 = tagesreihe(z, I_V2, I_V2ENDE, modell="bewegt", faktor=2.0)
+--- D.N als obere Grenze eines Laufs:
+forschung/fabrik/freigabe.py:88:    t, M = trades_voll(z, L.I_TIEFE if tiefe else L.I_T, D.N)
+--- Datumsangaben ab 2024-07 in Code und Tests:
+forschung/fabrik/daten.py:17:RASTER = pd.date_range("2021-07-01", "2025-03-31 23:55", freq="5min")
+forschung/fabrik/lauf.py:28:I_T, I_TIEFE, I_V1, I_ENDE = idx("2021-08-15"), idx("2023-01-01"), idx("2023-07-01"), idx("2024-07-01")
+forschung/fabrik/trichter.py:21:I_V2, I_V2ENDE = L.idx("2024-07-01"), D.N                       # Schlussprüfung V2: 01.07.2024 bis 31.03.2025
+--- Aufrufe von stufe4 / trades_voll außerhalb der Definition:
+forschung/fabrik/freigabe.py:88:    t, M = trades_voll(z, L.I_TIEFE if tiefe else L.I_T, D.N)
+forschung/fabrik/paritaet_papier.py:29:    ref, M = FG.trades_voll(z, i0 - 1, i1)
+forschung/fabrik/trichter.py:5:  .venv/bin/python -I forschung/fabrik/trichter.py stufe4           Schlussprüfung V2 für die eingefrorenen Finalisten (einmal)
+forschung/fabrik/trichter.py:324:    {"statistik": statistik, "stufe3": stufe3, "stufe4": stufe4}[sys.argv[1]]()
+forschung/engine/AUFTRAG.md:45:   `trichter.py stufe3` und, nur wenn es neue Finalisten gibt, einmal `trichter.py stufe4`. Die Schlussprüfung
+--- Felder über die ganze Rasterlänge (enthalten V2), berechnet vor stufe4:
+45:    nach = np.concatenate([g[:, 1:], np.zeros((g.shape[0], 1), bool)], axis=1)
+46:    _g["handelbar"] = g & nach & (fehl7 == 0)                     # keine Datenlücke in den letzten 7 Tagen, Einstiegskerze vorhanden
+60:        _g["slip_bewegt"][key] = np.maximum(float(_g["slip_bp"][j]), SPANNEN_ANTEIL * faktor * (h - l) / c * 1e4)
+--- schlusspruefung.json vorhanden:
+0

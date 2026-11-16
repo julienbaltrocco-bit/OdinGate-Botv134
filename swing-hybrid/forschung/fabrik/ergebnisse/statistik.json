@@ -1,0 +1,51 @@
+{
+ "stand": "2026-11-16 00:35 UTC",
+ "gruppen": {
+  "Kurs, Volumen, Derivate (T 08/2021–06/2023)": {
+   "grundmenge": "Generation 1 (ohne Auswahl erzeugt)",
+   "gueltige_kandidaten": 275596,
+   "stufe1_bestanden": 3374,
+   "anteil_stufe1": 0.0122,
+   "zufallserwartung_stufe1": "0,5 % (Streuung 0,4), wenn die Regeln nichts wissen und die Slippage verlieren; 2,8 % (Streuung 1,5) bei Erwartungswert null (Bootstrap der Gegenprüfung)",
+   "stufe2_bestanden": 1460,
+   "anteil_stufe2": 0.0053,
+   "spaetere_generationen": {
+    "gueltig": 94502,
+    "anteil_stufe1": 0.1302,
+    "hinweis": "aus Gewinnern des Trainings abgeleitet, daher kein Zufallsvergleich"
+   },
+   "deflated_sharpe_ratio": 0.0,
+   "deflated_sharpe_hinweis": "gesichert gälte ein Wert über 0,95",
+   "bester_t_wert_T": 4.58,
+   "reality_check_p": 0.98,
+   "zufalls_maximum_median": 8.93,
+   "zufalls_maximum_95": 23.0,
+   "pbo": 0.032,
+   "pbo_kombinationen": 252,
+   "bester_verliert_im_anderen_teil": 0.246
+  },
+  "Orderbuch-Tiefe (T 2023)": {
+   "grundmenge": "Generation 1 (ohne Auswahl erzeugt)",
+   "gueltige_kandidaten": 26330,
+   "stufe1_bestanden": 463,
+   "anteil_stufe1": 0.0176,
+   "zufallserwartung_stufe1": "0,5 % (Streuung 0,4), wenn die Regeln nichts wissen und die Slippage verlieren; 2,8 % (Streuung 1,5) bei Erwartungswert null (Bootstrap der Gegenprüfung)",
+   "stufe2_bestanden": 162,
+   "anteil_stufe2": 0.00615,
+   "spaetere_generationen": {
+    "gueltig": 23080,
+    "anteil_stufe1": 0.0975,
+    "hinweis": "aus Gewinnern des Trainings abgeleitet, daher kein Zufallsvergleich"
+   },
+   "deflated_sharpe_ratio": 0.0,
+   "deflated_sharpe_hinweis": "gesichert gälte ein Wert über 0,95",
+   "bester_t_wert_T": 3.73,
+   "reality_check_p": 0.8175,
+   "zufalls_maximum_median": 4.35,
+   "zufalls_maximum_95": 6.16,
+   "pbo": 0.02,
+   "pbo_kombinationen": 252,
+   "bester_verliert_im_anderen_teil": 0.262
+  }
+ }
+}

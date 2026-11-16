@@ -1,0 +1,7 @@
+Kurs/Volumen/Derivate: 370757 Kandidaten, 685 Tage | bestes t 5.019 (Zeile ('gen2', 6807), Schiefe seiner Tagesreihe +6.51)
+   wie trichter:      p = 0.3900  Zufalls-Maximum Median 4.79, 95 % 6.78   | statistik.json: p 0.39, Median 4.79, 95 % 6.78, t 5.02
+   eigene Streuung:   p = 0.9575  Zufalls-Maximum Median 8.91, 95 % 23.00
+Orderbuch-Tiefe: 49468 Kandidaten, 365 Tage | bestes t 4.469 (Zeile ('gen2', 266546), Schiefe seiner Tagesreihe +1.09)
+   wie trichter:      p = 0.1675  Zufalls-Maximum Median 3.76, 95 % 5.07   | statistik.json: p 0.1675, Median 3.76, 95 % 5.07, t 4.47
+   eigene Streuung:   p = 0.7750  Zufalls-Maximum Median 5.67, 95 % 9.73
+Rechenzeit 9 s

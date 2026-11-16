@@ -1,0 +1,16 @@
+BTC   unplausible Kerzen (H<max(O,C) oder T>min(O,C)): 0 | |Eröffnung/Vorschluss-1| > 20 bp: 2 Kerzen, max 67 bp | größte Kerzenspanne 1329 bp | sigma<=0 oder NaN in [I_T,I_ENDE): 0
+ETH   unplausible Kerzen (H<max(O,C) oder T>min(O,C)): 0 | |Eröffnung/Vorschluss-1| > 20 bp: 1 Kerzen, max 38 bp | größte Kerzenspanne 1643 bp | sigma<=0 oder NaN in [I_T,I_ENDE): 0
+SOL: Lücke 2022-02-26 00:00:00 bis 2022-02-28 23:55:00 (864 Kerzen) | Schluss davor 92.6900, Eröffnung danach 99.6200 (Sprung +748 bp) | sigma letzte Kerze davor 0.01268, erste danach 0.00482, 1 Tag danach 0.01816
+SOL: Lücke 2022-04-01 00:00:00 bis 2022-04-02 23:55:00 (576 Kerzen) | Schluss davor 122.8500, Eröffnung danach 132.4700 (Sprung +783 bp) | sigma letzte Kerze davor 0.01212, erste danach 0.00474, 1 Tag danach 0.01929
+SOL   unplausible Kerzen (H<max(O,C) oder T>min(O,C)): 0 | |Eröffnung/Vorschluss-1| > 20 bp: 11 Kerzen, max 783 bp | größte Kerzenspanne 3993 bp | sigma<=0 oder NaN in [I_T,I_ENDE): 844
+XRP: Lücke 2022-02-26 00:00:00 bis 2022-02-28 23:55:00 (864 Kerzen) | Schluss davor 0.7696, Eröffnung danach 0.7808 (Sprung +146 bp) | sigma letzte Kerze davor 0.01091, erste danach 0.00131, 1 Tag danach 0.00910
+XRP: Lücke 2022-04-01 00:00:00 bis 2022-04-02 23:55:00 (576 Kerzen) | Schluss davor 0.8146, Eröffnung danach 0.8238 (Sprung +113 bp) | sigma letzte Kerze davor 0.01200, erste danach 0.00060, 1 Tag danach 0.00419
+XRP   unplausible Kerzen (H<max(O,C) oder T>min(O,C)): 0 | |Eröffnung/Vorschluss-1| > 20 bp: 6 Kerzen, max 146 bp | größte Kerzenspanne 2600 bp | sigma<=0 oder NaN in [I_T,I_ENDE): 0
+DOT   unplausible Kerzen (H<max(O,C) oder T>min(O,C)): 0 | |Eröffnung/Vorschluss-1| > 20 bp: 3 Kerzen, max 48 bp | größte Kerzenspanne 2434 bp | sigma<=0 oder NaN in [I_T,I_ENDE): 0
+DOGE  unplausible Kerzen (H<max(O,C) oder T>min(O,C)): 0 | |Eröffnung/Vorschluss-1| > 20 bp: 5 Kerzen, max 37 bp | größte Kerzenspanne 1846 bp | sigma<=0 oder NaN in [I_T,I_ENDE): 0
+ADA   unplausible Kerzen (H<max(O,C) oder T>min(O,C)): 0 | |Eröffnung/Vorschluss-1| > 20 bp: 3 Kerzen, max 32 bp | größte Kerzenspanne 2267 bp | sigma<=0 oder NaN in [I_T,I_ENDE): 0
+LINK  unplausible Kerzen (H<max(O,C) oder T>min(O,C)): 0 | |Eröffnung/Vorschluss-1| > 20 bp: 5 Kerzen, max 174 bp | größte Kerzenspanne 2217 bp | sigma<=0 oder NaN in [I_T,I_ENDE): 0
+AVAX  unplausible Kerzen (H<max(O,C) oder T>min(O,C)): 0 | |Eröffnung/Vorschluss-1| > 20 bp: 10 Kerzen, max 45 bp | größte Kerzenspanne 2200 bp | sigma<=0 oder NaN in [I_T,I_ENDE): 0
+LTC: Lücke 2022-02-26 00:00:00 bis 2022-02-28 23:55:00 (864 Kerzen) | Schluss davor 109.1700, Eröffnung danach 113.6100 (Sprung +407 bp) | sigma letzte Kerze davor 0.00832, erste danach 0.00345, 1 Tag danach 0.01276
+LTC: Lücke 2022-04-01 00:00:00 bis 2022-04-02 23:55:00 (576 Kerzen) | Schluss davor 123.8700, Eröffnung danach 124.8300 (Sprung +78 bp) | sigma letzte Kerze davor 0.01097, erste danach 0.00050, 1 Tag danach 0.00488
+LTC   unplausible Kerzen (H<max(O,C) oder T>min(O,C)): 0 | |Eröffnung/Vorschluss-1| > 20 bp: 6 Kerzen, max 407 bp | größte Kerzenspanne 2278 bp | sigma<=0 oder NaN in [I_T,I_ENDE): 0

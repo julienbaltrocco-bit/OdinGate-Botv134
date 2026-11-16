@@ -1,0 +1,82 @@
+{
+ "momentum_vol_ls_baseline": {
+  "pruef": {
+   "rendite_brutto": 0.2110492178962331,
+   "rendite_ohne": 0.1705446172878936,
+   "rendite_mit": 0.20497352780498218,
+   "dd_mit": 0.2507312905230326,
+   "volumen_tag": 0.0886703165681687,
+   "rebate_tag": 6.029581526635473e-05,
+   "tage": 571.0
+  },
+  "entw": {
+   "rendite_brutto": 0.2432791972645511,
+   "rendite_ohne": 0.17055062440244978,
+   "rendite_mit": 0.23236991133523588,
+   "dd_mit": 0.422729438330029,
+   "volumen_tag": 0.09226392024116371,
+   "rebate_tag": 6.273946576399132e-05,
+   "tage": 985.3333333333334
+  }
+ },
+ "momentum_vol_ls_swing_limit": {
+  "pruef": {
+   "rendite_brutto": 0.22206582848845435,
+   "rendite_ohne": 0.1938078522687387,
+   "rendite_mit": 0.21782713205549697,
+   "dd_mit": 0.24880720248692603,
+   "volumen_tag": 0.0886666854116378,
+   "rebate_tag": 4.2065288593272026e-05,
+   "tage": 571.0
+  },
+  "entw": {
+   "rendite_brutto": 0.25440288370011593,
+   "rendite_ohne": 0.20372316070963753,
+   "rendite_mit": 0.24680092525154412,
+   "dd_mit": 0.41554480812313027,
+   "volumen_tag": 0.09227610476941808,
+   "rebate_tag": 4.3718976192733396e-05,
+   "tage": 985.3333333333334
+  }
+ },
+ "trail_beide_baseline": {
+  "pruef": {
+   "rendite_brutto": 0.12342008873479715,
+   "rendite_ohne": 0.07153222690351047,
+   "rendite_mit": 0.11563690946010419,
+   "dd_mit": 0.22191694049415986,
+   "volumen_tag": 0.11358989017357009,
+   "rebate_tag": 7.724112531802766e-05,
+   "tage": 571.0
+  },
+  "entw": {
+   "rendite_brutto": 0.9979231172446097,
+   "rendite_ohne": 0.8869284865207089,
+   "rendite_mit": 0.9812739226360245,
+   "dd_mit": 0.17401433015023718,
+   "volumen_tag": 0.10907491226798424,
+   "rebate_tag": 7.41709403422293e-05,
+   "tage": 1272.0
+  }
+ },
+ "trail_beide_swing_limit": {
+  "pruef": {
+   "rendite_brutto": 0.13447292428840063,
+   "rendite_ohne": 0.0973186753945694,
+   "rendite_mit": 0.12889978695432602,
+   "dd_mit": 0.21676463695394715,
+   "volumen_tag": 0.11359463617674578,
+   "rebate_tag": 5.530842654948613e-05,
+   "tage": 571.0
+  },
+  "entw": {
+   "rendite_brutto": 1.0057083931235327,
+   "rendite_ohne": 0.9262965655219613,
+   "rendite_mit": 0.993796618983297,
+   "dd_mit": 0.17570328838085286,
+   "volumen_tag": 0.10907222617624149,
+   "rebate_tag": 5.3066079765201005e-05,
+   "tage": 1272.0
+  }
+ }
+}

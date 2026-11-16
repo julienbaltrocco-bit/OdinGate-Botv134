@@ -1,0 +1,33 @@
+gelesen aus Commit 3dfd5b2 2026-11-15T19:03:04+00:00
+
+========== Test 1
+  Orders: protokoll 10 | zustand.orders 10 | stand.csv letzte Zeile 10 -> ok
+  Positionen aus Protokoll == zustand.pos: True
+  Kasse aus Protokoll == zustand.kasse: True max. Abweichung 0.00e+00
+  Gebuehr Protokoll 11.940540 vs. Zustand 11.940540; Rebate 10.149458 vs. 10.149459
+  Vermoegen aus zustand.json: brutto 267.5080, netto_mit_rebate 264.5666 | stand.csv letzte Zeile: brutto 267.508, netto_mit_rebate 264.5666 -> ok
+  letzter Lauf stand.csv: 2026-11-15 18:58 | funding_zeit: ['2026-11-15 18:58:01'] | letzte_kerze: 2026-11-15 17:00:00
+  dashboard.json: letzter_lauf 2026-11-15 18:58 | geschrieben 2026-11-15T18:58:27Z | laeufe 64 (stand.csv: 64 ) | takt_minuten 60
+  Zeitformat: stand.csv 'zeit' ohne Zeitzonenangabe: '2026-11-15 18:58' | dashboard verlauf: 2026-11-15T18:58:00Z
+  Schluessel im Zustand: ['funding', 'funding_zeit', 'gebuehr', 'gesperrt_tag', 'kapital', 'kasse', 'kurs', 'letzte_kerze', 'orders', 'pos', 'rebate', 'start', 'tag', 'tag_start', 'version']
+  Einstiegskurs nur im Zustand (einstieg)? False | tag_start 0.0 | tagesverlust_limit cfg 1.0
+  stand.csv Zeit streng aufsteigend: True
+  stand.csv: 64 Datenzeilen, Spaltenzahlen {11}, 5350 Bytes, CRLF: False
+  protokoll.csv: 10 Datenzeilen, Spaltenzahlen {15}, 1306 Bytes, CRLF: False
+  spannen.csv: 635 Datenzeilen, Spaltenzahlen {8}, 38507 Bytes, CRLF: False
+
+========== Test 2
+  Orders: protokoll 10 | zustand.orders 10 | stand.csv letzte Zeile 10 -> ok
+  Positionen aus Protokoll == zustand.pos: True
+  Kasse aus Protokoll == zustand.kasse: True max. Abweichung 0.00e+00
+  Gebuehr Protokoll 11.966741 vs. Zustand 11.966741; Rebate 10.171730 vs. 10.171730
+  Vermoegen aus zustand.json: brutto -8.6558, netto_mit_rebate -10.4508 | stand.csv letzte Zeile: brutto -8.6558, netto_mit_rebate -10.4508 -> ok
+  letzter Lauf stand.csv: 2026-11-15 18:58 | funding_zeit: ['2026-11-15 18:58:28'] | letzte_kerze: 2026-11-15 17:00:00
+  dashboard.json: letzter_lauf 2026-11-15 18:58 | geschrieben 2026-11-15T18:58:53Z | laeufe 14 (stand.csv: 14 ) | takt_minuten 60
+  Zeitformat: stand.csv 'zeit' ohne Zeitzonenangabe: '2026-11-15 18:58' | dashboard verlauf: 2026-11-15T18:58:00Z
+  Schluessel im Zustand: ['einstieg', 'funding', 'funding_zeit', 'gebuehr', 'gesperrt_tag', 'kapital', 'kasse', 'kurs', 'letzte_kerze', 'orders', 'pos', 'rebate', 'sperre', 'start', 'tag', 'tag_start', 'version']
+  Einstiegskurs nur im Zustand (einstieg)? True | tag_start 0.0 | tagesverlust_limit cfg 1.0
+  stand.csv Zeit streng aufsteigend: True
+  stand.csv: 14 Datenzeilen, Spaltenzahlen {11}, 1189 Bytes, CRLF: False
+  protokoll.csv: 10 Datenzeilen, Spaltenzahlen {15}, 1323 Bytes, CRLF: False
+  spannen.csv: 140 Datenzeilen, Spaltenzahlen {8}, 8558 Bytes, CRLF: False

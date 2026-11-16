@@ -1,0 +1,13 @@
+Code-Stand: trichter:0bfc2db0 lauf:4a548736 kern:43e6339a evolution:6386a868
+1) Trockenlauf gen2 aus gen1 auf dem heutigen Stand der Datenbank (nach Stufe 3):
+gen2x: 300 Eltern-Regeln -> 5539 Aufgaben -> 182160 Kandidaten
+   gespeicherte Liste (vor Stufe 3 erzeugt): 5539 Aufgaben | Trockenlauf: 5539 Aufgaben | gleich Stück für Stück: True
+   Eltern-Regeln: 300
+   Regeln mit mindestens einem Kandidaten nach Stufe 2: 759; gewählt werden die 300 mit dem höchsten t85_t; Grenze t = 2.472, nächster 2.469
+2) Gegenprobe: Elternwahl allein aus T-Größen nachgebaut (Bedingungen von lauf.bewerte auf den Spalten n_t, roh_t, t_roh_t, n85_t, t85_t, n85_h1, n85_h2, n85_2x_t)
+   Eltern laut evolution 300, allein aus T-Spalten nachgebaut 300, gemeinsam 300
+   Anteil der gen1-Kandidaten nach Stufe 2, die V1 bestehen: 0.358 - Eltern werden trotzdem alle nach T gewählt (auch die in V1 gescheiterten bleiben Eltern).
+3) Trockenlauf einer dritten Generation aus gen2:
+gen3x: 300 Eltern-Regeln -> 5261 Aufgaben -> 165120 Kandidaten
+   Probe der Kennungsrechnung: 6570 von 6570 Kennungen der ersten 200 gen2-Aufgaben stehen in der Datenbank
+   gen3 hätte 165120 Kandidaten; davon mit einer Kennung, die schon gerechnet ist: 76140 (46.1%) - sie würden unter (id, 'gen3') ein zweites Mal gespeichert und gezählt

@@ -1,0 +1,81 @@
+{
+ "hinweis": "Zusatzangabe nach Abschnitt 19, zweiter Nachtrag: Schlussprüfung mit der einfachen (ruhig gemessenen) Slippage. Ändert keinen Status.",
+ "finalisten": 1199,
+ "positiv": 696,
+ "p_unter_5pct": 123,
+ "zufallserwartung": 60.0,
+ "bh_bestanden": 1,
+ "by_bestanden": 0,
+ "kleinste_p": [
+  {
+   "id": "24332e4d3769",
+   "signal": "tiefe_3",
+   "p": 3.8e-05,
+   "n85_bp": 25.37,
+   "tiefe": true
+  },
+  {
+   "id": "15a85e6a1c01",
+   "signal": "mom_288",
+   "p": 0.000789,
+   "n85_bp": 106.26,
+   "tiefe": false
+  },
+  {
+   "id": "8ff28fcefdca",
+   "signal": "tiefe_3",
+   "p": 0.000876,
+   "n85_bp": 24.8,
+   "tiefe": true
+  },
+  {
+   "id": "1f9744bc8935",
+   "signal": "mom_144",
+   "p": 0.000949,
+   "n85_bp": 37.14,
+   "tiefe": false
+  },
+  {
+   "id": "8333162a7bce",
+   "signal": "rsi_48",
+   "p": 0.001995,
+   "n85_bp": 36.72,
+   "tiefe": false
+  },
+  {
+   "id": "4628c5a0dc9b",
+   "signal": "mom_144",
+   "p": 0.002531,
+   "n85_bp": 41.83,
+   "tiefe": false
+  },
+  {
+   "id": "d04c7669d464",
+   "signal": "mom_144",
+   "p": 0.002716,
+   "n85_bp": 35.96,
+   "tiefe": false
+  },
+  {
+   "id": "c138a77f8776",
+   "signal": "tiefe_3",
+   "p": 0.002796,
+   "n85_bp": 20.05,
+   "tiefe": true
+  },
+  {
+   "id": "956ec12b9713",
+   "signal": "tiefe_3",
+   "p": 0.003326,
+   "n85_bp": 30.4,
+   "tiefe": true
+  },
+  {
+   "id": "14dd478eea8d",
+   "signal": "tiefe_3",
+   "p": 0.005075,
+   "n85_bp": 13.23,
+   "tiefe": true
+  }
+ ]
+}

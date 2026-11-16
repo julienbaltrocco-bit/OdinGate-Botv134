@@ -1,0 +1,110 @@
+{
+ "id": "B-dc1d27a3",
+ "name": "Beobachtung (nicht validiert): Gegen einseitigen Kaufdruck, Altcoins",
+ "version": "1.0",
+ "strategie": "fabrik",
+ "art": "Schattentest (Binance-Archiv, ein Tag Verzug, keine Orders)",
+ "coins": [
+  "XRP",
+  "DOT",
+  "DOGE",
+  "ADA",
+  "LINK",
+  "AVAX",
+  "LTC"
+ ],
+ "coin_index": [
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "daten": [
+  "minuten"
+ ],
+ "kandidat": {
+  "signal": "kaufdruck_48",
+  "th": 3.5,
+  "r": -1,
+  "f": "vol_hoch",
+  "k": 1,
+  "ausstieg": [
+   144,
+   0,
+   0,
+   0.5,
+   1.0,
+   null
+  ],
+  "ausstieg_name": "h720_zielnachzug",
+  "markt": "alt7",
+  "best": [
+   "volspitze_1",
+   1.0,
+   -1
+  ],
+  "kennung": "dc1d27a31f5f",
+  "generation": "gen2"
+ },
+ "regel": "Signal kaufdruck_48, Schwelle 3.5, gegen das Signal, Filter vol_hoch, geprüft alle 5 Minuten, Ausstieg h720_zielnachzug, Bestätigung durch volspitze_1.",
+ "start": "2026-11-17T00:00:00Z",
+ "vorlauf_tage": 38,
+ "kapital_usd": 5000,
+ "hebel": 3.0,
+ "kosten": {
+  "taker_bp": 8.0,
+  "rebate": 0.85,
+  "slippage_bp_je_order": {
+   "XRP": 1.1386443935635169,
+   "DOT": 13.215697630830624,
+   "DOGE": 1.6521636426368476,
+   "ADA": 6.418963472357196,
+   "LINK": 1.0888718581607013,
+   "AVAX": 1.4508322296574665,
+   "LTC": 2.1837640376441514
+  },
+  "slippage_anteil_spanne": 0.05
+ },
+ "risiko": {
+  "mmr": 0.01,
+  "abbruch_kontostand": 0.7
+ },
+ "validierung": "NICHT validiert. Regel der Strategie-Fabrik, in Training, Auswahl- und Schlussprüfung positiv (Schlussprüfung netto mit Rebate +181,8 bp je Trade, ohne Rebate +168,2 bp), aber nur 50 Trades in neun Monaten: nicht von Glück zu unterscheiden (p = 0,07) und nach Korrektur für die vielen gleichzeitig geprüften Regeln nicht bestanden. Ausgewählt nach dem besten Ergebnis in der Auswahlprüfung, nicht nach der Schlussprüfung. Beobachtungstest: Nur neue Daten können klären, ob etwas daran ist. Die Regel handelt selten (rund sieben Trades im Monat) und ohne Stop.",
+ "rueckrechnung": {
+  "n85_t": 62.196,
+  "n85_v1": 112.925,
+  "n85_v2": 181.84,
+  "n0_v2": 168.24,
+  "t85_v2": 1.48,
+  "trades_v2": 50,
+  "ertrag_jahr_pct_hebel1_v2": 17.3,
+  "haltedauer_min": 167.0,
+  "risiko_starttage": {
+   "3.0": {
+    "starttage": 1271,
+    "tiefster_kontostand": 0.537,
+    "liquidationen": 0,
+    "anteil_unter_70pct": 0.0881
+   },
+   "2.0": {
+    "starttage": 1271,
+    "tiefster_kontostand": 0.691,
+    "liquidationen": 0,
+    "anteil_unter_70pct": 0.0008
+   },
+   "1.0": {
+    "starttage": 1271,
+    "tiefster_kontostand": 0.846,
+    "liquidationen": 0,
+    "anteil_unter_70pct": 0.0
+   }
+  }
+ },
+ "eingefroren": "2026-11-16",
+ "beobachtung": true,
+ "freigabe": "Beobachtungstest, nicht validiert; vom Auftraggeber am 16.11.2026 freigegeben (protokoll.md Abschnitt 28) (nur Papierhandel)",
+ "strategie_sha256": "ba1d49068666951b095473e95ac047768bdfe61b3180f8648fe442fa473055b2"
+}

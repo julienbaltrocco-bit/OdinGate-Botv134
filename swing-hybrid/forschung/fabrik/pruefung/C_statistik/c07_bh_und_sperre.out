@@ -1,0 +1,30 @@
+Code-Stand: trichter:0bfc2db0 lauf:4a548736 kern:43e6339a evolution:6386a868
+1) geprüfter Abschnitt aus trichter.stufe4 (wörtlich):
+      | m = len(erg)
+      | erg.sort(key=lambda e: e["p_v2"])
+      | grenze = 0
+      | for i, e in enumerate(erg, 1):                                 # Benjamini-Hochberg über alle jemals geprüften Finalisten, Fehlentdeckungsrate 10 %
+      |     if e["p_v2"] <= 0.10 * i / m:
+      |         grenze = i
+      | for i, e in enumerate(erg, 1):
+      |     e["bh_bestanden"] = i <= grenze
+      |     e["validiert"] = bool(e["bh_bestanden"] and e["n85_v2"] > 0 and e["n85_2x_v2"] > 0)
+
+   3000 künstliche Fälle (m = 1 bis 1327, Gleichstände, Nullen, gerundete p-Werte): Abweichungen zur Lehrbuchrechnung 0, zu scipy 0
+   Zusatzbedingungen: BH bestanden [True, True, True, False] | validiert (zusätzlich n85_v2 > 0 und n85_2x_v2 > 0): [True, False, False, False]
+   Rundung: p_v2 wird vor dem Vergleich auf 6 Stellen gerundet; kleinste Schwelle bei m = 1327: 0,10 / 1327 = 7.536e-05 (Rundungsfehler bis 5e-7 = 0.7% der Schwelle)
+
+2) Sperre gegen Wiederholung (Zeilen aus stufe4, wörtlich):
+      | bekannt = {(e["id"], e["gen"]) for e in alt["ergebnisse"]}
+      | neu = [f for f in fin["finalisten"] if (f["id"], f["gen"]) not in bekannt]
+
+   dieselben Finalisten noch einmal: als 'neu' zur Prüfung auf V2 zugelassen: []
+   dieselbe Regel (gleiche Kennung) in einer späteren Generation neu gerechnet: als 'neu' zur Prüfung auf V2 zugelassen: ['aaa/gen3']
+   Gruppenmitglied eines schon geprüften Finalisten, in einem späteren Stufe-3-Lauf zum Finalisten geworden: als 'neu' zur Prüfung auf V2 zugelassen: ['ccc/gen3']
+   Ohne die Datei schlusspruefung.json (gelöscht, verschoben) gilt alles als neu: bekannt = set() -> alle Finalisten würden erneut auf V2 gerechnet.
+
+3) Zufällig 'validiert' bei Fehlentdeckungsrate 10 %
+   a) 1327 unabhängige Finalisten ohne Vorteil (p gleichverteilt), 20.000 Durchläufe: mindestens einer validiert in 9.9%, im Mittel 0.123, größter Wert 5
+   b) echte Finalisten-Reihen ohne Vorteil, Tage einzeln gezogen, 4.000 Durchläufe: mindestens einer validiert in 4.3%; Zahl der Validierten im Mittel 0.6, Median 0, 95 % 0, 99 % 5, größter Wert 342 | Anteil p < 0,05 im Mittel 0.040 (Soll 0,05)
+   b) echte Finalisten-Reihen ohne Vorteil, Blöcke von im Mittel 10 Tagen, 4.000 Durchläufe: mindestens einer validiert in 6.2%; Zahl der Validierten im Mittel 0.8, Median 0, 95 % 1, 99 % 15, größter Wert 249 | Anteil p < 0,05 im Mittel 0.039 (Soll 0,05)
+      Wenn mindestens einer validiert wird, dann im Mittel 14 zugleich (Median 2).

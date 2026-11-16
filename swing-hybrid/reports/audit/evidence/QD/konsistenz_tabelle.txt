@@ -1,0 +1,50 @@
+Runde Zeile  Aussage                                               Protokoll        Datei  Urteil
+    1    62  Einstellungen, die Stufe 1 bestehen (von 30)                  3       3.0000  stimmt
+    2    98  Einstellungen, die Stufe 1 bestehen                           1       1.0000  stimmt
+    3   135  Hebel des Kandidaten                                        0.2       0.2000  stimmt
+    3   136  Pruefzeitraum netto mit Rebate, Hebel 0,2 (%)               2.4       2.4440  stimmt
+    3   136  Zufallstest nur Pruefzeitraum (Perzentil)                    80      80.5000  stimmt
+    4   163  Breites Portfolio Pruefzeitraum (%)                         5.5       5.4865  stimmt
+    5   205  vol_beide schlechtere Haelfte (Sharpe)                     0.74       0.7446  stimmt
+    5   205  Basis schlechtere Haelfte (Sharpe)                         0.44       0.4355  stimmt
+    5   207  Gruppe D Pruefzeitraum vol_beide (%)                       -0.6      -0.5968  stimmt
+    5   211  60 Coins Pruefzeitraum, Hebel 0,15 (%)                      2.7       2.7395  stimmt
+    5   211  60 Coins gesamter Zeitraum (%)                             27.6      27.5708  stimmt
+    6   258  Kandidat Yubit-Kosten Entwicklung, Hebel 0,2 (%)           41.3      41.3346  stimmt
+    6   258  Kandidat Yubit-Kosten Pruefzeitraum (%)                     5.2       5.1698  stimmt
+    6   259  dasselbe mit doppelten Kosten (%)                           1.2       1.2174  stimmt
+    6   262  Rangfolge Pruefzeitraum Gruppe A (%)                       -5.5      -5.5101  stimmt
+    6   265  Kombination Pruefzeitraum (%)                               5.9       5.8830  stimmt
+    7   322  orderfluss Pruefzeitraum Gruppe A (%)                     -18.2     -18.2487  stimmt
+    8   347  23 guenstige Coins Pruefzeitraum (%)                       16.5      16.4678  stimmt
+    9   372  Top-20-Umsatz Entwicklung (%)                              22.4      22.3515  stimmt
+    9   372  Top-20-Umsatz Pruefzeitraum (%)                             5.1       5.0859  stimmt
+   10   461  Listings Pruefzeitraum (%)                               -107.7    -107.6528  stimmt
+   11   506  Zahl der Varianten                                          602     602.0000  stimmt
+   11   508  Varianten, die Stufe 1 bestehen                               9       9.0000  stimmt
+   13   639  Niedrig-Risiko D2 vor Gebuehren (%)                        -8.2      -8.1675  stimmt
+   14   699  Nicht-Krypto-Trend Entwicklung (%)                        -66.4     -66.4258  stimmt
+   14   702  Kandidat Sharpe Entwicklung (Einsatz 100 %)                0.95       0.9457  stimmt
+   14   702  Kandidat Sharpe Pruefzeitraum                              0.34       0.3369  stimmt
+   15   736  12-Monats-Trend Pruefzeitraum (%)                          18.7      18.6588  stimmt
+   16   790  Kandidat Pruefzeitraum netto, Einsatz 100 % (%)            25.8      25.8491  stimmt
+   16   790  mit QQQ-Filter (%)                                        -22.4     -22.4099  stimmt
+   17   838  Aktien-Momentum Pruefzeitraum (%)                          33.5      33.5406  stimmt
+   18   891  Trades                                                      173     173.0000  stimmt
+   18   893  netto je Trade (%)                                         0.92       0.9169  stimmt
+   19   958  fest5 Trades Entwicklung                                  16064   16064.0000  stimmt
+   20   996  Teil A netto je Trade (%)                                  0.14       0.1371  stimmt
+   21  1062  Kandidat Sharpe D1                                         0.56       0.5640  stimmt
+   21  1062  Kandidat Sharpe D2                                         1.32       1.3165  stimmt
+   21  1067  Funding-Filter Vorsprung (Punkte/Jahr)                       10      10.3474  stimmt
+   21  1068  p-Wert der besten (%)                                        84      84.2600  stimmt
+   21  1068  Schwelle (Punkte/Jahr)                                       44      44.4285  stimmt
+   22  1114  Pruefzeitraum Sharpe Kandidat, 49 Coins                    0.38       0.3846  stimmt
+   22  1115  Vorperiode Sharpe mit Filter                               0.48       0.4830  stimmt
+   23  1208  roh Trades                                                 4440    4440.0000  stimmt
+   24  1270  Kandidat Ertrag pro Jahr (%)                                 59      59.4017  stimmt
+   24  1271  Kandidat Einbruch (%)                                      24.6      24.5800  stimmt
+   24  1282  sl5_tp15 Sharpe gesamt                                     1.13       1.1345  stimmt
+   24  1289  p-Wert der besten (%)                                        54      54.0000  stimmt
+
+47 von 47 Stichproben stimmen, aus 23 Runden.

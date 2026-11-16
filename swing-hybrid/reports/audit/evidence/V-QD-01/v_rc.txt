@@ -1,0 +1,33 @@
+=== 1. Abgleich mit gespeicherter Stufe 1 der Runde 3 (reports/suche_runde3_stufe1.csv), sofortige Ausfuehrung, 5 bp, ohne Vorlauf
+groesste Abweichung (Sharpe und Netto je Haelfte, 10 Einstellungen) gegen die gespeicherte Datei: 4.44e-16
+gespeichert: bestanden/score -> {'tsmom_L48_biasFalse': (False, -0.479), 'tsmom_L48_biasTrue': (False, -0.537), 'tsmom_L96_biasFalse': (True, 0.047), 'tsmom_L96_biasTrue': (False, -0.181), 'tsmom_L168_biasFalse': (False, -0.059), 'tsmom_L168_biasTrue': (False, -0.282), 'tsmom_L336_biasFalse': (True, 0.421), 'tsmom_L336_biasTrue': (False, -0.035), 'ensemble_biasFalse': (False, -0.949), 'ensemble_biasTrue': (False, -0.878)}
+Finalisten nach gespeicherter Regel (scripts/suche_runde3.py:54): ['tsmom_L336_biasFalse', 'tsmom_L96_biasFalse']
+
+=== 2. Auswahl-Korrektur ueber die 10 Trend-Einstellungen, nur Entwicklung (15.08.2021-31.03.2025)
+--- 5 bp, ohne Vorlauf (Aufbau Runde 3): Tage 1325; bestes Tagesmittel tsmom_L336_biasFalse; bester Sharpe tsmom_L336_biasFalse; Kandidat +0.505/Jahr, Sharpe 0.803
+    Sharpe aller 10: {'tsmom_L48_biasFalse': -0.42, 'tsmom_L48_biasTrue': -0.14, 'tsmom_L96_biasFalse': 0.21, 'tsmom_L96_biasTrue': 0.3, 'tsmom_L168_biasFalse': 0.35, 'tsmom_L168_biasTrue': 0.41, 'tsmom_L336_biasFalse': 0.8, 'tsmom_L336_biasTrue': 0.64, 'ensemble_biasFalse': -0.89, 'ensemble_biasTrue': -0.66}
+    Projektfunktion mutationen.reality_check: p allein 0.0710 | White ueber 10: seed 3 -> 0.1250, seed 21 -> 0.1244
+    eigene Umsetzung (10.000 Ziehungen, Block 20, anderer Zufallsstart): p_allein 0.0753 | white_roh 0.1329 | white_stud 0.2058 | spa_c 0.2008 | spa_l 0.1760 | sharpe_allein 0.0633 | sharpe_max 0.1612 | bonferroni 0.7530 | k 10
+    Block  5: p_allein 0.0725 | white_roh 0.1490 | white_stud 0.2195 | spa_c 0.2195 | sharpe_max 0.1840
+    Block 40: p_allein 0.0622 | white_roh 0.1072 | white_stud 0.1690 | spa_c 0.1630 | sharpe_max 0.1328
+--- 5 bp, mit Vorlauf: Tage 1325; bestes Tagesmittel tsmom_L336_biasFalse; bester Sharpe tsmom_L336_biasFalse; Kandidat +0.505/Jahr, Sharpe 0.803
+    Sharpe aller 10: {'tsmom_L48_biasFalse': -0.42, 'tsmom_L48_biasTrue': -0.03, 'tsmom_L96_biasFalse': 0.21, 'tsmom_L96_biasTrue': 0.41, 'tsmom_L168_biasFalse': 0.35, 'tsmom_L168_biasTrue': 0.51, 'tsmom_L336_biasFalse': 0.8, 'tsmom_L336_biasTrue': 0.77, 'ensemble_biasFalse': -0.89, 'ensemble_biasTrue': -0.59}
+    Projektfunktion mutationen.reality_check: p allein 0.0710 | White ueber 10: seed 3 -> 0.1232, seed 21 -> 0.1242
+    eigene Umsetzung (10.000 Ziehungen, Block 20, anderer Zufallsstart): p_allein 0.0753 | white_roh 0.1351 | white_stud 0.2039 | spa_c 0.1990 | spa_l 0.1787 | sharpe_allein 0.0633 | sharpe_max 0.1603 | bonferroni 0.7530 | k 10
+    Block  5: p_allein 0.0725 | white_roh 0.1475 | white_stud 0.2180 | spa_c 0.2180 | sharpe_max 0.1835
+    Block 40: p_allein 0.0622 | white_roh 0.1123 | white_stud 0.1688 | spa_c 0.1630 | sharpe_max 0.1358
+--- Yubit-Kosten, mit Vorlauf (ab Runde 6): Tage 1325; bestes Tagesmittel tsmom_L336_biasFalse; bester Sharpe tsmom_L336_biasFalse; Kandidat +0.594/Jahr, Sharpe 0.946
+    Sharpe aller 10: {'tsmom_L48_biasFalse': 0.01, 'tsmom_L48_biasTrue': 0.31, 'tsmom_L96_biasFalse': 0.52, 'tsmom_L96_biasTrue': 0.66, 'tsmom_L168_biasFalse': 0.57, 'tsmom_L168_biasTrue': 0.68, 'tsmom_L336_biasFalse': 0.95, 'tsmom_L336_biasTrue': 0.9, 'ensemble_biasFalse': -0.35, 'ensemble_biasTrue': -0.17}
+    Projektfunktion mutationen.reality_check: p allein 0.0416 | White ueber 10: seed 3 -> 0.0744, seed 21 -> 0.0772
+    eigene Umsetzung (10.000 Ziehungen, Block 20, anderer Zufallsstart): p_allein 0.0466 | white_roh 0.0811 | white_stud 0.1359 | spa_c 0.1359 | spa_l 0.1301 | sharpe_allein 0.0367 | sharpe_max 0.0981 | bonferroni 0.4660 | k 10
+    Block  5: p_allein 0.0447 | white_roh 0.0920 | white_stud 0.1405 | spa_c 0.1405 | sharpe_max 0.1168
+    Block 40: p_allein 0.0393 | white_roh 0.0675 | white_stud 0.1062 | spa_c 0.1062 | sharpe_max 0.0795
+
+=== 3. A fortiori: alle bis Runde 3 getesteten Signal-Einstellungen (30 aus Runde 1 + 2 neue mit L=336), sofortige Ausfuehrung, Entwicklung
+    Hinweis: Runde 1 hat diese 30 mit passiver Ausfuehrung und Tageslimit gemessen; hier einheitlich gemessen, nur als Groessenordnung.
+--- 5 bp: 32 Einstellungen; bestes Tagesmittel tsmom_L336_biasFalse; bester Sharpe tsmom_L336_biasFalse (0.803); Sharpe-Spanne [-8.42, 0.80]
+    p_allein 0.0718 | white_roh 0.1674 | white_stud 0.6226 | spa_c 0.3258 | spa_l 0.2122 | sharpe_allein 0.0604 | sharpe_max 0.4878 | bonferroni 1.0000 | k 32
+--- Yubit-Kosten: 32 Einstellungen; bestes Tagesmittel tsmom_L336_biasFalse; bester Sharpe tsmom_L336_biasFalse (0.946); Sharpe-Spanne [-5.92, 0.95]
+    p_allein 0.0448 | white_roh 0.0902 | white_stud 0.4320 | spa_c 0.2674 | spa_l 0.1880 | sharpe_allein 0.0352 | sharpe_max 0.2946 | bonferroni 1.0000 | k 32
+
+fertig nach 86 s

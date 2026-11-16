@@ -1,0 +1,11 @@
+Spalten: ['zeit', 'symbol', 'geld', 'brief'] | Zeilen: 16680
+BTC   Messungen   30  halbe Spanne  0.137 bp  -> je Order  0.500 bp | slip_bp.npy  0.500 | Abw. 0.00e+00 | je Trade (2 Orders)  1.000 bp, doppelt  2.000 bp | Untergrenze greift: True
+ETH   Messungen   30  halbe Spanne  0.145 bp  -> je Order  0.500 bp | slip_bp.npy  0.500 | Abw. 0.00e+00 | je Trade (2 Orders)  1.000 bp, doppelt  2.000 bp | Untergrenze greift: True
+SOL   Messungen   30  halbe Spanne  0.683 bp  -> je Order  1.366 bp | slip_bp.npy  1.366 | Abw. 0.00e+00 | je Trade (2 Orders)  2.732 bp, doppelt  5.463 bp | Untergrenze greift: False
+XRP   Messungen   30  halbe Spanne  0.569 bp  -> je Order  1.139 bp | slip_bp.npy  1.139 | Abw. 2.22e-16 | je Trade (2 Orders)  2.277 bp, doppelt  4.555 bp | Untergrenze greift: False
+DOT   Messungen   30  halbe Spanne  6.608 bp  -> je Order 13.216 bp | slip_bp.npy 13.216 | Abw. 3.55e-15 | je Trade (2 Orders) 26.431 bp, doppelt 52.863 bp | Untergrenze greift: False
+DOGE  Messungen   30  halbe Spanne  0.826 bp  -> je Order  1.652 bp | slip_bp.npy  1.652 | Abw. 0.00e+00 | je Trade (2 Orders)  3.304 bp, doppelt  6.609 bp | Untergrenze greift: False
+ADA   Messungen   30  halbe Spanne  3.209 bp  -> je Order  6.419 bp | slip_bp.npy  6.419 | Abw. 0.00e+00 | je Trade (2 Orders) 12.838 bp, doppelt 25.676 bp | Untergrenze greift: False
+LINK  Messungen   30  halbe Spanne  0.544 bp  -> je Order  1.089 bp | slip_bp.npy  1.089 | Abw. 2.22e-16 | je Trade (2 Orders)  2.178 bp, doppelt  4.355 bp | Untergrenze greift: False
+AVAX  Messungen   30  halbe Spanne  0.725 bp  -> je Order  1.451 bp | slip_bp.npy  1.451 | Abw. 0.00e+00 | je Trade (2 Orders)  2.902 bp, doppelt  5.803 bp | Untergrenze greift: False
+LTC   Messungen   30  halbe Spanne  1.092 bp  -> je Order  2.184 bp | slip_bp.npy  2.184 | Abw. 4.44e-16 | je Trade (2 Orders)  4.368 bp, doppelt  8.735 bp | Untergrenze greift: False

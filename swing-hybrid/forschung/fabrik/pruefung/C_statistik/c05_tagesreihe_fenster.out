@@ -1,0 +1,21 @@
+Code-Stand: trichter:0bfc2db0 lauf:4a548736 kern:43e6339a evolution:6386a868
+1) V2-Indizes: I_V2 = 315648 = 2024-07-01 00:00:00 | I_V2ENDE = 394560 = Rasterlänge 394560 | Tage (I_V2ENDE - I_V2) // 288 = 274 | Rest 0 | letzter Rasterpunkt 2025-03-31 23:55:00
+   Tagesnummer der Kerze I_V2: 0 | der letzten Kerze: 273 | Kerzen vor I_V2 erhalten Tag 0 (sie werden von sim nicht gebucht, weil der Lauf bei i0 beginnt)
+
+V2-blinde Umgebung: D.N = 315648 = 2024-07-01 00:00:00 | Länge der Kursreihe im Speicher: 315648
+
+2) Probe-V2 = V1 (Kerzen 210240 bis 315648 ), 60 Finalisten
+   L.I_ENDE nach jedem Aufruf wieder 315648: True
+   Anteil der V1-Tage mit bitgleichem Tagesergebnis (Fenster ab V1 gegen durchgehenden Lauf ab T): Median 1.000, kleinster Wert 0.997
+   Korrelation der Tagesreihen: Median 1.0000, kleinster Wert 0.9997 (bei um einen Tag verschobenen Tagesnummern läge sie nahe 0)
+   Unterschied im t-Wert über V1 allein durch den Start ohne offene Position: Mittel +0.000, größter Betrag 0.024
+3) Fenster bis 2024-01-01: Kandidaten mit Abweichungen früher als zwei Tage vor dem Fensterende: 0 von 60
+
+4) 'Doppelte Slippage' im Modell bewegt: Slippage je Order = max(gemessen, 5 % * faktor * Spanne der letzten Kerze)
+   BTC   gemessen 0.50 bp | bewegt faktor 1: Mittel 1.13 | faktor 2: Mittel 2.18 = 1.93-fach | Kerzen, in denen faktor 2 die Slippage gar nicht erhöht: 7.9% | wirklich verdoppelt: 73.7%
+   ETH   gemessen 0.50 bp | bewegt faktor 1: Mittel 1.38 | faktor 2: Mittel 2.71 = 1.96-fach | Kerzen, in denen faktor 2 die Slippage gar nicht erhöht: 4.2% | wirklich verdoppelt: 82.2%
+   SOL   gemessen 1.37 bp | bewegt faktor 1: Mittel 2.50 | faktor 2: Mittel 4.74 = 1.90-fach | Kerzen, in denen faktor 2 die Slippage gar nicht erhöht: 6.5% | wirklich verdoppelt: 67.2%
+   DOGE  gemessen 1.65 bp | bewegt faktor 1: Mittel 2.33 | faktor 2: Mittel 3.94 = 1.69-fach | Kerzen, in denen faktor 2 die Slippage gar nicht erhöht: 23.2% | wirklich verdoppelt: 40.1%
+   LTC   gemessen 2.18 bp | bewegt faktor 1: Mittel 2.49 | faktor 2: Mittel 3.57 = 1.44-fach | Kerzen, in denen faktor 2 die Slippage gar nicht erhöht: 42.0% | wirklich verdoppelt: 20.5%
+   60 Finalisten über T und V1: Slippage je Trade im Mittel 13.06 bp (faktor 1) und 24.34 bp (faktor 2); Verhältnis Median 1.94, kleinster Wert 1.38, größter 2.00 (verlangt: 2,00)
+   Kandidaten, die mit faktor 2 positiv bleiben, bei echter Verdopplung aber nicht: 4 von 60

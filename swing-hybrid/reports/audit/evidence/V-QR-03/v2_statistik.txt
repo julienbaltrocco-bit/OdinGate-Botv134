@@ -1,0 +1,51 @@
+A) Kandidat: eigene Abrechnung (ohne engine2) gegen Modul-Lauf
+   slip_5bp {'max_abw_tag': 0.02906, 'korrelation': 0.999295, 'summe_modul': 1.95599, 'summe_eigen': 1.935505, 'sharpe_entw_modul': 0.803274, 'sharpe_entw_eigen': 0.793067, 'sharpe_pruef_modul': 0.159149, 'sharpe_pruef_eigen': 0.15923}
+   slip_yubit {'max_abw_tag': 0.028786, 'korrelation': 0.999311, 'summe_modul': 2.414854, 'summe_eigen': 2.394106, 'sharpe_entw_modul': 0.945658, 'sharpe_entw_eigen': 0.935133, 'sharpe_pruef_modul': 0.336948, 'sharpe_pruef_eigen': 0.337031}
+B) Reality Check / SPA in der Entwicklung (H0: keine Einstellung hat positiven Ertrag)
+   slip_5bp   alle_32     k=32  RC roh p=0.164 (Schwelle 0.680/Jahr, beste 0.505)  RC gleiche Schwankung p=0.471  SPA p_l/p_c/p_u=0.203/0.342/0.607  | roh p ueber Bloecke 5..60: 0.1088..0.2056
+   slip_5bp   trend_14    k=14  RC roh p=0.148 (Schwelle 0.677/Jahr, beste 0.505)  RC gleiche Schwankung p=0.207  SPA p_l/p_c/p_u=0.169/0.197/0.284  | roh p ueber Bloecke 5..60: 0.1028..0.1784
+   slip_5bp   runde3_10   k=10  RC roh p=0.130 (Schwelle 0.667/Jahr, beste 0.505)  RC gleiche Schwankung p=0.177  SPA p_l/p_c/p_u=0.169/0.197/0.201  | roh p ueber Bloecke 5..60: 0.0894..0.14
+   slip_5bp   kandidat_1  k= 1  RC roh p=0.071 (Schwelle 0.566/Jahr, beste 0.505)  RC gleiche Schwankung p=0.071  SPA p_l/p_c/p_u=0.071/0.071/0.071  | roh p ueber Bloecke 5..60: 0.0472..0.0744
+      slip_5bp Rang Kandidat 1 Sharpe 0.803 zweitbeste {'tsmom_L336_biasTrue': 0.641} | Sharpe > 0: 6 von 32
+   slip_yubit alle_32     k=32  RC roh p=0.088 (Schwelle 0.677/Jahr, beste 0.594)  RC gleiche Schwankung p=0.296  SPA p_l/p_c/p_u=0.181/0.263/0.420  | roh p ueber Bloecke 5..60: 0.0558..0.1134
+   slip_yubit trend_14    k=14  RC roh p=0.083 (Schwelle 0.675/Jahr, beste 0.594)  RC gleiche Schwankung p=0.126  SPA p_l/p_c/p_u=0.128/0.141/0.189  | roh p ueber Bloecke 5..60: 0.0544..0.1016
+   slip_yubit runde3_10   k=10  RC roh p=0.076 (Schwelle 0.667/Jahr, beste 0.594)  RC gleiche Schwankung p=0.113  SPA p_l/p_c/p_u=0.128/0.133/0.133  | roh p ueber Bloecke 5..60: 0.0518..0.0816
+   slip_yubit kandidat_1  k= 1  RC roh p=0.044 (Schwelle 0.562/Jahr, beste 0.594)  RC gleiche Schwankung p=0.044  SPA p_l/p_c/p_u=0.044/0.044/0.044  | roh p ueber Bloecke 5..60: 0.0282..0.0486
+      slip_yubit Rang Kandidat 1 Sharpe 0.946 zweitbeste {'tsmom_L336_biasTrue': 0.766} | Sharpe > 0: 9 von 32
+C) Auswahlregel der Runde 3 (schlechtester von vier Halbzeit-Sharpe) unter H0 'kein Ertrag'
+   beobachtete Punktzahlen: {'tsmom_L48_biasFalse': np.float64(-0.479), 'tsmom_L48_biasTrue': np.float64(-0.537), 'tsmom_L96_biasFalse': np.float64(0.047), 'tsmom_L96_biasTrue': np.float64(-0.181), 'tsmom_L168_biasFalse': np.float64(-0.059), 'tsmom_L168_biasTrue': np.float64(-0.282), 'tsmom_L336_biasFalse': np.float64(0.421), 'tsmom_L336_biasTrue': np.float64(-0.035), 'ensemble_biasFalse': np.float64(-0.949), 'ensemble_biasTrue': np.float64(-0.878)}
+   Block 10: P(beste von 10 wirkungslosen >= 0.421) = 0.231; 95-%-Schwelle 0.855; nur Kandidat allein: 0.073
+   Block 20: P(beste von 10 wirkungslosen >= 0.421) = 0.207; 95-%-Schwelle 0.810; nur Kandidat allein: 0.067
+   Block 40: P(beste von 10 wirkungslosen >= 0.421) = 0.197; 95-%-Schwelle 0.753; nur Kandidat allein: 0.059
+D) Kandidat: Sharpe, Bootstrap-Bereich (Bloecke 20 Tage, 5000 Ziehungen), t-Werte
+   slip_yubit D1                                         Tage  685 Summe +0.631 Sharpe +0.564 [-0.44; +1.57]  Anteil<=0 0.172  t 0.77 (HAC20 0.88)  p einseitig 0.220
+   slip_yubit D2                                         Tage  640 Summe +1.525 Sharpe +1.317 [+0.05; +2.51]  Anteil<=0 0.043  t 1.74 (HAC20 1.47)  p einseitig 0.041
+   slip_yubit Entwicklung                                Tage 1325 Summe +2.156 Sharpe +0.946 [+0.12; +1.74]  Anteil<=0 0.031  t 1.80 (HAC20 1.70)  p einseitig 0.036
+   slip_yubit Pruefung                                   Tage  571 Summe +0.258 Sharpe +0.337 [-0.81; +1.43]  Anteil<=0 0.314  t 0.42 (HAC20 0.47)  p einseitig 0.337
+   slip_yubit Vorperiode                                 Tage  561 Summe +2.092 Sharpe +1.363 [+0.09; +2.56]  Anteil<=0 0.040  t 1.69 (HAC20 1.60)  p einseitig 0.046
+   slip_yubit unabhaengig_zusammen(Vorperiode+Pruefung)  Tage 1132 Summe +2.350 Sharpe +0.966 [+0.08; +1.81]  Anteil<=0 0.036  t 1.70 (HAC20 1.63)  p einseitig 0.045
+   slip_yubit alles(Vor+Entw+Pruef)                      Tage 2457 Summe +4.507 Sharpe +0.950 [+0.35; +1.55]  Anteil<=0 0.008  t 2.47 (HAC20 2.32)  p einseitig 0.007
+   slip_yubit Stouffer (Vorperiode, Pruefung): z = 1.49, p einseitig = 0.068
+   slip_5bp   D1                                         Tage  685 Summe +0.471 Sharpe +0.421 [-0.60; +1.44]  Anteil<=0 0.248  t 0.58 (HAC20 0.65)  p einseitig 0.282
+   slip_5bp   D2                                         Tage  640 Summe +1.363 Sharpe +1.175 [-0.13; +2.39]  Anteil<=0 0.070  t 1.56 (HAC20 1.31)  p einseitig 0.060
+   slip_5bp   Entwicklung                                Tage 1325 Summe +1.834 Sharpe +0.803 [-0.04; +1.61]  Anteil<=0 0.060  t 1.53 (HAC20 1.44)  p einseitig 0.063
+   slip_5bp   Pruefung                                   Tage  571 Summe +0.122 Sharpe +0.159 [-1.01; +1.28]  Anteil<=0 0.416  t 0.20 (HAC20 0.22)  p einseitig 0.421
+   slip_5bp   Vorperiode                                 Tage  561 Summe +1.980 Sharpe +1.289 [+0.00; +2.50]  Anteil<=0 0.050  t 1.60 (HAC20 1.51)  p einseitig 0.055
+   slip_5bp   unabhaengig_zusammen(Vorperiode+Pruefung)  Tage 1132 Summe +2.102 Sharpe +0.863 [-0.04; +1.72]  Anteil<=0 0.060  t 1.52 (HAC20 1.46)  p einseitig 0.064
+   slip_5bp   alles(Vor+Entw+Pruef)                      Tage 2457 Summe +3.936 Sharpe +0.829 [+0.22; +1.44]  Anteil<=0 0.018  t 2.15 (HAC20 2.01)  p einseitig 0.016
+   slip_5bp   Stouffer (Vorperiode, Pruefung): z = 1.27, p einseitig = 0.102
+E) Pruefzeitraum (Yubit-Kosten): Abhaengigkeit von wenigen Tagen
+   Tage 571 Summe 0.2585 pro Jahr 0.1652 | ohne beste k Tage: {'1': 0.144, '2': 0.034, '3': -0.068, '5': -0.254, '10': -0.598} | ohne schlechteste k Tage: {'1': 0.37, '2': 0.47, '3': 0.547, '5': 0.683, '10': 0.988}
+   beste 5: {'2026-08-21': 0.1148, '2026-02-05': 0.1093, '2025-04-06': 0.102, '2025-05-10': 0.0977, '2025-04-22': 0.0882} | schlechteste 5: {'2025-06-23': -0.0657, '2025-11-07': -0.0707, '2026-02-06': -0.0764, '2025-04-09': -0.1002, '2025-07-23': -0.1115} | Schiefe 0.36 | Anteil positiver Tage 0.485
+   Vergleich Entwicklung: {'tage': 1325, 'summe': 2.156, 'ohne_beste': {'5': 1.328, '12': 0.489}, 'ohne_schlechteste': {'5': 2.927, '12': 3.584}}
+F) Trendlaenge im Raster (Sharpe in der ENTWICKLUNG, ohne Filter) und zweiter Finalist der Runde 3
+   slip_5bp {'L12': -2.609, 'L24': -2.011, 'L48': -0.415, 'L96': 0.208, 'L168': 0.354, 'L336': 0.803} -> laengste getestete Laenge ist die beste; ein Maximum ist im Raster nicht eingeschlossen
+   slip_yubit {'L12': -1.775, 'L24': -1.43, 'L48': 0.015, 'L96': 0.515, 'L168': 0.566, 'L336': 0.946} -> laengste getestete Laenge ist die beste; ein Maximum ist im Raster nicht eingeschlossen
+   reports/suche_runde3.json tsmom_L336_biasFalse {'stufe3_ok': True, 'pruefung_sofort_N': 0.1222004717697307, 'pruefung_sofort_sharpe': 0.15914909668056326, 'pruefung_passiv_N': 0.28363914265808265, 'zufall_perzentil_gesamt': 100.0}
+   reports/suche_runde3.json tsmom_L96_biasFalse {'stufe3_ok': False, 'pruefung_sofort_N': -1.122425927110315, 'pruefung_sofort_sharpe': -1.324226489719568, 'pruefung_passiv_N': -0.731693278704878, 'zufall_perzentil_gesamt': None}
+   Zufallstest nur Pruefzeitraum (gespeichert): Gruppe A 80.5 % | breites Portfolio 85.5 %
+fertig
+
+real	2m58.871s
+user	2m26.182s
+sys	0m32.000s

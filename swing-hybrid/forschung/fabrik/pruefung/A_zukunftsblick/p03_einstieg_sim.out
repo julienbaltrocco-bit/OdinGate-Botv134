@@ -1,0 +1,21 @@
+{
+ "einstieg_ungleich": 0,
+ "einstieg_geprueft": 150,
+ "stoer_einstieg": 0,
+ "stoer_trades": 0,
+ "stoer_sim": 0,
+ "stoer_geprueft": 150,
+ "ref_ungleich": 0,
+ "ref_geprueft": 900,
+ "ref_trades": 109895,
+ "sim_ungleich": 0,
+ "sim_geprueft": 900,
+ "n_diff": 0
+}
+Takt k=1: 35410 Signale; Minuten des Kerzenschlusses: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
+Takt k=3: 11823 Signale; Minuten des Kerzenschlusses: [0, 15, 30, 45]
+Takt k=12: 2968 Signale; Minuten des Kerzenschlusses: [0]
+
+real	0m39.038s
+user	0m38.651s
+sys	0m0.949s

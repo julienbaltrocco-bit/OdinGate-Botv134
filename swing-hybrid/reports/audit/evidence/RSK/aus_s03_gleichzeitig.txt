@@ -1,0 +1,130 @@
+
+=== Vorperiode (2020-02-01 00:00:00 bis 2021-08-14 23:55:00) ===
+  1 Stunde (volle Stunden): 13463 Fenster; alle zehn Positionen gleichzeitig im Verlust in 3.5%, mindestens acht in 12.0% der Fenster; 52% aller Verluste entstehen in Fenstern mit mindestens acht Verlierern
+      2021-01-15 15:00: Hebel 1 -15.6%, Hebel 3 -46.8% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2021-04-18 03:00: Hebel 1 -13.9%, Hebel 3 -41.8% des Startkapitals; 8 von 10 im Verlust (8 Long / 2 Short)
+      2021-02-23 08:00: Hebel 1 -12.3%, Hebel 3 -37.0% des Startkapitals; 7 von 10 im Verlust (7 Long / 3 Short)
+      2021-05-12 23:00: Hebel 1 -11.9%, Hebel 3 -35.7% des Startkapitals; 9 von 10 im Verlust (9 Long / 1 Short)
+      2021-05-10 19:00: Hebel 1 -11.8%, Hebel 3 -35.5% des Startkapitals; 9 von 10 im Verlust (9 Long / 1 Short)
+  24 Stunden (rollierend, Stundenschritt): 13440 Fenster; alle zehn Positionen gleichzeitig im Verlust in 3.3%, mindestens acht in 11.6% der Fenster; 48% aller Verluste entstehen in Fenstern mit mindestens acht Verlierern
+      2021-01-29 04:00: Hebel 1 -42.2%, Hebel 3 -126.5% des Startkapitals; 7 von 10 im Verlust (7 Long / 3 Short)
+      2021-01-10 07:00: Hebel 1 -42.2%, Hebel 3 -126.5% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2021-01-10 17:00: Hebel 1 -41.4%, Hebel 3 -124.2% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2021-01-10 16:00: Hebel 1 -40.2%, Hebel 3 -120.6% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2021-01-10 08:00: Hebel 1 -38.5%, Hebel 3 -115.6% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+  Kalendertag: 560 Fenster; alle zehn Positionen gleichzeitig im Verlust in 3.2%, mindestens acht in 11.8% der Fenster; 46% aller Verluste entstehen in Fenstern mit mindestens acht Verlierern
+      2020-11-26 00:00: Hebel 1 -20.4%, Hebel 3 -61.2% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2021-01-11 00:00: Hebel 1 -19.9%, Hebel 3 -59.7% des Startkapitals; 9 von 10 im Verlust (10 Long / 0 Short)
+      2021-02-23 00:00: Hebel 1 -19.5%, Hebel 3 -58.5% des Startkapitals; 6 von 10 im Verlust (9 Long / 1 Short)
+      2021-01-21 00:00: Hebel 1 -18.4%, Hebel 3 -55.2% des Startkapitals; 6 von 10 im Verlust (7 Long / 3 Short)
+      2021-04-17 00:00: Hebel 1 -16.4%, Hebel 3 -49.2% des Startkapitals; 9 von 10 im Verlust (10 Long / 0 Short)
+  Größte Bewegung gegen die gehaltene Richtung innerhalb 1 Stunde (5-Minuten-Hochs/-Tiefs, solange die Richtung gehalten wird):
+      ETH 237.4% (Short, ab 2020-03-13 02:00); DOGE 51.1% (Short, ab 2021-01-28 04:00); LINK 44.1% (Short, ab 2020-03-13 02:00); AVAX 38.3% (Long, ab 2021-04-18 03:00); ADA 37.0% (Long, ab 2021-05-19 12:00)
+      0,1 % der Startstunden schlimmer als: ETH 10.4%, DOGE 21.7%, LINK 14.4%, AVAX 14.3%, ADA 15.3%, DOT 11.5%, LTC 12.0%, XRP 18.0%, SOL 11.7%, BTC 8.5%
+    dasselbe nur mit 5-Minuten-Schlusskursen (ohne Dochte):
+      DOGE 48.6% (Short, ab 2021-01-28 04:00); LINK 38.1% (Short, ab 2020-03-13 02:00); ADA 36.4% (Long, ab 2021-05-19 12:00); LTC 34.9% (Short, ab 2020-03-13 02:00); AVAX 32.7% (Long, ab 2021-04-18 03:00); SOL 30.5% (Short, ab 2021-05-19 13:00); XRP 30.3% (Short, ab 2020-12-29 17:00); DOT 26.9% (Short, ab 2021-05-19 13:00); BTC 26.5% (Short, ab 2020-03-13 02:00); ETH 23.7% (Short, ab 2020-03-13 02:00)
+      1 % der Startstunden schlimmer als: DOGE 8.7%, LINK 5.6%, ADA 5.4%, LTC 4.6%, AVAX 6.3%, SOL 6.6%, XRP 6.1%, DOT 5.6%, BTC 3.4%, ETH 4.2%
+  Größte Bewegung gegen die gehaltene Richtung innerhalb 24 Stunden (5-Minuten-Hochs/-Tiefs, solange die Richtung gehalten wird):
+      ETH 237.4% (Short, ab 2020-03-13 02:00); LINK 68.3% (Short, ab 2020-03-13 02:00); DOGE 65.4% (Long, ab 2021-01-29 04:00); LTC 58.8% (Short, ab 2020-03-13 02:00); SOL 57.0% (Short, ab 2021-06-22 14:00)
+      0,1 % der Startstunden schlimmer als: ETH 130.5%, LINK 37.3%, DOGE 58.3%, LTC 32.3%, SOL 40.0%, XRP 44.2%, ADA 47.1%, BTC 21.8%, AVAX 45.2%, DOT 34.7%
+    dasselbe nur mit 5-Minuten-Schlusskursen (ohne Dochte):
+      LINK 67.6% (Short, ab 2020-03-13 02:00); DOGE 65.2% (Long, ab 2021-01-29 04:00); LTC 58.8% (Short, ab 2020-03-13 02:00); SOL 55.7% (Short, ab 2021-06-22 14:00); XRP 52.1% (Long, ab 2021-02-01 11:00); ADA 51.1% (Long, ab 2021-05-18 17:00); BTC 46.4% (Short, ab 2020-03-13 02:00); AVAX 46.0% (Short, ab 2021-05-23 19:00); ETH 45.6% (Short, ab 2020-03-13 02:00); DOT 45.0% (Short, ab 2021-05-23 17:00)
+      1 % der Startstunden schlimmer als: LINK 24.5%, DOGE 35.1%, LTC 20.3%, SOL 25.8%, XRP 27.6%, ADA 22.4%, BTC 14.4%, AVAX 23.7%, ETH 17.6%, DOT 20.2%
+
+=== Entwicklung (2021-08-15 00:00:00 bis 2025-03-31 23:55:00) ===
+  1 Stunde (volle Stunden): 31799 Fenster; alle zehn Positionen gleichzeitig im Verlust in 7.7%, mindestens acht in 24.8% der Fenster; 79% aller Verluste entstehen in Fenstern mit mindestens acht Verlierern
+      2024-12-09 20:00: Hebel 1 -27.7%, Hebel 3 -83.0% des Startkapitals; 9 von 10 im Verlust (9 Long / 1 Short)
+      2024-11-23 16:00: Hebel 1 -12.7%, Hebel 3 -38.2% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2021-09-07 14:00: Hebel 1 -12.6%, Hebel 3 -37.9% des Startkapitals; 7 von 10 im Verlust (7 Long / 3 Short)
+      2024-03-05 19:00: Hebel 1 -11.2%, Hebel 3 -33.7% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2024-12-03 13:00: Hebel 1 -10.3%, Hebel 3 -30.9% des Startkapitals; 9 von 10 im Verlust (9 Long / 1 Short)
+  24 Stunden (rollierend, Stundenschritt): 31776 Fenster; alle zehn Positionen gleichzeitig im Verlust in 7.6%, mindestens acht in 26.2% der Fenster; 76% aller Verluste entstehen in Fenstern mit mindestens acht Verlierern
+      2024-12-08 21:00: Hebel 1 -40.5%, Hebel 3 -121.4% des Startkapitals; 9 von 10 im Verlust (9 Long / 1 Short)
+      2024-12-09 00:00: Hebel 1 -31.2%, Hebel 3 -93.5% des Startkapitals; 9 von 10 im Verlust (9 Long / 1 Short)
+      2024-12-08 23:00: Hebel 1 -30.5%, Hebel 3 -91.6% des Startkapitals; 9 von 10 im Verlust (9 Long / 1 Short)
+      2024-12-08 22:00: Hebel 1 -29.6%, Hebel 3 -88.9% des Startkapitals; 9 von 10 im Verlust (9 Long / 1 Short)
+      2024-12-09 03:00: Hebel 1 -29.5%, Hebel 3 -88.5% des Startkapitals; 9 von 10 im Verlust (9 Long / 1 Short)
+  Kalendertag: 1324 Fenster; alle zehn Positionen gleichzeitig im Verlust in 7.3%, mindestens acht in 26.6% der Fenster; 76% aller Verluste entstehen in Fenstern mit mindestens acht Verlierern
+      2024-12-09 00:00: Hebel 1 -31.2%, Hebel 3 -93.5% des Startkapitals; 9 von 10 im Verlust (9 Long / 1 Short)
+      2024-03-05 00:00: Hebel 1 -14.1%, Hebel 3 -42.2% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2022-11-10 00:00: Hebel 1 -12.0%, Hebel 3 -36.1% des Startkapitals; 9 von 10 im Verlust (1 Long / 9 Short)
+      2025-03-02 00:00: Hebel 1 -11.8%, Hebel 3 -35.4% des Startkapitals; 10 von 10 im Verlust (0 Long / 10 Short)
+      2022-11-08 00:00: Hebel 1 -11.3%, Hebel 3 -34.0% des Startkapitals; 8 von 10 im Verlust (10 Long / 0 Short)
+  Größte Bewegung gegen die gehaltene Richtung innerhalb 1 Stunde (5-Minuten-Hochs/-Tiefs, solange die Richtung gehalten wird):
+      ADA 38.8% (Short, ab 2025-03-02 15:00); AVAX 35.0% (Short, ab 2022-05-11 13:00); SOL 31.1% (Short, ab 2022-12-29 22:00); DOGE 28.4% (Short, ab 2021-12-14 10:00); DOT 26.8% (Short, ab 2022-05-11 13:00)
+      0,1 % der Startstunden schlimmer als: ADA 7.4%, AVAX 8.2%, SOL 10.6%, DOGE 9.7%, DOT 7.4%, XRP 8.5%, LTC 7.2%, LINK 7.9%, ETH 5.9%, BTC 5.2%
+    dasselbe nur mit 5-Minuten-Schlusskursen (ohne Dochte):
+      ADA 33.6% (Short, ab 2025-03-02 15:00); AVAX 33.1% (Short, ab 2022-05-11 13:00); DOGE 26.0% (Short, ab 2021-12-14 10:00); DOT 25.7% (Short, ab 2022-05-11 13:00); SOL 25.3% (Short, ab 2022-11-10 03:00); XRP 19.5% (Short, ab 2025-03-02 15:00); LTC 18.2% (Long, ab 2021-09-13 14:00); LINK 17.2% (Long, ab 2024-01-03 12:00); ETH 11.5% (Short, ab 2025-03-02 16:00); BTC 8.3% (Short, ab 2022-05-11 13:00)
+      1 % der Startstunden schlimmer als: ADA 3.5%, AVAX 4.1%, DOGE 3.9%, DOT 3.4%, SOL 4.0%, XRP 3.3%, LTC 3.1%, LINK 3.5%, ETH 2.6%, BTC 2.1%
+  Größte Bewegung gegen die gehaltene Richtung innerhalb 24 Stunden (5-Minuten-Hochs/-Tiefs, solange die Richtung gehalten wird):
+      SOL 88.0% (Short, ab 2022-11-09 22:00); ADA 47.5% (Short, ab 2022-05-12 06:00); DOT 44.3% (Short, ab 2022-05-12 14:00); DOGE 42.1% (Short, ab 2021-12-13 20:00); AVAX 41.4% (Short, ab 2022-05-12 07:00)
+      0,1 % der Startstunden schlimmer als: SOL 29.7%, ADA 32.2%, DOT 27.5%, DOGE 34.3%, AVAX 25.6%, XRP 27.8%, LTC 24.7%, LINK 25.5%, ETH 21.8%, BTC 14.8%
+    dasselbe nur mit 5-Minuten-Schlusskursen (ohne Dochte):
+      SOL 86.0% (Short, ab 2022-11-09 22:00); ADA 44.7% (Short, ab 2022-05-12 06:00); DOT 42.9% (Short, ab 2022-05-12 14:00); DOGE 40.9% (Short, ab 2021-12-13 20:00); AVAX 40.6% (Short, ab 2022-05-12 07:00); XRP 38.7% (Short, ab 2025-03-01 18:00); LTC 31.7% (Short, ab 2022-06-18 21:00); LINK 28.4% (Short, ab 2025-02-03 05:00); ETH 27.2% (Short, ab 2022-06-18 21:00); BTC 20.0% (Short, ab 2023-03-12 16:00)
+      1 % der Startstunden schlimmer als: SOL 15.8%, ADA 15.1%, DOT 13.1%, DOGE 15.1%, AVAX 16.1%, XRP 13.9%, LTC 12.4%, LINK 14.2%, ETH 10.3%, BTC 8.9%
+
+=== Pruefzeitraum (2025-04-01 00:00:00 bis 2026-10-23 23:55:00) ===
+  1 Stunde (volle Stunden): 13703 Fenster; alle zehn Positionen gleichzeitig im Verlust in 10.8%, mindestens acht in 27.4% der Fenster; 85% aller Verluste entstehen in Fenstern mit mindestens acht Verlierern
+      2026-08-22 05:00: Hebel 1 -8.1%, Hebel 3 -24.2% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2025-08-14 12:00: Hebel 1 -6.4%, Hebel 3 -19.2% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2025-04-09 17:00: Hebel 1 -6.1%, Hebel 3 -18.2% des Startkapitals; 10 von 10 im Verlust (0 Long / 10 Short)
+      2025-05-23 11:00: Hebel 1 -5.3%, Hebel 3 -15.9% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2025-05-12 14:00: Hebel 1 -4.2%, Hebel 3 -12.7% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+  24 Stunden (rollierend, Stundenschritt): 13680 Fenster; alle zehn Positionen gleichzeitig im Verlust in 12.2%, mindestens acht in 30.1% der Fenster; 82% aller Verluste entstehen in Fenstern mit mindestens acht Verlierern
+      2025-07-23 07:00: Hebel 1 -14.9%, Hebel 3 -44.8% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2025-07-23 06:00: Hebel 1 -13.5%, Hebel 3 -40.4% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2026-08-22 05:00: Hebel 1 -12.6%, Hebel 3 -37.7% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2025-07-22 22:00: Hebel 1 -11.3%, Hebel 3 -33.9% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2025-07-23 05:00: Hebel 1 -11.2%, Hebel 3 -33.7% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+  Kalendertag: 570 Fenster; alle zehn Positionen gleichzeitig im Verlust in 11.8%, mindestens acht in 29.5% der Fenster; 82% aller Verluste entstehen in Fenstern mit mindestens acht Verlierern
+      2025-07-23 00:00: Hebel 1 -11.1%, Hebel 3 -33.3% des Startkapitals; 10 von 10 im Verlust (10 Long / 0 Short)
+      2025-04-09 00:00: Hebel 1 -10.3%, Hebel 3 -30.8% des Startkapitals; 10 von 10 im Verlust (0 Long / 10 Short)
+      2026-02-06 00:00: Hebel 1 -7.8%, Hebel 3 -23.4% des Startkapitals; 10 von 10 im Verlust (0 Long / 10 Short)
+      2025-11-07 00:00: Hebel 1 -6.8%, Hebel 3 -20.5% des Startkapitals; 10 von 10 im Verlust (0 Long / 10 Short)
+      2025-06-23 00:00: Hebel 1 -6.8%, Hebel 3 -20.3% des Startkapitals; 10 von 10 im Verlust (0 Long / 10 Short)
+  Größte Bewegung gegen die gehaltene Richtung innerhalb 1 Stunde (5-Minuten-Hochs/-Tiefs, solange die Richtung gehalten wird):
+      LTC 57.5% (Long, ab 2025-10-10 21:00); LINK 19.8% (Long, ab 2026-08-22 05:00); ADA 18.9% (Long, ab 2026-08-22 05:00); XRP 16.7% (Long, ab 2026-08-22 05:00); DOGE 16.4% (Long, ab 2026-08-22 05:00)
+      0,1 % der Startstunden schlimmer als: LTC 4.5%, LINK 5.2%, ADA 5.3%, XRP 5.2%, DOGE 5.4%, AVAX 5.6%, DOT 5.4%, SOL 5.0%, BTC 2.9%, ETH 4.6%
+    dasselbe nur mit 5-Minuten-Schlusskursen (ohne Dochte):
+      LTC 41.0% (Long, ab 2025-10-10 21:00); XRP 11.1% (Short, ab 2025-04-09 17:00); ADA 10.7% (Long, ab 2026-08-22 05:00); SOL 10.2% (Short, ab 2025-04-09 17:00); BTC 9.4% (Long, ab 2025-10-10 21:00); LINK 9.3% (Short, ab 2025-04-09 17:00); DOT 9.2% (Short, ab 2025-10-11 02:00); DOGE 9.0% (Long, ab 2026-08-22 05:00); AVAX 8.9% (Short, ab 2025-10-11 02:00); ETH 8.6% (Short, ab 2025-04-09 17:00)
+      1 % der Startstunden schlimmer als: LTC 2.3%, XRP 2.7%, ADA 2.8%, SOL 2.5%, BTC 1.5%, LINK 2.7%, DOT 2.8%, DOGE 2.8%, AVAX 2.7%, ETH 2.2%
+  Größte Bewegung gegen die gehaltene Richtung innerhalb 24 Stunden (5-Minuten-Hochs/-Tiefs, solange die Richtung gehalten wird):
+      LTC 61.4% (Long, ab 2025-10-10 14:00); XRP 32.7% (Short, ab 2026-02-05 22:00); DOT 21.4% (Short, ab 2025-11-06 17:00); LINK 20.0% (Short, ab 2025-04-09 04:00); AVAX 19.3% (Long, ab 2025-09-21 20:00)
+      0,1 % der Startstunden schlimmer als: LTC 59.6%, XRP 19.9%, DOT 14.4%, LINK 16.9%, AVAX 18.5%, ETH 14.4%, SOL 15.0%, ADA 15.8%, DOGE 15.9%, BTC 16.2%
+    dasselbe nur mit 5-Minuten-Schlusskursen (ohne Dochte):
+      LTC 46.4% (Long, ab 2025-10-10 14:00); XRP 32.6% (Short, ab 2026-02-05 22:00); DOT 21.3% (Short, ab 2025-11-06 17:00); LINK 19.8% (Short, ab 2025-04-09 04:00); SOL 18.6% (Short, ab 2026-02-06 01:00); ETH 18.6% (Short, ab 2025-04-09 04:00); DOGE 18.2% (Short, ab 2025-04-09 04:00); ADA 17.6% (Short, ab 2025-04-09 04:00); AVAX 17.4% (Short, ab 2025-04-07 07:00); BTC 15.0% (Long, ab 2025-10-10 01:00)
+      1 % der Startstunden schlimmer als: LTC 8.8%, XRP 10.4%, DOT 10.6%, LINK 10.8%, SOL 10.1%, ETH 8.4%, DOGE 11.7%, ADA 10.6%, AVAX 10.5%, BTC 5.5%
+
+=== Größte Gegenbewegung je Trade (Einstieg bis Dreh, relativ zum Einstiegspreis, 5-Minuten-Hochs/-Tiefs) ===
+  Vorperiode   : 2753 Trades in 1.5 Jahren, Haltedauer Mittel 41 h / Median 3 h; Gegenbewegung Median 1.4%, 99-%-Quantil 17.5%, Maximum 47.7%; schlechtestes Trade-Ergebnis -45.2%
+      Trades mit Gegenbewegung ab: 5.0%: 362, 10.0%: 119, 20.0%: 18, 30.8%: 5, 32.3%: 4, 32.8%: 4, 33.3%: 4, 50.0%: 0, 100.0%: 0
+  Entwicklung  : 7483 Trades in 3.7 Jahren, Haltedauer Mittel 43 h / Median 3 h; Gegenbewegung Median 0.9%, 99-%-Quantil 11.3%, Maximum 32.4%; schlechtestes Trade-Ergebnis -27.4%
+      Trades mit Gegenbewegung ab: 5.0%: 483, 10.0%: 113, 20.0%: 7, 30.8%: 1, 32.3%: 1, 32.8%: 0, 33.3%: 0, 50.0%: 0, 100.0%: 0
+  Pruefzeitraum: 3335 Trades in 1.6 Jahren, Haltedauer Mittel 41 h / Median 4 h; Gegenbewegung Median 0.8%, 99-%-Quantil 8.6%, Maximum 56.0%; schlechtestes Trade-Ergebnis -15.3%
+      Trades mit Gegenbewegung ab: 5.0%: 149, 10.0%: 23, 20.0%: 1, 30.8%: 1, 32.3%: 1, 32.8%: 1, 33.3%: 1, 50.0%: 1, 100.0%: 0
+  alle         : 13571 Trades in 6.7 Jahren, Haltedauer Mittel 42 h / Median 3 h; Gegenbewegung Median 1.0%, 99-%-Quantil 12.2%, Maximum 56.0%; schlechtestes Trade-Ergebnis -45.2%
+      Trades mit Gegenbewegung ab: 5.0%: 994, 10.0%: 255, 20.0%: 26, 30.8%: 7, 32.3%: 6, 32.8%: 5, 33.3%: 5, 50.0%: 1, 100.0%: 0
+
+  Dasselbe nur mit 5-Minuten-Schlusskursen (ohne Dochte):
+  Vorperiode   : Maximum 45.2%; Trades mit Gegenbewegung ab: 5.0%: 303, 10.0%: 90, 20.0%: 10, 30.8%: 3, 32.3%: 3, 32.8%: 3, 33.3%: 3, 50.0%: 0
+  Entwicklung  : Maximum 27.4%; Trades mit Gegenbewegung ab: 5.0%: 410, 10.0%: 87, 20.0%: 2, 30.8%: 0, 32.3%: 0, 32.8%: 0, 33.3%: 0, 50.0%: 0
+  Pruefzeitraum: Maximum 38.8%; Trades mit Gegenbewegung ab: 5.0%: 126, 10.0%: 20, 20.0%: 1, 30.8%: 1, 32.3%: 1, 32.8%: 1, 33.3%: 1, 50.0%: 0
+  alle         : Maximum 45.2%; Trades mit Gegenbewegung ab: 5.0%: 839, 10.0%: 197, 20.0%: 13, 30.8%: 4, 32.3%: 4, 32.8%: 4, 33.3%: 4, 50.0%: 0
+
+  Die 12 Trades mit der größten Gegenbewegung:
+      LTC   Long  2025-10-03 10:00 bis 2025-10-10 22:00 (180 h): Gegenbewegung 56.0% (nur Schlusskurse 38.8%), Ergebnis beim Ausstieg -15.3% [Pruefzeitraum]
+      DOGE  Short 2021-01-27 07:00 bis 2021-01-28 05:00 (22 h): Gegenbewegung 47.7% (nur Schlusskurse 45.2%), Ergebnis beim Ausstieg -45.2% [Vorperiode]
+      XRP   Short 2021-04-24 08:00 bis 2021-04-30 11:00 (147 h): Gegenbewegung 41.7% (nur Schlusskurse 40.4%), Ergebnis beim Ausstieg -36.1% [Vorperiode]
+      AVAX  Short 2020-10-07 08:00 bis 2020-10-12 17:00 (129 h): Gegenbewegung 37.2% (nur Schlusskurse 35.5%), Ergebnis beim Ausstieg -35.5% [Vorperiode]
+      AVAX  Long  2021-04-07 14:00 bis 2021-04-18 04:00 (254 h): Gegenbewegung 34.9% (nur Schlusskurse 29.0%), Ergebnis beim Ausstieg -14.7% [Vorperiode]
+      ADA   Short 2025-02-24 23:00 bis 2025-03-02 16:00 (137 h): Gegenbewegung 32.4% (nur Schlusskurse 27.4%), Ergebnis beim Ausstieg -27.4% [Entwicklung]
+      DOGE  Long  2021-02-12 07:00 bis 2021-02-18 12:00 (149 h): Gegenbewegung 31.1% (nur Schlusskurse 27.7%), Ergebnis beim Ausstieg -22.5% [Vorperiode]
+      ETH   Short 2020-02-26 01:00 bis 2020-03-26 11:00 (706 h): Gegenbewegung 30.7% (nur Schlusskurse 1.7%), Ergebnis beim Ausstieg +45.3% [Vorperiode]
+      XRP   Long  2021-02-15 14:00 bis 2021-02-23 09:00 (187 h): Gegenbewegung 29.2% (nur Schlusskurse 29.1%), Ergebnis beim Ausstieg -29.1% [Vorperiode]
+      XRP   Short 2020-12-12 00:00 bis 2020-12-17 17:00 (137 h): Gegenbewegung 28.4% (nur Schlusskurse 28.0%), Ergebnis beim Ausstieg -26.3% [Vorperiode]
+      ADA   Long  2021-05-02 03:00 bis 2021-05-19 13:00 (418 h): Gegenbewegung 25.4% (nur Schlusskurse 24.7%), Ergebnis beim Ausstieg -8.5% [Vorperiode]
+      XRP   Long  2020-06-01 13:00 bis 2020-06-02 15:00 (26 h): Gegenbewegung 25.3% (nur Schlusskurse 2.2%), Ergebnis beim Ausstieg -1.6% [Vorperiode]
+
+  Long gegen Short:
+      Short: 6789 Trades, Gegenbewegung 99-%-Quantil 12.3%, Maximum 47.7%, ab 30,8 %: 4, ab 20 %: 13, ab 10 %: 132
+      Long : 6782 Trades, Gegenbewegung 99-%-Quantil 12.2%, Maximum 56.0%, ab 30,8 %: 3, ab 20 %: 13, ab 10 %: 123

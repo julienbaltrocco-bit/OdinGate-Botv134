@@ -1,0 +1,63 @@
+reports/datenbericht.md                       [('bericht.py', 'nennt')]
+reports/diagnose_frequenz.csv                 [('diagnose_frequenz.py', 'schreibt'), ('suche_bericht.py', 'nennt')]
+reports/diagnose_huerde.json                  [('diagnose_huerde.py', 'nennt'), ('suche_bericht.py', 'nennt')]
+reports/diagnose_kapital.json                 [('diagnose_kapital.py', 'nennt'), ('suche_bericht.py', 'nennt')]
+reports/ergebnis.json                         [('bericht.py', 'nennt'), ('gegenpruefung.py', 'nennt'), ('suche_stufe2bis5.py', 'schreibt'), ('uebersicht.py', 'nennt'), ('walkforward.py', 'schreibt'), ('swing.py', 'nennt')]
+reports/fuellmodell_diagnose.json             [('fuellmodell_diagnose.py', 'schreibt'), ('suche_bericht.py', 'nennt')]
+reports/fusion_yubit.json                     [('fusion_yubit.py', 'schreibt')]
+reports/gegenpruefung.json                    [('bericht.py', 'nennt'), ('gegenpruefung.py', 'schreibt')]
+reports/gesamt_60.json                        [('gesamt_60.py', 'schreibt'), ('suche_bericht.py', 'nennt')]
+reports/hybrid_report.md                      [('bericht.py', 'schreibt')]
+reports/kandidat.json                         [('kandidat_pruefen.py', 'schreibt'), ('suche_bericht.py', 'nennt')]
+reports/rebate_sicht.json                     [('rebate_sicht.py', 'schreibt')]
+reports/runde14_kosten.json                   [('suche_runde14.py', 'nennt'), ('suche_runde16.py', 'nennt'), ('suche_runde17.py', 'nennt')]
+reports/runde17_aktien.json                   [('aktien_laden.py', 'schreibt'), ('suche_runde17.py', 'nennt')]
+reports/statarb_bericht.md                    [('statarb_bericht.py', 'schreibt')]
+reports/suche_bericht.md                      [('suche_bericht.py', 'schreibt')]
+reports/suche_ergebnis.json                   [('suche_stufe2bis5.py', 'schreibt')]
+reports/suche_finalisten.json                 [('fuellmodell_diagnose.py', 'nennt'), ('suche_stufe1.py', 'schreibt'), ('suche_stufe2bis5.py', 'nennt')]
+reports/suche_protokoll.md                    [('statarb_bericht.py', 'nennt'), ('suche_bericht.py', 'nennt'), ('research.py', 'nennt')]
+reports/suche_runde10.json                    [('suche_bericht.py', 'nennt'), ('suche_runde10.py', 'schreibt')]
+reports/suche_runde10_paare.csv               [('suche_runde10.py', 'schreibt')]
+reports/suche_runde11.json                    [('suche_bericht.py', 'nennt'), ('suche_runde11.py', 'schreibt')]
+reports/suche_runde11_alle.csv                [('suche_runde11.py', 'schreibt')]
+reports/suche_runde11_uebersicht.csv          [('suche_bericht.py', 'nennt'), ('suche_runde11.py', 'schreibt')]
+reports/suche_runde12.json                    [('fusion_yubit.py', 'nennt'), ('statarb_bericht.py', 'nennt'), ('suche_runde12.py', 'schreibt')]
+reports/suche_runde12_stufe1.csv              [('statarb_bericht.py', 'nennt'), ('suche_runde12.py', 'schreibt')]
+reports/suche_runde13.json                    [('suche_runde13.py', 'schreibt')]
+reports/suche_runde14.json                    [('suche_runde14.py', 'nennt')]
+reports/suche_runde15.json                    [('suche_runde14.py', 'nennt')]
+reports/suche_runde16.json                    [('suche_runde16.py', 'schreibt')]
+reports/suche_runde17.json                    [('suche_runde17.py', 'schreibt')]
+reports/suche_runde18.json                    !! kein Skript nennt diese Datei
+reports/suche_runde18_trades.csv              !! kein Skript nennt diese Datei
+reports/suche_runde19.json                    [('suche_runde19.py', 'schreibt')]
+reports/suche_runde2.json                     [('suche_runde2.py', 'schreibt')]
+reports/suche_runde20a.json                   !! kein Skript nennt diese Datei
+reports/suche_runde20a_trades.csv             !! kein Skript nennt diese Datei
+reports/suche_runde20b.json                   [('suche_runde19.py', 'nennt')]
+reports/suche_runde21.json                    [('suche_runde21.py', 'schreibt')]
+reports/suche_runde22.json                    [('suche_runde22.py', 'schreibt')]
+reports/suche_runde23.json                    [('suche_runde23.py', 'schreibt')]
+reports/suche_runde24.json                    [('suche_runde24.py', 'schreibt')]
+reports/suche_runde2_stufe1.csv               [('suche_bericht.py', 'nennt'), ('suche_runde2.py', 'schreibt')]
+reports/suche_runde3.json                     [('kandidat_pruefen.py', 'nennt'), ('suche_bericht.py', 'nennt'), ('suche_runde3.py', 'schreibt')]
+reports/suche_runde3_stufe1.csv               [('suche_bericht.py', 'nennt'), ('suche_runde3.py', 'schreibt')]
+reports/suche_runde4.json                     [('gesamt_60.py', 'nennt'), ('suche_bericht.py', 'nennt'), ('suche_runde4.py', 'schreibt'), ('suche_runde5.py', 'nennt'), ('suche_runde6.py', 'nennt')]
+reports/suche_runde5.json                     [('gesamt_60.py', 'nennt'), ('suche_bericht.py', 'nennt'), ('suche_runde5.py', 'schreibt'), ('suche_runde6.py', 'nennt')]
+reports/suche_runde6.json                     [('fusion_yubit.py', 'nennt'), ('suche_bericht.py', 'nennt'), ('suche_runde11.py', 'nennt'), ('suche_runde12.py', 'nennt'), ('suche_runde13.py', 'nennt'), ('suche_runde21.py', 'nennt'), ('suche_runde22.py', 'nennt'), ('suche_runde24.py', 'nennt'), ('suche_runde6.py', 'schreibt'), ('suche_runde7.py', 'nennt'), ('suche_runde8.py', 'nennt'), ('suche_runde9.py', 'nennt')]
+reports/suche_runde6_stufe1.csv               [('suche_runde6.py', 'schreibt')]
+reports/suche_runde7.json                     [('suche_bericht.py', 'nennt'), ('suche_runde7.py', 'schreibt')]
+reports/suche_runde8.json                     [('suche_bericht.py', 'nennt'), ('suche_runde8.py', 'schreibt'), ('suche_runde9.py', 'nennt')]
+reports/suche_runde9.json                     [('suche_bericht.py', 'nennt'), ('suche_runde9.py', 'schreibt')]
+reports/suche_stufe1.csv                      [('suche_bericht.py', 'nennt'), ('suche_stufe1.py', 'schreibt')]
+reports/swing_vergleich.json                  [('suche_bericht.py', 'nennt')]
+reports/uebergabe_fuer_dritte.md              !! kein Skript nennt diese Datei
+reports/yubit_erstmessung.md                  [('suche_bericht.py', 'nennt')]
+
+Dateien in reports/ ohne nennendes Skript: 5
+   reports/suche_runde18.json
+   reports/suche_runde18_trades.csv
+   reports/suche_runde20a.json
+   reports/suche_runde20a_trades.csv
+   reports/uebergabe_fuer_dritte.md

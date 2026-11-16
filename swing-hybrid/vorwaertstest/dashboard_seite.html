@@ -1,0 +1,255 @@
+<meta name="dash-one-writer">
+<style>
+  .vt { display: grid; gap: var(--cds-gap-xl); font-family: var(--font-anthropic-sans); color: var(--color-fg); min-width: 0; }
+  .vt-kopf { display: grid; gap: var(--cds-gap-sm); }
+  .vt-titel { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .vt-lage { font-size: var(--cds-font-size-body); margin: 0; max-width: 68ch; line-height: 1.5; }
+  .vt-klein { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; line-height: 1.5; }
+  .vt-karten { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--cds-gap-md); }
+  .vt-karte { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-xs); align-content: start; min-width: 0; }
+  .vt-karte-name { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .vt-karte-wert { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; }
+  .vt-karte-neben { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+  .vt-gut { color: var(--color-ok); }
+  .vt-schlecht { color: var(--color-bad); }
+  .vt-abschnitt { display: grid; gap: var(--cds-gap-md); min-width: 0; }
+  .vt-h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .vt-chart { position: relative; min-height: 280px; width: 100%; }
+  .vt-chart svg { display: block; width: 100%; height: 280px; overflow: visible; }
+  .vt-chart .vt-achse text { fill: var(--cds-text-secondary); font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans); }
+  .vt-chart .vt-achse path, .vt-chart .vt-achse line { stroke: var(--cds-chart-axis); }
+  .vt-chart .vt-gitter line { stroke: var(--cds-chart-grid); }
+  .vt-chart .vt-null { stroke: var(--cds-chart-reference); stroke-dasharray: 4 4; }
+  .vt-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: var(--cds-radius); padding: var(--cds-pad-sm); font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .vt-tip-zeit { color: var(--cds-text-secondary); }
+  .vt-legende { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .vt-legende i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+  .vt-rolle { overflow-x: auto; }
+  .vt-tabelle { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-body); font-variant-numeric: tabular-nums; }
+  .vt-tabelle th { text-align: left; font-weight: var(--cds-font-weight-medium); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); padding: var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+  .vt-tabelle td { padding: var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+  .vt-tabelle .vt-zahl { text-align: right; }
+  .vt-marke { display: inline-block; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--color-border-line); font-size: var(--cds-font-size-caption); }
+  .vt-hinweise summary { cursor: pointer; font-size: var(--cds-font-size-body); }
+  .vt-hinweise ul { margin: var(--cds-gap-sm) 0 0; padding-left: 1.2em; display: grid; gap: var(--cds-gap-xs); max-width: 72ch; }
+  .vt [data-dash-source-state=refreshing] { opacity: .5; }
+</style>
+
+<div class="vt">
+  <header class="vt-kopf" id="kopf">
+    <h1 class="vt-titel">Vorwärtstest Trend-Strategie</h1>
+    <p class="vt-lage" id="lage">Das Papier-Konto steht nach <b data-draw="tage" data-source="kennzahlen" data-field="tage" data-row="0">—</b> Tagen bei <b data-draw="mit_rebate_pct" data-source="kennzahlen" data-field="mit_rebate_pct" data-row="0">—</b> nach allen Kosten mit Rebate. Offen sind <b data-draw="long" data-source="kennzahlen" data-field="long" data-row="0">—</b> Long- und <b data-draw="short" data-source="kennzahlen" data-field="short" data-row="0">—</b> Short-Positionen.</p>
+    <p class="vt-klein">Papierhandel ohne echtes Geld, gerechnet am echten Yubit-Orderbuch. Start <span data-draw="start" data-source="kennzahlen" data-field="start" data-row="0">—</span> UTC, letzter Durchlauf <span data-draw="letzter_lauf" data-source="kennzahlen" data-field="letzter_lauf" data-row="0">—</span> UTC. Zeiten in UTC.</p>
+  </header>
+
+  <section class="vt-karten" id="karten">
+    <div class="vt-karte" id="karte-mit">
+      <span class="vt-karte-name">Netto mit Rebate, seit Start</span>
+      <span class="vt-karte-wert" data-draw="mit_rebate_pct_karte" data-source="kennzahlen" data-field="mit_rebate_pct" data-row="0">—</span>
+      <span class="vt-karte-neben" data-draw="mit_rebate_usd" data-source="kennzahlen" data-field="mit_rebate_usd" data-row="0">—</span>
+    </div>
+    <div class="vt-karte" id="karte-ohne">
+      <span class="vt-karte-name">Netto ohne Rebate, seit Start</span>
+      <span class="vt-karte-wert" data-draw="ohne_rebate_pct" data-source="kennzahlen" data-field="ohne_rebate_pct" data-row="0">—</span>
+      <span class="vt-karte-neben" data-draw="ohne_rebate_usd" data-source="kennzahlen" data-field="ohne_rebate_usd" data-row="0">—</span>
+    </div>
+    <div class="vt-karte" id="karte-vor">
+      <span class="vt-karte-name">Handel vor Gebühren, seit Start</span>
+      <span class="vt-karte-wert" data-draw="vor_gebuehren_pct" data-source="kennzahlen" data-field="vor_gebuehren_pct" data-row="0">—</span>
+      <span class="vt-karte-neben" data-draw="vor_gebuehren_usd" data-source="kennzahlen" data-field="vor_gebuehren_usd" data-row="0">—</span>
+    </div>
+    <div class="vt-karte" id="karte-einbruch">
+      <span class="vt-karte-name">Größter Einbruch, seit Start</span>
+      <span class="vt-karte-wert" data-draw="einbruch_pct" data-source="kennzahlen" data-field="einbruch_pct" data-row="0">—</span>
+      <span class="vt-karte-neben">vom Höchststand, mit Rebate</span>
+    </div>
+    <div class="vt-karte" id="karte-volumen">
+      <span class="vt-karte-name">Handelsvolumen, seit Start</span>
+      <span class="vt-karte-wert" data-draw="volumen_usd" data-source="kennzahlen" data-field="volumen_usd" data-row="0">—</span>
+      <span class="vt-karte-neben"><span data-draw="orders" data-source="kennzahlen" data-field="orders" data-row="0">—</span> Orders</span>
+    </div>
+    <div class="vt-karte" id="karte-rebate">
+      <span class="vt-karte-name">Rebate (85 %), seit Start</span>
+      <span class="vt-karte-wert" data-draw="rebate_usd" data-source="kennzahlen" data-field="rebate_usd" data-row="0">—</span>
+      <span class="vt-karte-neben">Gebühr <span data-draw="gebuehr_usd" data-source="kennzahlen" data-field="gebuehr_usd" data-row="0">—</span>, Funding <span data-draw="funding_usd" data-source="kennzahlen" data-field="funding_usd" data-row="0">—</span></span>
+    </div>
+    <div class="vt-karte" id="karte-slippage">
+      <span class="vt-karte-name">Slippage je Order, seit Start</span>
+      <span class="vt-karte-wert" data-draw="slippage_orders_bp" data-source="kennzahlen" data-field="slippage_orders_bp" data-row="0">—</span>
+      <span class="vt-karte-neben">stündliche Messung <span data-draw="slippage_messung_bp" data-source="kennzahlen" data-field="slippage_messung_bp" data-row="0">—</span></span>
+    </div>
+  </section>
+
+  <section class="vt-abschnitt" id="verlauf">
+    <h2 class="vt-h2">Konto-Entwicklung in Prozent des Startkapitals</h2>
+    <div class="vt-legende"><span><i data-draw="farbe0"></i>Netto mit Rebate</span><span><i data-draw="farbe1"></i>Netto ohne Rebate</span></div>
+    <div class="vt-chart" data-draw="verlauf" data-source="verlauf"></div>
+    <p class="vt-klein">Ein Punkt je stündlichem Durchlauf. Startkapital 5.000 $ auf Papier, Einsatz bis 100 %, ohne Hebel.</p>
+  </section>
+
+  <section class="vt-abschnitt" id="positionen">
+    <h2 class="vt-h2">Offene Positionen</h2>
+    <div class="vt-rolle">
+      <table class="vt-tabelle" data-source="positionen" data-row-key="coin">
+        <thead><tr>
+          <th data-field="coin">Coin</th><th data-field="richtung">Richtung</th><th data-field="seit">Seit (UTC)</th>
+          <th class="vt-zahl" data-field="einstieg">Einstieg</th><th class="vt-zahl" data-field="kurs">Kurs</th>
+          <th class="vt-zahl" data-field="betrag">Betrag</th><th class="vt-zahl" data-field="ergebnis">Ergebnis</th><th class="vt-zahl" data-field="ergebnis_pct">in %</th>
+        </tr></thead>
+        <tbody data-draw="positionen"></tbody>
+      </table>
+    </div>
+    <p class="vt-klein">Ergebnis der offenen Position vor Gebühren. Long, wenn der Kurs über dem von vor 14 Tagen liegt, sonst Short.</p>
+  </section>
+
+  <section class="vt-abschnitt" id="orders">
+    <h2 class="vt-h2">Letzte Orders</h2>
+    <div class="vt-rolle">
+      <table class="vt-tabelle" data-source="orders" data-row-key="nr">
+        <thead><tr>
+          <th data-field="zeit">Zeit (UTC)</th><th data-field="coin">Coin</th><th data-field="seite">Seite</th><th data-field="grund">Anlass</th>
+          <th class="vt-zahl" data-field="kurs">Kurs</th><th class="vt-zahl" data-field="volumen">Volumen</th><th class="vt-zahl" data-field="slippage_bp">Slippage</th>
+        </tr></thead>
+        <tbody data-draw="orders"></tbody>
+      </table>
+    </div>
+    <p class="vt-klein">Die letzten 60 Orders. Slippage: wie viel schlechter als der Mittelkurs gefüllt wurde, in Prozent.</p>
+  </section>
+
+  <details class="vt-hinweise" id="hinweise">
+    <summary>Was hier gemessen wird und was nicht</summary>
+    <ul class="vt-klein">
+      <li>Regel: Schlusskurs der letzten vollen Stunde gegen den von vor 14 Tagen, zehn große Coins, jeder gleich groß. Die Größe wird beim Einstieg festgelegt.</li>
+      <li>Jede Order wird gegen das echte Yubit-Orderbuch gerechnet, mit Taker-Gebühr 0,08 % und 85 % Rebate. Es wird keine echte Order gesetzt.</li>
+      <li>Funding wird mit dem jeweils aktuellen Yubit-Satz angenähert.</li>
+      <li>Zum Vergleich die Rückrechnung: rund +16,5 % pro Jahr im Prüfzeitraum ab April 2025, mit Einbrüchen bis 31 %. Wenige Wochen sagen über den Gewinn fast nichts; belastbar wird der Test erst nach mehreren Monaten.</li>
+      <li>Keine Anlageberatung.</li>
+    </ul>
+  </details>
+</div>
+
+<script>
+  ['kennzahlen', 'verlauf', 'positionen', 'orders'].forEach((id) =>
+    dash.loader(id, {description: 'Nimmt die Zeilen "' + id + '" aus der Datei des Vorwärtstests.', fn: ({answer}) => (answer && answer[id]) || []}));
+
+  const de = (stellen) => new Intl.NumberFormat('de-DE', {minimumFractionDigits: stellen, maximumFractionDigits: stellen});
+  const vz = (x, stellen) => (x > 0 ? '+' : x < 0 ? '−' : '') + de(stellen).format(Math.abs(x));
+  const fmt = {
+    pct: (x) => vz(x, 2) + ' %',
+    pctPlain: (x) => de(2).format(x) + ' %',
+    usd: (x) => vz(x, 2) + ' $',
+    usdPlain: (x) => de(2).format(x) + ' $',
+    usd0: (x) => de(0).format(x) + ' $',
+    zahl0: (x) => de(0).format(x),
+    tage: (x) => de(1).format(x),
+    bp: (x) => de(3).format(x / 100) + ' %',
+    text: (x) => String(x),
+  };
+  const kurs = (x) => x == null ? '–' : new Intl.NumberFormat('de-DE', {maximumSignificantDigits: 6}).format(x);
+
+  const werte = {
+    tage: ['tage', 'tage'], mit_rebate_pct: ['mit_rebate_pct', 'pct', true], long: ['long', 'zahl0'], short: ['short', 'zahl0'],
+    start: ['start', 'text'], letzter_lauf: ['letzter_lauf', 'text'],
+    mit_rebate_pct_karte: ['mit_rebate_pct', 'pct', true], mit_rebate_usd: ['mit_rebate_usd', 'usd'],
+    ohne_rebate_pct: ['ohne_rebate_pct', 'pct', true], ohne_rebate_usd: ['ohne_rebate_usd', 'usd'],
+    vor_gebuehren_pct: ['vor_gebuehren_pct', 'pct', true], vor_gebuehren_usd: ['vor_gebuehren_usd', 'usd'],
+    einbruch_pct: ['einbruch_pct', 'pctPlain'], volumen_usd: ['volumen_usd', 'usd0'], orders: ['orders', 'zahl0'],
+    rebate_usd: ['rebate_usd', 'usdPlain'], gebuehr_usd: ['gebuehr_usd', 'usdPlain'], funding_usd: ['funding_usd', 'usd'],
+    slippage_orders_bp: ['slippage_orders_bp', 'bp'], slippage_messung_bp: ['slippage_messung_bp', 'bp'],
+  };
+  Object.entries(werte).forEach(([name, [feld, art, farbig]]) => dash.draw(name, (el) => {
+    const k = dash.data('kennzahlen');
+    const zeile = k.status === 'ok' && k.data[0];
+    el.classList.remove('vt-gut', 'vt-schlecht');
+    if (!zeile) { el.textContent = '—'; return; }
+    el.textContent = fmt[art](zeile[feld]);
+    if (farbig && zeile[feld] !== 0) el.classList.add(zeile[feld] > 0 ? 'vt-gut' : 'vt-schlecht');
+  }));
+  dash.draw('farbe0', (el) => { el.style.background = dash.colors[0]; });
+  dash.draw('farbe1', (el) => { el.style.background = dash.colors[1]; });
+
+  const zelle = (tr, text, klasse) => { const td = document.createElement('td'); td.textContent = text; if (klasse) td.className = klasse; tr.appendChild(td); return td; };
+  dash.draw('positionen', (tb) => {
+    const p = dash.data('positionen');
+    tb.replaceChildren();
+    if (p.status !== 'ok') return;
+    p.data.forEach((r) => {
+      const tr = document.createElement('tr');
+      zelle(tr, r.coin);
+      const td = zelle(tr, '');
+      const m = document.createElement('span'); m.className = 'vt-marke'; m.textContent = r.richtung; td.appendChild(m);
+      zelle(tr, r.seit || '–');
+      zelle(tr, kurs(r.einstieg), 'vt-zahl'); zelle(tr, kurs(r.kurs), 'vt-zahl'); zelle(tr, fmt.usd0(r.betrag), 'vt-zahl');
+      zelle(tr, fmt.usd(r.ergebnis), 'vt-zahl ' + (r.ergebnis > 0 ? 'vt-gut' : r.ergebnis < 0 ? 'vt-schlecht' : ''));
+      zelle(tr, fmt.pct(r.ergebnis_pct), 'vt-zahl ' + (r.ergebnis_pct > 0 ? 'vt-gut' : r.ergebnis_pct < 0 ? 'vt-schlecht' : ''));
+      tb.appendChild(tr);
+    });
+  });
+  dash.draw('orders', (tb) => {
+    const o = dash.data('orders');
+    tb.replaceChildren();
+    if (o.status !== 'ok') return;
+    o.data.forEach((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = String(r.nr);
+      zelle(tr, r.zeit); zelle(tr, r.coin); zelle(tr, r.seite); zelle(tr, r.grund);
+      zelle(tr, kurs(r.kurs), 'vt-zahl'); zelle(tr, fmt.usd0(r.volumen), 'vt-zahl'); zelle(tr, fmt.bp(r.slippage_bp), 'vt-zahl');
+      tb.appendChild(tr);
+    });
+  });
+
+  dash.draw('verlauf', (el) => {
+    const v = dash.data('verlauf');
+    el.replaceChildren();
+    if (v.status === 'error') { el.textContent = 'Konnte nicht geladen werden'; return; }
+    if (v.status !== 'ok' || !v.data.length) { el.textContent = '—'; return; }
+    const rows = v.data.map((r) => ({t: new Date(r.zeit), a: +r.mit_rebate, b: +r.ohne_rebate}));
+    const w = Math.max(el.clientWidth, 240), h = 280;
+    const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${w} ${h}`).attr('role', 'img')
+      .attr('aria-label', 'Konto-Entwicklung in Prozent des Startkapitals, netto mit und ohne Rebate, je stündlichem Durchlauf');
+    const yMin = Math.min(0, d3.min(rows, (r) => Math.min(r.a, r.b))), yMax = Math.max(0, d3.max(rows, (r) => Math.max(r.a, r.b)));
+    const pad = Math.max((yMax - yMin) * 0.12, 0.05);
+    const y = d3.scaleLinear().domain([yMin - pad, yMax + pad]).nice();
+    const yFmt = (d) => vz(d, Math.abs(y.domain()[1] - y.domain()[0]) < 2 ? 2 : 1) + ' %';
+    const probe = svg.append('text').attr('class', 'vt-achse').style('font-size', 'var(--cds-font-size-caption)');
+    const links = Math.ceil(d3.max(y.ticks(5), (d) => probe.text(yFmt(d)).node().getComputedTextLength())) + 14;
+    probe.remove();
+    const m = {l: links, r: 16, t: 10, b: 26};
+    y.range([h - m.b, m.t]);
+    let t0 = rows[0].t, t1 = rows[rows.length - 1].t;
+    if (+t0 === +t1) { t0 = new Date(+t0 - 36e5); t1 = new Date(+t1 + 36e5); }
+    const x = d3.scaleUtc().domain([t0, t1]).range([m.l, w - m.r]);
+    const tage = (t1 - t0) / 864e5;
+    svg.append('g').attr('class', 'vt-gitter').selectAll('line').data(y.ticks(5)).join('line')
+      .attr('x1', m.l).attr('x2', w - m.r).attr('y1', (d) => y(d)).attr('y2', (d) => y(d));
+    svg.append('g').attr('class', 'vt-achse').attr('transform', `translate(${m.l},0)`)
+      .call(d3.axisLeft(y).ticks(5).tickFormat(yFmt).tickSize(0).tickPadding(8)).call((g) => g.select('.domain').remove());
+    svg.append('g').attr('class', 'vt-achse').attr('transform', `translate(0,${h - m.b})`)
+      .call(d3.axisBottom(x).ticks(Math.max(2, Math.min(6, Math.floor((w - m.l) / 90)))).tickFormat(d3.utcFormat(tage > 3 ? '%d.%m.' : '%d.%m. %H:%M')).tickSizeOuter(0));
+    svg.append('line').attr('class', 'vt-null').attr('x1', m.l).attr('x2', w - m.r).attr('y1', y(0)).attr('y2', y(0));
+    [['b', 1], ['a', 0]].forEach(([k, i]) => {
+      svg.append('path').datum(rows).attr('fill', 'none').style('stroke', dash.colors[i]).attr('stroke-width', 2)
+        .attr('d', d3.line().x((r) => x(r.t)).y((r) => y(r[k])));
+      const letzter = rows[rows.length - 1];
+      svg.append('circle').attr('cx', x(letzter.t)).attr('cy', y(letzter[k])).attr('r', 4).style('fill', dash.colors[i]);
+    });
+    const tip = d3.select(el).append('div').attr('class', 'vt-tip').attr('hidden', '');
+    const marke = svg.append('line').attr('class', 'vt-null').attr('y1', m.t).attr('y2', h - m.b).attr('visibility', 'hidden');
+    const zeit = d3.utcFormat('%d.%m.%Y %H:%M UTC');
+    const zeigen = (ev) => {
+      const [px] = d3.pointer(ev, el);
+      const sx = px * (w / el.clientWidth);
+      const i = d3.leastIndex(rows, (r) => Math.abs(x(r.t) - sx));
+      const r = rows[i];
+      marke.attr('x1', x(r.t)).attr('x2', x(r.t)).attr('visibility', 'visible');
+      tip.attr('hidden', null);
+      const n = tip.node();
+      n.replaceChildren();
+      const z = document.createElement('div'); z.className = 'vt-tip-zeit'; z.textContent = zeit(r.t); n.appendChild(z);
+      [['Mit Rebate', r.a], ['Ohne Rebate', r.b]].forEach(([name, wert]) => { const d = document.createElement('div'); d.textContent = name + ': ' + fmt.pct(wert); n.appendChild(d); });
+      const breit = n.offsetWidth, cx = x(r.t) * (el.clientWidth / w);
+      tip.style('left', Math.max(0, Math.min(el.clientWidth - breit, cx + 12 > el.clientWidth - breit ? cx - breit - 12 : cx + 12)) + 'px').style('top', '8px');
+    };
+    svg.on('pointermove', zeigen).on('pointerdown', zeigen).on('pointerleave', () => { tip.attr('hidden', ''); marke.attr('visibility', 'hidden'); });
+  });
+</script>

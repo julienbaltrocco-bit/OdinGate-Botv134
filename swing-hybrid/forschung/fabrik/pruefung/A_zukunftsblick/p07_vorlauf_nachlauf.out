@@ -1,0 +1,47 @@
+Korrelation je Coin (vor = vergangene Stunde / gleiche Kerze, nach = kommende Stunde / nächste Kerze):
+      taker_vorstunde  taker_folgestunde  oi_vorstunde  oi_folgestunde  konten_vorstunde  konten_folgestunde  prem_gleiche  prem_naechste  tiefe_gleiche  tiefe_naechste  kaufdruck_gleiche  kaufdruck_naechste
+coin                                                                                                                                                                                                           
+BTC             0.368              0.006         0.428           0.159            -0.046              -0.024        -0.021          0.005         -0.396           0.009              0.511              -0.018
+ETH             0.354              0.002         0.403           0.144            -0.157              -0.023         0.038          0.011         -0.307           0.011              0.492              -0.010
+SOL             0.360              0.008         0.438           0.189            -0.045              -0.014         0.129          0.002         -0.360           0.011              0.462              -0.013
+XRP             0.258              0.002         0.513           0.174            -0.294              -0.018        -0.108          0.024         -0.169           0.002              0.400              -0.014
+DOT             0.274             -0.002         0.327           0.126            -0.334              -0.016         0.023         -0.003         -0.350          -0.001              0.395              -0.011
+DOGE            0.276              0.002         0.530           0.190            -0.376               0.000        -0.002          0.009         -0.237           0.008              0.361              -0.008
+ADA             0.273              0.002         0.404           0.168            -0.264              -0.012        -0.016          0.011         -0.275           0.001              0.416              -0.015
+LINK            0.347             -0.000         0.373           0.118            -0.298              -0.014         0.054         -0.006         -0.374          -0.000              0.464              -0.013
+AVAX            0.313              0.010         0.384           0.174            -0.155               0.005         0.010         -0.012         -0.376           0.000              0.405              -0.011
+LTC             0.286              0.003         0.436           0.147            -0.364              -0.004         0.007          0.008         -0.275           0.013              0.400              -0.014
+
+Mittel über Coins:
+taker_vorstunde       0.311
+taker_folgestunde     0.003
+oi_vorstunde          0.424
+oi_folgestunde        0.159
+konten_vorstunde     -0.233
+konten_folgestunde   -0.012
+prem_gleiche          0.011
+prem_naechste         0.005
+tiefe_gleiche        -0.312
+tiefe_naechste        0.005
+kaufdruck_gleiche     0.431
+kaufdruck_naechste   -0.013
+
+Alle 63 normierten Signale: Korrelation Signal[i] mit der Rendite der NÄCHSTEN Kerze (Eröffnung i+1 -> Eröffnung i+2) und der GLEICHEN Kerze
+größte |Korrelation| mit der nächsten Kerze:
+      signal coin  k_naechste  k_gleiche
+ ausbruch_48  SOL     -0.0226     0.3860
+ ausbruch_12  BTC     -0.0226     0.5302
+ ausbruch_12  SOL     -0.0223     0.4804
+ausbruch_144  SOL     -0.0211     0.3187
+   tiefe_d_5  BTC      0.0201    -0.0373
+ausbruch_288  BTC     -0.0193     0.3276
+ ausbruch_48  BTC     -0.0192     0.4356
+ausbruch_288  SOL     -0.0188     0.2813
+zum Vergleich größte |Korrelation| mit der gleichen Kerze:
+     signal coin  k_naechste  k_gleiche
+volspitze_1  BTC     -0.0148     0.6770
+volspitze_1 AVAX     -0.0114     0.6486
+volspitze_1 DOGE     -0.0078     0.6410
+volspitze_1  SOL     -0.0168     0.6341
+btcfuehrt_1  SOL     -0.0144     0.5833
+Median |Korrelation| nächste Kerze 0.0060; Anzahl mit |Korrelation| > 0,05: 0 von 252

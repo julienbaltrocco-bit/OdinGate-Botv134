@@ -1,0 +1,44 @@
+# Vorwärtstest Yubit, Stufe „papier“: jede Stunde ein Durchlauf, ohne Konto, ohne Schlüssel, ohne Orders.
+# Liest nur öffentliche Yubit-Kurse. Ergebnisse landen im Branch `vorwaertstest-daten` (bericht.md lesen).
+# Geplante Läufe starten nur, wenn diese Datei im Standard-Branch des Repos liegt.
+name: Vorwärtstest Yubit (Papier)
+
+on:
+  schedule:
+    - cron: "4 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vorwaertstest
+  cancel-in-progress: false
+
+jobs:
+  schritt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Daten-Branch holen
+        run: |
+          if git fetch --depth=1 origin vorwaertstest-daten:vorwaertstest-daten 2>/dev/null; then
+            git worktree add vt-daten vorwaertstest-daten
+          else
+            git worktree add --orphan -b vorwaertstest-daten vt-daten
+          fi
+      - name: Durchlauf (Papier)
+        working-directory: swing-hybrid
+        run: python -m vorwaertstest.bot schritt --daten "$GITHUB_WORKSPACE/vt-daten"
+      - name: Ergebnisse speichern
+        run: |
+          cd vt-daten
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Vorwärtstest $(date -u '+%F %H:%M') UTC" || exit 0
+          git push -q origin vorwaertstest-daten

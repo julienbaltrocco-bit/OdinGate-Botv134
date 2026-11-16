@@ -1,0 +1,228 @@
+{
+ "summary": "Der Papier-Bot rechnet im geprüften Stand sauber (Protokoll, Stand und Zustand beider Konten stimmen überein, die CSV-Dateien sind über 68 bzw. 14 Versionen nur gewachsen), aber der Betrieb drumherum ist für echtes Geld nicht tragfähig. Der Zeitgeber ist eine KI-Sitzung ohne Überwachung: gemessen rund alle 5 Minuten statt wie überall dokumentiert stündlich, Lücken bis 13 Minuten, kein Alarm; Stop und Signaldreh greifen nur, wenn ein Lauf stattfindet (nachgestellt: nach 10 Stunden Ausfall Ausstieg bei 20 % statt 5 %). Der Zustand liegt in einem Git-Zweig, auf den auch Entwickler- und Audit-Sitzungen pushen: Ein einziger fremder Push im Fenster von rund 51 Sekunden je Lauf (16 % des Zyklus) lässt den Runner dauerhaft abweichen, Konto 2 läuft dann gar nicht mehr und ein frischer Klon rechnet mit altem Zustand weiter (nachgestellt); heute lagen zehn fremde Commits zwischen 26 und 251 Sekunden neben einem solchen Fenster. Es gibt keine Sperre gegen Doppelläufe und der Zustand wird erst nach den CSV-Dateien und im Live-Pfad erst nach allen Orders gespeichert; ein Abbruch dazwischen verdoppelt Orders im Protokoll bzw. hinterlässt unbekannte Börsenpositionen (mit nachgestellter Börse gezeigt). Belegter Vorfall: 13:44 bis 15:00 UTC stand das Board 79 Minuten still (öffentlicher Schlüssel war durch .gitignore ausgeschlossen), und die Klartextdatei docs/stand.json wurde durch einen Selbstaustausch des Skripts während des Laufs wieder veröffentlicht und liegt bis heute dort. Die Veröffentlichung erzeugt 24 Pages-Builds pro Stunde und rund 12 MB Repo-Zuwachs pro Tag; Tests laufen nicht automatisch.",
+ "findings": [
+  {
+   "id": "INF-01",
+   "title": "Zeitgeber ist eine unbeaufsichtigte KI-Sitzung; tatsächlicher Takt weicht vom dokumentierten ab, Ausfälle werden weder erkannt noch nachgeholt",
+   "priority": "P0",
+   "confidence": "hoch",
+   "evidence": "Kein Zeitgeber für den realen Betrieb im Repo: vorwaertstest/stunde.sh:16-17 trägt nur die feste Sitzungsadresse im Commit-Text. Dokumentiert ist überall Stundentakt: README.md:10, server/installieren.sh:43 (OnCalendar=*:03), .github/workflows/vorwaertstest.yml:8 (cron 4 * * * *, inaktiv), dashboard_daten.py:12 (TAKT_MINUTEN = 60), docs/index.html:478 (Countdown auf Minute :04). Gemessen (evidence/INF/historie_takt_luecken.txt): Test 1 64 Läufe 13:21 bis 18:58 UTC, Abstand Median 5 min, min 1, max 13 (15:51 auf 16:04), vier Abstände über 7 min; nur 5 von 64 Läufen (8 %) waren der erste Lauf nach einer vollen Stunde (Minute :01 bis :05). Stop/Ziel werden nur während eines Laufs geprüft (bot.py:216-228), es gibt keine Lückenerkennung (letzte_kerze wird in bot.py:280 nur geschrieben, nie gelesen). Versuch V4 (evidence/INF/bot_versuche_ausgabe.txt): nach 10 h ohne Lauf Ausstieg mit Grund stop bei 20,2 % gegen die Position statt 5 %, Rückgabe warnungen == []. Ursache der Lücken laut Historie nicht feststellbar.",
+   "impact": "Bei echtem Geld und Hebel 3 bleiben Positionen ohne Stop und ohne Signaldreh, solange die Sitzung steht; niemand wird benachrichtigt. Schon im Papierbetrieb hängen die Ergebnisse von Test 2 (Stop/Ziel) und die Slippage-Messung vom zufälligen Takt ab: 92 % der als 'zur vollen Stunde' berichteten Messungen (bot.py:314) fanden nicht zur vollen Stunde statt, und Stop/Ziel werden rund zwölfmal so oft geprüft wie im dokumentierten Stundentakt.",
+   "recommendation": "Vor jedem Live-Handel: fester, überwachter Zeitgeber auf einem eigenen Rechner (systemd-Timer oder cron), Takt als Konfigurationswert festlegen und in stand.csv und Dashboard ausweisen; externer Totmannschalter (Signal nach jedem erfolgreichen Lauf, Alarm nach zwei ausgebliebenen Takten); Lückenerkennung im Bot (Abstand zum letzten Lauf größer als Soll führt zu dauerhaft gespeicherter Warnung); im Live-Betrieb Stops als Börsenorder hinterlegen statt nur im Bot prüfen. Für Test 2 schriftlich festlegen, welches Prüfintervall gilt (reine Festlegung, keine Optimierung).",
+   "reproduce": "cd /home/user/OdinGate-Botv134 && python3 -I swing-hybrid/reports/audit/evidence/INF/historie.py . ; cd swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/INF/bot_versuche.py (Abschnitt V4)"
+  },
+  {
+   "id": "INF-02",
+   "title": "Git-Zweig als gemeinsamer Zustandsspeicher: ein fremder Push im Lauf-Fenster lässt den Runner dauerhaft und still abweichen",
+   "priority": "P0",
+   "confidence": "hoch",
+   "evidence": "stunde.sh:6 und :8 verschlucken Fehler von fetch und pull (|| true), :14-17 verschlucken Fehler von commit (|| true), :18 bricht bei abgelehntem push ab (set -e, Zeile 3), das zweite Konto folgt erst ab :23. Sandbox mit byte-gleicher Kopie von stunde.sh und eigenem Bare-Repo (evidence/INF/gitsim_ausgabe.txt): S1 nach einem fremden Push zwischen pull und push liefern Lauf 3, 4 und 5 Rückgabewert 1, der Runner ist 3 Commits voraus und 1 zurück, stand.csv Konto 1 lokal 5 Zeilen gegen 2 auf origin, Konto 2 bleibt bei 2 Zeilen stehen; ein frischer Klon startet mit Zustand lauf 2 statt lauf 5. S2 Push-Fehler: Konto 2 wird in diesem Lauf ausgelassen. S5 commit scheitert: Rückgabewert 0, Ausgabe 'gesichert', origin unverändert. Realer Betrieb: zehn Commits, die nicht vom Runner stammen, lagen zwischen 13:22 und 19:03 UTC auf dem Bot-Zweig; dieser Klon erzeugt sie per commit, pull --rebase, push (evidence/INF/reflog_entwicklerklon.txt, 0 Bot-Commits im reflog). Fenster je Lauf Median 51 s bei Zyklus 311 s, also 16 %; knappste Abstände zum Fenster 26 s (cf1f1cb), 39 s (b8795b3), 41 s (a6bf357) (historie_takt_luecken.txt, letzter Abschnitt). Zweig ungeschützt (GitHub-API: protected false). Ein solcher Vorfall ist in der Historie bis 3dfd5b2 nicht eingetreten: jede Zeile in stand.csv hat ihren eigenen Commit.",
+   "impact": "Nach einer Kollision rechnet der Runner nur noch lokal weiter, das Board und der Zweig frieren ein, Konto 2 wird gar nicht mehr berechnet. Geht der Runner-Klon verloren (neue Sitzung, neuer Container), startet der Bot ohne Hinweis mit dem veralteten Zustand des Zweigs: Positionen, Einstiegskurse und Sperren stimmen nicht mehr. Mit echtem Geld sind das falsche Orders oder ein Stillstand mit offenen Positionen.",
+   "recommendation": "Zustand aus dem gemeinsam genutzten Zweig herausnehmen: eigener Datenspeicher (Datei oder SQLite auf dem Runner mit Sicherung) oder ein Datenzweig, auf den nur der Runner schreibt (Branch-Schutz). Im Skript: nach dem Holen prüfen, dass der lokale Stand nicht hinter origin liegt, sonst abbrechen und alarmieren; abgelehnten Push mit pull --rebase einmal wiederholen; Rückgabewert von git commit auswerten; beide Konten unabhängig voneinander behandeln. Code-Auslieferung (geprüfter Stand) von den Laufdaten trennen.",
+   "reproduce": "S=$(mktemp -d /tmp/inf.XXXX); mkdir $S/stubs; E=/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF; for f in bot dashboard_daten board_verschluesseln; do cp $E/gitsim_stellvertreter_$f.py $S/stubs/$f.py; done; bash $E/gitsim.sh /home/user/OdinGate-Botv134 $S/sim $S/stubs"
+  },
+  {
+   "id": "INF-03",
+   "title": "Keine Sperre gegen Doppelläufe und Zustand wird zuletzt gespeichert: Abbruch oder Überlappung verdoppelt Orders im Protokoll, im Live-Pfad bleiben unbekannte Börsenpositionen",
+   "priority": "P0",
+   "confidence": "hoch",
+   "evidence": "Kein Sperrmechanismus: grep nach flock, lockf, fcntl, .lock in vorwaertstest/*.py und *.sh liefert nichts. Reihenfolge in bot.py: Zustand laden :160, CSV anhängen :276-279, Zustand speichern :281; Live-Orders werden in der Coin-Schleife gesendet (:244), gespeichert wird erst danach. V2 (bot_versuche_ausgabe.txt): Abbruch vor :281, Neustart: protokoll.csv 4 Orders, zustand.orders 2; bericht.md meldet '4 Orders, Volumen 29.992 $, Gebühr gezahlt 23,99 $' bei tatsächlich 12,00 $; Dashboard orders 4. V3 zwei Instanzen: Position laut Protokoll AAA 150 / BBB -300 gegen Zustand 75 / -150. Live-Pfad mit nachgestellter Börse im Prozess (test_inf_betrieb.py, test_ist_inf03_live_absturz_...): Verbindungsabbruch beim Abholen der Fills nach der zweiten Order, zwei Orders stehen an der Börse, zustand.json und protokoll.csv existieren nicht, der nächste Lauf endet mit SystemExit 'weicht vom Protokoll ab' (bot.py:177-182). Laufzeit ohne Obergrenze: yubit.py:78 timeout=20 mal 5 Abrufe je Coin (bot.py:84, 91, 94, 97, 98) mal 10 Coins ergibt bis 1000 s je Konto bei rund 300 s Takt. Im tatsächlichen Verlauf keine doppelten Zeilen und keine Abweichung (konsistenz_zustand.txt).",
+   "impact": "Papier: Orderzahl, Volumen und Gebühren in Bericht und Board werden nach einem Abbruch doppelt gezählt, ohne dass es auffällt. Live: Positionen in doppelter Größe (zwei Instanzen) oder Positionen, die der Bot nicht kennt; danach verweigert er den Handel, die Positionen bleiben mit Hebel 3 unbetreut offen.",
+   "recommendation": "Sperrdatei um den gesamten Lauf (flock in stunde.sh und im Bot), Gesamtzeitlimit unter dem Takt. Schreibreihenfolge umdrehen: zuerst ein Journal mit eindeutiger Lauf-Nummer und Order-Kennung (Absicht, Ausführung, Bestätigung) dauerhaft schreiben, Zustand nach jeder einzelnen Ausführung speichern, CSV-Dateien aus dem Journal ableiten. Im Live-Pfad die orderLinkId aus Lauf-Nummer und Coin bilden, damit eine Wiederholung bereits gesendete Orders erkennt; nach einem Abbruch offene Orders abfragen und streichen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B -m pytest -q -p no:cacheprovider reports/audit/evidence/INF/test_inf_betrieb.py -k inf03 ; .venv/bin/python -I -B reports/audit/evidence/INF/bot_versuche.py (Abschnitte V2, V3)"
+  },
+  {
+   "id": "INF-04",
+   "title": "Belegter Vorfall 13:44 bis 15:00 UTC: Auslieferung ohne Prüfung, Skript tauscht sich während des eigenen Laufs aus, jeder Folgefehler bricht die ganze Kette ab",
+   "priority": "P1",
+   "confidence": "hoch",
+   "evidence": "14 Commits von 13:50 bis 14:55 UTC mit dem Zusatz '(Verschlüsselungsschritt fehlgeschlagen, nur Lauf-Daten)' (git log -- swing-hybrid/vorwaertstest/lauf); docs/stand.enc.json blieb von 1695511 (13:41:56) bis cf1f1cb (15:00:40) unverändert, also 79 Minuten. Ursache laut cf1f1cb: .gitignore:25 (*.pem) schloss vorwaertstest/board_pub.pem aus, der Runner-Klon hatte die Datei nicht. S3 der Sandbox stellt das nach: Rückgabewert 1 in jedem Lauf, Laufdaten lokal geändert, aber vom Skript nie gesichert, Konto 2 läuft nie (stunde.sh:12 bricht unter set -e vor :13 ab); die Commits des Vorfalls tragen einen abweichenden Text, wurden also von Hand erzeugt. Zweiter Effekt: Commit 4dc3256 (13:44:41, Elternteil 1695511) legt docs/stand.json im Klartext wieder an, obwohl 1695511 die Datei gelöscht und stunde.sh auf Verschlüsselung umgestellt hatte. S4 stellt das mit den beiden historischen Fassungen nach: bash führt die alte Fassung zu Ende, während git pull (stunde.sh:8) die Datei ersetzt. Außerdem wurde bot.py um 17:45 UTC (b8795b3) während des laufenden Test 1 geändert und vom nächsten Lauf ohne Testlauf ausgeführt; in .github gibt es keinen pytest-Aufruf.",
+   "impact": "Jede Änderung auf dem Zweig wird binnen fünf Minuten ungeprüft im laufenden Bot wirksam; ein fehlendes Hilfsprogramm oder eine fehlende Datei stoppt Sicherung und Konto 2 vollständig. Die Fortsetzung des Tests hing im Vorfall an einer improvisierenden KI-Sitzung. Die als entfernt geltende Klartextdatei wurde wieder veröffentlicht.",
+   "recommendation": "Publikation (Dashboard, Verschlüsselung, Push) vom Handelsschritt entkoppeln: Laufdaten zuerst sichern, Folgefehler melden statt abbrechen. Startprüfung im Skript (Schlüsseldatei, openssl, Python-Version). Holen und Ausführen trennen (kleiner Starter holt den Stand und startet danach die neue Fassung per exec). Bot-Code nur aus einem getesteten, markierten Stand ausliefern; pytest bei jedem Push automatisch laufen lassen. In .gitignore eine ausdrückliche Ausnahme für board_pub.pem eintragen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134 && git log --format='%h %cI %s' -- docs/stand.enc.json | tail -3 ; git show --stat 4dc3256 | head ; Sandbox wie bei INF-02 (Szenarien s3_schluessel_fehlt und s4_selbstaenderung)"
+  },
+  {
+   "id": "INF-05",
+   "title": "Fehlerbehandlung der Marktabfrage: gängige Verbindungsfehler beenden den ganzen Lauf, Teilausfälle werden still übergangen, keine Wiederholung",
+   "priority": "P1",
+   "confidence": "hoch",
+   "evidence": "yubit.py:80-83 fängt nur HTTPError, URLError, TimeoutError, JSONDecodeError; bot.py:172 fängt nur YubitFehler, KeyError, ValueError, IndexError. Lokaler Testserver auf 127.0.0.1 über den echten urllib-Pfad (evidence/INF/http_versuch_ausgabe.txt): Verbindung ohne Antwort geschlossen ergibt http.client.RemoteDisconnected, TCP-Reset ergibt ConnectionResetError, abgebrochene Antwort ergibt IncompleteRead, JSON-Liste ergibt AttributeError, Feld null ergibt TypeError: jeweils nicht abgefangen; ein einziger solcher Fehler bei einem von 50 Abrufen lässt bot.schritt mit Ausnahme enden, ohne dass etwas geschrieben wird. HTTP 429, Fehlercode, HTML und Zeitlimit werden korrekt zu YubitFehler. Keine Wiederholung, kein Gesamtlimit (yubit.py:71-78). V5: fehlt ein Coin genau im Lauf des Signaldrehs, gibt es 0 Orders, die Position wird mit dem alten Kurs bewertet (stand.csv brutto -11,25 statt -2411,25 USDT im Beispiel), der Hinweis steht nur in der Rückgabe. V6: eine Kerze, deren Schluss bis 120 Minuten alt ist, wird ohne Hinweis verwendet (bot.py:88). Realer Lauf 15:16 UTC: spannen.csv enthält nur BTC, ETH, SOL, XRP, DOT; Schritt bis Commit 78 s statt Median 29 s; die Ursache ist nirgends festgehalten.",
+   "impact": "Ein kurzer Netzfehler lässt über set -e beide Konten für diesen Takt ausfallen; im Stundentakt wäre das eine volle Stunde ohne Signal- und Stop-Prüfung. Bei Teilausfällen ist die Vermögenskurve unbemerkt falsch und ein Signaldreh wird verspätet gehandelt.",
+   "recommendation": "Im Client alle Transport- und Formatfehler (OSError, http.client.HTTPException, ValueError, TypeError, AttributeError) in YubitFehler überführen; zwei bis drei Wiederholungen mit Wartezeit, Gesamtzeitlimit je Lauf. Fehlende oder veraltete Coins je Lauf dauerhaft festhalten (Spalte in stand.csv und Logdatei) und im Board anzeigen. Frischegrenze der Kerze auf einen Takt senken. Plausibilitätsprüfungen ergänzen (Serverzeit gegen lokale Uhr, Buch nicht gekreuzt, Kurse größer null).",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/INF/http_versuch.py ; .venv/bin/python -I -B reports/audit/evidence/INF/bot_versuche.py (V5, V6)"
+  },
+  {
+   "id": "INF-06",
+   "title": "Keine Protokollierung, kein Alarm; das Board erkennt einen stehenden Bot nicht",
+   "priority": "P1",
+   "confidence": "hoch",
+   "evidence": "Der Bot schreibt Meldungen nur auf die Standardausgabe (bot.py:149 melden=print, :282-285); kein logging-Modul, stunde.sh schreibt keine Logdatei (grep). Das Board zeigt das Alter aus dem Feld geschrieben (docs/index.html:477), das dashboard_daten.py:73 aus der Wanduhr setzt; letzter_lauf und takt_minuten kommen in docs/index.html nicht vor (0 Treffer). Die Statuszeile 'Live · Kurse im Sekundentakt' hängt nur an Binance-Ticks (index.html:163, :475), der Countdown 'Nächste Signalprüfung' zielt fest auf Minute :04 (index.html:478). V8: mit STOPP-Datei liefert der Schritt nur gestoppt True, das Dashboard erhält trotzdem einen frischen Wert für geschrieben. Für den Teilausfall um 15:16 UTC und für die Lücken (bis 13 min) gibt es keinerlei Aufzeichnung.",
+   "impact": "Ein Stillstand wie in INF-02 oder ein dauerhaft scheiternder Lauf fällt nur auf, wenn jemand zufällig auf die Altersangabe schaut; die grüne Live-Anzeige bleibt dabei an. Ursachen vergangener Störungen lassen sich nicht nachvollziehen.",
+   "recommendation": "Je Lauf eine Zeile in einer dauerhaften Logdatei (Beginn, Ende, Dauer, Abrufe, Hinweise, Rückgabewert, Git-Stand). Alarm an den Betreiber bei Fehler, bei Lücke über zwei Takte und bei Abweichung zwischen lokalem und entferntem Stand. Im Board das Alter aus der letzten Zeile von stand.csv ableiten, ab zwei Takten deutlich warnen, die Live-Anzeige daran koppeln und Takt sowie nächsten Lauf aus der Konfiguration lesen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134 && grep -c 'letzter_lauf\\|takt_minuten' docs/index.html ; sed -n 475,479p docs/index.html ; cd swing-hybrid && .venv/bin/python -I -B -m pytest -q -p no:cacheprovider reports/audit/evidence/INF/test_inf_betrieb.py -k inf06"
+  },
+  {
+   "id": "INF-07",
+   "title": "Veröffentlichung über Git: zwei Pushes je Lauf, rund 24 Pages-Builds pro Stunde und etwa 12 MB Repo-Zuwachs pro Tag",
+   "priority": "P1",
+   "confidence": "mittel",
+   "evidence": "GitHub-API, nur lesend (evidence/INF/pages_builds_github.tsv): 92 Läufe von 'pages build and deployment' zwischen 13:46 und 19:34 UTC, 72 erfolgreich, 20 abgebrochen; in der Stunde ab 18:00 UTC 25 Builds (13 erfolgreich, 12 abgebrochen). Seit Konto 2 wird der Build des ersten Pushs jedes Laufs vom zweiten abgebrochen (stunde.sh:18 und :31). Repo (evidence/INF/repo_wachstum.txt): 76 von 144 Commits im lokalen Stand sind Bot-Commits, Pull Request 1 zählt 159 Commits; neue Objektdaten je Lauf mit zwei Konten Median 41 kB, das sind bei 288 Läufen 11,8 MB pro Tag und 355 MB pro Monat sowie 576 Commits pro Tag. Größter Posten sind die verschlüsselten Stände, die wegen neuem Schlüssel und IV je Lauf (board_verschluesseln.py:25) nicht delta-komprimierbar sind; Hochrechnung nach Erreichen von 400 Verlaufspunkten (dashboard_daten.py:68-71): rund 0,89 GB pro Monat. Die Grenze von 10 Builds pro Stunde für GitHub Pages stammt aus meiner Kenntnis der GitHub-Dokumentation; docs.github.com war aus dieser Umgebung nicht erreichbar, deshalb Vertrauen nur mittel.",
+   "impact": "Der Betrieb liegt beim Mehrfachen der mir bekannten weichen Grenze für Pages-Builds; GitHub kann solche Sites drosseln oder abschalten, dann steht das Board. Das Repo wächst in wenigen Monaten über die empfohlene Größe, die Historie ist für Code-Prüfungen kaum noch lesbar.",
+   "recommendation": "Ein Push je Lauf für beide Konten. Board-Daten nicht in die Historie des Arbeitszweigs schreiben: eigener Veröffentlichungszweig mit einem einzelnen, jeweils ersetzten Commit oder Auslieferung über einen Actions-Workflow mit Artefakt oder externer Ablage. Laufdaten gebündelt sichern (zum Beispiel einmal täglich) oder außerhalb von Git führen. Veröffentlichungstakt vom Rechentakt trennen.",
+   "reproduce": "gh api --paginate 'repos/julienbaltrocco-bit/OdinGate-Botv134/actions/runs?per_page=100' -q '.workflow_runs[] | [.run_number,.conclusion,.created_at] | @tsv' ; Auswertung und Hochrechnung siehe evidence/INF/repo_wachstum.txt"
+  },
+  {
+   "id": "INF-08",
+   "title": "Der Papierbetrieb prüft nicht den vorgesehenen Live-Betriebsweg: drei verschiedene Zeitgeber und Konfigurationen im Repo",
+   "priority": "P2",
+   "confidence": "hoch",
+   "evidence": "Tatsächlich läuft nur stunde.sh (config_lauf.json und config_lauf_tpsl.json, Hebel 3, rund alle 5 Minuten, mit Dashboard, Verschlüsselung und Git). server/installieren.sh:36 startet 'bot schritt' ohne --config, also mit config.json (Hebel 0,2, Tagesverlust-Limit 3 %, Ordner daten), stündlich um :03 (:43), ohne Dashboard, ohne Sicherung, ohne OnFailure. .github/workflows/vorwaertstest.yml:36 ebenfalls ohne --config, stündlich um :04 (:8), Ziel-Zweig vorwaertstest-daten, der nicht existiert. Der Workflow ist inaktiv (GitHub-API: einziger registrierter Workflow ist pages-build-deployment; Standard-Zweig feature/content-engine-mvp). Pull Request 1 ist offen mit dem Bot-Zweig als Quelle und dem Standard-Zweig als Ziel: Ein Merge würde den stündlichen Zeitplan automatisch starten. Live verlangt laut README.md:36-38 eine feste, von Yubit freigegebene IP ('nicht bei GitHub'); die KI-Sitzung als Runner erfüllt das nicht.",
+   "impact": "Aus dem laufenden Papierbetrieb lassen sich keine Aussagen über Stabilität und Verhalten des späteren Live-Betriebs ableiten (anderer Takt, andere Konfiguration, anderer Datenweg, andere Maschine). Ein Merge des offenen Pull Requests startet unbeabsichtigt einen dritten Papier-Bot.",
+   "recommendation": "Einen einzigen Betriebsweg festlegen und genau diesen im Papiermodus mehrere Wochen betreiben (gleicher Rechner, gleicher Zeitgeber, gleiche Konfigurationsdatei wie später live). installieren.sh auf diesen Weg bringen (--config, Sperre, Zeitlimit, Fehlerbenachrichtigung). Den GitHub-Workflow entfernen oder vor einem Merge deaktivieren.",
+   "reproduce": "cd /home/user/OdinGate-Botv134 && sed -n 36p swing-hybrid/vorwaertstest/server/installieren.sh && sed -n 36p .github/workflows/vorwaertstest.yml && cat swing-hybrid/vorwaertstest/config.json ; gh api repos/julienbaltrocco-bit/OdinGate-Botv134/actions/workflows -q '.workflows[].name'"
+  },
+  {
+   "id": "INF-09",
+   "title": "Laufdateien ohne Lauf-Nummer, mit Minutenzeitstempeln und ohne Schutz gegen abgeschnittene Zeilen; fehlender Zustand führt zu stillem Neustart",
+   "priority": "P2",
+   "confidence": "hoch",
+   "evidence": "bot.py:37-38 Zeitstempel in Minutenauflösung ohne Zeitzonenangabe; :50-59 Anhängen ohne fsync; :62-66 Lesen ohne Fehlertoleranz; :69-71 fehlt zustand.json, beginnt der Bot ohne Hinweis mit leerem Zustand und hängt an die vorhandenen CSV-Dateien an (V2: erneute Einstiege); kern.py:69 schreibt version 1, geprüft wird sie nirgends. V1: zwei Läufe in derselben Minute erzeugen zwei Zeilen mit identischem Zeitstempel und doppelte Messungen. V7: eine abgeschnittene letzte Zeile in protokoll.csv lässt bot.bericht und dashboard_daten.bauen mit TypeError abbrechen, der nächste Lauf klebt seine Zeile an die kaputte an; da bot.py:397 den Bericht nach jedem Schritt schreibt, scheitert danach jeder Lauf. Wachstum: spannen.csv 60,6 Bytes je Zeile, 10 Zeilen je Lauf, bei 5-Minuten-Takt 64 MB pro Jahr und Konto (50 MB nach 286 Tagen); alle drei Dateien werden in jedem Lauf vollständig neu gelesen (bot.py:303, dashboard_daten.py:16).",
+   "impact": "Doppelte oder beschädigte Zeilen lassen sich nachträglich nicht sicher erkennen oder zuordnen; ein einziger Schreibabbruch legt Bericht, Dashboard und über set -e die Sicherung dauerhaft lahm. Ein verlorener Zustand mischt zwei Testläufe in einer Datei.",
+   "recommendation": "Jede Zeile mit Lauf-Nummer und Zeitstempel in Sekunden mit Z-Kennung versehen; Schreiben über Zwischendatei und Umbenennen oder SQLite; unvollständige Zeilen beim Lesen überspringen und melden; fehlt zustand.json bei vorhandenen CSV-Dateien, abbrechen statt neu starten; Versionsfeld prüfen. Die Konsistenzprüfung aus evidence/INF/konsistenz.py täglich laufen lassen. spannen.csv monatsweise teilen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B -m pytest -q -p no:cacheprovider reports/audit/evidence/INF/test_inf_betrieb.py -k inf09"
+  },
+  {
+   "id": "INF-10",
+   "title": "Im veröffentlichten Ordner docs/ liegen ein veralteter Klartext-Stand und sechs fremde Dokumente; die Laufdaten stehen zusätzlich unverschlüsselt im öffentlichen Repo",
+   "priority": "P2",
+   "confidence": "mittel",
+   "evidence": "git ls-tree HEAD docs/ und GitHub-API für den Zweigkopf: neben index.html, schluessel.json, stand.enc.json und stand_tpsl.enc.json liegen dort stand.json (5847 Bytes, Klartext, Feld geschrieben 2026-11-15T13:44:41Z, mit Positionen und Ergebnis von Test 1) sowie API.md, ARCHITECTURE.md, BLOCKERS.md, COMPLIANCE.md, ROADMAP.md und SETUP.md der Next.js-Anwendung; eine Datei .nojekyll fehlt. Herkunft von stand.json siehe INF-04 (Commit 4dc3256). Unabhängig davon liegen vorwaertstest/lauf/ und lauf_tpsl/ (dashboard.json, zustand.json, CSV-Dateien) im Klartext im Repo, das laut GitHub-API öffentlich ist. Ob GitHub Pages diese Dateien tatsächlich ausliefert, konnte ich nicht abrufen (github.io und die Pages-Einstellungen waren aus dieser Umgebung nicht erreichbar), deshalb Vertrauen mittel.",
+   "impact": "Die Passwortabfrage des Boards schützt die Handelsdaten nicht; interne Projektdokumente der anderen Anwendung werden mit veröffentlicht. Die Bewertung der Vertraulichkeit gehört in den Prüfbereich Security.",
+   "recommendation": "docs/stand.json löschen (bleibt in der Historie sichtbar), die sechs Dokumente aus dem Veröffentlichungsordner herausnehmen, einen eigenen Ordner oder Zweig nur für das Board verwenden und .nojekyll anlegen. Entscheiden, ob die Laufdaten vertraulich sein sollen; wenn ja, gehören sie nicht in ein öffentliches Repo.",
+   "reproduce": "cd /home/user/OdinGate-Botv134 && git ls-tree -l HEAD docs/ && python3 -I -c \"import json;d=json.load(open('docs/stand.json'));print(d['geschrieben'],d['kennzahlen'][0]['mit_rebate_usd'])\""
+  },
+  {
+   "id": "INF-11",
+   "title": "Umgebung und Daten nur teilweise reproduzierbar: keine Sperrdatei für Abhängigkeiten, keine automatischen Tests, Marktdaten ohne Prüfsummen und teils nicht wiederbeschaffbar",
+   "priority": "P2",
+   "confidence": "hoch",
+   "evidence": "swing-hybrid/requirements.txt nennt acht Pakete mit fester Version, aber ohne Hashes und ohne Festlegung der indirekten Abhängigkeiten (pip freeze der .venv zeigt weit mehr Pakete, zum Beispiel ccxt, aiohttp, cryptography). Python-Versionen uneinheitlich: pyproject.toml verlangt ab 3.12, die .venv ist 3.13.18, der Workflow nimmt 3.12, stunde.sh:10 das python3 des Systems. Die 105 Tests laufen lokal in 3,3 s grün, werden aber nirgends automatisch ausgeführt (kein pytest in .github). Marktdaten (9,7 GB) liegen nur lokal (swing-hybrid/.gitignore); scripts/kerzen_laden.py:21 lädt von data.binance.vision ohne Abgleich der dort angebotenen Prüfsummen (grep nach sha256 und checksum in scripts/*_laden.py: 0 Treffer); data/raw (3,6 GB) und data/download/trading-labor.zip (1,4 GB) haben keine öffentliche Quelle; Yubit-Spannen sind Momentaufnahmen (scripts/yubit_spannen_sammeln.py:15); Tageskurse kommen von einem inoffiziellen Yahoo-Endpunkt (scripts/aktien_laden.py:25, tageskurse_laden.py:18). Ein Verzeichnis der Dateien mit Hashwerten fehlt.",
+   "impact": "Geht die Cloud-Umgebung verloren, sind die Forschungsergebnisse nicht bitgenau nachrechenbar; stille Änderungen an Daten oder Bibliotheken bleiben unbemerkt. Fehler im Bot-Code erreichen den Runner ungetestet (siehe INF-04).",
+   "recommendation": "Sperrdatei mit Hashes erzeugen (pip-compile oder uv), eine Python-Version festlegen, pytest bei jedem Push automatisch ausführen. Ein Datenverzeichnis mit Datei, Größe, SHA-256, Quelle und Abrufdatum ins Repo legen, beim Laden die Prüfsummen von Binance abgleichen, Rohdaten ohne öffentliche Quelle extern sichern.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && cat requirements.txt && .venv/bin/python -I -B -m pytest -q -p no:cacheprovider | tail -1 && grep -c 'sha256\\|checksum' scripts/*_laden.py"
+  },
+  {
+   "id": "INF-12",
+   "title": "Live-Server lauscht ohne Zugriffsschutz auf allen Netzwerkschnittstellen und fragt die Börse alle 3 Sekunden ab",
+   "priority": "P3",
+   "confidence": "hoch",
+   "evidence": "vorwaertstest/live_server.py:108 bindet ThreadingHTTPServer an 0.0.0.0, eine Anmeldung gibt es nicht; :19 TAKT_S = 3.0, das sind rund 28.800 Abrufe aller Ticker pro Tag (:64); Fehler werden nur im Speicher gehalten (:69-71), live_start.sh:6 schreibt das Log nach /tmp. In diesem Container läuft kein solcher Prozess (pgrep ohne Treffer, /tmp/vorwaertstest_live.log leer); ob er beim Betreiber läuft, ist offen.",
+   "impact": "Wo der Server läuft, ist der Kontostand für jeden im selben Netz lesbar; die Dauerabfrage kann Abruflimits der Börse berühren, die auch der Bot braucht.",
+   "recommendation": "An 127.0.0.1 binden oder ganz entfernen (das Board in docs/ ersetzt ihn), Abruftakt senken, Log an einen dauerhaften Ort schreiben.",
+   "reproduce": "cd /home/user/OdinGate-Botv134 && sed -n '19p;108p' swing-hybrid/vorwaertstest/live_server.py ; pgrep -af live_server"
+  }
+ ],
+ "reproduced": [
+  {
+   "claim": "105 bestehende Tests sind grün",
+   "result": "reproduziert",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B -m pytest -q -p no:cacheprovider",
+   "detail": "105 passed in 3.33s. Die Tests laufen nur von Hand, nicht automatisch."
+  },
+  {
+   "claim": "Eine KI-Sitzung führt etwa alle fünf Minuten stunde.sh aus",
+   "result": "reproduziert",
+   "command": "cd /home/user/OdinGate-Botv134 && python3 -I swing-hybrid/reports/audit/evidence/INF/historie.py .",
+   "detail": "Test 1: 64 Läufe 13:21 bis 18:58 UTC, Abstand Median 5 min (min 1, max 13). Test 2: 14 Läufe 17:44 bis 18:58 UTC, Median 5 min (max 9). Jeder Lauf hat einen eigenen Commit. Wie die Sitzung den Takt erzeugt, steht nicht im Repo."
+  },
+  {
+   "claim": "Stündliche Signalprüfung",
+   "result": "abweichend",
+   "command": "siehe evidence/INF/historie_takt_luecken.txt",
+   "detail": "Geprüft wird rund alle 5 Minuten gegen die letzte abgeschlossene Stundenkerze; nur 5 von 64 Läufen (8 %) waren der erste Lauf nach einer vollen Stunde (Minute :01 bis :05). Stop und Ziel von Test 2 werden damit etwa zwölfmal so oft geprüft wie im dokumentierten Stundentakt."
+  },
+  {
+   "claim": "Zwei Papier-Tests seit 15.11.2026 mit Hebel 3 (Test 2 mit Stop 5 % und Ziel 15 %)",
+   "result": "reproduziert",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid/vorwaertstest && cat config_lauf.json config_lauf_tpsl.json && head -2 lauf/stand.csv lauf_tpsl/stand.csv",
+   "detail": "Beide Konfigurationen: hebel 3.0, kapital 5000, 10 Coins; Test 2 zusätzlich tp 0.15 und sl 0.05. Test 1 beginnt 13:21 UTC (Neustart, der vorige Lauf mit Hebel 1 wurde in Commit 4276791 archiviert), Test 2 beginnt 17:44 UTC."
+  },
+  {
+   "claim": "Protokoll, Stand und Zustand der beiden laufenden Tests sind untereinander konsistent",
+   "result": "reproduziert",
+   "command": "cd /home/user/OdinGate-Botv134 && python3 -I swing-hybrid/reports/audit/evidence/INF/konsistenz.py .",
+   "detail": "Stand 3dfd5b2: je 10 Orders in protokoll.csv, zustand.orders und stand.csv; Positionen und Kasse aus dem Protokoll gleich dem Zustand (Abweichung 0); Vermögen aus zustand.json gleich letzter Zeile von stand.csv; Zeitstempel streng aufsteigend, keine doppelten Zeilen, einheitliche Spaltenzahl."
+  },
+  {
+   "claim": "Vorfall mit fehlgeschlagenem Verschlüsselungsschritt",
+   "result": "reproduziert",
+   "command": "cd /home/user/OdinGate-Botv134 && git log --format='%h %cI %s' -- swing-hybrid/vorwaertstest/lauf | grep -c fehlgeschlagen",
+   "detail": "14 Commits von 13:50 bis 14:55 UTC; docs/stand.enc.json 79 Minuten unverändert. Mechanismus in der Sandbox nachgestellt (Szenario s3_schluessel_fehlt in evidence/INF/gitsim_ausgabe.txt)."
+  },
+  {
+   "claim": "Die Workflow-Datei liegt nicht im Standard-Zweig; das Repo ist öffentlich",
+   "result": "reproduziert",
+   "command": "gh api repos/julienbaltrocco-bit/OdinGate-Botv134 -q '{default_branch, visibility, has_pages}' ; gh api repos/julienbaltrocco-bit/OdinGate-Botv134/actions/workflows -q '.workflows[].name'",
+   "detail": "default_branch feature/content-engine-mvp, visibility public, has_pages true; einziger registrierter Workflow ist pages-build-deployment, der Vorwärtstest-Workflow läuft also nicht."
+  },
+  {
+   "claim": "GitHub Pages veröffentlicht den Ordner /docs dieses Zweigs",
+   "result": "ungeklaert",
+   "command": "gh api --paginate 'repos/julienbaltrocco-bit/OdinGate-Botv134/actions/runs?per_page=100' -q '.workflow_runs[] | [.head_branch,.conclusion] | @tsv' | sort | uniq -c",
+   "detail": "Bestätigt: jeder Push auf diesen Zweig löst einen Pages-Build aus (92 Builds, alle mit head_branch claude/intelligent-sagan-2cviug). Nicht bestätigt: der eingestellte Quellordner und die tatsächlich ausgelieferten Dateien, weil die Pages-Einstellungen über den Proxy gesperrt sind (HTTP 403) und github.io nicht erreichbar war."
+  },
+  {
+   "claim": "Der Bot läuft in einem anderen Klon als die Entwicklung und lief nach dem lokalen Stand weiter",
+   "result": "reproduziert",
+   "command": "cat /home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/origin_commits_nach_lokalem_stand.tsv ; git -C /home/user/OdinGate-Botv134 reflog | grep -c 'commit: Vorwärtstest'",
+   "detail": "Auf origin folgen nach 3dfd5b2 (19:03 UTC) weitere Bot-Commits bis 19:43 UTC, die lokal fehlen; im reflog dieses Klons gibt es 0 selbst erzeugte Bot-Commits. Der Audit-Commit 3dfd5b2 ist Elternteil des Bot-Commits 015b5b1, wurde also vom Runner per Fast-Forward übernommen."
+  }
+ ],
+ "correct": [
+  "zustand.json wird über eine Zwischendatei geschrieben und per Umbenennen ersetzt (bot.py:74-77); nach einem Lauf bleibt keine .tmp-Datei zurück (test_ok_zustand_wird_ueber_zwischendatei_ersetzt).",
+  "Der Handel ist über den Zustand idempotent: ein zweiter Lauf zum selben Zeitpunkt erzeugt keine Orders (Versuch V1, test_ok_zweiter_lauf_zur_selben_zeit_handelt_nicht).",
+  "Die CSV-Dateien beider Tests sind laut Historie nur gewachsen: 68 Versionen bei Test 1 und 14 bei Test 2, einzige nicht-anhängende Änderung ist der dokumentierte Neustart mit Hebel 3 in Commit 4276791 (evidence/INF/historie_takt_luecken.txt).",
+  "Jede Zeile in stand.csv hat einen eigenen Commit; bis 3dfd5b2 ging kein Lauf verloren und es gab keine Abweichung zwischen Runner und origin, die mehrere Läufe in einem Commit hinterlassen hätte.",
+  "Protokoll, Stand und Zustand stimmen für beide Tests überein; keine doppelten Zeitstempel, Zeit streng aufsteigend, einheitliche Spaltenzahl, keine CRLF-Zeilenenden (evidence/INF/konsistenz_zustand.txt).",
+  "Zeitangaben sind durchgehend UTC: bot.py:37-38, Tageswechsel des Verlustlimits bot.py:192, Dashboard hängt Z an (dashboard_daten.py:20), Commit-Zeiten +00:00.",
+  "Ein kurzer Ausfall von origin wird verkraftet: der lokale Commit bleibt erhalten und wird beim nächsten erfolgreichen Lauf mit gepusht (Sandbox s2_netzausfall); Einschränkung siehe INF-02 (Konto 2 fällt in diesem Lauf aus).",
+  "Der Yubit-Client wandelt HTTP-Fehler, Fehlercodes, Zeitlimit und Nicht-JSON in YubitFehler um, der Bot überspringt dann nur den betroffenen Coin (evidence/INF/http_versuch_ausgabe.txt, erste sechs Zeilen).",
+  "Fehlen alle Marktdaten, bricht der Bot ab, ohne etwas zu schreiben (bot.py:174-175, test_ok_ohne_marktdaten_wird_nichts_geschrieben); Kerzen mit einem Schluss älter als zwei Stunden werden abgelehnt (bot.py:88).",
+  "Die STOPP-Datei wird beachtet (bot.py:151-153, Versuch V8).",
+  "Der GitHub-Workflow hat eine Nebenläufigkeitsgruppe und ein Zeitlimit von 10 Minuten (.github/workflows/vorwaertstest.yml:14-16, :21); er ist allerdings nicht aktiv.",
+  "Das Board lädt den Stand mit wechselndem Abfrageparameter und cache: no-store (docs/index.html:408), ein veralteter Zwischenspeicher verfälscht die Anzeige also nicht.",
+  "Zwischen dem genannten Prüfstand 0e92022 und dem lokalen Stand 3dfd5b2 hat sich außerhalb von reports/audit nur der Datenbestand von vier Bot-Läufen geändert, kein Code (git diff --stat 0e92022 3dfd5b2).",
+  "Während dieser Prüfung wurden die Papier-Daten nicht verändert: stunde.sh, Bot und dashboard_daten liefen nur in temporären Verzeichnissen bzw. in der Sandbox; git status zeigt außerhalb von reports/audit keine Änderung."
+ ],
+ "unclear": [
+  "Wie die KI-Sitzung den Takt erzeugt, wie lange sie lebt und was bei ihrem Ende geschieht: im Repo gibt es dazu nichts; ob Läufe streng nacheinander gestartet werden oder ein Werkzeug-Zeitlimit einen Lauf mittendrin beenden kann, ließ sich nicht prüfen.",
+  "Ursache des Teilausfalls im Lauf 15:16 UTC (nur 5 von 10 Coins gemessen, Lauf 78 s statt 29 s) und Ursache der Lücken bis 13 Minuten (15:51 auf 16:04, dazu 17:04, 17:56 und 18:04): es existiert kein Protokoll.",
+  "Ob GitHub Pages docs/stand.json und die sechs Markdown-Dokumente tatsächlich ausliefert und welcher Quellordner eingestellt ist: github.io war nicht erreichbar, die Pages-Einstellungen sind über den Proxy gesperrt.",
+  "Die Grenzen von GitHub Pages (10 Builds pro Stunde, Größenempfehlungen) stammen aus meiner Kenntnis der GitHub-Dokumentation; docs.github.com war nicht erreichbar, ob und wann GitHub hier eingreift, ist offen.",
+  "Abruflimits von Yubit für öffentliche Endpunkte und die Frage, ob Yubits Regel zu Rechenzentrums-IPs (YUBIT_REGELN.md, Abschnitt 1) schon das Lesen von Kursdaten aus einer Cloud-Sitzung betrifft: aus dem Repo nicht zu klären.",
+  "Der entfernte Stand nach 3dfd5b2 wurde nur über die GitHub-API gelesen (Commit-Liste, Ordnerliste, Builds); der Inhalt der Laufdateien nach 18:58 UTC wurde nicht geprüft, weil git fetch untersagt war.",
+  "Der Commit 3dfd5b2 ('Audit: Zwischenstand der Evidenzdateien') wurde von einem früheren Audit-Lauf auf den Bot-Zweig gepusht, nicht von mir. Er ist selbst ein Beispiel für das Risiko aus INF-02; weitere Audit-Commits auf diesen Zweig sollten bis zur Behebung unterbleiben oder nur außerhalb des Lauf-Fensters erfolgen.",
+  "Ob live_server.py beim Betreiber läuft und von außen erreichbar ist.",
+  "Die Hochrechnungen zum Repo-Wachstum (0,89 GB pro Monat nach Erreichen von 400 Verlaufspunkten) sind Rechnungen unter den in evidence/INF/repo_wachstum.txt genannten Annahmen, keine Messungen."
+ ],
+ "evidence_files": [
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/historie.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/historie_takt_luecken.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/konsistenz.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/konsistenz_zustand.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/gitsim.sh",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/gitsim_ausgabe.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/gitsim_stellvertreter_bot.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/gitsim_stellvertreter_dashboard_daten.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/gitsim_stellvertreter_board_verschluesseln.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/bot_versuche.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/bot_versuche_ausgabe.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/http_versuch.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/http_versuch_ausgabe.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/test_inf_betrieb.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/pages_builds_github.tsv",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/origin_commits_nach_lokalem_stand.tsv",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/reflog_entwicklerklon.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/INF/repo_wachstum.txt"
+ ]
+}

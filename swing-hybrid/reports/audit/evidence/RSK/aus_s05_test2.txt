@@ -1,0 +1,50 @@
+OFFENLEGUNG: Die Variante sl5_tp15 wird hier auch im Prüfzeitraum ab 04/2025 gezeigt (bisher laut Protokoll unberührt). Reine Risikomessung;
+die Unterschiede zwischen den Prüfabständen sind keine Grundlage für eine Auswahl von Einstellungen.
+
+=== Vorperiode (2020-02-01 00:00:00 bis 2021-08-14 23:55:00) ===  [Hebel 3, Konto = 1 am Fensterbeginn, durchlaufende Positionen]
+  Kandidat ohne Stop (Test 1)                         : Ergebnis +627.5%, Sharpe 1.36, Einbruch 61.7% (in Punkten 240%), schlechtester Tag -63.1%, tiefster Stand 81%
+  Forschung sl5_tp15 (tpsl.py, Stundenschluss)        : Ergebnis -121.4%, Sharpe -0.86, Einbruch 176.5% (in Punkten 245%), schlechtester Tag -23.6%, tiefster Stand -106%
+  Bot-Logik Test 2, Prüfabstand 5 Minuten (Betrieb)   : Ergebnis  -83.8%, Sharpe -0.67, Einbruch 137.0% (in Punkten 196%), schlechtester Tag -21.7%, tiefster Stand -53% | 264 Stops (172/Jahr), 171 Ziele, 2318 Drehs; Verlust am Stop: Mittel -5.64%, schlechtestes 1 % ab -9.5%, schlechtester -12.1%; Stops schlechter als −7,5 %: 10, −10 %: 2, −20 %: 0
+  Bot-Logik Test 2, Prüfabstand 60 Minuten (Forschung/README): Ergebnis -107.8%, Sharpe -0.76, Einbruch 164.6% (in Punkten 242%), schlechtester Tag -23.6%, tiefster Stand -95% | 143 Stops (93/Jahr), 161 Ziele, 2448 Drehs; Verlust am Stop: Mittel -6.11%, schlechtestes 1 % ab -11.2%, schlechtester -11.5%; Stops schlechter als −7,5 %: 18, −10 %: 4, −20 %: 0
+  Bot-Logik Test 2, Prüfabstand 6 Stunden (Ausfall)   : Ergebnis  -96.9%, Sharpe -0.74, Einbruch 151.1% (in Punkten 161%), schlechtester Tag -15.3%, tiefster Stand -54% | 140 Stops (91/Jahr), 126 Ziele, 850 Drehs; Verlust am Stop: Mittel -6.71%, schlechtestes 1 % ab -13.2%, schlechtester -14.9%; Stops schlechter als −7,5 %: 32, −10 %: 10, −20 %: 0
+  Bot-Logik Test 2, Prüfabstand 24 Stunden (Ausfall)  : Ergebnis  -76.0%, Sharpe -0.36, Einbruch 218.8% (in Punkten 267%), schlechtester Tag -126.9%, tiefster Stand -145% | 100 Stops (65/Jahr), 106 Ziele, 363 Drehs; Verlust am Stop: Mittel -8.00%, schlechtestes 1 % ab -22.1%, schlechtester -29.9%; Stops schlechter als −7,5 %: 42, −10 %: 18, −20 %: 2
+
+=== Entwicklung (2021-08-15 00:00:00 bis 2025-03-31 23:55:00) ===  [Hebel 3, Konto = 1 am Fensterbeginn, durchlaufende Positionen]
+  Kandidat ohne Stop (Test 1)                         : Ergebnis +646.9%, Sharpe 0.95, Einbruch 38.4% (in Punkten 171%), schlechtester Tag -89.0%, tiefster Stand 89%
+  Forschung sl5_tp15 (tpsl.py, Stundenschluss)        : Ergebnis +362.3%, Sharpe 1.13, Einbruch 37.2% (in Punkten 96%), schlechtester Tag -17.9%, tiefster Stand 82%
+  Bot-Logik Test 2, Prüfabstand 5 Minuten (Betrieb)   : Ergebnis +324.5%, Sharpe 1.04, Einbruch 27.3% (in Punkten 108%), schlechtester Tag -18.0%, tiefster Stand 86% | 373 Stops (103/Jahr), 379 Ziele, 6721 Drehs; Verlust am Stop: Mittel -5.54%, schlechtestes 1 % ab -9.2%, schlechtester -16.9%; Stops schlechter als −7,5 %: 11, −10 %: 4, −20 %: 0
+  Bot-Logik Test 2, Prüfabstand 60 Minuten (Forschung/README): Ergebnis +371.4%, Sharpe 1.16, Einbruch 35.0% (in Punkten 94%), schlechtester Tag -17.8%, tiefster Stand 88% | 236 Stops (65/Jahr), 371 Ziele, 6866 Drehs; Verlust am Stop: Mittel -5.69%, schlechtestes 1 % ab -7.7%, schlechtester -8.9%; Stops schlechter als −7,5 %: 4, −10 %: 0, −20 %: 0
+  Bot-Logik Test 2, Prüfabstand 6 Stunden (Ausfall)   : Ergebnis +446.6%, Sharpe 1.36, Einbruch 25.5% (in Punkten 82%), schlechtester Tag -21.5%, tiefster Stand 90% | 234 Stops (65/Jahr), 315 Ziele, 2418 Drehs; Verlust am Stop: Mittel -6.34%, schlechtestes 1 % ab -11.6%, schlechtester -18.3%; Stops schlechter als −7,5 %: 35, −10 %: 5, −20 %: 0
+  Bot-Logik Test 2, Prüfabstand 24 Stunden (Ausfall)  : Ergebnis +352.3%, Sharpe 0.96, Einbruch 26.8% (in Punkten 95%), schlechtester Tag -41.5%, tiefster Stand 93% | 175 Stops (48/Jahr), 257 Ziele, 1126 Drehs; Verlust am Stop: Mittel -6.96%, schlechtestes 1 % ab -14.4%, schlechtester -24.4%; Stops schlechter als −7,5 %: 51, −10 %: 10, −20 %: 1
+
+=== Pruefzeitraum (2025-04-01 00:00:00 bis 2026-10-23 23:55:00) ===  [Hebel 3, Konto = 1 am Fensterbeginn, durchlaufende Positionen]
+  Kandidat ohne Stop (Test 1)                         : Ergebnis  +77.5%, Sharpe 0.34, Einbruch 55.8% (in Punkten 163%), schlechtester Tag -33.4%, tiefster Stand 84%
+  Forschung sl5_tp15 (tpsl.py, Stundenschluss)        : Ergebnis  +65.3%, Sharpe 0.44, Einbruch 53.1% (in Punkten 152%), schlechtester Tag -19.5%, tiefster Stand 85%
+  Bot-Logik Test 2, Prüfabstand 5 Minuten (Betrieb)   : Ergebnis +129.7%, Sharpe 0.77, Einbruch 44.4% (in Punkten 156%), schlechtester Tag -19.4%, tiefster Stand 86% | 117 Stops (75/Jahr), 131 Ziele, 3091 Drehs; Verlust am Stop: Mittel -5.30%, schlechtestes 1 % ab -6.4%, schlechtester -11.4%; Stops schlechter als −7,5 %: 1, −10 %: 1, −20 %: 0
+  Bot-Logik Test 2, Prüfabstand 60 Minuten (Forschung/README): Ergebnis  +66.0%, Sharpe 0.44, Einbruch 53.0% (in Punkten 152%), schlechtester Tag -19.5%, tiefster Stand 85% | 71 Stops (45/Jahr), 123 Ziele, 3145 Drehs; Verlust am Stop: Mittel -5.53%, schlechtestes 1 % ab -8.0%, schlechtester -8.8%; Stops schlechter als −7,5 %: 2, −10 %: 0, −20 %: 0
+  Bot-Logik Test 2, Prüfabstand 6 Stunden (Ausfall)   : Ergebnis  +19.1%, Sharpe 0.13, Einbruch 61.5% (in Punkten 155%), schlechtester Tag -17.8%, tiefster Stand 82% | 77 Stops (49/Jahr), 105 Ziele, 1258 Drehs; Verlust am Stop: Mittel -6.28%, schlechtestes 1 % ab -9.5%, schlechtester -10.3%; Stops schlechter als −7,5 %: 12, −10 %: 1, −20 %: 0
+  Bot-Logik Test 2, Prüfabstand 24 Stunden (Ausfall)  : Ergebnis  -89.1%, Sharpe -0.55, Einbruch 100.3% (in Punkten 177%), schlechtester Tag -37.6%, tiefster Stand -0% | 76 Stops (49/Jahr), 82 Ziele, 592 Drehs; Verlust am Stop: Mittel -6.86%, schlechtestes 1 % ab -11.5%, schlechtester -12.6%; Stops schlechter als −7,5 %: 16, −10 %: 5, −20 %: 0
+
+=== Stops im Betrieb mit 5-Minuten-Prüfung, alle Zeiträume zusammen ===
+  754 Stops; Verlust am Prüfkurs: Median -5.27%, Mittel -5.54%, schlechteste 1 % ab -9.5%, schlechtester -16.9%
+  Die zehn schlechtesten Stop-Ausführungen (Kurslücke zwischen zwei Läufen):
+      XRP   Long  2024-01-03 12:10: -16.9% statt −5 % -> bei Hebel 3 -5.1% des Startkapitals aus EINER Position
+      ADA   Long  2024-01-03 12:10: -15.8% statt −5 % -> bei Hebel 3 -4.7% des Startkapitals aus EINER Position
+      DOT   Long  2020-10-29 12:30: -12.1% statt −5 % -> bei Hebel 3 -3.6% des Startkapitals aus EINER Position
+      BTC   Long  2025-10-10 21:20: -11.4% statt −5 % -> bei Hebel 3 -3.4% des Startkapitals aus EINER Position
+      AVAX  Long  2021-10-27 08:10: -11.2% statt −5 % -> bei Hebel 3 -3.4% des Startkapitals aus EINER Position
+      LINK  Long  2020-08-02 04:40: -10.8% statt −5 % -> bei Hebel 3 -3.2% des Startkapitals aus EINER Position
+      ADA   Long  2021-10-27 08:05: -10.3% statt −5 % -> bei Hebel 3 -3.1% des Startkapitals aus EINER Position
+      XRP   Short 2021-02-23 09:30: -9.7% statt −5 % -> bei Hebel 3 -2.9% des Startkapitals aus EINER Position
+      ADA   Long  2021-05-19 14:05: -9.3% statt −5 % -> bei Hebel 3 -2.8% des Startkapitals aus EINER Position
+      BTC   Short 2022-02-28 22:35: -8.8% statt −5 % -> bei Hebel 3 -2.6% des Startkapitals aus EINER Position
+  Gleichzeitige Stops: höchstens 8 in einer Stunde (Summe -46.2% der Positionsgröße = -13.9% des Startkapitals bei Hebel 3, am 2022-05-26 08:00:00); höchstens 8 an einem Tag (Summe -46.2% = -13.9% des Startkapitals, am 2022-05-26)
+  Stunden mit mindestens 5 Stops: 2, Tage mit mindestens 8 Stops: 1
+  Schlechteste 30 Tage: 43 Stops, Summe -244% der Positionsgröße = -73% des Startkapitals bei Hebel 3 (bis 2021-06-13)
+
+=== Wiedereinstieg nach einem Stop (5-Minuten-Prüfung) ===
+  Nach 754 Stops: Gegenposition (Dreh) im Median nach 9 h; dieselbe Richtung wie die gestoppte Position wieder offen im Median nach 36 h; binnen 6 h bei 19%, binnen 24 h bei 44%, binnen 72 h bei 60% der Stops
+  In 55% dieser Fälle liegt der Wiedereinstieg in dieselbe Richtung zu einem schlechteren Kurs als der Stop-Ausstieg (teurer zurückgekauft bzw. tiefer wieder verkauft).
+
+  Signal-Drehs: 13350 in 6.7 Jahren = 199 je Coin und Jahr; Abstand zum vorigen Dreh: Median 4 h, genau 1 h bei 30%, bis 3 h bei 50%, bis 24 h bei 79%
+  Meiste Drehs an einem Tag über alle zehn Coins: 43 (am 2022-05-26); jeder Dreh handelt 2 x Positionsgröße (bei Hebel 3: 3.000 $ je Dreh bei 5.000 $ Konto)

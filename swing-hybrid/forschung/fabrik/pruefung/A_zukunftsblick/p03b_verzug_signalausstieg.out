@@ -1,0 +1,5 @@
+verzug=0: Trades 1, Einstieg Kerze 11, Ausstieg Kerze 21 (Dauer 10); erwartet Ausstieg 21 -> Abweichung 0 Kerze(n)
+verzug=1: Trades 1, Einstieg Kerze 12, Ausstieg Kerze 23 (Dauer 11); erwartet Ausstieg 22 -> Abweichung 1 Kerze(n)
+verzug=2: Trades 1, Einstieg Kerze 13, Ausstieg Kerze 25 (Dauer 12); erwartet Ausstieg 23 -> Abweichung 2 Kerze(n)
+Zeitausstieg verzug=0: Einstieg 11, Ausstieg 23 (erwartet 23)
+Zeitausstieg verzug=1: Einstieg 12, Ausstieg 24 (erwartet 24)

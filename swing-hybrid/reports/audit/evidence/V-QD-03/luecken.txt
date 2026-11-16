@@ -1,0 +1,11 @@
+Stundenkerzen im Verbund-Index: 46776 | fehlende Stundenschluesse je Coin: {'BTC': 0, 'ETH': 0, 'SOL': 120, 'XRP': 120, 'DOT': 0, 'DOGE': 0, 'ADA': 0, 'LINK': 0, 'AVAX': 0, 'LTC': 120}
+Zeitpunkte mit fehlenden Stunden (erste/letzte): 2022-02-26 00:00:00 2022-04-02 23:00:00 Anzahl 120
+open_time
+2022-02    72
+2022-04    48
+Freq: M
+Stunden mit Signal 0 je Coin im Auswertungszeitraum: {'BTC': 0, 'ETH': 0, 'SOL': 254, 'XRP': 260, 'DOT': 22, 'DOGE': 21, 'ADA': 30, 'LINK': 7, 'AVAX': 8, 'LTC': 265}
+davon ab 2025-04-01: {'BTC': 0, 'ETH': 0, 'SOL': 6, 'XRP': 1, 'DOT': 15, 'DOGE': 7, 'ADA': 12, 'LINK': 3, 'AVAX': 4, 'LTC': 13}
+SOL fehlende 5-Minuten-Kerzen: 1440 von 2022-02-26 00:00:00 bis 2022-04-02 23:55:00
+XRP fehlende 5-Minuten-Kerzen: 1440 von 2022-02-26 00:00:00 bis 2022-04-02 23:55:00
+LTC fehlende 5-Minuten-Kerzen: 1440 von 2022-02-26 00:00:00 bis 2022-04-02 23:55:00

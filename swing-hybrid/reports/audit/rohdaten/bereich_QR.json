@@ -1,0 +1,237 @@
+{
+ "summary": "Die zentralen Zahlen sind auf zwei Wegen nachgerechnet und stimmen: mit den Modulen bitgenau zu den gespeicherten JSON-Dateien (Entwicklung +59,4 % pro Jahr, Sharpe 0,946, Einbruch 24,6 %; Prüfzeitraum +16,5 %, Sharpe 0,337, Einbruch 31,3 %), mit einer eigenen Minimal-Rechnung ohne src/hybrid auf höchstens 2 % genau (D1-Sharpe 0,535 statt 0,564, erklärt durch fünf fehlende Kerzentage bei SOL, XRP, LTC). Korrelation (0,675 / 0,785), Anteil gleichgerichteter Stunden (41,6 %), Runde 4, 6, 21 und 24 samt Reality Check sind ebenfalls reproduziert; ein Störungstest findet keinen Blick voraus. Die Rechnung ist also richtig, ihre Deutung trägt aber nicht: Der berichtete Einbruch gilt für feste Positionsgröße am Startkapital bei Hebel 1; bei Hebel 3 ohne Tageslimit (laufende Papier-Konfiguration) kostet der schlechteste Tag 89 % des Kontos, und 10 bis 13 % aller Starttage enden mit Konto null. Das Plus im Prüfzeitraum entsteht allein durch das 85-%-Rebate (ohne Rebate −19,6 %) und ist statistisch nicht von null zu unterscheiden (t = 0,42). Ein Reality Check über die 32 Einstellungen, aus denen der Kandidat gewählt wurde, wird nicht bestanden (p zwischen 0,09 und 0,48). Vor echtem Geld sind Hebel, Rebate-Nachweis und die Aussage „belegt“ zu korrigieren.",
+ "findings": [
+  {
+   "id": "QR-01",
+   "title": "Berichteter Einbruch (25 % / 31 %) und „Einsatz 100 %“ gelten nicht für die laufende Konfiguration mit Hebel 3; in der eigenen Historie wäre ein Hebel-3-Konto mehrfach ausgelöscht worden",
+   "priority": "P0",
+   "evidence": "Messvorschrift: scripts/suche_runde24.py:62 misst den Einbruch als Rückgang von 1 + kumuliertem Tagesergebnis relativ zum Höchststand, bei fester Positionsgröße am STARTkapital (src/hybrid/engine2.py:88-92, dq = tgt*S/p). Das Rechenkonto wächst bis 3,28 (08.12.2024), der Prozentwert fällt dadurch klein aus. In Einheiten des Startkapitals bei Hebel 1 (evidence/QR/c_abweichung_risiko.txt): schlechtester Tag −29,7 % (09.12.2024), 7 Tage unter −10 % in der Entwicklung; größter absoluter Rückgang 0,51 (Entwicklung, Tagesbasis; 0,56 stündlich) und 0,50 (Prüfzeitraum; 0,54 stündlich). Feste Stückzahl bis zum Richtungswechsel lässt den Einsatz in Trends wachsen: Mittel 1,02x, 95-%-Wert 1,32x, Maximum 2,18x Startkapital (03.12.2024, XRP allein 0,54x); bei Hebel 3 sind das 6,5x, über hebel_max 5 (config.yaml:13). Hebel 3 ohne Tageslimit = vorwaertstest/config_lauf.json:4 und :17 (tagesverlust_limit 1.0): Start 01.04.2025 ergibt Konto-Tief 0,84 und Einbruch 55,8 % vom Höchststand (evidence/QR/d_module_zusatz.txt, Abschnitt 5). Start an jedem möglichen Tag: Konto <= 0 bei 12,5 % der Starttage in der Entwicklung und 10,5 % im Prüfzeitraum, Verlust >= 50 % bei 48 % bzw. 41 %. Mit Größe am laufenden Kontostand (Zinseszins): Einbruch 95 % / 92 %, CAGR −18 % / −44 % (evidence/QR/j_kosten_papier_zinseszins.txt). Die Forschung selbst hat den Kandidaten nur bei Hebel 0,2 mit Tageslimit 3 % bestanden (reports/suche_protokoll.md:135; reports/suche_bericht.md:23 „Das hält nur bei Hebel 0,2“; nachgerechnet: Hebel 0,25 -> Einbruch 10,6 %, Hebel 0,2 -> 8,8 %). vorwaertstest/README.md:3 nennt weiter Hebel 0,2. Zusatz: In der Stunde 10.10.2025 21:00 fielen DOT −74,5 %, AVAX −66 %, ADA/DOGE −62 % gegen den Vorstundenschluss; der Kandidat war zufällig in 8 von 10 Coins short, LTC long (−57,5 % innerhalb der Stunde). Die Rückrechnung kennt keine Liquidation (evidence/QR/i_crash_2025-10-10.txt).",
+   "impact": "Wer mit „Einbruch 25 %“ und Hebel 3 plant, unterschätzt das Verlustrisiko um ein Vielfaches. Ein Tag wie der 09.12.2024 kostet bei Hebel 3 rund 89 % des Kontos; Totalverlust bzw. Liquidation ist in den eigenen Daten mehrfach enthalten. Die Papier-Tests laufen mit dem 15-Fachen des Hebels, der in der Forschung bestanden hat.",
+   "recommendation": "Vor jedem Live-Handel: (1) Risiko in absoluten Größen je Startzeitpunkt berichten (schlechtester Tag, absoluter Rückgang, Anteil der Starttage mit Konto <= 50 % und <= 0) und den Hebel daraus ableiten. (2) Live höchstens mit dem bestandenen Hebel (0,2); die Hebel-3-Papierläufe nicht als Vorlage verwenden. (3) Positionswert je Coin und gesamt begrenzen (Obergrenze oder Nachführen), Margin- und Liquidationslogik der Börse in die Rückrechnung aufnehmen. (4) In allen Berichten „Einbruch“ und „Einsatz 100 %“ mit Messvorschrift kennzeichnen und README/Konfiguration in Einklang bringen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && E=reports/audit/evidence/QR && .venv/bin/python -I -B $E/c_abweichung_risiko.py $E/a_tagesreihe.csv /tmp/qr_c.json && NUMBA_CACHE_DIR=/tmp/qr_numba .venv/bin/python -I -B -W ignore $E/d_module_zusatz.py /tmp/qr_d.json && .venv/bin/python -I -B -W ignore $E/j_kosten_papier_zinseszins.py $E/a_tagesreihe.csv",
+   "confidence": "hoch"
+  },
+  {
+   "id": "QR-02",
+   "title": "Das Plus im Prüfzeitraum entsteht allein durch das 85-%-Rebate und hängt an einer Kostenannahme aus einer 60-Minuten-Stichprobe",
+   "priority": "P1",
+   "evidence": "Prüfzeitraum, Hebel 1 (evidence/QR/a_module.txt und d_module_zusatz.txt, Abschnitt 4): Ergebnis vor Gebühr inkl. Slippage und Funding +33,9 %; volle Taker-Gebühr 53,4 % des Kapitals (Umsatz 668x Kapital x 0,08 %); netto ohne Rebate −19,6 % (Sharpe −0,25); mit 85 % Rebate +25,9 % (0,34); mit 50 % Rebate +7,2 % (0,09). Slippage doppelt: +6,1 % (Sharpe 0,08); pauschal 0,05 %: +12,2 % (0,16); pauschal 0,10 %: −21,2 %. Unabhängige Rechnung bestätigt: ohne Rebate −19,5 % (evidence/QR/b_unabhaengig.txt). Gespeichert bei Hebel 0,2: reports/suche_runde6.json teil1.A.Pruefung handel = −0,039, rebate_anteil = 1,76. Kostenbasis: data/processed/yubit_spannen_stichprobe.csv, 30 Messungen am Samstag 14.11.2026 15:40–16:39 UTC, angewandt auf fünf Jahre (im Protokoll selbst als größte Unsicherheit genannt, suche_protokoll.md:248). vorwaertstest/bot.py:245 setzt im Live-Modus rebate = 0.0 („wird von Yubit getrennt gutgeschrieben, hier nicht sichtbar“); der tatsächliche Rebate-Zufluss wird nirgends gemessen. Zum Vergleich Entwicklung ohne Rebate: +113,8 % (Sharpe 0,50).",
+   "impact": "Ob die Strategie außerhalb der Entwicklungsdaten Geld verdient, entscheidet eine Zusage der Börse, nicht das Signal. Bei geringerem Rebate (Staffel, Deckel, Ausschluss von Taker-Volumen, verspätete Gutschrift) oder höherer Slippage ist das Ergebnis des Prüfzeitraums negativ.",
+   "recommendation": "Rebate-Bedingungen (Satz, Obergrenze, Auszahlungsrhythmus, Geltung für Taker-Orders und API-Handel) schriftlich belegen und im Repo ablegen. „Netto ohne Rebate“ in allen Berichten gleichrangig ausweisen. Im Vorwärtstest gemessene Slippage und (später live) Rebate-Gutschriften laufend gegen die Annahme abgleichen und ein Abbruchkriterium vorab festlegen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=/tmp/qr_numba .venv/bin/python -I -B -W ignore reports/audit/evidence/QR/d_module_zusatz.py /tmp/qr_d.json   (Abschnitt 4 „Empfindlichkeit“ und „Zerlegung“)",
+   "confidence": "hoch"
+  },
+  {
+   "id": "QR-03",
+   "title": "Vorteil des Kandidaten statistisch nicht gesichert: Reality Check über die eigene Auswahl nicht bestanden, Prüfzeitraum-Sharpe 0,34 nicht von null unterscheidbar",
+   "priority": "P1",
+   "evidence": "evidence/QR/l_reality_check_kandidat.txt: White's Reality Check (mutationen.reality_check, Entwicklung, 1.325 Tage, Nullhypothese kein Ertrag) über die 32 Signal-Einstellungen der Runden 1–3, aus denen tsmom_L336 gewählt wurde (scripts/suche_stufe1.py:12-15, scripts/suche_runde2.py:14-15): p = 0,16 bei Slippage 0,05 % (Stand der Auswahl; auf gleiche Schwankung gebracht 0,48), p = 0,09 mit Yubit-Kosten (0,30). Nur die 14 Trend-Einstellungen: p = 0,15 / 0,21 bzw. 0,09 / 0,13. Als Einzelhypothese ohne Mehrfachvergleich: p = 0,07 bzw. 0,05. Der Kandidat ist die längste getestete Länge (Rand des Rasters). Bootstrap der Sharpe-Werte (evidence/QR/d_module_zusatz.txt, Abschnitt 6): Entwicklung 0,95, 90-%-Bereich 0,09 bis 1,71, t = 1,80; Prüfzeitraum 0,34, Bereich −0,87 bis +1,43, t = 0,42, 34 % der Ziehungen <= 0. Prüfzeitraum-Summe +25,9 %, ohne die fünf besten von 571 Tagen −25,4 %. Das Protokoll rechnet den Reality Check nur für Abwandlungen GEGEN den Kandidaten (Runden 21, 24), nie für den Kandidaten selbst; dessen „Zufallstest“ erreichte im Prüfzeitraum allein nur 80 % bzw. 85,5 % (suche_protokoll.md:136; reports/suche_runde4.json breit_zufall_pruefung).",
+   "impact": "Die Aussage „Ein einziger Baustein hält der Prüfung stand“ (reports/uebergabe_fuer_dritte.md:17) ist stärker als die Daten. Entscheidungen über echtes Geld und Hebel stützen sich auf einen Vorteil, der unter Berücksichtigung der Auswahl mit beträchtlicher Wahrscheinlichkeit Zufall ist.",
+   "recommendation": "Aussage auf „plausibel, nicht belegt“ herabstufen und Kennzahlen stets mit Unsicherheitsbereich nennen. Vorab festlegen, was der Vorwärtstest zeigen kann (Kosten, Ausführung, Betrieb) und was nicht: Bei einem wahren Sharpe von 0,5 braucht t = 2 rund 16 Jahre, bei 0,95 gut 4 Jahre. Kapital und Hebel so wählen, dass ein wahrer Vorteil von null tragbar bleibt.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=/tmp/qr_numba .venv/bin/python -I -B -W ignore reports/audit/evidence/QR/l_reality_check_kandidat.py /tmp/qr_l.json",
+   "confidence": "hoch"
+  },
+  {
+   "id": "QR-04",
+   "title": "Rückrechnung unterstellt Ausführung exakt zur vollen Stunde; im Prüfzeitraum kosten schon fünf Minuten Verzögerung ein Drittel des Ergebnisses",
+   "priority": "P2",
+   "evidence": "src/hybrid/engine2.py:85 und :124-128 rechnen die Order zum Open der ersten 5-Minuten-Kerze nach Stundenschluss ab (keine Latenz). Gewichte um n Kerzen verschoben, sonst alles gleich (evidence/QR/d_module_zusatz.txt, Abschnitt 4): Prüfzeitraum netto +25,9 % (Sharpe 0,34) -> 5 min +17,5 % (0,23) -> 15 min +11,5 % (0,15) -> 60 min +4,4 % (0,06). Entwicklung dagegen kaum empfindlich: Sharpe 0,95 -> 0,92 -> 0,84 -> 0,98; der Effekt im Prüfzeitraum kann also teilweise Zufall sein. Tatsächlicher Takt des Papier-Bots laut vorwaertstest/lauf/stand.csv: erster Durchlauf je Stunde in Minute 5, 1, 4, 4, 4; größter Abstand zweier Durchläufe 13 Minuten (evidence/QR/j_kosten_papier_zinseszins.txt). Zusätzlich bildet der Bot das Signal aus Yubit-Stundenkerzen (vorwaertstest/bot.py:83-92), die Forschung aus Binance-Kerzen.",
+   "impact": "Der ohnehin dünne Ertrag außerhalb der Entwicklung wird durch die reale Auslösung (KI-Sitzung im Fünf-Minuten-Takt) weiter geschmälert; Vorwärtstest und Rückrechnung sind nicht deckungsgleich.",
+   "recommendation": "Bot deterministisch wenige Sekunden nach der vollen Stunde auslösen und die Latenz je Order protokollieren. Verzögerungs-Szenarien (5, 15, 60 Minuten) fest in die Referenzrechnung aufnehmen. Vorwärtstest gegen eine Rückrechnung mit denselben Zeitstempeln und derselben Kursquelle vergleichen.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=/tmp/qr_numba .venv/bin/python -I -B -W ignore reports/audit/evidence/QR/d_module_zusatz.py /tmp/qr_d.json   (Zeilen „verzoegerung_…“)",
+   "confidence": "mittel"
+  },
+  {
+   "id": "QR-05",
+   "title": "Papier-Test 2 prüft Stop und Ziel bei jedem Durchlauf (etwa alle fünf Minuten), die Rückrechnung der Runde 24 nur am Stundenschluss: der Test misst eine andere Regel",
+   "priority": "P2",
+   "evidence": "Rückrechnung: src/hybrid/tpsl.py:31-38 prüft das Ergebnis seit Einstieg auf Stundenschlüssen gegen den Stundenschluss beim Signal. Bot: vorwaertstest/bot.py:223-224 prüft bei JEDEM Aufruf von schritt den aktuellen Mittelkurs gegen den Füllkurs; es gibt keine Sperre auf eine Prüfung je Stunde, und vorwaertstest/lauf/stand.csv zeigt 60 Durchläufe in 5,3 Stunden. Eigene 5-Minuten-Rechnung nur im Entwicklungszeitraum (evidence/QR/k_tpsl_pruefintervall.txt): Prüfung je Stunde Sharpe 1,43 / 0,84 / 1,16 (D1 / D2 / gesamt), Ertrag 34,1 % pro Jahr, Einbruch 14,2 %, 236 Stops; Prüfung alle 5 Minuten 1,29 / 0,73 / 1,04, Ertrag 29,8 %, Einbruch 16,6 %, 373 Stops (+58 %).",
+   "impact": "Ergebnisse von Test 2 lassen sich nicht mit den Zahlen der Runde 24 vergleichen; in der Entwicklung ist die tatsächlich laufende Regel rund 10 bis 13 % schlechter als die berichtete. Runde 24 selbst hatte ohnehin „keinen belegten Vorteil“ ergeben.",
+   "recommendation": "Entweder den Bot auf eine Prüfung je abgeschlossener Stundenkerze beschränken oder die Rückrechnung auf den realen Prüftakt umstellen; die gewählte Lesart im Protokoll festhalten, bevor Test 2 ausgewertet wird.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B -W ignore reports/audit/evidence/QR/k_tpsl_pruefintervall.py /tmp/qr_k.json",
+   "confidence": "hoch"
+  },
+  {
+   "id": "QR-06",
+   "title": "Fünf fehlende Kerzentage bei 30 von 72 Coins (in Gruppe A: SOL, XRP, LTC) bleiben unbemerkt und verschieben das D1-Ergebnis",
+   "priority": "P2",
+   "evidence": "data/candles/5m: 26.–28.02.2022 und 01.–02.04.2022 fehlen je 1.440 Kerzen bei 29 Dateien, ICP fehlen 7.518 (evidence/QR/g_daten_luecken_funding.txt). Die Ladeprüfung meldet nur fehlende Monate (scripts/kerzen_laden.py:75-80; data/candles/download.log: „5m SOLUSDT: 559872 Zeilen … fehlende Monate: keine“ gegen 561312 bei BTC). src/hybrid/research.py:48-55 lässt den Kurs in der Lücke stillstehen und verwirft die Stunden; mutationen.py:24 macht daraus Signal 0 in der Lücke und noch einmal 336 Stunden später (720 Coin-Stunden glatt, ohne Meldung). Wirkung: Module D1 netto +63,1 %, Sharpe 0,564; unabhängige Rechnung mit fortgeschriebenem Kurs +60,0 %, Sharpe 0,535; mit nachgebauter Lückenbehandlung +63,5 %, Sharpe 0,568 (evidence/QR/c_abweichung_risiko.txt, Teil 1). Entwicklung gesamt: Sharpe 0,946 gegen 0,931. Betroffen sind auch Gruppe B (FIL, NEAR, TRX, XLM) und große Teile von C und D, also die Bestätigungsläufe.",
+   "impact": "Berichtete Kennzahlen hängen an einer stillen Annahme über fehlende Daten; für Gruppe A beträgt der Effekt rund 3 Prozentpunkte in D1 (Sharpe +5 %), für die Gruppen B bis D ist er nicht beziffert.",
+   "recommendation": "Fehlende Tage nachladen; Ladeprüfung auf lückenloses 5-Minuten-Raster erweitern; research.markt bei Lücken abbrechen oder sie ausweisen; Referenzzahlen danach neu rechnen und als Regressionstest festhalten.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B -W ignore reports/audit/evidence/QR/g_daten_luecken_funding.py && .venv/bin/python -I -B reports/audit/evidence/QR/c_abweichung_risiko.py reports/audit/evidence/QR/a_tagesreihe.csv /tmp/qr_c.json",
+   "confidence": "hoch"
+  },
+  {
+   "id": "QR-07",
+   "title": "„+59 % pro Jahr“ und „+16,5 % pro Jahr“ sind Summen ohne Zinseszins bei fester Größe am Startkapital; als Wachstumsrate gelesen sind sie zu hoch",
+   "priority": "P2",
+   "evidence": "scripts/suche_runde24.py:62: jahr = Tagesmittel x 365; src/hybrid/runner.py:52-57 liefert Tagesergebnisse in Einheiten des Startkapitals. Nachgerechnet (evidence/QR/j_kosten_papier_zinseszins.txt): Entwicklung 59,4 % arithmetisch gegen 48,7 % CAGR bei Größe am laufenden Kontostand, Einbruch dann 41,6 % statt 24,6 %; Prüfzeitraum 16,5 % gegen 4,7 % CAGR, Einbruch 45,7 % statt 31,3 %. Der Einbruch wird zudem auf Tagesschlüssen gemessen; auf dem 5-Minuten-Raster sind es 25,8 % und 33,1 % (evidence/QR/a_module.txt, Spalte dd_5m). reports/uebergabe_fuer_dritte.md:22-25 nennt „Ertrag pro Jahr“ und „Größter Einbruch“ ohne diese Angaben.",
+   "impact": "Leser rechnen die Werte als Rendite hoch (etwa mal Hebel oder mit Zinseszins) und erhalten ein zu günstiges Bild von Ertrag und Risiko.",
+   "recommendation": "In Berichten und im Board beide Sichten ausweisen (feste Größe und Größe am Kontostand), die Messvorschrift für den Einbruch nennen und den 5-Minuten-Wert als maßgeblich verwenden.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B -W ignore reports/audit/evidence/QR/j_kosten_papier_zinseszins.py reports/audit/evidence/QR/a_tagesreihe.csv",
+   "confidence": "hoch"
+  },
+  {
+   "id": "QR-08",
+   "title": "Regeltext „sonst Short“ stimmt nicht mit dem Code: bei Gleichstand und bei fehlenden Kursen ist die Position glatt",
+   "priority": "P3",
+   "evidence": "src/hybrid/mutationen.py:23-24 und research.py:190-192 benutzen np.sign(...).fillna(0.0); vorwaertstest/kern.py:14-19 gibt bei Gleichstand 0 zurück. Im Zeitraum gibt es 147 Coin-Stunden mit exakt gleichem Schlusskurs (evidence/QR/b_unabhaengig.txt) und in den Modulen 867 Coin-Stunden mit Signal 0 (evidence/QR/a_module.txt), die Differenz stammt aus den Datenlücken (QR-06). Jede solche Stunde erzeugt zwei zusätzliche Orders. reports/uebergabe_fuer_dritte.md:17-18 beschreibt „long, sonst short“. Rückrechnung und Bot sind untereinander gleich.",
+   "impact": "Kein Rechenfehler, aber eine ungenaue Spezifikation; ein Nachbau nach dem Text weicht leicht ab.",
+   "recommendation": "Regel im Text präzisieren („bei Gleichstand oder fehlendem Kurs keine Position“) oder bewusst entscheiden, bei Gleichstand die bisherige Richtung zu halten, und das als Test festschreiben.",
+   "reproduce": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/QR/b_unabhaengig.py /tmp/qr_b.json /tmp/qr_b.csv   (Zeile „Signal==0 Coin-Stunden“)",
+   "confidence": "hoch"
+  }
+ ],
+ "reproduced": [
+  {
+   "claim": "Entwicklung 15.08.2021–31.03.2025: +59 % pro Jahr, Sharpe 0,95 (Einbruch 24,6 %)",
+   "result": "reproduziert",
+   "detail": "(a) Module: Summe +215,6 %, 59,40 % pro Jahr, Sharpe 0,9457, Einbruch 24,58 % (Tagesbasis; 25,79 % auf 5 Minuten); bitgenau gleich reports/suche_runde24.json. (b) unabhängig: 58,55 % pro Jahr, Sharpe 0,9308, Einbruch 24,95 % (25,88 % stündlich). Abweichung (b) gegen Behauptung: −0,8 % / −2,0 % / +1,5 %, alle unter 10 %; Ursache ist die Lückenbehandlung (QR-06).",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && E=reports/audit/evidence/QR && NUMBA_CACHE_DIR=/tmp/qr_numba .venv/bin/python -I -B $E/a_module.py /tmp/qr_a.json /tmp/qr_a.csv && .venv/bin/python -I -B $E/b_unabhaengig.py /tmp/qr_b.json /tmp/qr_b.csv"
+  },
+  {
+   "claim": "Prüfzeitraum 01.04.2025–23.10.2026: +16,5 % pro Jahr, Sharpe 0,34 (Einbruch 31 %)",
+   "result": "reproduziert",
+   "detail": "(a) Module: Summe +25,85 % in 571 Tagen = 16,52 % pro Jahr, Sharpe 0,3369, Einbruch 31,30 % (33,10 % auf 5 Minuten). (b) unabhängig: +25,89 %, 16,55 % pro Jahr, Sharpe 0,3375, Einbruch 31,30 % (32,83 % stündlich). Abweichung unter 0,2 %. Tagesreihen (a) und (b) über den ganzen Zeitraum: Korrelation 0,99981, Unterschiede nur an 38 Tagen um die Datenlücken und am ersten Tag.",
+   "command": "wie oben (a_module.py, b_unabhaengig.py); Vergleich der Tagesreihen in evidence/QR/a_tagesreihe.csv und b_tagesreihe.csv"
+  },
+  {
+   "claim": "Kandidaten-Sharpe D1 0,56 und D2 1,32",
+   "result": "reproduziert",
+   "detail": "(a) Module: 0,5640 und 1,3165 (gleich reports/suche_runde21.json). (b) unabhängig: 0,5348 (−5,2 %) und 1,3165 (auf vier Stellen gleich). Die D1-Abweichung ist vollständig durch fehlende Kerzen bei SOL, XRP, LTC erklärt: mit nachgebauter Lückenbehandlung der Module ergibt die unabhängige Rechnung 0,5675; Rest 0,0046 der Summe stammt vom ersten Handelstag (Einstieg 00:00 statt 00:05).",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/QR/c_abweichung_risiko.py reports/audit/evidence/QR/a_tagesreihe.csv /tmp/qr_c.json"
+  },
+  {
+   "claim": "Mittlere Korrelation der Tagesrenditen der zehn Coins 0,68, seit 04/2025 0,79",
+   "result": "reproduziert",
+   "detail": "Einfache Tagesrenditen (UTC-Tagesschluss), Mittel der 45 Paare: gesamter Zeitraum 0,675, seit 01.04.2025 0,785 (Entwicklung allein 0,648). Mit Log-Renditen 0,695 / 0,794; Stundenrenditen 0,698 / 0,771.",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B reports/audit/evidence/QR/b_unabhaengig.py /tmp/qr_b.json /tmp/qr_b.csv   (Zeile „Korrelation“)"
+  },
+  {
+   "claim": "In 42 % der Stunden zeigen alle zehn Signale in dieselbe Richtung",
+   "result": "reproduziert",
+   "detail": "Gesamter Zeitraum 41,6 % (19,0 % alle long, 22,6 % alle short); Entwicklung 38,9 %, Prüfzeitraum 47,8 %. Mindestens 8 von 10 gleich: 74,5 %. Mittlere Netto-Ausrichtung 0,71 von 1. Die Quelle der Behauptung wurde im Repo nicht gefunden; Fenster vermutlich gesamter Zeitraum.",
+   "command": "wie oben (b_unabhaengig.py, Tabelle „Gleiche Richtung“)"
+  },
+  {
+   "claim": "Runde 24, Variante sl5_tp15: Sharpe 1,39 / 0,83 / 1,13, Ertrag 33 % pro Jahr, Einbruch 14,6 %, Zeit im Markt 56 %",
+   "result": "reproduziert",
+   "detail": "Module über hybrid.tpsl: 1,3870 / 0,8257 / 1,1345, 33,27 %, 14,56 %, 56,38 % (gleich suche_runde24.json); alle elf Varianten stimmen. Unabhängiger Nachbau nach dem Protokolltext: 1,4356 / 0,8257 / 1,1620, 34,2 %, 14,3 %, 56,6 %; größte Abweichung +3,5 % (D1).",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B -W ignore reports/audit/evidence/QR/e_unabhaengig_tpsl_vorperiode.py /tmp/qr_e.json"
+  },
+  {
+   "claim": "Runde 24 und Runde 21: gemeinsame Zufallsprüfung (p = 0,54 bzw. 0,84; Schwelle +44 Punkte; Funding-Filter 0,66 / 1,59 / 1,11, Vorsprung +10 Punkte)",
+   "result": "reproduziert",
+   "detail": "Runde 24: p = 0,5400, Schwelle 0,0016628 je Tag, identisch zum gespeicherten Wert. Runde 21: alle 14 Varianten mit Sharpe-Abweichung 0,0 gegen suche_runde21.json; p = 0,8426; Schwelle 0,0012172 je Tag = 44,4 Punkte pro Jahr; Funding-Filter 0,658 / 1,591 / 1,110, Vorsprung +10,35 Punkte.",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && E=reports/audit/evidence/QR && NUMBA_CACHE_DIR=/tmp/qr_numba .venv/bin/python -I -B $E/a_module.py /tmp/qr_a.json /tmp/qr_a.csv && NUMBA_CACHE_DIR=/tmp/qr_numba .venv/bin/python -I -B -W ignore $E/d_module_zusatz.py /tmp/qr_d.json"
+  },
+  {
+   "claim": "Runde 6 Teil 1: Kandidat bei Hebel 0,2 mit Tageslimit 3 %: Entwicklung +41,3 %, Prüfzeitraum +5,2 %, bei doppelten Kosten +1,2 %",
+   "result": "reproduziert",
+   "detail": "Nachgerechnet +41,33 % / +5,17 % / +1,22 %; Einbruch 8,85 % (Entwicklung) und 9,62 % (Prüfzeitraum); drei Sperrtage. Mit altem Wert 0,05 %: +2,44 %. Hebelsuche bestätigt: bei 0,25 liegt der Einbruch mit 10,6 % über der 10-%-Grenze.",
+   "command": "wie oben (d_module_zusatz.py, Abschnitt 1)"
+  },
+  {
+   "claim": "Runde 4: Vorperiode 02/2020–08/2021, Gruppe A, positiv (gespeichert: +198 %, Sharpe 1,29)",
+   "result": "reproduziert",
+   "detail": "Module: N 1,9797, Sharpe 1,2890, 2.753 Trades, identisch zu suche_runde4.json. Unabhängige Rechnung aus 5m_vor + 5m mit pauschal 0,05 % Slippage: N 1,9810, Sharpe 1,2898. Bootstrap: 90-%-Bereich −0,04 bis 2,52.",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B -W ignore reports/audit/evidence/QR/e_unabhaengig_tpsl_vorperiode.py /tmp/qr_e.json"
+  },
+  {
+   "claim": "Diagnose Frequenz, 336 Stunden: mittlere Haltedauer 42 Stunden, Umsatz 1,1x Einsatz pro Tag",
+   "result": "reproduziert",
+   "detail": "Module: Haltedauer 42,4 Stunden (Entwicklung) und 41,1 (Prüfzeitraum), Umsatz 1,13 bzw. 1,17 pro Tag, 10.986 Orders. Unabhängig: 10.979 Orders, Umsatz 1,14 pro Tag.",
+   "command": "wie oben (a_module.py, b_unabhaengig.py)"
+  },
+  {
+   "claim": "Signal aus der letzten abgeschlossenen Stunde, wirksam ab der Folgestunde (kein Blick voraus)",
+   "result": "reproduziert",
+   "detail": "Störungstest: alle Kurse ab T mit 1,5 bzw. 0,5 multipliziert (T = 01.06.2022, 17.03.2023 13:00, 10.10.2025 21:00). Zielgewichte bis einschließlich Kerze T und Kontoverlauf vor T bleiben bitgenau gleich, danach verschieden. Geprüft für basis, sl5_tp15 und funding_filter.",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=/tmp/qr_numba .venv/bin/python -I -B -W ignore reports/audit/evidence/QR/h_kein_blick_voraus.py"
+  },
+  {
+   "claim": "Regel: long, wenn der Stundenschluss über dem von vor 336 Stunden liegt, andernfalls short",
+   "result": "abweichend",
+   "detail": "Bei Gleichstand ist die Position glatt, nicht short (np.sign bzw. kern.richtung). 147 Coin-Stunden echter Gleichstand; in den Modulen zusätzlich 720 Coin-Stunden Signal 0 durch Datenlücken. Wirkung auf die Kennzahlen gering, siehe QR-08.",
+   "command": "wie oben (a_module.py: „Signal==0-Stunden: 867“; b_unabhaengig.py: 147)"
+  },
+  {
+   "claim": "Zwei Papier-Tests mit Hebel 3 seit 15.11.2026",
+   "result": "reproduziert",
+   "detail": "Nur aus Dateien gelesen: config_lauf.json und config_lauf_tpsl.json mit hebel 3.0 und tagesverlust_limit 1.0; Test 1 Start 13:21 UTC, Test 2 Start 17:44 UTC, je zehn Short-Einstiege; Einsatz 14.928 USDT bei 5.000 USDT Kapital. Gemessene Orderkosten in Test 1 im Mittel 1,58 bp bei rund 1.500 USDT je Order gegen 2,95 bp Annahme der Rückrechnung (60 Durchläufe, 5,3 Stunden eines Sonntags).",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && .venv/bin/python -I -B -W ignore reports/audit/evidence/QR/j_kosten_papier_zinseszins.py reports/audit/evidence/QR/a_tagesreihe.csv"
+  },
+  {
+   "claim": "127 Einzelhypothesen und 602 Varianten untersucht",
+   "result": "ungeklaert",
+   "detail": "Die laufende Zählung im Protokoll ist rechnerisch schlüssig (40, 47, 53, 57, 58, 59, 60, 69, 70, 72, 74, 76, 77, 81, 86, 100, 101, 116, 127; 602 = 43 x 7 x 2, suche_protokoll.md:506). Inhaltlich nachgezählt wurde nicht; die Zählweise ist Auslegungssache (Runde 3 misst zehn Einstellungen in einem dritten Aufbau, ohne sie zu zählen).",
+   "command": "grep -n -E \"Gesamtzahl der Versuche|Einzelhypothesen\" /home/user/OdinGate-Botv134/swing-hybrid/reports/suche_protokoll.md"
+  },
+  {
+   "claim": "Bestehende Tests: 105 grün",
+   "result": "reproduziert",
+   "detail": "105 passed in 14,9 s (ohne Cache- und Bytecode-Schreiben).",
+   "command": "cd /home/user/OdinGate-Botv134/swing-hybrid && NUMBA_CACHE_DIR=/tmp/qr_numba PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests"
+  }
+ ],
+ "correct": [
+  "Rechenkern für den Kandidaten: src/hybrid/engine2.py:84-92 und :124-158 (Taker-Modus) liefert dieselbe Tagesreihe wie eine eigene Stundenrechnung ohne src/hybrid; D2 und Prüfzeitraum stimmen auf vier Nachkommastellen, Korrelation der Tagesreihen 0,99981 (evidence/QR/a_tagesreihe.csv, b_tagesreihe.csv).",
+  "Zeitliche Zuordnung ohne Blick voraus: research.py:70-75 (auf_raster verschiebt um eine Stunde), engine2.py:85 (Abrechnung zum Open der Kerze); Störungstest bestanden (evidence/QR/h_kein_blick_voraus.txt).",
+  "Gebühren und Rebate: runner.py:48-57 rechnet Taker 0,08 % x (1 − 0,85) auf das gehandelte Volumen; unabhängig nachgerechnet identisch (Prüfzeitraum ohne Rebate −19,56 % gegen −19,46 %).",
+  "Funding: Vorzeichen richtig (Long zahlt positives Funding, engine2.py:99-102); Funding-Daten der Gruppe A lückenlos, 5.688 Ereignisse je Coin, SOL 5.763 mit zusätzlichen Terminen (evidence/QR/g_daten_luecken_funding.txt).",
+  "Gespeicherte Ergebnisse sind deterministisch nachrechenbar: reports/suche_runde21.json (alle 14 Varianten, Reality Check), suche_runde24.json (alle 11 Varianten, Reality Check), suche_runde6.json teil1.A, suche_runde4.json vorperiode.A; jeweils ohne Abweichung.",
+  "Der Schalter vor=True/False in research.markt ändert das Ergebnis des Kandidaten nicht (größte Abweichung der Tagesreihen 0,0; evidence/QR/a_module.txt).",
+  "mutationen.reality_check (mutationen.py:165-183) ist ein korrekt gebauter stationärer Bootstrap mit zentrierten Differenzen und Maximum-Statistik, fester Seed; Ergebnisse reproduzierbar.",
+  "Kursdaten Binance gegen lokal vorhandene OKX-Tageskerzen (ab 01/2022): mittlere Abweichung rund 5 bp, Korrelation der Tagesrenditen >= 0,9998, nur SOL 0,991 um den FTX-Zusammenbruch (evidence/QR/f_okx_abgleich.txt). Keine Kerzen mit high < low oder Kurs <= 0 in Gruppe A.",
+  "Slippage-Annahme ist bei der jetzigen Ordergröße vorsichtig: im Papier-Test 1 gemessen im Mittel 1,58 bp gegen 2,95 bp Annahme, je Coin 24 bis 71 % der Annahme (vorwaertstest/lauf/spannen.csv, nur gelesen; evidence/QR/j_kosten_papier_zinseszins.txt). Die Stichprobe ist allerdings nur gut fünf Stunden lang.",
+  "Bot und Rückrechnung behandeln Gleichstand gleich (vorwaertstest/kern.py:14-19 gegen mutationen.py:23-24) und bemessen die Position beide fest am Startkapital (bot.py:165 gegen research.py:150).",
+  "Bestehende Testsuite: 105 Tests grün."
+ ],
+ "unclear": [
+  "Ob Yubit das Rebate von 85 % tatsächlich in dieser Höhe, ohne Deckel und für Taker-Orders per API gewährt: im Repo findet sich kein Beleg, nur die Annahme in config.yaml:8 und kern.py:9.",
+  "Wie stark Yubit-Stundenkerzen (Signalquelle des Bots) von Binance-Kerzen (Forschungsgrundlage) abweichen und wie oft dadurch Signale anders ausfallen: Es liegt keine Yubit-Kurshistorie vor.",
+  "Ob die fehlenden Tage 26.–28.02.2022 und 01.–02.04.2022 schon im Binance-Archiv fehlen oder beim Laden verloren gingen (ohne Netz nicht prüfbar). Die Wirkung auf die Bestätigungsläufe der Gruppen B, C, D wurde nicht beziffert.",
+  "Liquidations- und Margin-Regeln von Yubit (Wartungsmargin, Cross oder Isolated): Die Auswertung zu Hebel 3 verwendet „Konto <= 0“ als Ersatz; eine echte Liquidation käme früher. Kurse innerhalb der Stunde wurden nur für den 10.10.2025 und als Obergrenze betrachtet.",
+  "Quelle und Zeitfenster der Angabe „42 % gleichgerichtet“; im Repo nicht auffindbar, der nachgerechnete Wert passt für den gesamten Zeitraum.",
+  "Die Zählung „127 Einzelhypothesen“ wurde nur als laufende Summe im Protokoll geprüft, nicht inhaltlich nachgezählt.",
+  "Ob die Empfindlichkeit gegen Ausführungsverzögerung im Prüfzeitraum (QR-04) ein echter Effekt ist: In der Entwicklung zeigt er sich kaum, statistisch trennen lässt es sich mit diesen Daten nicht.",
+  "Art der OKX-Vergleichsdaten (Spot oder Swap) ist nicht dokumentiert; der Abgleich deckt erst die Zeit ab 01/2022 ab.",
+  "Der Reality Check in QR-03 rechnet alle 32 Einstellungen mit sofortiger Ausführung; in Runde 1 wurden sie mit passiven Limits gemessen. Für die passive Ausführung wurde er nicht wiederholt."
+ ],
+ "evidence_files": [
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/a_module.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/a_module.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/a_module.json",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/a_tagesreihe.csv",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/b_unabhaengig.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/b_unabhaengig.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/b_unabhaengig.json",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/b_tagesreihe.csv",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/c_abweichung_risiko.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/c_abweichung_risiko.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/c_abweichung_risiko.json",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/d_module_zusatz.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/d_module_zusatz.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/d_module_zusatz.json",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/d_module_zusatz_vorperiode_tage.csv",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/e_unabhaengig_tpsl_vorperiode.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/e_unabhaengig_tpsl_vorperiode.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/e_unabhaengig_tpsl_vorperiode.json",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/f_okx_abgleich.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/f_okx_abgleich.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/g_daten_luecken_funding.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/g_daten_luecken_funding.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/h_kein_blick_voraus.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/h_kein_blick_voraus.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/i_crash_2025-10-10.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/i_crash_2025-10-10.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/j_kosten_papier_zinseszins.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/j_kosten_papier_zinseszins.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/k_tpsl_pruefintervall.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/k_tpsl_pruefintervall.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/k_tpsl_pruefintervall.json",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/l_reality_check_kandidat.py",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/l_reality_check_kandidat.txt",
+  "/home/user/OdinGate-Botv134/swing-hybrid/reports/audit/evidence/QR/l_reality_check_kandidat.json"
+ ]
+}

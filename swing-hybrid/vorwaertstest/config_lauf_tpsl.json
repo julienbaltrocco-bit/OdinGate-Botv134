@@ -1,0 +1,23 @@
+{
+  "modus": "papier",
+  "kapital_usd": 5000,
+  "hebel": 3.0,
+  "coins": [
+    "BTC",
+    "ETH",
+    "SOL",
+    "XRP",
+    "DOT",
+    "DOGE",
+    "ADA",
+    "LINK",
+    "AVAX",
+    "LTC"
+  ],
+  "tagesverlust_limit": 1.0,
+  "preisgrenze": 0.0005,
+  "max_order_usd": 2000,
+  "daten": "lauf_tpsl",
+  "tp": 0.15,
+  "sl": 0.05
+}

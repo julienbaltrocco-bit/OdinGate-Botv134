@@ -1,0 +1,4 @@
+n_t = 0: (11780,)
+Kostenabzug abweichend bei n_t > 0: (0,)
+Beispiel n_t = 0: [('3f3435992db7', 'boll_12', 'top3', 0, 0.0, 0.0, -16.0, 'ungültig'), ('23cc6d564705', 'boll_12', 'alle10', 0, 0.0, 0.0, -16.0, 'ungültig')]
+Status je gen: [('gen1', 'final', 165), ('gen1', 'stufe3', 339), ('gen1', 'ungültig', 38055), ('gen1', 'verworfen_1', 298370), ('gen1', 'verworfen_2', 2171), ('gen1', 'verworfen_3', 1100), ('gen2', 'final', 1162), ('gen2', 'stufe3', 2599), ('gen2', 'ungültig', 64080), ('gen2', 'verworfen_1', 103259), ('gen2', 'verworfen_2', 5396), ('gen2', 'verworfen_3', 5664)]
