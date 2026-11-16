@@ -109,6 +109,13 @@ def t_wert(p):
 # ---------------------------------------------------------------- Prüfgrößen über alle Versuche
 def statistik():
     con = db()
+    try:
+        n_gen1 = con.execute("SELECT COUNT(*) FROM kandidaten WHERE gen = 'gen1'").fetchone()[0]
+    except sqlite3.OperationalError:
+        n_gen1 = 0
+    if n_gen1 == 0 or not (L.AUS / "tage_gen1.npy").exists():      # frische Sitzung: die Zufallsprüfung wertet nur Generation 1 aus und liegt im Repository
+        print("Statistik unverändert: Generation 1 liegt in dieser Sitzung nicht vor; statistik.json im Repository gilt weiter.")
+        return
     aus = {"stand": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "gruppen": {}}
     for gruppe, wo in (("Kurs, Volumen, Derivate (T 08/2021–06/2023)", "braucht != 't' AND (best IS NULL OR best NOT LIKE '%tiefe%' AND best NOT LIKE '%liq_entzug%')"),
                        ("Orderbuch-Tiefe (T 2023)", "(braucht = 't' OR best LIKE '%tiefe%' OR best LIKE '%liq_entzug%')")):
@@ -232,6 +239,9 @@ def stufe3():
     con.execute("CREATE INDEX IF NOT EXISTS nachbar ON kandidaten (signal, f, k, x, m, r, th)")
     kand = con.execute("SELECT * FROM kandidaten WHERE status = 'stufe2'").fetchall()
     print(len(kand), "Kandidaten aus Stufe 2", flush=True)
+    if not kand:                                                   # nichts zu prüfen: die eingefrorene Finalistenliste bleibt, wie sie ist
+        print("Keine neuen Kandidaten aus Stufe 2: finalisten.json und finalisten_reihen.npz bleiben unverändert.")
+        return
     grund_zahl, weiter = {}, []
     for z in kand:
         if not (z["n85_v"] > 0 and z["t85_v"] >= 1):

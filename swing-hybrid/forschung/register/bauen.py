@@ -116,7 +116,7 @@ for pfad in sorted((ROOT / "forschung/papier").glob("*/konfiguration.json")):
 fz = ROOT / "forschung/fabrik/ergebnisse/zaehlung.json"
 if fz.exists():
     z = json.loads(fz.read_text())
-    eintraege.append({"id": "FAB", "name": "Strategie-Fabrik (Massensuche)", "version": "Generationen 1–2", "familie": "alle Familien", "kategorie": "backtest", "einstufung": "–",
+    eintraege.append({"id": "FAB", "name": "Strategie-Fabrik (Massensuche)", "version": f"Generationen 1–{len({l['gen'] for l in z['laeufe']})}", "familie": "alle Familien", "kategorie": "backtest", "einstufung": "–",
                       "status": f"{z['berechnet']:,} Kandidaten gerechnet".replace(",", "."), "validierung": f"{z['validiert']} validiert nach fünf Stufen; siehe Übersicht „Forschungsdurchsatz“",
                       "vertrauen": "–", "ergebnisdateien": ["forschung/fabrik/ergebnisse/zaehlung.json", "forschung/fabrik/ergebnisse/kandidaten.parquet", "forschung/fabrik/ergebnisse/schlusspruefung.json"]})
 for exp, name in (("E07", "Ursachenanalyse Orderbuch-Tiefe (17 Einstellungen)"), ("E09", "Bestätigung auf sieben frischen Coins"), ("E10", "Ausstiegs-Engine (8 Varianten)"),

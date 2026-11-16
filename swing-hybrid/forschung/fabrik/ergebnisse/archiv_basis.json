@@ -1,0 +1,12 @@
+{
+ "hinweis": "kandidaten.parquet ist das eingefrorene Archiv der Generationen 1 und 2 (Lauf B vom 16.11.2026) und wird nie neu geschrieben. Die drei Zählgrößen stammen aus der Datenbank in voller Genauigkeit; das Archiv selbst ist auf zwei Stellen gerundet.",
+ "generationen": [
+  "gen1",
+  "gen2"
+ ],
+ "zeilen": 522660,
+ "sha256": "06dbb18b99328f2bb0338c5a74b2301e46fb9871b8021954d7d7fffbd68cb498",
+ "training_netto_mit_rebate_positiv": 103913,
+ "training_netto_ohne_rebate_positiv": 29341,
+ "training_und_v1_mit_rebate_positiv": 49761
+}

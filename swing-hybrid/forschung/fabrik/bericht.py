@@ -1,8 +1,13 @@
 """Auswertung der Fabrik: Zählung, Durchsatz, Tabellen für Bericht und Dashboard; sichert die Ergebnisse in kompakter Form im Repository.
 
   .venv/bin/python -I forschung/fabrik/bericht.py
-Schreibt nach forschung/fabrik/ergebnisse/: kandidaten.parquet (alle gerechneten Kandidaten), zaehlung.json, auswahl.json.
+Schreibt nach forschung/fabrik/ergebnisse/: kandidaten_<Generation>.parquet (je neue Generation eine kleine Datei), zaehlung.json, auswahl.json.
+
+Das Archiv liegt in Teilen: kandidaten.parquet enthält die Generationen 1 und 2 und ist eingefroren (Prüfsumme in
+archiv_basis.json); es wird nie neu geschrieben. Jede spätere Generation steht in einer eigenen Datei. Die Zählung
+entsteht immer aus Archiv plus lokaler Datenbank, also auch in einer frischen Sitzung mit leerer Datenbank vollständig.
 """
+import hashlib
 import json
 import os
 import sqlite3
@@ -22,21 +27,60 @@ STUFEN = {"ungültig": "zu wenige Trades", "verworfen_1": "Stufe 1: kein Brutto-
           "validiert": "validiert"}
 
 
+BASIS = ERG / "kandidaten.parquet"
+BASIS_INFO = ERG / "archiv_basis.json"
+
+
+def kompakt(k: pd.DataFrame) -> pd.DataFrame:
+    """Kompakte Form für das Archiv: Kategorien und auf zwei Stellen gerundete 32-Bit-Zahlen, ohne die Zeilennummer der Tagesreihen."""
+    k = k[[c for c in k.columns if c != "zeile"]].copy()
+    for c in k.columns:
+        if k[c].dtype == object and c != "id":
+            k[c] = k[c].astype("category")
+        elif k[c].dtype == "float64":
+            k[c] = k[c].round(2).astype("float32")
+        elif k[c].dtype == "int64":
+            k[c] = k[c].astype("int32")
+    return k
+
+
+def _lesbar(k: pd.DataFrame) -> pd.DataFrame:
+    for c in k.columns:
+        if isinstance(k[c].dtype, pd.CategoricalDtype):
+            k[c] = k[c].astype(object)
+    return k
+
+
+def archiv_teile() -> list:
+    return [BASIS] + sorted(ERG.glob("kandidaten_gen*.parquet"))
+
+
+def basis_pruefen() -> dict:
+    """Das eingefrorene Archiv der Generationen 1 und 2 muss unverändert sein; sonst wird nichts geschrieben."""
+    info = json.loads(BASIS_INFO.read_text())
+    if hashlib.sha256(BASIS.read_bytes()).hexdigest() != info["sha256"]:
+        raise SystemExit("kandidaten.parquet weicht vom eingefrorenen Stand ab (archiv_basis.json). Nichts geschrieben. "
+                         "Wiederherstellen: git checkout -- forschung/fabrik/ergebnisse/kandidaten.parquet")
+    return info
+
+
 def haupt():
-    con = sqlite3.connect(f"file:{L.DB}?mode=ro", uri=True)
-    k = pd.read_sql("SELECT * FROM kandidaten", con)
-    laeufe = pd.read_sql("SELECT * FROM laeufe", con)
+    info = basis_pruefen()
+    con = sqlite3.connect(f"file:{L.DB}?mode=ro", uri=True) if L.DB.exists() else None
+    tabellen = {r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type = 'table'")} if con else set()
+    k_db = pd.read_sql("SELECT * FROM kandidaten", con) if "kandidaten" in tabellen else pd.DataFrame(columns=["gen"])
+    laeufe = pd.read_sql("SELECT * FROM laeufe", con) if "laeufe" in tabellen else pd.DataFrame(columns=["gen", "begonnen", "kandidaten", "sekunden"])
     ERG.mkdir(parents=True, exist_ok=True)
-    spalten = [c for c in k.columns if c not in ("zeile",)]
-    kompakt = k[spalten].copy()
-    for c in kompakt.columns:                                      # kompakt speichern: Kategorien und gerundete 32-Bit-Zahlen
-        if kompakt[c].dtype == object and c != "id":
-            kompakt[c] = kompakt[c].astype("category")
-        elif kompakt[c].dtype == "float64":
-            kompakt[c] = kompakt[c].round(2).astype("float32")
-        elif kompakt[c].dtype == "int64":
-            kompakt[c] = kompakt[c].astype("int32")
-    kompakt.to_parquet(ERG / "kandidaten.parquet", compression="zstd", compression_level=19, index=False)
+    for gen, g in k_db.groupby("gen"):                             # jede neue Generation in ihre eigene kleine Datei; das große Archiv bleibt unberührt
+        if gen not in info["generationen"]:
+            kompakt(g).to_parquet(ERG / f"kandidaten_{gen}.parquet", compression="zstd", compression_level=19, index=False)
+    k = pd.concat([_lesbar(pd.read_parquet(t)) for t in archiv_teile()], ignore_index=True)       # Archiv = Gedächtnis; überall dieselbe Genauigkeit
+    assert not k.duplicated(["id", "gen"]).any(), "doppelte Kandidaten im Archiv"
+    neu = k[~k["gen"].isin(info["generationen"])]
+    neu_g = neu[neu["n_t"] >= 200]
+    alt_z = json.loads((ERG / "zaehlung.json").read_text()) if (ERG / "zaehlung.json").exists() else {}
+    laeufe = pd.concat([pd.DataFrame(alt_z.get("laeufe", [])), laeufe], ignore_index=True)        # Läufe früherer Sitzungen bleiben in der Liste
+    laeufe = laeufe.drop_duplicates(["gen", "begonnen"], keep="last").sort_values("begonnen").reset_index(drop=True)
     gueltig = k[k["n_t"] >= 200]
     nach_s2 = k[k["status"].isin(["stufe2", "verworfen_3", "stufe3", "final", "verworfen_4", "validiert"])]
     z = {"stand": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()),
@@ -45,8 +89,11 @@ def haupt():
          "stufe1_bestanden": int((~k["status"].isin(["ungültig", "verworfen_1"])).sum()), "stufe2_bestanden": int(len(nach_s2)),
          "stufe3_bestanden": int(k["status"].isin(["stufe3", "final", "verworfen_4", "validiert"]).sum()),
          "finalisten": int(k["status"].isin(["final", "verworfen_4", "validiert"]).sum()), "validiert": int((k["status"] == "validiert").sum()),
-         "training_netto_mit_rebate_positiv": int((gueltig["n85_t"] > 0).sum()), "training_netto_ohne_rebate_positiv": int((gueltig["n0_t"] > 0).sum()),
-         "training_und_v1_mit_rebate_positiv": int(((gueltig["n85_t"] > 0) & (gueltig["n85_v"] > 0)).sum()),
+         # Generation 1 und 2: in voller Genauigkeit gezählt und in archiv_basis.json festgehalten; spätere Generationen aus ihren Archivdateien
+         "training_netto_mit_rebate_positiv": info["training_netto_mit_rebate_positiv"] + int((neu_g["n85_t"] > 0).sum()),
+         "training_netto_ohne_rebate_positiv": info["training_netto_ohne_rebate_positiv"] + int((neu_g["n0_t"] > 0).sum()),
+         "training_und_v1_mit_rebate_positiv": info["training_und_v1_mit_rebate_positiv"] + int(((neu_g["n85_t"] > 0) & (neu_g["n85_v"] > 0)).sum()),
+         "archiv": [t.name for t in archiv_teile()],
          "laeufe": laeufe.to_dict("records"),
          "kandidaten_je_minute": round(float(laeufe["kandidaten"].sum() / laeufe["sekunden"].sum() * 60), 0) if len(laeufe) else None,
          "rueckrechnungen_je_sekunde": round(float(laeufe["kandidaten"].sum() / 3 * 10 / laeufe["sekunden"].sum()), 0) if len(laeufe) else None,
@@ -86,7 +133,7 @@ def haupt():
     (ERG / "zaehlung.json").write_text(json.dumps(z, ensure_ascii=False, indent=1))
     print(json.dumps({x: z[x] for x in ("erzeugt", "gueltig_mind_200_trades", "stufe1_bestanden", "stufe2_bestanden", "stufe3_bestanden", "finalisten", "validiert",
                                          "training_netto_mit_rebate_positiv", "training_netto_ohne_rebate_positiv", "kandidaten_je_minute", "rueckrechnungen_je_sekunde")}, ensure_ascii=False))
-    print("kandidaten.parquet:", (ERG / "kandidaten.parquet").stat().st_size // 1024, "KB")
+    print("Archiv:", ", ".join(f"{t.name} {t.stat().st_size // 1024} KB" for t in archiv_teile()))
 
 
 if __name__ == "__main__":

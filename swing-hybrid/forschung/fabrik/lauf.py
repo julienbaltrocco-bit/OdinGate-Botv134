@@ -165,8 +165,7 @@ def haupt(gen: str, aufgaben: list):
     db.execute("CREATE TABLE IF NOT EXISTS laeufe (gen TEXT, begonnen TEXT, beendet TEXT, aufgaben INTEGER, kandidaten INTEGER, sekunden REAL, kandidaten_je_minute REAL, kerne INTEGER)")
     fertig = {r[0] for r in db.execute("SELECT key FROM aufgaben")}
     vorhanden = {r[0] for r in db.execute("SELECT id FROM kandidaten WHERE gen != ?", (gen,))}      # gleiche Einstellung aus früheren Generationen: nicht doppelt zählen
-    archiv = F / "fabrik/ergebnisse/kandidaten.parquet"            # frische Sitzung: die lokale Datenbank ist leer, die früheren Ergebnisse liegen im Repository
-    if archiv.exists():
+    for archiv in sorted((F / "fabrik/ergebnisse").glob("kandidaten*.parquet")):   # frische Sitzung: die lokale Datenbank ist leer, die früheren Ergebnisse liegen im Repository (in Teilen)
         import pandas as pd
         fr = pd.read_parquet(archiv, columns=["id", "gen"])
         vorhanden |= set(fr.loc[fr["gen"] != gen, "id"])

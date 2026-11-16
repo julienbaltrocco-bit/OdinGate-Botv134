@@ -763,3 +763,39 @@ Nachkommastellen gerundet ist und eine Neuzählung daraus 17 Grenzfälle verlör
 Offen bleibt nur die echte 1-Minuten- oder 30-Sekunden-Ausführung (Einstieg innerhalb der Kerze); sie braucht einen
 Simulator auf Minutenraster und passt nicht in den Baukasten. Ohne die Antworten in `engine/offene_fragen.md` und ohne
 Messung der Yubit-Kosten in heftigen Kerzen (E16 wächst täglich) ist das die sinnvollste verbleibende Arbeit.
+
+---
+
+## 27. Nachkontrolle des ersten Nachtlaufs (16.11.2026, Hauptsitzung)
+
+Der erste geplante Forschungszyklus lief von 01:43 bis 02:02 UTC ohne Fehler: ein Durchgang, keine Subagenten, nur
+Dateien unter `forschung/`, keine Änderung an Papier-Tests, Tresor ungeöffnet. Beide Festlegungen (Abschnitte 23 und
+25) wurden vor der jeweiligen Rechnung gesichert (Commits 01:45 und 01:58 UTC, Rechnungen 01:57 und 01:59 UTC).
+
+**Unabhängige Nachrechnung.** Datenspeicher und Signale in der Hauptsitzung neu gebaut, die 84 Aufgaben aus dem Archiv
+rekonstruiert (`fabrik/ergebnisse/aufgaben_gen3.json`, `aufgaben_gen4.json`) und alle 396 Kandidaten neu gerechnet:
+gleiche Kennungen, gleicher Status bei allen 396, Kennzahlen bis auf Rundung gleich (größte Abweichung 0,03 bp). Die
+gemeldeten Zahlen stimmen: Generation 3 hat 98 gültige Kandidaten, 12 vor Gebühr positiv, bester t-Wert 1,72;
+Generation 4 hat 240 gültige, 42 positiv, bester t-Wert 1,40. Die 522.660 früheren Kandidaten im Archiv sind
+unverändert. Tests grün (21), darunter der Störungstest über die acht neuen Signale.
+
+**Ergänzung zum Ergebnis der Generation 4.** Zwei Kandidaten scheitern nur an der Mindestzahl von 200 Trades und
+wären sonst im Training auffällig (`tiefe_frisch_1`, Schwelle 3,5, gegen das Signal, stündlich, BTC/ETH/SOL: 185 und
+197 Trades, vor Gebühr +39,6 und +16,9 bp, t = 2,9 und 2,7). In der Auswahlprüfung sind beide klar negativ (−11,7 und
+−12,0 bp vor Gebühr). Es ist also keine übersehene Spur; die Hürde bleibt, wie sie ist.
+
+**Kleine Abweichung, ohne Folgen.** Der Nachtlauf rechnete mit auf drei Stellen gerundeter Slippage (die Stichprobe
+lag in der frischen Sitzung nicht vor). Der Unterschied beträgt höchstens 0,0004 bp je Order. Ab jetzt steht die
+Kostenbasis in voller Genauigkeit in `fabrik/slippage_gemessen.json` und ist die einzige Quelle.
+
+**Änderungen an den Programmen (kein Einfluss auf bisherige Ergebnisse).**
+- Das Archiv liegt in Teilen: `kandidaten.parquet` (Generation 1 und 2) ist eingefroren und wird nie neu geschrieben
+  (Prüfsumme in `archiv_basis.json`); jede spätere Generation steht in einer eigenen kleinen Datei. Vorher hätte jede
+  neue Generation die 18 MB große Datei neu ins Repository geschrieben, und in einer frischen Sitzung hätte ein
+  unbedachter Aufruf das Archiv durch den Stand allein der neuen Generation ersetzt. Der Nachtlauf hat das erkannt
+  und von Hand umgangen; jetzt verhindern es die Programme.
+- `bericht.py` zählt immer über Archiv plus lokale Datenbank; `trichter.py statistik` und `stufe3` überschreiben in
+  einer frischen Sitzung nichts mehr. Geprüft in drei Lagen (nur neue Generationen in der Datenbank, nur alte, gar
+  keine Datenbank): jeweils dieselbe Zählung, 523.056 Kandidaten.
+- `engine/AUFTRAG.md`: Anleitung zur Arbeitsumgebung ergänzt, Aufgabenliste wird künftig mit der Festlegung
+  gesichert, Reihenfolge der nächsten sinnvollen Schritte. Die drei Fragen in `engine/offene_fragen.md` sind beantwortet.

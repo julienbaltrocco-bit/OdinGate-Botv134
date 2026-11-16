@@ -32,12 +32,8 @@ def bauen():
            ("qv", "tq", "tqv", "frate", "oi", "konten_ls", "profis_ls", "taker_log", "prem", "b1", "a1", "b3", "a3", "b5", "a5", "b1l", "a1l")}
     fcum = np.zeros((len(COINS), N), np.float64)
     gueltig = np.zeros((len(COINS), N), bool)
-    try:
-        slip = K.slippage_bp(COINS)
-    except FileNotFoundError:                                            # frische Sitzung: die Stichprobe vom 14.11.2026 liegt nicht im Repository
-        import json
-        slip = json.loads((F / "fabrik/slippage_gemessen.json").read_text())["slippage_bp_je_order"]
-        print("Slippage aus fabrik/slippage_gemessen.json (dieselben Werte wie in Generation 1 und 2)", flush=True)
+    import json                                                          # eingefrorene Kostenbasis: in jeder Sitzung exakt dieselben Werte
+    slip = json.loads((F / "fabrik/slippage_gemessen.json").read_text())["slippage_bp_je_order"]
     for j, coin in enumerate(COINS):
         k = K.lesen("5m", coin)
         for x, sp in (("o", "open"), ("h", "high"), ("l", "low"), ("c", "close")):

@@ -145,8 +145,8 @@ wurde. Belege unter `fabrik/pruefung/`.
 - **Geplante Aufgabe „OdinGate Papier-Lauf“** (täglich 09:17 UTC): rechnet alle Papier-Tests und trägt den Stand in
   die Übersicht ein. Einmal erfolgreich gelaufen (15.11., rund 25 Sekunden).
 - **Geplante Aufgabe „OdinGate Forschungszyklus“** (täglich 01:43 UTC): startet eine Forschungssitzung, die nach
-  `engine/AUFTRAG.md` die Fabrik weiterführt. Eingerichtet, aber noch nicht gelaufen; ob sie in einer frischen
-  Umgebung sauber durchläuft, zeigt erst der erste Lauf.
+  `engine/AUFTRAG.md` die Fabrik weiterführt. Erster Lauf am 16.11. erfolgreich (rund 18 Minuten, siehe Nachtrag
+  unten).
 - **Bestehender Bot für Test 1 und 2:** unverändert, eigene Sitzung.
 - **Kein dauerhafter Hintergrundprozess.** Die Umgebung ist ein Wegwerf-Container; Dauerbetrieb heißt hier: ein
   Zeitplan startet Läufe. Beide geplanten Aufgaben verbrauchen Kontingent des Claude-Abos.
@@ -174,13 +174,28 @@ wurde. Belege unter `fabrik/pruefung/`.
 4. **OS-1.1 laufen lassen.** Der Papier-Test prüft genau diese Idee auf neuen Daten.
 5. **Unverändert offen:** die schriftliche Bestätigung von Yubit zu Rebate, Bot-Erlaubnis und Margin-Regeln.
 
+## Nachtrag: erster Nachtlauf (16.11.2026, 02:43 bis 03:02 Uhr deutscher Zeit)
+
+Der geplante Forschungszyklus ist zum ersten Mal von selbst gelaufen und hat zwei kleine Generationen geprüft. Beide
+Festlegungen wurden vor der Rechnung gesichert; die Hauptsitzung hat alle 396 Kandidaten unabhängig nachgerechnet
+(deckungsgleich).
+
+| Generation | Idee | Kandidaten | Ergebnis |
+|---|---|---|---|
+| 3 | wiederkehrende Tageszeit-Muster | 108 | verworfen: kein Vorteil vor Gebühr (bester t-Wert 1,7) |
+| 4 | Orderbuch-Tiefe aus dem letzten 30-Sekunden-Schnappschuss | 288 | verworfen: nicht besser als das bisherige Signal (bester t-Wert 1,4) |
+
+Stand damit: 523.056 Kandidaten gerechnet, 1.199 Finalisten, 0 validiert. Der Nachtlauf hat eine Lücke im Ablauf
+gefunden (in einer frischen Sitzung hätte ein unbedachter Aufruf das Archiv überschreiben können) und von Hand
+umgangen; die Programme verhindern das jetzt selbst. Einzelheiten: `protokoll.md`, Abschnitte 23 bis 27.
+
 ## Ablage
 
 | Pfad unter `swing-hybrid/forschung/` | Inhalt |
 |---|---|
 | `protokoll.md`, Abschnitte 19 bis 22 | Regeln vor der Rechnung, drei Nachträge vor der Schlussprüfung, Ergebnis, Kostenmessung und Zusatzangabe |
 | `fabrik/` | Programme der Fabrik |
-| `fabrik/ergebnisse/kandidaten.parquet` | alle 522.660 Kandidaten mit Kennzahlen und Verwerfungsgrund |
+| `fabrik/ergebnisse/kandidaten.parquet`, `kandidaten_genN.parquet` | alle Kandidaten mit Kennzahlen und Verwerfungsgrund: Generation 1 und 2 (522.660, eingefroren), je spätere Generation eine eigene Datei |
 | `fabrik/ergebnisse/zaehlung.json`, `statistik.json` | Zählung, Durchsatz, Zufallsprüfungen |
 | `fabrik/ergebnisse/finalisten.json`, `finalisten_reihen.npz`, `schlusspruefung.json` | eingefrorene Finalisten und Ergebnis der Schlussprüfung |
 | `fabrik/ergebnisse/schlusspruefung_einfache_slippage.json`, `ergebnisse/e16_yubit_kosten_bewegung.json` | Zusatzrechnung mit milder Kostenannahme; Yubit-Kostenmessung |

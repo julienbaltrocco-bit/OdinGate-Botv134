@@ -1,5 +1,5 @@
 {
- "stand": "2026-11-16 02:00 UTC",
+ "stand": "2026-11-16 03:25 UTC",
  "erzeugt": 523056,
  "eindeutig": 523056,
  "berechnet": 523056,
@@ -20,46 +20,51 @@
  "training_netto_mit_rebate_positiv": 103943,
  "training_netto_ohne_rebate_positiv": 29342,
  "training_und_v1_mit_rebate_positiv": 49775,
+ "archiv": [
+  "kandidaten.parquet",
+  "kandidaten_gen3.parquet",
+  "kandidaten_gen4.parquet"
+ ],
  "laeufe": [
-  {
-   "gen": "gen3",
-   "begonnen": "2026-11-16T01:57:42Z",
-   "beendet": "2026-11-16T01:57:44Z",
-   "aufgaben": 36,
-   "kandidaten": 108,
-   "sekunden": 1.4,
-   "kandidaten_je_minute": 4604.0,
-   "kerne": 4
-  },
-  {
-   "gen": "gen4",
-   "begonnen": "2026-11-16T01:59:28Z",
-   "beendet": "2026-11-16T01:59:30Z",
-   "aufgaben": 48,
-   "kandidaten": 288,
-   "sekunden": 1.4,
-   "kandidaten_je_minute": 12072.0,
-   "kerne": 4
-  },
   {
    "gen": "gen1",
    "begonnen": "2026-11-16T00:15:14Z",
    "beendet": "2026-11-16T00:20:31Z",
-   "aufgaben": 11340,
+   "aufgaben": 11340.0,
    "kandidaten": 340200,
    "sekunden": 317.5,
    "kandidaten_je_minute": 64293.0,
-   "kerne": 4
+   "kerne": 4.0
   },
   {
    "gen": "gen2",
    "begonnen": "2026-11-16T00:20:33Z",
    "beendet": "2026-11-16T00:23:28Z",
-   "aufgaben": 5546,
+   "aufgaben": 5546.0,
    "kandidaten": 182460,
    "sekunden": 174.2,
    "kandidaten_je_minute": 62827.0,
-   "kerne": 4
+   "kerne": 4.0
+  },
+  {
+   "gen": "gen3",
+   "begonnen": "2026-11-16T01:57:42Z",
+   "beendet": "2026-11-16T01:57:44Z",
+   "aufgaben": 36.0,
+   "kandidaten": 108,
+   "sekunden": 1.4,
+   "kandidaten_je_minute": 4604.0,
+   "kerne": 4.0
+  },
+  {
+   "gen": "gen4",
+   "begonnen": "2026-11-16T01:59:28Z",
+   "beendet": "2026-11-16T01:59:30Z",
+   "aufgaben": 48.0,
+   "kandidaten": 288,
+   "sekunden": 1.4,
+   "kandidaten_je_minute": 12072.0,
+   "kerne": 4.0
   }
  ],
  "kandidaten_je_minute": 63465.0,
