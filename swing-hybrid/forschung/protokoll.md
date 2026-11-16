@@ -978,3 +978,46 @@ Einstieg nur in Richtung des 14-Tage-Trends; bp je Trade im Training, Median üb
 - **Einstufung:** Rücksetzer-Scalping A (verworfen). Fortsetzung in Trendrichtung B (interessant, unbestätigt); als
   dritter Beobachtungstest möglich, wenn der Auftraggeber das will. Eine neue Generation wird dafür nicht gerechnet:
   Die Bausteine sind dieselben, weitere Varianten erhöhten nur die Hürde für alle späteren Prüfungen.
+
+---
+
+## 33. Umzug des Papier-Bots für Test 1 und 2 auf den Server des Auftraggebers (16.11.2026, auf dessen Wunsch)
+
+**Anlass.** Der Bot lief in einer Claude-Sitzung und war der größte laufende Verbraucher von KI-Kontingent (nach
+Listenpreis rund 2,40 $ je Stunde), weil die lange Sitzung bei jedem Lauf neu eingelesen wurde. Auf dem Server
+braucht er keine KI.
+
+**Was sich geändert hat und was nicht.** Regeln, Einstellungen, Stand und Daten von Test 1 und 2 sind unverändert;
+die Bot-Schritte in `vorwaertstest/stunde.sh` sind Zeile für Zeile dieselben. Neu ist nur der Rahmen:
+- **Staffelstab** (`vorwaertstest/betrieb.json` im Bot-Zweig): Es rechnet immer nur die Stelle, die dort steht
+  („claude“ oder „server“). Geprüft wird am Anfang jedes Laufs und noch einmal, wenn sich der Zweig während des Laufs
+  bewegt hat; ein Lauf, der in einen Wechsel fällt, wird verworfen.
+- **Der Stand im Repository gilt:** Ein nicht gesicherter Lauf wird beim nächsten Mal neu gerechnet, statt den Bot
+  zu blockieren (frühere Schwachstelle INF-02 aus dem Audit). Ist das Repository nicht erreichbar, wird nicht gerechnet.
+- **Takt:** exakt alle fünf Minuten (Minute 4, 9, 14, …) statt im Mittel alle 5,6 Minuten. Stop und Ziel von Test 2
+  werden dadurch regelmäßiger geprüft; die Regel ist dieselbe.
+- **Notbremse:** Datei `STOPP` im Ordner `lauf` bzw. `lauf_tpsl` auf dem Server; sie bleibt lokal.
+
+**Unabhängige Gegenprüfung vor dem Hochladen** (drei Prüfer: Skript und Git, Übergabe, Server). Kein Datenrisiko
+gefunden; drei wesentliche Lücken geschlossen und nachgetestet: (1) Ein Lauf, der beim Umlegen des Staffelstabs
+rechnete, hätte noch gesichert werden können. (2) Der Klon des Bots auf dem Server wäre unbegrenzt gewachsen (rund
+50 MB am Tag), weil Aufräumarbeiten im Kurzzeit-Container abgebrochen werden. (3) Die Hilfsskripte auf dem Server
+waren veraltet. Dazu kleinere Punkte (sichtbare Fehler beim Sichern, strengere Selbstprüfung der Installation,
+Aufräumen nach abgebrochenen Läufen). Simulation mit lokalem Test-Repository: Wechsel in beide Richtungen, auch
+mitten in einem Lauf, Konflikt beim Sichern, Notbremse, nicht erreichbares Repository; alle Prüfungen bestanden.
+
+**Ablauf der Übergabe (alle Zeiten UTC).**
+- 14:39:33 neues Laufskript im Bot-Zweig (Staffelstab bei „claude“); danach zwei vollständige Läufe der
+  Claude-Sitzung damit (14:44, 14:49) und unveränderter Betrieb bis 18:17.
+- 18:15 Installation auf dem Server durch den Auftraggeber: Yubit für alle zehn Coins lesbar, Schreibzugriff geprüft,
+  Probelauf im Wartemodus („Der Bot läuft bei: claude“).
+- 18:17:40 Staffelstab auf „server“, sechs Sekunden nach dem letzten Lauf der Claude-Sitzung.
+- 18:19:21 und 18:19:34 erster vollständiger Lauf des Servers (Test 1 und Test 2), 18:24 der zweite.
+- Vergleich vor und nach dem Wechsel: Start, Zahl der Orders (je 10), Positionen und alle bisherigen Zeilen von
+  Stand und Order-Protokoll unverändert; geändert haben sich nur Kurse und Funding-Zeitstempel des neuen Laufs.
+- 18:20 geplante Aufgaben der Claude-Sitzung des Bots abgestellt (nicht gelöscht).
+
+**Zurück zur Claude-Sitzung** (falls der Server ausfällt): `betrieb.json` im Bot-Zweig auf „claude“ setzen und die
+geplante Aufgabe „Vorwärtstest-Bot stündlich“ wieder einschalten. Der Server wartet dann von selbst.
+**Nicht mehr aktualisiert:** die ältere private Seite „Vorwärtstest Trend-Strategie“ (sie wurde von der Claude-Sitzung
+beschrieben). Das Trading Board liest weiter aus dem Bot-Zweig und ist nicht betroffen.

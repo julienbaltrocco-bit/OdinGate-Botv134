@@ -52,3 +52,30 @@ einem kleinen Server (cron). Dafür fehlen zwei Entscheidungen des Auftraggebers
 - Beenden: Status `beendet` und `ende` (Zeit in UTC). Der Test bleibt mit allen Ergebnissen in der Übersicht.
 - Alles anhalten: die beiden geplanten Aufgaben in der Claude-App pausieren.
 - Von Hand prüfen: `bash swing-hybrid/forschung/papier/tag.sh` und `pytest swing-hybrid/forschung/tests`.
+
+---
+
+## Stand seit 16.11.2026 abends: Was wo läuft
+
+| Was | Wo | Takt | Braucht KI |
+|---|---|---|---|
+| Test 1 und Test 2 (Papier-Bot) | Server des Auftraggebers, Dienst `odingate-bot` (Zeitplan `odingate-bot.timer`) | alle 5 Minuten | nein |
+| Beobachtung „Gegen Kaufdruck“, live (`L-dc1d27a3`) | Server des Auftraggebers, Dienst `odingate-live` | alle 5 Minuten | nein |
+| OS-1.1, `B-24332e4d`, `B-dc1d27a3` (Schattentests aus Archivdaten) | Claude, geplante Aufgabe „OdinGate Papier-Lauf mit Board“ | täglich 09:17 UTC | ja, wenig |
+| Forschungszyklus | Claude, geplante Aufgabe „OdinGate Forschungszyklus“ | täglich 01:43 UTC | ja |
+
+**Auf dem Server** (alles unter `/opt/odingate`, je ein begrenzter Docker-Container, keine Handelsschlüssel, keine Orders):
+- Stand ansehen: `bash /opt/odingate/repo/swing-hybrid/forschung/live/status.sh`
+- Bot anhalten (Notbremse): `touch /opt/odingate/bot/swing-hybrid/vorwaertstest/lauf/STOPP` und dasselbe mit `lauf_tpsl`;
+  weiterlaufen lassen: die beiden Dateien wieder löschen.
+- Alles entfernen: `bash /opt/odingate/repo/swing-hybrid/forschung/live/entfernen.sh` (verweigert es, solange der
+  Bot dort rechnet; vorher den Staffelstab zurückgeben).
+
+**Wer den Bot führt**, steht in `swing-hybrid/vorwaertstest/betrieb.json` im Zweig `claude/intelligent-sagan-2cviug`
+(„server“ oder „claude“). Rückgabe an die Claude-Sitzung: dort „claude“ eintragen (direkt nach einem Lauf) und die
+geplante Aufgabe „Vorwärtstest-Bot stündlich“ wieder einschalten. Nie eine Fassung von `stunde.sh` ohne
+Staffelstab-Prüfung in den Bot-Zweig schreiben, solange der Zeitplan auf dem Server eingerichtet ist.
+
+**Woran man einen Ausfall erkennt:** Auf dem Trading Board steht bei Test 1 und 2 „Bot-Stand vor …“. Mehr als rund
+zehn Minuten heißt: Der Server rechnet nicht. Der Kaufdruck-Tab fällt bei einem Ausfall von selbst auf den täglichen
+Stand zurück (der Zusatz „live“ verschwindet).
