@@ -1,0 +1,9 @@
+Aufgaben-Vermerke je Lauf: [('gen1', 11340, '2026-11-15T23:19:28Z', '2026-11-15T23:24:29Z'), ('gen2', 5539, '2026-11-15T23:26:01Z', '2026-11-15T23:28:40Z')]
+Läufe: [('gen1', '2026-11-15T23:19:20Z', '2026-11-15T23:24:29Z', 11340, 340200, 309.2, 66010.0, 4), ('gen2', '2026-11-15T23:25:54Z', '2026-11-15T23:28:40Z', 5539, 182160, 166.0, 65849.0, 4)]
+Kennungen in beiden Generationen: 0
+gleiche Einstellung mehrfach (signal, th, r, f, k, x, m, best): 0
+gen1 Kandidaten 340200 verschiedene Zeilen 340200 höchste Zeile 340199 | Zeilen im Speicher 340200
+gen2 Kandidaten 182160 verschiedene Zeilen 182160 höchste Zeile 332309 | Zeilen im Speicher 332340
+Status neu abgeleitet für 522360 Kandidaten: Abweichungen {'Kostenabzug': 11780}, nur wegen Rundung an der Schwelle: 26
+gen1: 20000 zufällige Zeilen: Tagesreihe passt nicht zu n85/t85 der Datenbank: 0 | größte Abweichung n85 0.00050 bp, t 0.00050 | Zeilen mit Buchungen vor dem T-Beginn: 0
+gen2: 20000 zufällige Zeilen: Tagesreihe passt nicht zu n85/t85 der Datenbank: 0 | größte Abweichung n85 0.00050 bp, t 0.00050 | Zeilen mit Buchungen vor dem T-Beginn: 0

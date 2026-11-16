@@ -1,0 +1,12 @@
+1450 Kandidaten mit Signal-Ausstieg, die die Verzögerungsprüfung erreicht haben
+{'kontrolle_kopie_ungleich_kern': 0, 'db_urteil_nicht_nachvollzogen': 0, 'abgelehnt_waere_bestanden': 30, 'bestanden_waere_abgelehnt': 118, 'abgelehnt': 562, 'bestanden': 888, 'abgelehnt_waere_bestanden_und_alpha_ok': 30, 'davon_status_stufe3': 101, 'davon_status_final': 17}
+roh je Trade (bp): einfache minus doppelte Verzögerung: Mittel -0.911, Median -0.313, min -20.43, max +10.20; Anteil > 0: 0.41
+  Beispiel: ('gen1', '7c9443ecd55f', 'mom_3', 2.5, -1, 'vol_hoch', 3, 'signal_h720', 'top3', 'roh mit doppelter Verzögerung 1.22 bp, mit einfacher 3.89 bp, Schwelle 2.4', 'alpha t 2.70')
+  Beispiel: ('gen1', 'ed8d18094f3f', 'ausbruch_288', 3.5, -1, 'usa', 1, 'signal_h720', 'top3', 'roh mit doppelter Verzögerung 1.91 bp, mit einfacher 3.67 bp, Schwelle 2.4', 'alpha t 2.82')
+  Beispiel: ('gen1', 'feb25757b50f', 'mom_3', 2.5, -1, 'vol_hoch', 1, 'signal_h720', 'top3', 'roh mit doppelter Verzögerung 1.07 bp, mit einfacher 2.79 bp, Schwelle 2.4', 'alpha t 4.02')
+  Beispiel: ('gen2', '0a77efc33823', 'volmom_3', 3.5, -1, 'vol_hoch', 1, 'signal0_h720', 'top3', 'roh mit doppelter Verzögerung 1.51 bp, mit einfacher 2.94 bp, Schwelle 2.4', 'alpha t 3.72')
+  Beispiel: ('gen2', '14486a49f532', 'ausbruch_12', 2.5, -1, 'vol_hoch', 1, 'signal_h720', 'top3', 'roh mit doppelter Verzögerung -0.79 bp, mit einfacher 2.54 bp, Schwelle 2.4', 'alpha t 2.46')
+  Beispiel: ('gen2', '1650f0a14484', 'btcfuehrt_3', 2.0, -1, 'vol_hoch', 1, 'signal0_h720', 'top3', 'roh mit doppelter Verzögerung 1.52 bp, mit einfacher 2.77 bp, Schwelle 2.4', 'alpha t 2.85')
+  Beispiel: ('gen2', '18405b66fc23', 'volspitze_1', 2.5, -1, 'vol_hoch', 1, 'signal_h720', 'top3', 'roh mit doppelter Verzögerung 1.02 bp, mit einfacher 2.89 bp, Schwelle 2.4', 'alpha t 3.06')
+  Beispiel: ('gen2', '1f1da7228266', 'mom_3', 2.5, -1, 'vol_hoch', 1, 'signal0.5_h240', 'top3', 'roh mit doppelter Verzögerung 1.07 bp, mit einfacher 2.79 bp, Schwelle 2.4', 'alpha t 4.02')
+Rechenzeit 110 s

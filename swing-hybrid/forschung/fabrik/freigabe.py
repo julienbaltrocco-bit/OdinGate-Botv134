@@ -139,5 +139,30 @@ Festgelegt am {cfg['eingefroren']}, vor dem Start. Freigabe automatisch nach Auf
     return 0
 
 
+
+
+def auswahl_papier(max_neu: int = 5):
+    """Aus den validierten Kandidaten bis zu `max_neu` möglichst verschiedene auswählen (kleinster p-Wert zuerst; Korrelation der
+    Tagesergebnisse in T und V1 mit allen schon gewählten unter 0,5) und freigeben. Die übrigen bleiben als validiert im Register."""
+    L._init()
+    con = T.db()
+    sp = json.loads((F / "fabrik/ergebnisse/schlusspruefung.json").read_text())
+    val = [e for e in sp["ergebnisse"] if e["validiert"] and e.get("by_bestanden")]      # nur, wer auch die strengere Korrektur besteht
+    reihen, gewaehlt, regeln = [], [], set()
+    for e in val:
+        z = con.execute("SELECT * FROM kandidaten WHERE id = ? AND gen = ?", (e["id"], e["gen"])).fetchone()
+        r = np.asarray(np.load(L.AUS / f"tage_{z['gen']}.npy", mmap_mode="r")[z["zeile"]], dtype=np.float64)
+        if e["regel"] not in regeln and all(abs(np.corrcoef(r, x)[0, 1]) < 0.5 for x in reihen):   # eine Einstiegsregel = eine Entdeckung
+            reihen.append(r); gewaehlt.append(e["id"]); regeln.add(e["regel"])
+        if len(gewaehlt) >= max_neu:
+            break
+    print(f"{len(val)} validiert, davon für Papier-Tests gewählt: {gewaehlt}")
+    return gewaehlt
+
+
 if __name__ == "__main__":
-    sys.exit(freigeben(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None))
+    if sys.argv[1] == "auswahl":
+        for kennung in auswahl_papier(int(sys.argv[2]) if len(sys.argv) > 2 else 5):
+            freigeben(kennung, sys.argv[3] if len(sys.argv) > 3 else None)
+    else:
+        sys.exit(freigeben(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None))

@@ -1,0 +1,5 @@
+Kandidaten: 4269 | Marktrendite im Mittel (bp je Tag) über die Fälle: 10.92
+Regression wie im Trichter: Beta Median -0.0241 (5 %/95 %: -0.0647/+0.0201); t(Alpha) < 2: 4
+mit Folgetag: Beta Folgetag Median +0.0004, |t| > 2 bei 823 von 4269; t(Alpha) < 2: 6; Urteil kippt (>=2 -> <2): 3
+t des rohen Tagesmittels über T+V1 (ohne Marktbereinigung) < 2: 4; mittlere Änderung t(Alpha) - t(Mittel): +0.142; größte Senkung -0.998
+mittlere Änderung des Alpha gegenüber dem rohen Tagesmittel: +0.1867 bp je Tag

@@ -1,0 +1,24 @@
+Lückentage (Tagesnummern): [194, 195, 196, 197, 198, 199, 228, 229, 230, 231, 232] ['2022-02-25', '2022-02-26', '2022-02-27', '2022-02-28', '2022-03-01', '2022-03-02', '2022-03-31', '2022-04-01', '2022-04-02', '2022-04-03', '2022-04-04']
+Kandidaten mit bestandener Stufe 2 (Kurs/Derivate-Segment): 9551
+Anteil des T-Ergebnisses auf den 11 Lückentagen (von 685): Median 0.009, 90 % 0.051, 99 % 0.103, Maximum 0.220
+Kandidaten mit Anteil > 10 %: 104, > 20 %: 2, > 30 %: 0
+t85_t ohne die Lückentage < 2 (obwohl mit >= 2): 517 von 9551; davon heute Status final/stufe3: 224
+
+Die 8 am stärksten betroffenen Kandidaten, Trades mit eigenem Simulator:
+  gen1 b2d0509e54ef kaufdruck_12 th 3.5 r -1 vol_hoch k1 h60 alt7 | Status verworfen_3 | T: Trades 258, n85 35.58 bp, t85 2.387 | Anteil Lückentage 0.22 | Lücken-Trades 1: Mittel 99 bp, Summe 99 von 9798 bp | n85 ohne Lücken-Trades 35.34 bp | t85 ohne Lückentage 1.93
+      LTC Signal 2022-03-01 00:00:00 Richtung -1 Einstieg 2022-03-01 00:05:00 @ 115.5900 (Kerze gültig: True) Ausstieg 2022-03-01 01:05:00 @ 114.4000 (gültig: True) zeit roh +99 bp
+  gen1 8b8125c2d720 kaufdruck_12 th 3.5 r -1 europa k1 signal_h720 alt7 | Status verworfen_3 | T: Trades 295, n85 24.92 bp, t85 2.017 | Anteil Lückentage 0.21 | Lücken-Trades 0: Mittel 0 bp, Summe 0 von 8059 bp | n85 ohne Lücken-Trades 24.92 bp | t85 ohne Lückentage 1.64
+  gen1 00277229575f kaufdruck_48 th 2.5 r -1 vol_hoch k1 h240_stop2 alt7 | Status final | T: Trades 1299, n85 19.68 bp, t85 2.125 | Anteil Lückentage 0.18 | Lücken-Trades 4: Mittel 149 bp, Summe 594 von 28685 bp | n85 ohne Lücken-Trades 19.29 bp | t85 ohne Lückentage 1.78
+      LTC Signal 2022-02-25 20:00:00 Richtung +1 Einstieg 2022-02-25 20:05:00 @ 106.3500 (Kerze gültig: True) Ausstieg 2022-02-26 00:05:00 @ 109.1700 (gültig: False) zeit roh +263 bp
+      LTC Signal 2022-03-01 00:00:00 Richtung -1 Einstieg 2022-03-01 00:05:00 @ 115.5900 (Kerze gültig: True) Ausstieg 2022-03-01 04:05:00 @ 112.5800 (gültig: True) zeit roh +256 bp
+      LTC Signal 2022-03-31 23:45:00 Richtung +1 Einstieg 2022-03-31 23:50:00 @ 123.1800 (Kerze gültig: True) Ausstieg 2022-04-01 03:50:00 @ 123.8700 (gültig: False) zeit roh +51 bp
+  gen1 c6bf3e88af37 kaufdruck_48 th 3.5 r -1 vol_hoch k1 h720_zielnachzug alle10 | Status stufe3 | T: Trades 364, n85 25.40 bp, t85 2.121 | Anteil Lückentage 0.17 | Lücken-Trades 3: Mittel -28 bp, Summe -83 von 10120 bp | n85 ohne Lücken-Trades 25.86 bp | t85 ohne Lückentage 1.81
+      XRP Signal 2022-03-31 14:50:00 Richtung +1 Einstieg 2022-03-31 14:55:00 @ 0.8302 (Kerze gültig: True) Ausstieg 2022-04-01 02:55:00 @ 0.8146 (gültig: False) zeit roh -192 bp
+      LTC Signal 2022-03-01 00:10:00 Richtung -1 Einstieg 2022-03-01 00:15:00 @ 115.0400 (Kerze gültig: True) Ausstieg 2022-03-01 00:50:00 @ 114.2614 (gültig: True) stop roh +63 bp
+      LTC Signal 2022-03-01 00:00:00 Richtung -1 Einstieg 2022-03-01 00:05:00 @ 115.5900 (Kerze gültig: True) Ausstieg 2022-03-01 00:10:00 @ 115.0100 (gültig: True) stop roh +46 bp
+  gen2 8333162a7bce rsi_48 th 2.5 r +1 btc_auf k12 h720_zielnachzug top3 | Status final | T: Trades 213, n85 27.36 bp, t85 2.1 | Anteil Lückentage 0.17 | Lücken-Trades 1: Mittel 10 bp, Summe 10 von 6338 bp | n85 ohne Lücken-Trades 27.45 bp | t85 ohne Lückentage 1.86
+      SOL Signal 2022-03-01 00:55:00 Richtung +1 Einstieg 2022-03-01 01:00:00 @ 98.5600 (Kerze gültig: True) Ausstieg 2022-03-01 13:00:00 @ 98.7000 (gültig: True) zeit roh +10 bp
+  gen2 7ff4da74a433 korrbruch th 2.5 r -1 europa k12 signal0_h720 alt7 | Status verworfen_3 | T: Trades 877, n85 22.21 bp, t85 2.514 | Anteil Lückentage 0.17 | Lücken-Trades 1: Mittel -220 bp, Summe -220 von 21586 bp | n85 ohne Lücken-Trades 22.49 bp | t85 ohne Lückentage 2.16
+      LTC Signal 2022-03-31 13:55:00 Richtung +1 Einstieg 2022-03-31 14:00:00 @ 126.5800 (Kerze gültig: True) Ausstieg 2022-04-01 02:00:00 @ 123.8700 (gültig: False) zeit roh -220 bp
+  gen1 5ddad5cc15b9 relstaerke_288 th 3.5 r -1 btc_ab k1 h240_stop2 alt7 | Status verworfen_3 | T: Trades 263, n85 27.34 bp, t85 2.099 | Anteil Lückentage 0.17 | Lücken-Trades 0: Mittel 0 bp, Summe 0 von 7821 bp | n85 ohne Lücken-Trades 27.34 bp | t85 ohne Lückentage 1.86
+  gen2 266948cadadc relstaerke_288 th 3.5 r -1 btc_ab k1 h240_stop2 alt7 | Status verworfen_3 | T: Trades 225, n85 31.96 bp, t85 2.332 | Anteil Lückentage 0.16 | Lücken-Trades 0: Mittel 0 bp, Summe 0 von 7731 bp | n85 ohne Lücken-Trades 31.96 bp | t85 ohne Lückentage 2.11

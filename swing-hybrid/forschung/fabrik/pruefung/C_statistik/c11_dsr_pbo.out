@@ -1,0 +1,13 @@
+Code-Stand: trichter:0bfc2db0 lauf:4a548736 kern:43e6339a evolution:6386a868
+(a) Vorkommen im Code: 'phi_inv('  2 (davon 1 Definition und 1 Selbstaufruf) | 'deflat' / 'DSR': 0 | Schlüssel in statistik.json: ['anteil_stufe1', 'anteil_stufe2', 'bester_t_wert_T', 'bester_verliert_im_anderen_teil', 'gueltige_kandidaten', 'pbo', 'pbo_kombinationen', 'reality_check_p', 'stufe1_bestanden', 'stufe2_bestanden', 'zufalls_maximum_95', 'zufalls_maximum_median', 'zufallserwartung_stufe1']
+   Kurs/Volumen/Derivate: bester bc6e2b1eeea6 t 5.019, Sharpe/Tag 0.1918 (p.a. 3.66), Schiefe +6.51, Wölbung 92.1, Versuche 370757, erwartetes Maximum 4.67 Streuungen | Streuung der Sharpe-Werte über alle Versuche: Schwelle 0.5338/Tag -> Deflated Sharpe Ratio 0.000 (als gesichert gälte > 0,95)
+   Kurs/Volumen/Derivate: bester bc6e2b1eeea6 t 5.019, Sharpe/Tag 0.1918 (p.a. 3.66), Schiefe +6.51, Wölbung 92.1, Versuche 370757, erwartetes Maximum 4.67 Streuungen | nur Stichprobenstreuung 1/Tage (alle Versuche ohne Vorteil und ohne Kosten): Schwelle 0.1783/Tag -> Deflated Sharpe Ratio 0.676 (als gesichert gälte > 0,95)
+   Orderbuch-Tiefe: bester 547d96481cac t 4.469, Sharpe/Tag 0.2339 (p.a. 4.47), Schiefe +1.09, Wölbung 21.1, Versuche 49468, erwartetes Maximum 4.24 Streuungen | Streuung der Sharpe-Werte über alle Versuche: Schwelle 0.7082/Tag -> Deflated Sharpe Ratio 0.000 (als gesichert gälte > 0,95)
+   Orderbuch-Tiefe: bester 547d96481cac t 4.469, Sharpe/Tag 0.2339 (p.a. 4.47), Schiefe +1.09, Wölbung 21.1, Versuche 49468, erwartetes Maximum 4.24 Streuungen | nur Stichprobenstreuung 1/Tage (alle Versuche ohne Vorteil und ohne Kosten): Schwelle 0.2217/Tag -> Deflated Sharpe Ratio 0.592 (als gesichert gälte > 0,95)
+
+(b) phi_inv gegen scipy.stats.norm.ppf: 5.01378849548928e-09
+
+(c) PBO in künstlichen Welten (eigene Nachrechnung, in C01 gleich der Rechnung in trichter.statistik), je 40 Welten, 400 Kandidaten, 1.051 Tage
+   reines Rauschen, Mittel null: PBO im Mittel 0.532, 'bester verliert im anderen Teil' im Mittel 0.531
+   Rauschen, Kosten je Kandidat verschieden (0 bis 0,3 Streuungen je Tag), niemand hat einen Vorteil: PBO im Mittel 0.003, 'bester verliert im anderen Teil' im Mittel 0.607
+   wie zuvor, dazu gemeinsamer Marktanteil mit steigendem Markt (Beta 0 bis 1, Markt +0,05 Streuungen je Tag): PBO im Mittel 0.006, 'bester verliert im anderen Teil' im Mittel 0.421

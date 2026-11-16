@@ -1,0 +1,14 @@
+Code-Stand: trichter:0bfc2db0 lauf:4a548736 kern:43e6339a evolution:6386a868
+A: 149c2039e4da gen2 liq_entzug th 3.5 r -1 btc_ab k1 h240_stop2 alt7 best ["boll_48", 1.0, -1] | in Lauf A: final (Gruppe 1) | Sharpe V1 4.977
+B: 0a793b522c21 gen1 liq_entzug th 3.5 r -1 btc_ab k1 h240_stop2 alle10 best None | in Lauf A: stufe3 (Gruppe 1, vertreten durch 149c2039e4da) | Sharpe V1 3.229
+Korrelation der Tagesergebnisse A/B (Tage, an denen mindestens einer handelt): 0.895
+
+Lauf 1 (nur A offen): verworfen in Stufe 3: {} | übrig: 1
+   Status A: ('final', 'Gruppe 1') | B: ('wartet_auf_spaeteren_zyklus', '') | finalisten.json: ['149c2039e4da']
+Lauf 2 (B kommt später dazu): verworfen in Stufe 3: {} | übrig: 1
+   Status A: ('final', 'Gruppe 1') | B: ('final', 'Gruppe 1') | finalisten.json: ['0a793b522c21']
+   -> B ist jetzt ebenfalls Finalist ('Gruppe 1'), obwohl B mit A über 0,8 korreliert; finalisten.json enthält A nicht mehr.
+Kontrolle (A und B im selben Lauf): verworfen in Stufe 3: {} | übrig: 2
+   Status A: ('final', 'Gruppe 1') | B: ('stufe3', 'Gruppe 1, vertreten durch 149c2039e4da') | finalisten.json: ['149c2039e4da']
+
+V2-blind: D.N = 315648 = I_ENDE 315648 - stufe3 lief vollständig durch, ohne eine Kerze ab 2024-07-01 zu brauchen (numpy-Zugriffe darüber hinaus wären ein Fehler gewesen).

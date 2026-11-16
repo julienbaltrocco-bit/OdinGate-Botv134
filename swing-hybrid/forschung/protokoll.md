@@ -538,3 +538,25 @@ Nachrechnung überein. Gefunden und vor der Schlussprüfung behoben:
 Wegen 1, 3 und 4 werden beide Generationen vollständig neu gerechnet (rund acht Minuten Rechenzeit). Der erste Lauf
 („Lauf A“: 522.360 Kandidaten, 11.029 nach Stufe 2, 4.265 robust, 1.327 Finalisten) wird nicht weiterverwendet;
 V2 wurde für ihn nicht geöffnet.
+
+### Dritter Nachtrag zu Abschnitt 19 (16.11.2026): Befunde des Statistik-Prüfers, festgelegt vor Öffnung von V2
+
+1. **Zufallsprüfung (Reality Check) war falsch gebildet:** beobachtete Größe und Bootstrap-Größe nutzten verschiedene
+   Streuungen; die zuvor genannten p-Werte (0,39 und 0,17) gelten nicht. Behoben (Streuung derselben Stichprobe). Die
+   Prüfung läuft jetzt nur über Generation 1, die ohne Auswahl erzeugte Grundmenge.
+2. **„Anteil über Zufall“:** wird nur noch für Generation 1 ausgewiesen. Generation 2 stammt von Gewinnern des
+   Trainings ab und wird auf demselben Training gemessen; ihr Anteil ist kein Beleg.
+3. **Die Stufen 1 bis 3 begrenzen Zufallstreffer kaum.** Rein zufällig wären allein aus Generation 1 je nach Annahme
+   rund 50 bis 1.000 „robuste“ Kandidaten zu erwarten. Die Zahl der Finalisten ist deshalb kein Beleg. Gegen Zufall
+   schützt allein die Schlussprüfung. Die Finalisten sind zudem wenige verschiedene Einstiegsregeln in vielen
+   Spielarten; falsche Treffer kämen gebündelt. **Verschärfung:** In der Schlussprüfung wird zusätzlich die strengere
+   Korrektur nach Benjamini-Yekutieli gerechnet (gilt bei beliebig abhängigen Kandidaten). Validierte Kandidaten
+   zählen je Einstiegsregel als eine Entdeckung. **Papier-Tests gibt es nur für Kandidaten, die auch die strengere
+   Korrektur bestehen, höchstens einen je Einstiegsregel.**
+4. **Stress im Kostenmodell für bewegten Markt:** war nicht das Doppelte. Jetzt das Doppelte der vollen Slippage.
+5. **Marktbereinigung:** nimmt jetzt auch die Marktrendite des Folgetags auf (Trades laufen bis zwölf Stunden).
+6. **Deflated Sharpe Ratio:** war angekündigt, aber nicht gerechnet. Jetzt in der Statistik enthalten.
+7. **Mehrere Zyklen:** Sperre der Schlussprüfung nach Kennung statt nach Kennung und Generation; frühere Finalisten
+   bleiben Vertreter ihrer Gruppen; schon gerechnete Einstellungen werden nicht doppelt gespeichert.
+
+Wegen 5 wird Stufe 3 noch einmal gerechnet (V2 bleibt bis dahin geschlossen).

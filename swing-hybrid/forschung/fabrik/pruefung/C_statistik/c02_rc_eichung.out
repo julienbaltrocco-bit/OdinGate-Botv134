@@ -1,0 +1,24 @@
+schnelle Rechnung = ausdrückliche Rechnung: True True | mittlere Blocklänge der Ziehung: 9.88
+
+(a) Welten OHNE Vorteil, 5.000 Kandidaten
+normal    n=5000 Wdh=200: bestes t im Mittel 3.71, Bootstrap-Maximum (Median) im Mittel 3.56
+     wie trichter (feste Streuung):  p<=0,05: 0.025  p<=0,10: 0.055  p<=0,50: 0.660  Mittel 0.402  KS-p 0.0000
+     eigene Streuung je Stichprobe:  p<=0,05: 0.015  p<=0,10: 0.055  p<=0,50: 0.630  Mittel 0.420  KS-p 0.0000
+schief+   n=5000 Wdh=100: bestes t im Mittel 2.75, Bootstrap-Maximum (Median) im Mittel 3.95
+     wie trichter (feste Streuung):  p<=0,05: 0.000  p<=0,10: 0.000  p<=0,50: 0.000  Mittel 0.992  KS-p 0.0000
+     eigene Streuung je Stichprobe:  p<=0,05: 0.010  p<=0,10: 0.020  p<=0,50: 0.260  Mittel 0.645  KS-p 0.0000
+schief-   n=5000 Wdh=100: bestes t im Mittel 5.36, Bootstrap-Maximum (Median) im Mittel 3.14
+     wie trichter (feste Streuung):  p<=0,05: 1.000  p<=0,10: 1.000  p<=0,50: 1.000  Mittel 0.000  KS-p 0.0000
+     eigene Streuung je Stichprobe:  p<=0,05: 0.000  p<=0,10: 0.000  p<=0,50: 0.030  Mittel 0.860  KS-p 0.0000
+gemischt  n=5000 Wdh=100: bestes t im Mittel 5.22, Bootstrap-Maximum (Median) im Mittel 3.76
+     wie trichter (feste Streuung):  p<=0,05: 0.690  p<=0,10: 0.890  p<=0,50: 1.000  Mittel 0.045  KS-p 0.0000
+     eigene Streuung je Stichprobe:  p<=0,05: 0.000  p<=0,10: 0.000  p<=0,50: 0.140  Mittel 0.743  KS-p 0.0000
+
+(b) EIN Kandidat mit echtem Vorteil unter 5.000 (erwarteter t-Wert 4,5 bzw. 6)
+normal    n=5000 Wdh=60 Vorteil t=4.5: bestes t im Mittel 4.78, Bootstrap-Maximum (Median) im Mittel 3.56
+     wie trichter (feste Streuung):  p<=0,05: 0.667  p<=0,10: 0.733  p<=0,50: 0.917  Mittel 0.108  KS-p 0.0000
+     eigene Streuung je Stichprobe:  p<=0,05: 0.633  p<=0,10: 0.717  p<=0,50: 0.917  Mittel 0.113  KS-p 0.0000
+normal    n=5000 Wdh=60 Vorteil t=6.0: bestes t im Mittel 6.04, Bootstrap-Maximum (Median) im Mittel 3.56
+     wie trichter (feste Streuung):  p<=0,05: 0.950  p<=0,10: 0.983  p<=0,50: 1.000  Mittel 0.007  KS-p 0.0000
+     eigene Streuung je Stichprobe:  p<=0,05: 0.967  p<=0,10: 0.983  p<=0,50: 1.000  Mittel 0.007  KS-p 0.0000
+Rechenzeit 143 s

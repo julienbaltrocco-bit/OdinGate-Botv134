@@ -1,0 +1,54 @@
+
+=== Zufall: 7713d6c751d8 tiefe_3 th 1.5 r +1 Filter asien Takt 1 Ausstieg h720_zielnachzug Markt top3 | Coin ETH, Fenster 2023-03-01 bis 2023-06-01
+  Signalwerte im Fenster: 26496 Kerzen, bitgleich 26496, größte Abweichung 0.00e+00, nur einseitig NaN 0
+  Einstiegswünsche (ein != 0) eigene 920 / Fabrik 920, ungleiche Kerzen 0
+  Trades: eigene 112 / Fabrik 112
+  Einstiegszeiten gleich: True | Ausstiegszeiten gleich: True | Richtung gleich: True | größte Abweichung roh je Trade: 8.53e-14 bp | roh Mittel eigene 10.6695 / Fabrik 10.6695 bp
+  Datenbank-Abgleich (ganzes Training, ganzer Markt, Fabrik-Simulator neu): n_t 1181 (DB 1181), roh_t 12.529 (DB 12.529)
+  erste Trades (eigene): 2023-03-01 00:15:00 L -> 2023-03-01 01:35:00 +42.3bp; 2023-03-01 04:55:00 S -> 2023-03-01 05:25:00 +33.2bp; 2023-03-01 06:05:00 S -> 2023-03-01 18:05:00 -44.8bp
+
+=== Zufall: 215a83bd47b1 btcfuehrt_3 th 2.5 r -1 Filter vol_hoch Takt 1 Ausstieg h240_stop2 Markt alt7 | Coin XRP, Fenster 2021-12-01 bis 2022-03-01
+  Signalwerte im Fenster: 25920 Kerzen, bitgleich 25920, größte Abweichung 0.00e+00, nur einseitig NaN 0
+  Einstiegswünsche (ein != 0) eigene 187 / Fabrik 187, ungleiche Kerzen 0
+  Trades: eigene 70 / Fabrik 70
+  Einstiegszeiten gleich: True | Ausstiegszeiten gleich: True | Richtung gleich: True | größte Abweichung roh je Trade: 1.14e-13 bp | roh Mittel eigene 63.5875 / Fabrik 63.5875 bp
+  Datenbank-Abgleich (ganzes Training, ganzer Markt, Fabrik-Simulator neu): n_t 4076 (DB 4076), roh_t 18.897 (DB 18.897)
+  erste Trades (eigene): 2021-12-04 04:55:00 L -> 2021-12-04 04:55:00 -209.4bp; 2021-12-04 05:00:00 L -> 2021-12-04 05:00:00 -222.2bp; 2021-12-04 05:05:00 L -> 2021-12-04 05:20:00 -275.8bp
+
+=== Zufall: 79339478fbcb vwap_48 th 3.5 r -1 Filter vol_hoch Takt 1 Ausstieg h240_stop2 Markt alle10 | Coin BTC, Fenster 2021-12-01 bis 2022-03-01
+  Signalwerte im Fenster: 25920 Kerzen, bitgleich 25920, größte Abweichung 0.00e+00, nur einseitig NaN 0
+  Einstiegswünsche (ein != 0) eigene 47 / Fabrik 47, ungleiche Kerzen 0
+  Trades: eigene 19 / Fabrik 19
+  Einstiegszeiten gleich: True | Ausstiegszeiten gleich: True | Richtung gleich: True | größte Abweichung roh je Trade: 5.68e-14 bp | roh Mittel eigene -27.2088 / Fabrik -27.2088 bp
+  Datenbank-Abgleich (ganzes Training, ganzer Markt, Fabrik-Simulator neu): n_t 1258 (DB 1258), roh_t 43.498 (DB 43.498)
+  erste Trades (eigene): 2021-12-03 20:20:00 L -> 2021-12-04 00:20:00 +269.2bp; 2021-12-04 05:05:00 L -> 2021-12-04 05:20:00 -182.7bp; 2021-12-04 05:25:00 L -> 2021-12-04 05:25:00 -251.5bp
+
+=== Zusatz (gezielt gewählt): 603c46cf99fb konten_ls th 1.5 r -1 Filter kein Takt 12 Ausstieg signal_h720 Markt top3 | Coin BTC, Fenster 2022-09-01 bis 2022-12-01
+  Signalwerte im Fenster: 26208 Kerzen, bitgleich 26208, größte Abweichung 0.00e+00, nur einseitig NaN 0
+  Einstiegswünsche (ein != 0) eigene 701 / Fabrik 701, ungleiche Kerzen 0
+  Trades: eigene 76 / Fabrik 76
+  Einstiegszeiten gleich: True | Ausstiegszeiten gleich: True | Richtung gleich: True | größte Abweichung roh je Trade: 1.21e-13 bp | roh Mittel eigene -27.6882 / Fabrik -27.6882 bp
+  Datenbank-Abgleich (ganzes Training, ganzer Markt, Fabrik-Simulator neu): n_t 1809 (DB 1809), roh_t 21.721 (DB 21.721)
+  erste Trades (eigene): 2022-09-01 09:00:00 S -> 2022-09-01 21:00:00 -72.6bp; 2022-09-01 21:00:00 S -> 2022-09-02 09:00:00 -13.6bp; 2022-09-02 09:00:00 S -> 2022-09-02 13:05:00 -113.8bp
+
+=== Zusatz (gezielt gewählt): abc7bc9cfd53 oi_kurs_4h th 2.5 r +1 Filter trend_mit Takt 12 Ausstieg h720_zielnachzug Markt top3 | Coin SOL, Fenster 2022-08-01 bis 2022-11-01
+  Signalwerte im Fenster: 26496 Kerzen, bitgleich 26496, größte Abweichung 0.00e+00, nur einseitig NaN 0
+  Einstiegswünsche (ein != 0) eigene 60 / Fabrik 60, ungleiche Kerzen 0
+  Trades: eigene 34 / Fabrik 34
+  Einstiegszeiten gleich: True | Ausstiegszeiten gleich: True | Richtung gleich: True | größte Abweichung roh je Trade: 6.39e-14 bp | roh Mittel eigene 36.3995 / Fabrik 36.3995 bp
+  Datenbank-Abgleich (ganzes Training, ganzer Markt, Fabrik-Simulator neu): n_t 544 (DB 544), roh_t 26.730 (DB 26.73)
+  erste Trades (eigene): 2022-08-03 02:00:00 S -> 2022-08-03 04:15:00 +117.9bp; 2022-08-11 06:00:00 L -> 2022-08-11 07:05:00 +69.0bp; 2022-08-11 08:00:00 L -> 2022-08-11 14:10:00 +115.5bp
+
+=== Zusatz (gezielt gewählt): 66faf4732a58 liq_entzug th 3.5 r -1 Filter btc_ab Takt 3 Ausstieg h240_stop1.5_ziel3 Markt alt7 | Coin LTC, Fenster 2023-09-01 bis 2023-12-01
+  Signalwerte im Fenster: 26208 Kerzen, bitgleich 26208, größte Abweichung 0.00e+00, nur einseitig NaN 0
+  Einstiegswünsche (ein != 0) eigene 63 / Fabrik 63, ungleiche Kerzen 0
+  Trades: eigene 34 / Fabrik 34
+  Einstiegszeiten gleich: True | Ausstiegszeiten gleich: True | Richtung gleich: True | größte Abweichung roh je Trade: 1.28e-13 bp | roh Mittel eigene 25.7572 / Fabrik 25.7572 bp
+  Datenbank-Abgleich (ganzes Training, ganzer Markt, Fabrik-Simulator neu): n_t 1240 (DB 1240), roh_t 17.555 (DB 17.555)
+  erste Trades (eigene): 2023-09-01 17:30:00 L -> 2023-09-01 18:40:00 +126.7bp; 2023-09-10 04:30:00 L -> 2023-09-10 04:30:00 +65.5bp; 2023-09-10 04:45:00 L -> 2023-09-10 08:45:00 +7.1bp
+
+ZUSAMMENFASSUNG: [('7713d6c751d8', 'ETH', '2023-03-01', 112, 112, True), ('215a83bd47b1', 'XRP', '2021-12-01', 70, 70, True), ('79339478fbcb', 'BTC', '2021-12-01', 19, 19, True), ('603c46cf99fb', 'BTC', '2022-09-01', 76, 76, True), ('abc7bc9cfd53', 'SOL', '2022-08-01', 34, 34, True), ('66faf4732a58', 'LTC', '2023-09-01', 34, 34, True)]
+
+real	0m4.535s
+user	0m4.968s
+sys	0m0.466s

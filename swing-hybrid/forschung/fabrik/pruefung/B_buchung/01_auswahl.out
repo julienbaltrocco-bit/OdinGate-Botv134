@@ -1,0 +1,16 @@
+214c044ae3fb 55204 ausbruch_288 1.5 -1 vol_hoch 3 h60 alle10 k | n_t 1784 n85_t 20.317 t85_t 2.897 | stufe2 
+7f7ac604c553 76002 volmom_3 1.5 1 vol_niedrig 3 h240_stop2 top3 k | n_t 2350 n85_t 8.025 t85_t 2.317 | stufe2 
+dd9bd53586a9 233117 aufschlag_d3 1.5 -1 kein 1 h240_stop1.5_ziel3 alt7 d | n_t 30321 n85_t -9.523 t85_t -8.621 | verworfen_1 kein Brutto-Vorteil
+08c38618276b 189145 btcfuehrt_12 1.5 1 trend_mit 3 h720_zielnachzug alle10 x | n_t 13738 n85_t -14.164 t85_t -3.728 | verworfen_1 kein Brutto-Vorteil
+a9ac0d3fec49 235017 aufschlag_d3 2.5 -1 trend_mit 1 signal_h720 top3 d | n_t 4341 n85_t -4.706 t85_t -2.693 | verworfen_1 kein Brutto-Vorteil
+fdaa5d409dea 307138 tiefe_d_1 3.5 -1 trend_gegen 3 signal_h720 alle10 t | n_t 610 n85_t -17.447 t85_t -4.795 | verworfen_1 kein Brutto-Vorteil
+6bd9351d5e74 198021 relstaerke_12 3.5 1 kein 1 h720_nachzug2 top3 x | n_t 1019 n85_t -0.113 t85_t -0.021 | verworfen_1 kein Brutto-Vorteil
+1ac531dfbcd7 186319 btcfuehrt_3 2.5 -1 kein 1 h60_stop1.5_ziel1.5 alle10 x | n_t 26709 n85_t -9.465 t85_t -5.861 | verworfen_1 kein Brutto-Vorteil
+5a0b8a630c9b 162992 volspitze_3 1.5 -1 trend_mit 1 h15 alt7 k | n_t 25393 n85_t -8.459 t85_t -10.605 | verworfen_1 kein Brutto-Vorteil
+0e127a932b3d 247240 fund 3.5 1 usa 1 h720 alle10 d | n_t 550 n85_t 10.248 t85_t 0.282 | verworfen_1 kein Brutto-Vorteil
+a43e2b95fc53 223058 korrbruch 1.5 -1 btc_auf 3 h240 alt7 x | n_t 2639 n85_t -4.171 t85_t -0.869 | verworfen_1 kein Brutto-Vorteil
+66b9d42eb0f1 307965 tiefe_d_5 1.5 1 trend_mit 12 h240_stop1.5_ziel3 top3 t | n_t 1321 n85_t 7.937 t85_t 2.069 | stufe2 
+f5ef71919892 155756 vwap_288 3.5 -1 kein 3 h720_zielnachzug alt7 k | n_t 323 n85_t 46.662 t85_t 2.503 | stufe2 
+eabdbc185a85 139799 rsi_48 3.5 -1 vol_hoch 1 signal_h720 alt7 k | n_t 317 n85_t 113.561 t85_t 3.058 | stufe2 
+6037f786aff1 29500 mom_144 2.5 1 usa 12 h720 alle10 k | n_t 513 n85_t 62.609 t85_t 2.612 | stufe2 
+cf4391344d04 210402 relstaerke_288 3.5 -1 usa 12 h240_stop2 top3 x | n_t 33 n85_t 31.186 t85_t 0.464 | ungültig zu wenige Trades

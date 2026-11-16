@@ -1,0 +1,100 @@
+##### (a) Lücken
+  SOL: 864 Kerzen 2022-02-26 00:00:00 bis 2022-02-28 23:55:00 (T); Kurs vor Lücke 92.2300, erste Eröffnung danach 99.6200 (+8.0 %)
+     mom_3        in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 3 Kerzen, max |Wert| 10.3, erste Werte [10.300000190734863, 10.199999809265137, 9.899999618530273]
+     boll_144     in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 9 Kerzen, max |Wert| 10.9, erste Werte [10.899999618530273, 7.599999904632568, 6.099999904632568]
+     vwap_48      in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 0 Kerzen, max |Wert| 1.9, erste Werte [nan, nan, nan]
+     ausbruch_48  in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 1 Kerzen, max |Wert| 50.4, erste Werte [50.400001525878906, 0.0, 0.0]
+     rsi_14       in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 4 Kerzen, max |Wert| 5.9, erste Werte [5.900000095367432, 5.900000095367432, 5.900000095367432]
+  SOL: 576 Kerzen 2022-04-01 00:00:00 bis 2022-04-02 23:55:00 (T); Kurs vor Lücke 122.6300, erste Eröffnung danach 132.4700 (+8.0 %)
+     mom_3        in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 3 Kerzen, max |Wert| 10.6, erste Werte [10.5, 10.600000381469727, 10.399999618530273]
+     boll_144     in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 5 Kerzen, max |Wert| 9.1, erste Werte [9.100000381469727, 6.400000095367432, 5.099999904632568]
+     vwap_48      in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 0 Kerzen, max |Wert| 1.4, erste Werte [nan, nan, nan]
+     ausbruch_48  in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 4 Kerzen, max |Wert| 44.5, erste Werte [44.5, 0.6000000238418579, 0.0]
+     rsi_14       in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 12 Kerzen, max |Wert| 4.3, erste Werte [4.300000190734863, 4.300000190734863, 4.199999809265137]
+  XRP: 864 Kerzen 2022-02-26 00:00:00 bis 2022-02-28 23:55:00 (T); Kurs vor Lücke 0.7734, erste Eröffnung danach 0.7808 (+1.0 %)
+     mom_3        in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 14 Kerzen, max |Wert| 12.6, erste Werte [12.600000381469727, 11.199999809265137, 10.399999618530273]
+     boll_144     in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 9 Kerzen, max |Wert| 10.0, erste Werte [10.0, 6.599999904632568, 5.199999809265137]
+     vwap_48      in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 0 Kerzen, max |Wert| 3.5, erste Werte [nan, nan, nan]
+     ausbruch_48  in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 4 Kerzen, max |Wert| 53.8, erste Werte [53.79999923706055, 0.0, 0.0]
+     rsi_14       in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 1 Kerzen, max |Wert| 3.7, erste Werte [3.700000047683716, 3.0999999046325684, 2.9000000953674316]
+  XRP: 576 Kerzen 2022-04-01 00:00:00 bis 2022-04-02 23:55:00 (T); Kurs vor Lücke 0.8130, erste Eröffnung danach 0.8238 (+1.3 %)
+     mom_3        in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 9 Kerzen, max |Wert| 10.6, erste Werte [10.600000381469727, 10.100000381469727, 10.100000381469727]
+     boll_144     in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 9 Kerzen, max |Wert| 9.5, erste Werte [9.5, 6.5, 5.300000190734863]
+     vwap_48      in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 12 Kerzen, max |Wert| 4.6, erste Werte [nan, nan, nan]
+     ausbruch_48  in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 2 Kerzen, max |Wert| 30.7, erste Werte [30.700000762939453, 0.0, 0.0]
+     rsi_14       in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 12 Kerzen, max |Wert| 5.3, erste Werte [5.300000190734863, 5.0, 5.0]
+  LTC: 864 Kerzen 2022-02-26 00:00:00 bis 2022-02-28 23:55:00 (T); Kurs vor Lücke 109.2900, erste Eröffnung danach 113.6100 (+4.0 %)
+     mom_3        in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 4 Kerzen, max |Wert| 12.6, erste Werte [12.600000381469727, 11.100000381469727, 10.800000190734863]
+     boll_144     in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 4 Kerzen, max |Wert| 8.1, erste Werte [8.100000381469727, 5.300000190734863, 4.400000095367432]
+     vwap_48      in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 0 Kerzen, max |Wert| 1.7, erste Werte [nan, nan, nan]
+     ausbruch_48  in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 2 Kerzen, max |Wert| 56.7, erste Werte [56.70000076293945, 0.0, 0.0]
+     rsi_14       in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 7 Kerzen, max |Wert| 5.9, erste Werte [5.900000095367432, 4.900000095367432, 4.900000095367432]
+  LTC: 576 Kerzen 2022-04-01 00:00:00 bis 2022-04-02 23:55:00 (T); Kurs vor Lücke 123.4700, erste Eröffnung danach 124.8300 (+1.1 %)
+     mom_3        in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 13 Kerzen, max |Wert| 13.1, erste Werte [11.0, 12.800000190734863, 13.100000381469727]
+     boll_144     in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 6 Kerzen, max |Wert| 8.7, erste Werte [8.699999809265137, 6.599999904632568, 5.300000190734863]
+     vwap_48      in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 0 Kerzen, max |Wert| 3.1, erste Werte [nan, nan, nan]
+     ausbruch_48  in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 3 Kerzen, max |Wert| 44.7, erste Werte [44.70000076293945, 5.599999904632568, 0.0]
+     rsi_14       in den 288 Kerzen nach der Lücke: |Wert|>=3.5 an 12 Kerzen, max |Wert| 5.5, erste Werte [5.5, 5.5, 5.400000095367432]
+  Coins ohne Lücke: ['BTC', 'ETH', 'DOT', 'DOGE', 'ADA', 'LINK', 'AVAX']
+
+##### (b) auffällige Kandidaten (gen1, hohe Netto-Ergebnisse je Trade bei kurzer Haltedauer)
+
+  b3e83ff3539f boll_288 th 3.5 r -1 vol_hoch k3 h60 alt7 | DB n_t 200 n85_t 106.394 t 2.171 | nachgerechnet n 200 n85 106.394
+     Median 55.3 bp, Gewinnquote 0.64; Anteil der Summe aus den besten 1 % der Trades: 0.22; ohne die besten 1 %: Mittel 84.36 bp
+     Trades in/nach Lücken (bis 7 Tage): 3, deren Mittel 77.7 bp; Mittel ohne sie 106.831 bp
+     stärkste Monate (Summe bp): [('2021-09', 6531), ('2021-12', 5278), ('2022-05', 4639)] von gesamt 21278; Monate positiv 16/23
+     Sprung Schluss Signalkerze -> Einstiegskurs (in Trade-Richtung, bp): Mittel -0.65, |max| 173.8
+
+  626abce25181 vwap_288 th 3.5 r -1 vol_hoch k1 h60 alt7 | DB n_t 216 n85_t 100.433 t 3.423 | nachgerechnet n 216 n85 100.433
+     Median 61.7 bp, Gewinnquote 0.68; Anteil der Summe aus den besten 1 % der Trades: 0.21; ohne die besten 1 %: Mittel 80.43 bp
+     Trades in/nach Lücken (bis 7 Tage): 3, deren Mittel 91.9 bp; Mittel ohne sie 100.553 bp
+     stärkste Monate (Summe bp): [('2021-11', 5169), ('2022-01', 4909), ('2021-10', 2975)] von gesamt 21693; Monate positiv 15/22
+     Sprung Schluss Signalkerze -> Einstiegskurs (in Trade-Richtung, bp): Mittel +0.04, |max| 21.3
+
+  ebf4694283cb rsi_48 th 3.5 r -1 vol_hoch k3 h60 alt7 | DB n_t 259 n85_t 91.954 t 2.665 | nachgerechnet n 259 n85 91.954
+     Median 55.4 bp, Gewinnquote 0.64; Anteil der Summe aus den besten 1 % der Trades: 0.19; ohne die besten 1 %: Mittel 74.86 bp
+     Trades in/nach Lücken (bis 7 Tage): 1, deren Mittel 133.2 bp; Mittel ohne sie 91.794 bp
+     stärkste Monate (Summe bp): [('2021-09', 6957), ('2022-05', 4249), ('2023-06', 3478)] von gesamt 23816; Monate positiv 16/23
+     Sprung Schluss Signalkerze -> Einstiegskurs (in Trade-Richtung, bp): Mittel -0.48, |max| 173.8
+
+  17d404653c67 vwap_288 th 3.5 r -1 vol_hoch k3 h60 alle10 | DB n_t 237 n85_t 90.411 t 2.819 | nachgerechnet n 237 n85 90.411
+     Median 37.0 bp, Gewinnquote 0.62; Anteil der Summe aus den besten 1 % der Trades: 0.14; ohne die besten 1 %: Mittel 78.00 bp
+     Trades in/nach Lücken (bis 7 Tage): 3, deren Mittel 78.6 bp; Mittel ohne sie 90.562 bp
+     stärkste Monate (Summe bp): [('2021-09', 4979), ('2021-12', 4450), ('2021-11', 3217)] von gesamt 21427; Monate positiv 17/21
+     Sprung Schluss Signalkerze -> Einstiegskurs (in Trade-Richtung, bp): Mittel -0.66, |max| 173.8
+
+  756e338e074d boll_288 th 3.5 r -1 vol_hoch k3 h60 alle10 | DB n_t 282 n85_t 84.487 t 2.22 | nachgerechnet n 282 n85 84.487
+     Median 36.3 bp, Gewinnquote 0.60; Anteil der Summe aus den besten 1 % der Trades: 0.19; ohne die besten 1 %: Mittel 68.75 bp
+     Trades in/nach Lücken (bis 7 Tage): 6, deren Mittel 109.6 bp; Mittel ohne sie 83.940 bp
+     stärkste Monate (Summe bp): [('2021-09', 6426), ('2022-05', 6127), ('2021-12', 5278)] von gesamt 23825; Monate positiv 16/23
+     Sprung Schluss Signalkerze -> Einstiegskurs (in Trade-Richtung, bp): Mittel -0.35, |max| 173.8
+
+  0253582645fd vwap_288 th 3.5 r -1 vol_hoch k1 h15 alt7 | DB n_t 369 n85_t 82.426 t 2.338 | nachgerechnet n 369 n85 82.426
+     Median 26.4 bp, Gewinnquote 0.60; Anteil der Summe aus den besten 1 % der Trades: 0.22; ohne die besten 1 %: Mittel 65.20 bp
+     Trades in/nach Lücken (bis 7 Tage): 6, deren Mittel 44.1 bp; Mittel ohne sie 83.059 bp
+     stärkste Monate (Summe bp): [('2021-09', 13298), ('2022-01', 3307), ('2021-11', 3240)] von gesamt 30415; Monate positiv 19/22
+     Sprung Schluss Signalkerze -> Einstiegskurs (in Trade-Richtung, bp): Mittel -0.25, |max| 75.7
+
+  a070a3b52dd9 vwap_288 th 2.5 r +1 vol_niedrig k12 h720_zielnachzug top3 | DB n_t 234 n85_t 37.816 t 4.603 | nachgerechnet n 234 n85 37.816
+     Median 40.1 bp, Gewinnquote 0.83; Anteil der Summe aus den besten 1 % der Trades: 0.07; ohne die besten 1 %: Mittel 35.55 bp
+     Trades in/nach Lücken (bis 7 Tage): 1, deren Mittel 39.5 bp; Mittel ohne sie 37.809 bp
+     stärkste Monate (Summe bp): [('2021-10', 1834), ('2022-07', 980), ('2021-12', 858)] von gesamt 8848; Monate positiv 21/23
+     Sprung Schluss Signalkerze -> Einstiegskurs (in Trade-Richtung, bp): Mittel -0.02, |max| 2.9
+
+  3a9397939b01 ausbruch_288 th 3.5 r -1 vol_hoch k3 h60 top3 | DB n_t 337 n85_t 55.408 t 4.585 | nachgerechnet n 337 n85 55.408
+     Median 41.1 bp, Gewinnquote 0.62; Anteil der Summe aus den besten 1 % der Trades: 0.22; ohne die besten 1 %: Mittel 43.70 bp
+     Trades in/nach Lücken (bis 7 Tage): 4, deren Mittel 106.5 bp; Mittel ohne sie 54.794 bp
+     stärkste Monate (Summe bp): [('2022-11', 4310), ('2021-08', 1725), ('2021-11', 1700)] von gesamt 18672; Monate positiv 21/23
+     Sprung Schluss Signalkerze -> Einstiegskurs (in Trade-Richtung, bp): Mittel +0.12, |max| 17.3
+
+  608443fb8bcd mom_144 th 2.5 r +1 trend_mit k12 h720_zielnachzug top3 | DB n_t 565 n85_t 34.959 t 4.14 | nachgerechnet n 565 n85 34.959
+     Median 45.1 bp, Gewinnquote 0.78; Anteil der Summe aus den besten 1 % der Trades: 0.13; ohne die besten 1 %: Mittel 30.68 bp
+     Trades in/nach Lücken (bis 7 Tage): 3, deren Mittel -2.8 bp; Mittel ohne sie 35.160 bp
+     stärkste Monate (Summe bp): [('2023-01', 4497), ('2021-08', 2242), ('2021-11', 1959)] von gesamt 19751; Monate positiv 17/23
+     Sprung Schluss Signalkerze -> Einstiegskurs (in Trade-Richtung, bp): Mittel +0.06, |max| 8.9
+
+  52464976af9f ausbruch_288 th 3.5 r -1 vol_hoch k1 h60 top3 | DB n_t 883 n85_t 30.217 t 4.132 | nachgerechnet n 883 n85 30.217
+     Median 21.3 bp, Gewinnquote 0.58; Anteil der Summe aus den besten 1 % der Trades: 0.34; ohne die besten 1 %: Mittel 20.24 bp
+     Trades in/nach Lücken (bis 7 Tage): 13, deren Mittel 60.2 bp; Mittel ohne sie 29.770 bp
+     stärkste Monate (Summe bp): [('2021-09', 4983), ('2022-06', 2953), ('2022-11', 2851)] von gesamt 26681; Monate positiv 18/23
+     Sprung Schluss Signalkerze -> Einstiegskurs (in Trade-Richtung, bp): Mittel +0.12, |max| 91.3

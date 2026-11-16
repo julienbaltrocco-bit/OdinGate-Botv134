@@ -1,0 +1,11 @@
+Schema: ['rate', 'calc_time'] ['double', 'timestamp[us]'] | Indexspalte: calc_time
+BTC   Termine  3288  max|fcum-eigen| 0.000e+00  doppelte Kerzen 0  Versatz zur Kerzenöffnung max 0.000s  Summe Rate T+V1   2690.8 bp  Stunden {0: 1096, 8: 1096, 16: 1096}
+ETH   Termine  3288  max|fcum-eigen| 0.000e+00  doppelte Kerzen 0  Versatz zur Kerzenöffnung max 0.000s  Summe Rate T+V1   2434.0 bp  Stunden {0: 1096, 8: 1096, 16: 1096}
+SOL   Termine  3363  max|fcum-eigen| 0.000e+00  doppelte Kerzen 0  Versatz zur Kerzenöffnung max 0.000s  Summe Rate T+V1  -1873.1 bp  Stunden {0: 1096, 2: 8, 4: 9, 6: 9, 8: 1096, 10: 8, 12: 8, 14: 8, 16: 1096, 18: 8, 20: 9, 22: 8}
+XRP   Termine  3288  max|fcum-eigen| 0.000e+00  doppelte Kerzen 0  Versatz zur Kerzenöffnung max 0.000s  Summe Rate T+V1   2629.4 bp  Stunden {0: 1096, 8: 1096, 16: 1096}
+DOT   Termine  3288  max|fcum-eigen| 0.000e+00  doppelte Kerzen 0  Versatz zur Kerzenöffnung max 0.000s  Summe Rate T+V1    170.3 bp  Stunden {0: 1096, 8: 1096, 16: 1096}
+DOGE  Termine  3288  max|fcum-eigen| 0.000e+00  doppelte Kerzen 0  Versatz zur Kerzenöffnung max 0.000s  Summe Rate T+V1   3325.3 bp  Stunden {0: 1096, 8: 1096, 16: 1096}
+ADA   Termine  3288  max|fcum-eigen| 0.000e+00  doppelte Kerzen 0  Versatz zur Kerzenöffnung max 0.000s  Summe Rate T+V1   2504.2 bp  Stunden {0: 1096, 8: 1096, 16: 1096}
+LINK  Termine  3288  max|fcum-eigen| 0.000e+00  doppelte Kerzen 0  Versatz zur Kerzenöffnung max 0.000s  Summe Rate T+V1   3257.1 bp  Stunden {0: 1096, 8: 1096, 16: 1096}
+AVAX  Termine  3288  max|fcum-eigen| 0.000e+00  doppelte Kerzen 0  Versatz zur Kerzenöffnung max 0.000s  Summe Rate T+V1   2116.4 bp  Stunden {0: 1096, 8: 1096, 16: 1096}
+LTC   Termine  3288  max|fcum-eigen| 0.000e+00  doppelte Kerzen 0  Versatz zur Kerzenöffnung max 0.000s  Summe Rate T+V1   2850.7 bp  Stunden {0: 1096, 8: 1096, 16: 1096}

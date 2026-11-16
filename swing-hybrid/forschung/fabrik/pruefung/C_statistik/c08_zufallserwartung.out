@@ -1,0 +1,23 @@
+1) V1 bestanden (netto mit Rebate > 0 und t >= 1) je nach t-Wert im Training; gen1 = unausgewählte Grundmenge
+   gen1 Kurs/Volumen/Derivate: gültig 275815, V1 bestanden insgesamt 0.055 | Stufe 2 bestanden 1442, davon V1 bestanden 538 = 0.373 | robust (nach allen Bedingungen der Stufe 3) 468
+      t85 in T:  < -2: 117113 / 0.009  -2..-1: 61603 / 0.047  -1..0: 55394 / 0.082  0..1: 30715 / 0.134  1..2: 9455 / 0.224  >= 2: 1535 / 0.379
+   gen1 Orderbuch-Tiefe: gültig 26330, V1 bestanden insgesamt 0.030 | Stufe 2 bestanden 162, davon V1 bestanden 36 = 0.222 | robust (nach allen Bedingungen der Stufe 3) 36
+      t85 in T:  < -2: 13754 / 0.012  -2..-1: 4824 / 0.044  -1..0: 4276 / 0.043  0..1: 2456 / 0.056  1..2: 854 / 0.070  >= 2: 166 / 0.217
+   gen2 Kurs/Volumen/Derivate: gültig 94942, V1 bestanden insgesamt 0.189 | Stufe 2 bestanden 8109, davon V1 bestanden 4136 = 0.510 | robust (nach allen Bedingungen der Stufe 3) 3432
+      t85 in T:  < -2: 11397 / 0.010  -2..-1: 13360 / 0.040  -1..0: 20756 / 0.093  0..1: 23410 / 0.201  1..2: 17478 / 0.360  >= 2: 8541 / 0.515
+   gen2 Orderbuch-Tiefe: gültig 23138, V1 bestanden insgesamt 0.089 | Stufe 2 bestanden 1316, davon V1 bestanden 381 = 0.290 | robust (nach allen Bedingungen der Stufe 3) 329
+      t85 in T:  < -2: 4648 / 0.007  -2..-1: 3798 / 0.026  -1..0: 4949 / 0.074  0..1: 5222 / 0.113  1..2: 3187 / 0.188  >= 2: 1334 / 0.286
+
+2) Rechnung ohne Daten (unabhängige Kandidaten, Erwartungswert null, Normalverteilung)
+   P(t >= 2 in T und beide Hälften positiv) = 0.02238 (ohne Hälften-Bedingung 0.02275); P(t >= 1 in V1) = 0.1587; zusammen 0.003550
+   gen1, gültig: 302145 -> Stufe 2 zufällig 6762, danach V1 zufällig 1073
+   alle 340.200 Kandidaten der ersten Generation: 340200 -> Stufe 2 zufällig 7613, danach V1 zufällig 1208
+
+3) Bootstrap auf echten Tagesreihen, gen1 Kurs/Volumen/Derivate
+   Stichprobe 20.000 von 275815; in der Stichprobe erfüllen t85 >= 2 und beide Hälften positiv: 112 (0.0056); davon V1 bestanden: 41
+   mittlerer Kostenabzug unter N1: 7.73 bp je Tag (Median 3.64); tatsächliches Tagesmittel der Stichprobe: -7.92 bp
+   N0 (netto im Mittel null): je Kandidat P(Stufe 2) = 0.02309, P(V1) = 0.1572, P(beides) = 0.003757
+      hochgerechnet auf 275815 gültige Kandidaten: Stufe 2 zufällig 6369 (Streuung über Welten 3223), Stufe 2 und V1 zufällig 1036 (Streuung 639)
+   N1 (Slippage und Gebühr gehen verloren): je Kandidat P(Stufe 2) = 0.00215, P(V1) = 0.0296, P(beides) = 0.000173
+      hochgerechnet auf 275815 gültige Kandidaten: Stufe 2 zufällig 593 (Streuung über Welten 503), Stufe 2 und V1 zufällig 48 (Streuung 55)
+   beobachtet in gen1 Kurs/Volumen/Derivate: Stufe 2 bestanden 1442, davon V1 bestanden 538, robust nach Stufe 3 468

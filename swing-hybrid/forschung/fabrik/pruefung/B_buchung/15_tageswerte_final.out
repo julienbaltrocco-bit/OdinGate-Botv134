@@ -1,0 +1,5 @@
+Finalisten 1327: Autokorrelation der Tagesergebnisse (1 Tag) in T: Mittel +0.011, 5 %/95 % -0.090/+0.122
+t-Wert mit Newey-West (5 Tage) im Verhältnis zum gespeicherten t85_t: Median 0.988, 5 % 0.877; t unter 2 nach Korrektur: 131
+Anteil der T-Tage mit Trades: Median 0.39, 5 % 0.15
+Anteil des besten Tages am T-Ergebnis: Median 0.15, 95 % 0.27, Maximum 0.45; über 20 %: 286
+60 Finalisten, 76609 Trades: in T gebucht mit Ausstieg in V1: 23 (Summe 1451 bp von 1224491 bp T-Ergebnis); am Datenende (30.06.2024) vorzeitig geschlossen: 11

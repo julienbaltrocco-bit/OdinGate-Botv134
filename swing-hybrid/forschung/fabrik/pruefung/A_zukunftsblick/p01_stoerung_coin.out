@@ -1,0 +1,256 @@
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+
+=== Coin 0 BTC | Grundrechnung 2 s
+A: Signale abgeschnitten == gespeichert: JA, alle 63 bitgleich
+A: Filter gleich: [True, True, True, True] | sigma gleich: True
+   gültige Werte je Signal (Anteil endlich) min/median: 0.0 0.997
+   Filter 2 (Tageszeit) == Stunde der Kerzen-Eröffnung // 8: True
+B: T=60000 (2022-01-25 08:00:00) 4 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 48/63 Signale geändert (unverändert: ['btcfuehrt_1', 'btcfuehrt_3', 'btcfuehrt_12', 'relstaerke_12', 'relstaerke_48', 'relstaerke_288', 'korrbruch', 'konten_ls', 'profis_gegen_konten', 'tiefe_1', 'tiefe_3', 'tiefe_5', 'tiefe_d_1', 'tiefe_d_5', 'liq_entzug']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 60000 (T=60000); Verteilung erste Stelle - T: min 0, median 0, max 102335
+B: T=158113 (2023-01-01 00:05:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 56/63 Signale geändert (unverändert: ['btcfuehrt_1', 'btcfuehrt_3', 'btcfuehrt_12', 'relstaerke_12', 'relstaerke_48', 'relstaerke_288', 'korrbruch']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 158113 (T=158113); Verteilung erste Stelle - T: min 0, median 0, max 4222
+B: T=200001 (2023-05-26 10:45:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 56/63 Signale geändert (unverändert: ['btcfuehrt_1', 'btcfuehrt_3', 'btcfuehrt_12', 'relstaerke_12', 'relstaerke_48', 'relstaerke_288', 'korrbruch']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 200001 (T=200001); Verteilung erste Stelle - T: min 0, median 0, max 2
+B: T=263000 (2023-12-31 04:40:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 56/63 Signale geändert (unverändert: ['btcfuehrt_1', 'btcfuehrt_3', 'btcfuehrt_12', 'relstaerke_12', 'relstaerke_48', 'relstaerke_288', 'korrbruch']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 263000 (T=263000); Verteilung erste Stelle - T: min 0, median 0, max 9
+B: T=315000 (2024-06-28 18:00:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 56/63 Signale geändert (unverändert: ['btcfuehrt_1', 'btcfuehrt_3', 'btcfuehrt_12', 'relstaerke_12', 'relstaerke_48', 'relstaerke_288', 'korrbruch']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 315000 (T=315000); Verteilung erste Stelle - T: min 0, median 0, max 7
+
+=== Coin 1 ETH | Grundrechnung 2 s
+A: Signale abgeschnitten == gespeichert: JA, alle 63 bitgleich
+A: Filter gleich: [True, True, True, True] | sigma gleich: True
+   gültige Werte je Signal (Anteil endlich) min/median: 0.456 0.997
+   Filter 2 (Tageszeit) == Stunde der Kerzen-Eröffnung // 8: True
+B: T=60000 (2022-01-25 08:00:00) 4 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 55/63 Signale geändert (unverändert: ['konten_ls', 'profis_gegen_konten', 'tiefe_1', 'tiefe_3', 'tiefe_5', 'tiefe_d_1', 'tiefe_d_5', 'liq_entzug']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 60000 (T=60000); Verteilung erste Stelle - T: min 0, median 0, max 102335
+B: T=158113 (2023-01-01 00:05:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 158113 (T=158113); Verteilung erste Stelle - T: min 0, median 0, max 4222
+B: T=200001 (2023-05-26 10:45:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 200001 (T=200001); Verteilung erste Stelle - T: min 0, median 0, max 1
+B: T=263000 (2023-12-31 04:40:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 263000 (T=263000); Verteilung erste Stelle - T: min 0, median 0, max 11
+B: T=315000 (2024-06-28 18:00:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 315000 (T=315000); Verteilung erste Stelle - T: min 0, median 0, max 7
+
+=== Coin 2 SOL | Grundrechnung 2 s
+A: Signale abgeschnitten == gespeichert: JA, alle 63 bitgleich
+A: Filter gleich: [True, True, True, True] | sigma gleich: True
+   gültige Werte je Signal (Anteil endlich) min/median: 0.456 0.995
+   Filter 2 (Tageszeit) == Stunde der Kerzen-Eröffnung // 8: True
+B: T=60000 (2022-01-25 08:00:00) 4 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 55/63 Signale geändert (unverändert: ['konten_ls', 'profis_gegen_konten', 'tiefe_1', 'tiefe_3', 'tiefe_5', 'tiefe_d_1', 'tiefe_d_5', 'liq_entzug']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 60000 (T=60000); Verteilung erste Stelle - T: min 0, median 0, max 102335
+B: T=158113 (2023-01-01 00:05:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 158113 (T=158113); Verteilung erste Stelle - T: min 0, median 0, max 4222
+B: T=200001 (2023-05-26 10:45:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 200001 (T=200001); Verteilung erste Stelle - T: min 0, median 0, max 2
+B: T=263000 (2023-12-31 04:40:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 263000 (T=263000); Verteilung erste Stelle - T: min 0, median 0, max 9
+B: T=315000 (2024-06-28 18:00:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 315000 (T=315000); Verteilung erste Stelle - T: min 0, median 0, max 11
+
+=== Coin 3 XRP | Grundrechnung 2 s
+A: Signale abgeschnitten == gespeichert: JA, alle 63 bitgleich
+A: Filter gleich: [True, True, True, True] | sigma gleich: True
+   gültige Werte je Signal (Anteil endlich) min/median: 0.456 0.997
+   Filter 2 (Tageszeit) == Stunde der Kerzen-Eröffnung // 8: True
+B: T=60000 (2022-01-25 08:00:00) 4 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 55/63 Signale geändert (unverändert: ['konten_ls', 'profis_gegen_konten', 'tiefe_1', 'tiefe_3', 'tiefe_5', 'tiefe_d_1', 'tiefe_d_5', 'liq_entzug']); Filter geändert [True, True, False, True]; sigma geändert True/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+
+   früheste veränderte Stelle über alle Signale: 60000 (T=60000); Verteilung erste Stelle - T: min 0, median 0, max 102335
+B: T=158113 (2023-01-01 00:05:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 158113 (T=158113); Verteilung erste Stelle - T: min 0, median 0, max 4222
+B: T=200001 (2023-05-26 10:45:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 200001 (T=200001); Verteilung erste Stelle - T: min 0, median 0, max 2
+B: T=263000 (2023-12-31 04:40:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 263000 (T=263000); Verteilung erste Stelle - T: min 0, median 0, max 5
+B: T=315000 (2024-06-28 18:00:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 315000 (T=315000); Verteilung erste Stelle - T: min 0, median 0, max 14
+
+=== Coin 4 DOT | Grundrechnung 2 s
+A: Signale abgeschnitten == gespeichert: JA, alle 63 bitgleich
+A: Filter gleich: [True, True, True, True] | sigma gleich: True
+   gültige Werte je Signal (Anteil endlich) min/median: 0.456 0.997
+   Filter 2 (Tageszeit) == Stunde der Kerzen-Eröffnung // 8: True
+B: T=60000 (2022-01-25 08:00:00) 4 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 55/63 Signale geändert (unverändert: ['konten_ls', 'profis_gegen_konten', 'tiefe_1', 'tiefe_3', 'tiefe_5', 'tiefe_d_1', 'tiefe_d_5', 'liq_entzug']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 60000 (T=60000); Verteilung erste Stelle - T: min 0, median 0, max 102335
+B: T=158113 (2023-01-01 00:05:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 158113 (T=158113); Verteilung erste Stelle - T: min 0, median 0, max 4222
+B: T=200001 (2023-05-26 10:45:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 200001 (T=200001); Verteilung erste Stelle - T: min 0, median 0, max 1
+B: T=263000 (2023-12-31 04:40:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 263000 (T=263000); Verteilung erste Stelle - T: min 0, median 0, max 10
+B: T=315000 (2024-06-28 18:00:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 315000 (T=315000); Verteilung erste Stelle - T: min 0, median 0, max 13
+
+=== Coin 5 DOGE | Grundrechnung 2 s
+A: Signale abgeschnitten == gespeichert: JA, alle 63 bitgleich
+A: Filter gleich: [True, True, True, True] | sigma gleich: True
+   gültige Werte je Signal (Anteil endlich) min/median: 0.456 0.997
+   Filter 2 (Tageszeit) == Stunde der Kerzen-Eröffnung // 8: True
+B: T=60000 (2022-01-25 08:00:00) 4 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 55/63 Signale geändert (unverändert: ['konten_ls', 'profis_gegen_konten', 'tiefe_1', 'tiefe_3', 'tiefe_5', 'tiefe_d_1', 'tiefe_d_5', 'liq_entzug']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 60000 (T=60000); Verteilung erste Stelle - T: min 0, median 0, max 102335
+B: T=158113 (2023-01-01 00:05:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 158113 (T=158113); Verteilung erste Stelle - T: min 0, median 0, max 4222
+B: T=200001 (2023-05-26 10:45:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 200001 (T=200001); Verteilung erste Stelle - T: min 0, median 0, max 66
+B: T=263000 (2023-12-31 04:40:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 263000 (T=263000); Verteilung erste Stelle - T: min 0, median 0, max 11
+B: T=315000 (2024-06-28 18:00:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 315000 (T=315000); Verteilung erste Stelle - T: min 0, median 0, max 7
+
+=== Coin 6 ADA | Grundrechnung 2 s
+A: Signale abgeschnitten == gespeichert: JA, alle 63 bitgleich
+A: Filter gleich: [True, True, True, True] | sigma gleich: True
+   gültige Werte je Signal (Anteil endlich) min/median: 0.456 0.997
+   Filter 2 (Tageszeit) == Stunde der Kerzen-Eröffnung // 8: True
+B: T=60000 (2022-01-25 08:00:00) 4 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 55/63 Signale geändert (unverändert: ['konten_ls', 'profis_gegen_konten', 'tiefe_1', 'tiefe_3', 'tiefe_5', 'tiefe_d_1', 'tiefe_d_5', 'liq_entzug']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 60000 (T=60000); Verteilung erste Stelle - T: min 0, median 0, max 102335
+B: T=158113 (2023-01-01 00:05:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 158113 (T=158113); Verteilung erste Stelle - T: min 0, median 0, max 4222
+B: T=200001 (2023-05-26 10:45:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 200001 (T=200001); Verteilung erste Stelle - T: min 0, median 0, max 0
+B: T=263000 (2023-12-31 04:40:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/user/OdinGate-Botv134/swing-hybrid/.venv/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+
+   früheste veränderte Stelle über alle Signale: 263000 (T=263000); Verteilung erste Stelle - T: min 0, median 0, max 10
+B: T=315000 (2024-06-28 18:00:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 315000 (T=315000); Verteilung erste Stelle - T: min 0, median 0, max 54
+
+=== Coin 7 LINK | Grundrechnung 2 s
+A: Signale abgeschnitten == gespeichert: JA, alle 63 bitgleich
+A: Filter gleich: [True, True, True, True] | sigma gleich: True
+   gültige Werte je Signal (Anteil endlich) min/median: 0.456 0.997
+   Filter 2 (Tageszeit) == Stunde der Kerzen-Eröffnung // 8: True
+B: T=60000 (2022-01-25 08:00:00) 5 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 55/63 Signale geändert (unverändert: ['konten_ls', 'profis_gegen_konten', 'tiefe_1', 'tiefe_3', 'tiefe_5', 'tiefe_d_1', 'tiefe_d_5', 'liq_entzug']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 60000 (T=60000); Verteilung erste Stelle - T: min 0, median 0, max 102335
+B: T=158113 (2023-01-01 00:05:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 158113 (T=158113); Verteilung erste Stelle - T: min 0, median 0, max 4222
+B: T=200001 (2023-05-26 10:45:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 200001 (T=200001); Verteilung erste Stelle - T: min 0, median 0, max 9
+B: T=263000 (2023-12-31 04:40:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 263000 (T=263000); Verteilung erste Stelle - T: min 0, median 0, max 27
+B: T=315000 (2024-06-28 18:00:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 315000 (T=315000); Verteilung erste Stelle - T: min 0, median 0, max 30
+
+=== Coin 8 AVAX | Grundrechnung 2 s
+A: Signale abgeschnitten == gespeichert: JA, alle 63 bitgleich
+A: Filter gleich: [True, True, True, True] | sigma gleich: True
+   gültige Werte je Signal (Anteil endlich) min/median: 0.456 0.997
+   Filter 2 (Tageszeit) == Stunde der Kerzen-Eröffnung // 8: True
+B: T=60000 (2022-01-25 08:00:00) 4 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 55/63 Signale geändert (unverändert: ['konten_ls', 'profis_gegen_konten', 'tiefe_1', 'tiefe_3', 'tiefe_5', 'tiefe_d_1', 'tiefe_d_5', 'liq_entzug']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 60000 (T=60000); Verteilung erste Stelle - T: min 0, median 0, max 102335
+B: T=158113 (2023-01-01 00:05:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 158113 (T=158113); Verteilung erste Stelle - T: min 0, median 0, max 4222
+B: T=200001 (2023-05-26 10:45:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 200001 (T=200001); Verteilung erste Stelle - T: min 0, median 0, max 4
+B: T=263000 (2023-12-31 04:40:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 263000 (T=263000); Verteilung erste Stelle - T: min 0, median 0, max 165
+B: T=315000 (2024-06-28 18:00:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 315000 (T=315000); Verteilung erste Stelle - T: min 0, median 0, max 50
+
+=== Coin 9 LTC | Grundrechnung 2 s
+A: Signale abgeschnitten == gespeichert: JA, alle 63 bitgleich
+A: Filter gleich: [True, True, True, True] | sigma gleich: True
+   gültige Werte je Signal (Anteil endlich) min/median: 0.456 0.995
+   Filter 2 (Tageszeit) == Stunde der Kerzen-Eröffnung // 8: True
+B: T=60000 (2022-01-25 08:00:00) 4 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 55/63 Signale geändert (unverändert: ['konten_ls', 'profis_gegen_konten', 'tiefe_1', 'tiefe_3', 'tiefe_5', 'tiefe_d_1', 'tiefe_d_5', 'liq_entzug']); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 60000 (T=60000); Verteilung erste Stelle - T: min 0, median 0, max 102335
+B: T=158113 (2023-01-01 00:05:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 158113 (T=158113); Verteilung erste Stelle - T: min 0, median 0, max 4222
+B: T=200001 (2023-05-26 10:45:00) 3 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 200001 (T=200001); Verteilung erste Stelle - T: min 0, median 0, max 4
+B: T=263000 (2023-12-31 04:40:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 263000 (T=263000); Verteilung erste Stelle - T: min 0, median 0, max 5
+B: T=315000 (2024-06-28 18:00:00) 2 s | Signale vor T verändert: keine | Filter vor T verändert: keine | sigma vor T verändert: 0
+   Gegenprobe nach T: 63/63 Signale geändert (unverändert: []); Filter geändert [True, True, False, True]; sigma geändert True
+   früheste veränderte Stelle über alle Signale: 315000 (T=315000); Verteilung erste Stelle - T: min 0, median 0, max 28
+
+FEHLER GESAMT: 0
+
+real	2m48.176s
+user	2m25.911s
+sys	0m14.008s

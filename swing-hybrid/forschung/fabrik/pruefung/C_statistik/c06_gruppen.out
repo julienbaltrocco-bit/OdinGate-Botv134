@@ -1,0 +1,11 @@
+robuste Kandidaten 4265 | Finalisten laut Datenbank 1327, laut eigener Nachrechnung 1327 | nur in der Datenbank 0, nur eigen 0
+Gruppengrößen gleich wie in finalisten.json: 1327 von 1327 | finalisten.json: robust 4265 Gruppen 1327 eingefroren 2026-11-15 23:37 UTC
+Mitglieder, deren gespeicherter Vertreter von der eigenen Nachrechnung abweicht: 0
+Vertreter hat den höchsten Sharpe in V1 seiner Gruppe (erste 200 Gruppen): 200 von 200
+
+Wie verschieden sind die Finalisten?
+   Finalisten 1327: Orderbuch-Gruppe 180, übrige 1147 | verschiedene Einstiegsregeln (Signal, Richtung, Filter): 163 | verschiedene (Signal, Richtung): 76 | verschiedene Signale: 54
+   Korrelation der Tagesergebnisse zwischen Finalisten (2023-01-01 bis 2024-06-30, alle Tage): Median +0.062, 95 % +0.485, Paare über 0,8: 751, über 0,7: 4106, über 0,5: 38594 von 879801
+   davon Paare Orderbuch-Gruppe mit übriger Gruppe über 0,8 (in stufe3 über die Vereinigung aller Tage ab 2021 gerechnet, dort verdünnt): 1
+   Finalisten, die mit mindestens einem anderen Finalisten über 0,7 korrelieren: 1067; über 0,5: 1277
+   Eigenwerte der Korrelationsmatrix: die größten fünf [245.1 126.   79.5  60.6  47.6] | Zahl gleichwertiger unabhängiger Reihen (Summe)^2 / Summe der Quadrate = 18 | 90 % der Streuung stecken in 104 Hauptrichtungen

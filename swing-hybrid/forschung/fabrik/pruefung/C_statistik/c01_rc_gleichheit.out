@@ -1,0 +1,7 @@
+Code-Stand: trichter:0bfc2db0 lauf:4a548736 kern:43e6339a evolution:6386a868
+Gruppe k Fall 0: trichter t_best 2.99 p 0.7575 Median 3.23 95% 4.0 PBO 0.496 verliert 0.5 | eigen t_best 2.995 p 0.7575 Median 3.234 95% 3.998 PBO 0.496 verliert 0.500 (252 Kombinationen) -> GLEICH
+Gruppe k Fall 1: trichter t_best 2.31 p 1.0 Median 3.64 95% 4.86 PBO 0.583 verliert 0.599 | eigen t_best 2.310 p 1.0000 Median 3.640 95% 4.864 PBO 0.583 verliert 0.599 (252 Kombinationen) -> GLEICH
+Gruppe k Fall 2: trichter t_best 6.56 p 0.0 Median 3.22 95% 4.0 PBO 0.004 verliert 0.004 | eigen t_best 6.565 p 0.0000 Median 3.223 95% 3.999 PBO 0.004 verliert 0.004 (252 Kombinationen) -> GLEICH
+Gruppe t Fall 0: trichter t_best 3.16 p 0.505 Median 3.17 95% 4.12 PBO 0.714 verliert 0.726 | eigen t_best 3.163 p 0.5050 Median 3.172 95% 4.116 PBO 0.714 verliert 0.726 (252 Kombinationen) -> GLEICH
+Gruppe t Fall 1: trichter t_best 2.39 p 0.9875 Median 3.47 95% 4.81 PBO 0.516 verliert 0.595 | eigen t_best 2.387 p 0.9875 Median 3.468 95% 4.809 PBO 0.516 verliert 0.595 (252 Kombinationen) -> GLEICH
+Gruppe t Fall 2: trichter t_best 5.44 p 0.0 Median 3.16 95% 4.11 PBO 0.111 verliert 0.107 | eigen t_best 5.442 p 0.0000 Median 3.158 95% 4.114 PBO 0.111 verliert 0.107 (252 Kombinationen) -> GLEICH

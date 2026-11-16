@@ -77,7 +77,7 @@ def tagesreihe(z, i0, i1, verzug=0, modell="basis", faktor=1.0):
     try:
         for j in M:
             ein, wert = L.einstieg(a, j)
-            slip = L.slip_bewegt(j, faktor) if modell == "bewegt" else L._g["slip_basis"][j] * faktor
+            slip = (L.slip_bewegt(j, 1.0) if modell == "bewegt" else L._g["slip_basis"][j]) * faktor
             FK.sim(L._g["o"][j], L._g["h"][j], L._g["l"][j], L._g["fcum"][j], ein, wert, L._g["sigma"][j], tag, i0, i1, halte, sl, tp, tr, ta,
                    np.nan if sx is None else sx, slip, L.KOSTEN85, *(x[j] for x in arr), verzug)
     finally:
@@ -94,10 +94,10 @@ def marktbereinigt(z, i0, i1):
     schluss = i0 - 1 + 288 * np.arange(len(p) + 1)                 # letzte Kerze vor Beginn, danach jedes Tagesende
     c = np.stack([np.asarray(D.laden("c")[j])[schluss] for j in M])
     m = (c[:, 1:] / c[:, :-1] - 1).mean(0) * 1e4
-    X = np.column_stack([np.ones(len(p)), m])
+    p, X = p[:-1], np.column_stack([np.ones(len(p) - 1), m[:-1], m[1:]])     # Trades laufen bis 12 Stunden: auch die Marktrendite des Folgetags erklärt mit
     koef, *_ = np.linalg.lstsq(X, p, rcond=None)
     rest = p - X @ koef
-    se = math.sqrt(rest.var(ddof=2) * np.linalg.inv(X.T @ X)[0, 0])
+    se = math.sqrt(rest.var(ddof=3) * np.linalg.inv(X.T @ X)[0, 0])
     return float(koef[0]), float(koef[0] / se) if se > 0 else 0.0, float(koef[1])
 
 
@@ -112,9 +112,11 @@ def statistik():
     aus = {"stand": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "gruppen": {}}
     for gruppe, wo in (("Kurs, Volumen, Derivate (T 08/2021–06/2023)", "braucht != 't' AND (best IS NULL OR best NOT LIKE '%tiefe%' AND best NOT LIKE '%liq_entzug%')"),
                        ("Orderbuch-Tiefe (T 2023)", "(braucht = 't' OR best LIKE '%tiefe%' OR best LIKE '%liq_entzug%')")):
-        z = con.execute(f"SELECT gen, zeile, t_roh_t, t85_t, status, sharpe_t FROM kandidaten WHERE n_t >= 200 AND {wo}").fetchall()
+        alle = con.execute(f"SELECT gen, zeile, t_roh_t, t85_t, status, sharpe_t FROM kandidaten WHERE n_t >= 200 AND {wo}").fetchall()
+        z = [r for r in alle if r["gen"] == "gen1"]               # Zufallsvergleiche nur auf der unausgewählten Grundmenge
         if not z:
             continue
+        spaeter = [r for r in alle if r["gen"] != "gen1"]
         n = len(z)
         s1 = sum(1 for r in z if r["status"] not in ("verworfen_1",))
         s2 = sum(1 for r in z if r["status"] in ("stufe2", "stufe3", "final", "validiert", "verworfen_3", "verworfen_4"))
@@ -133,7 +135,7 @@ def statistik():
                 idxs[i] = pos
             W[b] = np.bincount(idxs, minlength=tage) / tage
         maxima = np.full(B, -np.inf, np.float32)
-        beste, t_best = None, -np.inf
+        beste, t_best, sr_alle, reihe_best = None, -np.inf, [], None
         nach_gen = {}
         for r in z:
             nach_gen.setdefault(r["gen"], []).append(r["zeile"])
@@ -152,8 +154,15 @@ def statistik():
                 tw = np.where(ok, mittel / np.where(ok, sd, 1) * np.sqrt(tage), 0)
                 if tw.max() > t_best:
                     t_best, beste = float(tw.max()), (gen, int(zeilen[c0 + int(tw.argmax())]))
-                boot = (t @ W.T - mittel[:, None]) / np.where(ok, sd, 1)[:, None] * np.sqrt(tage)      # zentriert: Verteilung ohne echten Vorteil
-                maxima = np.maximum(maxima, np.where(ok[:, None], boot, -np.inf).max(0))
+                t64 = t.astype(np.float64)
+                mb = t64 @ W.T.astype(np.float64)                                                # Mittel je Bootstrap-Stichprobe
+                vb = np.maximum((t64 * t64) @ W.T.astype(np.float64) - mb ** 2, 0) * tage / (tage - 1)  # Streuung DERSELBEN Stichprobe (Befund C1)
+                gut = ok[:, None] & (vb > 0)
+                boot = np.where(gut, (mb - mittel[:, None]) / np.sqrt(np.where(gut, vb, 1)) * np.sqrt(tage), -np.inf)   # zentriert: Verteilung ohne echten Vorteil
+                maxima = np.maximum(maxima, boot.max(0))
+                sr_alle.append(np.where(ok, mittel / np.where(ok, sd, 1), 0.0))
+                if tw.max() >= t_best:
+                    reihe_best = t64[int(tw.argmax())].copy()
                 S1.append(np.stack([m[:, grenzen[i]:grenzen[i + 1]].sum(1) for i in range(K)], 1))
                 S2.append(np.stack([(m[:, grenzen[i]:grenzen[i + 1]] ** 2).sum(1) for i in range(K)], 1))
         S1, S2 = np.concatenate(S1).astype(np.float64), np.concatenate(S2).astype(np.float64)
@@ -172,8 +181,19 @@ def statistik():
             rang = (soos < soos[k_best]).mean()                    # Rang des im einen Teil besten Kandidaten im anderen Teil
             rang = min(max(rang, 1 / (len(soos) + 1)), 1 - 1 / (len(soos) + 1))
             logits.append(math.log(rang / (1 - rang)))
-        aus["gruppen"][gruppe] = {"gueltige_kandidaten": n, "stufe1_bestanden": s1, "anteil_stufe1": round(s1 / n, 4), "zufallserwartung_stufe1": 0.0228,
+        sr_alle = np.concatenate(sr_alle)
+        srb = reihe_best.mean() / reihe_best.std(ddof=1)
+        x = (reihe_best - reihe_best.mean()) / reihe_best.std()
+        schiefe, woelbung, EM = float((x ** 3).mean()), float((x ** 4).mean()), 0.5772156649
+        sr0 = math.sqrt(float(sr_alle.var())) * ((1 - EM) * phi_inv(1 - 1 / n) + EM * phi_inv(1 - 1 / (n * math.e)))     # erwartetes Maximum ohne Vorteil
+        dsr = phi((srb - sr0) * math.sqrt(tage - 1) / math.sqrt(max(1e-12, 1 - schiefe * srb + (woelbung - 1) / 4 * srb ** 2)))
+        s1x = sum(1 for r in spaeter if r["status"] not in ("verworfen_1",))
+        aus["gruppen"][gruppe] = {"grundmenge": "Generation 1 (ohne Auswahl erzeugt)", "gueltige_kandidaten": n, "stufe1_bestanden": s1, "anteil_stufe1": round(s1 / n, 4),
+                                 "zufallserwartung_stufe1": "0,5 % (Streuung 0,4), wenn die Regeln nichts wissen und die Slippage verlieren; 2,8 % (Streuung 1,5) bei Erwartungswert null (Bootstrap der Gegenprüfung)",
                                  "stufe2_bestanden": s2, "anteil_stufe2": round(s2 / n, 5),
+                                 "spaetere_generationen": {"gueltig": len(spaeter), "anteil_stufe1": round(s1x / len(spaeter), 4) if spaeter else None,
+                                                           "hinweis": "aus Gewinnern des Trainings abgeleitet, daher kein Zufallsvergleich"},
+                                 "deflated_sharpe_ratio": round(dsr, 3), "deflated_sharpe_hinweis": "gesichert gälte ein Wert über 0,95",
                                  "bester_t_wert_T": round(t_best, 2), "reality_check_p": round(float((maxima >= t_best).mean()), 4),
                                  "zufalls_maximum_median": round(float(np.median(maxima)), 2), "zufalls_maximum_95": round(float(np.percentile(maxima, 95)), 2),
                                  "pbo": round(float(np.mean(np.array(logits) <= 0)), 3), "pbo_kombinationen": len(logits),
@@ -245,6 +265,14 @@ def stufe3():
     # Gruppen: gleichlaufende Kandidaten (Korrelation der Tagesergebnisse > 0,8 über T und V1); je Gruppe der beste nach V1
     weiter.sort(key=lambda z: -z["sharpe_v"])
     reihen, final, gruppen = [], [], []
+    frueher = json.loads((ERG / "schlusspruefung.json").read_text())["ergebnisse"] if (ERG / "schlusspruefung.json").exists() else []
+    for e in frueher:                                              # schon geprüfte Finalisten: neue, gleichlaufende Kandidaten schließen sich ihnen an
+        zz = con.execute("SELECT * FROM kandidaten WHERE id = ?", (e["id"],)).fetchone()
+        if zz is not None:
+            seg = L.SEGMENTE["t" if e.get("tiefe") else "k"]
+            r = np.asarray(np.load(L.AUS / f"tage_{zz['gen']}.npy", mmap_mode="r")[zz["zeile"]], dtype=np.float64)
+            reihen.append(np.where(np.arange(len(r)) >= seg[0], r, 0.0)); final.append(zz); gruppen.append([zz["id"]])
+    n_frueher = len(final)
     for z in weiter:
         seg = L.SEGMENTE["t" if (z["braucht"] == "t" or (z["best"] and ("tiefe" in z["best"] or "liq_entzug" in z["best"]))) else "k"]
         r = np.asarray(np.load(L.AUS / f"tage_{z['gen']}.npy", mmap_mode="r")[z["zeile"]], dtype=np.float64)
@@ -263,9 +291,10 @@ def stufe3():
             con.execute("UPDATE kandidaten SET status = 'stufe3', grund = ? WHERE id = ? AND gen = ?", (f"Gruppe {treffer + 1}, vertreten durch {final[treffer]['id']}", z["id"], z["gen"]))
     con.commit()
     ERG.mkdir(parents=True, exist_ok=True)
-    (ERG / "finalisten.json").write_text(json.dumps({"eingefroren": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "stufe2": len(kand), "verworfen": grund_zahl,
-        "robust": len(weiter), "gruppen": len(final), "finalisten": [{k: z[k] for k in z.keys()} | {"gruppengroesse": len(g)} for z, g in zip(final, gruppen)]}, ensure_ascii=False, indent=1))
-    print("Finalisten (Gruppen):", len(final), flush=True)
+    (ERG / "finalisten.json").write_text(json.dumps({"eingefroren": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "datenbank": str(L.DB), "stufe2": len(kand), "verworfen": grund_zahl,
+        "robust": len(weiter), "gruppen": len(final), "davon_frueher_geprueft": n_frueher,
+        "finalisten": [{k: z[k] for k in z.keys()} | {"gruppengroesse": len(g)} for z, g in zip(final, gruppen)]}, ensure_ascii=False, indent=1))
+    print("Finalisten (Gruppen):", len(final), "| davon schon früher geprüft:", n_frueher, flush=True)
     for z, g in list(zip(final, gruppen))[:40]:
         print(f"  {z['id']} {z['signal']:<20} th {z['th']} r {z['r']:+d} {z['f']:<11} k{z['k']:<2} {z['x']:<20} {z['m']:<6} | T n85 {z['n85_t']:>6} t {z['t85_t']:>5} | V1 n85 {z['n85_v']:>6} t {z['t85_v']:>5} | Gruppe {len(g)}")
 
@@ -279,8 +308,8 @@ def stufe4():
     fin = json.loads((ERG / "finalisten.json").read_text())
     pfad = ERG / "schlusspruefung.json"
     alt = json.loads(pfad.read_text()) if pfad.exists() else {"chargen": [], "ergebnisse": []}
-    bekannt = {(e["id"], e["gen"]) for e in alt["ergebnisse"]}
-    neu = [f for f in fin["finalisten"] if (f["id"], f["gen"]) not in bekannt]
+    bekannt = {e["id"] for e in alt["ergebnisse"]}                  # Sperre nach Kennung: dieselbe Einstellung wird nie zweimal geprüft
+    neu = [f for f in fin["finalisten"] if f["id"] not in bekannt]
     if not neu:
         print("Keine neuen Finalisten; die Schlussprüfung wird für bereits geprüfte Kandidaten nicht wiederholt."); return
     charge = len(alt["chargen"]) + 1
@@ -304,16 +333,26 @@ def stufe4():
     for i, e in enumerate(erg, 1):                                 # Benjamini-Hochberg über alle jemals geprüften Finalisten, Fehlentdeckungsrate 10 %
         if e["p_v2"] <= 0.10 * i / m:
             grenze = i
+    cm = sum(1 / i for i in range(1, m + 1))                        # Benjamini-Yekutieli: gilt auch bei beliebig abhängigen Kandidaten
+    grenze_by = 0
+    for i, e in enumerate(erg, 1):
+        if e["p_v2"] <= 0.10 * i / (m * cm):
+            grenze_by = i
     for i, e in enumerate(erg, 1):
         e["bh_bestanden"] = i <= grenze
+        e["by_bestanden"] = i <= grenze_by
         e["validiert"] = bool(e["bh_bestanden"] and e["n85_v2"] > 0 and e["n85_2x_v2"] > 0)
+        e["regel"] = f"{e['signal']}|{e['th']}|{e['r']}|{e['f']}|{e['k']}"
         con.execute("UPDATE kandidaten SET status = ?, grund = ? WHERE id = ? AND gen = ?",
                     ("validiert" if e["validiert"] else "verworfen_4", f"V2 netto {e['n85_v2']} bp, t {e['t85_v2']}, p {e['p_v2']}", e["id"], e["gen"]))
     con.commit()
     alt["chargen"].append({"charge": charge, "geoeffnet": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "neue_finalisten": len(neu)})
     aus = {"chargen": alt["chargen"], "finalisten_gesamt": m, "positiv_in_v2": sum(1 for e in erg if e["n85_v2"] > 0),
            "p_unter_5pct": sum(1 for e in erg if e["p_v2"] < 0.05), "zufallserwartung_p_unter_5pct": round(0.05 * m, 1), "bh_bestanden": grenze,
-           "validiert": sum(1 for e in erg if e["validiert"]), "validiert_ohne_rebate_positiv": sum(1 for e in erg if e["validiert"] and e["n0_v2"] > 0), "ergebnisse": erg}
+           "validiert": sum(1 for e in erg if e["validiert"]), "validiert_ohne_rebate_positiv": sum(1 for e in erg if e["validiert"] and e["n0_v2"] > 0),
+           "validiert_streng_by": sum(1 for e in erg if e["validiert"] and e["by_bestanden"]),
+           "validierte_einstiegsregeln": len({e["regel"] for e in erg if e["validiert"]}),
+           "validierte_einstiegsregeln_streng": len({e["regel"] for e in erg if e["validiert"] and e["by_bestanden"]}), "ergebnisse": erg}
     pfad.write_text(json.dumps(aus, ensure_ascii=False, indent=1))
     print(json.dumps({k: v for k, v in aus.items() if k != "ergebnisse"}, ensure_ascii=False))
     for e in erg[:40]:

@@ -1,0 +1,20 @@
+148 Umkehrungen aus p03c | Ergebnis mit Verschiebung == Ergebnis der korrigierten Kopie: 148 | Urteil kehrt sich auch hier um: 148
+Betroffene Finalisten (Status final, bestanden nur wegen der doppelten Verzögerung):
+   ('gen1', 'c63cfeba1796', 'volspitze_1', 3.5, -1, 'vol_hoch', 3, 'signal_h720', 'top3', 'verzug=1: 3.86 bp', 'eine Kerze verschoben: 1.28 bp', 'Hürde > 2.4')
+   ('gen2', '0b9786a4d689', 'ausbruch_48', 1.5, -1, 'vol_hoch', 3, 'signal_h720', 'top3', 'verzug=1: 3.21 bp', 'eine Kerze verschoben: 2.02 bp', 'Hürde > 2.4')
+   ('gen2', '0ce3c750ed12', 'btcfuehrt_1', 2.5, -1, 'vol_hoch', 1, 'signal_h720', 'alle10', 'verzug=1: 3.08 bp', 'eine Kerze verschoben: 0.46 bp', 'Hürde > 2.4')
+   ('gen2', '0fb18767467f', 'btcfuehrt_1', 2.5, -1, 'vol_hoch', 3, 'signal_h720', 'top3', 'verzug=1: 2.59 bp', 'eine Kerze verschoben: -0.74 bp', 'Hürde > 2.4')
+   ('gen2', '3f2937d6b058', 'ausbruch_12', 3.5, -1, 'vol_hoch', 3, 'signal_h720', 'alle10', 'verzug=1: 2.62 bp', 'eine Kerze verschoben: -2.77 bp', 'Hürde > 2.4')
+   ('gen2', '42538acf029b', 'ausbruch_288', 3.5, -1, 'vol_hoch', 1, 'signal_h720', 'top3', 'verzug=1: 3.58 bp', 'eine Kerze verschoben: 1.99 bp', 'Hürde > 2.4')
+   ('gen2', '5bd9c5f56ab3', 'btcfuehrt_1', 2.5, -1, 'vol_hoch', 1, 'signal_h720', 'top3', 'verzug=1: 3.44 bp', 'eine Kerze verschoben: 1.90 bp', 'Hürde > 2.4')
+   ('gen2', '6cc7f6440ca6', 'ausbruch_288', 3.5, -1, 'vol_hoch', 3, 'signal_h720', 'alle10', 'verzug=1: 2.97 bp', 'eine Kerze verschoben: -9.39 bp', 'Hürde > 2.4')
+   ('gen2', '6fceca8000cc', 'ausbruch_288', 3.5, -1, 'vol_hoch', 3, 'signal_h720', 'top3', 'verzug=1: 4.81 bp', 'eine Kerze verschoben: -0.19 bp', 'Hürde > 2.4')
+   ('gen2', '740470740cb4', 'ausbruch_288', 3.5, -1, 'vol_hoch', 3, 'signal_h720', 'top3', 'verzug=1: 4.79 bp', 'eine Kerze verschoben: -1.10 bp', 'Hürde > 2.4')
+   ('gen2', '8acab4705ada', 'volspitze_1', 2.5, -1, 'vol_hoch', 3, 'signal_h720', 'top3', 'verzug=1: 4.44 bp', 'eine Kerze verschoben: 0.85 bp', 'Hürde > 2.4')
+   ('gen2', 'b2bb88422265', 'ausbruch_144', 3.5, -1, 'vol_hoch', 3, 'signal_h720', 'alle10', 'verzug=1: 2.67 bp', 'eine Kerze verschoben: -3.17 bp', 'Hürde > 2.4')
+   ('gen2', 'b5d0cbda443b', 'ausbruch_288', 3.5, -1, 'btc_ab', 3, 'signal1_h720', 'top3', 'verzug=1: 3.56 bp', 'eine Kerze verschoben: -1.95 bp', 'Hürde > 2.4')
+   ('gen2', 'caeb12226d84', 'btcfuehrt_1', 2.5, -1, 'vol_hoch', 3, 'signal_h720', 'alle10', 'verzug=1: 2.84 bp', 'eine Kerze verschoben: 1.37 bp', 'Hürde > 2.4')
+   ('gen2', 'd56b30212c45', 'ausbruch_288', 1.5, -1, 'vol_hoch', 3, 'signal_h720', 'top3', 'verzug=1: 4.94 bp', 'eine Kerze verschoben: 2.40 bp', 'Hürde > 2.4')
+   ('gen2', 'd96fbee59e66', 'ausbruch_48', 3.5, -1, 'vol_hoch', 1, 'signal_h720', 'top3', 'verzug=1: 3.17 bp', 'eine Kerze verschoben: -4.64 bp', 'Hürde > 2.4')
+   ('gen2', 'e7685b95d0a5', 'ausbruch_48', 1.5, -1, 'vol_hoch', 3, 'signal_h720', 'top3', 'verzug=1: 2.86 bp', 'eine Kerze verschoben: -2.93 bp', 'Hürde > 2.4')
+davon in ergebnisse/finalisten.json (eingefroren 2026-11-15 23:37 UTC ): 17 von 1327 Finalisten

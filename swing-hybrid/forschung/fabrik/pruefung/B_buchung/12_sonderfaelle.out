@@ -1,0 +1,13 @@
+a) Bestätigungssignal btcfuehrt_3
+   Kandidaten final/stufe3 mit Bestätigung btcfuehrt_3 und BTC im Markt: 353 | davon final: 131
+   9aff942d70d9 mom_36 + ["btcfuehrt_3", 1.0, -1] h240 alle10 (stufe3): Signale BTC 0, Trades je Coin [0, 95, 65, 80, 76, 80, 67, 65, 63, 81] | Speicher = Summe/10 (Abw. 0.00002); mit Teiler 9 wäre das Tagesergebnis 1.11-fach | Rückgang T: DB 7.352 %, mit handelbaren Coins 8.169 %
+   10aa94a3f53e mom_3 + ["btcfuehrt_3", 1.0, -1] h240 alle10 (final): Signale BTC 0, Trades je Coin [0, 702, 555, 477, 578, 475, 573, 574, 558, 568] | Speicher = Summe/10 (Abw. 0.00003); mit Teiler 9 wäre das Tagesergebnis 1.11-fach | Rückgang T: DB 14.865 %, mit handelbaren Coins 16.516 %
+   3cbd8165fb4f konten_ls + ["btcfuehrt_3", 1.0, -1] h720 alle10 (stufe3): Signale BTC 0, Trades je Coin [0, 450, 464, 435, 446, 421, 432, 454, 453, 427] | Speicher = Summe/10 (Abw. 0.00005); mit Teiler 9 wäre das Tagesergebnis 1.11-fach | Rückgang T: DB 9.841 %, mit handelbaren Coins 10.934 %
+   8edfef1f9f33 mom_288 + ["btcfuehrt_3", 1.0, 1] h720 top3 (final): Signale BTC 0, Trades je Coin [0, 364, 347] | Speicher = Summe/3 (Abw. 0.00003); mit Teiler 2 wäre das Tagesergebnis 1.50-fach | Rückgang T: DB 17.26 %, mit handelbaren Coins 25.890 %
+   9c5329cb715d rsi_48 + ["btcfuehrt_3", 1.0, -1] h240 top3 (final): Signale BTC 0, Trades je Coin [0, 285, 211] | Speicher = Summe/3 (Abw. 0.00002); mit Teiler 2 wäre das Tagesergebnis 1.50-fach | Rückgang T: DB 17.987 %, mit handelbaren Coins 26.981 %
+   fde28d5f293b boll_144 + ["btcfuehrt_3", 1.0, -1] signal_h720 alle10 (final): Signale BTC 0, Trades je Coin [0, 318, 200, 205, 217, 216, 206, 196, 190, 240] | Speicher = Summe/10 (Abw. 0.00002); mit Teiler 9 wäre das Tagesergebnis 1.11-fach | Rückgang T: DB 14.061 %, mit handelbaren Coins 15.623 %
+   Signale auf BTC in der Stichprobe insgesamt: 0
+b) Signal-Ausstieg und NaN-Signalwerte; c) ungültige Kerzen
+   100 Kandidaten (final/stufe3), 120127 Trades: Signalwert NaN während eines Trades mit Signal-Ausstieg: 139; Einstieg in ungültiger Kerze: 2; Ausstieg in ungültiger Kerze: 22; Summe roh dieser Trades 1983 bp von 3953978 bp
+d) übrige Kennzahlen (eigene Rechnung / Datenbank)
+   abweichend: 0 von 41

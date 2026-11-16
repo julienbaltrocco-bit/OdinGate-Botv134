@@ -1,0 +1,8 @@
+150 Finalisten, Trades in T. Mittel über die Kandidaten:
+  Spanne der Signalkerze < 30 bp   Anteil der Trades 0.10 | Anteil am T-Ergebnis 0.03
+  30 bis 100 bp                    Anteil der Trades 0.35 | Anteil am T-Ergebnis 0.15
+  100 bis 300 bp                   Anteil der Trades 0.40 | Anteil am T-Ergebnis 0.32
+  über 300 bp                      Anteil der Trades 0.14 | Anteil am T-Ergebnis 0.50
+Median der Spanne der Signalkerze: 128 bp; angesetzte Slippage je Trade im Verhältnis zur mittleren Spanne der Signalkerze: Median 2.3 %
+Anteil des T-Ergebnisses aus Trades nach Signalkerzen mit über 100 bp Spanne: Median 0.95, bei 119 von 150 über die Hälfte
+Tragfähigkeit: T-Ergebnis = null, wenn der Einstieg um k % der Spanne der Signalkerze schlechter ausfällt: Median k = 17.4 %, 25 %/75 % 12.1 %/26.6 %; k unter 5 %: 2 von 150; k unter 10 %: 18

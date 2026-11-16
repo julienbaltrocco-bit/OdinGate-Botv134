@@ -1,0 +1,21 @@
+OK   1 Slippage 2 Orders x slip_bp, roh vor Gebühr: ist {1: (-3.0, 3)} | soll {1: (-3.0, 3)}
+OK   1 netto mit Rebate = roh - 2,4 (Verlustsumme): ist -5.4 | soll -5.4
+OK   2 Funding Long: zahlt Termine NACH Einstieg bis EINSCHLIESSLICH Ausstiegskerze (1+100), nicht den Termin der Einstiegskerze: ist {1: (-101.0, 3)} | soll {1: (-101.0, 3)}
+OK   2 Funding Short: erhält dieselben Termine: ist {1: (101.0, 3)} | soll {1: (101.0, 3)}
+OK   3 Stop Long mit Lücke -> Eröffnungskurs 97 = -300 bp: ist {1: (-300.0, 1)} | soll {1: (-300.0, 1)}
+OK   3 Stop Long ohne Lücke -> Stopkurs 99 = -100 bp: ist {1: (-100.0, 1)} | soll {1: (-100.0, 1)}
+OK   3 Stop Short mit Lücke nach oben -> Eröffnungskurs 103 = -300 bp: ist {1: (-300.0, 1)} | soll {1: (-300.0, 1)}
+OK   4 Stop vor Ziel in derselben Kerze (Long): ist {1: (-100.0, 1)} | soll {1: (-100.0, 1)}
+OK   4 Stop vor Ziel in derselben Kerze (Short): ist {1: (-100.0, 1)} | soll {1: (-100.0, 1)}
+OK   4b Stop in der Einstiegskerze: ist {1: (-100.0, 0)} | soll {1: (-100.0, 0)}
+OK   4c Ziel Long mit Lücke nach oben -> Eröffnung 103 (+300 statt +100): ist {1: (300.0, 1)} | soll {1: (300.0, 1)}
+OK   5 Datenende: Einstieg Eröffnung 9 (109), Ausstieg Eröffnung 11 (111): ist {9: (183.4862, 2)} | soll {9: (183.4862, 2)}
+OK   5 Datenende: Signale in den letzten 2 Kerzen (10, 11) werden nicht mehr gehandelt (kein Einstieg ohne spätere Ausstiegskerze): ist (0, {}) | soll (0, {})
+OK   5 Datenende: Signal an Kerze 9 -> Einstieg 10 (110), Ausstieg Eröffnung 11 (111), Dauer 1 statt 6: ist (1, {10: (90.9091, 1)}) | soll (1, {10: (90.9091, 1)})
+OK   6 Dauersignal: Einstiege 1, 4, 7 (je voll bezahlt), letzter 10 -> 11 am Datenende? (i < n-2 = 10: Signal 9 zählt): ist (4, {1: (-1.0, 3), 4: (-1.0, 3), 7: (-1.0, 3), 10: (-1.0, 1)}) | soll (4, {1: (-1.0, 3), 4: (-1.0, 3), 7: (-1.0, 3), 10: (-1.0, 1)})
+OK   6b nach Stop in Kerze 2: nächster Einstieg Kerze 3: ist [1, 3] | soll [1, 3]
+OK   7 Signal-Ausstieg ohne Verzug: Einstieg 1 (100), Signal fällt an Kerze 2, Ausstieg Eröffnung 3 (102): ist {1: (200.0, 2)} | soll {1: (200.0, 2)}
+     7 mit verzug=1: Einstieg an Kerze [2] Dauer 3 -> Ausstieg an Kerze 5 | erwartet bei EINER Kerze Verzögerung: Einstieg 2, Ausstieg 4 (Signal Kerze 2 -> Eröffnung 3 + 1)
+OK   7 Zeit-Ausstieg mit verzug=1: Einstieg 2 (101), Ausstieg 5 (104): ist {2: (297.0297, 3)} | soll {2: (297.0297, 3)}
+OK   8 Nachzug: Stop aus Kerze 2 wirkt ab Kerze 3; Kerze 3 eröffnet unter dem Stop -> Eröffnung 100 (0 bp), Dauer 2: ist {1: (0.0, 2)} | soll {1: (0.0, 2)}
+ALLE SYNTHETISCHEN PRÜFUNGEN OK: True
