@@ -38,6 +38,9 @@ SIGNALE = (
     + [(f"tiefe_{k}", "Mikrostruktur", 288, "t") for k in (1, 3, 5)]
     + [("tiefe_d_1", "Mikrostruktur", 12, "t"), ("tiefe_d_5", "Mikrostruktur", 12, "t"), ("liq_entzug", "Mikrostruktur", 12, "t")]
     + [(f"kaufdruck_{L}", "Mikrostruktur", L, "k") for L in (1, 3, 12, 48)]
+    # Generation 3 (16.11.2026, H10): wiederkehrende Tageszeit-Muster. Länge = Zeitfenster in Kerzen, zweite Zahl = Zahl der Vortage
+    + [(f"tagzeit_{L}_{N}", "Saisonalität", L, "k") for L in (3, 12) for N in (7, 28)]
+    + [(f"tagzeitrel_{L}_28", "Saisonalität", L, "k") for L in (3, 12)]
 )
 NAMEN = [s[0] for s in SIGNALE]
 FILTER = ["kein", "trend_mit", "trend_gegen", "vol_hoch", "vol_niedrig", "asien", "europa", "usa", "btc_auf", "btc_ab"]
@@ -124,6 +127,16 @@ def _roh(j: int) -> dict:
     ti = 2 * tq - tqv
     for L in (1, 3, 12, 48):
         out[f"kaufdruck_{L}"] = ti.rolling(L).sum() / tqv.rolling(L).sum()
+    # Saisonalität (Generation 3): mittlere Rendite des jetzt beginnenden Zeitfensters (nächste L Kerzen) an den letzten N Vortagen.
+    # Wert an Kerze i nutzt nur Schlusskurse bis i + L - 288, also mindestens einen Tag minus L Kerzen alte Daten.
+    def tagzeit(x, L, N):
+        v = (x.pct_change(L) / (x.pct_change().rolling(W1).std() * np.sqrt(L))).shift(W1 - L)      # Fenster gleicher Uhrzeit am Vortag
+        return sum(v.shift(W1 * d) for d in range(N)) / N
+    for L in (3, 12):
+        for N in (7, 28):
+            out[f"tagzeit_{L}_{N}"] = tagzeit(c, L, N)
+        alle = [tagzeit(S("c", k), L, 28) for k in range(len(D.COINS))]
+        out[f"tagzeitrel_{L}_28"] = alle[j] - sum(alle) / len(alle)                                # gegen den Durchschnitt der zehn Coins
     return out
 
 

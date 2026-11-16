@@ -659,3 +659,28 @@ Wertung ab 17.11.2026 00:00 UTC, Status „pausiert“. Er läuft erst, wenn der
 Repository festgeschrieben ist, geht durch eine spätere Freigabe nichts verloren und nichts wird nachträglich
 angepasst. Risiko in der Rückrechnung bei Hebel 3: tiefster Kontostand 62 %, an 6 % der Starttage unter der
 Abbruchgrenze von 70 %, keine Liquidation.
+
+---
+
+## 23. Festlegung Generation 3 (vor der Rechnung, 16.11.2026): wiederkehrende Tageszeit-Muster (H10)
+
+- **Mechanismus:** Große Teilnehmer handeln in festen Zeitfenstern (Fonds-Umschichtungen, Absicherung zu festen
+  Terminen, zeitgesteuerte Ausführungsprogramme). Ein Coin, der zu einer bestimmten Uhrzeit an den Vortagen im Mittel
+  gestiegen ist, könnte im selben Zeitfenster heute wieder steigen. Für Aktien und Kryptowährungen in der Literatur
+  beschrieben; in der Fabrik bisher nicht geprüft (kein bisheriges Signal kennt die Uhrzeit der Vortage).
+- **Neue Signale (sechs, ans Ende von `fabrik/signale.py`, Familie „Saisonalität“):**
+  `tagzeit_L_N` = mittlere Rendite des jetzt beginnenden Zeitfensters (die nächsten L Kerzen: 15 oder 60 Minuten) an den
+  letzten N Vortagen (7 oder 28), jeweils geteilt durch die damalige Schwankung. `tagzeitrel_L_28` = derselbe Wert
+  abzüglich des Durchschnitts der zehn Coins (Muster des einzelnen Coins, nicht des Gesamtmarkts).
+  Jeder Wert nutzt nur Kurse, die mindestens 23 Stunden alt sind.
+- **Kandidaten (108, bewusst wenige):** 6 Signale × Schwellen 1,5 / 2,5 / 3,5 × mit oder gegen das Signal × kein Filter ×
+  3 Märkte. Takt und Ausstieg folgen dem Zeitfenster und sind keine freie Wahl: 15-Minuten-Fenster wird alle
+  15 Minuten geprüft und 15 Minuten gehalten, 60-Minuten-Fenster stündlich geprüft und 60 Minuten gehalten.
+- **Prüfung:** Trichter, Zeiträume, Kosten und Hürden aus Abschnitt 19 samt Nachträgen unverändert. Neue Finalisten
+  gehen einmal in die Schlussprüfung; die Korrektur rechnet über alle 1.199 bisherigen plus die neuen Finalisten.
+- **Erwartung vorab:** Solche Effekte sind klein (wenige bp je Fenster), die Kosten je Trade liegen bei rund 5 bp.
+  Wahrscheinlich scheitert die Generation an Stufe 1 oder 2. Kein Nachbessern mit weiteren Filtern oder Haltedauern.
+- **Hinweis zum Ablauf in frischer Sitzung:** Die lokale Datenbank enthält nur die neue Generation. `trichter.py
+  statistik` wertet allein Generation 1 aus und wird deshalb nicht neu gerechnet (`statistik.json` bleibt unverändert).
+  Vor `bericht.py` werden die früheren Kandidaten aus `kandidaten.parquet` in die lokale Datenbank zurückgelesen,
+  damit Zählung und Archiv vollständig bleiben.
