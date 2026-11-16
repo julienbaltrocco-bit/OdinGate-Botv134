@@ -41,6 +41,8 @@ SIGNALE = (
     # Generation 3 (16.11.2026, H10): wiederkehrende Tageszeit-Muster. Länge = Zeitfenster in Kerzen, zweite Zahl = Zahl der Vortage
     + [(f"tagzeit_{L}_{N}", "Saisonalität", L, "k") for L in (3, 12) for N in (7, 28)]
     + [(f"tagzeitrel_{L}_28", "Saisonalität", L, "k") for L in (3, 12)]
+    # Generation 4 (16.11.2026, H16): Orderbuch-Tiefe 1 % aus dem letzten 30-Sekunden-Schnappschuss der Kerze statt aus dem Kerzenmittel
+    + [("tiefe_letzt_1", "Mikrostruktur", 288, "t"), ("tiefe_frisch_1", "Mikrostruktur", 1, "t")]
 )
 NAMEN = [s[0] for s in SIGNALE]
 FILTER = ["kein", "trend_mit", "trend_gegen", "vol_hoch", "vol_niedrig", "asien", "europa", "usa", "btc_auf", "btc_ab"]
@@ -137,6 +139,11 @@ def _roh(j: int) -> dict:
             out[f"tagzeit_{L}_{N}"] = tagzeit(c, L, N)
         alle = [tagzeit(S("c", k), L, 28) for k in range(len(D.COINS))]
         out[f"tagzeitrel_{L}_28"] = alle[j] - sum(alle) / len(alle)                                # gegen den Durchschnitt der zehn Coins
+    # Tiefe in feinerer Zeitauflösung (Generation 4): Stand des letzten Schnappschusses vor Kerzenschluss
+    bl, al, bm, am = S("b1l"), S("a1l"), S("b1"), S("a1")
+    ul, um = (bl - al) / (bl + al), (bm - am) / (bm + am)
+    out["tiefe_letzt_1"] = (ul - ul.rolling(W1, min_periods=200).mean()) / ul.rolling(W1, min_periods=200).std()
+    out["tiefe_frisch_1"] = ul - um                                                                 # jüngste Verschiebung innerhalb der Kerze
     return out
 
 

@@ -1,0 +1,4 @@
+{
+ "hinweis": "Slippage je Order in bp (2 x gemessene halbe Yubit-Spanne, mindestens 0,5 bp), wie in Generation 1 und 2 verwendet. Quelle: Stichprobe vom 14.11.2026 (data/processed/yubit_spannen_stichprobe.csv, liegt nicht im Repository). Werte aus dem Prüfbeleg fabrik/pruefung/B_buchung/14_slippage_quelle.out (drei Nachkommastellen) und aus papier/OS-1.1/konfiguration.json (SOL, volle Genauigkeit). Nur Ersatz, wenn die Stichprobe in einer frischen Sitzung fehlt.",
+ "slippage_bp_je_order": {"BTC": 0.5, "ETH": 0.5, "SOL": 1.3657568381229228, "XRP": 1.139, "DOT": 13.216, "DOGE": 1.652, "ADA": 6.419, "LINK": 1.089, "AVAX": 1.451, "LTC": 2.184}
+}

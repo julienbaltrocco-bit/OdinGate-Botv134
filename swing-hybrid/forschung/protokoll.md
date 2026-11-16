@@ -684,3 +684,49 @@ Abbruchgrenze von 70 %, keine Liquidation.
   statistik` wertet allein Generation 1 aus und wird deshalb nicht neu gerechnet (`statistik.json` bleibt unverändert).
   Vor `bericht.py` werden die früheren Kandidaten aus `kandidaten.parquet` in die lokale Datenbank zurückgelesen,
   damit Zählung und Archiv vollständig bleiben.
+
+---
+
+## 24. Ergebnis Generation 3: wiederkehrende Tageszeit-Muster (16.11.2026)
+
+**Gerechnet:** 108 Kandidaten (36 Einstiegsregeln × 3 Märkte), eine Sekunde Rechenzeit. Vorher Kontrolle der frischen
+Umgebung: 960 Kandidaten der Generation 1 nachgerechnet, deckungsgleich mit dem Archiv (Abweichung nur Rundung).
+
+| Stufe | übrig |
+|---|---|
+| erzeugt und gerechnet | 108 |
+| mindestens 200 Trades im Training | 98 |
+| Stufe 1: Vorteil vor Gebühr (t ≥ 2) | **0** |
+
+- Nur 12 von 98 Kandidaten sind im Training vor Gebühr überhaupt positiv; der beste erreicht t = 1,7 (60-Minuten-Fenster,
+  7 Vortage, BTC/ETH/SOL: +7,0 bp vor Gebühr im Training, −2,6 bp in der Auswahlprüfung). Median über alle: −5,4 bp je
+  Trade im Training, −5,6 bp in der Auswahlprüfung.
+- Beide Richtungen verlieren (mit dem Muster und dagegen). Es gibt also keinen Effekt, der nur das falsche Vorzeichen
+  hätte; übrig bleibt im Wesentlichen die Slippage. Die Variante gegen den Durchschnitt der zehn Coins ist nicht besser.
+- **Einstufung A (verworfen).** Keine Finalisten, keine Schlussprüfung, kein Papier-Test. H10 ist damit erledigt.
+
+**Zum Ablauf:** Da kein Kandidat Stufe 2 erreicht hat, wurde `trichter.py stufe3` nicht ausgeführt (es hätte nur die
+Zählfelder in `finalisten.json` mit Nullen überschrieben). `statistik.json` bleibt wie festgelegt unverändert.
+Die Slippage je Coin kommt in frischen Sitzungen aus `fabrik/slippage_gemessen.json` (dieselben Werte wie bisher; die
+Stichprobe vom 14.11.2026 liegt nicht im Repository). Siehe `engine/offene_fragen.md`.
+
+---
+
+## 25. Festlegung Generation 4 (vor der Rechnung, 16.11.2026): Orderbuch-Tiefe aus dem letzten Schnappschuss (H16, H07)
+
+- **Mechanismus:** Das Tiefe-Signal verfällt schnell (E10: fünf Minuten Verzug kosten rund 40 %). Bisher geht das
+  Mittel aller 30-Sekunden-Schnappschüsse einer 5-Minuten-Kerze ein; es ist beim Einstieg im Schnitt 2,5 Minuten alt.
+  Der letzte Schnappschuss vor Kerzenschluss ist höchstens 30 Sekunden alt und enthält die jüngste Verschiebung des
+  Orderbuchs. Das ist neue Information aus derselben Quelle, keine weitere Einstellung der alten Signale.
+- **Neue Signale (zwei, Familie „Mikrostruktur“):** `tiefe_letzt_1` = Übergewicht der Kauf- gegenüber der Verkaufsseite
+  innerhalb 1 % um den Kurs im letzten Schnappschuss, gemessen an den letzten 24 Stunden (wie `tiefe_1`, nur frischer).
+  `tiefe_frisch_1` = dieses Übergewicht im letzten Schnappschuss minus Kerzenmittel (Verschiebung in den letzten Minuten).
+- **Kandidaten (288):** 2 Signale × Schwellen 1,5 / 2,5 / 3,5 × mit oder gegen das Signal × Filter (keiner, hohe
+  Schwankung; nach E12) × Takt (5 Minuten, 60 Minuten) × Ausstiege (60 Minuten, 240 Minuten, Signal-Ausstieg) ×
+  Märkte (BTC/ETH/SOL, alle zehn Coins).
+- **Prüfung:** unverändert nach Abschnitt 19 (Training 2023, Auswahlprüfung 01–06/2024). Neue Finalisten gehen einmal in
+  die Schlussprüfung, Korrektur über alle bisherigen und neuen Finalisten. Vermerk wie bisher: Die Schlussprüfung ist
+  für Orderbuch-Regeln nicht unberührt; ein Treffer wäre „formal bestanden“, nicht „belegt“.
+- **Vergleichsgröße (nur Bericht, keine Hürde):** dieselben 144 Einstellungen mit dem alten Signal `tiefe_1` aus dem
+  Archiv der Generation 1, soweit dort gerechnet. Ist das frische Signal im Training nicht besser als das alte, gilt
+  die Idee als nicht bestätigt, auch wenn einzelne Kandidaten weiterkommen.

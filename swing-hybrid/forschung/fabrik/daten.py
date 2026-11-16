@@ -29,10 +29,15 @@ def bauen():
     SPEICHER.mkdir(parents=True, exist_ok=True)
     felder = {k: np.full((len(COINS), N), np.nan, np.float64) for k in ("o", "h", "l", "c")}
     f32 = {k: np.full((len(COINS), N), np.nan, np.float32) for k in
-           ("qv", "tq", "tqv", "frate", "oi", "konten_ls", "profis_ls", "taker_log", "prem", "b1", "a1", "b3", "a3", "b5", "a5")}
+           ("qv", "tq", "tqv", "frate", "oi", "konten_ls", "profis_ls", "taker_log", "prem", "b1", "a1", "b3", "a3", "b5", "a5", "b1l", "a1l")}
     fcum = np.zeros((len(COINS), N), np.float64)
     gueltig = np.zeros((len(COINS), N), bool)
-    slip = K.slippage_bp(COINS)
+    try:
+        slip = K.slippage_bp(COINS)
+    except FileNotFoundError:                                            # frische Sitzung: die Stichprobe vom 14.11.2026 liegt nicht im Repository
+        import json
+        slip = json.loads((F / "fabrik/slippage_gemessen.json").read_text())["slippage_bp_je_order"]
+        print("Slippage aus fabrik/slippage_gemessen.json (dieselben Werte wie in Generation 1 und 2)", flush=True)
     for j, coin in enumerate(COINS):
         k = K.lesen("5m", coin)
         for x, sp in (("o", "open"), ("h", "high"), ("l", "low"), ("c", "close")):
@@ -59,6 +64,7 @@ def bauen():
         t = K.lesen("tiefe_5m", coin)
         for st in (1, 3, 5):
             f32[f"b{st}"][j], f32[f"a{st}"][j] = _auf_raster(t[f"w-{st}"]), _auf_raster(t[f"w+{st}"])
+        f32["b1l"][j], f32["a1l"][j] = _auf_raster(t["letzt_w-1"]), _auf_raster(t["letzt_w+1"])     # letzter 30-Sekunden-Schnappschuss der Kerze (Generation 4)
         print(coin, "Kerzen gültig:", int(gueltig[j].sum()), "Tiefe ab:", t.index.min().date(), flush=True)
     for k2, a in {**felder, **f32, "fcum": fcum, "gueltig": gueltig}.items():
         np.save(SPEICHER / f"{k2}.npy", a)
