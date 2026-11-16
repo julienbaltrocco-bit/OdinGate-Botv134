@@ -1,0 +1,5 @@
+{
+ "kurz": "Beobachtung · Gegen Kaufdruck",
+ "untertitel": "nicht validiert",
+ "klartext": "Handelt gegen einseitigen Kauf- oder Verkaufsdruck: Einstieg in die Gegenrichtung, wenn die Marktorders der letzten vier Stunden extrem einseitig waren (3,5 Standardabweichungen), der Markt stark schwankt und das Handelsvolumen es bestätigt. Geprüft alle fünf Minuten. Ausstieg über einen nachgezogenen Gewinn-Stop, spätestens nach 12 Stunden; kein Verlust-Stop."
+}

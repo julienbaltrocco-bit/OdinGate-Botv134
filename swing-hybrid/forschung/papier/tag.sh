@@ -21,6 +21,7 @@ if [ "$fabrik_aktiv" = 1 ]; then
 fi
 for cfg in forschung/papier/*/konfiguration.json; do
   id=$(basename "$(dirname "$cfg")")
+  if grep -q '"modus": "live"' "$cfg"; then continue; fi          # Live-Fassungen laufen auf dem eigenen Server (forschung/live), nicht hier
   if grep -q '"strategie": "fabrik"' "$cfg"; then lauf="$PY"; else lauf=python3; fi
   if [ "$lauf" = python3 ] && grep -q '"strategie": "fabrik"' "$cfg" && pausiert "$cfg"; then
     echo "$id: vorbereitet oder pausiert, kein Lauf (wartet auf Freigabe)"; continue

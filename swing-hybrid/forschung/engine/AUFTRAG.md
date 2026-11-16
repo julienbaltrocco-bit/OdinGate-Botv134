@@ -58,7 +58,9 @@ zusammengefassten Ergebnisse. Werte nie einzelne Kandidaten der Reihe nach sprac
 7. **Papier-Test:** nur für Kandidaten mit Status `validiert`, höchstens einer je Gruppe, nach den Bedingungen unten.
    Nicht validierte Kandidaten startest du nie selbst, auch nicht als „Beobachtungstest“. Die Beobachtungstests
    `papier/B-*/` hat der Auftraggeber einzeln freigegeben (Protokoll Abschnitt 28): nicht ändern, keine weiteren
-   anlegen. Ihre Ergebnisse steuern keine Auswahl neuer Kandidaten.
+   anlegen. Ihre Ergebnisse steuern keine Auswahl neuer Kandidaten. Ebenso unverändert lassen: `papier/L-*/`
+   (Live-Fassungen, laufen auf dem Server des Auftraggebers), `forschung/live/`, `papier/board.py` und
+   `fabrik/papier_fabrik.py` (der Live-Dienst und das Trading Board hängen daran).
 8. Am Ende eine kurze Antwort: erzeugt, gerechnet, je Stufe bestanden, validiert, neue Papier-Tests. Nenne auch, was
    gegen dein Ergebnis sprechen könnte: zum Beispiel Kandidaten, die nur an der Mindestzahl von 200 Trades scheitern
    und sonst auffällig wären (mit ihrem Ergebnis in der Auswahlprüfung). Die Hürde wird deshalb nicht geändert.

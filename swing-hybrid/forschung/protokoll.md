@@ -865,3 +865,30 @@ Der Auftraggeber möchte die neuen Papier-Tests auf derselben GitHub-Seite sehen
   für Schattentests hinzu; Rechnung und Anzeige von Test 1 und 2 sind unverändert (im Browser geprüft: Anmeldung,
   Umschalten zwischen allen Tests und zurück, Handy-Breite, keine Fehler).
 - **Kennzeichnung:** Beobachtungstests tragen auf dem Board die Marke „nicht validiert“.
+
+---
+
+## 30. Live-Fassung des Kaufdruck-Tests auf dem Server des Auftraggebers (16.11.2026, auf dessen Wunsch)
+
+Der Auftraggeber stellt einen eigenen Server bereit (Standort Nürnberg; Binance dort live erreichbar, geprüft mit
+`betrieb/server_check.sh`). Damit entfällt für Regeln, die nur Kerzen und Marktorder-Volumen brauchen, der Tag Verzug.
+
+- **Test `L-dc1d27a3`:** Live-Fassung von `B-dc1d27a3`. Dieselbe eingefrorene Regel, derselbe Start (17.11.2026),
+  dasselbe Kontomodell. Signale, Simulator und Massenlauf-Kern sind Datei für Datei identisch mit dem Schattentest;
+  nur der Papier-Rechner hat einen Live-Modus (Fenster endet an der letzten vollständigen Kerze).
+- **Geprüft vor der Installation:** (a) Live-Modus gegen Archiv-Modus auf 01.11. bis 21.12.2023: 19 von 19 Trades
+  gleich, Abweichung 0. (b) Tag bricht mittendrin ab: alle bis dahin abgeschlossenen Trades gleich, keine Einstiege
+  aus der Zukunft, ein Einstieg erscheint in der Kerze, in der er geschieht. (c) Ganzer Dienst mit nachgestellter
+  Echtzeit-Schnittstelle: Abruf, Rechnung (rund 3 s je Lauf, rund 280 MB), Kontrolle, Veröffentlichung.
+  Nicht hier prüfbar: der echte Binance-Abruf (aus der Forschungsumgebung gesperrt); das zeigt erst der Server.
+- **Yubit-Kosten:** Bei jedem neuen Einstieg misst der Dienst am öffentlichen Yubit-Orderbuch, was die Order gekostet
+  hätte (`live/yubit.py`). Der Kontostand rechnet weiter mit dem eingefrorenen Kostenmodell; die Messung steht daneben.
+- **Kontrolle:** Einmal täglich rechnet der Server den Schattentest aus den Archivdaten und vergleicht die Trades.
+  Maßgeblich bleibt der Schattentest; bei Abweichung gilt die Live-Fassung als fehlerhaft, bis die Ursache geklärt ist.
+- **Veröffentlichung:** verschlüsselt (Schlüssel des Boards) in einen eigenen Daten-Zweig `odingate-live`, ein einziger
+  Commit, der laufend ersetzt wird. Das Board zeigt die Live-Fassung im Tab des Schattentests, solange sie den
+  neueren Datenstand hat; fällt der Server aus, erscheint wieder der tägliche Stand.
+- **Nicht live möglich:** die beiden Orderbuch-Tests. Binance liefert das Orderbuch live nur bis ±0,22 % um den Kurs
+  (gemessen auf dem Server), die Regeln brauchen ±3 % bzw. ±5 %; diese Tiefe gibt es nur im Archiv.
+- **Betrieb:** ein Docker-Container mit Obergrenzen (0,6 Kerne, 800 MB), alles unter `/opt/odingate`, keine
+  Handelsschlüssel, keine Orders. Einrichten `live/install.sh`, ansehen `live/status.sh`, entfernen `live/entfernen.sh`.

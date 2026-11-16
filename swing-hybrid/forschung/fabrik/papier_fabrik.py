@@ -147,6 +147,18 @@ def lauf(ordner, cfg, steuer, basis, heute, cache, schreiben, R, tmp=None):
     if bis is None or bis < erster:
         return R.abrechnen(cfg, basis, steuer, [], None, R.ms(cfg["start"]), luecken, fehler)[0] | {"status": "wartet auf Daten"}
     n = int((pd.Timestamp(bis) + pd.Timedelta(days=1) - raster[0]) / pd.Timedelta(minutes=5))
+    live = cfg.get("modus") == "live"
+    if live:
+        # Live-Betrieb: Der laufende Tag ist unvollständig. Das Fenster endet an der letzten Kerze, die für alle gebrauchten Coins vorliegt.
+        # Dahinter stehen zwei Platzhalter-Kerzen zum letzten Schlusskurs (der Simulator braucht sie, um einen Einstieg oder Ausstieg
+        # "jetzt", zur Eröffnung der laufenden Kerze, zu buchen). Sie tragen keine neue Information; im nächsten Lauf ersetzen echte Kerzen sie.
+        brauch = sorted(set(cfg["coin_index"]) | {0, 1})
+        da = np.flatnonzero(felder["gueltig"][brauch][:, :n].all(axis=0))
+        if len(da) == 0 or len(raster) < int(da[-1]) + 3:
+            return R.abrechnen(cfg, basis, steuer, [], None, R.ms(cfg["start"]), luecken, fehler)[0] | {"status": "wartet auf Daten"}
+        letzte = int(da[-1])
+        n = letzte + 3
+        felder["gueltig"][:, letzte + 1:n] = felder["gueltig"][:, letzte:letzte + 1]
     raster = raster[:n]
     with tempfile.TemporaryDirectory(dir=tmp) as td:                  # eigener kleiner Datenspeicher nur für diesen Lauf
         D.SPEICHER, D.RASTER, D.N = Path(td), raster, n
@@ -180,6 +192,10 @@ def lauf(ordner, cfg, steuer, basis, heute, cache, schreiben, R, tmp=None):
             je_order = np.maximum(k["slippage_bp_je_order"][coin], k.get("slippage_anteil_spanne", 0.0) * (h - l) / cc * 1e4)   # Slippage wächst mit der Spanne der letzten Kerze
             for e in aus[:m]:
                 ia, ib, d, offen = int(e[0]), int(e[1]), e[2], bool(e[5])
+                if live and ia >= n - 1:
+                    continue                                          # Einstieg erst in der zweiten Platzhalter-Kerze: liegt in der Zukunft
+                if live and ib >= n - 2:
+                    offen = True                                      # Ausstieg in einer Platzhalter-Kerze: gilt erst, wenn die echte Kerze vorliegt (Kurs steht dann fest)
                 if zeit[ia] < R.ms(cfg["start"]) or (ende_ms is not None and zeit[ia] >= ende_ms):
                     continue
                 fund = -d * (fc[ib] - fc[ia]) * 1e4
@@ -194,7 +210,7 @@ def lauf(ordner, cfg, steuer, basis, heute, cache, schreiben, R, tmp=None):
             if not g[max(i0, 0):].all():
                 luecken.append(f"{c}: {int((~g[max(i0, 0):]).sum())} fehlende 5-Minuten-Kerzen seit dem Start.")
     trades.sort(key=lambda t: (t["ein"], t["coin"]))
-    daten_bis = int(zeit[-1])
+    daten_bis = int(zeit[-2]) if live else int(zeit[-1])            # live: Eröffnung der laufenden Kerze
     fehlend = (heute - dt.timedelta(days=1) - bis).days
     if fehlend > 3:
         luecken.append(f"Archivdaten fehlen seit {fehlend} Tagen (letzter Stand {bis}).")

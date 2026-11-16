@@ -98,7 +98,7 @@ eintraege = [
 # Papier-Tests aus der Strategie-Fabrik: jeder Ordner papier/F-*/ erscheint automatisch
 for pfad in sorted((ROOT / "forschung/papier").glob("*/konfiguration.json")):
     c = json.loads(pfad.read_text())
-    if c.get("strategie") != "fabrik":
+    if c.get("strategie") != "fabrik" or c.get("modus") == "live":   # Live-Fassungen sind dieselbe Regel wie ihr Schattentest, kein eigener Eintrag
         continue
     r = c["rueckrechnung"]
     beob = bool(c.get("beobachtung"))

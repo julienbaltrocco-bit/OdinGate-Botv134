@@ -34,6 +34,8 @@ def buendel() -> dict:
         if not aus.exists():                                       # vorbereitet, aber noch nie gelaufen
             continue
         d = json.loads(aus.read_text())
+        if d.get("live"):                                          # Live-Fassungen veröffentlicht der Server selbst (forschung/live/dienst.py)
+            continue
         extra = cfg.parent / "board.json"                          # Kurzname und Regel in Klartext für das Board (nicht Teil der eingefrorenen Regel)
         if extra.exists():
             d.update(json.loads(extra.read_text()))
