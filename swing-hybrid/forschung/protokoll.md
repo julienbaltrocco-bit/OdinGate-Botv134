@@ -507,3 +507,34 @@ in Stufe 3 eine **strengere** Bedingung hinzu (eine Verschärfung vor der Schlus
 - Zusätzlich berichtet (ohne Hürde): bei der Überanpassungsprüfung der Anteil der Aufteilungen, in denen der im
   einen Teil beste Kandidat im anderen Teil verliert. Die reine PBO-Zahl ist hier wenig aussagekräftig, weil die
   meisten Kandidaten schon an den Kosten scheitern und „besser als der mittlere Kandidat“ deshalb leicht ist.
+- **Auslegung der Nachbar-Regel für Varianten mit Bestätigungssignal (vor Stufe 3 festgelegt):** Solche Varianten
+  haben keine Geschwister mit anderer Länge oder Schwelle. Als Nachbarn gelten deshalb ihre Eltern-Regel ohne
+  Bestätigung und deren Nachbarn.
+
+### Zweiter Nachtrag zu Abschnitt 19 (16.11.2026): Befunde der unabhängigen Gegenprüfung, festgelegt vor Öffnung von V2
+
+Drei unabhängige Prüfer haben Simulator, Buchung und Statistik mit eigenem Code nachgerechnet (Belege unter
+`fabrik/pruefung/`). Kein Blick in die Zukunft gefunden; 656 Kandidaten und 16 Einzelfälle stimmen mit der eigenen
+Nachrechnung überein. Gefunden und vor der Schlussprüfung behoben:
+
+1. **Verzögerungstest (Fehler):** Beim Stress „eine Kerze später“ kam der Signal-Ausstieg zwei Kerzen später. 148
+   Urteile der Stufe 3 wären gekippt. Behoben, Test ergänzt.
+2. **Kosten in bewegtem Markt (ernster Einwand, kein Rechenfehler):** Die Finalisten des ersten Laufs handeln
+   überwiegend direkt nach heftigen Kerzen (mittlere Spanne der Signalkerze 128 bp; 82 % des Ergebnisses nach Kerzen
+   mit über 100 bp Spanne). Die angesetzte Slippage stammt aus einer ruhigen Stichprobe und beträgt dort nur rund
+   2 % der Spanne. **Verschärfung, festgelegt vor V2:** Als Kosten in bewegtem Markt gilt je Order das Größere aus
+   der gemessenen Yubit-Slippage und **5 % der Spanne (Hoch minus Tief) der letzten Kerze vor der Order**. Das ist
+   eine Annahme, bis Yubit-Spannen in bewegten Phasen gemessen sind.
+   - Stufe 3 zusätzlich: netto mit Rebate unter diesen Kosten in T **und** in V1 positiv.
+   - Stufe 4: p-Wert und „validiert“ werden mit diesen Kosten gerechnet; der Stress ist das Doppelte (10 %). Das
+     Ergebnis mit der einfachen Slippage wird nur zusätzlich berichtet.
+3. **Datenlücken:** Bei SOL, XRP und LTC fehlen fünf Tage (02/2022, 04/2022). Jetzt: kein Einstieg, wenn die
+   Einstiegskerze fehlt oder in den letzten sieben Tagen Kerzen fehlten.
+4. **Teiler bei BTC als Leitmarkt:** Nutzt auch das Bestätigungssignal BTC als Leitmarkt, zählt BTC nicht mehr als
+   gehandelter Coin.
+5. **Marktbereinigung:** richtig gerechnet, aber fast wirkungslos (4 von 4.269 verworfen, mittleres Beta −0,02).
+   Sie bleibt als Bedingung, ist aber keine wirksame Verschärfung.
+
+Wegen 1, 3 und 4 werden beide Generationen vollständig neu gerechnet (rund acht Minuten Rechenzeit). Der erste Lauf
+(„Lauf A“: 522.360 Kandidaten, 11.029 nach Stufe 2, 4.265 robust, 1.327 Finalisten) wird nicht weiterverwendet;
+V2 wurde für ihn nicht geöffnet.
