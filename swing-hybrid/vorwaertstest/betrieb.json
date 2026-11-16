@@ -1,0 +1,5 @@
+{
+ "betreiber": "claude",
+ "geaendert": "2026-11-16",
+ "hinweis": "Wer den Bot für Test 1 und Test 2 führt: 'claude' (Claude-Sitzung) oder 'server' (eigener Server des Auftraggebers). Es rechnet immer nur eine Stelle; stunde.sh prüft das bei jedem Lauf. Wechsel nur direkt nach einem abgeschlossenen Lauf."
+}

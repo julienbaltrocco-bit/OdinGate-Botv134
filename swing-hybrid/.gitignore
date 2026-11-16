@@ -7,3 +7,7 @@ data/download/
 data/candles/
 data/processed/
 vorwaertstest/daten/
+
+# Bot für Test 1 und 2: Notbremse und Zwischendateien bleiben lokal (werden nie ins Repository geschrieben)
+vorwaertstest/lauf*/STOPP
+vorwaertstest/lauf*/*.tmp
