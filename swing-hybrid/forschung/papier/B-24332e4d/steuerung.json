@@ -1,4 +1,4 @@
 {
- "status": "pausiert",
- "hinweis": "Wartet auf die Freigabe des Auftraggebers. Start: status 'laufend'. Pausieren: status 'pausiert'. Beenden: status 'beendet' und 'ende' (UTC)."
+ "status": "laufend",
+ "hinweis": "Pausieren: status 'pausiert'. Beenden: status 'beendet' und 'ende' (UTC)."
 }

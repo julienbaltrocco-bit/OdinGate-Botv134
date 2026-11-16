@@ -1,6 +1,6 @@
 # Papier-Test B-24332e4d: Beobachtung (nicht validiert): Orderbuch-Tiefe 3 % bei hoher Schwankung
 
-Festgelegt am 2026-11-16, vor dem Start. **Nicht validiert.** Der Test ist nur vorbereitet und läuft erst nach ausdrücklicher Freigabe des Auftraggebers. Die Regel ist ab heute eingefroren; gewertet wird ab dem Startdatum, auch wenn die Freigabe später kommt (jeder Lauf rechnet vollständig neu, es geht nichts verloren). Nur Papierhandel, keine Orders.
+Festgelegt am 2026-11-16, vor dem Start. **Nicht validiert.** Beobachtungstest, vom Auftraggeber am 16.11.2026 freigegeben (protokoll.md Abschnitt 28). Nur Papierhandel, keine Orders.
 
 1. **Ziel.** Prüfen, ob die Regel nach ihrer Festlegung weiter verdient. Rückrechnung in der Schlussprüfung: netto mit Rebate
    21.58 bp je Trade, ohne Rebate 7.98 bp, 524 Trades in neun Monaten.

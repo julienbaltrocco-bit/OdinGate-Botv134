@@ -48,7 +48,7 @@ def fenster(cfg, tage, cache, R):
     raster = pd.date_range(pd.Timestamp(tage[0]), pd.Timestamp(tage[-1]) + pd.Timedelta(hours=23, minutes=55), freq="5min")
     n, nc = len(raster), len(D.COINS)
     f64 = {k: np.full((nc, n), np.nan) for k in ("o", "h", "l", "c")}
-    f32 = {k: np.full((nc, n), np.nan, np.float32) for k in ("qv", "tq", "tqv", "frate", "oi", "konten_ls", "profis_ls", "taker_log", "prem", "b1", "a1", "b3", "a3", "b5", "a5")}
+    f32 = {k: np.full((nc, n), np.nan, np.float32) for k in ("qv", "tq", "tqv", "frate", "oi", "konten_ls", "profis_ls", "taker_log", "prem", "b1", "a1", "b3", "a3", "b5", "a5", "b1l", "a1l")}
     fcum, gueltig, bis, ausstehend, luecken_archiv = np.zeros((nc, n)), np.zeros((nc, n), bool), None, set(), []
     art = cfg["daten"]
     for j in sorted(set(cfg["coin_index"]) | {0, 1}):                 # BTC und ETH immer (Leitmärkte, BTC-Filter)
@@ -114,6 +114,8 @@ def fenster(cfg, tage, cache, R):
             piv = t.pivot_table(index="zeit", columns="stufe", values="wert", aggfunc="last").resample("5min", label="left", closed="left").mean().astype("float32").reindex(raster)
             for stufe in (1, 3, 5):
                 f32[f"b{stufe}"][j], f32[f"a{stufe}"][j] = piv[-stufe].to_numpy(), piv[stufe].to_numpy()
+            letzt = t[t["stufe"].isin((-1, 1))].pivot_table(index="zeit", columns="stufe", values="wert", aggfunc="last").resample("5min", label="left", closed="left").last().astype("float32").reindex(raster)
+            f32["b1l"][j], f32["a1l"][j] = letzt[-1].to_numpy(), letzt[1].to_numpy()      # letzter Schnappschuss der Kerze (Signale der Generation 4)
         raten = {}
         for monat in sorted({str(t)[:7] for t in tage}):
             f = R.funding_monat(sym, monat, cache)

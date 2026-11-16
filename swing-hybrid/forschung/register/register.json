@@ -1,5 +1,5 @@
 {
- "stand": "2026-11-16 03:27 UTC",
+ "stand": "2026-11-16 12:00 UTC",
  "runde": 1,
  "experimente": 18,
  "kategorien": {
@@ -125,9 +125,9 @@
    "name": "Beobachtung (nicht validiert): Orderbuch-Tiefe 3 % bei hoher Schwankung",
    "version": "1.0",
    "familie": "Strategie-Fabrik",
-   "kategorie": "vorbereitet",
+   "kategorie": "laufend",
    "einstufung": "B",
-   "status": "Beobachtungstest vorbereitet, nicht validiert, wartet auf Freigabe",
+   "status": "Beobachtungstest, nicht validiert (Schattentest) seit 2026-11-17",
    "richtung": "Long und Short",
    "maerkte": "BTC, ETH, SOL",
    "daten": "Binance-Archiv: Kerzen, tiefe",

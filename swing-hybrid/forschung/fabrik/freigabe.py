@@ -74,9 +74,11 @@ def hebel_waehlen(t, n_coins):
     return wahl, bericht
 
 
-def freigeben(kennung: str, start: str = None, beobachtung: bool = False):
-    """beobachtung=True: Der Kandidat ist NICHT validiert. Der Test wird nur vorbereitet (Regel eingefroren, Status
-    "pausiert") und läuft erst, wenn der Auftraggeber ihn ausdrücklich freigibt (steuerung.json auf "laufend")."""
+def freigeben(kennung: str, start: str = None, beobachtung: bool = False, name: str = None, begruendung: str = None, freigegeben: str = None, wertung=(100, 300)):
+    """beobachtung=True: Der Kandidat ist NICHT validiert. Ohne `freigegeben` wird der Test nur vorbereitet (Regel eingefroren,
+    Status "pausiert") und läuft erst, wenn der Auftraggeber ihn ausdrücklich freigibt. `freigegeben` = Datum und Wortlaut der
+    Freigabe des Auftraggebers; dann startet der Test. `begruendung` ersetzt den Text zur Prüflage, `wertung` = Trades bis zur
+    Zwischen- und Hauptwertung."""
     L._init()
     con = T.db()
     z = con.execute("SELECT * FROM kandidaten WHERE id = ?" + ("" if beobachtung else " AND status = 'validiert'"), (kennung,)).fetchone()
@@ -101,14 +103,14 @@ def freigeben(kennung: str, start: str = None, beobachtung: bool = False):
     v2 = next(e for e in sp["ergebnisse"] if e["id"] == z["id"] and e["gen"] == z["gen"])
     richt = "mit dem Signal" if z["r"] == 1 else "gegen das Signal"
     einfach = json.loads((F / "fabrik/ergebnisse/schlusspruefung_einfache_slippage.json").read_text()) if beobachtung else None
-    cfg = {"id": tid, "name": (f"Beobachtung (nicht validiert): {z['signal']}, {z['f']}" if beobachtung else f"Fabrik {z['signal']} ({richt})"), "version": "1.0", "strategie": "fabrik", "art": "Schattentest (Binance-Archiv, ein Tag Verzug, keine Orders)",
+    cfg = {"id": tid, "name": name or (f"Beobachtung (nicht validiert): {z['signal']}, {z['f']}" if beobachtung else f"Fabrik {z['signal']} ({richt})"), "version": "1.0", "strategie": "fabrik", "art": "Schattentest (Binance-Archiv, ein Tag Verzug, keine Orders)",
            "coins": [D.COINS[j] for j in M], "coin_index": M, "daten": arten, "kandidat": kd,
            "regel": f"Signal {z['signal']}, Schwelle {z['th']}, {richt}, Filter {z['f']}, geprüft alle {z['k'] * 5} Minuten, Ausstieg {z['x']}"
                     + (f", Bestätigung durch {kd['best'][0]}" if kd["best"] else "") + ".",
            "start": f"{start}T00:00:00Z", "vorlauf_tage": 38, "kapital_usd": 5000, "hebel": hebel,
            "kosten": {"taker_bp": 8.0, "rebate": 0.85, "slippage_bp_je_order": {D.COINS[j]: float(slip[j]) for j in M}, "slippage_anteil_spanne": L.SPANNEN_ANTEIL},
            "risiko": {"mmr": 0.01, "abbruch_kontostand": 0.70},
-           "validierung": (f"NICHT validiert. Bester von {sp['finalisten_gesamt']} Finalisten der Strategie-Fabrik (p = {v2['p_v2']}), besteht die Korrektur für die vielen "
+           "validierung": (begruendung if begruendung else f"NICHT validiert. Bester von {sp['finalisten_gesamt']} Finalisten der Strategie-Fabrik (p = {v2['p_v2']}), besteht die Korrektur für die vielen "
                            f"gleichzeitig geprüften Regeln aber nur mit der ruhigen Kostenannahme, nicht mit der strengen. Schlussprüfung netto mit Rebate {v2['n85_v2']} bp je Trade, "
                            f"ohne Rebate {v2['n0_v2']} bp. Beobachtungstest: Nur neue Daten können klären, ob etwas daran ist." if beobachtung else
                            f"Strategie-Fabrik: alle fünf Stufen bestanden (einer von {sp['validiert']} validierten unter {sp['finalisten_gesamt']} Finalisten aus über 500.000 Kandidaten). "
@@ -117,7 +119,8 @@ def freigeben(kennung: str, start: str = None, beobachtung: bool = False):
            "rueckrechnung": {"n85_t": z["n85_t"], "n85_v1": z["n85_v"], "n85_v2": v2["n85_v2"], "n0_v2": v2["n0_v2"], "t85_v2": v2["t85_v2"], "trades_v2": v2["n_v2"],
                              "ertrag_jahr_pct_hebel1_v2": v2["ertrag_jahr_pct"], "haltedauer_min": z["dauer_min"], "risiko_starttage": {str(h): r for h, r in risiko.items()}},
            "eingefroren": time.strftime("%Y-%m-%d", time.gmtime()), "beobachtung": beobachtung,
-           "freigabe": ("offen: Beobachtungstest, nicht validiert, wartet auf die ausdrückliche Freigabe des Auftraggebers (protokoll.md Abschnitt 22; nur Papierhandel)" if beobachtung else "automatisch nach Auftrag vom 15.11.2026 (nur Papierhandel)")}
+           "freigabe": (f"Beobachtungstest, nicht validiert; {freigegeben} (nur Papierhandel)" if beobachtung and freigegeben else
+                        "offen: Beobachtungstest, nicht validiert, wartet auf die ausdrückliche Freigabe des Auftraggebers (protokoll.md Abschnitt 22; nur Papierhandel)" if beobachtung else "automatisch nach Auftrag vom 15.11.2026 (nur Papierhandel)")}
     code = ordner / "code"
     (code / "fabrik").mkdir(parents=True)
     for name in ("__init__", "daten", "signale", "kern", "lauf", "generator"):
@@ -126,25 +129,25 @@ def freigeben(kennung: str, start: str = None, beobachtung: bool = False):
     cfg["strategie_sha256"] = __import__("hashlib").sha256(b"".join(p.name.encode() + p.read_bytes() for p in sorted(code.rglob("*.py")))
                                                            + json.dumps(kd, sort_keys=True).encode()).hexdigest()
     (ordner / "konfiguration.json").write_text(json.dumps(cfg, ensure_ascii=False, indent=1))
-    (ordner / "steuerung.json").write_text(json.dumps({"status": "pausiert" if beobachtung else "laufend",
-                                                       "hinweis": ("Wartet auf die Freigabe des Auftraggebers. Start: status 'laufend'. " if beobachtung else "")
+    (ordner / "steuerung.json").write_text(json.dumps({"status": "pausiert" if beobachtung and not freigegeben else "laufend",
+                                                       "hinweis": ("Wartet auf die Freigabe des Auftraggebers. Start: status 'laufend'. " if beobachtung and not freigegeben else "")
                                                        + "Pausieren: status 'pausiert'. Beenden: status 'beendet' und 'ende' (UTC)."}, ensure_ascii=False, indent=1))
     (ordner / "plan.md").write_text(f"""# Papier-Test {tid}: {cfg['name']}
 
-Festgelegt am {cfg['eingefroren']}, vor dem Start. {"**Nicht validiert.** Der Test ist nur vorbereitet und läuft erst nach ausdrücklicher Freigabe des Auftraggebers. Die Regel ist ab heute eingefroren; gewertet wird ab dem Startdatum, auch wenn die Freigabe später kommt (jeder Lauf rechnet vollständig neu, es geht nichts verloren)." if beobachtung else "Freigabe automatisch nach Auftrag vom 15.11.2026."} Nur Papierhandel, keine Orders.
+Festgelegt am {cfg['eingefroren']}, vor dem Start. {f"**Nicht validiert.** Beobachtungstest, {freigegeben}." if beobachtung and freigegeben else "**Nicht validiert.** Der Test ist nur vorbereitet und läuft erst nach ausdrücklicher Freigabe des Auftraggebers. Die Regel ist ab heute eingefroren; gewertet wird ab dem Startdatum, auch wenn die Freigabe später kommt (jeder Lauf rechnet vollständig neu, es geht nichts verloren)." if beobachtung else "Freigabe automatisch nach Auftrag vom 15.11.2026."} Nur Papierhandel, keine Orders.
 
 1. **Ziel.** Prüfen, ob die Regel nach ihrer Festlegung weiter verdient. Rückrechnung in der Schlussprüfung: netto mit Rebate
    {v2['n85_v2']} bp je Trade, ohne Rebate {v2['n0_v2']} bp, {v2['n_v2']} Trades in neun Monaten.
 2. **Art.** Schattentest aus den täglichen Binance-Archivdateien (ein Tag Verzug), Buchung mit dem eingefrorenen Kostenmodell.
 3. **Regel.** {cfg['regel']} Märkte: {', '.join(cfg['coins'])}. Hebel {hebel:g}, 5.000 $ Papier-Kapital, feste Größe je Coin.
-4. **Zeitraum.** Start {start} 00:00 UTC. Zwischenwertung nach 100 Trades, Hauptwertung nach 300 Trades oder zwölf Monaten.
+4. **Zeitraum.** Start {start} 00:00 UTC. Zwischenwertung nach {wertung[0]} Trades, Hauptwertung nach {wertung[1]} Trades oder zwölf Monaten.
 5. **Erfolg.** In der Hauptwertung netto mit Rebate im Mittel positiv. Das gilt als „nicht widerlegt“, nicht als Beweis.
 6. **Abbruch.** Kontostand unter 70 % des Startkapitals oder Liquidation im Modell (setzt der Runner selbst um); in der
    Hauptwertung netto mit Rebate negativ.
 7. **Unverändert.** Code und Einstellung sind im Ordner `code/` und in `konfiguration.json` eingefroren (Prüfsumme).
 8. **Ausfälle.** Jeder Lauf rechnet den Test vollständig neu; ein ausgefallener Lauf verliert nichts.
 """)
-    print(tid, "vorbereitet, wartet auf Freigabe" if beobachtung else "angelegt", "| Hebel", hebel, "| Daten:", arten, "| Risiko:", risiko[hebel])
+    print(tid, "vorbereitet, wartet auf Freigabe" if beobachtung and not freigegeben else "angelegt", "| Hebel", hebel, "| Daten:", arten, "| Risiko:", risiko[hebel])
     return 0
 
 

@@ -56,8 +56,9 @@ zusammengefassten Ergebnisse. Werte nie einzelne Kandidaten der Reihe nach sprac
    bestanden hat und was nicht), Eintrag in `engine/experimente.json` (eine Generation zählt als ein Experiment),
    `python3 -m forschung.engine.zusammenfassung`, committen und pushen.
 7. **Papier-Test:** nur für Kandidaten mit Status `validiert`, höchstens einer je Gruppe, nach den Bedingungen unten.
-   Nicht validierte Kandidaten startest du nie selbst, auch nicht als „Beobachtungstest“. Der vorbereitete Test
-   `papier/B-24332e4d/` (Status „pausiert“) wartet auf die Freigabe des Auftraggebers: weder starten noch ändern.
+   Nicht validierte Kandidaten startest du nie selbst, auch nicht als „Beobachtungstest“. Die Beobachtungstests
+   `papier/B-*/` hat der Auftraggeber einzeln freigegeben (Protokoll Abschnitt 28): nicht ändern, keine weiteren
+   anlegen. Ihre Ergebnisse steuern keine Auswahl neuer Kandidaten.
 8. Am Ende eine kurze Antwort: erzeugt, gerechnet, je Stufe bestanden, validiert, neue Papier-Tests. Nenne auch, was
    gegen dein Ergebnis sprechen könnte: zum Beispiel Kandidaten, die nur an der Mindestzahl von 200 Trades scheitern
    und sonst auffällig wären (mit ihrem Ergebnis in der Auswahlprüfung). Die Hürde wird deshalb nicht geändert.

@@ -89,6 +89,6 @@
  },
  "eingefroren": "2026-11-16",
  "beobachtung": true,
- "freigabe": "offen: Beobachtungstest, nicht validiert, wartet auf die ausdrückliche Freigabe des Auftraggebers (protokoll.md Abschnitt 22; nur Papierhandel)",
+ "freigabe": "Beobachtungstest, nicht validiert; vom Auftraggeber am 16.11.2026 freigegeben (protokoll.md Abschnitt 28) (nur Papierhandel)",
  "strategie_sha256": "55788672a3592f8a35dfa8f048257fc3bc50f92774ac9e818236a93e7fe57494"
 }

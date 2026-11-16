@@ -2,9 +2,11 @@
 muss der Runner aus den Archivdateien dieselben Trades bilden wie die Rückrechnung auf dem großen Datenspeicher.
 
   .venv/bin/python -I forschung/fabrik/paritaet_papier.py <Kennung> [<Kennung> ...]      Rückgabe 0 = gleich
+Anderes Fenster (für selten handelnde Regeln): Umgebungsvariablen PARITAET_START und PARITAET_ENDE (JJJJ-MM-TT, Ende ausschließlich).
 """
 import datetime as dt
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -16,7 +18,8 @@ sys.path.insert(0, str(F)); sys.path.insert(0, str(F.parent))
 from fabrik import daten as D, freigabe as FG, lauf as L, trichter as T
 from forschung.papier import runner as R
 
-START, HEUTE = "2024-06-10", dt.date(2024, 6, 21)
+START, ENDE = os.environ.get("PARITAET_START", "2024-06-10"), os.environ.get("PARITAET_ENDE", "2024-06-21")
+HEUTE = dt.date.fromisoformat(ENDE)
 ORIGINAL = (D.SPEICHER, D.RASTER, D.N, L.I_ENDE)
 
 
@@ -25,7 +28,7 @@ def pruefe(kennung: str, code_ordner=None) -> bool:
     L._g.clear(); L._init()
     con = T.db()
     z = con.execute("SELECT * FROM kandidaten WHERE id = ?", (kennung,)).fetchone()
-    i0, i1 = L.idx(START), L.idx("2024-06-21")
+    i0, i1 = L.idx(START), L.idx(ENDE)
     ref, M = FG.trades_voll(z, i0 - 1, i1)
     ref = ref[(ref["ein"] >= START) & (ref["offen"] == 0)]
     namen = [z["signal"]] + ([json.loads(z["best"])[0]] if z["best"] else [])
