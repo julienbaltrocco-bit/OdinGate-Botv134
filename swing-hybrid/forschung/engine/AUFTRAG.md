@@ -20,33 +20,45 @@ aufzuhören, ein erfolgreiches auch nicht. Erzwinge nie ein positives Ergebnis.
 - Keine kostenpflichtigen Dienste, keine Geheimnisse, keine privaten Daten im Repository.
 - Kein künstliches Handelsvolumen: jeder Trade braucht einen eigenen Handelsgrund.
 - Schreiben und pushen nur im Zweig `claude/alpha-forschung-r1`, nur unter `swing-hybrid/forschung/`.
-- Höchstens drei Experimente je Sitzung. Keine Subagenten, außer eine Aufgabe ist ohne sie nicht lösbar (dann höchstens drei).
+- Höchstens zwei Generationen der Fabrik oder drei Einzelexperimente je Sitzung. Keine Subagenten, außer eine Aufgabe ist ohne sie nicht lösbar (dann höchstens drei).
 - Bei Zweifel an einer Regel: nichts tun, den Zweifel in `engine/offene_fragen.md` notieren, Sitzung beenden.
 
-## Ablauf einer Sitzung
+## Ablauf einer Sitzung (Strategie-Fabrik, seit 15.11.2026 der Normalfall)
 
-1. **Stand lesen:** `forschung/protokoll.md` (letzte Abschnitte), `engine/experimente.json`, `engine/hypothesen.json`,
-   `register/register.json`, neueste Datei in `berichte/`. Den Stand der Papier-Tests aus der Datenbank der Übersicht
-   lesen (ArtifactData, `https://claude.ai/artifact/QyTGdysnpzbaYD4xfwkoYA`, Sammlung `tests`).
-2. **Auswählen:** die nächste offene Hypothese mit dem besten Verhältnis aus Begründung, Datenlage und Aufwand.
-   Neue Ideen sind erwünscht, wenn sie einen benennbaren Mechanismus oder eine neue Informationsquelle haben; sie
-   kommen zuerst in `hypothesen.json`. Verworfene Ideen nicht wiederholen, außer mit neuer, aufgeschriebener Begründung.
-3. **Festlegen, dann sichern:** Frage, Mechanismus, Daten, Regel, eine Haupteinstellung, Nebeneinstellungen, Hürden in
-   `protokoll.md` schreiben, committen und pushen, **bevor** gerechnet wird.
-4. **Rechnen:** Skript unter `forschung/experimente/eNN_name.py` nach dem Muster der vorhandenen; Daten nur über
-   `alpha.kern.lesen`. Kosten und Hürden wie in `protokoll.md` Abschnitt 4 (Gebühr, 85 % Rebate als unbestätigte
-   Annahme, Slippage, Funding; Ergebnis immer auch ohne Rebate; Margin und Liquidation in der Vollprüfung).
-5. **Auswerten und eintragen:** Ergebnis ins Protokoll, Eintrag in `engine/experimente.json` (fortlaufende Nummer),
-   Status in `hypothesen.json`, Register neu bauen (`register/bauen.py`), `python3 -m forschung.engine.zusammenfassung`
-   (schreibt nach je zehn Experimenten selbst einen Bericht). Auch negative Befunde vollständig eintragen.
-6. **Papier-Test starten, wenn alle Bedingungen erfüllt sind** (siehe unten). Sonst nicht.
-7. **Sichern:** committen und pushen. Am Ende eine Zeile je Experiment als Antwort.
+Die Massenrechnung macht das Programm, nicht du. Du entwickelst neue Bausteine, startest die Läufe und beurteilst die
+zusammengefassten Ergebnisse. Werte nie einzelne Kandidaten der Reihe nach sprachlich aus.
+
+1. **Stand lesen:** `forschung/protokoll.md` ab Abschnitt 19, `fabrik/ergebnisse/zaehlung.json`, `statistik.json`,
+   `finalisten.json`, `schlusspruefung.json`, `engine/hypothesen.json`, `engine/offene_fragen.md` (falls vorhanden).
+2. **Umgebung bauen** (Daten liegen nicht im Repository, siehe unten), dann
+   `.venv/bin/python -I forschung/fabrik/daten.py` und `.venv/bin/python -I forschung/fabrik/signale.py`.
+   Die Ergebnis-Datenbank `data/fabrik/forschung.sqlite` ist nach einem Neustart leer; die bisherigen Ergebnisse stehen
+   in `fabrik/ergebnisse/kandidaten.parquet`. Lies daraus die schon gerechneten Kennungen und rechne nichts doppelt.
+3. **Neue Generation entwerfen:** neue Signale, Filter, Ausstiege oder Datenquellen mit benennbarem Mechanismus.
+   Bloße weitere Parameterwerte bereits gescheiterter Signale sind keine neue Generation. Neue Signale kommen als
+   neue Einträge ans Ende von `fabrik/signale.py` (bestehende Einträge und ihre Reihenfolge nie ändern), mit
+   Störungstest (`forschung/tests/test_fabrik_signale.py` muss grün bleiben).
+4. **Festlegen und sichern:** im Protokoll kurz beschreiben, was die Generation prüft (Name `genN`), dann committen
+   und pushen, bevor gerechnet wird. Trichter, Zeiträume und Hürden aus Abschnitt 19 gelten unverändert.
+5. **Rechnen:** Aufgabenliste erzeugen (wie `fabrik/generator.py` oder `fabrik/evolution.py`),
+   `.venv/bin/python -I forschung/fabrik/lauf.py genN <aufgaben.json>`, danach `trichter.py statistik`,
+   `trichter.py stufe3` und, nur wenn es neue Finalisten gibt, einmal `trichter.py stufe4`. Die Schlussprüfung
+   rechnet die Korrektur über alle jemals geprüften Finalisten; jeder Finalist wird nur einmal geprüft. Ergebnisse
+   der Schlussprüfung dürfen keine neue Generation steuern.
+6. **Sichern:** `.venv/bin/python -I forschung/fabrik/bericht.py`, Ergebnis ins Protokoll (Zählung, Durchsatz, was
+   bestanden hat und was nicht), Eintrag in `engine/experimente.json` (eine Generation zählt als ein Experiment),
+   `python3 -m forschung.engine.zusammenfassung`, committen und pushen.
+7. **Papier-Test:** nur für Kandidaten mit Status `validiert`, höchstens einer je Gruppe, nach den Bedingungen unten.
+8. Am Ende eine kurze Antwort: erzeugt, gerechnet, je Stufe bestanden, validiert, neue Papier-Tests.
+
+Höchstens zwei neue Generationen je Sitzung. Einzelne Handrechnungen nach dem alten Muster (`experimente/eNN_*.py`)
+bleiben erlaubt, wenn eine Idee nicht in den Baukasten passt; dann gelten Stufe 0 und 1 aus Abschnitt 4.
 
 ## Bedingungen für einen automatischen Papier-Test
 
 Alle müssen erfüllt und im Protokoll belegt sein:
-1. Stufe 0 und Stufe 1 aus `protokoll.md` Abschnitt 4 bestanden (Entwicklung und einmalige Validierung, netto mit
-   Rebate positiv, t ≥ 2 über beide Zeiträume, kein Tag über 20 % des Gewinns, keine Liquidation bei gewähltem Hebel).
+1. Fabrik: Status `validiert` nach Abschnitt 19 (alle fünf Stufen), höchstens ein Kandidat je Gruppe. Einzelexperiment:
+   Stufe 0 und Stufe 1 aus Abschnitt 4 bestanden. In beiden Fällen keine Liquidation über alle Starttage beim gewählten Hebel (höchstens 3).
 2. Benennbarer wirtschaftlicher Mechanismus; kein Blick in die Zukunft (Störungstest oder Paritätstest).
 3. Eine aktuelle Datenquelle ist erreichbar (derzeit: Binance-Archiv mit einem Tag Verzug; Yubit-Kurse live).
 4. Strategie als Datei unter `papier/strategien/` nur mit Standardbibliothek, mit Paritätstest gegen die Rückrechnung

@@ -53,6 +53,15 @@
   .meld { border-left: 3px solid var(--warn); padding: 6px 10px; background: var(--panel2); border-radius: 0 8px 8px 0; font-size: 13px; color: var(--warn); }
   .meld.bad { border-color: var(--bad); color: var(--bad); }
   .leer { padding: 14px; color: var(--muted); font-size: 13.5px; }
+  .suche { width: 100%; background: var(--panel); color: var(--fg); border: 1px solid var(--line); border-radius: 9px; padding: 9px 11px; font: inherit; }
+  .suche:focus-visible, .blatt button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .trichter { display: grid; gap: 6px; padding: 12px 13px; }
+  .trichter .st { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; font-size: 13px; }
+  .trichter .bal { grid-column: 1 / 3; height: 6px; border-radius: 3px; background: var(--panel2); overflow: hidden; }
+  .trichter .bal i { display: block; height: 100%; background: var(--accent); min-width: 2px; }
+  .blatt { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 8px 12px; font-size: 13px; color: var(--muted); }
+  .blatt button { all: unset; cursor: pointer; border: 1px solid var(--line); border-radius: 8px; padding: 5px 12px; color: var(--fg); }
+  .blatt button[disabled] { opacity: .35; cursor: default; }
 </style>
 <div class="seite">
   <header>
@@ -67,6 +76,18 @@
 
   <h2>Vergleich der Vorwärtstests</h2>
   <div class="kasten rollen"><table id="tab-live"></table></div>
+
+  <h2>Forschungsdurchsatz der Strategie-Fabrik</h2>
+  <p class="erkl">Wie viele Kandidaten erzeugt, tatsächlich gerechnet und auf jeder Stufe ausgesiebt wurden. Alles Rückrechnung.</p>
+  <div class="kv" id="durchsatz"><div><div class="n">Stand</div><div class="w">wird geladen …</div></div></div>
+  <div class="kasten trichter" id="trichter" hidden></div>
+  <div class="hinweis" id="zufall" hidden></div>
+
+  <h2>Kandidaten der Fabrik (Rückrechnung, kein laufender Test)</h2>
+  <p class="erkl">Die Auswahl nach der Robustheitsstufe. Netto je Trade in Basispunkten (bp), mit 85 % Rebate. Suche nach Signal, Filter, Ausstieg oder Kennung.</p>
+  <input class="suche" id="suche" type="search" placeholder="Suchen, z. B. tiefe, vol_hoch, top3" aria-label="Kandidaten durchsuchen">
+  <div class="chips" id="kchips"></div>
+  <div class="kasten"><div class="rollen"><table id="tab-kand"></table></div><div class="blatt"><button type="button" id="zurueck">zurück</button><span id="seite"></span><button type="button" id="weiter">weiter</button></div></div>
 
   <h2>Rückrechnungen (historisch, kein laufender Test)</h2>
   <p class="erkl">Hebel 1, feste Größe, gleiche Kostenannahmen. Rückrechnungen stehen nie in derselben Tabelle wie gemessene Tests.</p>
@@ -168,6 +189,38 @@ $('chips').addEventListener('click', (ev) => { const b = ev.target.closest('.chi
 $('liste').addEventListener('click', (ev) => { const b = ev.target.closest('.zeile > button'); if (!b) return; auf.has(b.dataset.id) ? auf.delete(b.dataset.id) : auf.add(b.dataset.id); zeigeRegister(); });
 zeigeRegister();
 
+// ---- Strategie-Fabrik: Durchsatz, Trichter, Kandidatenliste mit Suche, Filter und Blättern
+let ZAEHL = null, KAND = [], kfilter = 'alle', kseite = 0, ksuche = '';
+const KSTAT = {validiert: ['validiert', 'ok'], verworfen_4: ['Schlussprüfung nicht bestanden', 'bad'], final: ['Finalist', 'blau'], stufe3: ['robust, in Gruppe vertreten', '']};
+function zeigeFabrik() {
+  if (!ZAEHL) return;
+  const z = ZAEHL, kv = [['Erzeugte Kandidaten', zahl(z.erzeugt, 0)], ['Tatsächlich gerechnet', zahl(z.berechnet, 0)], ['Kandidaten je Minute', zahl(z.kandidaten_je_minute, 0)],
+    ['Rückrechnungen je Sekunde', zahl(z.rueckrechnungen_je_sekunde, 0)], ['Im Training mit Rebate positiv', zahl(z.training_netto_mit_rebate_positiv, 0)],
+    ['Im Training ohne Rebate positiv', zahl(z.training_netto_ohne_rebate_positiv, 0)], ['Validiert', zahl(z.validiert, 0)], ['Stand', esc(z.stand)]];
+  $('durchsatz').innerHTML = kv.map(([n, w]) => `<div><div class="n">${n}</div><div class="w">${w}</div></div>`).join('');
+  const st = [['erzeugt und gerechnet', z.berechnet], ['genug Trades (mindestens 200)', z.gueltig_mind_200_trades], ['Stufe 1: Vorteil vor Gebühr', z.stufe1_bestanden],
+    ['Stufe 2: nach vollen Kosten', z.stufe2_bestanden], ['Stufe 3: robust', z.stufe3_bestanden], ['Finalisten (eine je Gruppe)', z.finalisten], ['Stufe 4: Schlussprüfung bestanden', z.validiert]];
+  $('trichter').hidden = false;
+  $('trichter').innerHTML = st.map(([n, w]) => `<div class="st"><span>${n}</span><span class="w">${zahl(w, 0)}</span><div class="bal"><i style="width:${Math.max(0.3, Math.log10((w || 0) + 1) / Math.log10(z.berechnet + 1) * 100).toFixed(1)}%"></i></div></div>`).join('');
+  if (z.einordnung) { $('zufall').hidden = false; $('zufall').textContent = z.einordnung; }
+}
+function zeigeKandidaten() {
+  const q = ksuche.toLowerCase();
+  const treffer = KAND.filter((k) => (kfilter === 'alle' || k.status === kfilter) && (!q || [k.id, k.signal, k.f, k.x, k.m, k.familie, k.best].join(' ').toLowerCase().includes(q)));
+  const seiten = Math.max(1, Math.ceil(treffer.length / 20)); kseite = Math.min(kseite, seiten - 1);
+  $('kchips').innerHTML = [['alle', 'alle'], ...Object.entries(KSTAT).map(([k, v]) => [k, v[0]])].map(([w, n]) => `<button class="chip" type="button" data-f="${w}" aria-pressed="${kfilter === w}">${n} (${KAND.filter((k) => w === 'alle' || k.status === w).length})</button>`).join('');
+  $('tab-kand').innerHTML = '<tr><th>Kandidat</th><th>Status</th><th>Training</th><th>Auswahlprüfung</th><th>Schlussprüfung</th><th>ohne Rebate</th><th>Trades (Schluss)</th><th>Haltedauer</th><th>Markt</th></tr>' +
+    treffer.slice(kseite * 20, kseite * 20 + 20).map((k) => { const [s, f] = KSTAT[k.status] || [k.status, ''];
+      return `<tr><td><b>${esc(k.signal)}</b> ${k.r === 1 ? 'mit' : 'gegen'} · ${esc(k.f)} · ${esc(k.x)}${k.best ? ' · +' + esc(JSON.parse(k.best)[0]) : ''}<br><span class="ruhig">${esc(k.id)} · ${esc(k.familie)}</span></td><td><span class="pille ${f}">${esc(s)}</span></td><td>${vz(k.n85_t, 1, ' bp')}</td><td>${vz(k.n85_v, 1, ' bp')}</td><td>${vz(k.n85_v2, 1, ' bp')}</td><td>${vz(k.n0_v2, 1, ' bp')}</td><td>${zahl(k.n_v2, 0)}</td><td>${zahl(k.dauer_min, 0, ' min')}</td><td>${esc(k.m)}</td></tr>`; }).join('');
+  $('seite').textContent = treffer.length ? `Seite ${kseite + 1} von ${seiten} · ${treffer.length} Kandidaten` : 'keine Treffer';
+  $('zurueck').disabled = kseite === 0; $('weiter').disabled = kseite >= seiten - 1;
+}
+$('suche').addEventListener('input', (ev) => { ksuche = ev.target.value; kseite = 0; zeigeKandidaten(); });
+$('kchips').addEventListener('click', (ev) => { const b = ev.target.closest('.chip'); if (b) { kfilter = b.dataset.f; kseite = 0; zeigeKandidaten(); } });
+$('zurueck').addEventListener('click', () => { kseite = Math.max(0, kseite - 1); zeigeKandidaten(); });
+$('weiter').addEventListener('click', () => { kseite += 1; zeigeKandidaten(); });
+zeigeKandidaten();
+
 (async () => {                                   // gespeicherten Stand laden; die Seite funktioniert auch ohne
   const warte = setTimeout(() => { if (!TESTS.length) $('karten').innerHTML = '<div class="leer">Der gespeicherte Stand ist gerade nicht erreichbar. Die Rückrechnungen unten sind vollständig.</div>'; }, 10000);
   const db = window.claude && window.claude.use ? await window.claude.use('db') : null;
@@ -179,6 +232,8 @@ zeigeRegister();
     $('verb').textContent = 'Tests: ' + TESTS.length;
     zeigeTests();
   }, () => { clearTimeout(warte); $('karten').innerHTML = '<div class="leer">Der gespeicherte Stand konnte nicht geladen werden.</div>'; });
+  db.doc('fabrik/zaehlung').onSnapshot((d) => { if (d.exists) { ZAEHL = d.data(); zeigeFabrik(); } }, () => {});
+  db.doc('fabrik/auswahl').onSnapshot((d) => { if (d.exists) { KAND = d.data().kandidaten || []; zeigeKandidaten(); } }, () => {});
   db.doc('register/aktuell').onSnapshot((d) => { if (d.exists && d.data().eintraege) { R = d.data(); zeigeRegister(); } }, () => {});
 })();
 </script>

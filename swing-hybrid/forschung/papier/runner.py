@@ -115,75 +115,11 @@ def pruefsumme(cfg) -> str:
     return hashlib.sha256(quelle + json.dumps(cfg["parameter"], sort_keys=True).encode()).hexdigest()
 
 
-def lauf(test_id: str, heute=None, cache=None, schreiben=True, cfg=None, steuer=None) -> dict:
-    ordner = HIER / test_id
-    cfg = cfg or json.loads((ordner / "konfiguration.json").read_text())
-    steuer = steuer or (json.loads((ordner / "steuerung.json").read_text()) if (ordner / "steuerung.json").exists() else {"status": "laufend"})
-    cache = Path(cache) if cache else HIER / ".cache"
-    lauf_id = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime()) + "-" + os.urandom(3).hex()
-    basis = {"id": cfg["id"], "name": cfg["name"], "version": cfg["version"], "art": cfg["art"], "lauf_id": lauf_id,
-             "letzter_lauf": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "aktualisiert": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-             "takt_stunden": 24, "start": cfg["start"], "kapital": cfg["kapital_usd"],
-             "hebel": cfg["hebel"], "maerkte": cfg["coins"], "regel": cfg["regel"], "validierung": cfg["validierung"], "eingefroren": cfg["eingefroren"]}
-    if pruefsumme(cfg) != cfg["strategie_sha256"]:
-        return {**basis, "status": "Fehler", "fehler": ["Die eingefrorene Regel oder ihre Parameter wurden verändert. Der Test läuft erst weiter, wenn der Stand der Freigabe wiederhergestellt ist."]}
-    if steuer["status"] == "pausiert":
-        return {**basis, "status": "pausiert", "fehler": []}
-
-    strat = importlib.import_module(f"forschung.papier.strategien.{cfg['strategie']}")
-    p, start_ms = cfg["parameter"], ms(cfg["start"])
-    ende_ms = ms(steuer["ende"]) if steuer["status"] == "beendet" else None
-    heute = heute or dt.datetime.now(UTC).date()
-    erster = (dt.datetime.fromtimestamp(start_ms / 1000, UTC) - dt.timedelta(days=cfg["vorlauf_tage"])).date()
-    tage = [erster + dt.timedelta(days=i) for i in range((heute - erster).days)]          # bis einschließlich gestern
-    luecken, fehler, daten = [], [], {}
-    for coin in cfg["coins"]:
-        sym, kz, u = coin + "USDT", [], {}
-        for tag in tage:
-            k, t = kerzen_tag(sym, tag, cache), tiefe_tag(sym, tag, p["tiefe_pct"], cache)
-            if k is None or t is None:
-                break                                             # noch nicht veröffentlicht: hier endet der Datenstand
-            kz += k; u.update(t)
-        daten[coin] = (kz, u)
-    enden = [kz[-1][0] if kz else None for kz, _ in daten.values()]
-    daten_bis = None if None in enden else min(enden)             # gemeinsamer Datenstand aller Coins
-    fehlende = (heute - dt.timedelta(days=1) - (dt.datetime.fromtimestamp(daten_bis / 1000, UTC).date() if daten_bis else erster - dt.timedelta(days=1))).days
-    if fehlende > 3:
-        luecken.append(f"Archivdaten fehlen seit {fehlende} Tagen (letzter Stand {iso(daten_bis) if daten_bis else 'keiner'}).")
-
+def abrechnen(cfg, basis, steuer, trades, daten_bis, start_ms, luecken, fehler):
+    """Konto, Abbruch- und Liquidationsprüfung und das Dokument für die Übersicht aus einer Trade-Liste (für alle Strategiearten)."""
     groesse = cfg["kapital_usd"] * cfg["hebel"] / len(cfg["coins"])
     k = cfg["kosten"]
     gebuehr_bp = 2 * k["taker_bp"]
-    trades, fund_cache = [], {}
-    for coin, (kz, u) in daten.items():
-        kz = [x for x in kz if daten_bis is not None and x[0] <= daten_bis]
-        for a, b in zip(kz, kz[1:]):
-            if b[0] - a[0] != KERZE_MS:
-                luecken.append(f"{coin}: Kerzen fehlen zwischen {iso(a[0])} und {iso(b[0])}.")
-        if len(kz) < p["min_perioden"]:
-            continue
-        for t in strat.trades(kz, [u.get(x[0], float("nan")) for x in kz], p, start_ms):
-            if ende_ms is not None and t["ein"] >= ende_ms:
-                continue
-            offen = t["aus"] is None
-            bis = kz[-1][0] if offen else t["aus"]
-            fund, ausstehend = 0.0, False
-            for monat in {iso(t["ein"])[:7], iso(bis)[:7]}:
-                if (coin, monat) not in fund_cache:
-                    fund_cache[(coin, monat)] = funding_monat(coin + "USDT", monat, cache)
-                f = fund_cache[(coin, monat)]
-                if f is None:
-                    ausstehend = True
-                else:
-                    fund += sum(-t["richtung"] * r * 1e4 for z, r in f.items() if t["ein"] < z <= bis)
-            roh = t["richtung"] * (t["aus_kurs"] / t["ein_kurs"] - 1) * 1e4
-            slip = 2 * k["slippage_bp_je_order"][coin]
-            trades.append({"trade_id": f"{cfg['id']}|{coin}|{t['ein']}", "coin": coin, "ein": t["ein"], "aus": t["aus"], "richtung": t["richtung"],
-                           "ein_kurs": t["ein_kurs"], "aus_kurs": t["aus_kurs"], "z": t["z"], "offen": offen, "roh_bp": roh, "slip_bp": slip,
-                           "funding_bp": fund, "funding_ausstehend": ausstehend, "schlimmst_bp": t["schlimmst_bp"],
-                           "n85_bp": roh - slip + fund - gebuehr_bp * (1 - k["rebate"]), "n0_bp": roh - slip + fund - gebuehr_bp})
-    trades.sort(key=lambda t: (t["ein"], t["coin"]))
-
     # Konto: feste Größe je Coin. Liquidationsprüfung pessimistisch: gleichzeitige Trades alle zum ungünstigsten Kurs.
     risiko, status, ereignis = cfg["risiko"], "läuft", None
     kosten85 = gebuehr_bp * (1 - k["rebate"])
@@ -253,6 +189,83 @@ def lauf(test_id: str, heute=None, cache=None, schreiben=True, cfg=None, steuer=
                  "letzte_trades": [{"coin": t["coin"], "richtung": "Long" if t["richtung"] > 0 else "Short", "ein": iso(t["ein"]), "aus": iso(t["aus"]),
                                     "netto_bp": round(t["n85_bp"], 1), "usd": round(t["usd85"], 2)} for t in geschlossen[-cfg.get("anzahl_letzte_trades", 40):]][::-1],
                  "datenluecken": luecken[:20], "fehler": fehler, "positionsgroesse_usd": round(groesse, 2)}
+    return stand_doc, gebucht
+
+
+def lauf(test_id: str, heute=None, cache=None, schreiben=True, cfg=None, steuer=None) -> dict:
+    ordner = HIER / test_id
+    cfg = cfg or json.loads((ordner / "konfiguration.json").read_text())
+    steuer = steuer or (json.loads((ordner / "steuerung.json").read_text()) if (ordner / "steuerung.json").exists() else {"status": "laufend"})
+    cache = Path(cache) if cache else HIER / ".cache"
+    lauf_id = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime()) + "-" + os.urandom(3).hex()
+    basis = {"id": cfg["id"], "name": cfg["name"], "version": cfg["version"], "art": cfg["art"], "lauf_id": lauf_id,
+             "letzter_lauf": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "aktualisiert": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+             "takt_stunden": 24, "start": cfg["start"], "kapital": cfg["kapital_usd"],
+             "hebel": cfg["hebel"], "maerkte": cfg["coins"], "regel": cfg["regel"], "validierung": cfg["validierung"], "eingefroren": cfg["eingefroren"]}
+    if cfg["strategie"] == "fabrik":                               # Kandidat aus der Strategie-Fabrik: eigener, eingefrorener Code im Testordner
+        sys.path.insert(0, str(ordner / "code"))
+        import papier_fabrik
+        return papier_fabrik.lauf(ordner, cfg, steuer, basis, heute, cache, schreiben, sys.modules[__name__])
+    if pruefsumme(cfg) != cfg["strategie_sha256"]:
+        return {**basis, "status": "Fehler", "fehler": ["Die eingefrorene Regel oder ihre Parameter wurden verändert. Der Test läuft erst weiter, wenn der Stand der Freigabe wiederhergestellt ist."]}
+    if steuer["status"] == "pausiert":
+        return {**basis, "status": "pausiert", "fehler": []}
+
+    strat = importlib.import_module(f"forschung.papier.strategien.{cfg['strategie']}")
+    p, start_ms = cfg["parameter"], ms(cfg["start"])
+    ende_ms = ms(steuer["ende"]) if steuer["status"] == "beendet" else None
+    heute = heute or dt.datetime.now(UTC).date()
+    erster = (dt.datetime.fromtimestamp(start_ms / 1000, UTC) - dt.timedelta(days=cfg["vorlauf_tage"])).date()
+    tage = [erster + dt.timedelta(days=i) for i in range((heute - erster).days)]          # bis einschließlich gestern
+    luecken, fehler, daten = [], [], {}
+    for coin in cfg["coins"]:
+        sym, kz, u = coin + "USDT", [], {}
+        for tag in tage:
+            k, t = kerzen_tag(sym, tag, cache), tiefe_tag(sym, tag, p["tiefe_pct"], cache)
+            if k is None or t is None:
+                break                                             # noch nicht veröffentlicht: hier endet der Datenstand
+            kz += k; u.update(t)
+        daten[coin] = (kz, u)
+    enden = [kz[-1][0] if kz else None for kz, _ in daten.values()]
+    daten_bis = None if None in enden else min(enden)             # gemeinsamer Datenstand aller Coins
+    fehlende = (heute - dt.timedelta(days=1) - (dt.datetime.fromtimestamp(daten_bis / 1000, UTC).date() if daten_bis else erster - dt.timedelta(days=1))).days
+    if fehlende > 3:
+        luecken.append(f"Archivdaten fehlen seit {fehlende} Tagen (letzter Stand {iso(daten_bis) if daten_bis else 'keiner'}).")
+
+    groesse = cfg["kapital_usd"] * cfg["hebel"] / len(cfg["coins"])
+    k = cfg["kosten"]
+    gebuehr_bp = 2 * k["taker_bp"]
+    trades, fund_cache = [], {}
+    for coin, (kz, u) in daten.items():
+        kz = [x for x in kz if daten_bis is not None and x[0] <= daten_bis]
+        for a, b in zip(kz, kz[1:]):
+            if b[0] - a[0] != KERZE_MS:
+                luecken.append(f"{coin}: Kerzen fehlen zwischen {iso(a[0])} und {iso(b[0])}.")
+        if len(kz) < p["min_perioden"]:
+            continue
+        for t in strat.trades(kz, [u.get(x[0], float("nan")) for x in kz], p, start_ms):
+            if ende_ms is not None and t["ein"] >= ende_ms:
+                continue
+            offen = t["aus"] is None
+            bis = kz[-1][0] if offen else t["aus"]
+            fund, ausstehend = 0.0, False
+            for monat in {iso(t["ein"])[:7], iso(bis)[:7]}:
+                if (coin, monat) not in fund_cache:
+                    fund_cache[(coin, monat)] = funding_monat(coin + "USDT", monat, cache)
+                f = fund_cache[(coin, monat)]
+                if f is None:
+                    ausstehend = True
+                else:
+                    fund += sum(-t["richtung"] * r * 1e4 for z, r in f.items() if t["ein"] < z <= bis)
+            roh = t["richtung"] * (t["aus_kurs"] / t["ein_kurs"] - 1) * 1e4
+            slip = 2 * k["slippage_bp_je_order"][coin]
+            trades.append({"trade_id": f"{cfg['id']}|{coin}|{t['ein']}", "coin": coin, "ein": t["ein"], "aus": t["aus"], "richtung": t["richtung"],
+                           "ein_kurs": t["ein_kurs"], "aus_kurs": t["aus_kurs"], "z": t["z"], "offen": offen, "roh_bp": roh, "slip_bp": slip,
+                           "funding_bp": fund, "funding_ausstehend": ausstehend, "schlimmst_bp": t["schlimmst_bp"],
+                           "n85_bp": roh - slip + fund - gebuehr_bp * (1 - k["rebate"]), "n0_bp": roh - slip + fund - gebuehr_bp})
+    trades.sort(key=lambda t: (t["ein"], t["coin"]))
+
+    stand_doc, gebucht = abrechnen(cfg, basis, steuer, trades, daten_bis, start_ms, luecken, fehler)
     if schreiben:
         speichern(test_id, stand_doc, gebucht)
     return stand_doc
