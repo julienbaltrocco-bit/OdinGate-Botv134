@@ -620,3 +620,32 @@ Zufall ab.
 - **Einschränkung vorab:** Die Messreihe ist erst wenige Stunden alt und stammt von einem ruhigen Sonntag. Sie kann
   die Annahme für heftige Kerzen (über 100 bp Spanne) voraussichtlich noch nicht prüfen; berichtet wird, wie viele
   solche Kerzen überhaupt vorkommen. Keine Hürde, keine Auswahl.
+
+---
+
+## 22. Ergebnis E16 und Zusatzangabe zur Schlussprüfung (16.11.2026)
+
+**E16 Yubit-Kosten in bewegten Minuten.** 1.264 Messungen des Papier-Bots (15.11. 13:21 bis 16.11. 00:47 UTC, zehn
+Coins, Order über 1.500 $), bezogen auf die Spanne der letzten abgeschlossenen Yubit-5-Minuten-Kerze.
+- Kosten je Order nach Fünfteln der Kerzenspanne (Mittel 15 / 23 / 28 / 37 / 55 bp): 1,1 / 1,0 / 2,4 / 1,9 / 1,3 bp.
+  Die Kosten steigen mit der Spanne nicht erkennbar (Korrelation 0,05).
+- Im bewegtesten Fünftel betragen sie 2,4 % der Spanne. Die Annahme von 5 % wäre dort zu streng.
+- **Grenze der Aussage:** nur zwei Kerzen über 100 bp, größte 110 bp, ein ruhiger Sonntag. Für die heftigen Kerzen,
+  nach denen die Finalisten handeln, gibt es noch keine Messung. Die Reihe wächst täglich.
+
+**Zusatzangabe: Schlussprüfung mit der einfachen Slippage** (im zweiten Nachtrag als reine Zusatzangabe vorgesehen;
+ändert keinen Status; `fabrik/ergebnisse/schlusspruefung_einfache_slippage.json`).
+- 696 von 1.199 positiv; p unter 5 %: 123 bei 60 zufällig erwarteten.
+- Benjamini-Hochberg besteht **ein** Kandidat (`24332e4d3769`, Orderbuch-Tiefe 3 %, hohe Schwankung, stündlich
+  geprüft, Signal-Ausstieg, BTC/ETH/SOL; p = 0,00004). Die strengere Korrektur besteht auch er nicht.
+- Das negative Ergebnis der Schlussprüfung hängt also teilweise an der Kostenannahme für bewegte Märkte. Mit der
+  strengen Annahme (vorab als maßgeblich festgelegt) ist nichts validiert; mit der milden gäbe es einen Treffer und
+  doppelt so viele kleine p-Werte wie zufällig.
+
+**Entscheidung, offen als Abweichung von der eigenen Regel benannt.** Nach dem dritten Nachtrag gibt es Papier-Tests
+nur für Kandidaten, die die strenge Korrektur bestehen. Das tut keiner. Der Kandidat `24332e4d3769` ist aber in
+beiden Kostenmodellen der beste von 1.199, stammt aus der einzigen Familie mit wiederholten Hinweisen (E07 bis E13),
+und nur neue Daten können klären, ob etwas daran ist. Er wird deshalb als **Beobachtungstest** gestartet, mit dem
+Vermerk „nicht validiert“ im Namen, in der Übersicht und im Register. Das ist keine Validierung und kein Erfolg der
+Fabrik; es ist die Messung, die als einzige noch unabhängige Evidenz liefern kann. Weitere Beobachtungstests aus
+dieser Charge gibt es nicht.
