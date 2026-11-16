@@ -606,3 +606,17 @@ Zufall ab.
   bereits als Papier-Test OS-1.1.
 - Lehre für die nächsten Zyklen: Mehr Kandidaten machen die Suche nicht besser, sondern die Schlussprüfung
   schwerer. Neue Generationen sollen klein sein und neue Information bringen (siehe `engine/hypothesen.json`, H15 bis H17).
+
+---
+
+## 21. Festlegung E16 (vor der Rechnung): Yubit-Kosten in bewegten Minuten (H15)
+
+- **Frage:** Wie hängen die tatsächlich gemessenen Yubit-Kosten einer Order von der Bewegung der letzten 5-Minuten-Kerze
+  ab? Trägt die Annahme „5 % der Kerzenspanne je Order“, ist sie zu streng oder zu milde?
+- **Daten:** Messungen des bestehenden Papier-Bots (Test 1, nur gelesen): je Lauf und Coin die Kosten für einen Kauf
+  und einen Verkauf über 1.500 $ gegen die Mitte des Orderbuchs. Dazu Yubit-5-Minuten-Kerzen derselben Zeit.
+- **Auswertung:** je Messung die Spanne (Hoch minus Tief) der letzten abgeschlossenen Yubit-Kerze; Kosten je Order
+  nach Fünfteln dieser Spanne; Anteil der Messungen, in denen die Kosten über 5 % der Spanne liegen.
+- **Einschränkung vorab:** Die Messreihe ist erst wenige Stunden alt und stammt von einem ruhigen Sonntag. Sie kann
+  die Annahme für heftige Kerzen (über 100 bp Spanne) voraussichtlich noch nicht prüfen; berichtet wird, wie viele
+  solche Kerzen überhaupt vorkommen. Keine Hürde, keine Auswahl.
