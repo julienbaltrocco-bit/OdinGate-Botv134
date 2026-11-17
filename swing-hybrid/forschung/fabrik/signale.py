@@ -43,6 +43,8 @@ SIGNALE = (
     + [(f"tagzeitrel_{L}_28", "Saisonalität", L, "k") for L in (3, 12)]
     # Generation 4 (16.11.2026, H16): Orderbuch-Tiefe 1 % aus dem letzten 30-Sekunden-Schnappschuss der Kerze statt aus dem Kerzenmittel
     + [("tiefe_letzt_1", "Mikrostruktur", 288, "t"), ("tiefe_frisch_1", "Mikrostruktur", 1, "t")]
+    # Generation 5 (17.11.2026, H11): Ausbruch aus der Spanne der ersten Stunde einer Handelssitzung (Beginn 00:00, 08:00, 13:30 UTC)
+    + [(f"sitzung_{n}", "Sitzung", 12, "k") for n in ("asien", "europa", "usa", "alle")]
 )
 NAMEN = [s[0] for s in SIGNALE]
 FILTER = ["kein", "trend_mit", "trend_gegen", "vol_hoch", "vol_niedrig", "asien", "europa", "usa", "btc_auf", "btc_ab"]
@@ -144,6 +146,21 @@ def _roh(j: int) -> dict:
     ul, um = (bl - al) / (bl + al), (bm - am) / (bm + am)
     out["tiefe_letzt_1"] = (ul - ul.rolling(W1, min_periods=200).mean()) / ul.rolling(W1, min_periods=200).std()
     out["tiefe_frisch_1"] = ul - um                                                                 # jüngste Verschiebung innerhalb der Kerze
+    # Sitzungs-Eröffnungsspanne (Generation 5): Hoch und Tief der ersten 12 Kerzen nach Sitzungsbeginn; in den folgenden drei Stunden
+    # zählt, wie weit der Schlusskurs darüber (positiv) oder darunter (negativ) liegt. Außerhalb dieses Fensters 0.
+    hm, lm = h.rolling(12).max().to_numpy(), l.rolling(12).min().to_numpy()
+    pos, cv, sv = np.arange(len(c)), c.to_numpy(), (c * s1 * np.sqrt(12)).to_numpy()
+    summe = np.zeros(len(c))
+    for name, beginn in (("asien", 0), ("europa", 96), ("usa", 162)):
+        k = (pos - beginn) % W1                                          # Kerzen seit Sitzungsbeginn (das Raster beginnt um 00:00 UTC)
+        ende1 = pos - k + 11                                             # letzte Kerze der ersten Stunde, liegt im Fenster immer vor der aktuellen
+        aktiv = (k >= 12) & (k < 48) & (ende1 >= 11)
+        q = np.where(aktiv, ende1, 0)
+        w = np.where(aktiv, (np.clip(cv - hm[q], 0, None) - np.clip(lm[q] - cv, 0, None)) / sv, 0.0)
+        w = np.where(aktiv & ~np.isfinite(w), np.nan, w)
+        out[f"sitzung_{name}"] = pd.Series(w)
+        summe = summe + w
+    out["sitzung_alle"] = pd.Series(summe)                               # die drei Fenster überschneiden sich nicht
     return out
 
 

@@ -1021,3 +1021,29 @@ mitten in einem Lauf, Konflikt beim Sichern, Notbremse, nicht erreichbares Repos
 geplante Aufgabe „Vorwärtstest-Bot stündlich“ wieder einschalten. Der Server wartet dann von selbst.
 **Nicht mehr aktualisiert:** die ältere private Seite „Vorwärtstest Trend-Strategie“ (sie wurde von der Claude-Sitzung
 beschrieben). Das Trading Board liest weiter aus dem Bot-Zweig und ist nicht betroffen.
+
+---
+
+## 34. Zyklus vom 17.11.2026: Stand der Kostenmessung und Festlegung Generation 5 (vor der Rechnung)
+
+**Kostenmessung (H15, nur Stand):** `e16_yubit_kosten_bewegung.py` erneut gelaufen. 4.044 Messungen (15.11. 13:21 bis
+17.11. 01:39 UTC), davon **31 mit Kerzenspanne über 100 bp** (größte 184 bp), 461 über 50 bp. Die Schwelle von 200
+Messpunkten über 100 bp ist nicht erreicht; kein neues Experiment, die Ergebnisdatei von E16 bleibt unverändert.
+
+**Generation 5: Ausbruch aus der Eröffnungsspanne der Handelssitzungen (H11).**
+- **Mechanismus:** Zu Sitzungsbeginn kommen neue Teilnehmer und neue Information in den Markt. Die Spanne der ersten
+  Stunde gilt als Orientierung; ein Schlusskurs außerhalb zeigt, dass eine Seite sich durchgesetzt hat (Fortsetzung),
+  oder er lockt Nachzügler in eine Bewegung, die zurückläuft (Gegenrichtung). Die bisherigen Ausbruch-Signale der
+  Fabrik nutzen gleitende Fenster ohne Bezug zur Uhrzeit; der Sitzungsbezug ist neu.
+- **Neue Signale (vier, Familie „Sitzung“):** Sitzungsbeginn 00:00 (Asien), 08:00 (Europa) und 13:30 UTC (USA: Börsenbeginn
+  in der Sommerzeit, Zeitpunkt der US-Konjunkturdaten in der Winterzeit). Spanne = Hoch und Tief der ersten 60 Minuten.
+  In den folgenden drei Stunden misst das Signal, wie weit der Schlusskurs über (positiv) oder unter (negativ) der Spanne
+  liegt, bezogen auf die Schwankung; sonst ist es null. `sitzung_asien`, `sitzung_europa`, `sitzung_usa` und
+  `sitzung_alle` (alle drei zusammen). Störungstest grün.
+- **Kandidaten (216):** 4 Signale × Schwellen 1,5 / 2,5 / 3,5 × mit oder gegen den Ausbruch × kein Filter × alle
+  5 Minuten geprüft × Ausstiege (60 Minuten, 240 Minuten, 240 Minuten mit Stop 1,5 und Ziel 3) × 3 Märkte.
+  Aufgabenliste: `fabrik/ergebnisse/aufgaben_gen5.json`.
+- **Prüfung:** unverändert nach Abschnitt 19 samt Nachträgen. Neue Finalisten gehen einmal in die Schlussprüfung;
+  die Korrektur rechnet über alle bisherigen und neuen Finalisten.
+- **Erwartung vorab:** Ausbrüche über gleitende Fenster sind in Generation 1 überwiegend an den Kosten gescheitert;
+  wahrscheinlich gilt das auch hier. Kein Nachbessern mit anderen Uhrzeiten, Filtern oder Haltedauern.
