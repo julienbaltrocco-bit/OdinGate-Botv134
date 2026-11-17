@@ -244,5 +244,19 @@
   "dateien": [
    "forschung/protokoll.md"
   ]
+ },
+ {
+  "nr": 21,
+  "id": "E21",
+  "runde": 2,
+  "datum": "2026-11-17",
+  "titel": "Strategie-Fabrik, Generation 5: Ausbruch aus der Eröffnungsspanne der Handelssitzungen (H11), 216 Kandidaten",
+  "einstufung": "A",
+  "kurz": "6 mit Vorteil vor Gebühr (alle: mit dem Ausbruch, BTC/ETH/SOL, 4 Stunden, überwiegend US-Sitzung), 1 besteht die Kostenstufe und scheitert an der Auswahlprüfung (t 0,8 statt 1); keine Finalisten",
+  "dateien": [
+   "forschung/fabrik/ergebnisse/kandidaten_gen5.parquet",
+   "forschung/fabrik/ergebnisse/aufgaben_gen5.json",
+   "forschung/fabrik/ergebnisse/zaehlung.json"
+  ]
  }
 ]

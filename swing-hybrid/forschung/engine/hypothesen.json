@@ -41,7 +41,8 @@
   "mechanismus": "Neue Information zu Sitzungsbeginn; Ausbrüche in Runde 11 nur in Trendrichtung getestet.",
   "daten": "vorhanden",
   "aufwand": "gering",
-  "status": "offen"
+  "status": "verworfen",
+  "ergebnis": "E21 (Generation 5, 17.11.2026): 216 Kandidaten, keiner robust. US-Ausbruch auf BTC/ETH/SOL knapp unter der Hürde der Auswahlprüfung, mit Zufall vereinbar."
  },
  {
   "id": "H12",
@@ -75,7 +76,8 @@
   "daten": "Spannen-Messungen des bestehenden Papier-Bots (alle fünf Minuten, zehn Coins), nach Schwankung ausgewertet",
   "aufwand": "gering",
   "status": "offen",
-  "hinweis": "Liefert die Grundlage für das Kostenmodell; ersetzt die Annahme von 5 % der Kerzenspanne."
+  "hinweis": "Liefert die Grundlage für das Kostenmodell; ersetzt die Annahme von 5 % der Kerzenspanne.",
+  "ergebnis": "Stand 17.11.2026: 4.044 Messungen, 31 mit Kerzenspanne über 100 bp (nötig 200)."
  },
  {
   "id": "H16",

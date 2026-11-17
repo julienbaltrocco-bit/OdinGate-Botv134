@@ -1047,3 +1047,36 @@ Messpunkten über 100 bp ist nicht erreicht; kein neues Experiment, die Ergebnis
   die Korrektur rechnet über alle bisherigen und neuen Finalisten.
 - **Erwartung vorab:** Ausbrüche über gleitende Fenster sind in Generation 1 überwiegend an den Kosten gescheitert;
   wahrscheinlich gilt das auch hier. Kein Nachbessern mit anderen Uhrzeiten, Filtern oder Haltedauern.
+
+---
+
+## 35. Ergebnis Generation 5: Eröffnungsspanne der Handelssitzungen (17.11.2026)
+
+**Gerechnet:** 216 Kandidaten (24 Einstiegsregeln × 3 Ausstiege × 3 Märkte), zwei Sekunden Rechenzeit.
+
+| Stufe | übrig | verworfen |
+|---|---|---|
+| erzeugt und gerechnet | 216 | |
+| mindestens 200 Trades im Training | 216 | 0 |
+| Stufe 1: Vorteil vor Gebühr (t ≥ 2) | 6 | 210 |
+| Stufe 2: nach vollen Kosten | 1 | 5 (netto nicht gesichert) |
+| Stufe 3: robust | **0** | 1 (Auswahlprüfung nicht positiv genug) |
+
+- 40 von 216 Kandidaten sind im Training vor Gebühr positiv; Median −6,3 bp je Trade im Training, −5,2 bp in der
+  Auswahlprüfung. Asien und Europa verlieren in beiden Richtungen.
+- Einzige Spur: Ausbruch nach oben oder unten aus der Spanne nach 13:30 UTC, **mit** dem Ausbruch, BTC/ETH/SOL, vier
+  Stunden gehalten. Alle sechs Kandidaten der Stufe 1 gehören dazu (fünf davon US-Sitzung). Der beste
+  (`adb192d9fb23`, Schwelle 3,5) hat im Training +21,5 bp je Trade mit Rebate (t = 2,1), in der Auswahlprüfung +9,3 bp
+  bei t = 0,8; verlangt ist t ≥ 1. Die zweite Hälfte des Trainings ist schon deutlich schwächer als die erste
+  (+12,5 gegen +29,8 bp). Auf den sieben Altcoins und mit allen zehn Coins zeigt sich nichts.
+- Sechs Treffer in Stufe 1 bei 216 Kandidaten sind 2,8 %; rein zufällig wären 0,5 bis 2,8 % zu erwarten.
+- **Einstufung A (verworfen).** Keine neuen Finalisten, keine Schlussprüfung, kein Papier-Test. Kein Kandidat scheitert
+  allein an der Mindestzahl von 200 Trades.
+- **Was dagegen sprechen könnte:** Der US-Ausbruch ist in Training und Auswahlprüfung positiv und verfehlt die Hürde
+  der Auswahlprüfung nur knapp. Als Einzelfall unter 216 ist das mit Zufall vereinbar; die Hürde bleibt, und weitere
+  Uhrzeiten oder Haltedauern werden nicht nachgeschoben (so festgelegt).
+
+**Zum Ablauf:** `trichter.py stufe3` hat mit einem Kandidaten aus Stufe 2, aber ohne neuen Finalisten, die Kopfzeilen
+und Gruppengrößen in `finalisten.json` überschrieben (Finalisten und Tagesreihen selbst gleich). Beide Dateien wurden
+auf den gesicherten Stand zurückgesetzt; siehe `engine/offene_fragen.md`. Stand der Fabrik: 523.272 Kandidaten,
+1.199 Finalisten, 0 validiert.

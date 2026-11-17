@@ -28,3 +28,13 @@ keine Entscheidung des Auftraggebers.
    bestimmt, sonst wären Generationen untereinander nicht vergleichbar. Die Messreihe (E16) dient dazu, die Annahme
    zu prüfen; eine Änderung wäre eine eigene, vorab festgelegte Entscheidung.
 3. **Arbeitsumgebung: Anleitung in `AUFTRAG.md` ergänzt** (`pyyaml`, Positionierungsdaten, Tiefe für alle zehn Coins).
+
+## 17.11.2026 (Zyklus mit Generation 5)
+
+1. **`trichter.py stufe3` ohne neue Finalisten.** Erreicht ein Kandidat Stufe 2, scheitert aber in Stufe 3, schreibt das
+   Programm `finalisten.json` trotzdem neu: Kopfzeilen (Zahl aus Stufe 2, Gründe, „robust“) zeigen dann nur die neue
+   Generation, und die Gruppengrößen der 1.199 früheren Finalisten stehen alle auf 1. Finalisten und Tagesreihen sind
+   gleich. In diesem Zyklus von Hand auf den gesicherten Stand zurückgesetzt. Vorschlag: Datei nur schreiben, wenn es
+   neue Finalisten gibt, oder die alten Angaben fortführen. (Technischer Ablauf, keine Strategie-Entscheidung.)
+2. **Kostenmessung:** 31 von 200 nötigen Messpunkten über 100 bp nach zwei Tagen. Bei diesem Tempo dauert es rund zwei
+   Wochen; ein bewegter Markttag kann das stark verkürzen.

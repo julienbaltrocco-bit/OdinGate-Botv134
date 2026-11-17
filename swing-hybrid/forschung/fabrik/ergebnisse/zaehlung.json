@@ -1,29 +1,30 @@
 {
- "stand": "2026-11-16 03:25 UTC",
- "erzeugt": 523056,
- "eindeutig": 523056,
- "berechnet": 523056,
- "gueltig_mind_200_trades": 419846,
+ "stand": "2026-11-17 01:46 UTC",
+ "erzeugt": 523272,
+ "eindeutig": 523272,
+ "berechnet": 523272,
+ "gueltig_mind_200_trades": 420062,
  "nach_status": {
-  "Stufe 1: kein Brutto-Vorteil": 401454,
+  "Stufe 1: kein Brutto-Vorteil": 401664,
   "zu wenige Trades": 103210,
-  "Stufe 2: Kosten": 7536,
-  "Stufe 3: nicht robust": 7194,
+  "Stufe 2: Kosten": 7541,
+  "Stufe 3: nicht robust": 7195,
   "Stufe 3 bestanden (in einer Gruppe vertreten)": 2463,
   "Schlussprüfung nicht bestanden": 1199
  },
- "stufe1_bestanden": 18392,
- "stufe2_bestanden": 10856,
+ "stufe1_bestanden": 18398,
+ "stufe2_bestanden": 10857,
  "stufe3_bestanden": 3662,
  "finalisten": 1199,
  "validiert": 0,
- "training_netto_mit_rebate_positiv": 103943,
- "training_netto_ohne_rebate_positiv": 29342,
- "training_und_v1_mit_rebate_positiv": 49775,
+ "training_netto_mit_rebate_positiv": 103970,
+ "training_netto_ohne_rebate_positiv": 29345,
+ "training_und_v1_mit_rebate_positiv": 49781,
  "archiv": [
   "kandidaten.parquet",
   "kandidaten_gen3.parquet",
-  "kandidaten_gen4.parquet"
+  "kandidaten_gen4.parquet",
+  "kandidaten_gen5.parquet"
  ],
  "laeufe": [
   {
@@ -65,10 +66,20 @@
    "sekunden": 1.4,
    "kandidaten_je_minute": 12072.0,
    "kerne": 4.0
+  },
+  {
+   "gen": "gen5",
+   "begonnen": "2026-11-17T01:46:31Z",
+   "beendet": "2026-11-17T01:46:33Z",
+   "aufgaben": 24.0,
+   "kandidaten": 216,
+   "sekunden": 1.9,
+   "kandidaten_je_minute": 6751.0,
+   "kerne": 4.0
   }
  ],
- "kandidaten_je_minute": 63465.0,
- "rueckrechnungen_je_sekunde": 3526.0,
+ "kandidaten_je_minute": 63248.0,
+ "rueckrechnungen_je_sekunde": 3514.0,
  "rechenkerne": 4,
  "zeitraeume": {
   "training": "15.08.2021–30.06.2023 (Tiefe-Signale: 2023)",
@@ -119,6 +130,13 @@
    "stufe3": 0,
    "validiert": 0
   },
+  "Sitzung": {
+   "gueltig": 216,
+   "stufe1": 6,
+   "stufe2": 1,
+   "stufe3": 0,
+   "validiert": 0
+  },
   "Volatilität": {
    "gueltig": 26902,
    "stufe1": 613,
@@ -128,9 +146,9 @@
   }
  },
  "gruende": {
-  "kein Brutto-Vorteil": 401454,
-  "netto nicht gesichert": 7010,
-  "V1 nicht positiv genug": 6102,
+  "kein Brutto-Vorteil": 401664,
+  "netto nicht gesichert": 7015,
+  "V1 nicht positiv genug": 6103,
   "Schlussprüfung": 1199,
   "eine Kerze Verzögerung": 784,
   "eine Hälfte negativ": 508,
