@@ -61,7 +61,7 @@ einem kleinen Server (cron). Dafür fehlen zwei Entscheidungen des Auftraggebers
 |---|---|---|---|
 | Test 1 und Test 2 (Papier-Bot) | Server des Auftraggebers, Dienst `odingate-bot` (Zeitplan `odingate-bot.timer`) | alle 5 Minuten | nein |
 | Beobachtung „Gegen Kaufdruck“, live (`L-dc1d27a3`) | Server des Auftraggebers, Dienst `odingate-live` | alle 5 Minuten | nein |
-| OS-1.1, `B-24332e4d`, `B-dc1d27a3` (Schattentests aus Archivdaten) | Claude, geplante Aufgabe „OdinGate Papier-Lauf mit Board“ | täglich 09:17 UTC | ja, wenig |
+| OS-1.1, `B-24332e4d`, `B-dc1d27a3` (Schattentests aus Archivdaten) | Claude, geplante Aufgabe „OdinGate Papier-Lauf mit Board“ | täglich 11:17 UTC (seit 17.11.; Binance veröffentlicht die Archivdateien des Vortags zwischen etwa 07:30 und 10:05 UTC) | ja, wenig |
 | Forschungszyklus | Claude, geplante Aufgabe „OdinGate Forschungszyklus“ | täglich 01:43 UTC | ja |
 
 **Auf dem Server** (alles unter `/opt/odingate`, je ein begrenzter Docker-Container, keine Handelsschlüssel, keine Orders):

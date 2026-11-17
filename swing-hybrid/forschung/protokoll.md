@@ -1080,3 +1080,23 @@ Messpunkten über 100 bp ist nicht erreicht; kein neues Experiment, die Ergebnis
 und Gruppengrößen in `finalisten.json` überschrieben (Finalisten und Tagesreihen selbst gleich). Beide Dateien wurden
 auf den gesicherten Stand zurückgesetzt; siehe `engine/offene_fragen.md`. Stand der Fabrik: 523.272 Kandidaten,
 1.199 Finalisten, 0 validiert.
+
+---
+
+## 34. Nachkontrolle am 17.11.2026 (Hauptsitzung)
+
+- **Bot für Test 1 und 2 auf dem Server:** seit der Übergabe (16.11. 18:19 UTC) 190 vollständige Läufe bis 10:04 UTC,
+  größter Abstand 5,1 Minuten, keine Lücke; nur der Server schreibt in den Bot-Zweig.
+- **Live-Test `L-dc1d27a3`:** Status „läuft“ seit 17.11. 00:00 UTC, Daten in Echtzeit, keine Fehler oder Datenlücken,
+  noch kein Signal. Erste tägliche Kontrolle gegen die Archivdaten um 09:40 UTC ohne Abweichung (noch ohne Trades).
+- **Täglicher Papier-Lauf:** lief um 09:17 UTC fehlerfrei, kam aber vor den Binance-Archivdateien des Vortags
+  (Kerzen am 17.11. erst um 10:03 UTC veröffentlicht, am 16.11. um 07:35 UTC). Der Lauf ist deshalb auf 11:17 UTC
+  verlegt. Es geht nichts verloren: Jeder Lauf rechnet vollständig neu.
+- **Versehen der Hauptsitzung:** Ein von Hand ausgelöster Zusatzlauf startete eine neue Sitzung ohne Repository statt
+  der vorgesehenen. Nach 15 Sekunden angehalten und archiviert; sie hat nichts geschrieben. Geplante Läufe sind davon
+  nicht betroffen. Zusatzläufe werden künftig nicht mehr auf diesem Weg ausgelöst.
+- **Nachtlauf (Generation 5, Eröffnungsspanne der Handelssitzungen, H11):** vor der Rechnung festgelegt, 216
+  Kandidaten, keiner Finalist. Unabhängig nachgerechnet: gleiche Kennungen, Kennzahlen bis auf Rundung gleich, der
+  eine Kandidat aus Stufe 2 scheitert an der Auswahlprüfung (t = 0,80 statt 1). Grenzen eingehalten; Papier-Tests,
+  Live-Dienst und das eingefrorene Archiv unberührt. Die gemeldete Schwäche in `trichter.py stufe3` ist behoben
+  (siehe `engine/offene_fragen.md`).

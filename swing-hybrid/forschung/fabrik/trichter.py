@@ -278,7 +278,8 @@ def stufe3():
     reihen, final, gruppen = [], [], []
     frueher = json.loads((ERG / "schlusspruefung.json").read_text())["ergebnisse"] if (ERG / "schlusspruefung.json").exists() else []
     archiv = np.load(ERG / "finalisten_reihen.npz") if (ERG / "finalisten_reihen.npz").exists() else None
-    alt_fin = {f["id"]: f for f in json.loads((ERG / "finalisten.json").read_text())["finalisten"]} if (ERG / "finalisten.json").exists() else {}
+    alt_datei = json.loads((ERG / "finalisten.json").read_text()) if (ERG / "finalisten.json").exists() else {}
+    alt_fin = {f["id"]: f for f in alt_datei.get("finalisten", [])}
     for e in frueher:                                              # schon geprüfte Finalisten: neue, gleichlaufende Kandidaten schließen sich ihnen an
         if archiv is not None and e["id"] in archiv.files and e["id"] in alt_fin:   # Tagesreihen liegen im Repository, auch ohne lokale Datenbank
             reihen.append(archiv[e["id"]].astype(np.float64)); final.append(alt_fin[e["id"]]); gruppen.append([e["id"]])
@@ -301,9 +302,19 @@ def stufe3():
             con.execute("UPDATE kandidaten SET status = 'stufe3', grund = ? WHERE id = ? AND gen = ?", (f"Gruppe {treffer + 1}, vertreten durch {final[treffer]['id']}", z["id"], z["gen"]))
     con.commit()
     ERG.mkdir(parents=True, exist_ok=True)
-    (ERG / "finalisten.json").write_text(json.dumps({"eingefroren": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "datenbank": str(L.DB), "stufe2": len(kand), "verworfen": grund_zahl,
-        "robust": len(weiter), "gruppen": len(final), "davon_frueher_geprueft": n_frueher,
-        "finalisten": [dict(z) | {"gruppengroesse": len(g)} for z, g in zip(final, gruppen)]}, ensure_ascii=False, indent=1))
+    neue_mitglieder = sum(len(g) - 1 for g in gruppen[:n_frueher])        # neue Kandidaten, die sich einem früheren Finalisten anschließen
+    if alt_datei and len(final) == n_frueher and neue_mitglieder == 0:      # nichts Neues: die eingefrorene Liste bleibt, wie sie ist
+        print("Keine neuen Finalisten und keine neuen Gruppenmitglieder: finalisten.json und finalisten_reihen.npz bleiben unverändert.", flush=True)
+        return
+    # Frühere Finalisten behalten ihre Gruppengröße (plus neue Mitglieder); die Kopfzahlen laufen über alle Chargen weiter
+    groesse = [(z.get("gruppengroesse", 1) + len(g) - 1) if i < n_frueher else len(g) for i, (z, g) in enumerate(zip(final, gruppen))]
+    verworfen = dict(alt_datei.get("verworfen", {}))
+    for g, n in grund_zahl.items():
+        verworfen[g] = verworfen.get(g, 0) + n
+    (ERG / "finalisten.json").write_text(json.dumps({"eingefroren": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "datenbank": str(L.DB),
+        "stufe2": alt_datei.get("stufe2", 0) + len(kand), "verworfen": verworfen, "robust": alt_datei.get("robust", 0) + len(weiter), "gruppen": len(final), "davon_frueher_geprueft": n_frueher,
+        "letzte_charge": {"stufe2": len(kand), "verworfen": grund_zahl, "robust": len(weiter), "neue_finalisten": len(final) - n_frueher, "neue_gruppenmitglieder": neue_mitglieder},
+        "finalisten": [dict(z) | {"gruppengroesse": n} for z, n in zip(final, groesse)]}, ensure_ascii=False, indent=1))
     np.savez_compressed(ERG / "finalisten_reihen.npz", **{z["id"]: r.astype(np.float32) for z, r in zip(final, reihen)})   # für spätere Zyklen in frischen Sitzungen
     print("Finalisten (Gruppen):", len(final), "| davon schon früher geprüft:", n_frueher, flush=True)
     for z, g in list(zip(final, gruppen))[:40]:

@@ -38,3 +38,12 @@ keine Entscheidung des Auftraggebers.
    neue Finalisten gibt, oder die alten Angaben fortführen. (Technischer Ablauf, keine Strategie-Entscheidung.)
 2. **Kostenmessung:** 31 von 200 nötigen Messpunkten über 100 bp nach zwei Tagen. Bei diesem Tempo dauert es rund zwei
    Wochen; ein bewegter Markttag kann das stark verkürzen.
+
+### Antworten (17.11.2026, Hauptsitzung, nach der Nachkontrolle)
+
+1. **`trichter.py stufe3`: im Programm gelöst.** Gibt es weder neue Finalisten noch neue Gruppenmitglieder, bleiben
+   `finalisten.json` und `finalisten_reihen.npz` unverändert. Kommen welche dazu, behalten die früheren Finalisten ihre
+   Gruppengröße, und die Kopfzahlen laufen über alle Chargen weiter (die Angaben nur zur letzten Charge stehen unter
+   `letzte_charge`). Geprüft mit der nachgerechneten Generation 5: ein Kandidat aus Stufe 2, in Stufe 3 verworfen,
+   Dateien unverändert.
+2. **Kostenmessung:** zur Kenntnis; weiter nur die Zahl der Messpunkte notieren, bis 200 über 100 bp vorliegen.
