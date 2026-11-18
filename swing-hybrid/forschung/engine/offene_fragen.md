@@ -47,3 +47,11 @@ keine Entscheidung des Auftraggebers.
    `letzte_charge`). Geprüft mit der nachgerechneten Generation 5: ein Kandidat aus Stufe 2, in Stufe 3 verworfen,
    Dateien unverändert.
 2. **Kostenmessung:** zur Kenntnis; weiter nur die Zahl der Messpunkte notieren, bis 200 über 100 bp vorliegen.
+
+## 18.11.2026 (Zyklus ohne neue Generation)
+
+1. **Minuten-Simulator (Rest von H07):** Plan und Tests stehen im Protokoll, Abschnitt 36. Der nächste Zyklus beginnt mit
+   dem Bau, wenn hier nichts anderes steht. Frage: Ist der Aufwand (rund zwei Sitzungen, Erfolg unsicher) gewünscht, oder
+   soll die Forschung warten, bis die Kostenmessung (62 von 200 Messpunkten über 100 bp) oder die Papier-Tests Neues liefern?
+2. **Protokoll:** Die Abschnittsnummer 34 ist doppelt vergeben (Festlegung Generation 5 und Nachkontrolle vom 17.11.).
+   Nicht geändert, weil andere Unterlagen auf die Nummern verweisen können; dieser Zyklus zählt mit 36 weiter.

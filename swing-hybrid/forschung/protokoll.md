@@ -1100,3 +1100,40 @@ auf den gesicherten Stand zurückgesetzt; siehe `engine/offene_fragen.md`. Stand
   eine Kandidat aus Stufe 2 scheitert an der Auswahlprüfung (t = 0,80 statt 1). Grenzen eingehalten; Papier-Tests,
   Live-Dienst und das eingefrorene Archiv unberührt. Die gemeldete Schwäche in `trichter.py stufe3` ist behoben
   (siehe `engine/offene_fragen.md`).
+
+---
+
+## 36. Zyklus vom 18.11.2026: Stand der Kostenmessung, keine neue Generation, Plan für den Minuten-Simulator
+
+**Kostenmessung (H15, nur Stand):** 6.924 Messungen (15.11. 13:21 bis 18.11. 01:39 UTC), davon **62 mit Kerzenspanne über
+100 bp** (größte 184 bp), 763 über 50 bp. Die Schwelle von 200 ist nicht erreicht; kein neues Experiment, die
+Ergebnisdatei von E16 bleibt unverändert.
+
+**Keine neue Generation in diesem Zyklus.** Die im Auftrag genannte kleine Generation (H11) ist gerechnet und verworfen.
+Von den offenen Hypothesen passt keine als kleine Generation mit neuer Information in den Baukasten: H08 (Kaufdruck als
+Bestätigung) war Teil der Generation 2; H09 braucht unberührte Daten und läuft der Sache nach als Papier-Test; H12 hat zu
+wenige Trades; H13 braucht Einzeltrade-Daten (rund 0,8 GB je Coin-Monat); H14 braucht die Freigabe des Auftraggebers.
+Eine Generation nur aus weiteren Einstellungen würde die Hürde für alle späteren Prüfungen erhöhen, ohne etwas zu lernen.
+
+**Plan: Einstieg innerhalb der Kerze (Rest von H07), noch nichts gebaut und nichts gerechnet.**
+- **Frage:** Verdient ein Signal mehr, wenn es jede Minute geprüft und zur nächsten Minute gehandelt wird, statt erst
+  am Schluss der 5-Minuten-Kerze? Betroffen sind nur Signale, die es minütlich gibt: Kaufdruck (Minutenkerzen mit
+  Kauf-Marktorders, vorhanden) und Orderbuch-Tiefe (30-Sekunden-Schnappschüsse; dafür müssten die Tagesdateien neu
+  geladen und je Minute statt je fünf Minuten verdichtet werden, rund 8.200 Dateien).
+- **Baustein 1, Simulator `fabrik/kern_minute.py`:** dieselbe Regel wie `fabrik/kern.py` (eine Position je Coin, Stop und
+  Ziel gegen Hoch und Tief, bei Lücke der schlechtere Eröffnungskurs, Funding, Slippage je Order aus der Spanne der
+  letzten fünf Minuten), nur auf Minutenraster. Kosten und Hürden bleiben unverändert.
+- **Tests, die vor jeder Rechnung grün sein müssen:**
+  1. Parität: Wird das Signal nur an Minuten geprüft, die eine 5-Minuten-Kerze schließen, und sind Stops und Ziele
+     aus, liefert der Minuten-Simulator dieselben Trades und Ergebnisse wie `kern.py` (Abweichung null, drei Coins,
+     je ein Monat aus 2022, 2023 und 2024).
+  2. Mit Stops und Zielen: gleiche Einstiege; Ausstiege dürfen nur früher oder gleich liegen, nie zu einem besseren
+     Kurs als Stop oder Ziel.
+  3. Störungstest wie bei den Signalen: Daten ab Minute T verfälscht, alle Trades mit Ausstieg vor T unverändert.
+  4. Datenlücken: fehlt eine Minute, kein Einstieg in dieser und der folgenden Minute.
+- **Baustein 2, erste Generation damit (erst festlegen, wenn Baustein 1 steht):** wenige Kandidaten, nur Kaufdruck,
+  jeweils als Paar „minütlich“ gegen „am Kerzenschluss“ bei sonst gleicher Einstellung. Maßgeblich ist der Unterschied
+  im Paar, nicht der beste Einzelwert. Die Orderbuch-Tiefe folgt nur, wenn sich beim Kaufdruck ein Unterschied zeigt.
+- **Einschätzung vorab:** Generation 4 hat gezeigt, dass frischere Tiefe-Daten auf 5-Minuten-Raster nichts bringen.
+  Der Minuten-Simulator ist deshalb kein sicherer Gewinn; er klärt die letzte offene Seite von H07. Aufwand rund zwei
+  Sitzungen. Soll er nicht gebaut werden, genügt ein Vermerk in `engine/offene_fragen.md`.
