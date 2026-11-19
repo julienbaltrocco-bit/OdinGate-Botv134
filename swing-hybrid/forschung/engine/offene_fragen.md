@@ -55,3 +55,9 @@ keine Entscheidung des Auftraggebers.
    soll die Forschung warten, bis die Kostenmessung (62 von 200 Messpunkten über 100 bp) oder die Papier-Tests Neues liefern?
 2. **Protokoll:** Die Abschnittsnummer 34 ist doppelt vergeben (Festlegung Generation 5 und Nachkontrolle vom 17.11.).
    Nicht geändert, weil andere Unterlagen auf die Nummern verweisen können; dieser Zyklus zählt mit 36 weiter.
+
+## 19.11.2026 (Zyklus ohne Rechnung)
+
+1. Die Frage vom 18.11. (Minuten-Simulator bauen oder warten) blieb ohne Antwort; Baustein 1 ist wie angekündigt gebaut
+   (Protokoll Abschnitt 37). Der nächste Zyklus würde die erste Minuten-Generation (nur Kaufdruck, als Paare) festlegen
+   und rechnen. Soll das nicht geschehen, bitte hier vermerken.

@@ -7,7 +7,7 @@
   "aufwand": "gering",
   "status": "teilweise geprüft",
   "hinweis": "Nur Entwicklung 01/2023–03/2024 zur Auswahl. Die Validierung 04/2024–03/2025 ist für Orderbuch-Regeln bereits zweimal geöffnet worden und taugt nur noch eingeschränkt.",
-  "ergebnis": "E18: Letzter 30-Sekunden-Schnappschuss auf 5-Minuten-Raster bringt nichts. Offen nur noch der Einstieg innerhalb der Kerze (Simulator auf Minutenraster nötig). Plan und Tests für den Minuten-Simulator: Protokoll Abschnitt 36 (18.11.2026)."
+  "ergebnis": "E18: Letzter 30-Sekunden-Schnappschuss auf 5-Minuten-Raster bringt nichts. Offen nur noch der Einstieg innerhalb der Kerze (Simulator auf Minutenraster nötig). Plan und Tests für den Minuten-Simulator: Protokoll Abschnitt 36 (18.11.2026). Baustein 1 (Minutenraster mit Paritätstests) gebaut am 19.11.2026, Abschnitt 37; noch keine Rechnung."
  },
  {
   "id": "H08",
@@ -77,7 +77,7 @@
   "aufwand": "gering",
   "status": "offen",
   "hinweis": "Liefert die Grundlage für das Kostenmodell; ersetzt die Annahme von 5 % der Kerzenspanne.",
-  "ergebnis": "Stand 18.11.2026: 6.924 Messungen, 62 mit Kerzenspanne über 100 bp (nötig 200)."
+  "ergebnis": "Stand 19.11.2026: 9.814 Messungen, 73 mit Kerzenspanne über 100 bp (nötig 200)."
  },
  {
   "id": "H16",

@@ -1137,3 +1137,33 @@ Eine Generation nur aus weiteren Einstellungen würde die Hürde für alle spät
 - **Einschätzung vorab:** Generation 4 hat gezeigt, dass frischere Tiefe-Daten auf 5-Minuten-Raster nichts bringen.
   Der Minuten-Simulator ist deshalb kein sicherer Gewinn; er klärt die letzte offene Seite von H07. Aufwand rund zwei
   Sitzungen. Soll er nicht gebaut werden, genügt ein Vermerk in `engine/offene_fragen.md`.
+
+---
+
+## 37. Zyklus vom 19.11.2026: Stand der Kostenmessung, Baustein 1 des Minuten-Simulators gebaut (keine Rechnung)
+
+**Kostenmessung (H15, nur Stand):** 9.814 Messungen (15.11. 13:21 bis 19.11. 01:44 UTC), davon **73 mit Kerzenspanne über
+100 bp**, 999 über 50 bp. Schwelle von 200 nicht erreicht; kein neues Experiment.
+
+**Baustein 1 (Abschnitt 36) ist gebaut: `fabrik/minute.py` und `tests/test_fabrik_minute.py`.** Die offene Frage vom
+18.11. blieb ohne Antwort; wie dort angekündigt wurde gebaut. Es wurde kein Kandidat gerechnet und nichts ausgewertet.
+- **Bauweise:** Der vorhandene Simulator `fabrik/kern.py` kennt kein Raster, nur Kerzen. Er wird deshalb unverändert
+  wiederverwendet und bekommt Minutenkerzen, Haltedauern in Minuten und alle 5-Minuten-Größen (Schwankung, Slippage,
+  Funding) so, wie sie am Schluss der jeweiligen Minute bekannt sind. Es gibt also keinen zweiten Simulator, der vom
+  ersten abweichen könnte. Neu ist nur der Datenspeicher auf Minutenraster (`data/fabrik_minute`, rund 0,8 GB, zehn
+  Coins, bis 31.03.2025; SOL, XRP und LTC mit denselben fünf fehlenden Tagen wie im 5-Minuten-Speicher).
+- **Tests (26, alle grün; mit den übrigen zusammen 47):**
+  1. Parität ohne Stops: Signal nur am Kerzenschluss, vier Ausstiege, BTC 03/2022, SOL 05/2023, ETH 02/2024:
+     1.386 Trades, Einstieg, Ausstieg und Ergebnis gleich (Abweichung unter 0,000001 bp). Einziger Unterschied: Ein am
+     Fensterende noch offener Trade endet je Raster an dessen letzter Kerze.
+  2. Mit Stop und Ziel (drei Ausstiege, dieselben Monate): 954 Trades verglichen, 952 gleich, 2 weichen ab, beide aus
+     zulässigem Grund (Kurslücke zwischen zwei Minuten oder Stop und Ziel in derselben 5-Minuten-Kerze). Kein
+     Ausstieg in einer anderen 5-Minuten-Kerze, keine Reihe läuft auseinander.
+  3. Kein Blick in die Zukunft: Minutendaten ab Tag 20 verfälscht, alle vorher beendeten Trades unverändert.
+  4. Datenlücke: Fehlt eine Minute, gibt es in ihr und in der folgenden keinen Einstieg.
+- **Abweichung vom Plan:** Der Plan nannte eine eigene Datei `kern_minute.py`. Weil der vorhandene Kern wiederverwendet
+  wird, gibt es sie nicht; die Hilfen stehen in `minute.py`. Der nachgezogene Stop ist in der Parität nicht geprüft:
+  Er wird je Minute statt je fünf Minuten nachgezogen und liefert auf Minutenraster absichtlich andere Ausstiege.
+- **Noch offen (Baustein 2, nächster Zyklus, erst festlegen, dann rechnen):** Kaufdruck je Minute als Signal
+  (Störungstest), Anbindung an Massenlauf und Trichter mit Tagesergebnissen wie bisher, dann die kleine
+  Paar-Generation „minütlich gegen Kerzenschluss“. Bis dahin ist der Baustein Werkzeug ohne Ergebnis.
