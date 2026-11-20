@@ -59,15 +59,15 @@ einem kleinen Server (cron). Dafür fehlen zwei Entscheidungen des Auftraggebers
 
 | Was | Wo | Takt | Braucht KI |
 |---|---|---|---|
-| Test 1 und Test 2 (Papier-Bot) | Server des Auftraggebers, Dienst `odingate-bot` (Zeitplan `odingate-bot.timer`) | alle 5 Minuten | nein |
+| Test 1, Test 2 und Test 3 (Papier-Bot; Test 3 seit 20.11.2026, alle drei mit den Einstiegen von Test 1) | Server des Auftraggebers, Dienst `odingate-bot` (Zeitplan `odingate-bot.timer`) | alle 5 Minuten, drei Durchgänge nacheinander (rund 50 Sekunden) | nein |
 | Beobachtung „Gegen Kaufdruck“, live (`L-dc1d27a3`) | Server des Auftraggebers, Dienst `odingate-live` | alle 5 Minuten | nein |
 | OS-1.1, `B-24332e4d`, `B-dc1d27a3` (Schattentests aus Archivdaten) | Claude, geplante Aufgabe „OdinGate Papier-Lauf mit Board“ | täglich 11:17 UTC (seit 17.11.; Binance veröffentlicht die Archivdateien des Vortags zwischen etwa 07:30 und 10:05 UTC) | ja, wenig |
 | Forschungszyklus | Claude, geplante Aufgabe „OdinGate Forschungszyklus“ | täglich 01:43 UTC | ja |
 
 **Auf dem Server** (alles unter `/opt/odingate`, je ein begrenzter Docker-Container, keine Handelsschlüssel, keine Orders):
 - Stand ansehen: `bash /opt/odingate/repo/swing-hybrid/forschung/live/status.sh`
-- Bot anhalten (Notbremse): `touch /opt/odingate/bot/swing-hybrid/vorwaertstest/lauf/STOPP` und dasselbe mit `lauf_tpsl`;
-  weiterlaufen lassen: die beiden Dateien wieder löschen.
+- Bot anhalten (Notbremse): `touch /opt/odingate/bot/swing-hybrid/vorwaertstest/lauf/STOPP` und dasselbe mit `lauf_tpsl`
+  und `lauf_trail`; weiterlaufen lassen: die Dateien wieder löschen.
 - Alles entfernen: `bash /opt/odingate/repo/swing-hybrid/forschung/live/entfernen.sh` (verweigert es, solange der
   Bot dort rechnet; vorher den Staffelstab zurückgeben).
 
@@ -75,6 +75,13 @@ einem kleinen Server (cron). Dafür fehlen zwei Entscheidungen des Auftraggebers
 („server“ oder „claude“). Rückgabe an die Claude-Sitzung: dort „claude“ eintragen (direkt nach einem Lauf) und die
 geplante Aufgabe „Vorwärtstest-Bot stündlich“ wieder einschalten. Nie eine Fassung von `stunde.sh` ohne
 Staffelstab-Prüfung in den Bot-Zweig schreiben, solange der Zeitplan auf dem Server eingerichtet ist.
+
+**Test 2 und Test 3 seit 20.11.2026:** Beide starten mit den Einstiegen von Test 1; der Abschnitt bis
+`nachgerechnet_bis` (in `config_lauf_tpsl.json` und `config_lauf_trail.json`) ist aus den Aufzeichnungen von Test 1
+nachgerechnet (`vorwaertstest/nachrechnen.py`) und auf dem Board so gekennzeichnet. Der ursprüngliche Test 2 liegt
+abgeschlossen in `vorwaertstest/archiv/lauf_tpsl_eigene_einstiege`. Der dritte Durchgang läuft zuletzt: Scheitert
+er, sind Test 1 und Test 2 schon gesichert. Jeder Durchgang schreibt einen Commit; das Repository auf dem Server
+wächst dadurch rund anderthalbmal so schnell wie vorher (das Aufräumen vor dem Lauf fängt das ab).
 
 **Woran man einen Ausfall erkennt:** Auf dem Trading Board steht bei Test 1 und 2 „Bot-Stand vor …“. Mehr als rund
 zehn Minuten heißt: Der Server rechnet nicht. Der Kaufdruck-Tab fällt bei einem Ausfall von selbst auf den täglichen

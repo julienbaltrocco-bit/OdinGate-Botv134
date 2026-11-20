@@ -64,3 +64,14 @@ git add vorwaertstest/lauf_tpsl ../docs/stand_tpsl.enc.json
 git diff --cached --quiet || git commit -q -m "Vorwärtstest (Papier, Stop 5 % / Ziel 15 %) $(date -u '+%F %H:%M') UTC$ANHANG"
 sichern
 echo "gesichert (Variante): $(git rev-parse --short HEAD)"
+
+
+# Drittes, getrenntes Papier-Konto (Test 3): dieselbe Regel mit nachgezogenem Stop 5 %. Einstiege von Test 1;
+# der Abschnitt bis "nachgerechnet_bis" in der Einstellung wurde aus den Aufzeichnungen von Test 1 nachgerechnet.
+python3 -m vorwaertstest.bot schritt --config vorwaertstest/config_lauf_trail.json --daten vorwaertstest/lauf_trail
+python3 -m vorwaertstest.dashboard_daten --config vorwaertstest/config_lauf_trail.json --daten vorwaertstest/lauf_trail
+python3 -m vorwaertstest.board_verschluesseln --quelle vorwaertstest/lauf_trail/dashboard.json --ziel ../docs/stand_trail.enc.json
+git add vorwaertstest/lauf_trail ../docs/stand_trail.enc.json
+git diff --cached --quiet || git commit -q -m "Vorwärtstest (Papier, nachgezogener Stop 5 %) $(date -u '+%F %H:%M') UTC$ANHANG"
+sichern
+echo "gesichert (Test 3): $(git rev-parse --short HEAD)"

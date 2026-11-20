@@ -1317,3 +1317,57 @@ ergibt die Nachrechnung; daran wird nichts gesteuert.
 4. Test 1 bleibt unberührt (kein Byte anders).
 
 **Board.** Der Tab von Test 2 erhält denselben Hinweis wie Test 3: „bis … nachgerechnet, seitdem live“.
+
+---
+
+## 41. Test 3 in Betrieb, Test 2 auf die Einstiege von Test 1 umgestellt (20.11.2026, Ergebnis zu den Abschnitten „Test 3“ und 40)
+
+**Stand.** Seit dem Lauf von 22:39 UTC rechnet der Server des Auftraggebers alle fünf Minuten drei Papier-Konten
+nacheinander: Test 1 (unverändert), Test 2 (Stop 5 %, Ziel 15 %) und Test 3 (nachgezogener Stop 5 %). Alle drei haben
+dieselben Einstiege: die tatsächlichen Füllungen von Test 1 vom 15.11.2026, 13:21 UTC.
+
+| | Test 1 | Test 2 (neu) | Test 3 | Test 2 bisher (Archiv) |
+|---|---|---|---|---|
+| Einstieg | 15.11. 13:21 | wie Test 1 | wie Test 1 | 15.11. 17:44 |
+| nachgerechnet bis | (ganz vorwärts) | 20.11. 22:29 | 20.11. 22:34 | (ganz vorwärts, beendet 22:29) |
+| Ausstiege bis dahin | keine | keine | SOL 17.11. 12:44, XRP 18.11. 07:09 | SOL 17.11. 23:09, XRP 18.11. 07:49 |
+| netto mit Rebate am Ende der Nachrechnung | +1.334,01 $ (22:29) | +1.334,01 $ | +1.127,69 $ | +824,78 $ |
+
+- **Test 2 mit den Einstiegen von Test 1 hat bisher weder Stop noch Ziel ausgelöst** und ist deshalb bis zur
+  Umstellung deckungsgleich mit Test 1. Schlechtester Stand gegen den Einstieg: SOL −3,15 %, XRP −3,10 % (Stop bei
+  −5 %); bester: ETH +13,55 % (Ziel bei +15 %). Die beiden Stops des bisherigen Test 2 kamen allein vom späteren,
+  tieferen Einstieg. Der Rückstand des bisherigen Test 2 auf Test 1 (rund 510 $) war also zum größeren Teil der
+  spätere Einstieg und die zwei Stops, kein Unterschied der Regel in diesem Zeitraum.
+- **Test 3** hat SOL (−0,9 % gegen den Einstieg) und XRP (−1,5 %) ausgestoppt und hält acht Shorts mit nachgezogenem
+  Stop. Rückstand auf Test 1 rund 206 $: Die beiden Coins liefen nach dem Stop weiter in Richtung der Position.
+- Das alles sind **Nachrechnungen über fünf Tage in einem einzigen Abwärtstrend** und kein Beleg für oder gegen eine
+  der drei Ausstiegsregeln. Aussagekräftig wird der Vergleich erst nach mindestens einem vollen Trendwechsel.
+
+**Prüfungen vor der Umstellung (alle bestanden).**
+1. Die Nachrechnung gibt den bisherigen Test 2 aus dessen eigenen Aufzeichnungen wieder: dieselben zwölf Orders zur
+   selben Minute, netto auf den Cent gleich (841,30 $ nach 1.465 Läufen).
+2. Alter und neuer Bot-Code schreiben für Test 1 (1.515 Läufe) und Test 2 (1.465 Läufe) byte-gleiche Dateien.
+3. Zwei unabhängige Prüfer (Bot-Logik und Nachrechnung; Inbetriebnahme und Board): kein Fehler in der Regel, nichts,
+   das Test 1 oder Test 2 berührt. Unter anderem 240 Zufallsverläufe mit je 120 Läufen ohne Abweichung zwischen altem
+   und neuem Code; der nachgezogene Stop gegen ein eigenes Vergleichsmodell (461 Ausstiege, 290 Drehungen) ohne
+   Abweichung. Ihre Hinweise sind eingearbeitet: Nur die Einstiege des ersten Laufs werden aus der Quelle
+   übernommen; zwei Läufe der Quelle in einer Minute werden abgelehnt; Bericht, Verlauf, Orderliste und Regeltext auf
+   dem Board nennen den nachgerechneten Abschnitt; das Board zeigt daneben das Ergebnis seit dem Live-Start.
+4. Kontrollrechnung der Ausstiege ohne Bot-Code, direkt aus den aufgezeichneten Mittelkursen: Test 2 keine, Test 3
+   SOL und XRP zu denselben Läufen wie gebucht. Die ersten zehn Orders beider Tests sind die von Test 1.
+5. Archiv des bisherigen Test 2 byte-gleich mit dessen letztem Stand; Test 1 unberührt.
+6. Trockenübung der ganzen Umstellung gegen eine lokale Kopie mit dem echten Lauf-Skript (zweimal; die erste deckte
+   einen Fehler im Umstell-Skript auf, nicht im Bot).
+
+**Ablauf der Umstellung (UTC).** 22:30:31 Code, beide Nachrechnungen und Archiv in den Bot-Zweig (`00773b25`);
+22:34 Lauf des Servers mit Test 1 und Test 2 (das schon laufende Skript kennt den dritten Durchgang noch nicht);
+22:35:00 Nachrechnung von Test 3 um diesen Lauf fortgeschrieben (`7e905716`); 22:39 erster Lauf mit allen drei Tests.
+Kein Lauf fehlt: Test 1 hat keine Lücke, Test 2 und Test 3 haben für jeden Lauf von Test 1 eine Zeile.
+
+**Grenzen der Nachrechnung.** Orders werden zum Mittelkurs zuzüglich der damals gemessenen Kosten gefüllt, nicht gegen
+das volle Orderbuch; Funding ist anteilig aus Test 1 übernommen; die Regel von Test 3 und die Übernahme der Einstiege
+wurden festgelegt, nachdem diese Tage vergangen waren. Vorwärts gewertet wird bei Test 2 ab 20.11. 22:29 UTC und bei
+Test 3 ab 22:34 UTC.
+
+**Wo was liegt (Bot-Zweig).** `vorwaertstest/lauf_trail` (Test 3), `vorwaertstest/lauf_tpsl` (Test 2 neu),
+`vorwaertstest/archiv/lauf_tpsl_eigene_einstiege` (Test 2 bisher, abgeschlossen), `vorwaertstest/nachrechnen.py`.
