@@ -1232,3 +1232,45 @@ Korrelation 0,999, mittlere Abweichung 0,07 bp je Trade, 0,7 % andere Trade-Zahl
   seltenen Trades; über ihn sagt dieses Ergebnis nichts.
 
 Das Minutenraster (`fabrik/minute.py`) bleibt als geprüftes Werkzeug bestehen (jetzt 29 Tests, insgesamt 50 grün).
+
+---
+
+## 35. Test 3, festgelegt vor jeder Rechnung (20.11.2026, auf Wunsch des Auftraggebers): Trendregel mit nachgezogenem Stop
+
+**Anlass.** Test 1 nimmt Gewinne erst bei der Trendumkehr mit; die Umkehr-Schwelle liegt nach dem Kursrückgang weit
+über dem Einstieg (Stand 20.11.: 14 bis 24 % darüber, bei Hebel 3 im ungünstigsten Fall −57 % des Kontos). Der
+Auftraggeber möchte dieselbe Regel mit nachgezogenem Stop sehen, mit den Einstiegen von Test 1.
+
+**Regel (ab jetzt eingefroren).**
+- Alles wie Test 1: 14-Tage-Trend auf Stundenschluss, zehn Coins, 5.000 $ Papier-Kapital, Hebel 3, feste Größe je Coin,
+  Umkehrsignal schließt und dreht die Position.
+- Zusätzlich: Für jede offene Position merkt sich der Bot den günstigsten Yubit-Mittelkurs seit dem Einstieg (geprüft
+  bei jedem Lauf, alle fünf Minuten). Läuft der Kurs von dort **5 % gegen die Position**, wird sie geschlossen
+  (Anlass „nachzug“). Am Anfang liegt der Stop damit 5 % vom Einstieg entfernt. Kein Gewinnziel.
+- Nach einem solchen Ausstieg pausiert der Coin, bis sein 14-Tage-Signal dreht (wie in Test 2).
+- **Warum 5 %:** derselbe Abstand wie der Stop in Test 2, damit sich die drei Tests in genau einer Sache
+  unterscheiden (Test 1 ohne Stop, Test 2 fester Stop 5 % und Ziel 15 %, Test 3 nachgezogener Stop 5 %). Der Wert ist
+  vor jeder Nachrechnung gewählt; ein anderer Abstand wird nicht ausprobiert und wäre ein eigener Test.
+
+**Start mit den Einstiegen von Test 1.** Test 3 beginnt mit den tatsächlichen Füllungen von Test 1 vom 15.11.2026,
+13:21 UTC (gleiche Kurse, Mengen, Gebühren).
+
+**Nachgerechneter Abschnitt (15.11. bis zur Inbetriebnahme).** Für jeden Lauf von Test 1 liegen die damals
+beobachteten Yubit-Werte vor (bester Geld- und Briefkurs je Coin und die gemessenen Kosten einer Order in
+Standardgröße). Test 3 wird mit dem echten Bot-Code auf genau diesen Beobachtungen nachgerechnet; eine Order wird zum
+Mittelkurs zuzüglich der in diesem Lauf gemessenen Kosten gefüllt. Funding in diesem Abschnitt: anteilig aus dem bei
+Test 1 gebuchten Funding (Näherung, Größenordnung Cent bis wenige Dollar).
+Dieser Abschnitt ist **kein Vorwärtstest**: Die Regel wurde festgelegt, nachdem diese Tage vergangen waren. Er wird
+überall als „nachgerechnet“ gekennzeichnet. Vorwärts gewertet wird erst ab der Inbetriebnahme.
+
+**Prüfungen vor der Inbetriebnahme (sonst kein Start).**
+1. Die Nachrechnung muss Test 2 aus dessen eigenen Aufzeichnungen wiedergeben: dieselben Ausstiege (SOL 17.11.,
+   XRP 18.11.) zur selben Zeit, Füllkurse bis auf wenige Basispunkte gleich.
+2. Der geänderte Bot-Code muss für Test 1 und Test 2 exakt dieselben Ergebnisse liefern wie der bisherige
+   (gleicher Stand, gleiche Orders) und darf deren Dateien nicht anders schreiben.
+3. Bestehende Tests des Bots grün; neue Tests für den nachgezogenen Stop.
+
+**Betrieb.** Dritter Durchgang im selben Lauf auf dem Server (nach Test 1 und Test 2), eigener Datenordner
+`vorwaertstest/lauf_trail`, eigener Tab auf dem Board. Test 1 und Test 2 bleiben unverändert.
+**Wertung.** Vergleich der drei Tests über dieselbe Zeit; aussagekräftig erst nach mindestens einem vollen
+Trendwechsel. Keine Änderung der Regel während des Tests.
