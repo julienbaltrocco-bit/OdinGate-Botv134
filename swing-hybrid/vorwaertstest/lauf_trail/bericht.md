@@ -2,33 +2,33 @@
 
 Historische bzw. Papier-Messung, keine Anlageberatung. Stufe „papier“ setzt keine echten Orders.
 
-- Zeitraum: 2026-11-15 13:21 bis 2026-11-20 23:39 UTC (5,4 Tage, 1534 Durchläufe)
+- Zeitraum: 2026-11-15 13:21 bis 2026-11-20 23:44 UTC (5,4 Tage, 1535 Durchläufe)
 - Kapital 5.000 $, Hebel 3,00, 10 Coins, Modus papier
 - Bis 2026-11-20 22:34 UTC aus den Aufzeichnungen von Test 1 nachgerechnet (kein Vorwärtstest), danach live.
 
 ## Was eine Order zur vollen Stunde gekostet hätte
 
-Gemessen am echten Orderbuch, Order in Standardgröße, 15324 Messungen.
+Gemessen am echten Orderbuch, Order in Standardgröße, 15334 Messungen.
 
 - **Slippage im Mittel: 0,016 %** (unter der Annahme aus dem Backtest (0,05 %))
 - Median 0,007 %, schlechteste 10 % ab 0,067 %
 
 | Coin | Messungen | Slippage im Mittel | Schlechteste 10 % ab | Spanne Geld/Brief im Mittel |
 |---|---|---|---|---|
-| BTC | 1533 | 0,001 % | 0,001 % | 0,002 % |
-| ETH | 1532 | 0,001 % | 0,001 % | 0,003 % |
-| SOL | 1533 | 0,007 % | 0,007 % | 0,014 % |
-| XRP | 1533 | 0,005 % | 0,005 % | 0,010 % |
-| DOT | 1532 | 0,073 % | 0,076 % | 0,140 % |
-| DOGE | 1533 | 0,009 % | 0,009 % | 0,017 % |
-| ADA | 1532 | 0,033 % | 0,034 % | 0,066 % |
-| LINK | 1531 | 0,007 % | 0,010 % | 0,011 % |
-| AVAX | 1532 | 0,010 % | 0,014 % | 0,015 % |
-| LTC | 1533 | 0,012 % | 0,012 % | 0,023 % |
+| BTC | 1534 | 0,001 % | 0,001 % | 0,002 % |
+| ETH | 1533 | 0,001 % | 0,001 % | 0,003 % |
+| SOL | 1534 | 0,007 % | 0,007 % | 0,014 % |
+| XRP | 1534 | 0,005 % | 0,005 % | 0,010 % |
+| DOT | 1533 | 0,073 % | 0,076 % | 0,140 % |
+| DOGE | 1534 | 0,009 % | 0,009 % | 0,017 % |
+| ADA | 1533 | 0,033 % | 0,034 % | 0,066 % |
+| LINK | 1532 | 0,007 % | 0,010 % | 0,011 % |
+| AVAX | 1533 | 0,010 % | 0,014 % | 0,015 % |
+| LTC | 1534 | 0,012 % | 0,012 % | 0,023 % |
 
 ## Orders des Kandidaten
 
-- 12 Orders, Volumen 17.959 $ (3.308 $ pro Tag)
+- 12 Orders, Volumen 17.959 $ (3.306 $ pro Tag)
 - Slippage nach Volumen gewichtet: 0,013 %
 - Gebühr gezahlt: 14,37 $ (das sind 0,080 % vom Volumen)
 - Hinweis: Erst 12 Orders. Unter etwa 200 ist das Mittel noch unsicher.
@@ -37,13 +37,13 @@ Gemessen am echten Orderbuch, Order in Standardgröße, 15324 Messungen.
 
 | | Betrag | Anteil am Kapital |
 |---|---|---|
-| Handel vor Gebühren | +1.131,02 $ | 22,62 % |
+| Handel vor Gebühren | +1.137,29 $ | 22,75 % |
 | Gebühr | −14,37 $ | −0,29 % |
 | Funding | +1,23 $ | 0,02 % |
-| Nach voller Gebühr, ohne Rebate | +1.117,89 $ | 22,36 % |
+| Nach voller Gebühr, ohne Rebate | +1.124,16 $ | 22,48 % |
 | Rebate (85 %, gerechnet) | +12,21 $ | 0,24 % |
-| **Netto mit Rebate** | +1.130,10 $ | 22,60 % |
+| **Netto mit Rebate** | +1.136,37 $ | 22,73 % |
 
-Offen: 0 Long, 8 Short, Einsatz 10.761 $.
+Offen: 0 Long, 8 Short, Einsatz 10.755 $.
 
 Wenige Wochen sagen über den Gewinn fast nichts. Aussagekräftig ist hier vor allem die Slippage.
