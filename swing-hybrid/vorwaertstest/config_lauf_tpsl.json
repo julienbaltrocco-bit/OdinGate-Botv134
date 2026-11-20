@@ -19,5 +19,6 @@
   "max_order_usd": 2000,
   "daten": "lauf_tpsl",
   "tp": 0.15,
-  "sl": 0.05
+  "sl": 0.05,
+  "nachgerechnet_bis": "2026-11-20 22:29"
 }
