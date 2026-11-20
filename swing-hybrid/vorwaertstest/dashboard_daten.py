@@ -20,7 +20,7 @@ def bauen(cfg: dict, daten: Path) -> dict:
     verlauf = [{"zeit": r["zeit"].replace(" ", "T") + ":00Z", "mit_rebate": pz(r["netto_mit_rebate"]),
                 "ohne_rebate": pz(r["netto_ohne_rebate"]), "vor_gebuehren": pz(r["brutto"]),
                 "einsatz": round(float(r["einsatz"]) / kap * 100, 2)} for r in st]
-    tp, sl = cfg.get("tp", 0.0), cfg.get("sl", 0.0)
+    tp, sl, trail = cfg.get("tp", 0.0), cfg.get("sl", 0.0), cfg.get("trail", 0.0)
     einstieg = {}
     for r in pr:
         if r["grund"] == "einstieg":
@@ -29,16 +29,20 @@ def bauen(cfg: dict, daten: Path) -> dict:
     for coin in cfg["coins"]:
         q, kurs = z["pos"].get(coin, 0.0), z.get("kurs", {}).get(coin, 0.0)
         ein, seit = einstieg.get(coin, (0.0, ""))
+        vz = 1 if q > 0 else -1
+        stop = ein * (1 - sl * vz) if q and ein and sl else None
+        if trail and q and ein:                              # nachgezogener Stop: 5 % hinter dem günstigsten Kurs seit dem Einstieg
+            stop = (z.get("beste", {}).get(coin) or ein) * (1 - trail * vz)
         positionen.append({"coin": coin, "richtung": "Long" if q > 0 else "Short" if q < 0 else "keine",
                            "seit": seit, "einstieg": ein if q else None, "kurs": kurs,
                            "menge": q, "kasse": z["kasse"].get(coin, 0.0),
                            "ziel_kurs": ein * (1 + tp * (1 if q > 0 else -1)) if q and ein and tp else None,
-                           "stop_kurs": ein * (1 - sl * (1 if q > 0 else -1)) if q and ein and sl else None,
+                           "stop_kurs": stop,
                            "wartet": bool(z.get("sperre", {}).get(coin, 0)),
                            "betrag": round(abs(q) * kurs, 2), "ergebnis": round(q * (kurs - ein), 2) if q else 0.0,
                            "ergebnis_pct": round((kurs / ein - 1) * (1 if q > 0 else -1) * 100, 3) if q and ein else 0.0})
     orders = [{"nr": i + 1, "zeit": r["zeit"], "coin": r["coin"], "seite": "Kauf" if r["seite"] == "kauf" else "Verkauf",
-               "grund": {"einstieg": "Einstieg", "schliessen": "Schließen", "tageslimit": "Tageslimit", "ziel": "Gewinnziel", "stop": "Stop"}.get(r["grund"], r["grund"]),
+               "grund": {"einstieg": "Einstieg", "schliessen": "Schließen", "tageslimit": "Tageslimit", "ziel": "Gewinnziel", "stop": "Stop", "nachzug": "Nachgezogener Stop"}.get(r["grund"], r["grund"]),
                "kurs": float(r["fuellkurs"]), "volumen": round(float(r["volumen"]), 2), "slippage_bp": float(r["slippage_bp"])}
               for i, r in enumerate(pr)][-60:][::-1]
     orders_alle = [{"zeit": r["zeit"].replace(" ", "T") + ":00Z", "coin": r["coin"], "kauf": r["seite"] == "kauf", "grund": r["grund"],
@@ -65,6 +69,10 @@ def bauen(cfg: dict, daten: Path) -> dict:
                    "hebel": cfg["hebel"], "tp": tp, "sl": sl, "positionswert_usd": round(float(l["einsatz"]), 0),
                    "margin_usd": round(float(l["einsatz"]) / cfg["hebel"], 0),
                    "margin_pct": round(float(l["einsatz"]) / cfg["hebel"] / kap * 100, 1)}]
+    if trail:
+        kennzahlen[0]["trail"] = trail
+    if cfg.get("nachgerechnet_bis"):                        # Abschnitt, der nachträglich aus den Aufzeichnungen von Test 1 gerechnet wurde
+        kennzahlen[0]["nachgerechnet_bis"] = cfg["nachgerechnet_bis"]
     if len(verlauf) > 400:                                  # ältere Punkte ausdünnen, die letzten 120 bleiben vollständig
         alt, neu = verlauf[:-120], verlauf[-120:]
         schritt = -(-len(alt) // 280)

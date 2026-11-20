@@ -213,8 +213,8 @@ def schritt(cfg: dict, api: Yubit, daten: Path, jetzt_ms: int | None = None, mel
         ist = z["pos"].get(coin, 0.0)
         ist_richtung = (ist > 0) - (ist < 0)
         anlass = None
-        tp, sl = cfg.get("tp", 0.0), cfg.get("sl", 0.0)
-        if tp or sl:   # Variante mit Gewinnziel / Stop: nach dem Ausstieg Pause, bis das Signal dreht
+        tp, sl, trail = cfg.get("tp", 0.0), cfg.get("sl", 0.0), cfg.get("trail", 0.0)
+        if tp or sl or trail:   # Varianten mit Gewinnziel / Stop / nachgezogenem Stop: nach dem Ausstieg Pause, bis das Signal dreht
             sperre = z.setdefault("sperre", {})
             if sperre.get(coin, 0) and sperre[coin] != m["richtung"]:
                 sperre[coin] = 0
@@ -222,6 +222,13 @@ def schritt(cfg: dict, api: Yubit, daten: Path, jetzt_ms: int | None = None, mel
             if ist_richtung and ist_richtung == m["richtung"] and ein > 0:
                 r = (mitte / ein - 1) * ist_richtung
                 anlass = "ziel" if tp and r >= tp else "stop" if sl and r <= -sl else None
+                if trail and not anlass:   # nachgezogener Stop: Abstand zum günstigsten Mittelkurs seit dem Einstieg
+                    beste = z.setdefault("beste", {})
+                    b = beste.get(coin) or ein
+                    b = max(b, mitte) if ist_richtung > 0 else min(b, mitte)
+                    beste[coin] = b
+                    if (mitte / b - 1) * ist_richtung <= -trail:
+                        anlass = "nachzug"
                 if anlass:
                     sperre[coin] = ist_richtung
             if m["richtung"] != 0 and sperre.get(coin, 0) == m["richtung"]:
@@ -260,6 +267,8 @@ def schritt(cfg: dict, api: Yubit, daten: Path, jetzt_ms: int | None = None, mel
             kern.buchen(z, coin, q if kauf else -q, kurs, gebuehr, rebate)
             if not reduce:
                 z.setdefault("einstieg", {})[coin] = kurs
+                if cfg.get("trail"):
+                    z.setdefault("beste", {})[coin] = kurs   # neuer Einstieg: der nachgezogene Stop beginnt wieder am Einstiegskurs
             protokoll.append({"zeit": zeit, "coin": coin, "seite": "kauf" if kauf else "verkauf", "signalkurs": mitte,
                               "fuellkurs": round(kurs, 10), "volumen": round(q * kurs, 4), "gebuehr": round(gebuehr, 6),
                               "rebate": round(rebate, 6), "menge": q, "geld": buch["geld"][0][0], "brief": buch["brief"][0][0],

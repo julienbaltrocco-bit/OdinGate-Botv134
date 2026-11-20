@@ -113,6 +113,7 @@
   <div class="tabs" id="tabs" role="group" aria-label="Test auswählen">
     <button type="button" id="tab-basis" aria-pressed="true"><span class="t">Test 1 · Nur Umkehrsignal</span><span class="s" id="tabs-basis">ohne Ziel und Stop</span><span class="w" id="tabw-basis">—</span></button>
     <button type="button" id="tab-tpsl" aria-pressed="false"><span class="t">Test 2 · Stop 5 % und Ziel 15 %</span><span class="s" id="tabs-tpsl">getrenntes Konto</span><span class="w" id="tabw-tpsl">—</span></button>
+    <button type="button" id="tab-trail" aria-pressed="false"><span class="t">Test 3 · Nachgezogener Stop 5 %</span><span class="s" id="tabs-trail">Einstiege von Test 1</span><span class="w" id="tabw-trail">—</span></button>
   </div>
 
   <div class="teil" id="ansicht-bot">
@@ -174,8 +175,8 @@
 <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 <script>
 (() => {
-  const DATEIEN = {basis: 'stand.enc.json', tpsl: 'stand_tpsl.enc.json'};
-  const SS = {basis: null, tpsl: null};
+  const DATEIEN = {basis: 'stand.enc.json', tpsl: 'stand_tpsl.enc.json', trail: 'stand_trail.enc.json'};
+  const SS = {basis: null, tpsl: null, trail: null};
   let aktiv = 'basis';
   // Schattentests (Forschung): ein verschlüsseltes Bündel aus dem Forschungszweig, einmal täglich aktualisiert
   const SCHATTEN_URL = 'https://raw.githubusercontent.com/julienbaltrocco-bit/OdinGate-Botv134/claude/alpha-forschung-r1/swing-hybrid/forschung/papier/board/schattentests.enc.json';
@@ -256,14 +257,17 @@
     if (!a) return;
     const k = a.k, pz = (x) => x / a.kapital * 100;
     $('hebel').textContent = de(0).format(k.hebel);
-    $('regel').textContent = (k.tp || k.sl)
+    $('regel').textContent = k.trail
+      ? `Test 3, Einstiege von Test 1 (${k.start} UTC): Eine Position wird geschlossen, sobald der Kurs ${de(0).format(k.trail * 100)} % vom günstigsten Stand seit dem Einstieg zurückläuft; danach Pause bis zum nächsten Umkehrsignal. Kein Gewinnziel.`
+        + (k.nachgerechnet_bis ? ` Bis ${k.nachgerechnet_bis} UTC aus den Aufzeichnungen von Test 1 nachgerechnet, seitdem live.` : '')
+      : (k.tp || k.sl)
       ? `Test 2, läuft seit ${k.start} UTC: Einstieg beim Umkehrsignal, Ausstieg bei ${de(0).format(k.sl * 100)} % Verlust oder ${de(0).format(k.tp * 100)} % Gewinn je Position, danach Pause bis zum nächsten Umkehrsignal.`
       : `Test 1, läuft seit ${k.start} UTC: Positionen reagieren nur auf das Umkehrsignal, ohne Gewinnziel und ohne Stop.`;
     Object.keys(SS).forEach((id) => {
       const b = konto(SS[id]), w = $('tabw-' + id);
       if (!b) { w.textContent = 'noch keine Daten'; return; }
       setze(w, vz(b.mit / b.kapital * 100, 2) + ' %', b.mit, farbe(b.mit));
-      $('tabs-' + id).textContent = 'seit ' + b.k.start.slice(5) + ' UTC';
+      $('tabs-' + id).textContent = (b.k.nachgerechnet_bis ? 'bis ' + b.k.nachgerechnet_bis.slice(5, 10).split('-').reverse().join('.') + '. nachgerechnet · ' : '') + 'seit ' + b.k.start.slice(5) + ' UTC';
     });
     setze($('konto'), de(2).format(a.kapital + a.mit) + ' $', a.mit);
     setze($('netto'), `${vz(a.mit, 2)} $ (${vz(pz(a.mit), 3)} %)`, a.mit, farbe(a.mit));
@@ -311,7 +315,7 @@
       });
       z.raster = z.detail.appendChild(el('div', 'raster'));
       ['5m', '15m', '1h', '4h', '1d'].forEach((r) => { const k = el('button', null, r); k.type = 'button'; k.dataset.r = r; k.addEventListener('click', () => { raster = r; ladeKerzen(p.coin); }); z.raster.appendChild(k); });
-      if (S.kennzahlen[0].tp || S.kennzahlen[0].sl) {   // nur Test 2: Skala bis TP und SL erweitern (an) oder nur auf die Kerzen (aus)
+      if (S.kennzahlen[0].tp || S.kennzahlen[0].sl || S.kennzahlen[0].trail) {   // Test 2 und 3: Skala bis TP und SL erweitern (an) oder nur auf die Kerzen (aus)
         const k = el('button', null, 'TP/SL im Bild'); k.type = 'button'; k.dataset.tpsl = '1'; k.setAttribute('aria-pressed', String(tpslImBild));
         k.addEventListener('click', () => {
           tpslImBild = !tpslImBild;
@@ -322,7 +326,9 @@
       }
       z.kerzen = z.detail.appendChild(el('div', 'kerzen'));
       const test2 = S.kennzahlen[0].tp || S.kennzahlen[0].sl;   // Test 1 behält den bisherigen Hinweistext unverändert
-      z.detail.appendChild(el('p', 'hinweis', 'Pfeile: Orders des Papier-Bots. Blaue Linie: Einstieg. ' + (test2 ? 'Gelb gestrichelt' : 'Gestrichelt') + ': Kurs, an dem sich das Signal beim nächsten Stundenschluss dreht.'
+      const test3 = S.kennzahlen[0].trail;
+      z.detail.appendChild(el('p', 'hinweis', 'Pfeile: Orders des Papier-Bots. Blaue Linie: Einstieg. ' + (test2 || test3 ? 'Gelb gestrichelt' : 'Gestrichelt') + ': Kurs, an dem sich das Signal beim nächsten Stundenschluss dreht.'
+        + (test3 ? ' Rot gestrichelt: nachgezogener Stop (SL), ' + de(0).format(test3 * 100) + ' % hinter dem günstigsten Kurs seit dem Einstieg; er wandert mit, sobald der Kurs weiter in Richtung der Position läuft. Stand der Linie: letzter Lauf des Bots.' : '')
         + (test2 ? ' Grün gestrichelt: Gewinnziel (TP). Rot gestrichelt: Stop (SL). Mit „TP/SL im Bild“ reicht die Kursskala bis zu beiden Linien; ausgeschaltet zeigt sie nur die Kerzen in voller Größe.' : '')));
       box.appendChild(z.box);
     });
@@ -356,7 +362,7 @@
 
   function zeigeOrders() {
     const tb = $('orders'); tb.replaceChildren();
-    const anlass = {einstieg: 'Einstieg', schliessen: 'Umkehrsignal', tageslimit: 'Tageslimit', ziel: 'Gewinnziel', stop: 'Stop'};
+    const anlass = {einstieg: 'Einstieg', schliessen: 'Umkehrsignal', tageslimit: 'Tageslimit', ziel: 'Gewinnziel', stop: 'Stop', nachzug: 'Nachgezogener Stop'};
     [...S.orders_alle].reverse().forEach((o) => {
       const tr = el('tr');
       tr.appendChild(el('td', null, o.zeit.slice(0, 16).replace('T', ' '))); tr.appendChild(el('td', null, o.coin));

@@ -197,3 +197,67 @@ def test_ohne_ziel_und_stop_bleibt_alles_wie_bisher(tmp_path):
     bot.schritt(CFG, api, tmp_path, JETZT, melden=lambda *_: None)
     api.kurse.update({"AAA": 130.0, "BBB": 58.0})                              # weit über Ziel bzw. Stop der Variante
     assert bot.schritt(CFG, api, tmp_path, JETZT + H, melden=lambda *_: None)["orders"] == 0
+
+
+def test_nachgezogener_stop_folgt_dem_besten_kurs_und_pausiert(tmp_path):
+    cfg = {**CFG, "trail": 0.05}
+    still = lambda *_: None
+    api = Boerse({"AAA": 100.0, "BBB": 50.0}, {"AAA": 90.0, "BBB": 60.0})      # AAA Long, BBB Short
+    bot.schritt(cfg, api, tmp_path, JETZT, melden=still)
+    z = json.loads((tmp_path / "zustand.json").read_text())
+    assert z["beste"]["AAA"] == pytest.approx(100.05) and z["beste"]["BBB"] == pytest.approx(49.95)
+    # AAA steigt auf 120: Stop wandert mit. BBB fällt auf 44 (gut für den Short): bester Kurs 44
+    api.kurse.update({"AAA": 120.0, "BBB": 44.0})
+    assert bot.schritt(cfg, api, tmp_path, JETZT + H // 4, melden=still)["orders"] == 0
+    z = json.loads((tmp_path / "zustand.json").read_text())
+    assert z["beste"]["AAA"] == pytest.approx(120.0) and z["beste"]["BBB"] == pytest.approx(44.0)
+    d = __import__("vorwaertstest.dashboard_daten", fromlist=["bauen"]).bauen(cfg, tmp_path)
+    aaa = next(p for p in d["positionen"] if p["coin"] == "AAA"); bbb = next(p for p in d["positionen"] if p["coin"] == "BBB")
+    assert aaa["stop_kurs"] == pytest.approx(114.0) and bbb["stop_kurs"] == pytest.approx(46.2) and d["kennzahlen"][0]["trail"] == 0.05
+    # AAA 115: 4,2 % unter dem Hoch, noch kein Stop. BBB 46,5: 5,7 % über dem Tief, Stop obwohl 7 % im Gewinn
+    api.kurse.update({"AAA": 115.0, "BBB": 46.5})
+    assert bot.schritt(cfg, api, tmp_path, JETZT + 2 * (H // 4), melden=still)["orders"] == 1
+    z = json.loads((tmp_path / "zustand.json").read_text())
+    assert z["pos"]["BBB"] == 0.0 and z["sperre"]["BBB"] == -1 and z["pos"]["AAA"] > 0
+    assert bot.lesen(tmp_path / "protokoll.csv")[-1]["grund"] == "nachzug"
+    # AAA 113,9: mehr als 5 % unter dem Hoch von 120: Stop. BBB bleibt Short-Signal: Pause
+    api.kurse.update({"AAA": 113.9, "BBB": 40.0})
+    assert bot.schritt(cfg, api, tmp_path, JETZT + 3 * (H // 4), melden=still)["orders"] == 1
+    assert bot.schritt(cfg, api, tmp_path, JETZT + 4 * (H // 4), melden=still)["orders"] == 0
+    # BBB dreht auf Long: Wiedereinstieg, der nachgezogene Stop beginnt neu am Einstiegskurs
+    api.kurse["BBB"] = 61.0
+    bot.schritt(cfg, api, tmp_path, JETZT + 5 * (H // 4), melden=still)
+    z = json.loads((tmp_path / "zustand.json").read_text())
+    assert z["pos"]["BBB"] > 0 and z["beste"]["BBB"] == pytest.approx(61.05) and z["sperre"]["BBB"] == 0
+
+
+def test_ohne_nachzug_entstehen_keine_neuen_felder(tmp_path):
+    for cfg in (CFG, {**CFG, "tp": 0.15, "sl": 0.05}):                         # Test 1 und Test 2: Zustand und Ausgabe wie bisher
+        ordner = tmp_path / str(len(cfg)); api = Boerse({"AAA": 100.0, "BBB": 50.0}, {"AAA": 90.0, "BBB": 60.0})
+        bot.schritt(cfg, api, ordner, JETZT, melden=lambda *_: None)
+        api.kurse.update({"AAA": 104.0, "BBB": 51.0})
+        bot.schritt(cfg, api, ordner, JETZT + H // 4, melden=lambda *_: None)
+        assert "beste" not in json.loads((ordner / "zustand.json").read_text())
+        k = __import__("vorwaertstest.dashboard_daten", fromlist=["bauen"]).bauen(cfg, ordner)["kennzahlen"][0]
+        assert "trail" not in k and "nachgerechnet_bis" not in k
+
+
+def test_nachrechnen_folgt_den_aufzeichnungen(tmp_path):
+    from vorwaertstest import nachrechnen as N
+    quelle = tmp_path / "quelle"; api = Boerse({"AAA": 100.0, "BBB": 50.0}, {"AAA": 90.0, "BBB": 60.0})
+    zeiten = [JETZT + i * (H // 12) for i in range(6)]
+    for i, kurs in enumerate((50.0, 46.0, 44.0, 45.0, 46.5, 47.0)):            # BBB (Short) fällt und erholt sich
+        api.kurse["BBB"] = kurs
+        bot.schritt(CFG, api, quelle, zeiten[i], melden=lambda *_: None)
+    assert json.loads((quelle / "zustand.json").read_text())["pos"]["BBB"] < 0  # die Quelle (ohne Stop) hält weiter
+
+    class Verlauf(Boerse):                                                     # Stundenkerzen wie in der Quelle, Kontrakte wie dort
+        def kerzen(self, sym, minuten=60, limit=3, start_ms=None, ende_ms=None):
+            c = sym.removesuffix("USDT"); letzte = JETZT - JETZT % H - H
+            return [{"start": t, "open": 0, "high": 0, "low": 0, "close": self.kurse[c] if t >= letzte else self.alt[c]} for t in range(start_ms - start_ms % H, ende_ms, H)]
+    r = N.nachrechnen({**CFG, "trail": 0.05}, quelle, tmp_path / "ziel", True, api=Verlauf({"AAA": 100.0, "BBB": 50.0}, {"AAA": 90.0, "BBB": 60.0}), melden=lambda *_: None)
+    z, pr = json.loads((tmp_path / "ziel/zustand.json").read_text()), bot.lesen(tmp_path / "ziel/protokoll.csv")
+    q = bot.lesen(quelle / "protokoll.csv")
+    assert [float(x["fuellkurs"]) for x in pr[:2]] == [float(x["fuellkurs"]) for x in q[:2]]      # Einstiege wie in der Quelle
+    assert r["laeufe"] == 6 and z["pos"]["BBB"] == 0.0 and pr[-1]["grund"] == "nachzug" and pr[-1]["zeit"] == bot.utc(zeiten[4])
+    assert float(pr[-1]["fuellkurs"]) == pytest.approx(46.55)                  # Rückkauf zum damals gemessenen Briefkurs
