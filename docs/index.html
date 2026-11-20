@@ -128,6 +128,7 @@
 
   <h2>Konto-Verlauf seit Start (% des Startkapitals, mit Rebate)</h2>
   <div class="kasten"><div class="chartbox" id="verlauf"></div></div>
+  <p class="hinweis" id="verlauf-hinweis" hidden>Gelber Pfeil: Bis hier aus den Aufzeichnungen von Test 1 nachgerechnet, rechts davon live.</p>
 
   <h2>Positionen · antippen für Chart und Details</h2>
   <div class="kasten" id="paare"></div>
@@ -259,7 +260,7 @@
     $('hebel').textContent = de(0).format(k.hebel);
     // Test 2 und 3: der Abschnitt bis nachgerechnet_bis stammt aus den Aufzeichnungen von Test 1 (kein Vorwärtstest)
     const nach = k.nachgerechnet_bis ? ` Bis ${k.nachgerechnet_bis} UTC aus den Aufzeichnungen von Test 1 nachgerechnet, seitdem live`
-      + (k.netto_nachgerechnet_usd != null ? ` (Ergebnis seit dem Live-Start: ${vz(a.mit - k.netto_nachgerechnet_usd, 2)} $)` : '') + '.' : '';
+      + (k.netto_nachgerechnet_usd != null ? ` (Ergebnis seit dem Live-Start: ${vz(Math.round((a.mit - k.netto_nachgerechnet_usd) * 100) / 100 || 0, 2)} $)` : '') + '.' : '';
     $('regel').textContent = k.trail
       ? `Test 3, Einstiege von Test 1 (${k.start} UTC): Eine Position wird geschlossen, sobald der Kurs ${de(0).format(k.trail * 100)} % vom günstigsten Stand seit dem Einstieg zurückläuft; danach Pause bis zum nächsten Umkehrsignal. Kein Gewinnziel.`
         + nach
@@ -398,7 +399,8 @@
     S.verlauf.forEach((r) => punkte.set(Math.floor(new Date(r.zeit) / 60000) * 60, r.mit_rebate));
     verlaufSerie.setData([...punkte.entries()].sort((a, b) => a[0] - b[0]).map(([time, value]) => ({time, value})));
     const nb = S.kennzahlen[0].nachgerechnet_bis;   // Test 2 und 3: Ende des nachgerechneten Abschnitts im Verlauf markieren (Test 1: keine Marke)
-    verlaufSerie.setMarkers(nb ? [{time: Math.floor(new Date(nb.replace(' ', 'T') + ':00Z') / 60000) * 60, position: 'aboveBar', shape: 'arrowDown', color: '#f0b34a', text: 'bis hier nachgerechnet'}] : []);
+    verlaufSerie.setMarkers(nb ? [{time: Math.floor(new Date(nb.replace(' ', 'T') + ':00Z') / 60000) * 60, position: 'aboveBar', shape: 'arrowDown', color: '#f0b34a'}] : []);
+    $('verlauf-hinweis').hidden = !nb;
     verlaufChart.timeScale().fitContent();
   }
 
