@@ -7,9 +7,13 @@ Standardgröße nach spannen.csv. Daraus wird für jeden früheren Lauf eine Bö
     python3 -m vorwaertstest.nachrechnen --quelle vorwaertstest/lauf --config vorwaertstest/config_lauf_trail.json \
             --ziel vorwaertstest/lauf_trail --fuellungen-der-quelle
 
+Danach Dashboard-Daten und Board-Datei neu schreiben (dashboard_daten, board_verschluesseln), wie in stunde.sh.
+
 Grenzen: Eine Order wird zum Mittelkurs zuzüglich der in diesem Lauf gemessenen Kosten gefüllt (nicht gegen das volle
-Orderbuch von damals). Funding wird anteilig aus dem in der Quelle gebuchten Funding übernommen. Das Ergebnis ist eine
-Nachrechnung, kein Vorwärtstest.
+Orderbuch von damals). Dreht eine Position in einem Lauf (Schließen und neuer Einstieg), wird die zweite Order zum
+selben Kurs gefüllt wie die erste, also etwas zu günstig. Mit --fuellungen-der-quelle gelten nur die Orders des ersten
+Laufs der Quelle (die gemeinsamen Einstiege) zu deren tatsächlichem Füllkurs. Funding wird anteilig aus dem in der
+Quelle gebuchten Funding übernommen. Das Ergebnis ist eine Nachrechnung, kein Vorwärtstest.
 """
 import argparse
 import datetime as dt
@@ -112,7 +116,11 @@ def nachrechnen(cfg: dict, quelle: Path, ziel: Path, fuellungen_der_quelle: bool
     coins = cfg["coins"]
     stunden = stunden_laden(coins, ms(ll[0][0]) // H * H - (kern.RUECKBLICK_STUNDEN + 3) * H, ms(ll[-1][0]) + H, api)
     kontrakte = {c: api.kontrakt(c + "USDT") for c in coins}
-    fuell = {(r["zeit"], r["coin"], r["seite"]): float(r["fuellkurs"]) for r in bot.lesen(quelle / "protokoll.csv")} if fuellungen_der_quelle else {}
+    fuell = {(r["zeit"], r["coin"], r["seite"]): float(r["fuellkurs"]) for r in bot.lesen(quelle / "protokoll.csv")
+             if r["zeit"] == ll[0][0]} if fuellungen_der_quelle else {}          # nur die Einstiege des ersten Laufs
+    zeiten = [r["zeit"] for r in bot.lesen(quelle / "stand.csv")]
+    if len(zeiten) != len(set(zeiten)):
+        raise SystemExit("Die Quelle hat zwei Läufe in derselben Minute; der Funding-Anteil wäre so nicht eindeutig.")
     funding_q = {r["zeit"]: float(r["funding"]) for r in bot.lesen(quelle / "stand.csv")}
     menge_q = {}
     for r in bot.lesen(quelle / "protokoll.csv"):               # Positionen der Quelle im Zeitverlauf (für den Funding-Anteil)
@@ -136,7 +144,7 @@ def nachrechnen(cfg: dict, quelle: Path, ziel: Path, fuellungen_der_quelle: bool
         bot.schritt(cfg, boerse, ziel, jetzt, melden=still)
         for c, d in menge_q.get(zeit, []):                      # Orders der Quelle in diesem Lauf: gelten für das Funding ab dem nächsten Lauf
             pos_q[c] = pos_q.get(c, 0.0) + d
-    bot.bericht(cfg, ziel)
+    bot.bericht({**cfg, "nachgerechnet_bis": ll[-1][0]}, ziel)
     st, pr = bot.lesen(ziel / "stand.csv"), bot.lesen(ziel / "protokoll.csv")
     melden(f"nachgerechnet: {len(ll)} Läufe von {ll[0][0]} bis {ll[-1][0]} UTC, {len(pr)} Orders, netto mit Rebate {float(st[-1]['netto_mit_rebate']):+.2f} $")
     return {"laeufe": len(ll), "von": ll[0][0], "bis": ll[-1][0], "orders": len(pr), "netto_mit_rebate": float(st[-1]["netto_mit_rebate"])}
@@ -145,7 +153,7 @@ def nachrechnen(cfg: dict, quelle: Path, ziel: Path, fuellungen_der_quelle: bool
 def main(argv=None) -> None:
     p = argparse.ArgumentParser(description="Regel-Variante auf den Aufzeichnungen eines Tests nachrechnen")
     p.add_argument("--quelle", type=Path, required=True); p.add_argument("--config", type=Path, required=True); p.add_argument("--ziel", type=Path, required=True)
-    p.add_argument("--fuellungen-der-quelle", action="store_true", help="Orders, die es zur selben Zeit in der Quelle gab, zu deren tatsächlichem Füllkurs buchen")
+    p.add_argument("--fuellungen-der-quelle", action="store_true", help="die Orders des ersten Laufs der Quelle (gemeinsame Einstiege) zu deren tatsächlichem Füllkurs buchen")
     p.add_argument("--vermerk", action="store_true", help="das Ende des nachgerechneten Abschnitts in die Einstellung schreiben (nachgerechnet_bis)")
     a = p.parse_args(argv)
     cfg = bot.konfig(a.config)

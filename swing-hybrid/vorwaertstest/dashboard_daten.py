@@ -73,6 +73,9 @@ def bauen(cfg: dict, daten: Path) -> dict:
         kennzahlen[0]["trail"] = trail
     if cfg.get("nachgerechnet_bis"):                        # Abschnitt, der nachträglich aus den Aufzeichnungen von Test 1 gerechnet wurde
         kennzahlen[0]["nachgerechnet_bis"] = cfg["nachgerechnet_bis"]
+        davor = [r for r in st if r["zeit"] <= cfg["nachgerechnet_bis"]]   # Ergebnis am Ende der Nachrechnung: das Board zeigt daneben das Ergebnis seit dem Live-Start
+        if davor:
+            kennzahlen[0]["netto_nachgerechnet_usd"] = round(float(davor[-1]["netto_mit_rebate"]), 2)
     if len(verlauf) > 400:                                  # ältere Punkte ausdünnen, die letzten 120 bleiben vollständig
         alt, neu = verlauf[:-120], verlauf[-120:]
         schritt = -(-len(alt) // 280)

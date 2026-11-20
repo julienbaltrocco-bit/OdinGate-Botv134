@@ -239,7 +239,9 @@ def test_ohne_nachzug_entstehen_keine_neuen_felder(tmp_path):
         bot.schritt(cfg, api, ordner, JETZT + H // 4, melden=lambda *_: None)
         assert "beste" not in json.loads((ordner / "zustand.json").read_text())
         k = __import__("vorwaertstest.dashboard_daten", fromlist=["bauen"]).bauen(cfg, ordner)["kennzahlen"][0]
-        assert "trail" not in k and "nachgerechnet_bis" not in k
+        assert "trail" not in k and "nachgerechnet_bis" not in k and "netto_nachgerechnet_usd" not in k
+        assert "nachgerechnet" not in (ordner / "bericht.md").read_text() if (ordner / "bericht.md").exists() else True
+        assert "nachgerechnet" not in bot.bericht(cfg, ordner)
 
 
 def test_nachrechnen_folgt_den_aufzeichnungen(tmp_path):
@@ -261,3 +263,44 @@ def test_nachrechnen_folgt_den_aufzeichnungen(tmp_path):
     assert [float(x["fuellkurs"]) for x in pr[:2]] == [float(x["fuellkurs"]) for x in q[:2]]      # Einstiege wie in der Quelle
     assert r["laeufe"] == 6 and z["pos"]["BBB"] == 0.0 and pr[-1]["grund"] == "nachzug" and pr[-1]["zeit"] == bot.utc(zeiten[4])
     assert float(pr[-1]["fuellkurs"]) == pytest.approx(46.55)                  # Rückkauf zum damals gemessenen Briefkurs
+    # Kennzeichnung: Bericht und Dashboard-Daten nennen den nachgerechneten Abschnitt und das Ergebnis an dessen Ende
+    assert "nachgerechnet (kein Vorwärtstest)" in (tmp_path / "ziel/bericht.md").read_text()
+    cfg3 = {**CFG, "trail": 0.05, "nachgerechnet_bis": r["bis"]}
+    k = __import__("vorwaertstest.dashboard_daten", fromlist=["bauen"]).bauen(cfg3, tmp_path / "ziel")["kennzahlen"][0]
+    assert k["nachgerechnet_bis"] == r["bis"] and k["netto_nachgerechnet_usd"] == pytest.approx(r["netto_mit_rebate"], abs=0.01)
+
+
+def test_nachrechnen_uebernimmt_nur_die_fuellungen_des_ersten_laufs(tmp_path):
+    from vorwaertstest import nachrechnen as N
+    quelle = tmp_path / "quelle"; api = Boerse({"AAA": 100.0, "BBB": 50.0}, {"AAA": 90.0, "BBB": 60.0})
+    bot.schritt(CFG, api, quelle, JETZT, melden=lambda *_: None)
+    api.kurse["AAA"] = 99.0                                                    # AAA (Long) fällt um 1 %: die Variante mit Stop steigt aus
+    bot.schritt(CFG, api, quelle, JETZT + H // 12, melden=lambda *_: None)
+
+    class Verlauf(Boerse):
+        def kerzen(self, sym, minuten=60, limit=3, start_ms=None, ende_ms=None):
+            c = sym.removesuffix("USDT"); letzte = JETZT - JETZT % H - H
+            return [{"start": t, "open": 0, "high": 0, "low": 0, "close": self.kurse[c] if t >= letzte else self.alt[c]} for t in range(start_ms - start_ms % H, ende_ms, H)]
+
+    def rechnen(ziel):
+        N.nachrechnen({**CFG, "sl": 0.005}, quelle, ziel, True, api=Verlauf({"AAA": 100.0, "BBB": 50.0}, {"AAA": 90.0, "BBB": 60.0}), melden=lambda *_: None)
+        return bot.lesen(ziel / "protokoll.csv")
+    vorher = rechnen(tmp_path / "a")
+    stops = [x for x in vorher if x["grund"] == "stop"]
+    assert len(stops) == 1 and stops[0]["coin"] == "AAA" and stops[0]["zeit"] == bot.utc(JETZT + H // 12)
+    # Hätte die Quelle später zur selben Minute und auf derselben Seite gehandelt, darf deren Füllkurs hier nichts bestimmen
+    q = bot.lesen(quelle / "protokoll.csv")
+    with open(quelle / "protokoll.csv", "a") as f:
+        f.write(",".join(dict(q[0], zeit=stops[0]["zeit"], coin="AAA", seite=stops[0]["seite"], fuellkurs="1.0", grund="schliessen")[k] for k in q[0]) + "\n")
+    nachher = rechnen(tmp_path / "b")
+    assert [x["fuellkurs"] for x in nachher] == [x["fuellkurs"] for x in vorher]
+    assert [float(x["fuellkurs"]) for x in nachher[:2]] == [float(x["fuellkurs"]) for x in q[:2]]   # Einstiege weiter wie in der Quelle
+
+
+def test_nachrechnen_lehnt_doppelte_minuten_der_quelle_ab(tmp_path):
+    from vorwaertstest import nachrechnen as N
+    quelle = tmp_path / "quelle"; api = Boerse({"AAA": 100.0, "BBB": 50.0}, {"AAA": 90.0, "BBB": 60.0})
+    bot.schritt(CFG, api, quelle, JETZT, melden=lambda *_: None)
+    bot.schritt(CFG, api, quelle, JETZT + 1000, melden=lambda *_: None)          # zweiter Lauf in derselben Minute
+    with pytest.raises(SystemExit):
+        N.nachrechnen({**CFG, "trail": 0.05}, quelle, tmp_path / "ziel", True, api=api, melden=lambda *_: None)

@@ -257,11 +257,15 @@
     if (!a) return;
     const k = a.k, pz = (x) => x / a.kapital * 100;
     $('hebel').textContent = de(0).format(k.hebel);
+    // Test 2 und 3: der Abschnitt bis nachgerechnet_bis stammt aus den Aufzeichnungen von Test 1 (kein Vorwärtstest)
+    const nach = k.nachgerechnet_bis ? ` Bis ${k.nachgerechnet_bis} UTC aus den Aufzeichnungen von Test 1 nachgerechnet, seitdem live`
+      + (k.netto_nachgerechnet_usd != null ? ` (Ergebnis seit dem Live-Start: ${vz(a.mit - k.netto_nachgerechnet_usd, 2)} $)` : '') + '.' : '';
     $('regel').textContent = k.trail
       ? `Test 3, Einstiege von Test 1 (${k.start} UTC): Eine Position wird geschlossen, sobald der Kurs ${de(0).format(k.trail * 100)} % vom günstigsten Stand seit dem Einstieg zurückläuft; danach Pause bis zum nächsten Umkehrsignal. Kein Gewinnziel.`
-        + (k.nachgerechnet_bis ? ` Bis ${k.nachgerechnet_bis} UTC aus den Aufzeichnungen von Test 1 nachgerechnet, seitdem live.` : '')
+        + nach
       : (k.tp || k.sl)
       ? `Test 2, läuft seit ${k.start} UTC: Einstieg beim Umkehrsignal, Ausstieg bei ${de(0).format(k.sl * 100)} % Verlust oder ${de(0).format(k.tp * 100)} % Gewinn je Position, danach Pause bis zum nächsten Umkehrsignal.`
+        + (k.nachgerechnet_bis ? ' Einstiege von Test 1.' : '') + nach
       : `Test 1, läuft seit ${k.start} UTC: Positionen reagieren nur auf das Umkehrsignal, ohne Gewinnziel und ohne Stop.`;
     Object.keys(SS).forEach((id) => {
       const b = konto(SS[id]), w = $('tabw-' + id);
@@ -286,7 +290,7 @@
     setze(stat.dd, de(2).format(dd) + ' %', null); stat.dd_z.textContent = 'vom Höchststand';
     setze(stat.ls, `${k.long} / ${k.short}`, null);
     const tage = (Date.now() - new Date(k.start.replace(' ', 'T') + ':00Z')) / 864e5;
-    setze(stat.tage, tage < 1 ? de(1).format(tage * 24) + ' Std.' : de(1).format(tage) + ' Tage', null); stat.tage_z.textContent = 'Start ' + k.start + ' UTC';
+    setze(stat.tage, tage < 1 ? de(1).format(tage * 24) + ' Std.' : de(1).format(tage) + ' Tage', null); stat.tage_z.textContent = 'Start ' + k.start + ' UTC' + (k.nachgerechnet_bis ? ' · live seit ' + k.nachgerechnet_bis.slice(8, 10) + '.' + k.nachgerechnet_bis.slice(5, 7) + '. ' + k.nachgerechnet_bis.slice(11) : '');
     setze(stat.slip, de(3).format(k.slippage_orders_bp / 100) + ' %', null); stat.slip_z.textContent = 'gemessen bei Yubit';
     if (verlaufSerie && a.vollstaendig) {
       const t = Math.floor(Date.now() / 60000) * 60, letzte = S.verlauf.length ? Math.floor(new Date(S.verlauf[S.verlauf.length - 1].zeit) / 1000) : 0;
@@ -328,7 +332,7 @@
       const test2 = S.kennzahlen[0].tp || S.kennzahlen[0].sl;   // Test 1 behält den bisherigen Hinweistext unverändert
       const test3 = S.kennzahlen[0].trail;
       z.detail.appendChild(el('p', 'hinweis', 'Pfeile: Orders des Papier-Bots. Blaue Linie: Einstieg. ' + (test2 || test3 ? 'Gelb gestrichelt' : 'Gestrichelt') + ': Kurs, an dem sich das Signal beim nächsten Stundenschluss dreht.'
-        + (test3 ? ' Rot gestrichelt: nachgezogener Stop (SL), ' + de(0).format(test3 * 100) + ' % hinter dem günstigsten Kurs seit dem Einstieg; er wandert mit, sobald der Kurs weiter in Richtung der Position läuft. Stand der Linie: letzter Lauf des Bots.' : '')
+        + (test3 ? ' Rot gestrichelt: nachgezogener Stop (SL), ' + de(0).format(test3 * 100) + ' % hinter dem günstigsten Kurs seit dem Einstieg; er wandert mit, sobald der Kurs weiter in Richtung der Position läuft. Nachgezogen und geprüft wird nur bei jedem Bot-Lauf (alle 5 Minuten) am Yubit-Mittelkurs; zwischen zwei Läufen bleibt die Linie stehen, und ein kurzes Durchstoßen löst nichts aus.' : '')
         + (test2 ? ' Grün gestrichelt: Gewinnziel (TP). Rot gestrichelt: Stop (SL). Mit „TP/SL im Bild“ reicht die Kursskala bis zu beiden Linien; ausgeschaltet zeigt sie nur die Kerzen in voller Größe.' : '')));
       box.appendChild(z.box);
     });
@@ -363,10 +367,12 @@
   function zeigeOrders() {
     const tb = $('orders'); tb.replaceChildren();
     const anlass = {einstieg: 'Einstieg', schliessen: 'Umkehrsignal', tageslimit: 'Tageslimit', ziel: 'Gewinnziel', stop: 'Stop', nachzug: 'Nachgezogener Stop'};
+    const nb = S.kennzahlen[0].nachgerechnet_bis, start = S.kennzahlen[0].start;   // Test 2 und 3: Orders aus dem nachgerechneten Abschnitt kennzeichnen
+    const woher = (o) => { const t = o.zeit.slice(0, 16).replace('T', ' '); return !nb || t > nb ? '' : (o.grund === 'einstieg' && t === start ? ' (von Test 1)' : ' (nachgerechnet)'); };
     [...S.orders_alle].reverse().forEach((o) => {
       const tr = el('tr');
       tr.appendChild(el('td', null, o.zeit.slice(0, 16).replace('T', ' '))); tr.appendChild(el('td', null, o.coin));
-      tr.appendChild(el('td', o.kauf ? 'gut' : 'schlecht', o.kauf ? 'Kauf' : 'Verkauf')); tr.appendChild(el('td', null, anlass[o.grund] || o.grund));
+      tr.appendChild(el('td', o.kauf ? 'gut' : 'schlecht', o.kauf ? 'Kauf' : 'Verkauf')); tr.appendChild(el('td', null, (anlass[o.grund] || o.grund) + woher(o)));
       tr.appendChild(el('td', 'r', kurs(o.kurs))); tr.appendChild(el('td', 'r', new Intl.NumberFormat('de-DE', {maximumFractionDigits: 6}).format(o.menge))); tr.appendChild(el('td', 'r', de(0).format(o.volumen) + ' $'));
       tb.appendChild(tr);
     });
@@ -391,6 +397,8 @@
     const punkte = new Map();
     S.verlauf.forEach((r) => punkte.set(Math.floor(new Date(r.zeit) / 60000) * 60, r.mit_rebate));
     verlaufSerie.setData([...punkte.entries()].sort((a, b) => a[0] - b[0]).map(([time, value]) => ({time, value})));
+    const nb = S.kennzahlen[0].nachgerechnet_bis;   // Test 2 und 3: Ende des nachgerechneten Abschnitts im Verlauf markieren (Test 1: keine Marke)
+    verlaufSerie.setMarkers(nb ? [{time: Math.floor(new Date(nb.replace(' ', 'T') + ':00Z') / 60000) * 60, position: 'aboveBar', shape: 'arrowDown', color: '#f0b34a', text: 'bis hier nachgerechnet'}] : []);
     verlaufChart.timeScale().fitContent();
   }
 

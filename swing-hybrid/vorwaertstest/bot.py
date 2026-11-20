@@ -317,6 +317,8 @@ def bericht(cfg: dict, daten: Path) -> str:
     tage = max((dt.datetime.fromisoformat(st[-1]["zeit"]) - dt.datetime.fromisoformat(st[0]["zeit"])).total_seconds() / 86400, 1 / 24)
     z += [f"- Zeitraum: {st[0]['zeit']} bis {st[-1]['zeit']} UTC ({_n(tage, 1)} Tage, {len(st)} Durchläufe)",
           f"- Kapital {_n(cfg['kapital_usd'])} $, Hebel {_n(cfg['hebel'], 2)}, {len(cfg['coins'])} Coins, Modus {pr[-1]['modus'] if pr else cfg['modus']}", ""]
+    if cfg.get("nachgerechnet_bis"):                        # Abschnitt aus den Aufzeichnungen von Test 1: als Nachrechnung kennzeichnen
+        z.insert(-1, f"- Bis {cfg['nachgerechnet_bis']} UTC aus den Aufzeichnungen von Test 1 nachgerechnet (kein Vorwärtstest), danach live.")
 
     werte = [(r["coin"], (float(r["kauf_bp"]) + float(r["verkauf_bp"])) / 2, float(r["spanne_bp"])) for r in sp
              if r["kauf_bp"] != "" and r["verkauf_bp"] != ""]
