@@ -1274,3 +1274,46 @@ Dieser Abschnitt ist **kein Vorwärtstest**: Die Regel wurde festgelegt, nachdem
 `vorwaertstest/lauf_trail`, eigener Tab auf dem Board. Test 1 und Test 2 bleiben unverändert.
 **Wertung.** Vergleich der drei Tests über dieselbe Zeit; aussagekräftig erst nach mindestens einem vollen
 Trendwechsel. Keine Änderung der Regel während des Tests.
+
+---
+
+## 40. Test 2 auf die Einstiege von Test 1 umgestellt, festgelegt vor der Rechnung (20.11.2026, ausdrücklicher Wunsch des Auftraggebers)
+
+**Anlass.** Test 1 stieg am 15.11.2026 um 13:21 UTC ein, Test 2 erst um 17:44 UTC, nach gut vier Stunden Kursrückgang
+und damit zu tieferen Kursen. Der Auftraggeber möchte, dass alle drei Tests exakt dieselben Einstiege haben, damit sie
+sich nur im Ausstieg unterscheiden. Wortlaut: „Die trades aus Test 2&3 soll bitte exakt die selben Entrys haben wie
+die aus Test 1. […] alle sollten die selben Entrys haben.“ Für Test 3 ist das schon so festgelegt (Abschnitt
+„Test 3“ oben); dieser Abschnitt betrifft Test 2.
+
+**Was geschieht (ab jetzt eingefroren, vor jeder Rechnung).**
+- Die Regel von Test 2 bleibt, wie sie ist: fester Stop 5 %, Gewinnziel 15 % (beides auf die Kursbewegung des Coins),
+  danach Pause bis zum Signalwechsel. Die Einstellung ändert sich nicht, sie erhält nur den Vermerk `nachgerechnet_bis`.
+- Test 2 beginnt mit den tatsächlichen Füllungen von Test 1 vom 15.11.2026, 13:21 UTC (gleiche Kurse, Mengen,
+  Gebühren). Der Abschnitt bis zur Umstellung wird wie bei Test 3 mit dem echten Bot-Code aus den Aufzeichnungen von
+  Test 1 nachgerechnet (`vorwaertstest/nachrechnen.py`; dasselbe Werkzeug gibt den bisherigen Test 2 aus dessen eigenen
+  Aufzeichnungen auf den Cent wieder).
+- Der bisherige Test 2 (eigene Einstiege 17:44 UTC, vorwärts geführt bis zur Umstellung) bleibt vollständig und
+  unverändert erhalten: im Ordner `vorwaertstest/archiv/lauf_tpsl_eigene_einstiege/` und in der Git-Historie. Er wird
+  nicht weitergeführt.
+
+**Einordnung.** Der bisherige Test 2 war ab 17:44 UTC ein echter Vorwärtstest; der neue Test 2 ist bis zur Umstellung
+eine Nachrechnung und wird so gekennzeichnet. Der gemeinsame Einstieg ist der tatsächliche Einstieg von Test 1, also
+nicht nachträglich ausgesucht. Die Entscheidung, ihn für Test 2 und Test 3 zu übernehmen, fiel aber in Kenntnis des
+Kursverlaufs danach (ein großer Rückgang, in dem alle zehn Shorts im Gewinn liegen).
+- Zulässige Aussage: Vergleich der drei Ausstiegsregeln bei gleichen Einstiegen.
+- Keine zulässige Aussage: die Höhe des Ergebnisses von Test 2 oder Test 3 bis zur Umstellung als Beleg für einen
+  Vorteil. Vorwärts gewertet wird bei beiden erst ab der Umstellung.
+
+**Was sich rechnerisch ändert (ohne Blick ins Ergebnis).** Mit den früheren Einstiegen liegen Stop und Ziel je Coin
+höher, zum Beispiel SOL Stop 76,74 statt 74,85, XRP Stop 1,0247 statt 0,9972, ETH Ziel 1.562,39 statt 1.537,38. Ob die
+beiden Stops des bisherigen Test 2 (SOL 17.11., XRP 18.11.) auch so ausgelöst hätten und ob ein Ziel erreicht wurde,
+ergibt die Nachrechnung; daran wird nichts gesteuert.
+
+**Prüfungen vor der Umstellung (sonst keine Umstellung).**
+1. Die ersten zehn Orders des neuen Test 2 sind dieselben wie bei Test 1 (Zeit, Füllkurs, Menge, Gebühr).
+2. Eine unabhängige Kontrollrechnung der Ausstiege direkt aus den aufgezeichneten Mittelkursen (ohne den Bot-Code)
+   findet dieselben Ausstiege: gleicher Coin, gleicher Lauf, gleicher Anlass.
+3. Der Archivordner ist byte-gleich mit dem letzten Stand des bisherigen Test 2.
+4. Test 1 bleibt unberührt (kein Byte anders).
+
+**Board.** Der Tab von Test 2 erhält denselben Hinweis wie Test 3: „bis … nachgerechnet, seitdem live“.
