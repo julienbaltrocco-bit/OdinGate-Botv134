@@ -1199,3 +1199,36 @@ Eine Generation nur aus weiteren Einstellungen würde die Hürde für alle spät
   erwarten; daraus folgt kein Status).
 - **Kontrolle der Rechnung:** Der Arm „Kerzenschluss“ wird für eine Stichprobe mit dem Archiv der Generation 1
   verglichen (gleiche Regel, 5-Minuten-Raster); kleine Abweichungen durch die Lückenregel sind erlaubt und werden genannt.
+
+---
+
+## 39. Ergebnis E22: Kaufdruck minütlich gegen Kerzenschluss (20.11.2026)
+
+**Gerechnet:** 216 Paare (432 Arme), zehn Coins, Minutenraster, 28 Sekunden (`ergebnisse/e22_minute_kaufdruck.json`,
+alle Paare in `e22_minute_kaufdruck_paare.csv`). Kontrollen: Das Minuten-Signal ist am Kerzenschluss gleich dem
+Fabrik-Signal (Abweichung 0); der Arm „Kerzenschluss“ trifft das Archiv der Generation 1 (216 gleiche Regeln,
+Korrelation 0,999, mittlere Abweichung 0,07 bp je Trade, 0,7 % andere Trade-Zahl wegen der strengeren Lückenregel).
+
+| gemessene Kosten | Training | Auswahlprüfung | verlangt |
+|---|---|---|---|
+| Paare, in denen „minütlich“ je Tag besser ist | 12 % | 13 % | mindestens 60 % |
+| mittlere Differenz je Trade (minütlich minus Kerzenschluss) | +0,08 bp | +0,01 bp | über +1 bp |
+| Median netto je Trade, Kerzenschluss / minütlich | −8,2 / −8,1 bp | −7,8 / −8,3 bp | |
+
+- Minütliches Prüfen macht den einzelnen Trade nicht besser, aber rund 30 % mehr Trades. Weil der Kaufdruck nach
+  Kosten in fast allen Einstellungen verliert, heißt mehr handeln hier mehr verlieren.
+- Mit den Kosten in bewegtem Markt ist der einzelne Trade minütlich etwas besser (+0,7 bp im Training, +0,5 bp in der
+  Auswahlprüfung, in rund zwei Dritteln der Paare), bleibt aber unter der Schwelle von +1 bp, und je Tag ist
+  „minütlich“ auch dort nur in 18 % bzw. 16 % der Paare besser.
+- Nach Richtung: Mit dem Signal gewinnt der frühere Einstieg im Training +1,1 bp je Trade, gegen das Signal verliert
+  er 1,0 bp. Das passt zu einem Signal, das kurz nachwirkt; der Betrag ist ein Bruchteil der Kosten.
+- Kein einziger der 432 Arme ist im Training netto positiv mit t ≥ 2 (bei beiden Kostenannahmen).
+- **Einstufung A (verworfen).** Beide vorab festgelegten Bedingungen sind klar verfehlt. Kein Finalist, keine
+  Schlussprüfung, kein Papier-Test. **H07 ist damit erledigt:** Weder frischere Orderbuch-Daten (E18) noch ein
+  Einstieg innerhalb der Kerze (E22) retten die kurzfristigen Signale. Die Orderbuch-Tiefe auf Minutenraster wird
+  nicht nachgeschoben (so in Abschnitt 36 festgelegt: nur, wenn sich beim Kaufdruck ein Unterschied zeigt).
+- **Was dagegen sprechen könnte:** Geprüft wurde nur der Kaufdruck. Für die Orderbuch-Tiefe gilt der Schluss nur
+  mittelbar (über E18). Der Kaufdruck-Beobachtungstest `B-dc1d27a3` nutzt ein langes Fenster mit Bestätigung und
+  seltenen Trades; über ihn sagt dieses Ergebnis nichts.
+
+Das Minutenraster (`fabrik/minute.py`) bleibt als geprüftes Werkzeug bestehen (jetzt 29 Tests, insgesamt 50 grün).

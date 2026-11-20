@@ -258,5 +258,19 @@
    "forschung/fabrik/ergebnisse/aufgaben_gen5.json",
    "forschung/fabrik/ergebnisse/zaehlung.json"
   ]
+ },
+ {
+  "nr": 22,
+  "id": "E22",
+  "runde": 2,
+  "datum": "2026-11-20",
+  "titel": "Kaufdruck minütlich geprüft gegen Prüfung am Kerzenschluss (Minutenraster, 216 Paare; Rest von H07)",
+  "einstufung": "A",
+  "kurz": "minütlich je Tag nur in 12 % (Training) und 13 % (Auswahlprüfung) der Paare besser, Differenz je Trade +0,08 / +0,01 bp; rund 30 % mehr Trades bei gleichem Verlust je Trade; kein Arm mit t ≥ 2",
+  "dateien": [
+   "forschung/ergebnisse/e22_minute_kaufdruck.json",
+   "forschung/ergebnisse/e22_minute_kaufdruck_paare.csv",
+   "forschung/experimente/e22_minute_kaufdruck.py"
+  ]
  }
 ]

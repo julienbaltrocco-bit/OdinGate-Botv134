@@ -61,3 +61,11 @@ keine Entscheidung des Auftraggebers.
 1. Die Frage vom 18.11. (Minuten-Simulator bauen oder warten) blieb ohne Antwort; Baustein 1 ist wie angekündigt gebaut
    (Protokoll Abschnitt 37). Der nächste Zyklus würde die erste Minuten-Generation (nur Kaufdruck, als Paare) festlegen
    und rechnen. Soll das nicht geschehen, bitte hier vermerken.
+
+## 20.11.2026 (Zyklus mit E22)
+
+1. Die Frage vom 18. und 19.11. ist erledigt: E22 ist gerechnet und verworfen, H07 abgeschlossen (Protokoll Abschnitt 39).
+2. **Wie weiter?** Im Baukasten ist keine offene Hypothese mehr, die als kleine Generation mit neuer Information taugt
+   (Stand wie in Abschnitt 36). Ohne neue Vorgabe schreiben die nächsten Zyklen nur die Kostenmessung fort (93 von 200)
+   und enden danach, wie im Auftrag unter „Was als Nächstes sinnvoll ist“, Punkt 4, vorgesehen. Neue Datenquellen
+   (H13 Einzeltrades, H14 eigener Orderbuch-Sammler) oder neue Ideen brauchen eine Entscheidung des Auftraggebers.

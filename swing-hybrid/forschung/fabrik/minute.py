@@ -88,6 +88,20 @@ def handelbar(gueltig_m: np.ndarray) -> np.ndarray:
     return g & vor & nach
 
 
+def kaufdruck_minute(tq: np.ndarray, qv: np.ndarray, L: int) -> np.ndarray:
+    """Kaufdruck über die letzten 5*L Minuten, an jeder Minute neu, geteilt durch die 7-Tage-Schwankung des 5-Minuten-Signals
+    (gerechnet aus den Werten an den schließenden Minuten bis zur vorletzten abgeschlossenen Kerze, wie in fabrik/signale.py).
+    An Minuten, die eine 5-Minuten-Kerze schließen, entspricht der Wert dem Fabrik-Signal kaufdruck_L."""
+    tq, qv = pd.Series(np.asarray(tq, dtype=np.float64)), pd.Series(np.asarray(qv, dtype=np.float64))
+    roh = ((2 * tq - qv).rolling(5 * L).sum() / qv.rolling(5 * L).sum()).replace([np.inf, -np.inf], np.nan)
+    sd5 = pd.Series(roh.to_numpy()[4::5]).rolling(S_W7, min_periods=576).std().shift(1).to_numpy()
+    sd = np.repeat(sd5, 5)                                         # an Minute m gilt die Schwankung der Kerze m // 5 (kennt nur frühere Kerzen)
+    return np.where(sd > 0, roh.to_numpy() / np.where(sd > 0, sd, 1.0), np.nan)
+
+
+S_W7 = 2016                                                       # 7 Tage in 5-Minuten-Kerzen (wie signale.W7)
+
+
 def trades(o, h, l, fcum, ein, wert, sigma, slip, i0, i1, ausstieg, je_kerze=1, max_trades=200_000):
     """Einzel-Trades über die Kerzen [i0, i1). `ausstieg` wie in generator.AUSSTIEGE (Haltedauer in 5-Minuten-Kerzen);
     je_kerze = 5 rechnet die Haltedauer auf Minuten um. Rückgabe: Feld [n, 6] wie kern.trades_liste."""

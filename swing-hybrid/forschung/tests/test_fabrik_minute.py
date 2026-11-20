@@ -114,3 +114,25 @@ def test_ausrichtung():
     ein, wert = M.nur_kerzenschluss(np.array([1, 0, -1], np.int8), np.array([2.0, 0.1, -3.0]))
     assert ein.tolist() == [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1] and wert[4] == 2.0 and np.isnan(wert[5])
     assert M.fcum_minuten(np.array([0.0, 1.0])).tolist() == [0.0] * 5 + [1.0] * 5
+
+
+@pytest.mark.skipif(not VORHANDEN, reason="Datenspeicher fehlt")
+@pytest.mark.parametrize("L", [1, 12, 48])
+def test_kaufdruck_minute(L):
+    """Minuten-Kaufdruck: kein Blick in die Zukunft, und am Kerzenschluss gleich dem Fabrik-Signal."""
+    a, b = 5 * L_IDX0, 5 * L_IDX0 + 60 * 1440                       # 60 Tage SOL ab 01.03.2023, davor 30 Tage Vorlauf
+    tq, qv = (np.array(M.laden(x)[2, a - 30 * 1440:b], dtype=np.float64) for x in ("tq", "qv"))
+    vorher = M.kaufdruck_minute(tq, qv, L)
+    T = len(tq) - 20 * 1440
+    tq2, qv2 = tq.copy(), qv.copy()
+    tq2[T:] *= 1.7; qv2[T:] *= 1.3
+    nachher = M.kaufdruck_minute(tq2, qv2, L)
+    assert np.array_equal(vorher[:T], nachher[:T], equal_nan=True) and not np.array_equal(vorher[T:], nachher[T:], equal_nan=True)
+    fabrik = np.asarray(D.laden("signale")[S.NAMEN.index(f"kaufdruck_{L}"), 2, (a - 30 * 1440) // 5:b // 5], dtype=np.float64)
+    schluss = vorher[4::5]
+    ok = np.isfinite(fabrik) & np.isfinite(schluss)
+    ok[:2 * 2016] = False                                          # die 7-Tage-Schwankung braucht hier erst Vorlauf (im Speicher läuft sie seit 2021)
+    assert ok.sum() > 10_000 and np.corrcoef(fabrik[ok], schluss[ok])[0, 1] > 0.999
+
+
+L_IDX0 = L.idx("2023-03-01")

@@ -1,0 +1,90 @@
+{
+ "experiment": "e22_minute_kaufdruck",
+ "gerechnet": "2026-11-20T01:47:56Z",
+ "paare": 216,
+ "abgleich_signal_groesste_abweichung": 0.0,
+ "bewegt": {
+  "t": {
+   "paare_mit_trades": 216,
+   "anteil_minute_besser_je_tag": 0.176,
+   "anteil_minute_besser_je_trade": 0.699,
+   "differenz_je_trade_mittel": 0.73,
+   "differenz_je_trade_median": 0.42,
+   "n85_median_schluss": -9.97,
+   "n85_median_minute": -9.47,
+   "trades_verhaeltnis_median": 1.3
+  },
+  "v": {
+   "paare_mit_trades": 216,
+   "anteil_minute_besser_je_tag": 0.162,
+   "anteil_minute_besser_je_trade": 0.634,
+   "differenz_je_trade_mittel": 0.52,
+   "differenz_je_trade_median": 0.26,
+   "n85_median_schluss": -8.93,
+   "n85_median_minute": -9.04,
+   "trades_verhaeltnis_median": 1.33
+  },
+  "arme_training_t2_schluss": 0,
+  "davon_auswahlpruefung_positiv_schluss": 0,
+  "arme_gueltig_schluss": 210,
+  "arme_training_t2_minute": 0,
+  "davon_auswahlpruefung_positiv_minute": 0,
+  "arme_gueltig_minute": 216,
+  "nach_richtung_training": {
+   "-1": {
+    "anteil_minute_besser_je_tag": 0.093,
+    "differenz_je_trade_mittel": -0.32
+   },
+   "1": {
+    "anteil_minute_besser_je_tag": 0.259,
+    "differenz_je_trade_mittel": 1.78
+   }
+  }
+ },
+ "gemessen": {
+  "t": {
+   "paare_mit_trades": 216,
+   "anteil_minute_besser_je_tag": 0.116,
+   "anteil_minute_besser_je_trade": 0.505,
+   "differenz_je_trade_mittel": 0.08,
+   "differenz_je_trade_median": 0.04,
+   "n85_median_schluss": -8.16,
+   "n85_median_minute": -8.09,
+   "trades_verhaeltnis_median": 1.3
+  },
+  "v": {
+   "paare_mit_trades": 216,
+   "anteil_minute_besser_je_tag": 0.125,
+   "anteil_minute_besser_je_trade": 0.5,
+   "differenz_je_trade_mittel": 0.01,
+   "differenz_je_trade_median": -0.01,
+   "n85_median_schluss": -7.81,
+   "n85_median_minute": -8.34,
+   "trades_verhaeltnis_median": 1.33
+  },
+  "arme_training_t2_schluss": 0,
+  "davon_auswahlpruefung_positiv_schluss": 0,
+  "arme_gueltig_schluss": 210,
+  "arme_training_t2_minute": 0,
+  "davon_auswahlpruefung_positiv_minute": 0,
+  "arme_gueltig_minute": 216,
+  "nach_richtung_training": {
+   "-1": {
+    "anteil_minute_besser_je_tag": 0.056,
+    "differenz_je_trade_mittel": -0.97
+   },
+   "1": {
+    "anteil_minute_besser_je_tag": 0.176,
+    "differenz_je_trade_mittel": 1.13
+   }
+  }
+ },
+ "kontrolle_archiv": {
+  "paare": 216,
+  "trades_abweichung_median_pct": 0.69,
+  "n85_training_abweichung_median_bp": 0.065,
+  "n85_training_abweichung_groesste_bp": 1.197,
+  "n85_training_korrelation": 0.9986
+ },
+ "rechenzeit_s": 28.3
+}
