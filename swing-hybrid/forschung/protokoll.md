@@ -1331,15 +1331,16 @@ dieselben Einstiege: die tatsächlichen Füllungen von Test 1 vom 15.11.2026, 13
 | Einstieg | 15.11. 13:21 | wie Test 1 | wie Test 1 | 15.11. 17:44 |
 | nachgerechnet bis | (ganz vorwärts) | 20.11. 22:29 | 20.11. 22:34 | (ganz vorwärts, beendet 22:29) |
 | Ausstiege bis dahin | keine | keine | SOL 17.11. 12:44, XRP 18.11. 07:09 | SOL 17.11. 23:09, XRP 18.11. 07:49 |
-| netto mit Rebate am Ende der Nachrechnung | +1.334,01 $ (22:29) | +1.334,01 $ | +1.127,69 $ | +824,78 $ |
+| netto mit Rebate | +1.334,01 $ (22:29), +1.343,72 $ (22:34) | +1.334,01 $ (22:29) | +1.127,69 $ (22:34) | +824,78 $ (22:29) |
 
 - **Test 2 mit den Einstiegen von Test 1 hat bisher weder Stop noch Ziel ausgelöst** und ist deshalb bis zur
   Umstellung deckungsgleich mit Test 1. Schlechtester Stand gegen den Einstieg: SOL −3,15 %, XRP −3,10 % (Stop bei
   −5 %); bester: ETH +13,55 % (Ziel bei +15 %). Die beiden Stops des bisherigen Test 2 kamen allein vom späteren,
-  tieferen Einstieg. Der Rückstand des bisherigen Test 2 auf Test 1 (rund 510 $) war also zum größeren Teil der
-  spätere Einstieg und die zwei Stops, kein Unterschied der Regel in diesem Zeitraum.
+  tieferen Einstieg. Der Rückstand des bisherigen Test 2 auf Test 1 (rund 510 $) kam also vom späteren Einstieg und
+  den dadurch ausgelösten zwei Stops, nicht von einem Unterschied der Regel in diesem Zeitraum.
 - **Test 3** hat SOL (−0,9 % gegen den Einstieg) und XRP (−1,5 %) ausgestoppt und hält acht Shorts mit nachgezogenem
-  Stop. Rückstand auf Test 1 rund 206 $: Die beiden Coins liefen nach dem Stop weiter in Richtung der Position.
+  Stop. Rückstand auf Test 1 rund 216 $ (Stand 22:34): Die beiden Coins liefen nach dem Stop weiter in Richtung der
+  Position.
 - Das alles sind **Nachrechnungen über fünf Tage in einem einzigen Abwärtstrend** und kein Beleg für oder gegen eine
   der drei Ausstiegsregeln. Aussagekräftig wird der Vergleich erst nach mindestens einem vollen Trendwechsel.
 
