@@ -1167,3 +1167,35 @@ Eine Generation nur aus weiteren Einstellungen würde die Hürde für alle spät
 - **Noch offen (Baustein 2, nächster Zyklus, erst festlegen, dann rechnen):** Kaufdruck je Minute als Signal
   (Störungstest), Anbindung an Massenlauf und Trichter mit Tagesergebnissen wie bisher, dann die kleine
   Paar-Generation „minütlich gegen Kerzenschluss“. Bis dahin ist der Baustein Werkzeug ohne Ergebnis.
+
+---
+
+## 38. Zyklus vom 20.11.2026: Stand der Kostenmessung und Festlegung E22 (vor der Rechnung)
+
+**Kostenmessung (H15, nur Stand):** 12.694 Messungen (15.11. 13:21 bis 20.11. 01:44 UTC), davon **93 mit Kerzenspanne über
+100 bp**, 1.246 über 50 bp. Schwelle von 200 nicht erreicht; kein neues Experiment.
+
+**E22: Kaufdruck minütlich geprüft gegen Prüfung am Kerzenschluss (Rest von H07, Baustein 2 aus Abschnitt 36).**
+- **Frage:** Bringt es etwas, ein Signal jede Minute zu prüfen und zur nächsten Minute zu handeln, statt nur am Schluss
+  der 5-Minuten-Kerze? Geprüft am Kaufdruck, weil es ihn minütlich gibt. Das ist ein Vergleich von Paaren, keine
+  Suche nach Kandidaten: Es entsteht kein Finalist, die Schlussprüfung wird nicht geöffnet, kein Papier-Test.
+- **Signal:** Kaufdruck wie in der Fabrik (Überhang der Kauf-Marktorders am Umsatz) über die letzten 5, 15, 60 oder
+  240 Minuten, an jeder Minute neu gerechnet, geteilt durch dieselbe 7-Tage-Schwankung wie im 5-Minuten-Signal. An
+  Minuten, die eine 5-Minuten-Kerze schließen, ist der Wert derselbe wie das Fabrik-Signal (wird geprüft, ebenso der
+  Störungstest).
+- **Paare (216):** 4 Fensterlängen × Schwellen 1,5 / 2,5 / 3,5 × mit oder gegen das Signal × Haltedauer 15, 60 oder
+  240 Minuten (ohne Stop, Ziel, Nachzug) × 3 Märkte, kein Filter. Je Paar zwei Arme mit sonst gleicher Einstellung:
+  „Kerzenschluss“ (Signal nur an der schließenden Minute) und „minütlich“. Beide laufen durch denselben Simulator
+  auf Minutenraster, mit derselben Lückenregel.
+- **Zeiträume und Kosten:** Training 15.08.2021 bis 30.06.2023, Auswahlprüfung 01.07.2023 bis 30.06.2024; nichts
+  danach. Kosten wie in Abschnitt 19 (gemessene Slippage, Gebühr mit Rebate 2,4 bp je Trade); zusätzlich berichtet mit
+  den Kosten in bewegtem Markt (5 % der Spanne der letzten 5-Minuten-Kerze je Order).
+- **Maß:** je Arm Ergebnis je Trade netto mit Rebate und Ertrag je Tag (Summe je Coin, gemittelt über den Markt),
+  jeweils in Training und Auswahlprüfung. Je Paar die Differenz minütlich minus Kerzenschluss.
+- **Urteil, vorab festgelegt:** Die Idee gilt als **interessant (B)**, wenn in Training **und** Auswahlprüfung
+  mindestens 60 % der Paare im Ertrag je Tag minütlich besser sind **und** die mittlere Differenz je Trade über
+  +1 bp liegt. Sonst **verworfen (A)**; damit wäre H07 erledigt. Zusätzlich nur berichtet: wie viele Arme im
+  Training netto positiv mit t ≥ 2 und in der Auswahlprüfung positiv sind (bei 432 Armen sind einzelne zufällig zu
+  erwarten; daraus folgt kein Status).
+- **Kontrolle der Rechnung:** Der Arm „Kerzenschluss“ wird für eine Stichprobe mit dem Archiv der Generation 1
+  verglichen (gleiche Regel, 5-Minuten-Raster); kleine Abweichungen durch die Lückenregel sind erlaubt und werden genannt.
