@@ -2643,3 +2643,60 @@ weniger als 100 Kontrakten greift das Stutzen bei 1 % und 99 % kaum; ein einzeln
 der Steigungen stark bewegen. (c) An zwei Montagen (25.05. und 07.09.2026) war die US-Börse geschlossen; sie bleiben
 wie festgelegt in der Rechnung. (d) Die Spanne je Kontrakt stammt aus einer Samstagsstunde und wird je Order voll
 angesetzt (eher vorsichtig).
+
+## 57. Ergebnis E28 (21.11.2026): Orderbuch-Regel auf Nicht-Krypto verworfen, Wochenend-Umkehr schwacher Hinweis (H28: A, H29: B)
+
+Einmal gerechnet mit dem Programmstand `1bf224de` (nach Festlegung und Präzisierungen 1 bis 11), ohne Nachjustieren.
+Ablage: `forschung/ergebnisse/e28_nichtkrypto.json`, `forschung/ergebnisse/e28_trades.csv`. **Gegenrechnung:** Die
+unabhängige Referenz des Prüfers auf denselben echten Daten ergibt in beiden Teilen dieselben Zahlen (Trades, Mittel,
+Hälften, Steigungen je Wochenende, t, p, Handelsfassung, Einstufung; p der Zufallsprüfung 0,765 gegen 0,763 bei anderem
+Startwert).
+
+### Teil 1 (H28): OS-1.1 unverändert auf 30 Aktien-, Fonds- und Rohstoff-Kontrakten: **A (verworfen)**
+
+| | Trades | vor Kosten | mit Rebate (n85) | ohne Rebate (n0) |
+|---|---|---|---|---|
+| alle 30 Kontrakte | 6.945 | +5,4 bp | **−1,2 bp** | −14,8 bp |
+| Einstiege bis 31.08.2026 | 4.533 | +7,0 bp | +0,6 bp | −13,0 bp |
+| Einstiege ab 01.09.2026 | 2.412 | +2,5 bp | −4,6 bp | −18,2 bp |
+| Einzelwerte | 4.198 | +6,7 bp | +0,3 bp | −13,3 bp |
+| Fonds | 1.134 | +6,8 bp | −0,5 bp | −14,1 bp |
+| Rohstoffe | 1.613 | +1,1 bp | −5,7 bp | −19,3 bp |
+| Einstieg am Wochenende | 1.666 | +1,4 bp | −5,1 bp | −18,7 bp |
+| Einstieg an Werktagen | 5.279 | +6,7 bp | +0,0 bp | −13,6 bp |
+
+- Zufallsprüfung (481 Tage mit Einstieg, 5.000 Ziehungen): p = 0,76, also kein positives Mittel. Trefferquote 46 %.
+- Kosten je Trade: zweimal die gemessene Spanne = 4,3 bp, Gebühr 2,4 bp mit Rebate (16 bp ohne), Funding +0,07 bp.
+- 13 von 30 Kontrakten sind mit Rebate positiv (am besten SOXL +24,9 bp bei 188 Trades, SPCX, MU, AAOI je rund +11;
+  am schlechtesten XAG −12,9, MUU −11,8, SOXS −11,0, CL −9,9). Das ist nachträglich angesehen und keine Auswahlregel.
+- Funding für November fehlt bei 688 Trades (mit 0 gebucht); ohne sie −1,7 bp bei 6.257 Trades. Am Urteil ändert es nichts.
+- **Lesart:** Das Orderbuch weiß auch hier etwas (vor Kosten +5,4 bp je Trade), aber Spanne und Gebühr sind größer.
+  Selbst mit vollem Rebate bleibt nichts, ohne Rebate ist es klar negativ. In der zweiten Hälfte ist auch das
+  Roh-Signal schwächer. Kein Papier-Test.
+
+### Teil 2 (H29): Wochenende gegen Montag auf 133 Kontrakten: **B (schwacher Hinweis, kein Test)**
+
+- 34 Wochenenden (28.03. bis 14.11.2026), je 32 bis 133 Kontrakte (Median 94). Zwölf frühere Wochenenden hatten weniger
+  als 30 Kontrakte; keines fiel wegen fehlender Streuung aus.
+- **Steigung von Montag auf Wochenende:** Mittel −0,47, Median −0,31, t = −2,82, **p = 0,008** (Grenze 2,5 %): gesichert,
+  Richtung **Umkehr**. 22 von 34 Wochenenden negativ. Der Korb als Ganzes zeigt nichts (Korrelation +0,03).
+- **Handelsfassung (gegen die Wochenend-Bewegung, Sonntag 23:00 bis Montag 21:00 UTC), je Wochenende in % des Kontos:**
+  vor Kosten +0,62 %, mit Rebate **+0,53 %**, ohne Rebate +0,39 %. t = 1,79 (verlangt > 2), erste Hälfte +0,23 %, zweite
+  Hälfte +0,83 %, 20 von 34 Wochenenden positiv, schlechtestes −2,5 %, bestes +5,7 %, Streuung 1,7 %.
+- **Einstufung B:** Die Steigung ist gesichert, die Handelsfassung nicht (t unter 2). Nachträglich angesehen: Ohne die
+  zwei besten Wochenenden läge das Mittel bei +0,27 % statt +0,53 %; das Ergebnis hängt also an wenigen Wochenenden.
+- **Lesart:** Es gibt einen plausiblen Grund (am Wochenende handelt der Kontrakt ohne die echte Börse; was dort nur
+  Rauschen war, holt der Montag zurück), und die Messung zeigt in diese Richtung. Belegt ist es nicht: 34 Wochenenden,
+  Richtung aus denselben Daten gewählt, und die Grenzen (a) bis (d) aus Abschnitt 56. Vor allem (a) kann das Ergebnis
+  ganz oder teilweise erzeugen: Der Kurs von Sonntag 23:00 steckt im Signal und im Ertrag.
+
+### Nachträgliche Diagnose zu Grenze (a), festgelegt vor ihrer Rechnung (kein Urteil, die Einstufung B bleibt)
+
+Eine einzige Zusatzrechnung, um den Messfehler aus dem gemeinsamen Kurs zu prüfen: Das Signal wird eine Stunde früher
+gemessen, W′ = Kurs(Sonntag 22:00) / Kurs(Samstag 01:00) − 1; der Ertrag bleibt M = Kurs(Montag 21:00) /
+Kurs(Sonntag 23:00) − 1. Damit teilen Signal und Ertrag keinen Kurs mehr. Sonst alles wie in Teil 2 (dieselben
+Wochenenden und Regeln; ein Kontrakt zählt, wenn er alle vier Kurse hat; Richtung der Handelsfassung fest: Umkehr).
+Zum Vergleich wird die Hauptfassung auf genau denselben Kontrakten daneben gestellt. Berichtet werden Mittel und t der
+Steigungen und das Mittel der Handelsfassung mit Rebate. **Lesart vorab:** Bleibt die Steigung ähnlich negativ, erklärt
+der gemeinsame Kurs den Befund nicht. Fällt sie deutlich gegen null, war der Befund überwiegend ein Messfehler, und
+die Vorwärts-Messung unten lohnt nicht. Mehr Varianten werden nicht gerechnet.
