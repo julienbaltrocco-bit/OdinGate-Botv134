@@ -1911,3 +1911,6 @@ seltener als die Stundenregel und ist nicht dieselbe Regel. Fünf Körbe gegen e
    als Gegenstück ausgenommen, und MDTUSDT wegen Namensgleichheit mit einer Aktie). Als Aktien, Indizes, Rohstoffe
    gelten deshalb nur Einträge der Liste mit erstem Handelstag ab 01.01.2025 (198 Kontrakte, darunter der Gold-Token
    PAXG); alle anderen sind Krypto (331). Bemerkt beim Laden der Symbole, bevor ein Ergebnis gerechnet war.
+8. **Fehlende Tageskurse** (in Teil 1 zusammen 136 Kontrakt-Tage): An einem Tag ohne Kurs geschieht nichts (keine Order,
+   keine Bewertung, kein Funding); d ist an diesem Tag und 14 Tage später 0, die Position wird dann zur nächsten
+   Eröffnung geschlossen und nach der Regel neu eröffnet.
