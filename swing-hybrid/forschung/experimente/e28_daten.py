@@ -91,9 +91,13 @@ def laden_teil1(sym: str, erster: dt.date) -> dict:
         f = R.funding_monat(sym, m, cache)
         if f:
             fund.update(f)
+        else:
+            fehlend.append((m, "funding"))
     ziel.parent.mkdir(parents=True, exist_ok=True)
-    np.savez_compressed(ziel, zeit=zeit, ohlc=ohlc, u=ueber, fund_zeit=np.array(sorted(fund), dtype=np.int64),
+    halb = ziel.with_name(ziel.stem + ".halb.npz")                     # erst vollständig schreiben, dann umbenennen
+    np.savez_compressed(halb, zeit=zeit, ohlc=ohlc, u=ueber, fund_zeit=np.array(sorted(fund), dtype=np.int64),
                         fund_rate=np.array([fund[z] for z in sorted(fund)], dtype=float), fehlend=np.array(json.dumps(fehlend)))
+    halb.replace(ziel)
     return {"sym": sym, "kerzen": len(zeit), "u_vorhanden": int(np.isfinite(ueber).sum()), "funding": len(fund), "fehlende_dateien": len(fehlend)}
 
 
@@ -113,7 +117,9 @@ def laden_teil2(sym: str) -> dict:
         a = b + H
     zeit = np.array(sorted(alle), dtype=np.int64)
     ziel.parent.mkdir(parents=True, exist_ok=True)
-    np.savez_compressed(ziel, zeit=zeit, ohlc=np.array([alle[z] for z in zeit], dtype=float).reshape(-1, 4))
+    halb = ziel.with_name(ziel.stem + ".halb.npz")
+    np.savez_compressed(halb, zeit=zeit, ohlc=np.array([alle[z] for z in zeit], dtype=float).reshape(-1, 4))
+    halb.replace(ziel)
     return {"sym": sym, "stunden": len(zeit), "von": str(pd.Timestamp(zeit[0], unit="ms")) if len(zeit) else "", "abrufe": api.aufrufe}
 
 

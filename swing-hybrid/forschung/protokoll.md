@@ -2610,3 +2610,36 @@ umzubauen. Das geschieht hier nicht.
    (Umkehr: Gewicht = −W, Fortsetzung: +W); Ertrag mit dem unveränderten M; Kosten je Kontrakt = Betrag des Gewichts ×
    2 × (Gebühr 8 bp, mit Rebate 1,2 bp, plus gemessene Spanne, mindestens 0,5 bp). Hälften: die erste Hälfte der
    Wochenenden (bei ungerader Zahl eines mehr) gegen den Rest.
+
+**Unabhängige Gegenprüfung von E28 und weitere Präzisierungen (21.11.2026, vor der Rechnung; es ist weiterhin kein Ergebnis gerechnet).**
+Zwei Prüfer ohne Kenntnis voneinander: einer hat die Rechnung aus der Festlegung nachgebaut und auf künstlichen Reihen
+verglichen (3.421 Trades, 2.373 Wochenenden, 416 Zufallsprüfungen: keine Abweichung, auch nach den Änderungen unten), der
+andere hat gegengelesen und Fehler absichtlich eingebaut. Kein Befund, der die Rechnung verhindert. Was sich daraus ändert:
+
+6. *Teil 1, Funding im November:* Das Archiv hat für November 2026 noch keine Funding-Datei (alle 30 Kontrakte, geprüft
+   21.11.). Ein Trade, der in einem Monat ohne Funding-Angabe beginnt oder endet, wird mit Funding 0 gebucht und
+   gekennzeichnet. Die Hauptzahl bleibt wie festgelegt das Mittel über alle Trades. Nur Bericht: Zahl dieser Trades und
+   die Kennzahlen ohne sie.
+7. *Teil 1, Vorlauf:* „Ab dem dritten Handelstag“ heißt: Einstiege ab erster Kerze + 48 Stunden (so rechnet auch der
+   Papier-Runner).
+8. *Teil 2, „je Gruppe“ entfällt:* Eine Gruppenliste gibt es nur für die 30 Kontrakte aus Teil 1. Für die 133 Kontrakte
+   gibt es keine vorab feste Einteilung; eine jetzt gebaute wäre bei mehreren Kürzeln unsicher. Es wird nichts
+   ersatzweise aufgeteilt.
+9. *Teil 2, Sonderfälle:* Ein Wochenende, an dem sich W über die Kontrakte nicht unterscheidet (Steigung nicht
+   bestimmbar), zählt nicht und wird unter „ausgelassen“ ausgewiesen. Bei weniger als drei zählenden Wochenenden gibt es
+   keinen Test und die Einstufung ist A.
+10. *Ablage:* Neben den Kennzahlen werden abgelegt: jeder Trade (`ergebnisse/e28_trades.csv`), je Kontrakt die fehlenden
+    Archivdateien und Monate ohne Funding, der Stand des Programms, und in der Handelsfassung von Teil 2 jedes Wochenende
+    vor Kosten, mit und ohne Rebate. Schon bekannt (aus dem Laden, keine Ergebnisse): Die Tiefe-Dateien vom 07. bis
+    09.10.2026 fehlen im Archiv für alle Kontrakte (an diesen Tagen kein Signal), bei XAU, XAG und PAXG zusätzlich der
+    14.01.2026. In Teil 2 erfüllen 34 Wochenenden die 30-Kontrakte-Regel (ab 28.03.2026, von 32 auf 133 Kontrakte wachsend).
+11. *Tests:* Die Prüfer-Tests sind übernommen (`tests/test_e28_zusatz.py`), dazu Tests für den Hauptlauf auf
+    künstlichen Dateien, die Funding-Kennzeichnung und das Laden; zusammen 33. Das Laden schreibt eine Datei jetzt erst
+    vollständig und benennt sie dann um.
+
+*Grenzen, die die Prüfer zusätzlich nennen und die im Bericht stehen müssen:* (a) In Teil 2 steckt der Kurs von Sonntag
+23:00 in W und in M; ein ungenauer Kurs in dieser dünnen Stunde erzeugt von selbst einen Anschein von Umkehr. (b) Bei
+weniger als 100 Kontrakten greift das Stutzen bei 1 % und 99 % kaum; ein einzelnes ruhiges Wochenende kann das Mittel
+der Steigungen stark bewegen. (c) An zwei Montagen (25.05. und 07.09.2026) war die US-Börse geschlossen; sie bleiben
+wie festgelegt in der Rechnung. (d) Die Spanne je Kontrakt stammt aus einer Samstagsstunde und wird je Order voll
+angesetzt (eher vorsichtig).

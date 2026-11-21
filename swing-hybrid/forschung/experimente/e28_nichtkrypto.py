@@ -33,6 +33,8 @@ MIN_KONTRAKTE_WE = 30
 ROHSTOFF = {"XAUUSDT", "XAGUSDT", "CLUSDT", "BZUSDT", "PAXGUSDT"}
 FONDS = {"SOXLUSDT", "SOXSUSDT", "QQQUSDT", "EWYUSDT", "DRAMUSDT", "MUUUSDT"}
 ERGEBNIS = ROOT / "forschung/ergebnisse/e28_nichtkrypto.json"
+TRADES = ROOT / "forschung/ergebnisse/e28_trades.csv"
+SPALTEN = ["sym", "ein", "aus", "richtung", "z", "roh_bp", "slip_bp", "funding_bp", "n85_bp", "n0_bp", "funding_fehlt"]
 
 
 def os11() -> dict:
@@ -48,11 +50,30 @@ def gruppe(sym: str) -> str:
 
 
 # ------------------------------------------------------------------------ Teil 1 ----
+def monat(t_ms: int) -> str:
+    return dt.datetime.fromtimestamp(t_ms / 1000, UTC).strftime("%Y-%m")
+
+
+def monate_ohne_funding(zeit: np.ndarray, fund_zeit: np.ndarray) -> list:
+    """Kalendermonate zwischen erster und letzter Kerze, für die es keine einzige Funding-Angabe gibt (Monatsdatei fehlt)."""
+    if not len(zeit):
+        return []
+    d, ende, alle = dt.datetime.fromtimestamp(int(zeit[0]) / 1000, UTC).replace(day=1), monat(int(zeit[-1])), []
+    while d.strftime("%Y-%m") <= ende:
+        alle.append(d.strftime("%Y-%m"))
+        d = (d + dt.timedelta(days=32)).replace(day=1)
+    da = {monat(int(z)) for z in fund_zeit}
+    return [m for m in alle if m not in da]
+
+
 def trades_kontrakt(sym: str, zeit: np.ndarray, ohlc: np.ndarray, u: np.ndarray, fund_zeit: np.ndarray, fund_rate: np.ndarray,
                     spanne_bp: float, p: dict) -> list:
-    """Alle abgeschlossenen Trades der Regel auf einem Kontrakt, gebucht wie im Papier-Runner (Basispunkte je Trade)."""
+    """Alle abgeschlossenen Trades der Regel auf einem Kontrakt, gebucht wie im Papier-Runner (Basispunkte je Trade).
+
+    Fällt ein Trade in einen Monat ohne Funding-Angabe, wird sein Funding mit null gebucht und er trägt funding_fehlt = True."""
     if len(zeit) < p["min_perioden"]:
         return []
+    ohne = set(monate_ohne_funding(zeit, fund_zeit))
     kz = [(int(z), float(o), float(h), float(l), float(c)) for z, (o, h, l, c) in zip(zeit, ohlc)]
     start_ms = int(zeit[0]) + VORLAUF_TAGE * TAG
     slip = 2 * max(SPANNE_MIN_BP, spanne_bp)                           # zwei Orders, je die gemessene Yubit-Spanne
@@ -65,7 +86,7 @@ def trades_kontrakt(sym: str, zeit: np.ndarray, ohlc: np.ndarray, u: np.ndarray,
         fund = float(np.sum(-t["richtung"] * fund_rate[im_trade] * 1e4))
         out.append({"sym": sym, "ein": int(t["ein"]), "aus": int(t["aus"]), "richtung": int(t["richtung"]), "z": t["z"], "roh_bp": roh,
                     "slip_bp": slip, "funding_bp": fund, "n85_bp": roh - slip + fund - 2 * TAKER_BP * (1 - REBATE),
-                    "n0_bp": roh - slip + fund - 2 * TAKER_BP})
+                    "n0_bp": roh - slip + fund - 2 * TAKER_BP, "funding_fehlt": monat(int(t["ein"])) in ohne or monat(int(t["aus"])) in ohne})
     return out
 
 
@@ -103,8 +124,10 @@ def urteil1(trades: list) -> dict:
     return {"alle": alle, "erste_haelfte": erste, "zweite_haelfte": zweite, "p": p, "tage_mit_einstieg": int(len(np.unique(tag))), "einstufung": stufe}
 
 
-def teil1(universum, laden, spannen: dict) -> dict:
-    """universum: Liste der Symbole; laden(sym) -> dict mit zeit, ohlc, u, fund_zeit, fund_rate; spannen: Symbol -> Spanne in bp."""
+def teil1(universum, laden, spannen: dict, trades_aus: list = None) -> dict:
+    """universum: Liste der Symbole; laden(sym) -> dict mit zeit, ohlc, u, fund_zeit, fund_rate; spannen: Symbol -> Spanne in bp.
+
+    trades_aus: Liste, an die alle gewerteten Trades angehängt werden (für die Ablage als Tabelle)."""
     p = os11()
     trades, je_kontrakt = [], {}
     for sym in universum:
@@ -114,9 +137,14 @@ def teil1(universum, laden, spannen: dict) -> dict:
         luecken = int(np.sum(np.diff(d["zeit"]) != R.KERZE_MS)) if len(d["zeit"]) > 1 else 0
         je_kontrakt[sym] = dict(kennzahlen1(t), gruppe=gruppe(sym), spanne_bp=float(spannen[sym]), kerzen=int(len(d["zeit"])),
                                 u_fehlt=int(np.sum(~np.isfinite(d["u"]))), luecken=luecken,
-                                von=str(dt.datetime.fromtimestamp(int(d["zeit"][0]) / 1000, UTC).date()) if len(d["zeit"]) else "")
+                                von=str(dt.datetime.fromtimestamp(int(d["zeit"][0]) / 1000, UTC).date()) if len(d["zeit"]) else "",
+                                funding_fehlt_monate=monate_ohne_funding(d["zeit"], d["fund_zeit"]), fehlende_dateien=list(d.get("fehlend", [])))
+    if trades_aus is not None:
+        trades_aus += trades
     we = lambda t: dt.datetime.fromtimestamp(t["ein"] / 1000, UTC).weekday() >= 5
     return {"regel": "OS-1.1 unverändert", "parameter": p, "kontrakte": len(universum), **urteil1(trades),
+            "funding_fehlt": {"trades": int(sum(t["funding_fehlt"] for t in trades)), "gebucht_mit": 0.0,
+                              "nur_trades_mit_funding_angabe": kennzahlen1([t for t in trades if not t["funding_fehlt"]])},
             "je_gruppe": {g: kennzahlen1([t for t in trades if gruppe(t["sym"]) == g]) for g in ("Einzelwert", "Fonds", "Rohstoff")},
             "wochenende": kennzahlen1([t for t in trades if we(t)]), "werktag": kennzahlen1([t for t in trades if not we(t)]),
             "long": kennzahlen1([t for t in trades if t["richtung"] > 0]), "short": kennzahlen1([t for t in trades if t["richtung"] < 0]),
@@ -175,11 +203,15 @@ def teil2(kurse: dict, spannen: dict, bis_ms: int) -> dict:
             continue
         w = np.array([kurse[s][b] / kurse[s][a] - 1 for s in dabei])
         m = np.array([kurse[s][c] / kurse[s][b] - 1 for s in dabei])
-        je_we.append({"samstag": str(dt.datetime.fromtimestamp(a / 1000, UTC).date()), "kontrakte": len(dabei), "steigung": steigung(w, m),
+        st_we = steigung(w, m)
+        if not np.isfinite(st_we):                                     # keine Streuung von W: Steigung nicht bestimmbar
+            rest.append({"samstag": str(dt.datetime.fromtimestamp(a / 1000, UTC).date()), "kontrakte": len(dabei), "grund": "keine Streuung"})
+            continue
+        je_we.append({"samstag": str(dt.datetime.fromtimestamp(a / 1000, UTC).date()), "kontrakte": len(dabei), "steigung": st_we,
                       "korb_w": float(w.mean()), "korb_m": float(m.mean()), "_w": w, "_m": m, "_sp": np.array([spannen[s] for s in dabei])})
     st = np.array([x["steigung"] for x in je_we])
     if len(st) < 3:
-        return {"wochenenden": len(st), "einstufung": "A", "hinweis": "zu wenige Wochenenden", "je_wochenende": [{k: v for k, v in x.items() if not k.startswith("_")} for x in je_we]}
+        return {"wochenenden": len(st), "einstufung": "A", "hinweis": "zu wenige Wochenenden", "ausgelassen": rest, "je_wochenende": [{k: v for k, v in x.items() if not k.startswith("_")} for x in je_we]}
     t, p = stats.ttest_1samp(st, 0.0)
     aus = {"wochenenden": int(len(st)), "kontrakte_median": int(np.median([x["kontrakte"] for x in je_we])), "steigung_mittel": float(st.mean()),
            "steigung_median": float(np.median(st)), "t": float(t), "p": float(p), "anteil_negativ": float(np.mean(st < 0)),
@@ -194,7 +226,8 @@ def teil2(kurse: dict, spannen: dict, bis_ms: int) -> dict:
         tw = float(n85.mean() / (n85.std(ddof=1) / np.sqrt(len(n85)))) if n85.std(ddof=1) > 0 else 0.0
         aus["handel"] = {"richtung": "Umkehr" if vz < 0 else "Fortsetzung", "brutto_mittel": float(br.mean()), "n85_mittel": float(n85.mean()),
                          "n0_mittel": float(n0.mean()), "t_n85": tw, "n85_erste_haelfte": float(n85[:halb].mean()), "n85_zweite_haelfte": float(n85[halb:].mean()),
-                         "anteil_positiv_n85": float(np.mean(n85 > 0)), "je_wochenende_n85": [float(x) for x in n85]}
+                         "anteil_positiv_n85": float(np.mean(n85 > 0)), "je_wochenende_n85": [float(x) for x in n85],
+                         "je_wochenende_brutto": [float(x) for x in br], "je_wochenende_n0": [float(x) for x in n0]}
         ok = n85.mean() > 0 and tw > 2 and n85[:halb].mean() > 0 and n85[halb:].mean() > 0
         einstufung = "C" if ok else "B"
     aus["einstufung"] = einstufung
@@ -225,7 +258,9 @@ def haupt() -> dict:
 
     def laden1(sym):
         with np.load(D.ZIEL / "teil1" / f"{sym}.npz") as z:
-            return {k: z[k] for k in ("zeit", "ohlc", "u", "fund_zeit", "fund_rate")}
+            d = {k: z[k] for k in ("zeit", "ohlc", "u", "fund_zeit", "fund_rate")}
+            d["fehlend"] = [" ".join(x) for x in json.loads(str(z["fehlend"]))] if "fehlend" in z else []
+            return d
     kurse = {}
     for sym in u2.symbol:
         datei = D.ZIEL / "teil2" / f"{sym}.npz"
@@ -234,11 +269,24 @@ def haupt() -> dict:
                 if len(z["zeit"]):
                     kurse[sym] = dict(zip((int(x) for x in z["zeit"]), (float(x) for x in z["ohlc"][:, 0])))
     bis = int(D.YUBIT_BIS.timestamp() * 1000)
-    erg = {"experiment": "E28", "festlegung": "forschung/protokoll.md Abschnitt 56",
-           "teil_1": teil1(list(u1.symbol), laden1, sp), "teil_2": dict(teil2(kurse, sp, bis), kontrakte_mit_daten=len(kurse))}
+    trades = []
+    erg = {"experiment": "E28", "festlegung": "forschung/protokoll.md Abschnitt 56", "stand_des_programms": stand(),
+           "daten": {"teil_1_bis": str(D.ENDE_TEIL1), "teil_2_bis": str(D.YUBIT_BIS.date()), "trades_tabelle": TRADES.name},
+           "teil_1": teil1(list(u1.symbol), laden1, sp, trades), "teil_2": dict(teil2(kurse, sp, bis), kontrakte_mit_daten=len(kurse))}
     ERGEBNIS.parent.mkdir(exist_ok=True)
     ERGEBNIS.write_text(json.dumps(sauber(erg), ensure_ascii=False, indent=1, allow_nan=False))
+    zeile = lambda t: ",".join(f"{t[k]:.4f}" if isinstance(t[k], float) else str(int(t[k])) if isinstance(t[k], (bool, np.bool_)) else str(t[k]) for k in SPALTEN)
+    TRADES.write_text("\n".join([",".join(SPALTEN)] + [zeile(t) for t in sorted(trades, key=lambda t: (t["ein"], t["sym"]))]) + "\n")
     return erg
+
+
+def stand() -> str:
+    """Kurzname des Programmstands (git), damit das Ergebnis einem Stand zugeordnet werden kann."""
+    import subprocess
+    try:
+        return subprocess.run(["git", "-C", str(ROOT), "rev-parse", "--short", "HEAD"], capture_output=True, text=True, timeout=10).stdout.strip()
+    except (OSError, subprocess.SubprocessError):
+        return ""
 
 
 if __name__ == "__main__":
