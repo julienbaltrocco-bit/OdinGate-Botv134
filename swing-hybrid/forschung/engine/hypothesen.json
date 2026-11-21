@@ -112,5 +112,13 @@
   "daten": "Minutenkerzen",
   "aufwand": "gering",
   "status": "verworfen (E19)"
+ },
+ {
+  "id": "H20",
+  "titel": "Marktstruktur (Strukturbrüche, „Break of Structure“ / „Change of Character“) als Zusatz zur Trendregel von Test 1 bis 3 (Idee des Auftraggebers)",
+  "mechanismus": "Zwischenhochs und -tiefs als Stop-Niveau, Strukturbruch in Trendrichtung als Wiedereinstieg, Strukturrichtung als Filter. Könnte Stops an den Markt anpassen und nach einem Stop den Rest des Trends mitnehmen. Dagegen: verwandte Ausbruchs- und Rücksetzer-Regeln scheiterten in der Fabrik an den Kosten; viele Stellschrauben.",
+  "daten": "5-Minuten-Kerzen (Speicher der Fabrik), Funding",
+  "aufwand": "mittel",
+  "status": "festgelegt (E23), noch nicht gerechnet"
  }
 ]

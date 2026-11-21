@@ -1385,3 +1385,92 @@ festgelegt (vor dem Blick auf die Kosten in den heftigen Kerzen) und gerechnet.
 
 **Keine Generation, kein Experiment.** Auftrag unverändert, keine neue Vorgabe in `engine/offene_fragen.md`; es gilt
 Punkt 4 unter „Was als Nächstes sinnvoll ist“. Fabrik unverändert: 523.272 Kandidaten, 1.199 Finalisten, 0 validiert.
+
+---
+
+## 43. Festlegung E23 (vor der Rechnung, 21.11.2026, Idee des Auftraggebers): Marktstruktur als Zusatz zur Trendregel (H20)
+
+**Anlass.** Der Auftraggeber fragt, ob Strukturbrüche („Break of Structure“, „Change of Character“) als Zusatz zur
+Trendregel von Test 1 bis 3 taugen: für Stops, für neue Einstiege und als Trendfilter. Er hat die Prüfung an den
+historischen Daten freigegeben („Ja, leg das so fest und rechne das so“); nur was besteht, wird ein Papier-Test.
+Test 1 bis 3 bleiben unverändert. Bis hierher ist nichts davon gerechnet.
+
+**Frage.** Verbessert einer von drei Struktur-Zusätzen die Trendregel nach Kosten, und zwar im Training **und** in der
+Auswahlprüfung, gemessen am Ertrag je Risiko?
+
+**Daten und Zeiträume.** Speicher der Fabrik (zehn Coins, 5-Minuten-Kerzen, Funding, bis 31.03.2025; der Tresor ab
+01.04.2025 wird nicht geladen). Training T 15.08.2021 – 30.06.2023, Auswahlprüfung V1 01.07.2023 – 30.06.2024,
+Schlussprüfung V2 01.07.2024 – 31.03.2025. Gerechnet werden zunächst **nur T und V1**. V2 wird nur für Kandidaten
+geöffnet, die unten alle Bedingungen erfüllen, einmal.
+
+**Ablauf wie beim Papier-Bot.** Geprüft wird am Schluss jeder 5-Minuten-Kerze, ausgeführt zur Eröffnung der nächsten
+(Market-Order). Stunden- und 4-Stunden-Kerzen werden aus den 5-Minuten-Kerzen gebildet (4 Stunden ab 00:00 UTC) und
+erst **eine 5-Minuten-Kerze nach ihrem Schluss** verwendet (der Bot läuft um hh:04). In Datenlücken wird nicht
+gehandelt. Reihenfolge je Prüfung wie im Bot: erst Signalwechsel, dann Stop oder Ausstieg, dann Wiedereinstieg.
+
+**Basis B0 (die Regel von Test 1, eingefroren).** Richtung d = Vorzeichen von (Stundenschluss jetzt − Stundenschluss
+vor 336 Stunden). Je Coin immer eine Position in Richtung d, gleich groß, Größe beim Einstieg fest. Wechselt d, wird
+gedreht.
+
+**Struktur (je Coin, auf Kerzen der Länge TF, Stärke k).**
+- Zwischenhoch: eine Kerze, deren Hoch höher ist als die Hochs der k Kerzen davor und mindestens so hoch wie die Hochs
+  der k Kerzen danach. Es gilt erst als bekannt, wenn die k-te Kerze danach geschlossen hat. Zwischentief
+  spiegelbildlich.
+- Gültiges Niveau: das zuletzt bekannt gewordene Zwischenhoch bzw. Zwischentief.
+- Strukturbruch nach oben: ein Kerzenschluss über dem gültigen, noch nicht gebrochenen Zwischenhoch (jedes Niveau
+  bricht höchstens einmal); nach unten spiegelbildlich. Strukturrichtung s = Richtung des letzten Bruchs.
+  (Bruch in Strukturrichtung heißt üblich „Break of Structure“, der erste Bruch dagegen „Change of Character“.)
+
+**Drei Zusätze (Kandidaten).**
+- **V1 Struktur-Stop.** Einstiege wie B0. Stop eines Shorts: das gültige, ungebrochene Zwischenhoch, wenn es über dem
+  Kurs liegt; sonst das höchste Hoch der letzten (2k+1) Kerzenlängen. Wird später ein Zwischenhoch bekannt, das tiefer
+  liegt als der Stop und über dem Kurs, rückt der Stop dorthin nach (nie zurück). Schließt eine 5-Minuten-Kerze über
+  dem Stop, wird geschlossen; danach Pause bis zum Wechsel von d (wie Test 2 und 3). Long spiegelbildlich.
+- **V2 Struktur-Stop mit Wiedereinstieg.** Wie V1; in der Pause wird wieder in Richtung d eingestiegen, sobald ein
+  Strukturbruch in Richtung d geschieht (neuer Stop nach derselben Regel). Beliebig oft.
+- **V3 Struktur-Filter.** Position in Richtung d nur, solange die Strukturrichtung s gleich d ist; sonst flach. Kein
+  Stop.
+
+**Einstellungen:** TF 1 Stunde oder 4 Stunden, k 3 oder 5. Das sind 3 × 4 = **12 Kandidaten**. Kein Puffer, keine
+weiteren Stellschrauben. Andere Werte werden nicht nachgeschoben.
+
+**Vergleichsregeln (nur zur Einordnung, ohne Urteil):** K1 fester Stop 5 % mit Pause; K2 Stop 5 % und Ziel 15 % mit
+Pause (Regel von Test 2); K3 nachgezogener Stop 5 % mit Pause (Regel von Test 3). Geprüft am 5-Minuten-Schluss.
+
+**Kosten.** Alle Orders Taker: Gebühr 8 bp je Order, mit 85 % Rebate 1,2 bp. Slippage je Order: das Größere aus der
+gemessenen Yubit-Slippage des Coins (eingefrorene Kostenbasis) und 5 % der Spanne der letzten 5-Minuten-Kerze vor der
+Order (Kosten in bewegtem Markt, Abschnitt 19, zweiter Nachtrag). Das ist hier die Hauptrechnung, weil Stops in
+bewegtem Markt auslösen. Funding gebucht. Zusätzlich berichtet: mit ruhigen Kosten und ohne Rebate.
+
+**Buchung.** Je Coin Einsatz 1 beim Einstieg; Tagesergebnis je Coin (UTC-Tag) aus Kursänderung der offenen Position,
+Kosten am Tag der Order und Funding. Tagesergebnis des Kontos: Mittel über die zehn Coins (Einsatz 1 × Konto; die
+Papier-Tests laufen mit 3 ×).
+
+**Maß und Urteil (vorab festgelegt).** Hauptmaß ist der Ertrag je Risiko (Sharpe-Zahl der Tagesergebnisse netto mit
+Rebate, aufs Jahr gerechnet) im Vergleich zu B0. Ein Kandidat **besteht**, wenn alles gilt:
+1. T: Sharpe-Zahl höher als bei B0, und der Unterschied ist gegen Zufall gesichert (gepaarte Block-Stichprobe der Tage,
+   Blöcke von 20 Tagen, 5.000 Ziehungen, Startwert 23; höchstens 2,5 % der Ziehungen ohne Vorteil).
+2. V1: Sharpe-Zahl höher als bei B0; höchstens 16 % der Ziehungen ohne Vorteil.
+3. Netto mit Rebate in T und in V1 positiv.
+4. Mindestens eine Nachbar-Einstellung desselben Zusatzes (anderes k bei gleichem TF oder anderes TF bei gleichem k)
+   liegt in T und V1 ebenfalls über B0.
+Wer besteht, geht einmal in V2 und braucht dort eine höhere Sharpe-Zahl als B0 und ein positives Netto-Ergebnis.
+- **A (verworfen):** kein Kandidat besteht T und V1. V2 bleibt dann geschlossen.
+- **B (interessant):** besteht T und V1, aber nicht V2. Kein Papier-Test.
+- **C (Kandidat für Test 4 auf Papier):** besteht alle drei. Der Start von Test 4 bleibt Entscheidung des Auftraggebers.
+Bei zwölf Kandidaten ist rein zufällig mit rund 0,05 Bestehern zu rechnen.
+
+**Zusätzlich berichtet (ohne Hürde):** Ertrag pro Jahr, größter Einbruch, Zahl der Orders, Umsatz, Zeit im Markt, Zahl
+der Stops und Wiedereinstiege, Ergebnis je Jahr, long und short getrennt.
+
+**Prüfungen der Rechnung (vor dem Urteil, sonst kein Ergebnis).**
+1. Tests an handgebauten Kursreihen: Zwischenhochs und -tiefs, Brüche, Stop-Niveau, Pause, Wiedereinstieg.
+2. Kein Blick in die Zukunft: Daten ab einem Stichtag verfälscht, alle Orders davor unverändert.
+3. Unabhängige Nachrechnung durch einen zweiten Programmierer nur nach diesem Text, mit eigenem Code, für zwei Coins
+   und zwei Einstellungen: gleiche Orders (Zeit, Seite, Anlass), Ergebnis bis auf Rundung gleich.
+4. Gegenlesen des Codes gegen diese Festlegung.
+
+**Was vorab dagegen spricht.** Die Basis selbst war in der früheren Prüfung nach Kosten nur schwach positiv
+(Sharpe-Zahl rund 0,4 bis 0,6 im damaligen Prüfzeitraum). Verwandte Regeln (Ausbrüche, Rücksetzer im Trend) lagen in
+der Fabrik nach Kosten fast durchweg im Minus. Stops und Filter senken oft Risiko **und** Ertrag gleichermaßen; dann
+ändert sich am Ertrag je Risiko nichts. T und V1 wurden für andere Regeln schon gesehen.

@@ -272,5 +272,15 @@
    "forschung/ergebnisse/e22_minute_kaufdruck_paare.csv",
    "forschung/experimente/e22_minute_kaufdruck.py"
   ]
+ },
+ {
+  "nr": 23,
+  "id": "E23",
+  "runde": 2,
+  "datum": "2026-11-21",
+  "titel": "Marktstruktur als Zusatz zur Trendregel: Struktur-Stop, Wiedereinstieg, Struktur-Filter (12 Kandidaten gegen die Basis; H20)",
+  "einstufung": "offen",
+  "kurz": "vor der Rechnung festgelegt (Protokoll Abschnitt 43); noch kein Ergebnis",
+  "dateien": []
  }
 ]
