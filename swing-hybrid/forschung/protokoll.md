@@ -1372,3 +1372,16 @@ Test 3 ab 22:34 UTC.
 
 **Wo was liegt (Bot-Zweig).** `vorwaertstest/lauf_trail` (Test 3), `vorwaertstest/lauf_tpsl` (Test 2 neu),
 `vorwaertstest/archiv/lauf_tpsl_eigene_einstiege` (Test 2 bisher, abgeschlossen), `vorwaertstest/nachrechnen.py`.
+
+---
+
+## 42. Zyklus vom 21.11.2026: nur Stand der Kostenmessung
+
+**Kostenmessung (H15, nur Stand):** 15.564 Messungen (15.11. 13:21 bis 21.11. 01:39 UTC), davon **190 mit Kerzenspanne
+über 100 bp** (größte 257 bp), 1.984 über 50 bp. Die Schwelle von 200 ist knapp nicht erreicht; kein neues Experiment,
+die Ergebnisdatei von E16 bleibt unverändert. Der 20.11. war ein bewegter Tag (97 neue Messpunkte über 100 bp); im
+nächsten Zyklus ist die Schwelle voraussichtlich erreicht. Dann wird die Auswertung als eigenes Experiment
+festgelegt (vor dem Blick auf die Kosten in den heftigen Kerzen) und gerechnet.
+
+**Keine Generation, kein Experiment.** Auftrag unverändert, keine neue Vorgabe in `engine/offene_fragen.md`; es gilt
+Punkt 4 unter „Was als Nächstes sinnvoll ist“. Fabrik unverändert: 523.272 Kandidaten, 1.199 Finalisten, 0 validiert.
