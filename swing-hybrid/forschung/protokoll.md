@@ -1907,3 +1907,7 @@ seltener als die Stundenregel und ist nicht dieselbe Regel. Fünf Körbe gegen e
 5. **GUT in T:** Wegen der 180 Tage Vorlauf hat GUT erst ab 01.01.2022 Mitglieder. Für die Bedingungen werden GUT und
    BASIS (und SCHLECHT) nur über die Tage ab dem ersten Tag mit Mitgliedern verglichen.
 6. **Teil 2:** ein Korb je Gruppe, gebildet wie ALLE.
+7. **Einteilung der Kontrakte:** Die Liste aus Runde 10 ging nach Namen und enthält zwei Krypto-Kontrakte (BTCUSDT, dort
+   als Gegenstück ausgenommen, und MDTUSDT wegen Namensgleichheit mit einer Aktie). Als Aktien, Indizes, Rohstoffe
+   gelten deshalb nur Einträge der Liste mit erstem Handelstag ab 01.01.2025 (198 Kontrakte, darunter der Gold-Token
+   PAXG); alle anderen sind Krypto (331). Bemerkt beim Laden der Symbole, bevor ein Ergebnis gerechnet war.

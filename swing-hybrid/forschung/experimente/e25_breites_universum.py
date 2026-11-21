@@ -33,7 +33,9 @@ def symbole():
     """Alle Kontrakte mit Tageskursen: Symbol, erster Handelstag, ob Aktie/Index/Rohstoff (Liste aus Runde 10)."""
     inv = pd.read_csv(ROOT / "data/processed/listings_inventur.csv", parse_dates=["erster_tag"])
     aus = {x.strip() for x in (ROOT / "scripts/listings_ausschluss.txt").read_text().splitlines() if x.strip() and not x.startswith("#")}
-    inv["tradfi"] = inv["symbol"].isin(aus)
+    # Die Liste aus Runde 10 ging nach Namen und enthält zwei Krypto-Kontrakte (BTCUSDT als damaliges Gegenstück, MDTUSDT wegen
+    # Namensgleichheit mit einer Aktie). Aktien-Kontrakte gibt es erst seit 2026: Einträge mit erstem Handelstag vor 2025 sind Krypto.
+    inv["tradfi"] = inv["symbol"].isin(aus) & (inv["erster_tag"] >= pd.Timestamp("2025-01-01"))
     return inv[["symbol", "erster_tag", "tradfi"]].sort_values("symbol").reset_index(drop=True)
 
 
