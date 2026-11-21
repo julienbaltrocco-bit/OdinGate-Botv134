@@ -338,5 +338,15 @@
    "tests/test_e26_jeder_markt.py",
    "tests/test_e26_gegenpruefung.py"
   ]
+ },
+ {
+  "nr": 27,
+  "id": "E27",
+  "runde": 2,
+  "datum": "2026-11-21",
+  "titel": "Tagesvariante der Trendregel gegen die Stundenregel, mit einmaliger Öffnung von V2 (H27)",
+  "einstufung": "offen",
+  "kurz": "vor der Rechnung festgelegt (Protokoll Abschnitt 51); noch kein Ergebnis",
+  "dateien": []
  }
 ]

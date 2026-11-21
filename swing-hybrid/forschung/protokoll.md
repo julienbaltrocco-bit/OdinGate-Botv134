@@ -2175,3 +2175,50 @@ Die 14-Tage-Trendregel ist ein Krypto-Befund, kein Befund der zehn Coins: Auf Kr
 ETFs, Indizes und Rohstoffen verliert sie über zehn Jahre, bei Aktien liegt sie genau auf Zufall. Geprüft ist damit
 jede vorhandene Kursreihe mit **dieser** Regel. Nicht geprüft sind andere Rückblicke für Nicht-Krypto (außer 12 Monate,
 Runde 15), andere Strategien und die oben genannten Märkte ohne Daten.
+
+---
+
+## 51. Festlegung E27 (vor der Rechnung, 21.11.2026, vom Auftraggeber freigegeben): Tagesvariante der Trendregel (H27)
+
+**Anlass.** Nebenbefund aus E25 (nachträglich gesehen, Abschnitt 48): Entscheidet die Trendregel nur einmal am Tag
+statt jede Stunde, braucht sie rund ein Fünftel der Orders, verdient mit Rebate etwa gleich und ohne Rebate deutlich
+mehr. Der Auftraggeber hat die saubere Prüfung freigegeben („Okay, dann prüf die Tagesvariante sauber“).
+
+**Die beiden Regeln, im selben Rechenkern (E23, zehn Coins, 5-Minuten-Kerzen, Abschnitt 43).**
+- **B0 (Stundenregel, Test 1):** Richtung d = Vorzeichen von (Stundenschluss − Stundenschluss vor 336 Stunden), an jeder
+  Stunde neu.
+- **TAG (Tagesvariante):** dieselbe Richtung d, aber nur einmal am Tag übernommen: maßgeblich ist d der Stunde, die um
+  00:00 UTC schließt; dieser Wert gilt bis zum nächsten Tag. Vor dem ersten solchen Zeitpunkt ist die Richtung 0.
+  Ausführung wie immer eine 5-Minuten-Kerze später (00:05 UTC). Sonst ist alles gleich: zehn Coins, gleiche Größe,
+  drehen bei Wechsel, Kosten und Buchung wie E23 (Hauptrechnung: Slippage in bewegtem Markt, Gebühr mit 85 % Rebate).
+- TAG ist damit genau die Regel von Test 1, nur seltener abgefragt, und ließe sich im Papier-Bot als Test 4 einrichten.
+
+**Zeiträume.** T und V1 (für beide Regeln schon gesehen). **V2 (01.07.2024 – 31.03.2025) wird einmal geöffnet**, für B0,
+TAG und fünf weitere Tageszeiten (unten). Einordnung: In dieser Forschung war V2 für diese Regeln bisher nicht
+gerechnet; die frühere Suche (Runden 1 bis 24) kannte für die Stundenregel nur ein Gesamtergebnis über 07/2023 bis
+03/2025, das V2 einschließt. Für die Tagesvariante ist V2 neu. Der Tresor ab 04/2025 bleibt zu.
+
+**Bedingungen (je Zeitraum, auf ungerundeten Tagesreihen des Kontos):**
+- **A ohne Rebate besser:** Summe und Sharpe-Zahl von TAG ohne Rebate höher als bei B0.
+- **B mit Rebate nicht schlechter:** Ist B0 mit Rebate positiv, muss TAG positiv sein und mindestens zwei Drittel der
+  Summe von B0 erreichen; ist B0 nicht positiv, genügt TAG ≥ B0.
+- **C weniger Orders:** TAG braucht höchstens ein Drittel der Orders von B0.
+- **D nicht nur eine glückliche Uhrzeit:** Dieselbe Tagesvariante mit Entscheidung um 04, 08, 12, 16 und 20 Uhr UTC
+  wird mitgerechnet; von den sechs Uhrzeiten müssen mindestens vier die Bedingung A erfüllen.
+
+**Urteil.**
+- **A (verworfen):** Die Bedingungen A bis D gelten in diesem Rechenkern schon in T oder V1 nicht. V2 bleibt dann zu.
+- **B (interessant):** A bis D gelten in T und V1, aber nicht in V2. Kein Papier-Test.
+- **C (Kandidat für Test 4 auf Papier):** A bis D gelten in T, V1 und V2. Über den Start entscheidet der Auftraggeber.
+Ein Bestehen ist kein Beweis: V2 ist ein einziger Zeitraum von neun Monaten, und T und V1 waren für den Befund schon
+gesehen. Für eine Variante, die dieselbe Regel nur seltener abfragt, ist es aber ein vertretbarer Schritt zum
+Papier-Test.
+
+**Zusätzlich berichtet (ohne Urteil):** für beide Regeln und alle Zeiträume Summe, Sharpe-Zahl, größter Einbruch,
+Orders je Tag, jeweils mit und ohne Rebate, mit bewegten und ruhigen Kosten; der Anteil der Ziehungen ohne Vorteil
+(Block-Stichprobe wie E23) für den Unterschied ohne Rebate; in T und V1 außerdem die Abfrage alle 4 und alle 12
+Stunden (nur zur Einordnung, nicht in V2).
+
+**Prüfungen der Rechnung vor dem Öffnen von V2:** Tests für die Tagesrichtung (kein Blick in die Zukunft, Ausführung
+um 00:05 UTC, Vergleich mit einer einfachen Schleife), für die Bedingungen und für die Sperre (V2 nur einmal, nichts ab
+04/2025); unabhängige Nachrechnung der Orders zweier Coins in T und V1; Gegenlesen.
