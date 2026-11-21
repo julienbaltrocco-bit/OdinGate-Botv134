@@ -322,5 +322,15 @@
    "tests/test_e25_gegenpruefung.py",
    "tests/test_e25_datenschnitt.py"
   ]
+ },
+ {
+  "nr": 26,
+  "id": "E26",
+  "runde": 2,
+  "datum": "2026-11-21",
+  "titel": "Vollständigkeit: die Trendregel auf jedem einzelnen Markt (zehn Labor-ETFs ab 2016, elf weitere Märkte, 134 Aktien, 137 Krypto-Kontrakte)",
+  "einstufung": "offen",
+  "kurz": "vor der Rechnung festgelegt (Protokoll Abschnitt 49); noch kein Ergebnis",
+  "dateien": []
  }
 ]

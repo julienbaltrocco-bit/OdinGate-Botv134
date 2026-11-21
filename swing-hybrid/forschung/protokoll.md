@@ -2020,3 +2020,49 @@ wäre mit eigener Festlegung zu prüfen; die Schlussprüfung V2 der zehn Coins i
   Samstag, 14.11.2026; an fünf Tagen fehlen Kurse bei 22 Kontrakten; mehr Mitglieder heben die Sharpe-Zahl schon
   rechnerisch etwas (deshalb der Vergleich mit den Zufallskörben). Für Teil 2 wurden auf Wunsch des Auftraggebers
   Daten ab 04/2025 angesehen, nur für Kontrakte ohne frühere Historie; für die zehn Coins bleibt der Tresor zu.
+
+---
+
+## 49. Festlegung E26 (vor der Rechnung, 21.11.2026, Nachfrage des Auftraggebers): die Regel auf jedem einzelnen Markt
+
+**Anlass.** Der Auftraggeber zweifelt, dass außerhalb der zehn Coins nichts zu finden ist, und fragt, ob wirklich alle
+Paare aus dem Labor geprüft wurden. **Antwort vorab: nein.** Das Labor enthält 11 Coins (die zehn und BNB; OKX 1D und
+4H, BTC/ETH/SOL auch 1H; Binance-Perpetuals 1D) und zehn US-ETFs (DIA, EEM, EFA, IWM, QQQ, SPY, XLE, XLF, XLK, XLV,
+Tageskurse 04.01.2016 bis 16.10.2026). Mit der Trendregel gerechnet waren bisher die Coins, von den ETFs aber nur SPY,
+QQQ und IWM (Runde 14, eigene Kurse ab 2020). Sieben ETFs und die Labor-Historie 2016 bis 2021 fehlten. Außerdem
+wurden Nicht-Krypto-Märkte bisher nur als Summe über alle berichtet, nicht je Markt.
+
+**Was gerechnet wird.** Die unveränderte Tagesregel (14 Tage) auf jedem einzelnen Markt, für den Tageskurse vorliegen:
+- (a) die zehn Labor-ETFs mit den Labor-Kursen ab 2016;
+- (b) die elf übrigen Märkte aus Runde 14 (EWJ, EWY, Gold, Silber, Platin, Palladium, Kupfer, WTI, Brent, Erdgas, TBT), ab 2020;
+- (c) die 134 Aktien mit Yubit-Kontrakt, ab 2020;
+- (d) jeder der 137 Krypto-Kontrakte einzeln (aus E25), nur T und V1.
+Rechnung für (a) bis (c) wie Runde 14 (`tagestrend.py`: Signal nach Tagesschluss, Handel zur nächsten Eröffnung, Größe
+beim Einstieg fest, Einsatz 1 je Markt), jeder Markt einmal über seine ganze Historie. Kosten: Taker 0,08 % mit 85 %
+Rebate; Slippage = gemessene Yubit-Spanne des Kontrakts, mindestens 0,5 bp; für ETFs ohne Yubit-Kontrakt (EEM, EFA,
+XLF, XLK, XLV) der Median der gemessenen ETF-Kontrakte. Funding 0; Stress: doppelte Slippage und Gebühr, 10 % Funding
+pro Jahr.
+
+**Zeiträume:** P0 vor dem 15.08.2021 (soweit Daten vorliegen), T, V1, V2 (01.07.2024 – 31.03.2025), P3 (ab 01.04.2025 bis
+Datenende). Für Nicht-Krypto alle fünf; die späteren Zeiträume wurden für diese Märkte schon in den Runden 14 bis 17
+angesehen. Für Krypto-Kontrakte nur T und V1 (V2 und Tresor bleiben für Krypto zu). Ein Zeitraum zählt für einen
+Markt nur mit mindestens 60 Börsentagen.
+
+**Bericht:** eine Zeile je Markt (netto mit Rebate je Zeitraum, Summe, Sharpe-Zahl über alles, Ergebnis im Stress), dazu
+je Gruppe ein gleichgewichteter Korb.
+
+**Wann ein Markt als auffällig gilt (vorab festgelegt, damit nicht nachträglich die Gewinner herausgesucht werden):**
+(1) netto in jedem seiner Zeiträume positiv, bei mindestens vier Zeiträumen; (2) über alles auch im Stress positiv;
+(3) t-Wert der Tagesergebnisse über die ganze Historie mindestens 2. Für Krypto-Kontrakte (zwei Zeiträume): in T und
+V1 positiv und t mindestens 2.
+- **Zufallserwartung:** Bei rund 155 Nicht-Krypto-Märkten ohne jeden Vorteil wären allein durch Zufall etwa zehn in
+  vier Zeiträumen positiv und zwei bis vier nach allen drei Bedingungen auffällig. Erst deutlich mehr wäre ein Hinweis.
+- Ein auffälliger Markt ist ein **Hinweis für einen Papier-Test, kein Beleg**: Für diese Märkte gibt es keinen
+  unberührten Zeitraum mehr.
+
+**Nicht Teil dieser Rechnung:** andere Rückblicke als 14 Tage (der 12-Monats-Trend scheiterte in Runde 15), die Stops
+von Test 2 und 3 (auf Tageskursen nicht sauber nachzubilden), die echten Yubit-Kontrakte auf Aktien (zu kurz, E25).
+
+**Prüfungen der Rechnung:** Tests für Laden, Zeiträume und Kriterium; unabhängige Nachrechnung einzelner Märkte; dazu
+prüft ein unabhängiger Prüfer die Vollständigkeit: jede Datenquelle und jedes Paar im Labor und im Datenordner gegen
+die Liste dessen, was gerechnet wurde.
