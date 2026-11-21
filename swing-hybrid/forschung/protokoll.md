@@ -1517,3 +1517,11 @@ Eröffnung o, Hoch h, Tief l, Schluss c; „Prüfung i“ ist der Schluss der Ke
     gezählt wird der Anteil der Ziehungen, in denen die Sharpe-Zahl des Kandidaten nicht über der von B0 liegt.
 11. **Start.** Gerechnet wird ab Kerze 0; gewertet werden die Tage des jeweiligen Zeitraums. Positionen, die über
     eine Zeitraumgrenze laufen, werden täglich bewertet und zählen in jedem Zeitraum mit ihren Tagen.
+12. **Zu Punkt 4:** Ein Zwischenhoch oder -tief braucht k vollständige Kerzen auf beiden Seiten (am Anfang der Daten
+    gibt es also keines).
+13. **Zu Punkt 7 und 8:** Die erste Prüfung des Stops ist der Schluss der Einstiegskerze selbst. Bei K2 wird zuerst
+    das Ziel geprüft, dann der Stop. Bei K3 wird erst der beste Schluss fortgeschrieben, dann geprüft.
+14. **Zu Punkt 10:** Zufallszahlen aus `numpy.random.default_rng(23)`; je Ziehung genau ein Aufruf
+    `integers(0, n, ⌈n/20⌉)`; die Blöcke in der gezogenen Reihenfolge aneinandergehängt.
+15. **Programm:** `forschung/experimente/e23_marktstruktur.py`, Tests `tests/test_e23_marktstruktur.py` (40 Tests grün).
+    Bis hierher sind nur Orderlisten einzelner Coins für die Kontrolle erzeugt worden; kein Ergebnis wurde angesehen.
