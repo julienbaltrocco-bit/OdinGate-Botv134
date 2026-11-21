@@ -71,7 +71,8 @@ def einfach(o, c, fr, d, ab, mit, slip_bp, stress=False):
                 erg += pos * (c[i, t] - ref) / e - (pos * fr[i, t] if np.isfinite(fr[i, t]) else 0.0)
                 ref = c[i, t]
             erg -= orders * ((2 if stress else 1) * slip_bp[i] + 1.2) / 1e4
-            w = anz[t] if mit[i, t] else (anz[t - 1] if t > 0 else 0)
+            mt = [u for u in range(t + 1) if mit[i, u]]
+            w = anz[mt[-1]] if mt else 0                            # Gewicht des letzten Mitgliedstags
             if erg != 0.0:
                 assert w > 0
                 netto[t] += erg / w
@@ -151,3 +152,14 @@ def test_urteil_vergleicht_gut_erst_ab_dem_ersten_tag_mit_mitgliedern():
     reihen[("KLEIN", "T")] = np.full(685, np.nan)
     with pytest.raises(SystemExit):
         X.urteil1(reihen, mit, kal)
+
+
+def test_ausgesetzte_kontrakte_sind_im_folgemonat_kein_mitglied():
+    kal = pd.date_range("2021-07-01", periods=120, freq="D")
+    o, c, qv, fr = markt(4, 120, 6)
+    qv[1, 50:] = 0.0                                              # ab Tag 50 ohne Umsatz (Handel ausgesetzt)
+    qv[2, 62] = 0.0                                               # am Monatsersten (01.09. = Tag 62) selbst null: der Vortag zählt, also Mitglied
+    qv[3, 61] = np.nan; qv[3, 60] = 5.0                           # Kurs fehlt am letzten Tag des Vormonats: der letzte bekannte Umsatz zählt
+    m = X.grundmenge(kal, qv, X.dabei_ab(c))
+    assert m[:, 0].all() and m[1, 31:62].all() and not m[1, 62:].any()        # August noch Mitglied, ab September nicht mehr
+    assert m[2].all() and m[3].all() and m[0].all()

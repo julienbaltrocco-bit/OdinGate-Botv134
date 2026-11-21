@@ -1914,3 +1914,42 @@ seltener als die Stundenregel und ist nicht dieselbe Regel. Fünf Körbe gegen e
 8. **Fehlende Tageskurse** (in Teil 1 zusammen 136 Kontrakt-Tage): An einem Tag ohne Kurs geschieht nichts (keine Order,
    keine Bewertung, kein Funding); d ist an diesem Tag und 14 Tage später 0, die Position wird dann zur nächsten
    Eröffnung geschlossen und nach der Regel neu eröffnet.
+
+### Unabhängige Gegenprüfung von E25 und weitere Präzisierungen (21.11.2026, vor der Rechnung des Ergebnisses)
+
+Zwei unabhängige Prüfer, ohne das Ergebnis zu rechnen oder zu sehen:
+- **Nachbau nur nach dem Text:** Symbollisten, erster Teilnahmetag, Richtung, Slippage, Einzelreihen aller 137
+  Kontrakte und die Mitglieder von BASIS, ALLE, GUT, SCHLECHT identisch; ebenso alle Korbreihen bis auf einen Tag
+  (KLEIN am 03.04.2022, siehe Punkt 11) und den ersten Monat von LIQ30 und KLEIN (Punkt 12). Teil 2 identisch.
+- **Gegenlesen:** kein Blick in die Zukunft (Störungen an 13 Grenztagen), Datenzuschnitt hält, Kosten und Urteil
+  entsprechen dem Text. Die vier Tests hätten 17 absichtlich eingebaute Fehler nicht bemerkt; die 31 Tests des Prüfers
+  mit eigener zweiter Rechnung und zwei Tests zum Datenzuschnitt sind übernommen (38 Tests grün).
+
+**Präzisierungen und Korrekturen (alle vor der Rechnung):**
+9. **Einteilung:** ESPORTSUSDT (erster Handelstag 29.07.2025, Kurs unter 1 USDT, Tagesbewegungen über 100 %) steht
+   nach Namen auf der Liste, ist aber ein kleiner Krypto-Token: zählt als Krypto. Damit 197 Aktien-, Index- und
+   Rohstoff-Kontrakte und 332 Krypto.
+10. **PUMPUSDT** hat zwei Kursreihen unter einem Symbol (bis 13.06.2025 und ab 10.07.2025, dazwischen ausgesetzt);
+    gewertet wird die zweite, erster Handelstag 10.07.2025.
+11. **Gewicht der Schlussorder (Fehler im Programm, behoben):** Sie zählt mit dem Gewicht des letzten Mitgliedstags,
+    auch wenn sie wegen fehlender Kurse erst Tage später ausgeführt wird.
+12. **LIQ30 und KLEIN** haben im Juli 2021 keine Mitglieder (es gibt noch keine 30 Tage Umsatz); ihre Positionen
+    beginnen am 01.08.2021. Der mittlere Umsatz wird über die Tage mit Kurs gebildet. Bei Gleichstand gilt der
+    alphabetisch frühere Kontrakt als der bessere.
+13. **Ausgesetzte Kontrakte:** In Teil 1 gibt es 843 Kontrakt-Tage mit eingefrorenem Kurs und Umsatz null (CVC, CTK,
+    ICP, CVX, MDT). Neu: Ein Kontrakt ist in einem Monat kein Mitglied, wenn sein letzter bekannter Tagesumsatz vor
+    dem Monatsanfang null war. Das nutzt nur Vergangenes und gilt für alle Körbe und für Teil 2.
+14. **Teil 2:** berichtet wird je Gruppe ab dem ersten Tag mit mindestens zehn Mitgliedern (bei den Aktien-Kontrakten
+    gab es davor nur Gold-Token); der Anteil der Kontrakte im Plus zählt die Kontrakte im Korb an ihren
+    Mitgliedstagen; dazu Mitglieder je Quartalsende und die größten Einzeltage.
+15. **Zusätzlich berichtet (ohne Urteil):** Ergebnis je Jahr; und zur Einordnung 500 Körbe aus je zehn zufällig
+    gezogenen Kontrakten, die von Anfang an dabei sind (fest über das ganze Fenster): Wo steht BASIS unter ihnen?
+
+**Bekannte Schwächen der Daten (bleiben, werden im Ergebnis genannt):** An fünf Tagen (26.–28.02. und 01.–02.04.2022)
+fehlen bei 22 Kontrakten die Kurse, darunter SOL, XRP und LTC; nach Punkt 8 wird dort je viermal geschlossen und neu
+eröffnet. ICP hat bis 08/2022 kein Funding (zählt als null). Die Liste enthält nur Kontrakte, die Yubit heute führt.
+
+**Hinweis der Prüfer zur Auslegung (wichtig):** Ein Korb mit mehr Mitgliedern hat schon rechnerisch eine höhere
+Sharpe-Zahl als zehn Coins, auch ohne besseres Signal (bei mäßigem Gleichlauf der Einzelergebnisse grob 5 bis 30 %
+mehr). Ein „höher als BASIS“ wäre deshalb zu erwarten, sobald die Regel überhaupt verdient, und kein Beleg für bessere
+Märkte. Dafür dient der Vergleich mit den Zufalls-Zehn (Punkt 15).

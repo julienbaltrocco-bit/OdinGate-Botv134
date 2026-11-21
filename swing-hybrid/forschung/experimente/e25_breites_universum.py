@@ -24,7 +24,10 @@ START = pd.Timestamp("2021-07-01")
 V1_ENDE, DATEN_ENDE, NEU_AB = pd.Timestamp("2024-06-30"), pd.Timestamp("2026-10-31"), pd.Timestamp("2024-07-01")
 GEB_BP = 8.0 * (1 - 0.85)                                            # Gebühr je Order mit Rebate
 WARTE, RUECK, LIQ_TAGE, GUT_TAGE, LIQ_N = 60, 14, 30, 180, 30
+MIN_MITGLIEDER = 10                                                  # Teil 2 wird erst ab zehn Mitgliedern berichtet
 BASIS_SYM = [c + "USDT" for c in D.COINS]
+KRYPTO_TROTZ_LISTE = {"ESPORTSUSDT"}                                 # steht nach Namen auf der Liste, verhält sich wie ein kleiner Krypto-Token (Präzisierung 9)
+ERSTER_TAG_KORREKTUR = {"PUMPUSDT": pd.Timestamp("2025-07-10")}      # zwei Kursreihen unter einem Symbol; gewertet wird die zweite (Präzisierung 10)
 ERGEBNIS = F / "ergebnisse/e25_breites_universum.json"
 
 
@@ -35,7 +38,9 @@ def symbole():
     aus = {x.strip() for x in (ROOT / "scripts/listings_ausschluss.txt").read_text().splitlines() if x.strip() and not x.startswith("#")}
     # Die Liste aus Runde 10 ging nach Namen und enthält zwei Krypto-Kontrakte (BTCUSDT als damaliges Gegenstück, MDTUSDT wegen
     # Namensgleichheit mit einer Aktie). Aktien-Kontrakte gibt es erst seit 2026: Einträge mit erstem Handelstag vor 2025 sind Krypto.
-    inv["tradfi"] = inv["symbol"].isin(aus) & (inv["erster_tag"] >= pd.Timestamp("2025-01-01"))
+    inv["tradfi"] = inv["symbol"].isin(aus) & (inv["erster_tag"] >= pd.Timestamp("2025-01-01")) & ~inv["symbol"].isin(KRYPTO_TROTZ_LISTE)
+    for sym, tag in ERSTER_TAG_KORREKTUR.items():
+        inv.loc[inv["symbol"] == sym, "erster_tag"] = tag
     return inv[["symbol", "erster_tag", "tradfi"]].sort_values("symbol").reset_index(drop=True)
 
 
@@ -52,11 +57,14 @@ def laden(syms: list, bis: pd.Timestamp):
     kal = pd.date_range(START, bis, freq="D")
     o, c, qv, fr = (np.full((len(syms), len(kal)), np.nan) for _ in range(4))
     for i, s in enumerate(syms):
-        d = pd.read_parquet(ROOT / f"data/candles/1d/{s}.parquet")
+        d = pd.read_parquet(ROOT / f"data/candles/1d/{s}.parquet", filters=[("open_time", "<=", bis)])     # spätere Zeilen werden nicht gelesen
         d = d[d.index <= bis].reindex(kal)
         o[i], c[i], qv[i] = d["open"].to_numpy(), d["close"].to_numpy(), d["quote_volume"].to_numpy()
-        f = pd.read_parquet(ROOT / f"data/candles/funding_1d/{s}.parquet")["rate"]
+        f = pd.read_parquet(ROOT / f"data/candles/funding_1d/{s}.parquet", filters=[("zeit", "<=", bis)])["rate"]
         fr[i] = f[f.index <= bis].reindex(kal).to_numpy()
+        if s in ERSTER_TAG_KORREKTUR:
+            vor = kal < ERSTER_TAG_KORREKTUR[s]
+            o[i, vor] = c[i, vor] = qv[i, vor] = fr[i, vor] = np.nan
     return kal, o, c, qv, fr
 
 
@@ -119,13 +127,26 @@ def einzelreihen(o, c, fr, d, ab):
     return brut, nord
 
 
+def grundmenge(kal, qv, ab) -> np.ndarray:
+    """ALLE: am ersten Tag des Monats dabei und nicht ausgesetzt (letzter Tagesumsatz vor dem Monat größer als null)."""
+    n, T_ = qv.shape
+    m = np.zeros((n, T_), bool)
+    letzter = pd.DataFrame(qv.T).ffill().to_numpy().T                # letzter bekannter Tagesumsatz
+    for t0, t1 in monatsanfaenge(kal):
+        ok = ab <= t0
+        if t0 > 0:
+            ok &= ~(letzter[:, t0 - 1] == 0)                         # Umsatz null am letzten Tag mit Kurs: Handel ausgesetzt
+        m[ok, t0:t1] = True
+    return m
+
+
 def mitglieder(kal, qv, ab, netto_einzel, basis_idx):
     """Mitglieder je Korb und Monat, bestimmt nur aus Daten bis zum letzten Tag des Vormonats. Rückgabe: {Korb: bool[Symbol, Tag]}."""
     n, T_ = qv.shape
     m = {k: np.zeros((n, T_), bool) for k in ("BASIS", "ALLE", "LIQ30", "KLEIN", "GUT", "SCHLECHT")}
+    m["ALLE"] = grundmenge(kal, qv, ab)
     for t0, t1 in monatsanfaenge(kal):
-        alle = np.nonzero(ab <= t0)[0]                               # am ersten Tag des Monats dabei
-        m["ALLE"][alle, t0:t1] = True
+        alle = np.nonzero(m["ALLE"][:, t0])[0]
         m["BASIS"][[i for i in basis_idx if ab[i] <= t0], t0:t1] = True
         if t0 >= LIQ_TAGE and len(alle):
             umsatz = np.nanmean(qv[alle, t0 - LIQ_TAGE:t0], axis=1)
@@ -156,8 +177,10 @@ def korb(o, c, fr, d, ab, mit, slip_bp, stress=False):
         b, no = np.zeros(T_), np.zeros(T_)
         tag_lauf(o[i], c[i], fr[i], ziel, b, no)
         gew = np.where(anzahl > 0, 1.0 / np.maximum(anzahl, 1), 0.0)
-        # Orders eines ausscheidenden Mitglieds fallen am ersten Tag ohne Mitgliedschaft an: Gewicht des Vormonats
-        gew_order = np.where(mit[i], gew, np.concatenate([[0.0], gew[:-1]]))
+        # Die Schlussorder eines ausscheidenden Mitglieds zählt mit dem Gewicht seines letzten Mitgliedstags (Vormonat),
+        # auch wenn sie wegen fehlender Kurse erst später ausgeführt wird
+        letzter = np.maximum.accumulate(np.where(mit[i], np.arange(T_), -1))
+        gew_order = np.where(letzter >= 0, gew[np.maximum(letzter, 0)], 0.0)
         vor += b * gew_order
         netto += (b - no * (f * slip_bp[i] + GEB_BP) / 1e4) * gew_order
         orders += no
@@ -190,8 +213,11 @@ def teil1():
             e[zr] = {**zahlen(netto[sl]), "vor_kosten_pct": round(float(vor[sl].sum() * 100), 2), "stress_pct": round(float(stress[sl].sum() * 100), 2),
                      "mitglieder_mittel": round(float(anzahl[sl].mean()), 1), "orders_je_tag": round(float(orders[sl].sum() / (sl.stop - sl.start)), 2),
                      "erster_tag_mit_mitgliedern": str(kal[sl][np.argmax(anzahl[sl] > 0)].date()) if (anzahl[sl] > 0).any() else None}
+        fenster = slice(E.tage("T").start, E.tage("V1").stop)
+        e["je_jahr_pct"] = {str(j): round(float(v * 100), 2) for j, v in pd.Series(netto[fenster], index=kal[fenster]).groupby(kal[fenster].year).sum().items()}
         out["koerbe"][name] = e
     out["urteil"] = urteil1(reihen, {k: v for k, v in mit.items()}, kal)
+    out["zufalls_zehn"] = zufalls_zehn(netto_e, ab, reihen)
     for name in ("ALLE", "LIQ30", "KLEIN", "GUT", "SCHLECHT"):      # Mischung je zur Hälfte mit BASIS (nur Bericht)
         for zr in ("T", "V1"):
             mix = 0.5 * reihen[("BASIS", zr)] + 0.5 * reihen[(name, zr)]
@@ -204,6 +230,24 @@ def teil1():
                                                  "gleichlauf": round(float(np.corrcoef(reihen[("BASIS", zr)], b0[f"B0_{zr}"])[0, 1]), 3)} for zr in ("T", "V1")}
     out["kontrakte"] = len(krypto)
     return out, reihen
+
+
+def zufalls_zehn(netto_e: np.ndarray, ab: np.ndarray, reihen: dict, zuege: int = 500, start: int = 25) -> dict:
+    """Nur zur Einordnung: Körbe aus zehn zufällig gezogenen Kontrakten, die von Anfang an dabei sind (fest über das ganze
+    Fenster, wie BASIS). Wo steht BASIS unter ihnen, und wie stark laufen die Einzelergebnisse gleich?"""
+    alt = np.nonzero(ab == 0)[0]
+    rng = np.random.default_rng(start)
+    wahl = [rng.choice(alt, 10, replace=False) for _ in range(zuege)]
+    out = {"kontrakte_von_anfang_an": int(len(alt)), "zuege": zuege}
+    for zr in ("T", "V1"):
+        sl = E.tage(zr)
+        sh = np.array([E.sharpe(netto_e[w][:, sl].mean(axis=0)) for w in wahl])
+        k = np.corrcoef(netto_e[alt][:, sl])
+        basis = E.sharpe(reihen[("BASIS", zr)])
+        out[zr] = {"sharpe_median": round(float(np.median(sh)), 3), "sharpe_10_bis_90": [round(float(np.quantile(sh, 0.1)), 3), round(float(np.quantile(sh, 0.9)), 3)],
+                   "basis_sharpe": round(basis, 3), "anteil_zuege_unter_basis_pct": round(float((sh < basis).mean() * 100), 1),
+                   "gleichlauf_einzelergebnisse_mittel": round(float(k[np.triu_indices_from(k, 1)].mean()), 3)}
+    return out
 
 
 def urteil1(reihen: dict, mit: dict, kal) -> dict:
@@ -249,22 +293,25 @@ def teil2():
         kal, o, c, qv, fr = laden(syms, DATEN_ENDE)
         slip_bp = np.array([slip[s] for s in syms])
         d, ab = richtung(c), dabei_ab(c)
-        mit = np.zeros(c.shape, bool)
-        for t0, t1 in monatsanfaenge(kal):
-            mit[np.nonzero(ab <= t0)[0], t0:t1] = True
+        mit = grundmenge(kal, qv, ab)
         netto, vor, orders, anzahl = korb(o, c, fr, d, ab, mit, slip_bp)
         stress = korb(o, c, fr, d, ab, mit, slip_bp, stress=True)[0]
-        a = int(np.argmax(anzahl > 0)) if (anzahl > 0).any() else len(kal)
+        a = int(np.argmax(anzahl >= MIN_MITGLIEDER)) if (anzahl >= MIN_MITGLIEDER).any() else len(kal)    # Bericht ab dem ersten Tag mit zehn Mitgliedern
         brut_e, nord_e = einzelreihen(o, c, fr, d, ab)
-        einzeln = (brut_e - nord_e * (slip_bp[:, None] + GEB_BP) / 1e4).sum(axis=1)
-        dabei = np.array([ab[i] < len(kal) for i in range(len(syms))])
+        einzel = brut_e - nord_e * (slip_bp[:, None] + GEB_BP) / 1e4
+        im_korb = mit[:, a:].any(axis=1)
+        einzeln = (einzel * mit)[:, a:].sum(axis=1)                  # Ergebnis je Kontrakt an seinen Mitgliedstagen im Berichtsfenster
         quartale = pd.Series(netto[a:], index=kal[a:]).groupby(kal[a:].to_period("Q")).sum()
-        out[gruppe] = {"kontrakte": len(syms), "kontrakte_mit_ergebnis": int(dabei.sum()), "von": str(kal[a].date()) if a < len(kal) else None, "bis": str(kal[-1].date()),
-                       "kontrakt_tage": int(mit.sum()), **zahlen(netto[a:]), "vor_kosten_pct": round(float(vor[a:].sum() * 100), 2),
+        mitgl_q = pd.Series(anzahl[a:], index=kal[a:]).groupby(kal[a:].to_period("Q")).last()
+        groesste = sorted(((float(abs(einzel[i, a:] * mit[i, a:]).max()), syms[i]) for i in np.nonzero(im_korb)[0]), reverse=True)[:5]
+        out[gruppe] = {"kontrakte": len(syms), "kontrakte_im_korb": int(im_korb.sum()), "von": str(kal[a].date()) if a < len(kal) else None, "bis": str(kal[-1].date()),
+                       "kontrakt_tage": int(mit[:, a:].sum()), **zahlen(netto[a:]), "vor_kosten_pct": round(float(vor[a:].sum() * 100), 2),
                        "stress_pct": round(float(stress[a:].sum() * 100), 2), "mitglieder_am_ende": int(anzahl[-1]),
                        "orders_je_tag": round(float(orders[a:].sum() / max(1, len(kal) - a)), 2),
-                       "anteil_kontrakte_im_plus_pct": round(float((einzeln[dabei] > 0).mean() * 100), 1) if dabei.any() else None,
-                       "je_quartal_pct": {str(k): round(float(v * 100), 2) for k, v in quartale.items()}}
+                       "anteil_kontrakte_im_plus_pct": round(float((einzeln[im_korb] > 0).mean() * 100), 1) if im_korb.any() else None,
+                       "je_quartal_pct": {str(k): round(float(v * 100), 2) for k, v in quartale.items()},
+                       "mitglieder_je_quartalsende": {str(k): int(v) for k, v in mitgl_q.items()},
+                       "groesste_einzeltage_pct_des_einsatzes": [[sym, round(w * 100, 1)] for w, sym in groesste]}
     return out
 
 
