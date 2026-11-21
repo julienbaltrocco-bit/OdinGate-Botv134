@@ -2467,3 +2467,28 @@ die ersten Daten. Gleicher Symbolname bei Yubit und Binance ist noch nicht als g
   nur die Tageskurse bis 31.10.2026 benutzt (E25, E26); zur Erkundung des Formats wurden je zwei Tagesdateien von
   NVDAUSDT (14.11. und 19.11.2026) geöffnet sowie Stundenumsätze und Funding von NVDAUSDT bei Yubit angesehen.
 - Was der Sammler ab jetzt bei Yubit mitschreibt, ist vorwärts erhoben.
+
+---
+
+## 55. Test 4 in Betrieb (21.11.2026, Ergebnis zu Abschnitt 53)
+
+- **Bedingungen vor dem Start erfüllt.** Die Nachrechnung von Test 4 aus den Aufzeichnungen von Test 1 stimmt mit Test 1
+  überein: zehn Orders exakt, Kontoverlauf in allen 1.702 Zeilen (größter Abstand einer Geldspalte 0,0001 $); für
+  alle zehn Coins steht die Tagesrichtung vom 21.11. (Short) im Zustand. Damit war auch die Tagesrichtung vom 15.11.
+  00:00 UTC für alle zehn Coins Short (sonst wären die Einstiege abgewichen).
+- **Test 1 bis 3 unberührt.** Alter und neuer Code liefern in fünf Nachrechnungen (Aufzeichnungen von Test 1 mit den
+  Einstellungen von Test 1, 2 und 3; eigene Aufzeichnungen von Test 2 und Test 3; je 1.697 Läufe) byte-gleiche Dateien
+  (30 Dateien). Die Inbetriebnahme hat an den Ordnern, Einstellungen und Board-Dateien von Test 1 bis 3 nichts geändert
+  (vor jedem Push geprüft).
+- **Ablauf.** Schritt A (Code und Nachrechnung bis 13:34 UTC) um 13:35:21 UTC, direkt nach einem Lauf des Servers. Der
+  Lauf von 13:39 UTC lief wie erwartet noch mit dem alten Skripttext (drei Durchgänge). Schritt B (Nachrechnung bis
+  13:39 UTC) um 13:40:24 UTC. Der Lauf von 13:44 UTC rechnete alle vier Tests; der Commit von Test 4 stammt vom Server
+  (13:45:30 UTC). Kein Lauf von Test 1 bis 3 ging verloren oder wurde doppelt gebucht (je 1.704 Zeilen, wie Test 4).
+  Zwei Trockenübungen gegen ein lokales Übungs-Repository gingen voraus (die zweite mit dem endgültigen Code ohne
+  Fehlschlag), einschließlich Fehler im vierten Durchgang und Notbremse.
+- **Stand beim Start:** Test 4 hält dieselben zehn Shorts wie Test 1 (netto mit Rebate +1.193 $ um 13:45 UTC).
+  `nachgerechnet_bis` = 21.11.2026 13:39 UTC; vorwärts gewertet wird ab dem Lauf von 13:44 UTC. Die erste eigene
+  Entscheidung fällt am 22.11. um 00:04 UTC.
+- **Zum Lesen der Zahlen:** Test 4 rechnet im selben Lauf rund eine Minute nach Test 1 und damit zu etwas anderen
+  Kursen; sein Zeitstempel kann um eine Minute neben dem von Test 1 liegen. Kleine Unterschiede im Kontostand sind
+  deshalb kein Regel-Unterschied. Der kommt erst mit dem ersten Signalwechsel.

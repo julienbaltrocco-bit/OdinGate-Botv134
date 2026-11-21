@@ -59,15 +59,18 @@ einem kleinen Server (cron). Dafür fehlen zwei Entscheidungen des Auftraggebers
 
 | Was | Wo | Takt | Braucht KI |
 |---|---|---|---|
-| Test 1, Test 2 und Test 3 (Papier-Bot; Test 3 seit 20.11.2026, alle drei mit den Einstiegen von Test 1) | Server des Auftraggebers, Dienst `odingate-bot` (Zeitplan `odingate-bot.timer`) | alle 5 Minuten, drei Durchgänge nacheinander (rund 50 Sekunden) | nein |
+| Test 1 bis Test 4 (Papier-Bot; Test 3 seit 20.11.2026, Test 4 seit 21.11.2026, alle mit den Einstiegen von Test 1) | Server des Auftraggebers, Dienst `odingate-bot` (Zeitplan `odingate-bot.timer`) | alle 5 Minuten, vier Durchgänge nacheinander (rund 65 Sekunden) | nein |
 | Beobachtung „Gegen Kaufdruck“, live (`L-dc1d27a3`) | Server des Auftraggebers, Dienst `odingate-live` | alle 5 Minuten | nein |
 | OS-1.1, `B-24332e4d`, `B-dc1d27a3` (Schattentests aus Archivdaten) | Claude, geplante Aufgabe „OdinGate Papier-Lauf mit Board“ | täglich 11:17 UTC (seit 17.11.; Binance veröffentlicht die Archivdateien des Vortags zwischen etwa 07:30 und 10:05 UTC) | ja, wenig |
 | Forschungszyklus | Claude, geplante Aufgabe „OdinGate Forschungszyklus“ | täglich 01:43 UTC | ja |
 
 **Auf dem Server** (alles unter `/opt/odingate`, je ein begrenzter Docker-Container, keine Handelsschlüssel, keine Orders):
 - Stand ansehen: `bash /opt/odingate/repo/swing-hybrid/forschung/live/status.sh`
-- Bot anhalten (Notbremse): `touch /opt/odingate/bot/swing-hybrid/vorwaertstest/lauf/STOPP` und dasselbe mit `lauf_tpsl`
-  und `lauf_trail`; weiterlaufen lassen: die Dateien wieder löschen.
+- Bot anhalten (Notbremse): `touch /opt/odingate/bot/swing-hybrid/vorwaertstest/lauf/STOPP` und dasselbe mit `lauf_tpsl`,
+  `lauf_trail` und `lauf_tag`; weiterlaufen lassen: die Dateien wieder löschen. **Achtung:** Der Server erneuert seinen
+  Klon, sobald er zu groß wird (derzeit etwa täglich), und übernimmt dabei nur die STOPP-Dateien von `lauf` und
+  `lauf_tpsl`. Test 3 und Test 4 laufen danach von selbst weiter. Dauerhaft anhalten: Test 4 über die Datei
+  `vorwaertstest/lauf_tag/ANGEHALTEN` im Bot-Zweig (Claude Bescheid geben), Test 3 nur über eine Änderung am Skript.
 - Alles entfernen: `bash /opt/odingate/repo/swing-hybrid/forschung/live/entfernen.sh` (verweigert es, solange der
   Bot dort rechnet; vorher den Staffelstab zurückgeben).
 
@@ -82,6 +85,16 @@ nachgerechnet (`vorwaertstest/nachrechnen.py`) und auf dem Board so gekennzeichn
 abgeschlossen in `vorwaertstest/archiv/lauf_tpsl_eigene_einstiege`. Der dritte Durchgang läuft zuletzt: Scheitert
 er, sind Test 1 und Test 2 schon gesichert. Jeder Durchgang schreibt einen Commit; das Repository auf dem Server
 wächst dadurch rund anderthalbmal so schnell wie vorher (das Aufräumen vor dem Lauf fängt das ab).
+
+**Test 4 seit 21.11.2026 (Tagesvariante, Protokoll Abschnitt 53):** Regel wie Test 1, aber die Richtung wird je Coin
+nur einmal am Tag übernommen (Stundenschluss 00:00 UTC, gehandelt im Lauf um 00:04 UTC, frühestens eine Minute nach dem
+Tageswechsel). Einstiege von Test 1; bis `nachgerechnet_bis` (21.11. 13:39 UTC) aus den Aufzeichnungen von Test 1
+nachgerechnet und mit Test 1 identisch, seit dem Lauf von 13:44 UTC live. Eigener Ordner `vorwaertstest/lauf_tag`,
+eigener Reiter auf dem Board. Der vierte Durchgang läuft nach Test 3 und rechnet nur, wenn sein Stand vorhanden ist.
+
+**Offen (bis etwa Februar 2027 zu beheben):** Bericht und Board-Daten laden bei jedem Lauf die ganze `spannen.csv`
+jedes Tests. Nach Rechnung eines Prüfers stößt das nach rund 116 Tagen Laufzeit an die 300 MB des Containers; dann
+scheitert Test 1 und mit ihm der ganze Lauf.
 
 **Woran man einen Ausfall erkennt:** Auf dem Trading Board steht bei Test 1 und 2 „Bot-Stand vor …“. Mehr als rund
 zehn Minuten heißt: Der Server rechnet nicht. Der Kaufdruck-Tab fällt bei einem Ausfall von selbst auf den täglichen
