@@ -2296,3 +2296,64 @@ Zehn Coins, Einsatz 1 × Konto, bewegte Kosten (`ergebnisse/e27_tagesvariante.js
 
 **Verbraucht:** V2 ist für die Stundenregel und die Tagesvariante auf den zehn Coins jetzt angesehen. Der Tresor ab
 04/2025 bleibt zu. Ein weiterer Beleg kann nur noch aus einem Papier-Test kommen.
+
+---
+
+## 53. Test 4, festgelegt vor jeder Rechnung (21.11.2026, vom Auftraggeber freigegeben): Tagesvariante der Trendregel auf Papier
+
+**Anlass.** E27 (Abschnitte 51 und 52): Die Tagesvariante besteht in T, V1 und im einmal geöffneten V2 und ist damit
+Kandidat für einen Papier-Test. Der Auftraggeber hat den Start am 21.11.2026 freigegeben („Ja, mach Test 4 mit der
+Tagesvariante auf Papier“). Die Historie ist für diese Regel verbraucht; ein weiterer Beleg kann nur vorwärts kommen.
+
+**Regel (ab jetzt eingefroren).**
+- Alles wie Test 1: 14-Tage-Trend (Schluss einer Stundenkerze gegen den Schluss 336 Stunden davor), zehn Coins,
+  5.000 $ Papier-Kapital, Hebel 3, feste Größe je Coin beim Einstieg, kein Stop, kein Gewinnziel, Umkehr schließt und
+  dreht die Position. Füllung im Papier gegen das echte Yubit-Orderbuch des Laufs, Gebühr 0,08 %, Rebate 85 % gerechnet.
+- **Einziger Unterschied:** Die Richtung wird je Coin nur **einmal am Tag** übernommen. Maßgeblich ist die Stundenkerze,
+  die um 00:00 UTC schließt (Beginn 23:00 UTC des Vortags). Gehandelt wird im ersten Lauf danach (planmäßig 00:04 UTC).
+  Bis zur nächsten Übernahme bleibt die Position stehen, egal was das Stundensignal dazwischen zeigt.
+- **Aufholen:** Fällt der erste Lauf des Tages aus oder liefert Yubit eine der beiden Kerzen nicht, übernimmt der
+  nächste Lauf, der sie bekommt, die Richtung **der 00:00-Kerze dieses Tages** (nicht die der dann laufenden Stunde).
+  Solange für den laufenden Tag keine Richtung vorliegt, wird für diesen Coin nicht gehandelt. So war es in E27
+  festgelegt (Übernahme wird beim nächsten stattfindenden Lauf nachgeholt).
+- Gleichstand der beiden Schlusskurse: keine Position (wie Test 1). Tagesverlust-Limit wie Test 1.
+- Die Uhrzeit 00:00 UTC ist die in E27 geprüfte; andere Uhrzeiten oder Abstände werden nicht ausprobiert und wären
+  ein eigener Test.
+
+**Start mit den Einstiegen von Test 1** (ausdrücklicher Wunsch des Auftraggebers vom 20.11.: alle Tests haben dieselben
+Einstiege). Test 4 beginnt mit den tatsächlichen Füllungen von Test 1 vom 15.11.2026, 13:21 UTC. Das ist nur dann
+zugleich die Tagesregel, wenn die Tagesrichtung vom 15.11. 00:00 UTC für alle zehn Coins der Richtung von Test 1
+entspricht (Short). **Bedingung für die Inbetriebnahme:** Das wird vor dem Start an den Yubit-Kerzen geprüft; weicht
+ein Coin ab, wird nicht gestartet, sondern neu festgelegt.
+
+**Nachgerechneter Abschnitt (15.11. bis zur Inbetriebnahme).** Wie bei Test 2 und 3 mit `vorwaertstest/nachrechnen.py`
+und dem echten Bot-Schritt aus den Aufzeichnungen von Test 1, gekennzeichnet über `nachgerechnet_bis`. Test 1 hat seit
+dem Einstieg keine weitere Order (Stand 21.11. 11:34 UTC: zehn Orders, zehn Shorts); damit stand das Stundensignal zu
+jeder vollen Stunde auf Short, also auch um 00:00 UTC jedes Tages. **Erwartung, vor der Rechnung festgehalten:** Der
+nachgerechnete Abschnitt von Test 4 ist mit Test 1 identisch (dieselben zehn Orders, derselbe Kontostand in jeder
+Zeile). **Prüfung vor dem Start:** Orders und Kontoverlauf werden Zeile für Zeile mit Test 1 verglichen; bei einer
+Abweichung wird nicht gestartet. Ein Unterschied zwischen Test 4 und Test 1 kann also erst nach der Inbetriebnahme
+entstehen, und zwar erst beim ersten Signalwechsel.
+
+**Betrieb.** Vierter Durchgang in `stunde.sh` nach Test 3 (scheitert er, sind Test 1 bis 3 schon gesichert). Eigener
+Datenordner `vorwaertstest/lauf_tag`, eigene Einstellung `config_lauf_tag.json` (Schalter `tagesregel`), eigene
+Board-Datei `docs/stand_tag.enc.json`, eigener Reiter „Test 4“ auf dem Board, eigene Notbremse `lauf_tag/STOPP`. Der
+Bot merkt sich die übernommene Tagesrichtung je Coin im Zustand (`tagesrichtung`: Tag, Richtung, beide Schlusskurse),
+damit jede Entscheidung nachprüfbar ist.
+
+**Test 1 bis 3 bleiben unberührt.** Ohne den Schalter `tagesregel` läuft der Bot-Schritt wie bisher. Belegt wird das
+vor dem Start doppelt: durch Tests (Zustand und Ausgaben ohne neue Felder) und dadurch, dass der neue Code die
+vorhandenen Aufzeichnungen von Test 1, 2 und 3 Byte für Byte gleich nachrechnet wie der alte.
+
+**Was Test 4 zeigen kann, und was nicht.**
+- Erwartung aus E27: über längere Zeit etwa ein Fünftel der Orders von Test 1, mit Rebate ein ähnliches Ergebnis, ohne
+  Rebate ein besseres. Verglichen wird gepaart mit Test 1 ab demselben Start: Zahl der Orders, Gebühr, Ergebnis vor
+  Kosten, netto ohne und mit Rebate.
+- Solange kein Signal dreht, sind beide Tests gleich. Aussagekräftig wird der Vergleich erst nach etlichen Wechseln,
+  also eher nach Monaten als nach Wochen. Es gibt keine vorab festgelegte Schwelle für „bestanden“; Test 4 ist eine
+  Beobachtung, keine Freigabe für Echtgeld.
+- **Unterschiede zur Rechnung in E27:** dort Einsatz 1 × Konto und Kostenmodell, hier Hebel 3 wie Test 1 und Füllung
+  am echten Orderbuch um 00:04 UTC; dort Ausführung zur Eröffnung der 00:05-Kerze. Das Risiko aus Abschnitt 44 gilt
+  unverändert (Hebel 3 hätte im Backtest in 16 % der Starttage das Konto aufgebraucht).
+
+**Kein Nachjustieren.** Die Regel wird nach dem Start nicht verändert; jede Änderung wäre ein neuer Test.
