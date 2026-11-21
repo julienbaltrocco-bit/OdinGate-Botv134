@@ -2492,3 +2492,72 @@ die ersten Daten. Gleicher Symbolname bei Yubit und Binance ist noch nicht als g
 - **Zum Lesen der Zahlen:** Test 4 rechnet im selben Lauf rund eine Minute nach Test 1 und damit zu etwas anderen
   Kursen; sein Zeitstempel kann um eine Minute neben dem von Test 1 liegen. Kleine Unterschiede im Kontostand sind
   deshalb kein Regel-Unterschied. Der kommt erst mit dem ersten Signalwechsel.
+
+---
+
+## 56. Festlegung E28 (vor der Rechnung, 21.11.2026, Einwand des Auftraggebers „wir haben mehr als Krypto“): Orderbuch-Regel und Wochenende auf Aktien-, Index- und Rohstoff-Kontrakten (H28, H29)
+
+**Anlass.** Auf Nicht-Krypto ist bisher nur auf Tageskursen geprüft worden (Trend in mehreren Längen, Übernacht-Effekt,
+Paare, Momentum, Nasdaq nach Bitcoin; alles verworfen). Seit der Erkundung vom 21.11. (Abschnitt 54) ist bekannt: Die
+Kontrakte handeln rund um die Uhr, und es gibt für sie feine Daten seit dem Listungstag. Damit sind zwei Dinge
+prüfbar, die es bisher nicht waren. Beide werden einmal gerechnet, ohne Einstellungen zu suchen.
+
+**Berichtigung zu meiner Ankündigung an den Auftraggeber:** Von den drei Regeln der Schattentests lässt sich nur die
+Orderbuch-Stütze (OS-1.1) unverändert übertragen. Die beiden Beobachtungsregeln aus der Strategie-Fabrik hängen am
+Rechenrahmen der zehn Coins (feste Coin-Liste, eigene Kosten- und Filterfelder); sie zu übertragen hieße, sie
+umzubauen. Das geschieht hier nicht.
+
+### Teil 1 (H28): Orderbuch-Stütze OS-1.1, unverändert, auf 30 Kontrakten
+
+- **Regel:** `forschung/papier/strategien/orderbuch_stuetze.py` mit den eingefrorenen Parametern von OS-1.1
+  (Tiefe bis 5 %, Fenster 288, mindestens 200 Werte, Einstieg |z| ≥ 3, Ausstieg z < 1, höchstens 48 Kerzen). Die
+  Prüfsumme der Regel wird vor der Rechnung gegen die Freigabe von OS-1.1 geprüft.
+- **Kontrakte (Regel, aus schon bekannten Angaben, nicht aus Ergebnissen):** Aktien-, Index- und Rohstoff-Kontrakte der
+  Liste aus E25, erster Handelstag bei Binance spätestens 31.07.2026, gemessene Yubit-Spanne (Stichprobe vom
+  14.11.2026) höchstens 10 bp; davon die 30 mit dem höchsten Werktagsumsatz bei Binance (Median bis 31.10.2026).
+- **Daten:** Binance-Archiv je Kontrakt vom ersten Tag bis 20.11.2026: Orderbuch-Tiefe (Bänder ±5 %), 5-Minuten-Kerzen,
+  Funding. Signal und Kurse von Binance als Stellvertreter für Yubit, wie in den Schattentests.
+- **Abrechnung wie im Papier-Runner:** Ein- und Ausstieg zur Eröffnung der nächsten 5-Minuten-Kerze; je Order 8 bp
+  Gebühr und als Slippage die gemessene Yubit-Spanne des Kontrakts (Median der Stichprobe, mindestens 0,5 bp);
+  Funding laut Binance. Je Trade in Basispunkten: netto mit 85 % Rebate (n85) und ohne Rebate (n0). Gewertet werden
+  Einstiege ab dem dritten Handelstag des Kontrakts (zwei Tage Vorlauf).
+- **Hauptzahl:** Mittel von n85 über alle Trades aller 30 Kontrakte. Zufallsprüfung: Kalendertage mit Zurücklegen
+  ziehen (5.000 Ziehungen, Startwert 28; alle Trades eines Einstiegstags bleiben zusammen), einseitig „Mittel > 0“.
+- **Einstufung:** **C** (Kandidat für einen Papier-Beobachtungstest), wenn mindestens 300 Trades vorliegen, das Mittel
+  von n85 positiv ist mit p < 2,5 %, und es in beiden Hälften positiv ist (Einstiege bis 31.08.2026 / ab 01.09.2026).
+  **B** (schwacher Hinweis, kein Test), wenn das Mittel positiv ist, aber eine Bedingung fehlt. Sonst **A** (verworfen).
+- **Nur Bericht:** Mittel vor Kosten (ob das Signal überhaupt etwas weiß), n0, je Gruppe (Index/ETF, Einzelaktie,
+  Rohstoff), Einstiege am Wochenende gegen Werktage, Tabelle je Kontrakt. Kein Vergleichslauf auf den zehn Coins: Für
+  sie bleibt der Tresor ab 04/2025 zu.
+
+### Teil 2 (H29): Was am Wochenende geschieht, wenn die Börsen geschlossen sind
+
+- **Frage:** Setzt sich die Bewegung eines Kontrakts über das Wochenende am Montag fort, oder kehrt sie um? Zweiseitig,
+  ohne Vorfestlegung der Richtung (für beides gibt es Gründe: dünner Markt übertreibt, oder der dünne Markt preist
+  Nachrichten nur teilweise ein).
+- **Kontrakte:** alle der Liste aus E25 mit gemessener Yubit-Spanne höchstens 10 bp. **Daten:** Stundenkerzen von Yubit
+  (echte Kurse des Handelsplatzes) vom ersten Tag bis einschließlich Montag, 16.11.2026.
+- **Festlegung (UTC, Eröffnung der Stundenkerze):** a = Samstag 01:00 (alle US-Handelsplätze geschlossen),
+  b = Sonntag 23:00 (vor Öffnung der asiatischen Börsen), c = Montag 21:00 (nach US-Börsenschluss in Sommer- und
+  Winterzeit). Wochenend-Bewegung W = Kurs(b)/Kurs(a) − 1, Montags-Bewegung M = Kurs(c)/Kurs(b) − 1. Ein Wochenende
+  zählt, wenn mindestens 30 Kontrakte alle drei Kurse haben.
+- **Hauptzahl:** Je Wochenende die Steigung von M auf W über die Kontrakte (beide um das Mittel des Wochenendes
+  bereinigt, je Wochenende bei 1 % und 99 % gestutzt). Geprüft wird, ob das Mittel dieser Steigungen über die
+  Wochenenden von null abweicht (t-Test, zweiseitig, p < 2,5 %).
+- **Falls ja, die Handelsfassung in der gefundenen Richtung:** am Sonntag 23:00 UTC gegen (Umkehr) oder mit
+  (Fortsetzung) der Wochenend-Bewegung, gewichtet nach deren Abstand vom Mittel, Summe der Beträge = 1 × Konto, ohne
+  Netto-Richtung; Ausstieg Montag 21:00 UTC. Kosten je Kontrakt: zwei Orders zu 8 bp (mit und ohne Rebate) plus
+  gemessene Spanne. Ergebnis je Wochenende, Mittel, t-Wert, erste und zweite Hälfte der Wochenenden.
+- **Einstufung:** **C** (Kandidat für eine Papier-Beobachtung), wenn die Steigung gesichert ist und die Handelsfassung
+  mit Rebate im Mittel positiv ist mit t > 2 und in beiden Hälften positiv. **B**, wenn nur die Steigung gesichert
+  ist. Sonst **A**. Weil die Richtung aus denselben Daten stammt, ist auch C nur ein Kandidat, kein Beleg.
+- **Nur Bericht:** Bewegung des ganzen Korbs am Wochenende gegen Montag, je Gruppe, Zahl der Wochenenden und Kontrakte.
+
+**Gemeinsames.**
+- Zwei Hauptprüfungen, deshalb je 2,5 % statt 5 %.
+- **Grenzen, vorab:** Die Historie ist kurz (die meisten Kontrakte seit Mai bis Juli 2026, rund 20 bis 25
+  Wochenenden). Signale und Kurse in Teil 1 stammen von Binance, nicht von Yubit. Die Spannen stammen aus einer
+  Stunde an einem Samstag. Mehr als ein Kandidat für einen Papier-Beobachtungstest kann nicht herauskommen.
+- **Verbraucht:** Mit dieser Rechnung ist die Historie der Kontrakte bis 20.11.2026 für diese beiden Fragen angesehen.
+  Ein Prüfzeitraum wird nicht zurückgehalten; Bestätigung gibt es nur vorwärts (Sammler, Papier-Test).
+- Kein Nachjustieren: keine anderen Schwellen, Zeitpunkte oder Kontraktlisten nach dem ersten Ergebnis.
