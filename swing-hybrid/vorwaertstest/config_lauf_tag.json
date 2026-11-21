@@ -18,5 +18,6 @@
   "preisgrenze": 0.0005,
   "max_order_usd": 2000,
   "daten": "lauf_tag",
-  "tagesregel": true
+  "tagesregel": true,
+  "nachgerechnet_bis": "2026-11-21 13:34"
 }
