@@ -151,7 +151,7 @@
   "mechanismus": "Mehr Märkte, die nicht ganz gleich laufen; kleine Coins trenden womöglich stärker, kosten aber mehr. Runden 3 bis 5: 60 alte Coins ähnlich wie die zehn.",
   "daten": "Binance-Tageskurse und Funding für 329 Krypto-Kontrakte, Yubit-Spannen",
   "aufwand": "mittel",
-  "status": "festgelegt (E25 Teil 1), noch nicht gerechnet"
+  "status": "verworfen (E25): breiter Korb, umsatzstärkste und kleine Coins nicht besser als die zehn"
  },
  {
   "id": "H25",
@@ -159,7 +159,7 @@
   "mechanismus": "Wenn manche Märkte dauerhaft besser trenden, hält ein Vorteil der letzten 180 Tage an; sonst ist es Zufall und die Gegenprobe (schwächstes Drittel) ist gleich gut.",
   "daten": "wie H24",
   "aufwand": "gering",
-  "status": "festgelegt (E25 Teil 1), noch nicht gerechnet"
+  "status": "verworfen (E25): bestes Drittel nach vergangener Leistung schlechter als das schwächste"
  },
  {
   "id": "H26",
@@ -167,6 +167,14 @@
   "mechanismus": "Die Kontrakte handeln rund um die Uhr und könnten sich anders verhalten als die Basiswerte. Historie höchstens acht Monate: nur Bericht.",
   "daten": "Binance-Tageskurse der Kontrakte seit 2026",
   "aufwand": "gering",
-  "status": "festgelegt (E25 Teil 2, nur Bericht), noch nicht gerechnet"
+  "status": "nur Bericht (E25): echte Kontrakte 05–10/2026 netto −10,8 %; zu kurz für ein Urteil"
+ },
+ {
+  "id": "H27",
+  "titel": "Tagesregel statt Stundenregel: einmal am Tag entscheiden, ein Fünftel der Orders, weniger abhängig vom Rebate",
+  "mechanismus": "Viele Wechsel der Stundenregel sind Rauschen um die 14-Tage-Schwelle und kosten nur Gebühr. Nebenbefund aus E25 (nachträglich gesehen): mit Rebate etwa gleich, ohne Rebate deutlich besser.",
+  "daten": "Speicher der Fabrik (zehn Coins); V2 noch ungeöffnet",
+  "aufwand": "gering",
+  "status": "offen: braucht eigene Festlegung und Freigabe des Auftraggebers"
  }
 ]

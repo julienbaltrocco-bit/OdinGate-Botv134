@@ -1953,3 +1953,70 @@ eröffnet. ICP hat bis 08/2022 kein Funding (zählt als null). Die Liste enthäl
 Sharpe-Zahl als zehn Coins, auch ohne besseres Signal (bei mäßigem Gleichlauf der Einzelergebnisse grob 5 bis 30 %
 mehr). Ein „höher als BASIS“ wäre deshalb zu erwarten, sobald die Regel überhaupt verdient, und kein Beleg für bessere
 Märkte. Dafür dient der Vergleich mit den Zufalls-Zehn (Punkt 15).
+
+---
+
+## 48. Ergebnis E25: die Trendregel über alle Kontrakte (21.11.2026)
+
+Gerechnet wie festgelegt (`ergebnisse/e25_breites_universum.json`, Tagesreihen in `e25_breites_universum_tage.npz`).
+Tagesregel, Einsatz 1 × Konto, Binance-Tageskurse als Ersatz-Historie (OKX nicht erreichbar), Yubit-Spannen.
+
+### Teil 1: Krypto breit (137 Kontrakte, T und V1): Einstufung A (verworfen)
+
+| Korb | Mitglieder | T: Sharpe | T: Summe | T: Einbruch | V1: Sharpe | V1: Summe | V1: Einbruch | Ziehungen ohne Vorteil T / V1 |
+|---|---|---|---|---|---|---|---|---|
+| **BASIS (unsere zehn Coins)** | 10 | **0,54** | +67 % | 54 % | **1,66** | +89 % | 25 % | |
+| ALLE | 55 bis 126 | 0,58 | +70 % | 52 % | 1,60 | +83 % | 36 % | 44 % / 54 % |
+| LIQ30 (umsatzstärkste) | 30 | 0,42 | +51 % | 74 % | 1,48 | +71 % | 27 % | 57 % / 68 % |
+| KLEIN (alle übrigen) | 25 bis 96 | 0,57 | +74 % | 46 % | 1,49 | +79 % | 36 % | 46 % / 60 % |
+| GUT (bestes Drittel, ab 2022) | 19 bis 31 | 0,33 (BASIS ab 2022: 0,04) | +34 % | 67 % | 1,91 | +108 % | 34 % | 24 % / 36 % |
+| SCHLECHT (schwächstes Drittel) | 19 bis 31 | 0,70 (ab 2022) | +65 % | 49 % | 2,19 | +110 % | 23 % | (Gegenprobe) |
+
+- **Kein Korb besteht.** Alle sind netto und im Stress positiv, aber keiner ist gegen Zufall besser als die zehn Coins;
+  ALLE und KLEIN liegen gleichauf, die 30 umsatzstärksten etwas darunter.
+- **Auswahl nach vergangener Leistung trägt nicht:** Das Drittel, bei dem die Regel zuletzt am besten lief, ist in
+  beiden Zeiträumen schlechter als das schwächste Drittel (0,33 gegen 0,70; 1,91 gegen 2,19). Wo die Regel zuletzt gut
+  war, sagt nichts über die nächsten Monate.
+- **Unsere zehn Coins sind eine gewöhnliche, eher gute Wahl:** Unter 500 Körben aus zehn zufällig gezogenen alten
+  Kontrakten liegt BASIS vor 61 % (T) und 69 % (V1); Median der Zufallskörbe 0,46 und 1,40.
+- Je Jahr (BASIS / ALLE): 2021 ab 15.08. +63 % / +28 %, 2022 +18 % / +36 %, 2023 +56 % / +29 %, 2024 bis 30.06.
+  +20 % / +61 %. Die Mischung je zur Hälfte bringt 0,59 und 1,71 (Gleichlauf der Tagesergebnisse 0,85 und 0,81):
+  kaum Streuungsgewinn, weil die Coins fast als ein Markt laufen.
+
+### Teil 2: neue Kontrakte (nur Bericht, kein Urteil)
+
+- **Aktien, Indizes, Rohstoffe (142 Kontrakte im Korb, 01.05. bis 31.10.2026, 184 Tage):** netto −10,8 % (vor Kosten
+  −8,3 %, im Stress −12,7 %), größter Einbruch 20 %; Q2 −5,8 %, Q3 −10,4 %, Oktober +5,3 %. Ein halbes Jahr, ein
+  Marktabschnitt: kein Urteil. Es passt aber zu Runde 14 und E24: Auf diesen Märkten verliert die 14-Tage-Regel eher.
+- **Neue Krypto-Kontrakte (192 im Korb, 01.12.2024 bis 31.10.2026):** netto +60,8 % bei 63 % Einbruch, 48 % der
+  Kontrakte im Plus. Das Ergebnis hängt an wenigen Fällen: Ohne die fünf besten Kontrakte bleiben +1,9 %; ein
+  einzelner Tag (RAVE, 18.04.2026, Kurs −87 %) kostete das 71-Fache des Einsatzes dieser Position, die zuvor das
+  80-Fache gewonnen hatte. Nicht belastbar.
+
+### Nebenbefund (nachträglich gesehen, nicht vorab festgelegt): Tagesregel gegen Stundenregel
+
+Zur Einordnung war der Vergleich auf den zehn Coins vorgesehen; die Zahlen ohne Rebate habe ich danach dazugerechnet.
+Ruhige Kosten in beiden Rechnungen:
+
+| | Stundenregel (Test 1) | Tagesregel |
+|---|---|---|
+| Orders je Tag (zehn Coins) | 10,9 bis 12,2 | 2,3 bis 2,4 |
+| T mit Rebate | +71 % (Sharpe 0,60) | +67 % (0,54) |
+| T ohne Rebate | +20 % (0,17) | +56 % (0,45) |
+| V1 mit Rebate | +75 % (1,35) | +89 % (1,66) |
+| V1 ohne Rebate | +45 % (0,80) | +84 % (1,55) |
+
+Die Tagesregel entscheidet einmal am Tag statt jede Stunde, braucht ein Fünftel der Orders und verdient mit Rebate
+etwa gleich, ohne Rebate deutlich mehr. Gleichlauf der Tagesergebnisse 0,94 und 0,96: Es ist im Kern dieselbe
+Strategie. **Das ist eine Beobachtung, kein Urteil** (nachträglich gesehen, ein Vergleich, T und V1 oft gesehen). Sie
+wäre mit eigener Festlegung zu prüfen; die Schlussprüfung V2 der zehn Coins ist dafür noch ungeöffnet.
+
+### Einordnung
+
+- Über alle bisherigen Prüfungen: Die Trendregel verdient auf Krypto breit ähnlich wie auf den zehn Coins; es gibt
+  keinen Hinweis, dass andere Coins besser wären oder dass sich bessere vorab erkennen lassen. Auf Aktien, Indizes und
+  Rohstoffen (Basiswerte und jetzt die echten Kontrakte) verliert sie eher.
+- **Schwächen:** Tageskurse von Binance statt Yubit; nur Kontrakte, die Yubit heute führt; Spannen aus einer Stunde am
+  Samstag, 14.11.2026; an fünf Tagen fehlen Kurse bei 22 Kontrakten; mehr Mitglieder heben die Sharpe-Zahl schon
+  rechnerisch etwas (deshalb der Vergleich mit den Zufallskörben). Für Teil 2 wurden auf Wunsch des Auftraggebers
+  Daten ab 04/2025 angesehen, nur für Kontrakte ohne frühere Historie; für die zehn Coins bleibt der Tresor zu.

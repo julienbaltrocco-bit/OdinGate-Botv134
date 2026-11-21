@@ -242,7 +242,8 @@ def zufalls_zehn(netto_e: np.ndarray, ab: np.ndarray, reihen: dict, zuege: int =
     for zr in ("T", "V1"):
         sl = E.tage(zr)
         sh = np.array([E.sharpe(netto_e[w][:, sl].mean(axis=0)) for w in wahl])
-        k = np.corrcoef(netto_e[alt][:, sl])
+        lebt = alt[netto_e[alt][:, sl].std(axis=1) > 0]             # ausgesetzte Kontrakte ohne Streuung zählen beim Gleichlauf nicht mit
+        k = np.corrcoef(netto_e[lebt][:, sl])
         basis = E.sharpe(reihen[("BASIS", zr)])
         out[zr] = {"sharpe_median": round(float(np.median(sh)), 3), "sharpe_10_bis_90": [round(float(np.quantile(sh, 0.1)), 3), round(float(np.quantile(sh, 0.9)), 3)],
                    "basis_sharpe": round(basis, 3), "anteil_zuege_unter_basis_pct": round(float((sh < basis).mean() * 100), 1),

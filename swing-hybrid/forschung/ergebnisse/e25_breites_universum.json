@@ -1,0 +1,510 @@
+{
+ "experiment": "E25",
+ "festlegung": "forschung/protokoll.md Abschnitt 47",
+ "teil_1": {
+  "koerbe": {
+   "BASIS": {
+    "T": {
+     "summe_pct": 66.59,
+     "sharpe": 0.541,
+     "einbruch_pct": 53.5,
+     "tage": 685,
+     "vor_kosten_pct": 73.34,
+     "stress_pct": 61.78,
+     "mitglieder_mittel": 10.0,
+     "orders_je_tag": 2.35,
+     "erster_tag_mit_mitgliedern": "2021-08-15"
+    },
+    "V1": {
+     "summe_pct": 89.47,
+     "sharpe": 1.655,
+     "einbruch_pct": 25.11,
+     "tage": 366,
+     "vor_kosten_pct": 93.06,
+     "stress_pct": 86.92,
+     "mitglieder_mittel": 10.0,
+     "orders_je_tag": 2.37,
+     "erster_tag_mit_mitgliedern": "2023-07-01"
+    },
+    "je_jahr_pct": {
+     "2021": 62.66,
+     "2022": 18.14,
+     "2023": 55.6,
+     "2024": 19.65
+    }
+   },
+   "ALLE": {
+    "T": {
+     "summe_pct": 70.28,
+     "sharpe": 0.584,
+     "einbruch_pct": 51.83,
+     "tage": 685,
+     "vor_kosten_pct": 82.7,
+     "stress_pct": 59.89,
+     "mitglieder_mittel": 64.0,
+     "orders_je_tag": 15.95,
+     "erster_tag_mit_mitgliedern": "2021-08-15",
+     "mischung_sharpe": 0.585,
+     "mischung_einbruch_pct": 52.66,
+     "gleichlauf_mit_basis": 0.845
+    },
+    "V1": {
+     "summe_pct": 83.42,
+     "sharpe": 1.603,
+     "einbruch_pct": 36.1,
+     "tage": 366,
+     "vor_kosten_pct": 92.51,
+     "stress_pct": 75.38,
+     "mitglieder_mittel": 100.0,
+     "orders_je_tag": 23.72,
+     "erster_tag_mit_mitgliedern": "2023-07-01",
+     "mischung_sharpe": 1.713,
+     "mischung_einbruch_pct": 28.05,
+     "gleichlauf_mit_basis": 0.809
+    },
+    "je_jahr_pct": {
+     "2021": 27.72,
+     "2022": 35.5,
+     "2023": 29.24,
+     "2024": 61.24
+    }
+   },
+   "LIQ30": {
+    "T": {
+     "summe_pct": 50.65,
+     "sharpe": 0.423,
+     "einbruch_pct": 73.74,
+     "tage": 685,
+     "vor_kosten_pct": 61.08,
+     "stress_pct": 42.31,
+     "mitglieder_mittel": 30.0,
+     "orders_je_tag": 7.66,
+     "erster_tag_mit_mitgliedern": "2021-08-15",
+     "mischung_sharpe": 0.503,
+     "mischung_einbruch_pct": 63.62,
+     "gleichlauf_mit_basis": 0.841
+    },
+    "V1": {
+     "summe_pct": 70.52,
+     "sharpe": 1.477,
+     "einbruch_pct": 27.25,
+     "tage": 366,
+     "vor_kosten_pct": 77.35,
+     "stress_pct": 64.77,
+     "mitglieder_mittel": 30.0,
+     "orders_je_tag": 7.28,
+     "erster_tag_mit_mitgliedern": "2023-07-01",
+     "mischung_sharpe": 1.634,
+     "mischung_einbruch_pct": 23.59,
+     "gleichlauf_mit_basis": 0.85
+    },
+    "je_jahr_pct": {
+     "2021": 18.3,
+     "2022": 39.64,
+     "2023": 44.0,
+     "2024": 19.22
+    }
+   },
+   "KLEIN": {
+    "T": {
+     "summe_pct": 74.01,
+     "sharpe": 0.573,
+     "einbruch_pct": 46.22,
+     "tage": 685,
+     "vor_kosten_pct": 88.9,
+     "stress_pct": 61.21,
+     "mitglieder_mittel": 34.0,
+     "orders_je_tag": 8.71,
+     "erster_tag_mit_mitgliedern": "2021-08-15",
+     "mischung_sharpe": 0.59,
+     "mischung_einbruch_pct": 45.08,
+     "gleichlauf_mit_basis": 0.783
+    },
+    "V1": {
+     "summe_pct": 78.75,
+     "sharpe": 1.485,
+     "einbruch_pct": 36.22,
+     "tage": 366,
+     "vor_kosten_pct": 89.31,
+     "stress_pct": 69.27,
+     "mitglieder_mittel": 70.0,
+     "orders_je_tag": 17.13,
+     "erster_tag_mit_mitgliedern": "2023-07-01",
+     "mischung_sharpe": 1.676,
+     "mischung_einbruch_pct": 28.0,
+     "gleichlauf_mit_basis": 0.756
+    },
+    "je_jahr_pct": {
+     "2021": 23.4,
+     "2022": 33.81,
+     "2023": 22.59,
+     "2024": 72.95
+    }
+   },
+   "GUT": {
+    "T": {
+     "summe_pct": 34.02,
+     "sharpe": 0.294,
+     "einbruch_pct": 66.84,
+     "tage": 685,
+     "vor_kosten_pct": 43.74,
+     "stress_pct": 26.05,
+     "mitglieder_mittel": 15.7,
+     "orders_je_tag": 4.2,
+     "erster_tag_mit_mitgliedern": "2022-01-01",
+     "mischung_sharpe": 0.455,
+     "mischung_einbruch_pct": 57.86,
+     "gleichlauf_mit_basis": 0.71
+    },
+    "V1": {
+     "summe_pct": 108.26,
+     "sharpe": 1.905,
+     "einbruch_pct": 34.24,
+     "tage": 366,
+     "vor_kosten_pct": 114.52,
+     "stress_pct": 103.07,
+     "mitglieder_mittel": 26.1,
+     "orders_je_tag": 6.37,
+     "erster_tag_mit_mitgliedern": "2023-07-01",
+     "mischung_sharpe": 1.887,
+     "mischung_einbruch_pct": 27.08,
+     "gleichlauf_mit_basis": 0.787
+    },
+    "je_jahr_pct": {
+     "2021": 0.0,
+     "2022": 37.05,
+     "2023": 33.53,
+     "2024": 71.7
+    }
+   },
+   "SCHLECHT": {
+    "T": {
+     "summe_pct": 64.46,
+     "sharpe": 0.624,
+     "einbruch_pct": 48.8,
+     "tage": 685,
+     "vor_kosten_pct": 76.8,
+     "stress_pct": 53.92,
+     "mitglieder_mittel": 15.7,
+     "orders_je_tag": 4.33,
+     "erster_tag_mit_mitgliedern": "2022-01-01",
+     "mischung_sharpe": 0.626,
+     "mischung_einbruch_pct": 49.32,
+     "gleichlauf_mit_basis": 0.706
+    },
+    "V1": {
+     "summe_pct": 109.74,
+     "sharpe": 2.19,
+     "einbruch_pct": 23.33,
+     "tage": 366,
+     "vor_kosten_pct": 120.76,
+     "stress_pct": 99.8,
+     "mitglieder_mittel": 26.1,
+     "orders_je_tag": 6.35,
+     "erster_tag_mit_mitgliedern": "2023-07-01",
+     "mischung_sharpe": 2.075,
+     "mischung_einbruch_pct": 21.56,
+     "gleichlauf_mit_basis": 0.698
+    },
+    "je_jahr_pct": {
+     "2021": 0.0,
+     "2022": 62.86,
+     "2023": 34.48,
+     "2024": 76.87
+    }
+   }
+  },
+  "urteil": {
+   "ALLE": {
+    "T": {
+     "ab_tag": "2021-08-15",
+     "sharpe": 0.584,
+     "basis_sharpe": 0.541,
+     "anteil_ohne_vorteil": 0.4376,
+     "summe_pct": 70.28,
+     "basis_summe_pct": 66.59,
+     "stress_pct": 59.89,
+     "besser": false,
+     "netto_positiv": true,
+     "stress_positiv": true
+    },
+    "V1": {
+     "ab_tag": "2023-07-01",
+     "sharpe": 1.603,
+     "basis_sharpe": 1.655,
+     "anteil_ohne_vorteil": 0.5432,
+     "summe_pct": 83.42,
+     "basis_summe_pct": 89.47,
+     "stress_pct": 75.38,
+     "besser": false,
+     "netto_positiv": true,
+     "stress_positiv": true
+    },
+    "bedingungen": {
+     "1_T": false,
+     "2_V1": false,
+     "3_netto_positiv": true,
+     "4_stress_positiv": true
+    },
+    "besteht_T_und_V1": false
+   },
+   "LIQ30": {
+    "T": {
+     "ab_tag": "2021-08-15",
+     "sharpe": 0.423,
+     "basis_sharpe": 0.541,
+     "anteil_ohne_vorteil": 0.5728,
+     "summe_pct": 50.65,
+     "basis_summe_pct": 66.59,
+     "stress_pct": 42.31,
+     "besser": false,
+     "netto_positiv": true,
+     "stress_positiv": true
+    },
+    "V1": {
+     "ab_tag": "2023-07-01",
+     "sharpe": 1.477,
+     "basis_sharpe": 1.655,
+     "anteil_ohne_vorteil": 0.6758,
+     "summe_pct": 70.52,
+     "basis_summe_pct": 89.47,
+     "stress_pct": 64.77,
+     "besser": false,
+     "netto_positiv": true,
+     "stress_positiv": true
+    },
+    "bedingungen": {
+     "1_T": false,
+     "2_V1": false,
+     "3_netto_positiv": true,
+     "4_stress_positiv": true
+    },
+    "besteht_T_und_V1": false
+   },
+   "KLEIN": {
+    "T": {
+     "ab_tag": "2021-08-15",
+     "sharpe": 0.573,
+     "basis_sharpe": 0.541,
+     "anteil_ohne_vorteil": 0.4626,
+     "summe_pct": 74.01,
+     "basis_summe_pct": 66.59,
+     "stress_pct": 61.21,
+     "besser": false,
+     "netto_positiv": true,
+     "stress_positiv": true
+    },
+    "V1": {
+     "ab_tag": "2023-07-01",
+     "sharpe": 1.485,
+     "basis_sharpe": 1.655,
+     "anteil_ohne_vorteil": 0.5982,
+     "summe_pct": 78.75,
+     "basis_summe_pct": 89.47,
+     "stress_pct": 69.27,
+     "besser": false,
+     "netto_positiv": true,
+     "stress_positiv": true
+    },
+    "bedingungen": {
+     "1_T": false,
+     "2_V1": false,
+     "3_netto_positiv": true,
+     "4_stress_positiv": true
+    },
+    "besteht_T_und_V1": false
+   },
+   "GUT": {
+    "T": {
+     "ab_tag": "2022-01-01",
+     "sharpe": 0.329,
+     "basis_sharpe": 0.044,
+     "anteil_ohne_vorteil": 0.2352,
+     "summe_pct": 34.02,
+     "basis_summe_pct": 3.93,
+     "stress_pct": 26.05,
+     "besser": false,
+     "netto_positiv": true,
+     "stress_positiv": true,
+     "schlecht_sharpe": 0.699,
+     "ueber_schlecht": false
+    },
+    "V1": {
+     "ab_tag": "2023-07-01",
+     "sharpe": 1.905,
+     "basis_sharpe": 1.655,
+     "anteil_ohne_vorteil": 0.3632,
+     "summe_pct": 108.26,
+     "basis_summe_pct": 89.47,
+     "stress_pct": 103.07,
+     "besser": false,
+     "netto_positiv": true,
+     "stress_positiv": true,
+     "schlecht_sharpe": 2.19,
+     "ueber_schlecht": false
+    },
+    "bedingungen": {
+     "1_T": false,
+     "2_V1": false,
+     "3_netto_positiv": true,
+     "4_stress_positiv": true,
+     "5_ueber_schlecht": false
+    },
+    "besteht_T_und_V1": false
+   }
+  },
+  "zufalls_zehn": {
+   "kontrakte_von_anfang_an": 55,
+   "zuege": 500,
+   "T": {
+    "sharpe_median": 0.462,
+    "sharpe_10_bis_90": [
+     0.089,
+     0.867
+    ],
+    "basis_sharpe": 0.541,
+    "anteil_zuege_unter_basis_pct": 60.8,
+    "gleichlauf_einzelergebnisse_mittel": 0.267
+   },
+   "V1": {
+    "sharpe_median": 1.397,
+    "sharpe_10_bis_90": [
+     0.696,
+     2.081
+    ],
+    "basis_sharpe": 1.655,
+    "anteil_zuege_unter_basis_pct": 69.0,
+    "gleichlauf_einzelergebnisse_mittel": 0.242
+   }
+  },
+  "tagesregel_gegen_stundenregel": {
+   "T": {
+    "sharpe_tag": 0.541,
+    "sharpe_stunde": 0.534,
+    "summe_tag_pct": 66.59,
+    "summe_stunde_pct": 63.28,
+    "gleichlauf": 0.936
+   },
+   "V1": {
+    "sharpe_tag": 1.655,
+    "sharpe_stunde": 1.307,
+    "summe_tag_pct": 89.47,
+    "summe_stunde_pct": 72.74,
+    "gleichlauf": 0.958
+   }
+  },
+  "kontrakte": 137
+ },
+ "teil_2": {
+  "krypto_neu": {
+   "kontrakte": 195,
+   "kontrakte_im_korb": 192,
+   "von": "2024-12-01",
+   "bis": "2026-10-31",
+   "kontrakt_tage": 80781,
+   "summe_pct": 60.75,
+   "sharpe": 0.441,
+   "einbruch_pct": 63.32,
+   "tage": 700,
+   "vor_kosten_pct": 79.38,
+   "stress_pct": 44.13,
+   "mitglieder_am_ende": 192,
+   "orders_je_tag": 28.8,
+   "anteil_kontrakte_im_plus_pct": 48.4,
+   "je_quartal_pct": {
+    "2024Q4": 13.03,
+    "2025Q1": 5.9,
+    "2025Q2": 50.72,
+    "2025Q3": 1.93,
+    "2025Q4": -29.29,
+    "2026Q1": 19.32,
+    "2026Q2": 21.29,
+    "2026Q3": -27.08,
+    "2026Q4": 4.92
+   },
+   "mitglieder_je_quartalsende": {
+    "2024Q4": 16,
+    "2025Q1": 39,
+    "2025Q2": 65,
+    "2025Q3": 100,
+    "2025Q4": 137,
+    "2026Q1": 167,
+    "2026Q2": 178,
+    "2026Q3": 191,
+    "2026Q4": 192
+   },
+   "groesste_einzeltage_pct_des_einsatzes": [
+    [
+     "RAVEUSDT",
+     7113.8
+    ],
+    [
+     "SIRENUSDT",
+     1497.1
+    ],
+    [
+     "LABUSDT",
+     1191.5
+    ],
+    [
+     "VELVETUSDT",
+     1017.0
+    ],
+    [
+     "MYXUSDT",
+     901.6
+    ]
+   ]
+  },
+  "aktien_index_rohstoff": {
+   "kontrakte": 197,
+   "kontrakte_im_korb": 142,
+   "von": "2026-05-01",
+   "bis": "2026-10-31",
+   "kontrakt_tage": 12199,
+   "summe_pct": -10.81,
+   "sharpe": -1.005,
+   "einbruch_pct": 20.26,
+   "tage": 184,
+   "vor_kosten_pct": -8.31,
+   "stress_pct": -12.71,
+   "mitglieder_am_ende": 142,
+   "orders_je_tag": 16.6,
+   "anteil_kontrakte_im_plus_pct": 57.0,
+   "je_quartal_pct": {
+    "2026Q2": -5.75,
+    "2026Q3": -10.4,
+    "2026Q4": 5.33
+   },
+   "mitglieder_je_quartalsende": {
+    "2026Q2": 24,
+    "2026Q3": 115,
+    "2026Q4": 142
+   },
+   "groesste_einzeltage_pct_des_einsatzes": [
+    [
+     "BSPUSDT",
+     37.7
+    ],
+    [
+     "INTCUSDT",
+     35.6
+    ],
+    [
+     "FLNCUSDT",
+     32.7
+    ],
+    [
+     "INTWUSDT",
+     29.0
+    ],
+    [
+     "MVLLUSDT",
+     28.7
+    ]
+   ]
+  }
+ },
+ "besteher_T_und_V1": [],
+ "einstufung_teil_1": "A (verworfen)"
+}

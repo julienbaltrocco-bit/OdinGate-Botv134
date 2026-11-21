@@ -312,8 +312,15 @@
   "runde": 2,
   "datum": "2026-11-21",
   "titel": "Die Trendregel über alle Kontrakte: Krypto breit mit Auswahlregeln; neue Kontrakte auf Aktien, Indizes, Rohstoffe als Bericht (H24 bis H26)",
-  "einstufung": "offen",
-  "kurz": "vor der Rechnung festgelegt (Protokoll Abschnitt 47); noch kein Ergebnis",
-  "dateien": []
+  "einstufung": "A",
+  "kurz": "Kein Korb besser als die zehn Coins (ALLE 0,58 / 1,60 gegen 0,54 / 1,66; LIQ30 und KLEIN darunter oder gleich); Auswahl nach vergangener Leistung nutzlos (bestes Drittel unter dem schwächsten). BASIS vor 61 % / 69 % von 500 Zufalls-Zehn. Bericht: echte Aktien-/Index-/Rohstoff-Kontrakte 05–10/2026 −10,8 %; neue Coins +60,8 %, hängt an fünf Kontrakten. Nebenbefund (nachträglich): Tagesregel mit einem Fünftel der Orders, ohne Rebate deutlich besser als die Stundenregel.",
+  "dateien": [
+   "forschung/ergebnisse/e25_breites_universum.json",
+   "forschung/ergebnisse/e25_breites_universum_tage.npz",
+   "forschung/experimente/e25_breites_universum.py",
+   "tests/test_e25_breites_universum.py",
+   "tests/test_e25_gegenpruefung.py",
+   "tests/test_e25_datenschnitt.py"
+  ]
  }
 ]
