@@ -2357,3 +2357,17 @@ vorhandenen Aufzeichnungen von Test 1, 2 und 3 Byte für Byte gleich nachrechnet
   unverändert (Hebel 3 hätte im Backtest in 16 % der Starttage das Konto aufgebraucht).
 
 **Kein Nachjustieren.** Die Regel wird nach dem Start nicht verändert; jede Änderung wäre ein neuer Test.
+
+**Präzisierungen zu Abschnitt 53 (21.11.2026, vor der Nachrechnung von Test 4).**
+1. *Vergleich mit Test 1, genaue Fassung.* Orders: Zeit, Coin, Seite, Füllkurs, Menge und Gebühr müssen exakt gleich
+   sein. Kontoverlauf: gleiche Zeilenzahl und gleiche Zeiten; `long`, `short` und `orders` exakt gleich; alle
+   Geldspalten (`brutto`, `gebuehr`, `rebate`, `funding`, beide Netto-Spalten, `einsatz`) dürfen je Zeile um höchstens
+   0,001 $ abweichen. Grund: Die Nachrechnung übernimmt das Funding und die Füllkurse aus den gerundeten
+   Aufzeichnungen (vier bzw. zehn Nachkommastellen); größere Abweichungen wären ein Fehler und verhindern den Start.
+2. *Werkzeug.* `nachrechnen.py` lädt einen Tag mehr Stundenkerzen, weil die Tagesregel die Kerze zum Tageswechsel mit
+   der von 336 Stunden davor vergleicht. Für Test 2 und 3 ändert das nichts (wird mit der Byte-Gleichheit geprüft).
+3. *Tagesverlust-Limit.* Es wirkt wie in Test 1 auch dann, wenn für den laufenden Tag noch keine Tagesrichtung
+   übernommen werden konnte (dann wird geschlossen). In Test 4 steht es wie in Test 1 auf 100 % des Kapitals.
+4. *Board.* Der Reiter „Test 4“ zeigt als gelbe Linie den Kurs, an dem die Richtung beim nächsten Stundenschluss um
+   00:00 UTC dreht (Schluss 336 Stunden davor), nicht die Schwelle der laufenden Stunde. Die Reiter von Test 1 bis 3
+   bleiben unverändert.
