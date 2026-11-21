@@ -2372,6 +2372,41 @@ vorhandenen Aufzeichnungen von Test 1, 2 und 3 Byte für Byte gleich nachrechnet
    00:00 UTC dreht (Schluss 336 Stunden davor), nicht die Schwelle der laufenden Stunde. Die Reiter von Test 1 bis 3
    bleiben unverändert.
 
+**Gegenprüfung von Test 4 (21.11.2026, drei unabhängige Prüfer, vor der Inbetriebnahme) und weitere Präzisierungen.**
+Kein Blocker, kein Fehler in der Regel. (a) Ein Nachbau allein aus dem Wortlaut stimmt in 300 Zufallsszenarien (305.962
+Läufe, auch mit Ausfällen über Mitternacht, fehlenden Kerzen und Gleichstand) nach jedem Lauf mit dem Bot überein, für
+die Tagesregel und für die Stundenregel; 14 absichtlich eingebaute Fehler findet der Vergleich alle. (b) Gegenlesen von
+Code, Lauf-Skript, Board und Inbetriebnahme: fünf kleine Punkte, alle unten aufgenommen. (c) Mutationsprüfung: Von 88
+einzeln eingebauten Fehlern fanden meine Tests 57; 25 waren echte Lücken in den Tests (nicht im Code), 6 gleichwertig.
+13 Zusatztests der Prüfer schließen alle 25 Lücken. Referenz, Vergleich und Zusatztests sind übernommen
+(`tests/tagesregel_gegenpruefung`, `tests/test_vorwaertstest_tagesregel_zusatz.py`).
+
+5. *Eine Minute Abstand zum Tageswechsel (neu, vor dem Start).* Übernommen wird frühestens 60 Sekunden nach 00:00 UTC.
+   Grund: Der vierte Durchgang des Laufs von 23:59 beginnt wenige Sekunden vor Mitternacht; rutscht er darüber, würde er
+   Sekunden nach dem Kerzenschluss entscheiden, und Yubit kennzeichnet nicht, ob ein Schlusskurs endgültig ist.
+   Planmäßig übernimmt weiter der Lauf um 00:04 UTC. Die Referenz der Prüfer wurde um genau diese Bedingung ergänzt;
+   ohne die Ergänzung meldet ihr Vergleich die Änderung, mit ihr stimmen wieder alle 300 Szenarien.
+6. *Übernahme nur mit Marktdaten.* In einem Lauf wird nur für Coins übernommen, für die auch die Marktdaten des Laufs
+   vorliegen (wie in Test 1 nötig, um zu handeln: letzte Stundenkerze, deren Gegenstück, Kontrakt, Ticker, Orderbuch).
+   Fehlen sie, wartet die Übernahme auf den nächsten Lauf; betroffen ist nur das Aufholen, nicht der Lauf um 00:04.
+7. *Ziel für den ganzen Tag.* Gelingt die Order im Lauf der Übernahme nicht, versucht es jeder weitere Lauf des Tages
+   erneut (wie Test 1). Nach einer Schließung durch das Tagesverlust-Limit wird erst mit der Übernahme des nächsten
+   Tages wieder eingestiegen.
+8. *Nicht festgelegt und nicht benutzt:* die Tagesregel zusammen mit Gewinnziel, Stop oder nachgezogenem Stop.
+9. *Betrieb.* Der vierte Durchgang rechnet nur, wenn der nachgerechnete Stand vorhanden ist (sonst begänne ein neues
+   Konto mit Einstiegen von jetzt). Dauerhaft anhalten lässt sich Test 4 über die Datei `lauf_tag/ANGEHALTEN` im
+   Repository; eine STOPP-Datei auf dem Server wirkt sofort, übersteht aber das Erneuern des Klons dort nicht (das gilt
+   schon für Test 3). Auf dem Reiter „Test 4“ zählt die Kopfzeile bis 00:04 UTC.
+10. *Genauer Umfang des Belegs „Test 1 bis 3 unberührt“.* Nachgerechnet werden mit altem und neuem Code die
+   Aufzeichnungen von Test 1 mit den Einstellungen von Test 1, 2 und 3 und zusätzlich die eigenen Aufzeichnungen von
+   Test 2 und Test 3; dazu kommen die Zufallsvergleiche der Prüfer (180 und 150 Durchgänge ohne Unterschied).
+11. *Prüfung vor dem Start geschärft.* Der Vergleich mit Test 1 bricht ab, wenn nicht für jeden der zehn Coins die
+   Tagesrichtung des letzten Lauftags im Zustand steht und zur Position passt (sonst wäre die Nachrechnung nur eine
+   Kopie von Test 1).
+- **Offen, nicht Teil dieser Inbetriebnahme:** Bericht und Board-Daten laden bei jedem Lauf die ganze `spannen.csv`.
+  Nach Rechnung eines Prüfers stößt das bei etwa 116 Tagen Laufzeit (ungefähr März 2027) an die 300 MB des Containers
+  und beträfe dann alle Tests. Das muss vorher behoben werden (eigener Arbeitspunkt).
+
 ---
 
 ## 54. Datensammler auf dem Server, festgelegt vor der Inbetriebnahme (21.11.2026, Auftrag des Auftraggebers)
