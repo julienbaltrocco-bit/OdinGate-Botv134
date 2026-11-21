@@ -2371,3 +2371,64 @@ vorhandenen Aufzeichnungen von Test 1, 2 und 3 Byte für Byte gleich nachrechnet
 4. *Board.* Der Reiter „Test 4“ zeigt als gelbe Linie den Kurs, an dem die Richtung beim nächsten Stundenschluss um
    00:00 UTC dreht (Schluss 336 Stunden davor), nicht die Schwelle der laufenden Stunde. Die Reiter von Test 1 bis 3
    bleiben unverändert.
+
+---
+
+## 54. Datensammler auf dem Server, festgelegt vor der Inbetriebnahme (21.11.2026, Auftrag des Auftraggebers)
+
+**Auftrag.** Frische Daten auf dem Server sammeln: Yubit-Orderbücher, Aktien- und Indexkontrakte; wo Yubit zu wenig
+hergibt, dürfen ähnliche Orderbücher anderer Börsen dazukommen. Kein Experiment, sondern Betrieb: Hier steht, was
+gesammelt wird, warum so, und was für die spätere Auswertung gilt.
+
+**Erkundung (gemessen am Samstag, 21.11.2026, 11:44 bis 12:02 UTC; zwei unabhängige Erkunder, nur lesend).**
+- **Yubit:** Ein Abruf liefert die Ticker aller 561 Kontrakte (Geld, Brief, Mark, Index, offene Kontrakte,
+  Funding-Vorschau; keine Mengen). Orderbuch bis 500 Stufen je Seite; bei Aktien-Kontrakten ist das das ganze Buch
+  (61 bis 117 Stufen). Minuten-, Stunden- und Tageskerzen sowie der Funding-Verlauf reichen bis zum ersten Handelstag
+  zurück (NVDAUSDT: 18.03.2026) und lassen sich jederzeit nachladen. **Nicht nachladbar** sind Orderbuch (Spanne,
+  Tiefe), offene Kontrakte und Index. Ein Abruflimit ist nicht dokumentiert und steht in keiner Antwort; 30 Abrufe
+  nacheinander und 20 mit vier gleichzeitigen blieben ohne Drosselung. Es gibt kein Feld, das Aktien, Indizes und
+  Rohstoffe kennzeichnet: Die Zuordnung läuft über eine eigene Liste (196 der 197 Kontrakte aus Runde 10, ANTHROPICUSDT
+  ist nicht mehr gelistet; dazu 26 weitere nach Name und Merkmalen, darunter NDX100USDT und SP500USDT).
+- **Aktien-Kontrakte handeln rund um die Uhr,** auch am Wochenende (NVDAUSDT: 1.000 Trades in 36 Minuten am
+  Samstagmittag; Spanne über 196 Kontrakte im Median 5,8 bp, 90 % unter 20,5 bp; Wochenend-Umsatz etwa ein Sechstel
+  bis die Hälfte eines Werktags).
+- **Binance** führt dieselben Kontrakte. Das öffentliche Archiv hat für alle 197 Symbole Kerzen (ab 1 Minute), Tiefe
+  alle 30 Sekunden in Bändern von ±0,2 bis ±5 %, offene Kontrakte alle 5 Minuten, Trades und Funding, jeweils ab dem
+  Listungstag (meist Mai bis September 2026) und rund 7 bis 10 Stunden nach Tagesende. **Es fehlt die Spanne**
+  (bester Geld-/Briefkurs): die gibt es nur live.
+- Andere Börsen (Bybit, Bitget, OKX, Gate, MEXC, Hyperliquid, Kraken) führen laut eigenen Angaben ähnliche Kontrakte.
+  Von hier nicht erreichbar, Abdeckung und Archive ungeklärt; sie werden nicht verwendet.
+
+**Was der Sammler mitschreibt** (alle fünf Minuten, als letzter Schritt des Server-Laufs):
+1. *Yubit-Ticker:* Geld, Brief, Mark, Index, offene Kontrakte, Funding-Vorschau. Gruppe A (zehn Coins und 222
+   Aktien-, Index- und Rohstoff-Kontrakte) in jedem Lauf, alle übrigen Kontrakte einmal je Stunde.
+2. *Yubit-Orderbuch,* verdichtet: bester Geld-/Briefkurs mit Menge, Zahl der Stufen, Volumen je Seite gesamt und in
+   Bändern von 5 bis 500 Basispunkten um die Mitte, Kosten einer Marktorder über 1.500, 5.000 und 25.000 USDT. Die
+   zehn Coins in jedem Lauf, die 222 Kontrakte reihum (jeder alle 15 Minuten), rund 84 Abrufe je Lauf mit zwei
+   gleichzeitigen Abrufen und Pause.
+3. *Binance:* bester Geld-/Briefkurs mit Menge, Mark, Index und Funding der Gruppe A alle 15 Minuten (zwei Abrufe).
+- **Nicht** mitgeschrieben wird, was sich nachladen lässt: Kurse und abgerechnetes Funding bei Yubit; Tiefe, Kerzen
+  und offene Kontrakte bei Binance (Archiv).
+
+**Ablage.** Je Tabelle und Stunde eine CSV-Datei auf dem Server; nach Ablauf der Stunde gepackt in einen eigenen
+Daten-Zweig je Monat (`odingate-marktdaten-JJJJ-MM`), getrennt vom Bot-Zweig. Nur öffentliche Marktdaten, keine
+Handelsdaten. Erwartet werden 2 bis 3,5 MB je Tag; der Wert wird nach den ersten Tagen gemessen und berichtet, danach
+kann der Takt über die Einstellung angepasst werden. Auf dem Server gilt eine Obergrenze von 1,5 GB.
+
+**Schutz der Tests.** Der Sammler läuft erst, wenn Test 1 bis 4 gesichert sind; eigene Zeitgrenze (120 Sekunden),
+eigener Ordner außerhalb des Bot-Repositorys, endet auch bei Fehlern ohne Fehlercode. Meldet eine Börse „zu viele
+Abrufe“, pausiert er für diese Börse eine Stunde. Ausschalten über `sammler/config.json` (`aktiv`) oder eine
+STOPP-Datei auf dem Server.
+
+**Grenzen.** Fünf-Minuten-Schnappschüsse, keine lückenlosen Orderbuch- oder Trade-Daten. Tiefe ist angezeigte Tiefe,
+nicht geprüfte Ausführbarkeit. Das tatsächliche Abruflimit von Yubit ist unbekannt. Der Binance-Teil ließ sich von
+hier nicht ausprobieren (Schnittstelle in dieser Umgebung gesperrt, vom Server aus erreichbar); ob er liefert, zeigen
+die ersten Daten. Gleicher Symbolname bei Yubit und Binance ist noch nicht als gleicher Basiswert geprüft.
+
+**Regeln für die spätere Auswertung.**
+- Technische Kontrollen (Vollständigkeit, Plausibilität, Größe) sind jederzeit erlaubt.
+- Jede Suche nach Handelsregeln in diesen Daten oder im Binance-Archiv der Aktien-Kontrakte braucht vorher eine
+  eigene Festlegung mit Trennung in Entwicklungs- und Prüfzeitraum. Vom Binance-Archiv dieser Kontrakte sind bisher
+  nur die Tageskurse bis 31.10.2026 benutzt (E25, E26); zur Erkundung des Formats wurden je zwei Tagesdateien von
+  NVDAUSDT (14.11. und 19.11.2026) geöffnet sowie Stundenumsätze und Funding von NVDAUSDT bei Yubit angesehen.
+- Was der Sammler ab jetzt bei Yubit mitschreibt, ist vorwärts erhoben.
