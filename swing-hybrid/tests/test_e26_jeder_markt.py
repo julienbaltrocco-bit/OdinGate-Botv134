@@ -54,9 +54,9 @@ def test_labor_etf_laden_und_kosten(tmp_path, monkeypatch):
     d = X.labor_etf("ABC")
     assert list(d.columns) == ["open", "close"] and d.index[0] == pd.Timestamp("2016-01-04") and d.index.is_monotonic_increasing and len(d) == 64
     k = X.kosten()
-    etf = [k[n] for n in ("SPY", "QQQ", "IWM", "EWJ", "EWY", "DIA", "XLE")]
-    assert k["EEM"] == k["XLK"] == pytest.approx(float(np.median(etf))) and min(k.values()) >= 0.00005
-    assert sum(n.startswith("AKTIE:") for n in k) == 134 and all(n in k for n in X.LABOR_ETF + X.RUNDE14)
+    etf = [k[n] for n in ("SPY", "QQQ", "IWM", "EWJ", "EWY", "XLE")]
+    assert k["EEM"] == k["XLK"] == k["DIA"] == pytest.approx(float(np.median(etf))) and min(k.values()) >= 0.00005
+    assert sum(n.startswith("AKTIE:") for n in k) == 132 and all(n in k for n in X.LABOR_ETF + X.RUNDE14)
 
 
 def test_gruppen_korb_mittelt_nur_vorhandene_maerkte():
@@ -65,3 +65,57 @@ def test_gruppen_korb_mittelt_nur_vorhandene_maerkte():
     zeilen = {"A": {"gruppe": "labor_etf"}, "B": {"gruppe": "labor_etf"}, "C": {"gruppe": "runde14"}, "D": {"gruppe": "aktie"}}
     g = X.gruppen_koerbe(zeilen, {"A": a, "B": b, "C": a, "D": b})
     assert g["labor_etf"]["maerkte"] == 2 and g["labor_etf"]["summe_pct"] == pytest.approx((5 * 0.01 + 5 * 0.02) * 100)
+
+
+def _kunstlader(cs, kal, tradfi=()):
+    n = len(kal)
+    inv = pd.DataFrame({"symbol": list(cs), "erster_tag": [kal[int(np.argmax(np.isfinite(v)))] for v in cs.values()], "tradfi": [s in tradfi for s in cs]})
+
+    def laden(syms, bis):
+        c = np.array([cs[s] for s in syms])[:, :len(pd.date_range(kal[0], bis))]
+        o = np.concatenate([c[:, :1], c[:, :-1]], axis=1)
+        return pd.date_range(kal[0], bis), np.where(np.isfinite(o), o, c), c, np.where(np.isfinite(c), 1e6, np.nan), np.where(np.isfinite(c), 0.0, np.nan)
+    return inv, laden
+
+
+def test_krypto_gleichlauf_mit_dem_korb_ist_nicht_eigenstaendig(monkeypatch):
+    kal = pd.date_range("2021-07-01", "2024-06-30")
+    i = np.arange(len(kal))
+    trend = 100 * np.exp(0.004 * i + 0.02 * np.sin(i))
+    cs = {"AAAUSDT": trend, "BBBUSDT": trend.copy(), "CCCUSDT": trend.copy()}        # drei gleiche Kontrakte: jeder ist der Korb
+    inv, laden = _kunstlader(cs, kal)
+    monkeypatch.setattr(X.X25, "symbole", lambda: inv)
+    monkeypatch.setattr(X.X25, "laden", laden)
+    monkeypatch.setattr(X.X25, "spannen", lambda: {s: 2.0 for s in cs})
+    kr = X.krypto()
+    for s in cs:
+        assert kr[s]["auffaellig"] and not kr[s]["eigenstaendig_auffaellig"]
+        assert abs(kr[s]["rest_gegen_korb_pct"]["T"]) < 0.01 and abs(kr[s]["rest_gegen_korb_pct"]["V1"]) < 0.01
+
+
+def test_neue_kontrakte_nur_bericht_und_ohne_kursdaten(monkeypatch, tmp_path):
+    kal = pd.date_range("2021-07-01", "2026-10-31")
+    n = len(kal)
+
+    def ab(start, g):
+        c = np.full(n, np.nan)
+        i0 = int(kal.get_loc(pd.Timestamp(start)))
+        c[i0:] = 100 * np.exp(g * np.arange(n - i0))
+        return c
+    cs = {"ALTUSDT": ab("2021-07-01", 0.001), "NEUUSDT": ab("2025-01-10", 0.003), "XLEUSDT": ab("2026-06-10", -0.002), "AKTUSDT": ab("2026-02-01", 0.001),
+          "KURZUSDT": ab("2026-10-01", 0.001)}
+    inv, laden = _kunstlader(cs, kal, tradfi=("AKTUSDT",))
+    gerufen = []
+    monkeypatch.setattr(X.X25, "symbole", lambda: inv)
+    monkeypatch.setattr(X.X25, "laden", lambda syms, bis: (gerufen.append(list(syms)), laden(syms, bis))[1])
+    monkeypatch.setattr(X.X25, "spannen", lambda: {s: 2.0 for s in cs})
+    neu = X.neue_kontrakte()
+    assert "ALTUSDT" not in neu and all("ALTUSDT" not in g for g in gerufen)                  # alte Kontrakte werden nicht über den 30.06.2024 hinaus geladen
+    assert neu["NEUUSDT"]["gruppe"] == "krypto_neu" and neu["XLEUSDT"]["gruppe"] == neu["AKTUSDT"]["gruppe"] == "kontrakt_aktie_index_rohstoff"
+    assert neu["NEUUSDT"]["von"] == "2025-03-11" and neu["NEUUSDT"]["summe_pct"] > 0 and not neu["NEUUSDT"]["zu_kurz"]     # 60 Tage nach dem ersten Handelstag
+    assert neu["XLEUSDT"]["summe_pct"] > 0                                                     # fallender Kurs: short verdient
+    assert neu["KURZUSDT"] == {"gruppe": "krypto_neu", "zu_kurz": True, "tage": 0}
+    (tmp_path / "data/processed").mkdir(parents=True)
+    (tmp_path / "data/processed/yubit_symbole.txt").write_text("NEUUSDT\nFEHLTUSDT\nALTUSDT\n\n")
+    monkeypatch.setattr(X, "ROOT", tmp_path)
+    assert X.ohne_kursdaten() == ["FEHLTUSDT"]

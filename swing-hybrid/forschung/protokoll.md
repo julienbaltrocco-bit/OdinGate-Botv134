@@ -2066,3 +2066,45 @@ von Test 2 und 3 (auf Tageskursen nicht sauber nachzubilden), die echten Yubit-K
 **Prüfungen der Rechnung:** Tests für Laden, Zeiträume und Kriterium; unabhängige Nachrechnung einzelner Märkte; dazu
 prüft ein unabhängiger Prüfer die Vollständigkeit: jede Datenquelle und jedes Paar im Labor und im Datenordner gegen
 die Liste dessen, was gerechnet wurde.
+
+### Unabhängige Gegenprüfung von E26: Korrekturen und Präzisierungen (21.11.2026, vor der Rechnung des Ergebnisses)
+
+Zwei unabhängige Prüfer, ohne das Ergebnis zu rechnen: Der eine hat eine eigene Inventur aller Daten gemacht und acht
+Märkte nachgerechnet (alle identisch), der andere das Programm gegengelesen. Kein Blick in die Zukunft, die Rechnung
+stimmt; aber sie fanden **Fehler in den Daten und in meiner Festlegung**, alle vor der Rechnung behoben:
+
+1. **DIAUSDT bei Yubit ist ein Krypto-Token** (Kurs 0,12 USDT), kein Kontrakt auf den Dow-ETF. DIA gilt als ETF ohne
+   Kontrakt und bekommt wie EEM, EFA, XLF, XLK, XLV den Median der sechs ETF-Kontrakte SPY, QQQ, IWM, EWJ, EWY, XLE
+   (1,76 bp) statt 8,5 bp.
+2. **Zwei der 134 „Aktien“ waren falsche Basiswerte:** Unter CL und BZ hatte Runde 17 Colgate-Palmolive und Kanzhun
+   geladen; die Yubit-Kontrakte CLUSDT und BZUSDT sind WTI und Brent (stehen schon in Gruppe b). Beide entfallen: 132
+   Aktien. Das betrifft auch E24 Teil B (2 von 134 Titeln, je 0,7 % Gewicht; am Urteil dort ändert es nichts).
+3. **WTI hatte am 20. und 21.04.2020 negative Kurse**, die ein Kontrakt nicht abbilden kann. WTI wird erst ab
+   22.04.2020 gerechnet; das Programm bricht ab, wenn irgendein Kurs nicht größer als null ist.
+4. **Zufallserwartung berichtigt** (meine Angabe war etwa doppelt zu hoch): Von den 153 Nicht-Krypto-Märkten haben
+   rund 133 mindestens vier Zeiträume. Ohne jeden Vorteil wären etwa drei bis fünf in allen Zeiträumen positiv und
+   **etwa einer auffällig**; null bis drei auffällige Märkte passen also vollständig zu „kein Vorteil“. Weil die Märkte
+   gleichlaufen und die Aktienliste 2026 ausgesucht wurde, wären selbst fünf bis acht auffällige Aktien kein Beleg;
+   maßgeblich sind die Körbe je Gruppe.
+5. **Krypto-Kontrakte:** E25 hat gezeigt, dass der Korb aller Kontrakte in T und V1 klar verdient und dass sich gute
+   Coins nicht vorab erkennen lassen. Ein gemeinsamer Markt-Effekt macht deshalb viele Kontrakte gleichzeitig
+   „auffällig“. Als **eigenständig auffällig** gilt ein Kontrakt nur, wenn auch sein Ergebnis abzüglich des Korbs ALLE
+   in T und V1 positiv ist und einen t-Wert von mindestens 2 hat (Zufallserwartung bei 77 Kontrakten mit beiden
+   Zeiträumen: unter einem).
+6. **Kein Paar fehlt stillschweigend:** Alle 137 alten Krypto-Kontrakte bekommen eine Zeile (14 mit „zu kurz“, 46 nur
+   mit V1). Die 195 neuen Krypto-Kontrakte und die 199 Kontrakte auf Aktien, ETFs, Indizes, Rohstoffe (XLEUSDT und
+   EWZUSDT gehören dazu) bekommen je eine Zeile „nur Bericht“ seit ihrer Einführung, ohne Einstufung. 25
+   Yubit-Symbole ohne jede Kursdatei werden namentlich aufgeführt.
+7. **Sonst festgehalten:** Positionen werden zur Eröffnung des letzten Börsentags jedes Marktes geschlossen; Summe,
+   Stress, Sharpe-Zahl und t-Wert gehen nur über gezählte Zeiträume; entschieden wird auf ungerundeten Werten; die
+   Labor-ETF-Kurse sind um Dividenden bereinigt (begünstigt die Regel leicht), die übrigen nicht; 13 Aktien-Dateien
+   haben Tagessprünge über 80 % (der größte Tag steht in jeder Zeile); im Labor liegen 11 Coins als OKX-Spot und 20
+   als Binance-Perpetual (alle unter den 137).
+8. **Tests:** Die vier Tests hätten 28 von 35 eingebauten Fehlern nicht bemerkt; die 20 Testfälle des Prüfers sind
+   übernommen und an die Korrekturen angepasst, dazu zwei eigene (26 Tests grün).
+
+**Was nicht gerechnet werden kann (bleibt offen):** 49 Yubit-Kontrakte auf ETFs, gehebelte ETFs, asiatische Aktien und
+Ähnliches haben keine Kurshistorie des Basiswerts im Projekt (nur die kurze Kontrakt-Reihe, Zeile „nur Bericht“);
+25 Yubit-Symbole haben gar keine Kurse (darunter der Nasdaq-100-Kontrakt NDX100). Zehn Coins mit feinen Daten sind bei
+Yubit nicht gelistet (CHR, DENT, HOT, ICX, IOST, LRC, MTL, OCEAN, RVN, STORJ) und bleiben außen vor. Krypto vor
+08/2021 wurde nur als Gruppe gerechnet (Runden 4 und 22), nicht je Coin.
