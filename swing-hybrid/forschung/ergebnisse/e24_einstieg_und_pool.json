@@ -1,0 +1,1142 @@
+{
+ "experiment": "E24",
+ "festlegung": "forschung/protokoll.md Abschnitt 45",
+ "gerechnet_bis": "2024-06-30",
+ "teil_a": {
+  "regeln": {
+   "B0": {
+    "T": {
+     "sharpe": 0.534,
+     "ertrag_pa_pct": 33.72,
+     "summe_pct": 63.28,
+     "einbruch_pct": 59.85,
+     "orders_je_tag": 10.92,
+     "umsatz_je_tag_x_konto": 1.092,
+     "zeit_im_markt_pct": 100.0,
+     "long_pct": 27.32,
+     "short_pct": 35.95,
+     "ruhige_kosten": {
+      "sharpe": 0.597,
+      "summe_pct": 70.6
+     },
+     "ohne_rebate": {
+      "sharpe": 0.104,
+      "summe_pct": 12.4
+     },
+     "je_jahr_pct": {
+      "2021": 61.5,
+      "2022": 19.86,
+      "2023": -18.09
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 14.75,
+     "vor_orderkosten_summe_pct": 101.03
+    },
+    "V1": {
+     "sharpe": 1.307,
+     "ertrag_pa_pct": 72.54,
+     "summe_pct": 72.74,
+     "einbruch_pct": 32.53,
+     "orders_je_tag": 12.21,
+     "umsatz_je_tag_x_konto": 1.221,
+     "zeit_im_markt_pct": 100.0,
+     "long_pct": 79.7,
+     "short_pct": -6.96,
+     "ruhige_kosten": {
+      "sharpe": 1.355,
+      "summe_pct": 75.33
+     },
+     "ohne_rebate": {
+      "sharpe": 0.757,
+      "summe_pct": 42.36
+     },
+     "je_jahr_pct": {
+      "2023": 67.46,
+      "2024": 5.28
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 25.35,
+     "vor_orderkosten_summe_pct": 92.76
+    }
+   },
+   "A1_z_bis_1.0": {
+    "T": {
+     "sharpe": -0.42,
+     "ertrag_pa_pct": -15.78,
+     "summe_pct": -29.62,
+     "einbruch_pct": 71.36,
+     "orders_je_tag": 16.59,
+     "umsatz_je_tag_x_konto": 1.659,
+     "zeit_im_markt_pct": 71.4,
+     "long_pct": -39.76,
+     "short_pct": 10.14,
+     "ruhige_kosten": {
+      "sharpe": -0.249,
+      "summe_pct": -17.49
+     },
+     "ohne_rebate": {
+      "sharpe": -1.509,
+      "summe_pct": -106.91
+     },
+     "je_jahr_pct": {
+      "2021": 3.61,
+      "2022": 8.53,
+      "2023": -41.75
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 6.07,
+     "vor_orderkosten_summe_pct": 29.66,
+     "sharpe_minus_basis": -0.955,
+     "anteil_ohne_vorteil": 0.9602,
+     "bedingung": false
+    },
+    "V1": {
+     "sharpe": 0.665,
+     "ertrag_pa_pct": 19.86,
+     "summe_pct": 19.92,
+     "einbruch_pct": 22.04,
+     "orders_je_tag": 17.42,
+     "umsatz_je_tag_x_konto": 1.742,
+     "zeit_im_markt_pct": 72.6,
+     "long_pct": 15.32,
+     "short_pct": 4.59,
+     "ruhige_kosten": {
+      "sharpe": 0.816,
+      "summe_pct": 24.41
+     },
+     "ohne_rebate": {
+      "sharpe": -0.775,
+      "summe_pct": -23.43
+     },
+     "je_jahr_pct": {
+      "2023": 15.43,
+      "2024": 4.48
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 18.78,
+     "vor_orderkosten_summe_pct": 49.89,
+     "sharpe_minus_basis": -0.642,
+     "anteil_ohne_vorteil": 0.8404,
+     "bedingung": false
+    },
+    "urteil": {
+     "1_T": false,
+     "2_V1": false,
+     "3_netto_positiv": false,
+     "4_nachbar": false,
+     "besteht_T_und_V1": false
+    }
+   },
+   "A1_z_bis_1.5": {
+    "T": {
+     "sharpe": 0.125,
+     "ertrag_pa_pct": 6.32,
+     "summe_pct": 11.85,
+     "einbruch_pct": 62.35,
+     "orders_je_tag": 14.2,
+     "umsatz_je_tag_x_konto": 1.42,
+     "zeit_im_markt_pct": 87.8,
+     "long_pct": -32.24,
+     "short_pct": 44.09,
+     "ruhige_kosten": {
+      "sharpe": 0.244,
+      "summe_pct": 23.11
+     },
+     "ohne_rebate": {
+      "sharpe": -0.57,
+      "summe_pct": -54.29
+     },
+     "je_jahr_pct": {
+      "2021": 16.84,
+      "2022": 29.95,
+      "2023": -34.94
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 10.45,
+     "vor_orderkosten_summe_pct": 62.85,
+     "sharpe_minus_basis": -0.409,
+     "anteil_ohne_vorteil": 0.8058,
+     "bedingung": false
+    },
+    "V1": {
+     "sharpe": 1.125,
+     "ertrag_pa_pct": 44.61,
+     "summe_pct": 44.73,
+     "einbruch_pct": 27.73,
+     "orders_je_tag": 15.31,
+     "umsatz_je_tag_x_konto": 1.531,
+     "zeit_im_markt_pct": 86.8,
+     "long_pct": 42.18,
+     "short_pct": 2.55,
+     "ruhige_kosten": {
+      "sharpe": 1.224,
+      "summe_pct": 48.66
+     },
+     "ohne_rebate": {
+      "sharpe": 0.165,
+      "summe_pct": 6.62
+     },
+     "je_jahr_pct": {
+      "2023": 42.72,
+      "2024": 2.01
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 22.41,
+     "vor_orderkosten_summe_pct": 71.2,
+     "sharpe_minus_basis": -0.182,
+     "anteil_ohne_vorteil": 0.6464,
+     "bedingung": false
+    },
+    "urteil": {
+     "1_T": false,
+     "2_V1": false,
+     "3_netto_positiv": true,
+     "4_nachbar": false,
+     "besteht_T_und_V1": false
+    }
+   },
+   "A1_z_bis_2.0": {
+    "T": {
+     "sharpe": 0.291,
+     "ertrag_pa_pct": 16.69,
+     "summe_pct": 31.33,
+     "einbruch_pct": 57.82,
+     "orders_je_tag": 12.36,
+     "umsatz_je_tag_x_konto": 1.236,
+     "zeit_im_markt_pct": 96.1,
+     "long_pct": -18.76,
+     "short_pct": 50.08,
+     "ruhige_kosten": {
+      "sharpe": 0.383,
+      "summe_pct": 41.25
+     },
+     "ohne_rebate": {
+      "sharpe": -0.243,
+      "summe_pct": -26.24
+     },
+     "je_jahr_pct": {
+      "2021": 22.91,
+      "2022": 38.77,
+      "2023": -30.36
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 11.47,
+     "vor_orderkosten_summe_pct": 75.48,
+     "sharpe_minus_basis": -0.244,
+     "anteil_ohne_vorteil": 0.732,
+     "bedingung": false
+    },
+    "V1": {
+     "sharpe": 1.407,
+     "ertrag_pa_pct": 63.47,
+     "summe_pct": 63.64,
+     "einbruch_pct": 27.17,
+     "orders_je_tag": 13.78,
+     "umsatz_je_tag_x_konto": 1.378,
+     "zeit_im_markt_pct": 95.2,
+     "long_pct": 69.5,
+     "short_pct": -5.86,
+     "ruhige_kosten": {
+      "sharpe": 1.484,
+      "summe_pct": 67.12
+     },
+     "ohne_rebate": {
+      "sharpe": 0.645,
+      "summe_pct": 29.36
+     },
+     "je_jahr_pct": {
+      "2023": 59.03,
+      "2024": 4.61
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 24.93,
+     "vor_orderkosten_summe_pct": 86.87,
+     "sharpe_minus_basis": 0.1,
+     "anteil_ohne_vorteil": 0.2942,
+     "bedingung": false
+    },
+    "urteil": {
+     "1_T": false,
+     "2_V1": false,
+     "3_netto_positiv": true,
+     "4_nachbar": false,
+     "besteht_T_und_V1": false
+    }
+   },
+   "A2_z_ab_0.25": {
+    "T": {
+     "sharpe": 0.528,
+     "ertrag_pa_pct": 31.81,
+     "summe_pct": 59.7,
+     "einbruch_pct": 51.96,
+     "orders_je_tag": 10.03,
+     "umsatz_je_tag_x_konto": 1.003,
+     "zeit_im_markt_pct": 78.2,
+     "long_pct": 31.19,
+     "short_pct": 28.51,
+     "ruhige_kosten": {
+      "sharpe": 0.59,
+      "summe_pct": 66.63
+     },
+     "ohne_rebate": {
+      "sharpe": 0.114,
+      "summe_pct": 12.97
+     },
+     "je_jahr_pct": {
+      "2021": 46.76,
+      "2022": 24.14,
+      "2023": -11.2
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 17.99,
+     "vor_orderkosten_summe_pct": 96.39,
+     "sharpe_minus_basis": -0.006,
+     "anteil_ohne_vorteil": 0.5108,
+     "bedingung": false
+    },
+    "V1": {
+     "sharpe": 1.439,
+     "ertrag_pa_pct": 73.24,
+     "summe_pct": 73.45,
+     "einbruch_pct": 24.81,
+     "orders_je_tag": 10.43,
+     "umsatz_je_tag_x_konto": 1.043,
+     "zeit_im_markt_pct": 75.3,
+     "long_pct": 81.95,
+     "short_pct": -8.5,
+     "ruhige_kosten": {
+      "sharpe": 1.488,
+      "summe_pct": 75.83
+     },
+     "ohne_rebate": {
+      "sharpe": 0.927,
+      "summe_pct": 47.48
+     },
+     "je_jahr_pct": {
+      "2023": 61.34,
+      "2024": 12.1
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 33.15,
+     "vor_orderkosten_summe_pct": 91.36,
+     "sharpe_minus_basis": 0.132,
+     "anteil_ohne_vorteil": 0.2352,
+     "bedingung": false
+    },
+    "urteil": {
+     "1_T": false,
+     "2_V1": false,
+     "3_netto_positiv": true,
+     "4_nachbar": false,
+     "besteht_T_und_V1": false
+    }
+   },
+   "A2_z_ab_0.5": {
+    "T": {
+     "sharpe": 0.29,
+     "ertrag_pa_pct": 15.75,
+     "summe_pct": 29.55,
+     "einbruch_pct": 56.51,
+     "orders_je_tag": 9.46,
+     "umsatz_je_tag_x_konto": 0.946,
+     "zeit_im_markt_pct": 58.9,
+     "long_pct": 23.71,
+     "short_pct": 5.84,
+     "ruhige_kosten": {
+      "sharpe": 0.364,
+      "summe_pct": 36.99
+     },
+     "ohne_rebate": {
+      "sharpe": -0.142,
+      "summe_pct": -14.49
+     },
+     "je_jahr_pct": {
+      "2021": 32.95,
+      "2022": 10.06,
+      "2023": -13.45
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 15.76,
+     "vor_orderkosten_summe_pct": 63.56,
+     "sharpe_minus_basis": -0.244,
+     "anteil_ohne_vorteil": 0.8352,
+     "bedingung": false
+    },
+    "V1": {
+     "sharpe": 1.417,
+     "ertrag_pa_pct": 65.28,
+     "summe_pct": 65.46,
+     "einbruch_pct": 27.54,
+     "orders_je_tag": 8.63,
+     "umsatz_je_tag_x_konto": 0.863,
+     "zeit_im_markt_pct": 55.9,
+     "long_pct": 80.22,
+     "short_pct": -14.76,
+     "ruhige_kosten": {
+      "sharpe": 1.462,
+      "summe_pct": 67.49
+     },
+     "ohne_rebate": {
+      "sharpe": 0.95,
+      "summe_pct": 43.99
+     },
+     "je_jahr_pct": {
+      "2023": 63.32,
+      "2024": 2.14
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 39.72,
+     "vor_orderkosten_summe_pct": 81.29,
+     "sharpe_minus_basis": 0.11,
+     "anteil_ohne_vorteil": 0.3632,
+     "bedingung": false
+    },
+    "urteil": {
+     "1_T": false,
+     "2_V1": false,
+     "3_netto_positiv": true,
+     "4_nachbar": false,
+     "besteht_T_und_V1": false
+    }
+   },
+   "A2_z_ab_1.0": {
+    "T": {
+     "sharpe": 0.608,
+     "ertrag_pa_pct": 24.77,
+     "summe_pct": 46.5,
+     "einbruch_pct": 31.54,
+     "orders_je_tag": 5.67,
+     "umsatz_je_tag_x_konto": 0.567,
+     "zeit_im_markt_pct": 28.6,
+     "long_pct": 40.47,
+     "short_pct": 6.03,
+     "ruhige_kosten": {
+      "sharpe": 0.671,
+      "summe_pct": 51.3
+     },
+     "ohne_rebate": {
+      "sharpe": 0.262,
+      "summe_pct": 20.08
+     },
+     "je_jahr_pct": {
+      "2021": 35.91,
+      "2022": -0.46,
+      "2023": 11.05
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 34.72,
+     "vor_orderkosten_summe_pct": 68.02,
+     "sharpe_minus_basis": 0.074,
+     "anteil_ohne_vorteil": 0.4324,
+     "bedingung": false
+    },
+    "V1": {
+     "sharpe": 0.662,
+     "ertrag_pa_pct": 21.43,
+     "summe_pct": 21.49,
+     "einbruch_pct": 23.5,
+     "orders_je_tag": 5.21,
+     "umsatz_je_tag_x_konto": 0.521,
+     "zeit_im_markt_pct": 27.4,
+     "long_pct": 42.53,
+     "short_pct": -21.03,
+     "ruhige_kosten": {
+      "sharpe": 0.721,
+      "summe_pct": 23.39
+     },
+     "ohne_rebate": {
+      "sharpe": 0.262,
+      "summe_pct": 8.53
+     },
+     "je_jahr_pct": {
+      "2023": 34.23,
+      "2024": -12.74
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 31.35,
+     "vor_orderkosten_summe_pct": 31.44,
+     "sharpe_minus_basis": -0.645,
+     "anteil_ohne_vorteil": 0.9176,
+     "bedingung": false
+    },
+    "urteil": {
+     "1_T": false,
+     "2_V1": false,
+     "3_netto_positiv": true,
+     "4_nachbar": false,
+     "besteht_T_und_V1": false
+    }
+   },
+   "z_0": {
+    "T": {
+     "sharpe": -0.758,
+     "ertrag_pa_pct": -15.46,
+     "summe_pct": -29.02,
+     "einbruch_pct": 48.28,
+     "orders_je_tag": 20.34,
+     "umsatz_je_tag_x_konto": 2.034,
+     "zeit_im_markt_pct": 41.1,
+     "long_pct": -24.3,
+     "short_pct": -4.72,
+     "ruhige_kosten": {
+      "sharpe": -0.378,
+      "summe_pct": -14.46
+     },
+     "ohne_rebate": {
+      "sharpe": -3.158,
+      "summe_pct": -123.78
+     },
+     "je_jahr_pct": {
+      "2021": 9.03,
+      "2022": -14.44,
+      "2023": -23.61
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 15.06,
+     "vor_orderkosten_summe_pct": 42.4
+    },
+    "V1": {
+     "sharpe": -1.626,
+     "ertrag_pa_pct": -27.26,
+     "summe_pct": -27.33,
+     "einbruch_pct": 33.0,
+     "orders_je_tag": 20.76,
+     "umsatz_je_tag_x_konto": 2.076,
+     "zeit_im_markt_pct": 44.1,
+     "long_pct": -17.01,
+     "short_pct": -10.33,
+     "ruhige_kosten": {
+      "sharpe": -1.359,
+      "summe_pct": -22.76
+     },
+     "ohne_rebate": {
+      "sharpe": -4.533,
+      "summe_pct": -78.99
+     },
+     "je_jahr_pct": {
+      "2023": -12.25,
+      "2024": -15.08
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 5.18,
+     "vor_orderkosten_summe_pct": 8.36
+    }
+   },
+   "z_1": {
+    "T": {
+     "sharpe": -1.531,
+     "ertrag_pa_pct": -37.28,
+     "summe_pct": -69.96,
+     "einbruch_pct": 75.29,
+     "orders_je_tag": 15.09,
+     "umsatz_je_tag_x_konto": 1.509,
+     "zeit_im_markt_pct": 30.3,
+     "long_pct": -47.08,
+     "short_pct": -22.87,
+     "ruhige_kosten": {
+      "sharpe": -1.268,
+      "summe_pct": -57.88
+     },
+     "ohne_rebate": {
+      "sharpe": -3.065,
+      "summe_pct": -140.24
+     },
+     "je_jahr_pct": {
+      "2021": -23.93,
+      "2022": -9.61,
+      "2023": -36.42
+     },
+     "vor_orderkosten_je_100_haltetage_pct": -7.1,
+     "vor_orderkosten_summe_pct": -14.72
+    },
+    "V1": {
+     "sharpe": 0.844,
+     "ertrag_pa_pct": 16.77,
+     "summe_pct": 16.81,
+     "einbruch_pct": 14.78,
+     "orders_je_tag": 13.8,
+     "umsatz_je_tag_x_konto": 1.38,
+     "zeit_im_markt_pct": 28.5,
+     "long_pct": 19.83,
+     "short_pct": -3.02,
+     "ruhige_kosten": {
+      "sharpe": 1.039,
+      "summe_pct": 20.7
+     },
+     "ohne_rebate": {
+      "sharpe": -0.879,
+      "summe_pct": -17.53
+     },
+     "je_jahr_pct": {
+      "2023": 13.73,
+      "2024": 3.08
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 40.72,
+     "vor_orderkosten_summe_pct": 42.49
+    }
+   },
+   "z_2": {
+    "T": {
+     "sharpe": 0.115,
+     "ertrag_pa_pct": 2.7,
+     "summe_pct": 5.07,
+     "einbruch_pct": 24.19,
+     "orders_je_tag": 8.94,
+     "umsatz_je_tag_x_konto": 0.894,
+     "zeit_im_markt_pct": 16.5,
+     "long_pct": -7.85,
+     "short_pct": 12.91,
+     "ruhige_kosten": {
+      "sharpe": 0.313,
+      "summe_pct": 13.79
+     },
+     "ohne_rebate": {
+      "sharpe": -0.834,
+      "summe_pct": -36.58
+     },
+     "je_jahr_pct": {
+      "2021": 5.59,
+      "2022": 0.61,
+      "2023": -1.13
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 35.26,
+     "vor_orderkosten_summe_pct": 39.79
+    },
+    "V1": {
+     "sharpe": 0.116,
+     "ertrag_pa_pct": 2.03,
+     "summe_pct": 2.04,
+     "einbruch_pct": 20.49,
+     "orders_je_tag": 8.26,
+     "umsatz_je_tag_x_konto": 0.826,
+     "zeit_im_markt_pct": 14.3,
+     "long_pct": 12.45,
+     "short_pct": -10.42,
+     "ruhige_kosten": {
+      "sharpe": 0.297,
+      "summe_pct": 5.23
+     },
+     "ohne_rebate": {
+      "sharpe": -1.056,
+      "summe_pct": -18.51
+     },
+     "je_jahr_pct": {
+      "2023": 16.2,
+      "2024": -14.16
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 35.07,
+     "vor_orderkosten_summe_pct": 18.3
+    }
+   },
+   "z_3": {
+    "T": {
+     "sharpe": -0.164,
+     "ertrag_pa_pct": -2.58,
+     "summe_pct": -4.84,
+     "einbruch_pct": 22.4,
+     "orders_je_tag": 4.71,
+     "umsatz_je_tag_x_konto": 0.471,
+     "zeit_im_markt_pct": 8.2,
+     "long_pct": 6.79,
+     "short_pct": -11.64,
+     "ruhige_kosten": {
+      "sharpe": 0.056,
+      "summe_pct": 1.67
+     },
+     "ohne_rebate": {
+      "sharpe": -0.91,
+      "summe_pct": -26.77
+     },
+     "je_jahr_pct": {
+      "2021": -1.21,
+      "2022": -3.98,
+      "2023": 0.35
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 26.25,
+     "vor_orderkosten_summe_pct": 14.76
+    },
+    "V1": {
+     "sharpe": 0.141,
+     "ertrag_pa_pct": 1.72,
+     "summe_pct": 1.72,
+     "einbruch_pct": 14.73,
+     "orders_je_tag": 4.66,
+     "umsatz_je_tag_x_konto": 0.466,
+     "zeit_im_markt_pct": 8.4,
+     "long_pct": 14.23,
+     "short_pct": -12.51,
+     "ruhige_kosten": {
+      "sharpe": 0.317,
+      "summe_pct": 3.88
+     },
+     "ohne_rebate": {
+      "sharpe": -0.805,
+      "summe_pct": -9.87
+     },
+     "je_jahr_pct": {
+      "2023": 5.84,
+      "2024": -4.12
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 36.73,
+     "vor_orderkosten_summe_pct": 11.29
+    }
+   },
+   "z_4": {
+    "T": {
+     "sharpe": -0.422,
+     "ertrag_pa_pct": -7.11,
+     "summe_pct": -13.35,
+     "einbruch_pct": 34.03,
+     "orders_je_tag": 1.44,
+     "umsatz_je_tag_x_konto": 0.144,
+     "zeit_im_markt_pct": 3.9,
+     "long_pct": 14.5,
+     "short_pct": -27.85,
+     "ruhige_kosten": {
+      "sharpe": -0.34,
+      "summe_pct": -10.75
+     },
+     "ohne_rebate": {
+      "sharpe": -0.63,
+      "summe_pct": -20.04
+     },
+     "je_jahr_pct": {
+      "2021": 7.29,
+      "2022": -22.35,
+      "2023": 1.71
+     },
+     "vor_orderkosten_je_100_haltetage_pct": -25.88,
+     "vor_orderkosten_summe_pct": -6.95
+    },
+    "V1": {
+     "sharpe": -1.128,
+     "ertrag_pa_pct": -10.57,
+     "summe_pct": -10.59,
+     "einbruch_pct": 11.1,
+     "orders_je_tag": 1.57,
+     "umsatz_je_tag_x_konto": 0.157,
+     "zeit_im_markt_pct": 4.7,
+     "long_pct": -5.1,
+     "short_pct": -5.49,
+     "ruhige_kosten": {
+      "sharpe": -1.039,
+      "summe_pct": -9.71
+     },
+     "ohne_rebate": {
+      "sharpe": -1.525,
+      "summe_pct": -14.5
+     },
+     "je_jahr_pct": {
+      "2023": -4.86,
+      "2024": -5.73
+     },
+     "vor_orderkosten_je_100_haltetage_pct": -42.55,
+     "vor_orderkosten_summe_pct": -7.39
+    }
+   },
+   "alter_0": {
+    "T": {
+     "sharpe": -0.43,
+     "ertrag_pa_pct": -7.77,
+     "summe_pct": -14.57,
+     "einbruch_pct": 25.75,
+     "orders_je_tag": 10.92,
+     "umsatz_je_tag_x_konto": 1.092,
+     "zeit_im_markt_pct": 19.0,
+     "long_pct": -15.82,
+     "short_pct": 1.25,
+     "ruhige_kosten": {
+      "sharpe": -0.225,
+      "summe_pct": -7.62
+     },
+     "ohne_rebate": {
+      "sharpe": -1.883,
+      "summe_pct": -65.45
+     },
+     "je_jahr_pct": {
+      "2021": -3.54,
+      "2022": 3.96,
+      "2023": -14.99
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 17.54,
+     "vor_orderkosten_summe_pct": 22.81
+    },
+    "V1": {
+     "sharpe": -1.578,
+     "ertrag_pa_pct": -22.47,
+     "summe_pct": -22.53,
+     "einbruch_pct": 29.56,
+     "orders_je_tag": 12.21,
+     "umsatz_je_tag_x_konto": 1.221,
+     "zeit_im_markt_pct": 20.7,
+     "long_pct": -6.65,
+     "short_pct": -15.88,
+     "ruhige_kosten": {
+      "sharpe": -1.412,
+      "summe_pct": -20.08
+     },
+     "ohne_rebate": {
+      "sharpe": -3.583,
+      "summe_pct": -52.92
+     },
+     "je_jahr_pct": {
+      "2023": -7.17,
+      "2024": -15.36
+     },
+     "vor_orderkosten_je_100_haltetage_pct": -3.48,
+     "vor_orderkosten_summe_pct": -2.64
+    }
+   },
+   "alter_1": {
+    "T": {
+     "sharpe": 0.746,
+     "ertrag_pa_pct": 14.92,
+     "summe_pct": 28.01,
+     "einbruch_pct": 17.71,
+     "orders_je_tag": 2.22,
+     "umsatz_je_tag_x_konto": 0.222,
+     "zeit_im_markt_pct": 17.0,
+     "long_pct": 8.08,
+     "short_pct": 19.93,
+     "ruhige_kosten": {
+      "sharpe": 0.784,
+      "summe_pct": 29.46
+     },
+     "ohne_rebate": {
+      "sharpe": 0.471,
+      "summe_pct": 17.68
+     },
+     "je_jahr_pct": {
+      "2021": 4.57,
+      "2022": 24.02,
+      "2023": -0.58
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 30.84,
+     "vor_orderkosten_summe_pct": 35.82
+    },
+    "V1": {
+     "sharpe": 1.113,
+     "ertrag_pa_pct": 15.8,
+     "summe_pct": 15.85,
+     "einbruch_pct": 9.69,
+     "orders_je_tag": 2.27,
+     "umsatz_je_tag_x_konto": 0.227,
+     "zeit_im_markt_pct": 16.0,
+     "long_pct": 14.5,
+     "short_pct": 1.34,
+     "ruhige_kosten": {
+      "sharpe": 1.154,
+      "summe_pct": 16.43
+     },
+     "ohne_rebate": {
+      "sharpe": 0.714,
+      "summe_pct": 10.19
+     },
+     "je_jahr_pct": {
+      "2023": 16.61,
+      "2024": -0.77
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 33.72,
+     "vor_orderkosten_summe_pct": 19.78
+    }
+   },
+   "alter_2": {
+    "T": {
+     "sharpe": 0.244,
+     "ertrag_pa_pct": 5.72,
+     "summe_pct": 10.73,
+     "einbruch_pct": 17.84,
+     "orders_je_tag": 1.36,
+     "umsatz_je_tag_x_konto": 0.136,
+     "zeit_im_markt_pct": 21.8,
+     "long_pct": -2.6,
+     "short_pct": 13.33,
+     "ruhige_kosten": {
+      "sharpe": 0.266,
+      "summe_pct": 11.7
+     },
+     "ohne_rebate": {
+      "sharpe": 0.1,
+      "summe_pct": 4.38
+     },
+     "je_jahr_pct": {
+      "2021": 1.37,
+      "2022": 2.57,
+      "2023": 6.79
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 10.43,
+     "vor_orderkosten_summe_pct": 15.55
+    },
+    "V1": {
+     "sharpe": 0.059,
+     "ertrag_pa_pct": 0.84,
+     "summe_pct": 0.85,
+     "einbruch_pct": 17.3,
+     "orders_je_tag": 1.24,
+     "umsatz_je_tag_x_konto": 0.124,
+     "zeit_im_markt_pct": 18.5,
+     "long_pct": 8.64,
+     "short_pct": -7.79,
+     "ruhige_kosten": {
+      "sharpe": 0.082,
+      "summe_pct": 1.17
+     },
+     "ohne_rebate": {
+      "sharpe": -0.157,
+      "summe_pct": -2.24
+     },
+     "je_jahr_pct": {
+      "2023": 7.49,
+      "2024": -6.64
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 4.36,
+     "vor_orderkosten_summe_pct": 2.96
+    }
+   },
+   "alter_3": {
+    "T": {
+     "sharpe": -0.351,
+     "ertrag_pa_pct": -8.93,
+     "summe_pct": -16.75,
+     "einbruch_pct": 34.91,
+     "orders_je_tag": 0.85,
+     "umsatz_je_tag_x_konto": 0.085,
+     "zeit_im_markt_pct": 23.4,
+     "long_pct": 0.07,
+     "short_pct": -16.82,
+     "ruhige_kosten": {
+      "sharpe": -0.338,
+      "summe_pct": -16.1
+     },
+     "ohne_rebate": {
+      "sharpe": -0.434,
+      "summe_pct": -20.71
+     },
+     "je_jahr_pct": {
+      "2021": -1.61,
+      "2022": -13.42,
+      "2023": -1.72
+     },
+     "vor_orderkosten_je_100_haltetage_pct": -8.49,
+     "vor_orderkosten_summe_pct": -13.6
+    },
+    "V1": {
+     "sharpe": 1.397,
+     "ertrag_pa_pct": 24.81,
+     "summe_pct": 24.88,
+     "einbruch_pct": 10.33,
+     "orders_je_tag": 0.78,
+     "umsatz_je_tag_x_konto": 0.078,
+     "zeit_im_markt_pct": 21.9,
+     "long_pct": 18.87,
+     "short_pct": 6.01,
+     "ruhige_kosten": {
+      "sharpe": 1.408,
+      "summe_pct": 25.07
+     },
+     "ohne_rebate": {
+      "sharpe": 1.287,
+      "summe_pct": 22.94
+     },
+     "je_jahr_pct": {
+      "2023": 10.4,
+      "2024": 14.48
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 32.62,
+     "vor_orderkosten_summe_pct": 26.18
+    }
+   },
+   "alter_4": {
+    "T": {
+     "sharpe": 0.464,
+     "ertrag_pa_pct": 14.08,
+     "summe_pct": 26.42,
+     "einbruch_pct": 41.92,
+     "orders_je_tag": 0.53,
+     "umsatz_je_tag_x_konto": 0.053,
+     "zeit_im_markt_pct": 18.9,
+     "long_pct": 21.27,
+     "short_pct": 5.15,
+     "ruhige_kosten": {
+      "sharpe": 0.473,
+      "summe_pct": 26.92
+     },
+     "ohne_rebate": {
+      "sharpe": 0.42,
+      "summe_pct": 23.94
+     },
+     "je_jahr_pct": {
+      "2021": 43.47,
+      "2022": 1.7,
+      "2023": -18.75
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 21.94,
+     "vor_orderkosten_summe_pct": 28.38
+    },
+    "V1": {
+     "sharpe": 1.047,
+     "ertrag_pa_pct": 29.67,
+     "summe_pct": 29.75,
+     "einbruch_pct": 14.48,
+     "orders_je_tag": 0.47,
+     "umsatz_je_tag_x_konto": 0.047,
+     "zeit_im_markt_pct": 22.8,
+     "long_pct": 25.19,
+     "short_pct": 4.56,
+     "ruhige_kosten": {
+      "sharpe": 1.051,
+      "summe_pct": 29.86
+     },
+     "ohne_rebate": {
+      "sharpe": 1.006,
+      "summe_pct": 28.58
+     },
+     "je_jahr_pct": {
+      "2023": 24.95,
+      "2024": 4.8
+     },
+     "vor_orderkosten_je_100_haltetage_pct": 36.65,
+     "vor_orderkosten_summe_pct": 30.55
+    }
+   }
+  },
+  "z_stufen": [
+   [
+    0.0,
+    0.5
+   ],
+   [
+    0.5,
+    1.0
+   ],
+   [
+    1.0,
+    1.5
+   ],
+   [
+    1.5,
+    2.0
+   ],
+   [
+    2.0,
+    null
+   ]
+  ],
+  "alter_stufen_h": [
+   [
+    0,
+    24
+   ],
+   [
+    24,
+    72
+   ],
+   [
+    72,
+    168
+   ],
+   [
+    168,
+    336
+   ],
+   [
+    336,
+    null
+   ]
+  ],
+  "hinweis_zerlegung": "z_0 bis z_4 und alter_0 bis alter_4 sind je eigene Regeln (Position nur in dieser Stufe, Einsatz 1 bei jedem Eintritt in die Stufe); untere Grenze eingeschlossen, obere ausgeschlossen; die Erträge addieren sich nicht genau zu B0",
+  "besteher": []
+ },
+ "teil_b": {
+  "aktien": {
+   "anzahl": 134,
+   "spanne_median_bp": 5.473492382166851,
+   "ohne_messwert": 0
+  },
+  "T": {
+   "summe_pct": 3.76,
+   "sharpe": 0.12,
+   "einbruch_pct": 19.59,
+   "stress_summe_pct": -22.82,
+   "korrelation_mit_basis": 0.312,
+   "mischung_sharpe": 0.509,
+   "basis_sharpe": 0.534,
+   "mischung_einbruch_pct": 31.6,
+   "basis_einbruch_pct": 59.85,
+   "anteil_ohne_vorteil": 0.5602,
+   "h1": true,
+   "h2": false,
+   "h3": false
+  },
+  "V1": {
+   "summe_pct": 9.14,
+   "sharpe": 0.751,
+   "einbruch_pct": 8.27,
+   "stress_summe_pct": -5.74,
+   "korrelation_mit_basis": 0.274,
+   "mischung_sharpe": 1.361,
+   "basis_sharpe": 1.307,
+   "mischung_einbruch_pct": 16.25,
+   "basis_einbruch_pct": 32.53,
+   "anteil_ohne_vorteil": 0.3974,
+   "h1": true,
+   "h2": false,
+   "h3": false
+  },
+  "huerden": {
+   "1_netto_positiv": true,
+   "2_stress_positiv": false,
+   "3_mischung_besser": false
+  },
+  "besteht_T_und_V1": false
+ },
+ "teil_c": {
+  "T": {
+   "summe_pct": -4.88,
+   "sharpe": -0.098,
+   "einbruch_pct": 40.59,
+   "stress_summe_pct": -26.95,
+   "korrelation_mit_basis": 0.338,
+   "mischung_sharpe": 0.408,
+   "basis_sharpe": 0.534,
+   "mischung_einbruch_pct": 39.32,
+   "basis_einbruch_pct": 59.85,
+   "anteil_ohne_vorteil": 0.6958,
+   "h1": false,
+   "h2": false,
+   "h3": false
+  },
+  "V1": {
+   "summe_pct": 3.16,
+   "sharpe": 0.21,
+   "einbruch_pct": 12.35,
+   "stress_summe_pct": -9.0,
+   "korrelation_mit_basis": 0.125,
+   "mischung_sharpe": 1.277,
+   "basis_sharpe": 1.307,
+   "mischung_einbruch_pct": 16.68,
+   "basis_einbruch_pct": 32.53,
+   "anteil_ohne_vorteil": 0.5468,
+   "h1": true,
+   "h2": false,
+   "h3": false
+  },
+  "huerden": {
+   "1_netto_positiv": false,
+   "2_stress_positiv": false,
+   "3_mischung_besser": false
+  },
+  "besteht_T_und_V1": false,
+  "einordnung": {
+   "eigen": {
+    "T": {
+     "summe_pct": 20.06,
+     "sharpe": 0.405
+    },
+    "V1": {
+     "summe_pct": 6.46,
+     "sharpe": 0.392
+    }
+   },
+   "halten": {
+    "T": {
+     "summe_pct": 0.45,
+     "sharpe": 0.01
+    },
+    "V1": {
+     "summe_pct": 30.69,
+     "sharpe": 1.813
+    }
+   }
+  }
+ },
+ "einstufung": {
+  "teil_a": "A (verworfen)",
+  "teil_b": "A (verworfen)",
+  "teil_c": "A (verworfen)"
+ }
+}

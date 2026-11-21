@@ -127,7 +127,7 @@
   "mechanismus": "Ein schon weit gelaufener Trend könnte weniger Restertrag haben; die Trendforschung erwartet eher das Gegenteil. Zweiseitig geprüft.",
   "daten": "5-Minuten-Kerzen (Speicher der Fabrik)",
   "aufwand": "gering",
-  "status": "festgelegt (E24 Teil A), noch nicht gerechnet"
+  "status": "verworfen (E24 Teil A); beschreibend: alte Trends nicht schlechter, nur z über 2 schwach"
  },
  {
   "id": "H22",
@@ -135,7 +135,7 @@
   "mechanismus": "Streuung über Märkte, die nicht mit Krypto laufen. Dagegen: Runde 14 (Indizes, Metalle, Energie verlieren mit dem 14-Tage-Trend); Aktienliste von 2026 verzerrt.",
   "daten": "Tageskurse von 134 Aktien (Yahoo, 2020 bis 10/2026)",
   "aufwand": "gering",
-  "status": "festgelegt (E24 Teil B), noch nicht gerechnet"
+  "status": "verworfen (E24 Teil B): allein schwach positiv, im Stress negativ, Mischung nicht gesichert besser"
  },
  {
   "id": "H23",
@@ -143,6 +143,6 @@
   "mechanismus": "Krypto handelt rund um die Uhr und könnte Stimmungswechsel früher zeigen. Die umgekehrte Richtung scheiterte in Runde 16.",
   "daten": "QQQ-Tageskurse, BTC aus dem Speicher der Fabrik",
   "aufwand": "gering",
-  "status": "festgelegt (E24 Teil C), noch nicht gerechnet"
+  "status": "verworfen (E24 Teil C)"
  }
 ]

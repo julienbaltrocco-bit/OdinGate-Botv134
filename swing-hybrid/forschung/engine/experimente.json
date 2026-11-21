@@ -295,8 +295,15 @@
   "runde": 2,
   "datum": "2026-11-21",
   "titel": "Bessere Einstiege und breiterer Pool: Ausdehnung des Trends (Krypto), Trendregel auf Aktien, QQQ nach dem Bitcoin-Trend (H21 bis H23)",
-  "einstufung": "offen",
-  "kurz": "vor der Rechnung festgelegt (Protokoll Abschnitt 45); noch kein Ergebnis",
-  "dateien": []
+  "einstufung": "A",
+  "kurz": "Alle drei Teile verworfen. A: kein Ausdehnungs-Filter gegen Zufall besser; „nur solange Luft ist“ in T bei allen Schwellen schlechter (−30 % bis +31 % gegen +63 %). Alte Trends (über 14 Tage) verdienen überdurchschnittlich; nur z über 2 verliert in beiden Zeiträumen. B: Aktien allein +3,8 % / +9,1 %, im Stress negativ, Mischung nicht gesichert besser. C: QQQ nach BTC-Trend −4,9 % / +3,2 %.",
+  "dateien": [
+   "forschung/ergebnisse/e24_einstieg_und_pool.json",
+   "forschung/ergebnisse/e24_einstieg_und_pool_tage.npz",
+   "forschung/experimente/e24_einstieg_und_pool.py",
+   "tests/test_e24_einstieg_und_pool.py",
+   "tests/test_e24_gegenpruefung.py",
+   "tests/e24_referenz.py"
+  ]
  }
 ]

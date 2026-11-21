@@ -1743,3 +1743,77 @@ Zwei unabhängige Prüfer, ohne das Ergebnis zu rechnen oder zu sehen:
 - Aktienliste: 14 der 134 Titel haben im Fenster keine Kurse, 14 weitere beginnen erst im Fenster; Kurse ohne
   Dividenden. Die Auswahl von 2026 begünstigt die Regel eher. Acht Dateien zeigen Tagessprünge über 80 %
   (teils echte Ereignisse, nicht alle geprüft); das wird nachgesehen, falls das Aktien-Ergebnis nahe null liegt.
+
+---
+
+## 46. Ergebnis E24: bessere Einstiege und breiterer Pool (21.11.2026)
+
+Gerechnet nur T und V1 (`ergebnisse/e24_einstieg_und_pool.json`, Tagesreihen in `e24_einstieg_und_pool_tage.npz`).
+Einsatz 1 × Konto, Kosten wie festgelegt. **Alle drei Teile: Einstufung A (verworfen).** Keine Nachprüfung geöffnet,
+kein Papier-Test, an den laufenden Tests ändert sich nichts.
+
+### Teil A: „Luft“ beim Einstieg (Krypto)
+
+| Regel | T: Sharpe | T: Summe | V1: Sharpe | V1: Summe | Ziehungen ohne Vorteil T / V1 | Zeit im Markt | Orders je Tag |
+|---|---|---|---|---|---|---|---|
+| **B0 Basis** | **0,53** | +63 % | **1,31** | +73 % | | 100 % | 10,9 |
+| A1 nur bis z 1,0 | −0,42 | −30 % | 0,67 | +20 % | 96 % / 84 % | 71 % | 16,6 |
+| A1 nur bis z 1,5 | 0,12 | +12 % | 1,12 | +45 % | 81 % / 65 % | 88 % | 14,2 |
+| A1 nur bis z 2,0 | 0,29 | +31 % | 1,41 | +64 % | 73 % / 29 % | 96 % | 12,4 |
+| A2 nur ab z 0,25 | 0,53 | +60 % | 1,44 | +74 % | 51 % / 24 % | 78 % | 10,0 |
+| A2 nur ab z 0,5 | 0,29 | +30 % | 1,42 | +66 % | 84 % / 36 % | 59 % | 9,5 |
+| A2 nur ab z 1,0 | 0,61 | +47 % | 0,66 | +22 % | 43 % / 92 % | 29 % | 5,7 |
+
+- **Kein Kandidat besteht.** Keiner ist in T gegen Zufall besser; die Idee „nur einsteigen, solange noch Luft ist“
+  (A1) ist in T bei allen drei Schwellen schlechter als die Basis, bei den engeren Schwellen deutlich.
+- **Zerlegung der Basis (vor Orderkosten, Ertrag je 100 Tage Haltezeit, T / V1; Basis im Mittel 14,8 / 25,4):**
+
+| Ausdehnung z | Anteil der Zeit | Ertrag | | Alter des Trends | Anteil der Zeit | Ertrag |
+|---|---|---|---|---|---|---|
+| unter 0,5 | 41 % / 44 % | +15 / +5 | | unter 1 Tag | 19 % / 21 % | +18 / −3 |
+| 0,5 bis 1 | 30 % / 29 % | −7 / +41 | | 1 bis 3 Tage | 17 % / 16 % | +31 / +34 |
+| 1 bis 1,5 | 17 % / 14 % | +35 / +35 | | 3 bis 7 Tage | 22 % / 19 % | +10 / +4 |
+| 1,5 bis 2 | 8 % / 8 % | +26 / +37 | | 7 bis 14 Tage | 23 % / 22 % | −8 / +33 |
+| über 2 | 4 % / 5 % | −26 / −43 | | über 14 Tage | 19 % / 23 % | +22 / +37 |
+
+- **Lesart:** Ein alter Trend ist kein schlechterer Einstieg: Trends, die schon über 14 Tage laufen, verdienten in
+  beiden Zeiträumen überdurchschnittlich. Der meiste Ertrag fällt an, wenn der Kurs schon deutlich gelaufen ist (z
+  zwischen 1 und 2). Nur die äußerste Zone (z über 2, rund 4 bis 5 % der Zeit) verlor in beiden Zeiträumen. Dort
+  auszusetzen (A1 bis 2,0) hat das Gesamtergebnis trotzdem nicht verbessert: in T deutlich weniger (+31 % gegen
+  +63 %), in V1 etwas mehr je Risiko, nicht gesichert. Gründe: mehr Orders, und nach dem Aussetzen steigt die Regel
+  mit neuer Größe zu neuem Kurs wieder ein, während die Basis ihre Stückzahl seit dem ersten Einstieg behält.
+- Die Zerlegung ist eine Beschreibung aus zwei Zeiträumen, kein Urteil; die Stufen addieren sich nicht genau zur Basis.
+
+### Teil B: dieselbe Trendregel auf 134 Aktien
+
+| | T | V1 |
+|---|---|---|
+| Baustein allein, netto mit Rebate | +3,8 % (Sharpe 0,12) | +9,1 % (Sharpe 0,75) |
+| im Stress (doppelte Kosten, 10 % Funding) | −22,8 % | −5,7 % |
+| Mischung je zur Hälfte mit der Basis: Sharpe | 0,51 gegen 0,53 | 1,36 gegen 1,31 (56 % bzw. 40 % der Ziehungen ohne Vorteil) |
+| Gleichlauf der Tagesergebnisse mit der Basis | 0,31 | 0,27 |
+
+- Hürde 1 bestanden, Hürden 2 und 3 nicht: **verworfen.** Der Baustein verdient allein wenig, übersteht keine
+  Funding-Kosten und macht die Mischung nicht verlässlich besser. Der halbierte Einbruch der Mischung (32 % gegen
+  60 %, 16 % gegen 33 %) kommt fast nur daher, dass die Hälfte des Einsatzes in einem ruhigen Baustein liegt; das
+  leistet ein kleinerer Einsatz genauso.
+- Vorbehalte: Die Aktienliste von 2026 begünstigt die Regel eher. Das Ergebnis in T (+3,8 %) liegt in der
+  Größenordnung dessen, was die acht ungeprüften Tagessprünge ausmachen könnten; am Urteil ändert das nichts, weil
+  die Hürden 2 und 3 unabhängig davon scheitern.
+
+### Teil C: QQQ nach dem 14-Tage-Trend von Bitcoin
+
+- Netto mit Rebate −4,9 % (T) und +3,2 % (V1); im Stress −27 % und −9 %; Mischung schlechter als die Basis (Sharpe 0,41
+  gegen 0,53; 1,28 gegen 1,31). **Alle drei Hürden verfehlt: verworfen.** Der Bitcoin-Trend sagt den Nasdaq nicht voraus.
+- Zur Einordnung: QQQ nach dem eigenen 14-Tage-Trend +20,1 % und +6,5 %; QQQ gekauft und gehalten +0,5 % und +30,7 %.
+
+### Zusammen mit den Runden 14 bis 17
+
+Indizes, Metalle, Energie (14-Tage- und 12-Monats-Trend), Nasdaq als Filter für Krypto, Bitcoin als Signal für den
+Nasdaq, Aktien-Momentum und jetzt der 14-Tage-Trend auf Aktien: keiner dieser Bausteine besteht. Für einen breiteren
+Pool fehlt weiter die Grundlage. Was fehlt, sind echte Daten der Yubit-Kontrakte selbst (Kurse rund um die Uhr,
+Spannen, Funding), die es erst seit 2026 gibt; ohne sie bleibt jede Rechnung auf den Basiswerten eine Näherung.
+
+**Was dagegen sprechen könnte.** Teil A prüft eine Messgröße für „Luft“ (14-Tage-Bewegung gegen die übliche
+Schwankung) und einfache Schwellen; andere Messgrößen wären neue Experimente. Teil B und C rechnen auf Tageskursen der
+Basiswerte mit angenommenen Kosten. Hürde 3 ist streng (siehe Hinweise der Prüfer). T und V1 sind schon oft gesehen.
