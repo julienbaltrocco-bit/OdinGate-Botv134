@@ -176,5 +176,21 @@
   "daten": "Speicher der Fabrik (zehn Coins); V2 noch ungeöffnet",
   "aufwand": "gering",
   "status": "bestanden in T, V1 und V2 (E27); läuft seit 21.11.2026 13:44 UTC als Test 4 auf Papier (Protokoll Abschnitt 53 und 55)"
+ },
+ {
+  "id": "H28",
+  "titel": "Orderbuch-Stütze OS-1.1 auf Aktien-, Fonds- und Rohstoff-Kontrakten",
+  "mechanismus": "Übergewicht im Orderbuch als Stütze, wie in den Schattentests auf den zehn Coins; die Kontrakte handeln rund um die Uhr und haben feine Archivdaten seit dem Listungstag.",
+  "daten": "Binance-Archiv (Tiefe, 5-Minuten-Kerzen, Funding) für 30 Kontrakte bis 20.11.2026; Spannen von Yubit",
+  "aufwand": "mittel",
+  "status": "verworfen (E28 Teil 1, A): vor Kosten +5,4 bp je Trade, mit Rebate −1,2 bp, ohne Rebate −14,8 bp"
+ },
+ {
+  "id": "H29",
+  "titel": "Wochenend-Umkehr: Was Aktien-Kontrakte am Wochenende ohne die echte Börse laufen, holt der Montag teilweise zurück",
+  "mechanismus": "Am Wochenende fehlt der Anker der echten Börse; ein Teil der Bewegung ist Rauschen aus dünnem Handel und wird am Montag zurückgenommen.",
+  "daten": "Yubit-Stundenkerzen für 133 Kontrakte, 34 Wochenenden (28.03. bis 14.11.2026); vorwärts: Geld- und Briefkurse des Datensammlers",
+  "aufwand": "gering",
+  "status": "schwacher Hinweis (E28 Teil 2, B): Steigung −0,47 gesichert (p 0,008), Handelsfassung +0,53 % je Wochenende mit t 1,79 nicht gesichert; Diagnose: kein Messfehler aus dem gemeinsamen Kurs; Messung vorwärts mit dem Sammler vorgesehen"
  }
 ]

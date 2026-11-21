@@ -355,5 +355,24 @@
    "tests/test_e27_tagesvariante.py",
    "tests/test_e27_gegenpruefung.py"
   ]
+ },
+ {
+  "nr": 28,
+  "id": "E28",
+  "runde": 2,
+  "datum": "2026-11-21",
+  "titel": "Orderbuch-Stütze OS-1.1 und Wochenend-Frage auf Aktien-, Fonds- und Rohstoff-Kontrakten (H28, H29)",
+  "einstufung": "B",
+  "kurz": "Teil 1 (H28, A): OS-1.1 unverändert auf 30 Nicht-Krypto-Kontrakten, 6.945 Trades: vor Kosten +5,4 bp je Trade, mit Rebate −1,2 bp (p 0,76), ohne Rebate −14,8 bp; zweite Hälfte −4,6 bp. Verworfen. Teil 2 (H29, B): Über 34 Wochenenden und bis zu 133 Kontrakte kehrt der Montag die Wochenend-Bewegung teilweise um (Steigung −0,47, t −2,82, p 0,008). Handelsfassung mit Rebate +0,53 % je Wochenende, aber t 1,79 (verlangt > 2): schwacher Hinweis, kein Test. Nachträgliche Diagnose: mit dem Signal eine Stunde früher bleibt die Steigung (−0,51), der gemeinsame Kurs erklärt es nicht. Nächster Schritt: Messung vorwärts mit Geld- und Briefkursen des Sammlers.",
+  "dateien": [
+   "forschung/ergebnisse/e28_nichtkrypto.json",
+   "forschung/ergebnisse/e28_trades.csv",
+   "forschung/ergebnisse/e28_diagnose.json",
+   "forschung/experimente/e28_nichtkrypto.py",
+   "forschung/experimente/e28_daten.py",
+   "forschung/experimente/e28_diagnose.py",
+   "tests/test_e28_nichtkrypto.py",
+   "tests/test_e28_zusatz.py"
+  ]
  }
 ]

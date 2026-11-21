@@ -2700,3 +2700,18 @@ Zum Vergleich wird die Hauptfassung auf genau denselben Kontrakten daneben geste
 Steigungen und das Mittel der Handelsfassung mit Rebate. **Lesart vorab:** Bleibt die Steigung ähnlich negativ, erklärt
 der gemeinsame Kurs den Befund nicht. Fällt sie deutlich gegen null, war der Befund überwiegend ein Messfehler, und
 die Vorwärts-Messung unten lohnt nicht. Mehr Varianten werden nicht gerechnet.
+
+**Ergebnis der Diagnose (21.11.2026, `forschung/ergebnisse/e28_diagnose.json`, Programm `e28_diagnose.py`).** Alle 34
+Wochenenden, alle Kontrakte haben auch den Kurs von Sonntag 22:00.
+
+| | Steigung Mittel | Median | t | Handelsfassung mit Rebate | t |
+|---|---|---|---|---|---|
+| Hauptfassung (Signal bis Sonntag 23:00) | −0,47 | −0,31 | −2,82 | +0,53 % je Wochenende | 1,79 |
+| Signal eine Stunde früher (bis 22:00) | −0,51 | −0,38 | −2,95 | +0,71 % je Wochenende | 2,44 |
+
+Die Steigung bleibt gleich negativ, wenn Signal und Ertrag keinen Kurs teilen. **Der gemeinsame Kurs erklärt den Befund
+also nicht.** Das ist eine nachträgliche Rechnung auf angesehenen Daten: Die Einstufung bleibt **B**, und das t von
+2,44 ist kein Bestehen der vorab festgelegten Prüfung. Offen bleiben die kurze Historie, die Abhängigkeit von wenigen
+Wochenenden und die Frage, ob man am Sonntagabend zu diesen Kursen wirklich handeln kann (Stundenkurse sind keine
+Geld- und Briefkurse). Beantworten kann das nur eine Messung vorwärts mit echten Geld- und Briefkursen; die liefert
+der Datensammler (Abschnitt 54). Deren Festlegung folgt als eigener Abschnitt, sobald der Sammler nachweislich liefert.

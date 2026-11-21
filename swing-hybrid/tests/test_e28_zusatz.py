@@ -527,3 +527,34 @@ def test_abrechnung_wie_im_papier_runner_auf_derselben_kuenstlichen_reihe(monkey
     assert doc["funding_usd"] == pytest.approx(sum(groesse * x["funding_bp"] / 1e4 for x in t), abs=0.006)
     assert doc["slippage_usd"] == pytest.approx(len(t) * groesse * 2 * sl / 1e4, abs=0.006)
     assert doc["rendite_ohne_rebate_pct"] <= doc["rendite_mit_rebate_pct"]
+
+
+# ------------------------------------------------ Diagnose: Signal eine Stunde früher (Abschnitt 57) ----
+def test_diagnose_erkennt_messfehler_im_gemeinsamen_kurs_und_echte_umkehr():
+    from forschung.experimente import e28_diagnose as DG
+    rng = np.random.default_rng(5)
+
+    def bauen(echt, fehler):
+        """echt: Anteil der Wochenend-Bewegung, den der Montag zurückholt; fehler: Messfehler nur im Kurs von Sonntag 23:00."""
+        kurse = {f"K{i:02d}USDT": {} for i in range(60)}
+        we = E.wochenenden(ms(2026, 6, 1), ms(2026, 6, 1) + (20 * 7 + 3) * E.TAG)
+        for a, b, c in we:
+            for s in kurse:
+                w, f = rng.normal(0, 0.02), rng.normal(0, fehler)
+                kurse[s][a] = 100.0
+                kurse[s][b - H] = 100.0 * (1 + w)
+                kurse[s][b] = 100.0 * (1 + w) * (1 + f)
+                kurse[s][c] = 100.0 * (1 + w) * (1 - echt * w + rng.normal(0, 0.005))
+        return kurse, we[-1][2] + 1
+    sp = {f"K{i:02d}USDT": 2.0 for i in range(60)}
+    kurse, bis = bauen(0.0, 0.01)                                                    # nur Messfehler: Hauptfassung zeigt Schein-Umkehr, die Diagnose nicht
+    d = DG.diagnose(kurse, sp, bis)
+    assert d["wochenenden"] == 20 and d["hauptfassung_auf_denselben_kontrakten"]["steigung_mittel"] < -0.1
+    assert abs(d["signal_eine_stunde_frueher"]["steigung_mittel"]) < 0.05
+    kurse, bis = bauen(0.5, 0.0)                                                     # echte Umkehr: beide Fassungen zeigen sie
+    d = DG.diagnose(kurse, sp, bis)
+    assert d["hauptfassung_auf_denselben_kontrakten"]["steigung_mittel"] == pytest.approx(-0.5, abs=0.05)
+    assert d["signal_eine_stunde_frueher"]["steigung_mittel"] == pytest.approx(-0.5, abs=0.05)
+    del kurse["K00USDT"][sorted(kurse["K00USDT"])[1]]                                # ein Kontrakt ohne den Kurs von 22:00 an einem Wochenende
+    d = DG.diagnose(kurse, sp, bis)
+    assert d["kontrakte_teil_2"][0] == 60 and d["kontrakte_mit_vier_kursen"][0] == 59
