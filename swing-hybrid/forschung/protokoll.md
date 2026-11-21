@@ -1622,7 +1622,7 @@ die Erwartung, dass engere Stops diese Trendregel verbessern; die laufenden Papi
   Hebel 2 (120 %). Bei Hebel 3 hätte das für **173 von 1.051 Starttagen (16 %)** gegolten. Innerhalb eines Tages
   wäre es früher eingetreten.
 - Ohne Rebate bleibt von der Basis wenig übrig (Sharpe 0,10 in T, 0,76 in V1): Bei 10,9 Orders je Tag kostet die
-  volle Gebühr rund 27 % des Kontos pro Jahr. Das Rebate von 85 % ist weiter unbestätigt.
+  Gebühr ohne Rebate rund 32 % des Kontos pro Jahr, mit Rebate rund 5 %. Das Rebate von 85 % ist weiter unbestätigt.
 
 **Was dagegen sprechen könnte.** Geprüft ist eine Bauart von Marktstruktur (Zwischenhochs und -tiefs nach
 Schlusskursen, 1 und 4 Stunden, Stärke 3 und 5) als Zusatz zu genau dieser Trendregel. Über Struktur auf Tageskerzen,
