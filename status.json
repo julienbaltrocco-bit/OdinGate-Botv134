@@ -1,27 +1,27 @@
 {
- "geschrieben": "2026-11-21 16:00",
- "zeit": "2026-11-21 16:00",
+ "geschrieben": "2026-11-21 17:00",
+ "zeit": "2026-11-21 17:00",
  "letzter_lauf": {
-  "t": 1795276815,
-  "lauf_nr": 4,
-  "zeit": "2026-11-21 16:00",
+  "t": 1795280407,
+  "lauf_nr": 16,
+  "zeit": "2026-11-21 17:00",
   "ticker": 232,
   "tiefe_soll": 84,
   "tiefe_ist": 84,
   "binance": 0,
-  "boersenzeit_ms": 1795276815465,
-  "dauer_s": 24.3,
+  "boersenzeit_ms": 1795280408113,
+  "dauer_s": 23.8,
   "fehler": ""
  },
  "heute": {
-  "binance": 418,
-  "laeufe": 5,
+  "binance": 1254,
+  "laeufe": 17,
   "laeufe_mit_fehler": 0,
   "tag": "2026-11-21",
-  "ticker": 1489,
-  "tiefe": 420
+  "ticker": 4602,
+  "tiefe": 1428
  },
- "platz_mb": 0.2,
+ "platz_mb": 0.5,
  "voll": false,
  "einstellung": {
   "tiefe_teile": 3,
