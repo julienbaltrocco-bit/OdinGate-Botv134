@@ -114,6 +114,7 @@
     <button type="button" id="tab-basis" aria-pressed="true"><span class="t">Test 1 · Nur Umkehrsignal</span><span class="s" id="tabs-basis">ohne Ziel und Stop</span><span class="w" id="tabw-basis">—</span></button>
     <button type="button" id="tab-tpsl" aria-pressed="false"><span class="t">Test 2 · Stop 5 % und Ziel 15 %</span><span class="s" id="tabs-tpsl">getrenntes Konto</span><span class="w" id="tabw-tpsl">—</span></button>
     <button type="button" id="tab-trail" aria-pressed="false"><span class="t">Test 3 · Nachgezogener Stop 5 %</span><span class="s" id="tabs-trail">Einstiege von Test 1</span><span class="w" id="tabw-trail">—</span></button>
+    <button type="button" id="tab-tag" aria-pressed="false"><span class="t">Test 4 · Einmal am Tag entscheiden</span><span class="s" id="tabs-tag">Einstiege von Test 1</span><span class="w" id="tabw-tag">—</span></button>
   </div>
 
   <div class="teil" id="ansicht-bot">
@@ -176,8 +177,8 @@
 <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 <script>
 (() => {
-  const DATEIEN = {basis: 'stand.enc.json', tpsl: 'stand_tpsl.enc.json', trail: 'stand_trail.enc.json'};
-  const SS = {basis: null, tpsl: null, trail: null};
+  const DATEIEN = {basis: 'stand.enc.json', tpsl: 'stand_tpsl.enc.json', trail: 'stand_trail.enc.json', tag: 'stand_tag.enc.json'};
+  const SS = {basis: null, tpsl: null, trail: null, tag: null};
   let aktiv = 'basis';
   // Schattentests (Forschung): ein verschlüsseltes Bündel aus dem Forschungszweig, einmal täglich aktualisiert
   const SCHATTEN_URL = 'https://raw.githubusercontent.com/julienbaltrocco-bit/OdinGate-Botv134/claude/alpha-forschung-r1/swing-hybrid/forschung/papier/board/schattentests.enc.json';
@@ -261,7 +262,11 @@
     // Test 2 und 3: der Abschnitt bis nachgerechnet_bis stammt aus den Aufzeichnungen von Test 1 (kein Vorwärtstest)
     const nach = k.nachgerechnet_bis ? ` Bis ${k.nachgerechnet_bis} UTC aus den Aufzeichnungen von Test 1 nachgerechnet, seitdem live`
       + (k.netto_nachgerechnet_usd != null ? ` (Ergebnis seit dem Live-Start: ${vz(Math.round((a.mit - k.netto_nachgerechnet_usd) * 100) / 100 || 0, 2)} $)` : '') + '.' : '';
-    $('regel').textContent = k.trail
+    $('regel').textContent = k.tagesregel
+      ? `Test 4, Einstiege von Test 1 (${k.start} UTC): Wie Test 1, aber die Richtung wird je Coin nur einmal am Tag übernommen (Stundenschluss 00:00 UTC, gehandelt im Lauf kurz danach). Dazwischen bleibt die Position stehen, auch wenn das Stundensignal dreht. Kein Gewinnziel, kein Stop.`
+        + (k.tagesrichtung_tag ? ` Zuletzt übernommen: ${k.tagesrichtung_tag.slice(8, 10)}.${k.tagesrichtung_tag.slice(5, 7)}. 00:00 UTC.` : '')
+        + nach
+      : k.trail
       ? `Test 3, Einstiege von Test 1 (${k.start} UTC): Eine Position wird geschlossen, sobald der Kurs ${de(0).format(k.trail * 100)} % vom günstigsten Stand seit dem Einstieg zurückläuft; danach Pause bis zum nächsten Umkehrsignal. Kein Gewinnziel.`
         + nach
       : (k.tp || k.sl)
@@ -331,8 +336,8 @@
       }
       z.kerzen = z.detail.appendChild(el('div', 'kerzen'));
       const test2 = S.kennzahlen[0].tp || S.kennzahlen[0].sl;   // Test 1 behält den bisherigen Hinweistext unverändert
-      const test3 = S.kennzahlen[0].trail;
-      z.detail.appendChild(el('p', 'hinweis', 'Pfeile: Orders des Papier-Bots. Blaue Linie: Einstieg. ' + (test2 || test3 ? 'Gelb gestrichelt' : 'Gestrichelt') + ': Kurs, an dem sich das Signal beim nächsten Stundenschluss dreht.'
+      const test3 = S.kennzahlen[0].trail, test4 = S.kennzahlen[0].tagesregel;
+      z.detail.appendChild(el('p', 'hinweis', 'Pfeile: Orders des Papier-Bots. Blaue Linie: Einstieg. ' + (test2 || test3 || test4 ? 'Gelb gestrichelt' : 'Gestrichelt') + (test4 ? ': Kurs, an dem sich die Richtung beim nächsten Stundenschluss um 00:00 UTC dreht. Test 4 entscheidet nur zu diesem Zeitpunkt; ein Durchstoßen der Linie während des Tages löst nichts aus.' : ': Kurs, an dem sich das Signal beim nächsten Stundenschluss dreht.')
         + (test3 ? ' Rot gestrichelt: nachgezogener Stop (SL), ' + de(0).format(test3 * 100) + ' % hinter dem günstigsten Kurs seit dem Einstieg; er wandert mit, sobald der Kurs weiter in Richtung der Position läuft. Nachgezogen und geprüft wird nur bei jedem Bot-Lauf (alle 5 Minuten) am Yubit-Mittelkurs; zwischen zwei Läufen bleibt die Linie stehen, und ein kurzes Durchstoßen löst nichts aus.' : '')
         + (test2 ? ' Grün gestrichelt: Gewinnziel (TP). Rot gestrichelt: Stop (SL). Mit „TP/SL im Bild“ reicht die Kursskala bis zu beiden Linien; ausgeschaltet zeigt sie nur die Kerzen in voller Größe.' : '')));
       box.appendChild(z.box);
@@ -357,9 +362,10 @@
       z.w.wert.textContent = de(0).format(Math.abs(p.menge) * preis) + ' $';
       const s = SIG[p.coin];
       if (s) {
+        const dreh = S.kennzahlen[0].tagesregel ? s.dreh_tag : s.dreh;   // Test 4: Schwelle zum nächsten Tageswechsel
         z.w.trend.textContent = vz(s.trend * 100, 2) + ' %'; z.w.trend.className = farbe(s.trend);
-        z.w.dreh.textContent = kurs(s.dreh);
-        const ab = (preis / s.dreh - 1) * 100;
+        z.w.dreh.textContent = kurs(dreh);
+        const ab = (preis / dreh - 1) * 100;
         z.w.abstand.textContent = vz(ab, 2) + ' %';
       }
     });
@@ -450,7 +456,7 @@
       if (!tpslImBild || !res || !res.priceRange) return res;
       return {priceRange: {minValue: Math.min(res.priceRange.minValue, ...grenzen), maxValue: Math.max(res.priceRange.maxValue, ...grenzen)}, margins: res.margins};
     }});
-    if (SIG[coin]) kerzenSerie.createPriceLine({price: SIG[coin].dreh, color: '#f0b34a', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: 'Signal dreht'});
+    if (SIG[coin]) kerzenSerie.createPriceLine({price: S.kennzahlen[0].tagesregel ? SIG[coin].dreh_tag : SIG[coin].dreh, color: '#f0b34a', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: 'Signal dreht'});
     new ResizeObserver(() => kerzenChart && kerzenChart.applyOptions({width: box.clientWidth, height: box.clientHeight})).observe(box);
     try {
       kerzenWs = new WebSocket(`${WS}/ws/${coin.toLowerCase()}usdt@kline_${r}`);
@@ -617,7 +623,9 @@
       try {
         const a = await (await fetch(`${REST}/fapi/v1/klines?symbol=${p.coin}USDT&interval=1h&limit=340`)).json();
         const n = a.length; if (n < 339) return;
-        SIG[p.coin] = {trend: +a[n - 2][4] / +a[n - 2 - 336][4] - 1, dreh: +a[n - 337][4]};
+        // dreh_tag (nur Test 4, Tagesregel): Schluss 336 Stunden vor der Kerze, die am nächsten Tageswechsel (00:00 UTC) schließt
+        const bis23 = (23 - new Date(+a[n - 1][0]).getUTCHours() + 24) % 24;
+        SIG[p.coin] = {trend: +a[n - 2][4] / +a[n - 2 - 336][4] - 1, dreh: +a[n - 337][4], dreh_tag: +a[n - 337 + bis23][4]};
       } catch (e) {}
     }));
     zeigePaare();
@@ -657,7 +665,9 @@
     const st = schatten ? sTest() : null;
     if (st && st.aktualisiert) $('botalter').textContent = 'vor ' + dauer(Date.now() - new Date(st.aktualisiert));
     else if (S && S.geschrieben) $('botalter').textContent = 'vor ' + dauer(Date.now() - new Date(S.geschrieben));
-    const naechste = new Date(j); naechste.setUTCMinutes(4, 0, 0); if (naechste <= j) naechste.setUTCHours(naechste.getUTCHours() + 1);
+    const naechste = new Date(j);
+    if (!schatten && S && S.kennzahlen[0].tagesregel) { naechste.setUTCHours(0, 4, 0, 0); if (naechste <= j) naechste.setUTCDate(naechste.getUTCDate() + 1); }   // Test 4 entscheidet einmal am Tag
+    else { naechste.setUTCMinutes(4, 0, 0); if (naechste <= j) naechste.setUTCHours(naechste.getUTCHours() + 1); }
     $('naechste').textContent = dauer(naechste - j);
   }, 1000);
 

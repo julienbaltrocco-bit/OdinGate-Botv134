@@ -71,6 +71,11 @@ def bauen(cfg: dict, daten: Path) -> dict:
                    "margin_pct": round(float(l["einsatz"]) / cfg["hebel"] / kap * 100, 1)}]
     if trail:
         kennzahlen[0]["trail"] = trail
+    if cfg.get("tagesregel"):                               # Test 4: Richtung einmal am Tag; ältester Tag, für den alle Coins entschieden sind
+        kennzahlen[0]["tagesregel"] = True
+        tage_tr = [(z.get("tagesrichtung", {}).get(c) or {}).get("tag", "") for c in cfg["coins"]]
+        if tage_tr and all(tage_tr):
+            kennzahlen[0]["tagesrichtung_tag"] = min(tage_tr)
     if cfg.get("nachgerechnet_bis"):                        # Abschnitt, der nachträglich aus den Aufzeichnungen von Test 1 gerechnet wurde
         kennzahlen[0]["nachgerechnet_bis"] = cfg["nachgerechnet_bis"]
         davor = [r for r in st if r["zeit"] <= cfg["nachgerechnet_bis"]]   # Ergebnis am Ende der Nachrechnung: das Board zeigt daneben das Ergebnis seit dem Live-Start

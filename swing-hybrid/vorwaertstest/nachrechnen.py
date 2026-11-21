@@ -114,7 +114,7 @@ def nachrechnen(cfg: dict, quelle: Path, ziel: Path, fuellungen_der_quelle: bool
     if not ll:
         raise SystemExit("Die Quelle enthält keine Aufzeichnungen.")
     coins = cfg["coins"]
-    stunden = stunden_laden(coins, ms(ll[0][0]) // H * H - (kern.RUECKBLICK_STUNDEN + 3) * H, ms(ll[-1][0]) + H, api)
+    stunden = stunden_laden(coins, ms(ll[0][0]) // H * H - (kern.RUECKBLICK_STUNDEN + 27) * H, ms(ll[-1][0]) + H, api)   # ein Tag mehr: die Tagesregel vergleicht die Kerze zum Tageswechsel
     kontrakte = {c: api.kontrakt(c + "USDT") for c in coins}
     fuell = {(r["zeit"], r["coin"], r["seite"]): float(r["fuellkurs"]) for r in bot.lesen(quelle / "protokoll.csv")
              if r["zeit"] == ll[0][0]} if fuellungen_der_quelle else {}          # nur die Einstiege des ersten Laufs

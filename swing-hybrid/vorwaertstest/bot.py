@@ -103,6 +103,22 @@ def markt_lesen(api: Yubit, coin: str, jetzt_ms: int) -> dict:
             "mitte": kern.mitte(buch)}
 
 
+def tagesrichtung_lesen(api: Yubit, coin: str, jetzt_ms: int) -> dict:
+    """Tagesregel (Test 4): Richtung aus der Stundenkerze, die um 00:00 UTC des laufenden Tages schließt, gegen den Schluss
+    336 Stunden davor. Gilt für den ganzen Tag, egal wann der Lauf stattfindet. Wirft YubitFehler, wenn eine Kerze fehlt."""
+    sym = coin + "USDT"
+    start = jetzt_ms // kern.TAG_MS * kern.TAG_MS - kern.STUNDE_MS          # Kerze von 23:00 bis 00:00 UTC
+    neu = [k for k in api.kerzen(sym, 60, 3, start, start + kern.STUNDE_MS) if k["start"] == start]
+    if not neu:
+        raise YubitFehler(f"{coin}: keine Stundenkerze zum Tageswechsel ({utc(start)})")
+    ref = start - kern.RUECKBLICK_STUNDEN * kern.STUNDE_MS
+    alt = [k for k in api.kerzen(sym, 60, 3, ref, ref + kern.STUNDE_MS) if k["start"] == ref]
+    if not alt:
+        raise YubitFehler(f"{coin}: keine Kerze von 14 Tagen vor dem Tageswechsel ({utc(ref)})")
+    return {"tag": utc(jetzt_ms)[:10], "richtung": kern.richtung(neu[0]["close"], alt[0]["close"]),
+            "schluss": neu[0]["close"], "schluss_alt": alt[0]["close"]}
+
+
 # --------------------------------------------------------------- Live-Ausführung ----
 def live_erlaubt(cfg: dict, api: Yubit) -> bool:
     return cfg["modus"] == "live" and os.environ.get("YUBIT_LIVE") == "ja" and bool(api.key and api.secret)
@@ -173,6 +189,17 @@ def schritt(cfg: dict, api: Yubit, daten: Path, jetzt_ms: int | None = None, mel
             warnungen.append(str(e))
     if not markt:
         raise SystemExit("Keine Marktdaten erhalten: " + "; ".join(warnungen))
+    tagesregel = bool(cfg.get("tagesregel"))
+    if tagesregel:   # Test 4: Richtung je Coin nur einmal am Tag übernehmen (Stundenschluss 00:00 UTC) und im Zustand festhalten
+        tr = z.setdefault("tagesrichtung", {})
+        # In der ersten Minute des Tages wird noch nicht übernommen: Ein verspäteter Lauf von 23:59 soll nicht Sekunden nach dem
+        # Tageswechsel mit einem womöglich noch nicht endgültigen Schlusskurs entscheiden. Planmäßig übernimmt der Lauf um 00:04.
+        for coin in (markt if jetzt_ms % kern.TAG_MS >= kern.TAGESREGEL_KARENZ_MS else ()):
+            if (tr.get(coin) or {}).get("tag") != zeit[:10]:
+                try:
+                    tr[coin] = tagesrichtung_lesen(api, coin, jetzt_ms)
+                except (YubitFehler, KeyError, ValueError, IndexError) as e:
+                    warnungen.append(f"{e}; Tagesrichtung noch nicht übernommen, Position bleibt")
 
     if live:   # Buch und Börse müssen übereinstimmen, sonst wird nicht gehandelt
         echt = live_positionen(api, coins)
@@ -209,17 +236,24 @@ def schritt(cfg: dict, api: Yubit, daten: Path, jetzt_ms: int | None = None, mel
                             "spanne_bp": round(kern.spanne_bp(buch), 3), "volumen": round(standard * mitte, 2),
                             "kauf_bp": round(kern.slippage(True, kp, mitte) * 1e4, 3) if kq >= standard - 1e-12 else "",
                             "verkauf_bp": round(kern.slippage(False, vp, mitte) * 1e4, 3) if vq >= standard - 1e-12 else ""})
-        ziel = 0 if gesperrt else m["richtung"]
+        signal = m["richtung"]
+        if tagesregel:   # maßgeblich ist die heute übernommene Tagesrichtung; liegt sie noch nicht vor, wird nicht gehandelt
+            heute_richtung = z["tagesrichtung"].get(coin) or {}
+            if heute_richtung.get("tag") == heute:
+                signal = heute_richtung["richtung"]
+            elif not gesperrt:
+                continue
+        ziel = 0 if gesperrt else signal
         ist = z["pos"].get(coin, 0.0)
         ist_richtung = (ist > 0) - (ist < 0)
         anlass = None
         tp, sl, trail = cfg.get("tp", 0.0), cfg.get("sl", 0.0), cfg.get("trail", 0.0)
         if tp or sl or trail:   # Varianten mit Gewinnziel / Stop / nachgezogenem Stop: nach dem Ausstieg Pause, bis das Signal dreht
             sperre = z.setdefault("sperre", {})
-            if sperre.get(coin, 0) and sperre[coin] != m["richtung"]:
+            if sperre.get(coin, 0) and sperre[coin] != signal:
                 sperre[coin] = 0
             ein = z.setdefault("einstieg", {}).get(coin, 0.0)
-            if ist_richtung and ist_richtung == m["richtung"] and ein > 0:
+            if ist_richtung and ist_richtung == signal and ein > 0:
                 r = (mitte / ein - 1) * ist_richtung
                 anlass = "ziel" if tp and r >= tp else "stop" if sl and r <= -sl else None
                 if trail and not anlass:   # nachgezogener Stop: Abstand zum günstigsten Mittelkurs seit dem Einstieg
@@ -231,7 +265,7 @@ def schritt(cfg: dict, api: Yubit, daten: Path, jetzt_ms: int | None = None, mel
                         anlass = "nachzug"
                 if anlass:
                     sperre[coin] = ist_richtung
-            if m["richtung"] != 0 and sperre.get(coin, 0) == m["richtung"]:
+            if signal != 0 and sperre.get(coin, 0) == signal:
                 ziel = 0
         if ziel == ist_richtung:
             continue
@@ -317,6 +351,8 @@ def bericht(cfg: dict, daten: Path) -> str:
     tage = max((dt.datetime.fromisoformat(st[-1]["zeit"]) - dt.datetime.fromisoformat(st[0]["zeit"])).total_seconds() / 86400, 1 / 24)
     z += [f"- Zeitraum: {st[0]['zeit']} bis {st[-1]['zeit']} UTC ({_n(tage, 1)} Tage, {len(st)} Durchläufe)",
           f"- Kapital {_n(cfg['kapital_usd'])} $, Hebel {_n(cfg['hebel'], 2)}, {len(cfg['coins'])} Coins, Modus {pr[-1]['modus'] if pr else cfg['modus']}", ""]
+    if cfg.get("tagesregel"):                               # Test 4: einmal am Tag entscheiden
+        z.insert(-1, "- Tagesregel: Die Richtung wird je Coin einmal am Tag übernommen (Stundenschluss 00:00 UTC) und bis zum nächsten Tag gehalten.")
     if cfg.get("nachgerechnet_bis"):                        # Abschnitt aus den Aufzeichnungen von Test 1: als Nachrechnung kennzeichnen
         z.insert(-1, f"- Bis {cfg['nachgerechnet_bis']} UTC aus den Aufzeichnungen von Test 1 nachgerechnet (kein Vorwärtstest), danach live.")
 

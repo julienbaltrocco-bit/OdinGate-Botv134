@@ -8,6 +8,8 @@ import math
 
 TAKER, REBATE = 0.0008, 0.85
 STUNDE_MS = 3_600_000
+TAG_MS = 24 * STUNDE_MS
+TAGESREGEL_KARENZ_MS = 60_000   # Tagesregel: die Richtung wird frühestens eine Minute nach dem Tageswechsel übernommen
 RUECKBLICK_STUNDEN = 336
 
 

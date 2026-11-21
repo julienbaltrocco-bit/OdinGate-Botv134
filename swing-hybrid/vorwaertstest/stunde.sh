@@ -75,3 +75,24 @@ git add vorwaertstest/lauf_trail ../docs/stand_trail.enc.json
 git diff --cached --quiet || git commit -q -m "Vorwärtstest (Papier, nachgezogener Stop 5 %) $(date -u '+%F %H:%M') UTC$ANHANG"
 sichern
 echo "gesichert (Test 3): $(git rev-parse --short HEAD)"
+
+
+# Viertes, getrenntes Papier-Konto (Test 4): dieselbe Regel wie Test 1, aber die Richtung wird je Coin nur einmal am Tag
+# übernommen (Stundenschluss 00:00 UTC). Einstiege von Test 1; der Abschnitt bis "nachgerechnet_bis" in der Einstellung
+# wurde aus den Aufzeichnungen von Test 1 nachgerechnet. Läuft zuletzt: Scheitert er, sind Test 1 bis 3 schon gesichert.
+# Ohne den nachgerechneten Stand wird nicht gerechnet (sonst begänne ein neues Konto mit Einstiegen von jetzt). Dauerhaft
+# anhalten: die Datei vorwaertstest/lauf_tag/ANGEHALTEN ins Repository legen (eine STOPP-Datei auf dem Server übersteht das
+# Erneuern des Klons dort nicht).
+if [ ! -f vorwaertstest/lauf_tag/zustand.json ]; then
+  echo "Test 4: kein Stand vorhanden (vorwaertstest/lauf_tag/zustand.json fehlt). Kein Durchgang."
+elif [ -f vorwaertstest/lauf_tag/ANGEHALTEN ]; then
+  echo "Test 4 ist angehalten (vorwaertstest/lauf_tag/ANGEHALTEN im Repository). Kein Durchgang."
+else
+  python3 -m vorwaertstest.bot schritt --config vorwaertstest/config_lauf_tag.json --daten vorwaertstest/lauf_tag
+  python3 -m vorwaertstest.dashboard_daten --config vorwaertstest/config_lauf_tag.json --daten vorwaertstest/lauf_tag
+  python3 -m vorwaertstest.board_verschluesseln --quelle vorwaertstest/lauf_tag/dashboard.json --ziel ../docs/stand_tag.enc.json
+  git add vorwaertstest/lauf_tag ../docs/stand_tag.enc.json
+  git diff --cached --quiet || git commit -q -m "Vorwärtstest (Papier, Tagesregel) $(date -u '+%F %H:%M') UTC$ANHANG"
+  sichern
+  echo "gesichert (Test 4): $(git rev-parse --short HEAD)"
+fi
