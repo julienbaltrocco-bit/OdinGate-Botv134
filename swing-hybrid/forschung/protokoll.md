@@ -2715,3 +2715,54 @@ also nicht.** Das ist eine nachträgliche Rechnung auf angesehenen Daten: Die Ei
 Wochenenden und die Frage, ob man am Sonntagabend zu diesen Kursen wirklich handeln kann (Stundenkurse sind keine
 Geld- und Briefkurse). Beantworten kann das nur eine Messung vorwärts mit echten Geld- und Briefkursen; die liefert
 der Datensammler (Abschnitt 54). Deren Festlegung folgt als eigener Abschnitt, sobald der Sammler nachweislich liefert.
+
+## 58. Datensammler in Betrieb (21.11.2026, Ergebnis zu Abschnitt 54)
+
+- Eingespielt 15:30 UTC (Bot-Zweig `a74ddfb7`), erster Lauf 15:40 UTC, **erster Upload 16:00:40 UTC** in den Zweig
+  `odingate-marktdaten-2026-11` (Commit `9f0bd6bd`, vier Dateien und `status.json`).
+- Erste Stunde, geprüft an den Dateien: vier Läufe (15:40, 15:45, 15:50, 15:55 UTC), je rund 24 Sekunden, kein Fehler.
+  `ticker`: 232 Kontrakte alle fünf Minuten und alle 561 einmal je Stunde, überall Geld- und Briefkurs. `tiefe`: 84
+  Orderbücher je Lauf (10 Coins jedes Mal, die 222 übrigen reihum alle 15 Minuten), 84 von 84 gelungen. `binance`: 209
+  Kontrakte alle 15 Minuten mit Geld- und Briefkurs samt Mengen. Der Abruf bei Binance geht vom Server aus also.
+- Die vier Papier-Tests sichern weiter alle fünf Minuten (geprüft bis 16:00 UTC).
+- Menge: rund 65 KB je Stunde gepackt, das sind etwa 1,6 MB je Tag und knapp 50 MB je Monat (geschätzt waren 100 MB).
+- Offen: Verhalten über Tage (Bremse der Börse, Monatswechsel des Zweigs am 01.12.) ist noch nicht beobachtet.
+
+## 59. Festlegung: Wochenend-Umkehr vorwärts messen (H29, vor dem ersten gemessenen Wochenende, 21.11.2026)
+
+**Was das ist.** Eine Messung mit frischen Daten, kein Papier-Test im Dashboard und kein Handel. E28 ergab B (schwacher
+Hinweis); nach der dortigen Festlegung reicht das nicht für einen Test. Die Daten fallen durch den Sammler ohnehin an.
+Gemessen wird die Fassung der Diagnose aus Abschnitt 57 (Signal eine Stunde vor dem Einstieg), weil nur sie umsetzbar
+ist: Zwischen Signal und Order liegt eine Stunde.
+
+- **Kontrakte:** die 133 aus E28 Teil 2 (`e28_daten.universum_teil2()` ohne ANTHROPICUSDT), fest. Wer nicht mehr
+  gelistet ist, fällt weg; neue kommen nicht dazu.
+- **Signal:** W′ = Eröffnung der Yubit-Stundenkerze Sonntag 22:00 UTC / Eröffnung Samstag 01:00 UTC − 1. Über die
+  Kontrakte des Wochenendes bei 1 % und 99 % gestutzt, Mittel abgezogen. Gewicht = −W′ / Summe der Beträge (gegen die
+  Wochenend-Bewegung, Summe der Beträge = 1 × Konto, keine Netto-Richtung).
+- **Ausführung aus der Sammler-Tabelle `ticker`:** Einstieg mit dem ersten Lauf ab Sonntag 23:00:00 UTC, Ausstieg mit
+  dem ersten Lauf ab Montag 21:00:00 UTC (jeweils spätestens zehn Minuten danach, sonst zählt das Wochenende nicht).
+  Gekauft wird zum Briefkurs, verkauft zum Geldkurs; die Spanne wird also so bezahlt, wie sie stand. Fehlt einem
+  Kontrakt ein Signal- oder Ausführungskurs, zählt er an diesem Wochenende nicht. Ein Wochenende zählt ab 30 Kontrakten.
+- **Kosten:** je Order 8 bp, einmal mit 85 % Rebate (n85) und einmal ohne (n0). Funding laut Yubit für alle
+  Abrechnungen nach dem Einstieg bis einschließlich Ausstieg (Long zahlt einen positiven Satz). Ist es für einen
+  Kontrakt nicht zu ermitteln: 0 und gekennzeichnet.
+- **Hauptzahl:** Ergebnis n85 je Wochenende in % des Kontos.
+- **Nur Bericht:** Steigung von M auf W′ (M aus Mittelkursen), Ergebnis zu Mittelkursen, gezahlte Spanne,
+  Funding-Anteil, n0, und aus der Tabelle `tiefe` die Kosten für 1.500 und 5.000 USDT je Order beim Einstieg (Median
+  über die Kontrakte), damit sichtbar wird, welche Größe überhaupt ginge.
+- **Erstes Wochenende:** 21. bis 23.11.2026 (der Sammler läuft seit Samstag 15:40 UTC; das Signal kommt aus den
+  Stundenkerzen und braucht ihn nicht).
+- **Auswertung:** nach 13 Wochenenden ein Zwischenstand (nur Bericht). Nach 26 Wochenenden das Urteil:
+  **bestätigt**, wenn das Mittel von n85 positiv ist mit t > 1,71 (einseitig 5 %); **verworfen**, wenn das Mittel nicht
+  positiv ist; sonst **offen** und weiter bis 52 Wochenenden mit derselben Prüfung (t > 1,68), danach bestätigt oder
+  verworfen. Vorzeitiges Ende: Liegt die Summe nach 13 Wochenenden unter −10 %, ist es verworfen. Zwei Prüfzeitpunkte
+  heben die Irrtumswahrscheinlichkeit auf etwa 8 %; das ist für die Frage „Papier-Test ja oder nein“ hingenommen.
+- **Was „bestätigt“ bedeutet:** Kandidat für einen Papier-Test im Dashboard, und auch das erst nach ausdrücklicher
+  Freigabe des Auftraggebers. Kein Echtgeld.
+- **Erwartung, damit niemand zu viel hineinliest:** In der Rückrechnung waren es +0,5 bis +0,7 % je Wochenende bei
+  einer Streuung von 1,7 %. Einzelne Wochenenden sagen nichts; auch 26 reichen nur, wenn der Effekt etwa so groß
+  bleibt. Rückrechnungen fallen vorwärts meist kleiner aus.
+- **Ablage:** je Wochenende eine Zeile in `forschung/vorwaerts/h29_wochenenden.csv` und eine Zeile im Protokoll. Das
+  Auswertungsprogramm wird vor der ersten Auswertung gebaut und auf künstlichen Daten geprüft; es darf an dieser
+  Festlegung nichts ändern.

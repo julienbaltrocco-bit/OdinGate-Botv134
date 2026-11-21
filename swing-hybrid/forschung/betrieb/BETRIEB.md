@@ -108,6 +108,10 @@ Lauf und den Tageszählern. Tabellen: `ticker`, `tiefe`, `binance`, `laeufe` (Sp
 - Takt ändern (weniger Daten, weniger Abrufe): `tiefe_teile`, `binance_jede`, `alle_jede` in derselben Datei.
 - Kontrolle von außen: `git fetch origin odingate-marktdaten-JJJJ-MM` und `status.json` lesen; fehlende Läufe zeigt
   die Tabelle `laeufe`. Ein Lauf ohne Sammler (Test gescheitert, GitHub nicht erreichbar) hinterlässt eine Lücke.
+- Stand 21.11.2026: erster Upload 16:00 UTC bestätigt, erste Stunde fehlerfrei, Binance-Abruf vom Server aus geht.
+  Gemessen rund 65 KB je Stunde, also knapp 50 MB je Monat (Protokoll Abschnitt 58).
+- Die Messung „Wochenend-Umkehr vorwärts“ (Protokoll Abschnitt 59) liest aus diesem Zweig die Tabelle `ticker` für
+  Sonntag 23:00 und Montag 21:00 UTC. Eine Lücke zu diesen Zeiten kostet ein ganzes Wochenende der Messung.
 
 **Woran man einen Ausfall erkennt:** Auf dem Trading Board steht bei Test 1 und 2 „Bot-Stand vor …“. Mehr als rund
 zehn Minuten heißt: Der Server rechnet nicht. Der Kaufdruck-Tab fällt bei einem Ausfall von selbst auf den täglichen
