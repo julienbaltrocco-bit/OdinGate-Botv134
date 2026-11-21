@@ -198,10 +198,11 @@ def lauf(o, h, l, c, gueltig, fs, slip_coin, dh, m, k, sh, sl, shn, sln, br, s, 
 
 
 # --------------------------------------------------------------------------------------------- Rechnung und Auswertung
-def coin_daten(j: int):
-    o, h, l, c = (np.asarray(D.laden(x)[j], np.float64) for x in "ohlc")
-    fc = np.asarray(D.laden("fcum")[j], np.float64)
-    return o, h, l, c, np.asarray(D.laden("gueltig")[j]), np.diff(fc, prepend=0.0), float(np.load(D.SPEICHER / "slip_bp.npy")[j])
+def coin_daten(j: int, i_ende: int):
+    """Nur die Kerzen vor i_ende: Was danach liegt, wird gar nicht erst geladen (Schlussprüfung bleibt zu)."""
+    o, h, l, c = (np.array(D.laden(x)[j, :i_ende], np.float64) for x in "ohlc")
+    fc = np.array(D.laden("fcum")[j, :i_ende], np.float64)
+    return o, h, l, c, np.array(D.laden("gueltig")[j, :i_ende]), np.diff(fc, prepend=0.0), float(np.load(D.SPEICHER / "slip_bp.npy")[j])
 
 
 def regeln():
@@ -220,7 +221,7 @@ def rechne(i_ende: int, nur=None, mit_orders=0):
         erg[ken] = {x: np.zeros((len(D.COINS), 2, ntage)) for x in ("brut", "nord", "slipb")}
         erg[ken].update(markt=np.zeros((len(D.COINS), ntage)), zahl=np.zeros((len(D.COINS), 7)), slip_coin=np.zeros(len(D.COINS)), orders={})
     for ci, coin in enumerate(D.COINS):
-        o, h, l, c, g, fs, slip = coin_daten(ci)
+        o, h, l, c, g, fs, slip = coin_daten(ci, i_ende)
         dh = richtung_stunden(c)
         st = {}
         for tf, k in EINSTELLUNGEN:
@@ -303,58 +304,87 @@ def nachbarn(ken: str) -> list:
     return [f"{v}_{a}h_k{b}" for a, b in EINSTELLUNGEN if (a == tf) != (b == k)]
 
 
+GRENZE = {"T": 0.025, "V1": 0.16}                                   # höchstens dieser Anteil der Ziehungen ohne Vorteil
+
+
+def urteil(reihen: dict) -> dict:
+    """Die vier Bedingungen für die zwölf Kandidaten, gerechnet auf den ungerundeten Tagesreihen des Kontos.
+    reihen: {(Kennung, Zeitraum): Tagesreihe}; verlangt B0 und alle Kandidaten in T und V1."""
+    for x in reihen.values():
+        if not np.isfinite(x).all():
+            raise SystemExit("Tagesreihe mit ungültigen Werten: kein Urteil.")
+    kand = sorted({k for k, _ in reihen if k[0] == "V"})
+    sh = {key: sharpe(x) for key, x in reihen.items()}
+    ueber = lambda k: all(sh[(k, zr)] > sh[("B0", zr)] for zr in ("T", "V1"))
+    out = {}
+    for ken in kand:
+        u = {}
+        for zr in ("T", "V1"):
+            p = stichprobe(reihen[(ken, zr)], reihen[("B0", zr)])
+            u[zr] = {"differenz": sh[(ken, zr)] - sh[("B0", zr)], "anteil_ohne_vorteil": p,
+                     "bedingung": bool(sh[(ken, zr)] > sh[("B0", zr)] and p <= GRENZE[zr])}
+        u["urteil"] = {"1_T": u["T"]["bedingung"], "2_V1": u["V1"]["bedingung"],
+                       "3_netto_positiv": bool(reihen[(ken, "T")].sum() > 0 and reihen[(ken, "V1")].sum() > 0),
+                       "4_nachbar": bool(any(ueber(x) for x in nachbarn(ken)))}
+        u["urteil"]["besteht_T_und_V1"] = all(u["urteil"].values())
+        out[ken] = u
+    return out
+
+
+ERGEBNIS = F / "ergebnisse/e23_marktstruktur.json"
+
+
 def hauptlauf():
+    if ERGEBNIS.exists() and "V2" in json.loads(ERGEBNIS.read_text()):
+        raise SystemExit("Die Schlussprüfung ist schon geöffnet; das Ergebnis wird nicht überschrieben.")
     erg = rechne(ENDE_V1)
     out = {"experiment": "E23", "festlegung": "forschung/protokoll.md Abschnitt 43", "gerechnet_bis": "2024-06-30 (V2 nicht gerechnet)",
            "kosten": "Taker 8 bp je Order, 85 % Rebate; Slippage: größerer Wert aus gemessener Yubit-Slippage und 5 % der Spanne der Kerze davor",
            "regeln": {}}
     reihen = {}
     for ken, r in erg.items():
-        e = {"titel": TITEL[ken[:2]], "zaehler": dict(zip(("einstiege", "signalwechsel", "stops", "ziele", "nachzug", "wiedereinstiege", "filter_aus"),
+        e = {"titel": TITEL[ken[:2]], "zaehler_ganzer_lauf_ab_2021_07": dict(zip(("einstiege", "signalwechsel", "stops", "ziele", "nachzug", "wiedereinstiege", "filter_aus"),
                                                              (int(x) for x in r["zahl"].sum(0))))}
         for zr in ("T", "V1"):
             e[zr], reihen[(ken, zr)] = kennzahlen(r, zr)
         out["regeln"][ken] = e
-    for ken, e in out["regeln"].items():                             # Urteil nur für die zwölf Kandidaten
-        if ken[0] != "V":
-            continue
-        for zr, grenze in (("T", 0.025), ("V1", 0.16)):
-            p = stichprobe(reihen[(ken, zr)], reihen[("B0", zr)])
-            e[zr].update(sharpe_minus_basis=round(e[zr]["sharpe"] - out["regeln"]["B0"][zr]["sharpe"], 3), anteil_ohne_vorteil=round(p, 4),
-                         bedingung=bool(e[zr]["sharpe"] > out["regeln"]["B0"][zr]["sharpe"] and p <= grenze))
-    for ken, e in out["regeln"].items():
-        if ken[0] != "V":
-            continue
-        ueber = lambda x: all(out["regeln"][x][zr]["sharpe"] > out["regeln"]["B0"][zr]["sharpe"] for zr in ("T", "V1"))
-        e["urteil"] = {"1_T": e["T"]["bedingung"], "2_V1": e["V1"]["bedingung"],
-                       "3_netto_positiv": bool(e["T"]["summe_pct"] > 0 and e["V1"]["summe_pct"] > 0),
-                       "4_nachbar": bool(any(ueber(x) for x in nachbarn(ken)))}
-        e["urteil"]["besteht_T_und_V1"] = all(e["urteil"].values())
+    for ken, u in urteil(reihen).items():
+        e = out["regeln"][ken]
+        for zr in ("T", "V1"):
+            e[zr].update(sharpe_minus_basis=round(u[zr]["differenz"], 3), anteil_ohne_vorteil=round(u[zr]["anteil_ohne_vorteil"], 4),
+                         bedingung=u[zr]["bedingung"])
+        e["urteil"] = u["urteil"]
     best = [k for k, e in out["regeln"].items() if e.get("urteil", {}).get("besteht_T_und_V1")]
     out["besteher_T_und_V1"] = best
     out["einstufung"] = "A (verworfen), V2 bleibt geschlossen" if not best else "offen: Schlussprüfung V2 für " + ", ".join(best)
-    (F / "ergebnisse").mkdir(exist_ok=True)
-    (F / "ergebnisse/e23_marktstruktur.json").write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n")
-    np.savez_compressed(F / "ergebnisse/e23_marktstruktur_tage.npz", **{f"{k}_{z}": v for (k, z), v in reihen.items()})
+    ERGEBNIS.parent.mkdir(exist_ok=True)
+    ERGEBNIS.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n")
+    np.savez_compressed(ERGEBNIS.with_name("e23_marktstruktur_tage.npz"), **{f"{k}_{z}": v for (k, z), v in reihen.items()})
     return out
 
 
 def schlusspruefung(kennungen: list):
-    alt = json.loads((F / "ergebnisse/e23_marktstruktur.json").read_text())
+    alt = json.loads(ERGEBNIS.read_text())
     if "V2" in alt:
         raise SystemExit("Die Schlussprüfung wurde schon geöffnet (einmalig).")
     if sorted(kennungen) != sorted(alt["besteher_T_und_V1"]) or not kennungen:
         raise SystemExit("V2 wird nur für genau die Besteher von T und V1 geöffnet: " + ", ".join(alt["besteher_T_und_V1"]))
+    alt["V2"] = {"stand": "geöffnet, Rechnung läuft"}                # Sperre steht, bevor die erste Zahl aus V2 entsteht
+    ERGEBNIS.write_text(json.dumps(alt, ensure_ascii=False, indent=1) + "\n")
     erg = rechne(D.N, nur=set(kennungen) | {"B0"})
-    v2 = {}
+    v2, reihe = {}, {}
     for ken, r in erg.items():
-        v2[ken], _ = kennzahlen(r, "V2")
+        v2[ken], reihe[ken] = kennzahlen(r, "V2")
+        if not np.isfinite(reihe[ken]).all():
+            raise SystemExit("Tagesreihe mit ungültigen Werten: kein Urteil.")
     for ken in kennungen:
-        v2[ken]["besteht"] = bool(v2[ken]["sharpe"] > v2["B0"]["sharpe"] and v2[ken]["summe_pct"] > 0)
+        v2[ken]["besteht"] = bool(sharpe(reihe[ken]) > sharpe(reihe["B0"]) and reihe[ken].sum() > 0)
     alt["V2"] = v2
+    alt["gerechnet_bis"] = "2025-03-31 (V2 einmal geöffnet für: " + ", ".join(kennungen) + ")"
     alt["einstufung"] = "C (Kandidat für Test 4): " + ", ".join(k for k in kennungen if v2[k]["besteht"]) if any(v2[k]["besteht"] for k in kennungen) \
         else "B (interessant): besteht T und V1, nicht V2"
-    (F / "ergebnisse/e23_marktstruktur.json").write_text(json.dumps(alt, ensure_ascii=False, indent=1) + "\n")
+    ERGEBNIS.write_text(json.dumps(alt, ensure_ascii=False, indent=1) + "\n")
+    np.savez_compressed(ERGEBNIS.with_name("e23_marktstruktur_tage_v2.npz"), **reihe)
     return alt
 
 

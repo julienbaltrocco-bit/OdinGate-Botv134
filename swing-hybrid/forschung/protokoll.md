@@ -1525,3 +1525,46 @@ Eröffnung o, Hoch h, Tief l, Schluss c; „Prüfung i“ ist der Schluss der Ke
     `integers(0, n, ⌈n/20⌉)`; die Blöcke in der gezogenen Reihenfolge aneinandergehängt.
 15. **Programm:** `forschung/experimente/e23_marktstruktur.py`, Tests `tests/test_e23_marktstruktur.py` (40 Tests grün).
     Bis hierher sind nur Orderlisten einzelner Coins für die Kontrolle erzeugt worden; kein Ergebnis wurde angesehen.
+
+### Unabhängige Gegenprüfung von E23 und weitere Präzisierungen (21.11.2026, vor der Rechnung des Ergebnisses)
+
+Drei unabhängige Prüfer haben geprüft, ohne das Ergebnis zu rechnen oder zu sehen:
+- **Nachbau nur nach dem Text** (zweiter Programmierer, eigener Code): Für SOL und ETH und zehn Regeln stimmen alle
+  20 Orderlisten überein (Kerze, Seite, Kurs; 667 bis 2.080 Orders je Liste), ebenso die Summen (Abweichung unter
+  2 × 10⁻¹⁴) und die Block-Stichprobe (0,0514 auf beiden Seiten). Zusätzlich alle 16 Regeln direkt am Kern und 384
+  künstliche Verläufe mit Lücken und Gleichständen: keine Abweichung.
+- **Simulator:** kein Blick in die Zukunft (736 Störungsfälle an echten Daten, 0 Verstöße), keine Abweichung vom
+  Text, Buchung richtig. 48 Stops, 24 Wiedereinstiege und 60 Filter-Wechsel von Hand aus den Rohkerzen nachvollzogen.
+- **Auswertung:** Zeiträume, Kosten, Kennzahlen, Stichprobe und Urteil stimmen mit einer eigenen Rechnung überein.
+
+**Behoben vor der Rechnung:** (1) Das Urteil verglich gerundete Zahlen; es rechnet jetzt auf den ungerundeten
+Tagesreihen (Rundung hätte nur ein knappes Bestehen verhindern können, nie eines erzeugen). (2) Die einmalige Öffnung
+von V2 war durch einen späteren Hauptlauf überschreibbar; jetzt gesperrt, die Sperre steht vor der ersten V2-Zahl.
+(3) Der Hauptlauf lädt die Daten ab 01.07.2024 gar nicht mehr. (4) Die Tests waren an drei Stellen blind (Datenlücken,
+Tagesbuchung je Richtung, 4-Stunden-Kerzen); die zweite Rechnung des Prüfers ist jetzt Teil der Tests
+(`tests/e23_referenz.py`), dazu Tests für Stop-Niveau, Auswertung, Urteil und Sperre: 112 Tests grün. Die 20
+Orderlisten sind nach den Korrekturen unverändert.
+
+**Weitere Präzisierungen (der Text ließ sie offen; der Code war schon so, keine Regel ändert sich):**
+16. **Benennung der Orders:** Schließen bei Wechsel von d oder bei d = 0: „signalwechsel“; die Eröffnung danach und
+    jede Eröffnung aus flach: „einstieg“; Wiedereinstieg in V2: „wiedereinstieg“; V3 schließt bei unverändertem d:
+    „filter“; dazu „stop“, „ziel“, „nachzug“.
+17. **Datenlücken:** Alles geschieht nur in Prüfungen, die stattfinden: Ende der Pause, Nachrücken des Stops,
+    Wiedereinstieg, Fortschreiben des besten Schlusses. Fällt die Prüfung, bei der ein Ereignis erstmals bekannt wäre,
+    in eine Lücke, entfällt es. Wechselt d nur innerhalb einer Lücke hin und zurück, endet die Pause nicht.
+18. **Schwellen** werden so gerechnet: Richtung × (c / Einstiegskurs − 1) ≥ 0,15 bzw. ≤ −0,05; beim Nachzug
+    Richtung × (c / bester Schluss − 1) ≤ −0,05.
+19. **Zu Punkt 7:** „frühestens bei der Prüfung nach der Einstiegskerze“ meint den Schluss der Einstiegskerze (Punkt 13).
+20. **Stichprobe und Urteil:** Der Zufallsgenerator wird für jeden Vergleich neu mit dem Startwert 23 angelegt (alle
+    Kandidaten eines Zeitraums sehen dieselben Ziehungen). Bedingung 4 meint: derselbe Nachbar hat in T und in V1 eine
+    höhere Sharpe-Zahl als B0 (ohne Absicherung gegen Zufall, ohne Netto-Bedingung). Eine Reihe ohne Streuung hat
+    die Sharpe-Zahl 0. Verglichen werden ungerundete Werte.
+
+**Hinweise der Prüfer zur Auslegung des Urteils (die Regeln bleiben, wie sie sind):**
+- Der Vergleich der Sharpe-Zahl ist nicht neutral dagegen, wie lange eine Regel im Markt ist. Ist die Sharpe-Zahl
+  von B0 in einem Zeitraum negativ, sieht eine Regel, die zeitweise flach ist, allein dadurch besser aus; ist sie
+  positiv, eher schlechter. Der Bericht nennt deshalb das Vorzeichen von B0 je Zeitraum.
+- Die Stichprobe ist etwas zu großzügig (rund 3 % statt 2,5 % in T, 17 % statt 16 % in V1). Zufällige Besteher bei
+  zwölf Kandidaten: rund 0,06 bis 0,12 statt 0,05. Ergebnisse nahe an der Schwelle gelten als grenzwertig.
+- In V2 gibt es keinen Schutz gegen Zufall mehr (nur „besser als B0 und positiv“); ein zufälliger Besteher käme dort
+  mit 30 bis 50 % durch.
