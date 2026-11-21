@@ -2561,3 +2561,23 @@ umzubauen. Das geschieht hier nicht.
 - **Verbraucht:** Mit dieser Rechnung ist die Historie der Kontrakte bis 20.11.2026 für diese beiden Fragen angesehen.
   Ein Prüfzeitraum wird nicht zurückgehalten; Bestätigung gibt es nur vorwärts (Sammler, Papier-Test).
 - Kein Nachjustieren: keine anderen Schwellen, Zeitpunkte oder Kontraktlisten nach dem ersten Ergebnis.
+
+**Präzisierungen zu Abschnitt 56 (21.11.2026, vor der Rechnung; Daten sind geladen, aber nicht ausgewertet).**
+1. *Teil 1, Kontrakte nach der Regel:* SNDK, XAU, SOXL, SKHYNIX, SPCX, XAG, CL, MU, SKHY, BZ, SOXS, SAMSUNG, DRAM, CRCL, QQQ,
+   INTC, MRVL, NVDA, PAXG, EWY, MUU, MSTR, TSLA, NBIS, LITE, AMD, AAOI, CBRS, GOOGL, ZHIPU (je …USDT). Größte Spanne der
+   Auswahl 6,7 bp, kleinster Werktagsumsatz rund 40 Mio. USDT. KORU und SNXX fallen wegen ihrer Spanne heraus.
+2. *Teil 1, Abrechnung:* Die Reihe eines Kontrakts wird wie im Papier-Runner als Ganzes gerechnet (fehlt das Übergewicht
+   einer Kerze, gibt es dort keinen Einstieg). Trades, die am Datenende noch offen sind, zählen nicht. Tag eines Trades
+   ist der UTC-Tag des Einstiegs. Zufallsprüfung: aus den Tagen mit mindestens einem Einstieg so viele Tage mit
+   Zurücklegen ziehen, wie es solche Tage gibt; Kennzahl ist das Mittel über alle Trades der gezogenen Tage; p ist der
+   Anteil der Ziehungen mit Mittel ≤ 0.
+3. *Teil 1, Gruppen (nur Bericht):* Rohstoff = XAU, XAG, CL, BZ, PAXG; Fonds = SOXL, SOXS, QQQ, EWY, DRAM, MUU; alle
+   übrigen Einzelwerte.
+4. *Teil 2, Daten:* Stundenkerzen von Yubit liegen für 133 der 134 Kontrakte vor (ANTHROPICUSDT ist nicht mehr gelistet).
+   Ein Kurs zählt nur, wenn es die Stundenkerze mit genau diesem Beginn gibt (kein Auffüllen).
+5. *Teil 2, Rechnung:* Je Wochenende erst stutzen (W und M je bei ihrem 1 %- und 99 %-Punkt über die Kontrakte), dann das
+   Mittel abziehen. Steigung = Summe(W·M) / Summe(W²). Geprüft wird das Mittel der Steigungen gegen null (t-Test über
+   die Wochenenden). Handelsfassung: Gewichte aus dem gestutzten, bereinigten W, geteilt durch die Summe der Beträge
+   (Umkehr: Gewicht = −W, Fortsetzung: +W); Ertrag mit dem unveränderten M; Kosten je Kontrakt = Betrag des Gewichts ×
+   2 × (Gebühr 8 bp, mit Rebate 1,2 bp, plus gemessene Spanne, mindestens 0,5 bp). Hälften: die erste Hälfte der
+   Wochenenden (bei ungerader Zahl eines mehr) gegen den Rest.
