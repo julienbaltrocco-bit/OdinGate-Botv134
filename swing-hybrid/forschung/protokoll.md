@@ -1474,3 +1474,46 @@ der Stops und Wiedereinstiege, Ergebnis je Jahr, long und short getrennt.
 (Sharpe-Zahl rund 0,4 bis 0,6 im damaligen Prüfzeitraum). Verwandte Regeln (Ausbrüche, Rücksetzer im Trend) lagen in
 der Fabrik nach Kosten fast durchweg im Minus. Stops und Filter senken oft Risiko **und** Ertrag gleichermaßen; dann
 ändert sich am Ertrag je Risiko nichts. T und V1 wurden für andere Regeln schon gesehen.
+
+### Präzisierungen zu Abschnitt 43 (21.11.2026, vor der Rechnung; damit zwei Programmierer dasselbe bauen)
+
+Keine Regel ändert sich; festgelegt wird nur, was der Text oben offen ließ. Bezeichnungen: 5-Minuten-Kerze i mit
+Eröffnung o, Hoch h, Tief l, Schluss c; „Prüfung i“ ist der Schluss der Kerze i, ausgeführt wird zu o der Kerze i+1.
+
+1. **Raster.** Kerze 0 beginnt am 01.07.2021 00:00 UTC. Stunde = 12 Kerzen, 4 Stunden = 48 Kerzen, jeweils ab Kerze 0.
+   Eine TF-Kerze hat Eröffnung der ersten, Hoch und Tief über alle, Schluss der letzten ihrer 5-Minuten-Kerzen.
+2. **Wissen bei Prüfung i.** Bekannt sind alle TF-Kerzen, deren letzte 5-Minuten-Kerze höchstens i−1 ist (eine Kerze
+   Verzug). Eine TF-Kerze wird also zum ersten Mal bei der Prüfung der ersten 5-Minuten-Kerze nach ihr verwendet.
+3. **Richtung d** bei Prüfung i: Vorzeichen von (Schluss der letzten bekannten Stundenkerze − Schluss der Stundenkerze
+   336 Stunden davor). Solange noch keine 337 Stundenkerzen bekannt sind: d = 0. d = 0 heißt flach.
+4. **Struktur, Reihenfolge am Schluss einer TF-Kerze t:** zuerst werden die Zwischenhochs und -tiefs gültig, die mit
+   dieser Kerze bekannt werden (Kerze t−k), und ersetzen das bisherige Niveau (ungebrochen); danach wird der Bruch
+   geprüft: Schluss von t strikt über dem gültigen, ungebrochenen Zwischenhoch = Bruch nach oben (Niveau gilt dann als
+   gebrochen, s = +1); strikt unter dem Zwischentief = Bruch nach unten (s = −1). Vor dem ersten Bruch ist s = 0.
+5. **Prüfung findet nur statt,** wenn die Kerzen i und i+1 beide gültig sind (keine Datenlücke). In Lücken stehen
+   im Speicher flache Kerzen zum letzten Schluss; sie gehen unverändert in Stunden- und Strukturkerzen ein.
+6. **Reihenfolge je Prüfung und Coin** (wie im Bot): (a) Pause endet, wenn d nicht mehr die Richtung der gestoppten
+   Position ist. (b) Hat die Position die Richtung d: Stop bzw. Ausstieg prüfen. (c) Sollrichtung bestimmen: B0 und
+   V1, V2, K1 bis K3: d, außer in der Pause (dann flach); V3: d, wenn s = d, sonst flach. (d) Weicht die Position von
+   der Sollrichtung ab: schließen und, wenn die Sollrichtung nicht flach ist, neu eröffnen (zwei Orders, zur selben
+   Eröffnung). Ein Wiedereinstieg (V2) verlangt, dass die Pause schon vor dieser Prüfung bestand und dass der
+   Strukturbruch in Richtung d genau bei dieser Prüfung erstmals bekannt ist.
+7. **Stop-Niveau V1 und V2** (Short; Long gespiegelt), bestimmt bei der Prüfung, die den Einstieg auslöst: das
+   gültige, ungebrochene Zwischenhoch, wenn es strikt über c der Prüfkerze liegt; sonst das höchste h der letzten
+   (2k+1) TF-Längen an 5-Minuten-Kerzen bis einschließlich der Prüfkerze. Nachrücken: Wird bei einer Prüfung ein
+   Zwischenhoch erstmals bekannt, das strikt unter dem Stop und strikt über c der Prüfkerze liegt, ist es der neue
+   Stop. Auslösung: c strikt über dem Stop, frühestens bei der Prüfung nach der Einstiegskerze.
+8. **Vergleichsregeln.** Einstiegskurs = o der Einstiegskerze. K1: c mindestens 5 % gegen die Position. K2: wie K1,
+   dazu c mindestens 15 % für die Position (Ziel). K3: bester c seit dem Einstieg (Start beim Einstiegskurs), c
+   mindestens 5 % davon zurück. Danach jeweils Pause wie in Punkt 6.
+9. **Buchung.** Ergebnis in Anteilen des Einsatzes beim Einstieg: d × (Kurs / Einstiegskurs − 1). Jede Order kostet
+   Gebühr und Slippage auf den Einsatz, gebucht am Tag ihrer Ausführungskerze. Slippage in bp: das Größere aus dem
+   Wert des Coins und 5 % × (h − l) / c × 10.000 der Kerze vor der Ausführungskerze. Funding wie in der Fabrik: Eine
+   Position von o der Kerze a bis o der Kerze b zahlt d × (Summe der Funding-Sätze der Kerzen a+1 bis b), gebucht am
+   Tag der jeweiligen Kerze. Tagesschluss = c der letzten Kerze des UTC-Tages.
+10. **Sharpe-Zahl:** Mittel durch Streuung (Stichprobe) der Tagesergebnisse des Kontos, mal Wurzel aus 365.
+    **Block-Stichprobe:** n Tage; je Ziehung ⌈n/20⌉ Startpunkte gleichverteilt aus 0 bis n−1, ab jedem 20
+    aufeinanderfolgende Tage (am Ende zum Anfang umlaufend), auf n Tage gekürzt, für Kandidat und B0 dieselben Tage;
+    gezählt wird der Anteil der Ziehungen, in denen die Sharpe-Zahl des Kandidaten nicht über der von B0 liegt.
+11. **Start.** Gerechnet wird ab Kerze 0; gewertet werden die Tage des jeweiligen Zeitraums. Positionen, die über
+    eine Zeitraumgrenze laufen, werden täglich bewertet und zählen in jedem Zeitraum mit ihren Tagen.
