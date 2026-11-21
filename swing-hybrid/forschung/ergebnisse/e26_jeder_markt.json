@@ -1,0 +1,9169 @@
+{
+ "experiment": "E26",
+ "festlegung": "forschung/protokoll.md Abschnitt 49",
+ "nicht_krypto": {
+  "DIA": {
+   "gruppe": "labor_etf",
+   "name": "DIA",
+   "von": "2016-01-04",
+   "bis": "2026-10-16",
+   "slippage_bp": 1.76,
+   "je_zeitraum_pct": {
+    "P0": 44.56,
+    "T": -12.36,
+    "V1": 10.32,
+    "V2": 8.22,
+    "P3": -8.54
+   },
+   "zeitraeume": 5,
+   "summe_pct": 42.2,
+   "stress_pct": -87.26,
+   "sharpe": 0.239,
+   "t_wert": 0.79,
+   "groesster_tag_pct": 10.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "EEM": {
+   "gruppe": "labor_etf",
+   "name": "EEM",
+   "von": "2016-01-04",
+   "bis": "2026-10-16",
+   "slippage_bp": 1.76,
+   "je_zeitraum_pct": {
+    "P0": -28.84,
+    "T": -2.78,
+    "V1": -1.0,
+    "V2": -3.16,
+    "P3": 3.8
+   },
+   "zeitraeume": 5,
+   "summe_pct": -31.99,
+   "stress_pct": -162.2,
+   "sharpe": -0.144,
+   "t_wert": -0.47,
+   "groesster_tag_pct": 10.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "EFA": {
+   "gruppe": "labor_etf",
+   "name": "EFA",
+   "von": "2016-01-04",
+   "bis": "2026-10-16",
+   "slippage_bp": 1.76,
+   "je_zeitraum_pct": {
+    "P0": -22.47,
+    "T": 18.04,
+    "V1": -0.88,
+    "V2": 2.79,
+    "P3": -12.79
+   },
+   "zeitraeume": 5,
+   "summe_pct": -15.31,
+   "stress_pct": -145.49,
+   "sharpe": -0.084,
+   "t_wert": -0.28,
+   "groesster_tag_pct": 8.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "IWM": {
+   "gruppe": "labor_etf",
+   "name": "IWM",
+   "von": "2016-01-04",
+   "bis": "2026-10-16",
+   "slippage_bp": 2.18,
+   "je_zeitraum_pct": {
+    "P0": -57.14,
+    "T": -6.66,
+    "V1": -8.48,
+    "V2": -15.27,
+    "P3": 8.92
+   },
+   "zeitraeume": 5,
+   "summe_pct": -78.63,
+   "stress_pct": -214.69,
+   "sharpe": -0.329,
+   "t_wert": -1.08,
+   "groesster_tag_pct": 9.8,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "QQQ": {
+   "gruppe": "labor_etf",
+   "name": "QQQ",
+   "von": "2016-01-04",
+   "bis": "2026-10-16",
+   "slippage_bp": 1.34,
+   "je_zeitraum_pct": {
+    "P0": -13.96,
+    "T": 19.39,
+    "V1": 5.55,
+    "V2": -21.77,
+    "P3": 7.4
+   },
+   "zeitraeume": 5,
+   "summe_pct": -3.38,
+   "stress_pct": -130.11,
+   "sharpe": -0.014,
+   "t_wert": -0.05,
+   "groesster_tag_pct": 10.8,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "SPY": {
+   "gruppe": "labor_etf",
+   "name": "SPY",
+   "von": "2016-01-04",
+   "bis": "2026-10-16",
+   "slippage_bp": 1.2,
+   "je_zeitraum_pct": {
+    "P0": 4.98,
+    "T": 8.28,
+    "V1": 13.37,
+    "V2": -6.81,
+    "P3": 7.05
+   },
+   "zeitraeume": 5,
+   "summe_pct": 26.86,
+   "stress_pct": -98.04,
+   "sharpe": 0.147,
+   "t_wert": 0.48,
+   "groesster_tag_pct": 9.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "XLE": {
+   "gruppe": "labor_etf",
+   "name": "XLE",
+   "von": "2016-01-04",
+   "bis": "2026-10-16",
+   "slippage_bp": 3.09,
+   "je_zeitraum_pct": {
+    "P0": 34.55,
+    "T": -10.52,
+    "V1": 20.52,
+    "V2": -25.42,
+    "P3": -32.95
+   },
+   "zeitraeume": 5,
+   "summe_pct": -13.82,
+   "stress_pct": -157.57,
+   "sharpe": -0.045,
+   "t_wert": -0.15,
+   "groesster_tag_pct": 16.5,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "XLF": {
+   "gruppe": "labor_etf",
+   "name": "XLF",
+   "von": "2016-01-04",
+   "bis": "2026-10-16",
+   "slippage_bp": 1.76,
+   "je_zeitraum_pct": {
+    "P0": -55.51,
+    "T": 0.63,
+    "V1": 15.44,
+    "V2": 6.5,
+    "P3": -24.51
+   },
+   "zeitraeume": 5,
+   "summe_pct": -57.45,
+   "stress_pct": -189.91,
+   "sharpe": -0.258,
+   "t_wert": -0.85,
+   "groesster_tag_pct": 10.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "XLK": {
+   "gruppe": "labor_etf",
+   "name": "XLK",
+   "von": "2016-01-04",
+   "bis": "2026-10-16",
+   "slippage_bp": 1.76,
+   "je_zeitraum_pct": {
+    "P0": -16.26,
+    "T": 9.05,
+    "V1": 7.28,
+    "V2": -31.74,
+    "P3": 18.82
+   },
+   "zeitraeume": 5,
+   "summe_pct": -12.86,
+   "stress_pct": -143.86,
+   "sharpe": -0.049,
+   "t_wert": -0.16,
+   "groesster_tag_pct": 12.3,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "XLV": {
+   "gruppe": "labor_etf",
+   "name": "XLV",
+   "von": "2016-01-04",
+   "bis": "2026-10-16",
+   "slippage_bp": 1.76,
+   "je_zeitraum_pct": {
+    "P0": -21.65,
+    "T": -12.85,
+    "V1": -10.68,
+    "V2": -2.2,
+    "P3": -36.58
+   },
+   "zeitraeume": 5,
+   "summe_pct": -83.96,
+   "stress_pct": -216.06,
+   "sharpe": -0.483,
+   "t_wert": -1.59,
+   "groesster_tag_pct": 8.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "EWJ": {
+   "gruppe": "runde14",
+   "name": "EWJ (Japan)",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 13.3,
+   "je_zeitraum_pct": {
+    "P0": 5.6,
+    "T": -15.3,
+    "V1": -9.55,
+    "V2": -24.06,
+    "P3": -41.99
+   },
+   "zeitraeume": 5,
+   "summe_pct": -85.3,
+   "stress_pct": -236.66,
+   "sharpe": -0.64,
+   "t_wert": -1.67,
+   "groesster_tag_pct": 8.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "EWY": {
+   "gruppe": "runde14",
+   "name": "EWY (Korea)",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 0.72,
+   "je_zeitraum_pct": {
+    "P0": 34.58,
+    "T": 7.98,
+    "V1": 15.19,
+    "V2": -19.17,
+    "P3": 74.31
+   },
+   "zeitraeume": 5,
+   "summe_pct": 112.9,
+   "stress_pct": 34.9,
+   "sharpe": 0.479,
+   "t_wert": 1.25,
+   "groesster_tag_pct": 15.5,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "XAU": {
+   "gruppe": "runde14",
+   "name": "Gold",
+   "von": "2020-01-02",
+   "bis": "2026-10-26",
+   "slippage_bp": 0.5,
+   "je_zeitraum_pct": {
+    "P0": -22.67,
+    "T": -10.12,
+    "V1": -15.32,
+    "V2": 9.23,
+    "P3": -16.06
+   },
+   "zeitraeume": 5,
+   "summe_pct": -54.95,
+   "stress_pct": -133.35,
+   "sharpe": -0.411,
+   "t_wert": -1.07,
+   "groesster_tag_pct": 12.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "XAG": {
+   "gruppe": "runde14",
+   "name": "Silber",
+   "von": "2020-01-02",
+   "bis": "2026-10-26",
+   "slippage_bp": 6.35,
+   "je_zeitraum_pct": {
+    "P0": 36.43,
+    "T": -33.56,
+    "V1": -26.01,
+    "V2": -5.33,
+    "P3": 90.69
+   },
+   "zeitraeume": 5,
+   "summe_pct": 62.22,
+   "stress_pct": -46.19,
+   "sharpe": 0.189,
+   "t_wert": 0.49,
+   "groesster_tag_pct": 63.5,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "XPT": {
+   "gruppe": "runde14",
+   "name": "Platin",
+   "von": "2020-01-02",
+   "bis": "2026-10-26",
+   "slippage_bp": 0.85,
+   "je_zeitraum_pct": {
+    "P0": -24.25,
+    "T": -73.54,
+    "V1": -60.38,
+    "V2": -24.32,
+    "P3": 49.64
+   },
+   "zeitraeume": 5,
+   "summe_pct": -132.85,
+   "stress_pct": -211.72,
+   "sharpe": -0.512,
+   "t_wert": -1.34,
+   "groesster_tag_pct": 21.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "XPD": {
+   "gruppe": "runde14",
+   "name": "Palladium",
+   "von": "2020-01-02",
+   "bis": "2026-10-26",
+   "slippage_bp": 3.14,
+   "je_zeitraum_pct": {
+    "P0": -26.11,
+    "T": -69.11,
+    "V1": -101.37,
+    "V2": -22.5,
+    "P3": -0.11
+   },
+   "zeitraeume": 5,
+   "summe_pct": -219.2,
+   "stress_pct": -309.66,
+   "sharpe": -0.679,
+   "t_wert": -1.77,
+   "groesster_tag_pct": 22.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "COPPER": {
+   "gruppe": "runde14",
+   "name": "Kupfer",
+   "von": "2020-01-02",
+   "bis": "2026-10-26",
+   "slippage_bp": 1.63,
+   "je_zeitraum_pct": {
+    "P0": 24.27,
+    "T": -32.61,
+    "V1": 0.83,
+    "V2": -10.11,
+    "P3": -45.06
+   },
+   "zeitraeume": 5,
+   "summe_pct": -62.68,
+   "stress_pct": -146.86,
+   "sharpe": -0.338,
+   "t_wert": -0.88,
+   "groesster_tag_pct": 24.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "CL": {
+   "gruppe": "runde14",
+   "name": "WTI-Öl",
+   "von": "2020-04-22",
+   "bis": "2026-10-26",
+   "slippage_bp": 3.45,
+   "je_zeitraum_pct": {
+    "P0": 43.25,
+    "T": -85.7,
+    "V1": -12.86,
+    "V2": -30.05,
+    "P3": -31.29
+   },
+   "zeitraeume": 5,
+   "summe_pct": -116.66,
+   "stress_pct": -204.69,
+   "sharpe": -0.413,
+   "t_wert": -1.05,
+   "groesster_tag_pct": 18.1,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "BZ": {
+   "gruppe": "runde14",
+   "name": "Brent-Öl",
+   "von": "2020-01-02",
+   "bis": "2026-10-26",
+   "slippage_bp": 1.08,
+   "je_zeitraum_pct": {
+    "P0": 93.77,
+    "T": -90.42,
+    "V1": -2.05,
+    "V2": -6.46,
+    "P3": -34.66
+   },
+   "zeitraeume": 5,
+   "summe_pct": -39.82,
+   "stress_pct": -120.24,
+   "sharpe": -0.128,
+   "t_wert": -0.33,
+   "groesster_tag_pct": 25.5,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "NATGAS": {
+   "gruppe": "runde14",
+   "name": "Erdgas",
+   "von": "2020-01-02",
+   "bis": "2026-10-26",
+   "slippage_bp": 8.24,
+   "je_zeitraum_pct": {
+    "P0": -54.38,
+    "T": -24.52,
+    "V1": -65.9,
+    "V2": -33.76,
+    "P3": -66.81
+   },
+   "zeitraeume": 5,
+   "summe_pct": -245.37,
+   "stress_pct": -358.09,
+   "sharpe": -0.421,
+   "t_wert": -1.1,
+   "groesster_tag_pct": 90.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "TBT": {
+   "gruppe": "runde14",
+   "name": "TBT (US-Anleihen short)",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 17.32,
+   "je_zeitraum_pct": {
+    "P0": -32.4,
+    "T": 15.54,
+    "V1": -19.5,
+    "V2": -41.24,
+    "P3": -31.9
+   },
+   "zeitraeume": 5,
+   "summe_pct": -109.5,
+   "stress_pct": -275.15,
+   "sharpe": -0.513,
+   "t_wert": -1.34,
+   "groesster_tag_pct": 9.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:AAOI": {
+   "gruppe": "aktie",
+   "name": "Aktie AAOI",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 3.17,
+   "je_zeitraum_pct": {
+    "P0": 108.33,
+    "T": 307.34,
+    "V1": 278.09,
+    "V2": 60.58,
+    "P3": 54.83
+   },
+   "zeitraeume": 5,
+   "summe_pct": 809.16,
+   "stress_pct": 714.42,
+   "sharpe": 0.814,
+   "t_wert": 2.13,
+   "groesster_tag_pct": 85.4,
+   "alle_zeitraeume_positiv": true,
+   "auffaellig": true
+  },
+  "AKTIE:AAPL": {
+   "gruppe": "aktie",
+   "name": "Aktie AAPL",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 1.4,
+   "je_zeitraum_pct": {
+    "P0": 10.52,
+    "T": 44.3,
+    "V1": 18.24,
+    "V2": 12.78,
+    "P3": -12.72
+   },
+   "zeitraeume": 5,
+   "summe_pct": 73.11,
+   "stress_pct": -6.94,
+   "sharpe": 0.345,
+   "t_wert": 0.9,
+   "groesster_tag_pct": 13.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:ADBE": {
+   "gruppe": "aktie",
+   "name": "Aktie ADBE",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 13.75,
+   "je_zeitraum_pct": {
+    "P0": 7.37,
+    "T": 12.85,
+    "V1": -75.48,
+    "V2": 0.32,
+    "P3": -6.41
+   },
+   "zeitraeume": 5,
+   "summe_pct": -61.34,
+   "stress_pct": -199.75,
+   "sharpe": -0.233,
+   "t_wert": -0.61,
+   "groesster_tag_pct": 16.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:AGPU": {
+   "gruppe": "aktie",
+   "name": "Aktie AGPU",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 25.13,
+   "je_zeitraum_pct": {
+    "P0": -268.26,
+    "T": -112.26,
+    "V1": -9.9,
+    "V2": -47.35,
+    "P3": -62.99
+   },
+   "zeitraeume": 5,
+   "summe_pct": -500.75,
+   "stress_pct": -703.71,
+   "sharpe": -0.527,
+   "t_wert": -1.37,
+   "groesster_tag_pct": 91.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:AKAM": {
+   "gruppe": "aktie",
+   "name": "Aktie AKAM",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 8.13,
+   "je_zeitraum_pct": {
+    "P0": -18.23,
+    "T": -67.07,
+    "V1": 3.73,
+    "V2": -11.16,
+    "P3": -6.04
+   },
+   "zeitraeume": 5,
+   "summe_pct": -98.77,
+   "stress_pct": -212.48,
+   "sharpe": -0.377,
+   "t_wert": -0.98,
+   "groesster_tag_pct": 32.5,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:ALAB": {
+   "gruppe": "aktie",
+   "name": "Aktie ALAB",
+   "von": "2024-03-20",
+   "bis": "2026-10-23",
+   "slippage_bp": 4.27,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": -98.87,
+    "V2": 153.29,
+    "P3": 162.82
+   },
+   "zeitraeume": 3,
+   "summe_pct": 217.24,
+   "stress_pct": 177.33,
+   "sharpe": 0.758,
+   "t_wert": 1.22,
+   "groesster_tag_pct": 60.5,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:AMAT": {
+   "gruppe": "aktie",
+   "name": "Aktie AMAT",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 6.4,
+   "je_zeitraum_pct": {
+    "P0": 22.51,
+    "T": 17.89,
+    "V1": -20.02,
+    "V2": 4.86,
+    "P3": 102.43
+   },
+   "zeitraeume": 5,
+   "summe_pct": 127.67,
+   "stress_pct": 20.96,
+   "sharpe": 0.377,
+   "t_wert": 0.98,
+   "groesster_tag_pct": 17.1,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:AMC": {
+   "gruppe": "aktie",
+   "name": "Aktie AMC",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 25.5,
+   "je_zeitraum_pct": {
+    "P0": 353.5,
+    "T": -74.62,
+    "V1": -281.59,
+    "V2": -28.31,
+    "P3": 84.75
+   },
+   "zeitraeume": 5,
+   "summe_pct": 53.73,
+   "stress_pct": -129.11,
+   "sharpe": 0.02,
+   "t_wert": 0.05,
+   "groesster_tag_pct": 671.3,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:AMD": {
+   "gruppe": "aktie",
+   "name": "Aktie AMD",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 0.5,
+   "je_zeitraum_pct": {
+    "P0": 20.03,
+    "T": 146.8,
+    "V1": -77.91,
+    "V2": -9.64,
+    "P3": 240.33
+   },
+   "zeitraeume": 5,
+   "summe_pct": 319.61,
+   "stress_pct": 241.38,
+   "sharpe": 0.769,
+   "t_wert": 2.01,
+   "groesster_tag_pct": 31.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:AMZN": {
+   "gruppe": "aktie",
+   "name": "Aktie AMZN",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 0.5,
+   "je_zeitraum_pct": {
+    "P0": 0.83,
+    "T": 41.4,
+    "V1": -53.19,
+    "V2": -12.03,
+    "P3": -92.56
+   },
+   "zeitraeume": 5,
+   "summe_pct": -115.55,
+   "stress_pct": -192.46,
+   "sharpe": -0.462,
+   "t_wert": -1.21,
+   "groesster_tag_pct": 16.5,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:ANET": {
+   "gruppe": "aktie",
+   "name": "Aktie ANET",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 33.06,
+   "je_zeitraum_pct": {
+    "P0": 39.04,
+    "T": 126.92,
+    "V1": -30.87,
+    "V2": -50.82,
+    "P3": -58.75
+   },
+   "zeitraeume": 5,
+   "summe_pct": 25.52,
+   "stress_pct": -185.73,
+   "sharpe": 0.08,
+   "t_wert": 0.21,
+   "groesster_tag_pct": 25.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:APLD": {
+   "gruppe": "aktie",
+   "name": "Aktie APLD",
+   "von": "2022-04-13",
+   "bis": "2026-10-23",
+   "slippage_bp": 19.51,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": 228.01,
+    "V1": -2.68,
+    "V2": -148.31,
+    "P3": 125.23
+   },
+   "zeitraeume": 4,
+   "summe_pct": 202.25,
+   "stress_pct": 82.21,
+   "sharpe": 0.337,
+   "t_wert": 0.72,
+   "groesster_tag_pct": 98.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:APP": {
+   "gruppe": "aktie",
+   "name": "Aktie APP",
+   "von": "2021-04-15",
+   "bis": "2026-10-23",
+   "slippage_bp": 17.54,
+   "je_zeitraum_pct": {
+    "P0": 17.37,
+    "T": -20.42,
+    "V1": 83.72,
+    "V2": 213.53,
+    "P3": 25.12
+   },
+   "zeitraeume": 5,
+   "summe_pct": 319.32,
+   "stress_pct": 192.05,
+   "sharpe": 0.634,
+   "t_wert": 1.49,
+   "groesster_tag_pct": 80.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:ARM": {
+   "gruppe": "aktie",
+   "name": "Aktie ARM",
+   "von": "2023-09-14",
+   "bis": "2026-10-23",
+   "slippage_bp": 4.35,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": 82.24,
+    "V2": -33.03,
+    "P3": 100.63
+   },
+   "zeitraeume": 3,
+   "summe_pct": 149.84,
+   "stress_pct": 105.57,
+   "sharpe": 0.591,
+   "t_wert": 1.04,
+   "groesster_tag_pct": 35.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:ASML": {
+   "gruppe": "aktie",
+   "name": "Aktie ASML",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 11.32,
+   "je_zeitraum_pct": {
+    "P0": 30.36,
+    "T": 10.06,
+    "V1": 11.34,
+    "V2": -82.13,
+    "P3": 13.78
+   },
+   "zeitraeume": 5,
+   "summe_pct": -16.59,
+   "stress_pct": -149.65,
+   "sharpe": -0.056,
+   "t_wert": -0.15,
+   "groesster_tag_pct": 15.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:ASTS": {
+   "gruppe": "aktie",
+   "name": "Aktie ASTS",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 3.22,
+   "je_zeitraum_pct": {
+    "P0": -1.73,
+    "T": 26.04,
+    "V1": 395.73,
+    "V2": -89.05,
+    "P3": 140.01
+   },
+   "zeitraeume": 5,
+   "summe_pct": 471.0,
+   "stress_pct": 377.16,
+   "sharpe": 0.535,
+   "t_wert": 1.4,
+   "groesster_tag_pct": 141.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:AVGO": {
+   "gruppe": "aktie",
+   "name": "Aktie AVGO",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 3.88,
+   "je_zeitraum_pct": {
+    "P0": -20.52,
+    "T": -55.27,
+    "V1": 0.82,
+    "V2": 7.43,
+    "P3": -45.9
+   },
+   "zeitraeume": 5,
+   "summe_pct": -113.44,
+   "stress_pct": -210.89,
+   "sharpe": -0.391,
+   "t_wert": -1.02,
+   "groesster_tag_pct": 26.8,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:AXTI": {
+   "gruppe": "aktie",
+   "name": "Aktie AXTI",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.07,
+   "je_zeitraum_pct": {
+    "P0": -56.69,
+    "T": 128.72,
+    "V1": -15.07,
+    "V2": -62.84,
+    "P3": 243.94
+   },
+   "zeitraeume": 5,
+   "summe_pct": 238.05,
+   "stress_pct": 138.79,
+   "sharpe": 0.311,
+   "t_wert": 0.81,
+   "groesster_tag_pct": 62.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:BABA": {
+   "gruppe": "aktie",
+   "name": "Aktie BABA",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 4.33,
+   "je_zeitraum_pct": {
+    "P0": -25.67,
+    "T": 70.67,
+    "V1": -49.24,
+    "V2": 56.18,
+    "P3": -56.45
+   },
+   "zeitraeume": 5,
+   "summe_pct": -4.51,
+   "stress_pct": -98.75,
+   "sharpe": -0.014,
+   "t_wert": -0.04,
+   "groesster_tag_pct": 24.8,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:BAC": {
+   "gruppe": "aktie",
+   "name": "Aktie BAC",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 3.92,
+   "je_zeitraum_pct": {
+    "P0": -51.36,
+    "T": 33.32,
+    "V1": -1.27,
+    "V2": 1.03,
+    "P3": 47.38
+   },
+   "zeitraeume": 5,
+   "summe_pct": 29.1,
+   "stress_pct": -61.91,
+   "sharpe": 0.136,
+   "t_wert": 0.35,
+   "groesster_tag_pct": 14.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:BE": {
+   "gruppe": "aktie",
+   "name": "Aktie BE",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.98,
+   "je_zeitraum_pct": {
+    "P0": -46.98,
+    "T": 118.16,
+    "V1": 35.13,
+    "V2": 80.25,
+    "P3": 233.33
+   },
+   "zeitraeume": 5,
+   "summe_pct": 419.89,
+   "stress_pct": 328.03,
+   "sharpe": 0.563,
+   "t_wert": 1.47,
+   "groesster_tag_pct": 72.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:BMNR": {
+   "gruppe": "aktie",
+   "name": "Aktie BMNR",
+   "von": "2025-06-05",
+   "bis": "2026-10-23",
+   "slippage_bp": 6.39,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": -1123.39
+   },
+   "zeitraeume": 1,
+   "summe_pct": -1123.39,
+   "stress_pct": -1144.08,
+   "sharpe": -1.174,
+   "t_wert": -1.38,
+   "groesster_tag_pct": 664.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:BNC": {
+   "gruppe": "aktie",
+   "name": "Aktie BNC",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.37,
+   "je_zeitraum_pct": {
+    "P0": -290.07,
+    "T": -44.21,
+    "V1": 6.24,
+    "V2": -34.47,
+    "P3": -367.36
+   },
+   "zeitraeume": 5,
+   "summe_pct": -729.87,
+   "stress_pct": -836.69,
+   "sharpe": -0.404,
+   "t_wert": -1.06,
+   "groesster_tag_pct": 515.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:BOT": {
+   "gruppe": "aktie",
+   "name": "Aktie BOT",
+   "von": "2026-05-11",
+   "bis": "2026-10-23",
+   "slippage_bp": 11.61,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": -54.66
+   },
+   "zeitraeume": 1,
+   "summe_pct": -54.66,
+   "stress_pct": -64.94,
+   "sharpe": -1.062,
+   "t_wert": -0.72,
+   "groesster_tag_pct": 23.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:BSP": {
+   "gruppe": "aktie",
+   "name": "Aktie BSP",
+   "von": "2026-07-01",
+   "bis": "2026-10-23",
+   "slippage_bp": 9.8,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": -9.85
+   },
+   "zeitraeume": 1,
+   "summe_pct": -9.85,
+   "stress_pct": -14.9,
+   "sharpe": -0.256,
+   "t_wert": -0.14,
+   "groesster_tag_pct": 39.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:BX": {
+   "gruppe": "aktie",
+   "name": "Aktie BX",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 9.27,
+   "je_zeitraum_pct": {
+    "P0": 17.03,
+    "T": -47.03,
+    "V1": 35.48,
+    "V2": 2.19,
+    "P3": 48.37
+   },
+   "zeitraeume": 5,
+   "summe_pct": 56.04,
+   "stress_pct": -57.46,
+   "sharpe": 0.209,
+   "t_wert": 0.54,
+   "groesster_tag_pct": 15.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:BYD": {
+   "gruppe": "aktie",
+   "name": "Aktie BYD",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 24.01,
+   "je_zeitraum_pct": {
+    "P0": -51.74,
+    "T": -60.09,
+    "V1": -44.41,
+    "V2": -8.21,
+    "P3": -38.11
+   },
+   "zeitraeume": 5,
+   "summe_pct": -202.56,
+   "stress_pct": -393.88,
+   "sharpe": -0.726,
+   "t_wert": -1.9,
+   "groesster_tag_pct": 17.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:CAT": {
+   "gruppe": "aktie",
+   "name": "Aktie CAT",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 8.55,
+   "je_zeitraum_pct": {
+    "P0": -2.85,
+    "T": -3.65,
+    "V1": 48.19,
+    "V2": -19.99,
+    "P3": 140.09
+   },
+   "zeitraeume": 5,
+   "summe_pct": 161.8,
+   "stress_pct": 47.45,
+   "sharpe": 0.709,
+   "t_wert": 1.85,
+   "groesster_tag_pct": 13.1,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:CBRS": {
+   "gruppe": "aktie",
+   "name": "Aktie CBRS",
+   "von": "2026-05-14",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.89,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": -8.41
+   },
+   "zeitraeume": 1,
+   "summe_pct": -8.41,
+   "stress_pct": -14.01,
+   "sharpe": -0.177,
+   "t_wert": -0.12,
+   "groesster_tag_pct": 20.8,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:CEG": {
+   "gruppe": "aktie",
+   "name": "Aktie CEG",
+   "von": "2022-01-19",
+   "bis": "2026-10-23",
+   "slippage_bp": 16.17,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": -73.76,
+    "V1": 17.87,
+    "V2": 29.48,
+    "P3": -39.99
+   },
+   "zeitraeume": 4,
+   "summe_pct": -66.4,
+   "stress_pct": -175.17,
+   "sharpe": -0.275,
+   "t_wert": -0.6,
+   "groesster_tag_pct": 28.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:CIEN": {
+   "gruppe": "aktie",
+   "name": "Aktie CIEN",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 19.57,
+   "je_zeitraum_pct": {
+    "P0": 13.73,
+    "T": 35.99,
+    "V1": -11.65,
+    "V2": -29.32,
+    "P3": 147.13
+   },
+   "zeitraeume": 5,
+   "summe_pct": 155.88,
+   "stress_pct": -12.62,
+   "sharpe": 0.43,
+   "t_wert": 1.12,
+   "groesster_tag_pct": 23.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:COHR": {
+   "gruppe": "aktie",
+   "name": "Aktie COHR",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.38,
+   "je_zeitraum_pct": {
+    "P0": 115.73,
+    "T": 3.42,
+    "V1": -52.65,
+    "V2": -26.68,
+    "P3": -160.79
+   },
+   "zeitraeume": 5,
+   "summe_pct": -120.96,
+   "stress_pct": -209.47,
+   "sharpe": -0.269,
+   "t_wert": -0.7,
+   "groesster_tag_pct": 29.5,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:COIN": {
+   "gruppe": "aktie",
+   "name": "Aktie COIN",
+   "von": "2021-04-14",
+   "bis": "2026-10-23",
+   "slippage_bp": 1.71,
+   "je_zeitraum_pct": {
+    "P0": 2.28,
+    "T": -30.92,
+    "V1": 172.49,
+    "V2": -89.34,
+    "P3": -74.59
+   },
+   "zeitraeume": 5,
+   "summe_pct": -20.07,
+   "stress_pct": -88.2,
+   "sharpe": -0.04,
+   "t_wert": -0.09,
+   "groesster_tag_pct": 41.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:COST": {
+   "gruppe": "aktie",
+   "name": "Aktie COST",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 21.72,
+   "je_zeitraum_pct": {
+    "P0": -20.22,
+    "T": 13.88,
+    "V1": 4.71,
+    "V2": 21.91,
+    "P3": -36.64
+   },
+   "zeitraeume": 5,
+   "summe_pct": -16.36,
+   "stress_pct": -195.36,
+   "sharpe": -0.102,
+   "t_wert": -0.27,
+   "groesster_tag_pct": 10.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:CRCL": {
+   "gruppe": "aktie",
+   "name": "Aktie CRCL",
+   "von": "2025-06-05",
+   "bis": "2026-10-23",
+   "slippage_bp": 1.79,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": -61.09
+   },
+   "zeitraeume": 1,
+   "summe_pct": -61.09,
+   "stress_pct": -78.07,
+   "sharpe": -0.431,
+   "t_wert": -0.51,
+   "groesster_tag_pct": 41.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:CRDO": {
+   "gruppe": "aktie",
+   "name": "Aktie CRDO",
+   "von": "2022-01-27",
+   "bis": "2026-10-23",
+   "slippage_bp": 3.17,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": 129.71,
+    "V1": 21.94,
+    "V2": 79.3,
+    "P3": 88.09
+   },
+   "zeitraeume": 4,
+   "summe_pct": 319.04,
+   "stress_pct": 255.05,
+   "sharpe": 0.728,
+   "t_wert": 1.59,
+   "groesster_tag_pct": 68.4,
+   "alle_zeitraeume_positiv": true,
+   "auffaellig": false
+  },
+  "AKTIE:CRM": {
+   "gruppe": "aktie",
+   "name": "Aktie CRM",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 3.7,
+   "je_zeitraum_pct": {
+    "P0": -7.9,
+    "T": -28.06,
+    "V1": 36.29,
+    "V2": 10.83,
+    "P3": 54.53
+   },
+   "zeitraeume": 5,
+   "summe_pct": 65.69,
+   "stress_pct": -25.46,
+   "sharpe": 0.238,
+   "t_wert": 0.62,
+   "groesster_tag_pct": 27.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:CRML": {
+   "gruppe": "aktie",
+   "name": "Aktie CRML",
+   "von": "2022-02-07",
+   "bis": "2026-10-23",
+   "slippage_bp": 8.2,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": -5.32,
+    "V1": -254.07,
+    "V2": -52.95,
+    "P3": 163.29
+   },
+   "zeitraeume": 4,
+   "summe_pct": -149.05,
+   "stress_pct": -225.41,
+   "sharpe": -0.189,
+   "t_wert": -0.41,
+   "groesster_tag_pct": 127.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:CRWD": {
+   "gruppe": "aktie",
+   "name": "Aktie CRWD",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 4.84,
+   "je_zeitraum_pct": {
+    "P0": 52.16,
+    "T": -110.17,
+    "V1": 11.14,
+    "V2": 46.3,
+    "P3": 43.61
+   },
+   "zeitraeume": 5,
+   "summe_pct": 43.04,
+   "stress_pct": -57.12,
+   "sharpe": 0.116,
+   "t_wert": 0.3,
+   "groesster_tag_pct": 19.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:CRWV": {
+   "gruppe": "aktie",
+   "name": "Aktie CRWV",
+   "von": "2025-03-28",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.97,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": 103.52
+   },
+   "zeitraeume": 1,
+   "summe_pct": 103.52,
+   "stress_pct": 80.8,
+   "sharpe": 0.409,
+   "t_wert": 0.51,
+   "groesster_tag_pct": 73.8,
+   "alle_zeitraeume_positiv": true,
+   "auffaellig": false
+  },
+  "AKTIE:CSCO": {
+   "gruppe": "aktie",
+   "name": "Aktie CSCO",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.33,
+   "je_zeitraum_pct": {
+    "P0": 24.39,
+    "T": -28.41,
+    "V1": -19.06,
+    "V2": 7.79,
+    "P3": -27.81
+   },
+   "zeitraeume": 5,
+   "summe_pct": -43.1,
+   "stress_pct": -144.79,
+   "sharpe": -0.224,
+   "t_wert": -0.58,
+   "groesster_tag_pct": 16.3,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:CVNA": {
+   "gruppe": "aktie",
+   "name": "Aktie CVNA",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 13.91,
+   "je_zeitraum_pct": {
+    "P0": 14.35,
+    "T": 239.74,
+    "V1": 148.6,
+    "V2": 81.46,
+    "P3": -5.07
+   },
+   "zeitraeume": 5,
+   "summe_pct": 479.08,
+   "stress_pct": 342.41,
+   "sharpe": 0.653,
+   "t_wert": 1.7,
+   "groesster_tag_pct": 70.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:CYPH": {
+   "gruppe": "aktie",
+   "name": "Aktie CYPH",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 20.96,
+   "je_zeitraum_pct": {
+    "P0": 129.38,
+    "T": 435.59,
+    "V1": 61.62,
+    "V2": 55.93,
+    "P3": 119.36
+   },
+   "zeitraeume": 5,
+   "summe_pct": 801.88,
+   "stress_pct": 632.43,
+   "sharpe": 0.559,
+   "t_wert": 1.46,
+   "groesster_tag_pct": 316.7,
+   "alle_zeitraeume_positiv": true,
+   "auffaellig": false
+  },
+  "AKTIE:DELL": {
+   "gruppe": "aktie",
+   "name": "Aktie DELL",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 4.79,
+   "je_zeitraum_pct": {
+    "P0": -73.67,
+    "T": -53.78,
+    "V1": 3.15,
+    "V2": -67.3,
+    "P3": 173.33
+   },
+   "zeitraeume": 5,
+   "summe_pct": -18.26,
+   "stress_pct": -119.4,
+   "sharpe": -0.043,
+   "t_wert": -0.11,
+   "groesster_tag_pct": 75.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:DIS": {
+   "gruppe": "aktie",
+   "name": "Aktie DIS",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.55,
+   "je_zeitraum_pct": {
+    "P0": -49.3,
+    "T": 21.77,
+    "V1": -15.58,
+    "V2": 15.14,
+    "P3": 31.58
+   },
+   "zeitraeume": 5,
+   "summe_pct": 3.61,
+   "stress_pct": -81.99,
+   "sharpe": 0.017,
+   "t_wert": 0.04,
+   "groesster_tag_pct": 15.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:DJT": {
+   "gruppe": "aktie",
+   "name": "Aktie DJT",
+   "von": "2021-09-30",
+   "bis": "2026-10-23",
+   "slippage_bp": 6.63,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": 547.79,
+    "V1": -182.33,
+    "V2": 179.88,
+    "P3": -44.98
+   },
+   "zeitraeume": 4,
+   "summe_pct": 500.36,
+   "stress_pct": 416.62,
+   "sharpe": 0.301,
+   "t_wert": 0.68,
+   "groesster_tag_pct": 488.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:DKNG": {
+   "gruppe": "aktie",
+   "name": "Aktie DKNG",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.32,
+   "je_zeitraum_pct": {
+    "P0": 194.68,
+    "T": -95.16,
+    "V1": -18.62,
+    "V2": -4.67,
+    "P3": -14.31
+   },
+   "zeitraeume": 5,
+   "summe_pct": 61.93,
+   "stress_pct": -40.86,
+   "sharpe": 0.126,
+   "t_wert": 0.33,
+   "groesster_tag_pct": 36.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:EBAY": {
+   "gruppe": "aktie",
+   "name": "Aktie EBAY",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 4.98,
+   "je_zeitraum_pct": {
+    "P0": 56.57,
+    "T": 29.41,
+    "V1": -65.18,
+    "V2": -31.73,
+    "P3": -28.9
+   },
+   "zeitraeume": 5,
+   "summe_pct": -39.84,
+   "stress_pct": -140.08,
+   "sharpe": -0.168,
+   "t_wert": -0.44,
+   "groesster_tag_pct": 18.8,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:FLEX": {
+   "gruppe": "aktie",
+   "name": "Aktie FLEX",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 6.78,
+   "je_zeitraum_pct": {
+    "P0": -93.48,
+    "T": -21.42,
+    "V1": -18.37,
+    "V2": -42.81,
+    "P3": 79.16
+   },
+   "zeitraeume": 5,
+   "summe_pct": -96.92,
+   "stress_pct": -209.83,
+   "sharpe": -0.282,
+   "t_wert": -0.74,
+   "groesster_tag_pct": 52.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:FLNC": {
+   "gruppe": "aktie",
+   "name": "Aktie FLNC",
+   "von": "2021-10-28",
+   "bis": "2026-10-23",
+   "slippage_bp": 6.67,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": -109.91,
+    "V1": 26.32,
+    "V2": -15.13,
+    "P3": 208.61
+   },
+   "zeitraeume": 4,
+   "summe_pct": 109.89,
+   "stress_pct": 33.11,
+   "sharpe": 0.215,
+   "t_wert": 0.48,
+   "groesster_tag_pct": 49.3,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:FWDI": {
+   "gruppe": "aktie",
+   "name": "Aktie FWDI",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 12.45,
+   "je_zeitraum_pct": {
+    "P0": 84.3,
+    "T": -183.03,
+    "V1": -113.88,
+    "V2": -113.2,
+    "P3": 140.29
+   },
+   "zeitraeume": 5,
+   "summe_pct": -185.52,
+   "stress_pct": -328.03,
+   "sharpe": -0.262,
+   "t_wert": -0.68,
+   "groesster_tag_pct": 67.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:GEV": {
+   "gruppe": "aktie",
+   "name": "Aktie GEV",
+   "von": "2024-03-27",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.71,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": -27.42,
+    "V2": -13.04,
+    "P3": 88.01
+   },
+   "zeitraeume": 3,
+   "summe_pct": 47.54,
+   "stress_pct": 5.88,
+   "sharpe": 0.325,
+   "t_wert": 0.52,
+   "groesster_tag_pct": 27.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:GLW": {
+   "gruppe": "aktie",
+   "name": "Aktie GLW",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.47,
+   "je_zeitraum_pct": {
+    "P0": -18.52,
+    "T": -38.69,
+    "V1": 11.66,
+    "V2": -24.18,
+    "P3": 68.0
+   },
+   "zeitraeume": 5,
+   "summe_pct": -1.74,
+   "stress_pct": -104.6,
+   "sharpe": -0.006,
+   "t_wert": -0.02,
+   "groesster_tag_pct": 18.1,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:GME": {
+   "gruppe": "aktie",
+   "name": "Aktie GME",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 11.88,
+   "je_zeitraum_pct": {
+    "P0": -49.76,
+    "T": -152.92,
+    "V1": -61.58,
+    "V2": -101.5,
+    "P3": 20.61
+   },
+   "zeitraeume": 5,
+   "summe_pct": -345.17,
+   "stress_pct": -480.86,
+   "sharpe": -0.077,
+   "t_wert": -0.2,
+   "groesster_tag_pct": 976.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:GOOGL": {
+   "gruppe": "aktie",
+   "name": "Aktie GOOGL",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 1.03,
+   "je_zeitraum_pct": {
+    "P0": 11.04,
+    "T": -46.03,
+    "V1": -16.44,
+    "V2": 28.91,
+    "P3": -36.39
+   },
+   "zeitraeume": 5,
+   "summe_pct": -58.91,
+   "stress_pct": -138.96,
+   "sharpe": -0.262,
+   "t_wert": -0.68,
+   "groesster_tag_pct": 13.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:GPRO": {
+   "gruppe": "aktie",
+   "name": "Aktie GPRO",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 32.31,
+   "je_zeitraum_pct": {
+    "P0": -33.18,
+    "T": -48.77,
+    "V1": 38.39,
+    "V2": 16.19,
+    "P3": 186.02
+   },
+   "zeitraeume": 5,
+   "summe_pct": 158.65,
+   "stress_pct": -70.36,
+   "sharpe": 0.252,
+   "t_wert": 0.66,
+   "groesster_tag_pct": 75.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:GS": {
+   "gruppe": "aktie",
+   "name": "Aktie GS",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 1.76,
+   "je_zeitraum_pct": {
+    "P0": 24.86,
+    "T": 22.08,
+    "V1": 21.3,
+    "V2": -25.27,
+    "P3": 30.51
+   },
+   "zeitraeume": 5,
+   "summe_pct": 73.49,
+   "stress_pct": -8.63,
+   "sharpe": 0.351,
+   "t_wert": 0.92,
+   "groesster_tag_pct": 11.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:HD": {
+   "gruppe": "aktie",
+   "name": "Aktie HD",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 9.5,
+   "je_zeitraum_pct": {
+    "P0": 10.22,
+    "T": -74.85,
+    "V1": 19.86,
+    "V2": 17.89,
+    "P3": 30.25
+   },
+   "zeitraeume": 5,
+   "summe_pct": 3.38,
+   "stress_pct": -113.99,
+   "sharpe": 0.018,
+   "t_wert": 0.05,
+   "groesster_tag_pct": 16.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:HIMS": {
+   "gruppe": "aktie",
+   "name": "Aktie HIMS",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 15.84,
+   "je_zeitraum_pct": {
+    "P0": 5.82,
+    "T": -105.62,
+    "V1": 32.66,
+    "V2": 54.72,
+    "P3": 134.86
+   },
+   "zeitraeume": 5,
+   "summe_pct": 122.45,
+   "stress_pct": -25.99,
+   "sharpe": 0.196,
+   "t_wert": 0.51,
+   "groesster_tag_pct": 66.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:HOOD": {
+   "gruppe": "aktie",
+   "name": "Aktie HOOD",
+   "von": "2021-07-29",
+   "bis": "2026-10-23",
+   "slippage_bp": 1.34,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": 56.32,
+    "V1": 50.76,
+    "V2": -5.63,
+    "P3": 77.22
+   },
+   "zeitraeume": 4,
+   "summe_pct": 178.67,
+   "stress_pct": 114.79,
+   "sharpe": 0.465,
+   "t_wert": 1.06,
+   "groesster_tag_pct": 26.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:HPE": {
+   "gruppe": "aktie",
+   "name": "Aktie HPE",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.12,
+   "je_zeitraum_pct": {
+    "P0": -19.38,
+    "T": -12.88,
+    "V1": 10.53,
+    "V2": -19.87,
+    "P3": 123.7
+   },
+   "zeitraeume": 5,
+   "summe_pct": 82.1,
+   "stress_pct": -2.73,
+   "sharpe": 0.263,
+   "t_wert": 0.69,
+   "groesster_tag_pct": 37.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:HUT": {
+   "gruppe": "aktie",
+   "name": "Aktie HUT",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.38,
+   "je_zeitraum_pct": {
+    "P0": -118.88,
+    "T": 188.8,
+    "V1": -54.28,
+    "V2": 69.77,
+    "P3": -294.37
+   },
+   "zeitraeume": 5,
+   "summe_pct": -208.97,
+   "stress_pct": -313.5,
+   "sharpe": -0.229,
+   "t_wert": -0.6,
+   "groesster_tag_pct": 69.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:IBKR": {
+   "gruppe": "aktie",
+   "name": "Aktie IBKR",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 7.37,
+   "je_zeitraum_pct": {
+    "P0": -1.63,
+    "T": 0.39,
+    "V1": 16.13,
+    "V2": 54.42,
+    "P3": -92.72
+   },
+   "zeitraeume": 5,
+   "summe_pct": -23.42,
+   "stress_pct": -133.1,
+   "sharpe": -0.096,
+   "t_wert": -0.25,
+   "groesster_tag_pct": 14.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:INTC": {
+   "gruppe": "aktie",
+   "name": "Aktie INTC",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.29,
+   "je_zeitraum_pct": {
+    "P0": -33.47,
+    "T": -8.83,
+    "V1": -12.03,
+    "V2": -54.83,
+    "P3": 177.41
+   },
+   "zeitraeume": 5,
+   "summe_pct": 68.25,
+   "stress_pct": -37.21,
+   "sharpe": 0.172,
+   "t_wert": 0.45,
+   "groesster_tag_pct": 35.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:IONQ": {
+   "gruppe": "aktie",
+   "name": "Aktie IONQ",
+   "von": "2021-01-04",
+   "bis": "2026-10-23",
+   "slippage_bp": 14.26,
+   "je_zeitraum_pct": {
+    "P0": -3.49,
+    "T": 170.53,
+    "V1": 48.21,
+    "V2": 55.5,
+    "P3": 81.18
+   },
+   "zeitraeume": 5,
+   "summe_pct": 351.92,
+   "stress_pct": 231.56,
+   "sharpe": 0.525,
+   "t_wert": 1.26,
+   "groesster_tag_pct": 65.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:IREN": {
+   "gruppe": "aktie",
+   "name": "Aktie IREN",
+   "von": "2021-11-17",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.98,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": 228.04,
+    "V1": 315.8,
+    "V2": -111.74,
+    "P3": 118.9
+   },
+   "zeitraeume": 4,
+   "summe_pct": 551.0,
+   "stress_pct": 474.27,
+   "sharpe": 0.827,
+   "t_wert": 1.84,
+   "groesster_tag_pct": 80.8,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:JPM": {
+   "gruppe": "aktie",
+   "name": "Aktie JPM",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 4.94,
+   "je_zeitraum_pct": {
+    "P0": -18.38,
+    "T": -25.65,
+    "V1": 27.05,
+    "V2": 10.83,
+    "P3": -47.92
+   },
+   "zeitraeume": 5,
+   "summe_pct": -54.06,
+   "stress_pct": -151.91,
+   "sharpe": -0.281,
+   "t_wert": -0.73,
+   "groesster_tag_pct": 11.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:LITE": {
+   "gruppe": "aktie",
+   "name": "Aktie LITE",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 0.53,
+   "je_zeitraum_pct": {
+    "P0": -50.37,
+    "T": -8.02,
+    "V1": -0.0,
+    "V2": -23.36,
+    "P3": 145.1
+   },
+   "zeitraeume": 5,
+   "summe_pct": 63.35,
+   "stress_pct": -15.1,
+   "sharpe": 0.145,
+   "t_wert": 0.38,
+   "groesster_tag_pct": 25.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:LLY": {
+   "gruppe": "aktie",
+   "name": "Aktie LLY",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 17.49,
+   "je_zeitraum_pct": {
+    "P0": -37.49,
+    "T": -21.43,
+    "V1": -44.79,
+    "V2": -23.05,
+    "P3": -79.44
+   },
+   "zeitraeume": 5,
+   "summe_pct": -206.2,
+   "stress_pct": -367.02,
+   "sharpe": -0.899,
+   "t_wert": -2.35,
+   "groesster_tag_pct": 15.3,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:LRCX": {
+   "gruppe": "aktie",
+   "name": "Aktie LRCX",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 25.06,
+   "je_zeitraum_pct": {
+    "P0": 14.06,
+    "T": -80.36,
+    "V1": -20.1,
+    "V2": -11.89,
+    "P3": 43.95
+   },
+   "zeitraeume": 5,
+   "summe_pct": -54.34,
+   "stress_pct": -258.66,
+   "sharpe": -0.158,
+   "t_wert": -0.41,
+   "groesster_tag_pct": 15.8,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:MARA": {
+   "gruppe": "aktie",
+   "name": "Aktie MARA",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 30.26,
+   "je_zeitraum_pct": {
+    "P0": 170.89,
+    "T": -93.31,
+    "V1": 181.7,
+    "V2": -111.74,
+    "P3": -6.38
+   },
+   "zeitraeume": 5,
+   "summe_pct": 141.16,
+   "stress_pct": -90.06,
+   "sharpe": 0.122,
+   "t_wert": 0.32,
+   "groesster_tag_pct": 185.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:MCD": {
+   "gruppe": "aktie",
+   "name": "Aktie MCD",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 4.79,
+   "je_zeitraum_pct": {
+    "P0": 0.63,
+    "T": 6.51,
+    "V1": -16.24,
+    "V2": 2.52,
+    "P3": -28.48
+   },
+   "zeitraeume": 5,
+   "summe_pct": -35.06,
+   "stress_pct": -133.3,
+   "sharpe": -0.241,
+   "t_wert": -0.63,
+   "groesster_tag_pct": 13.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:META": {
+   "gruppe": "aktie",
+   "name": "Aktie META",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 0.5,
+   "je_zeitraum_pct": {
+    "P0": -55.79,
+    "T": -52.65,
+    "V1": 19.76,
+    "V2": -3.68,
+    "P3": 7.99
+   },
+   "zeitraeume": 5,
+   "summe_pct": -84.36,
+   "stress_pct": -162.05,
+   "sharpe": -0.277,
+   "t_wert": -0.72,
+   "groesster_tag_pct": 30.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:MP": {
+   "gruppe": "aktie",
+   "name": "Aktie MP",
+   "von": "2020-06-22",
+   "bis": "2026-10-23",
+   "slippage_bp": 12.97,
+   "je_zeitraum_pct": {
+    "P0": 84.04,
+    "T": -36.54,
+    "V1": -4.1,
+    "V2": 57.92,
+    "P3": -49.25
+   },
+   "zeitraeume": 5,
+   "summe_pct": 52.07,
+   "stress_pct": -79.8,
+   "sharpe": 0.106,
+   "t_wert": 0.27,
+   "groesster_tag_pct": 45.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:MRK": {
+   "gruppe": "aktie",
+   "name": "Aktie MRK",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.43,
+   "je_zeitraum_pct": {
+    "P0": -22.88,
+    "T": 27.76,
+    "V1": -7.76,
+    "V2": -1.75,
+    "P3": -44.18
+   },
+   "zeitraeume": 5,
+   "summe_pct": -48.82,
+   "stress_pct": -148.99,
+   "sharpe": -0.283,
+   "t_wert": -0.74,
+   "groesster_tag_pct": 12.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:MRNA": {
+   "gruppe": "aktie",
+   "name": "Aktie MRNA",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 3.66,
+   "je_zeitraum_pct": {
+    "P0": 188.7,
+    "T": -58.71,
+    "V1": 40.42,
+    "V2": -59.14,
+    "P3": 7.25
+   },
+   "zeitraeume": 5,
+   "summe_pct": 118.52,
+   "stress_pct": 24.42,
+   "sharpe": 0.152,
+   "t_wert": 0.4,
+   "groesster_tag_pct": 186.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:MRVL": {
+   "gruppe": "aktie",
+   "name": "Aktie MRVL",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.67,
+   "je_zeitraum_pct": {
+    "P0": -5.85,
+    "T": -11.71,
+    "V1": -72.87,
+    "V2": 34.78,
+    "P3": 196.84
+   },
+   "zeitraeume": 5,
+   "summe_pct": 141.19,
+   "stress_pct": 51.6,
+   "sharpe": 0.316,
+   "t_wert": 0.83,
+   "groesster_tag_pct": 43.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:MSFT": {
+   "gruppe": "aktie",
+   "name": "Aktie MSFT",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 1.73,
+   "je_zeitraum_pct": {
+    "P0": -38.94,
+    "T": -68.08,
+    "V1": -11.4,
+    "V2": 6.72,
+    "P3": 38.37
+   },
+   "zeitraeume": 5,
+   "summe_pct": -73.33,
+   "stress_pct": -156.96,
+   "sharpe": -0.364,
+   "t_wert": -0.95,
+   "groesster_tag_pct": 14.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:MSTR": {
+   "gruppe": "aktie",
+   "name": "Aktie MSTR",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 1.03,
+   "je_zeitraum_pct": {
+    "P0": 130.31,
+    "T": -55.57,
+    "V1": 341.91,
+    "V2": 115.44,
+    "P3": 21.28
+   },
+   "zeitraeume": 5,
+   "summe_pct": 553.37,
+   "stress_pct": 470.28,
+   "sharpe": 0.692,
+   "t_wert": 1.81,
+   "groesster_tag_pct": 66.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:MU": {
+   "gruppe": "aktie",
+   "name": "Aktie MU",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.4,
+   "je_zeitraum_pct": {
+    "P0": -63.17,
+    "T": -24.08,
+    "V1": 22.88,
+    "V2": -46.45,
+    "P3": 207.97
+   },
+   "zeitraeume": 5,
+   "summe_pct": 97.15,
+   "stress_pct": 7.61,
+   "sharpe": 0.227,
+   "t_wert": 0.59,
+   "groesster_tag_pct": 35.5,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:NBIS": {
+   "gruppe": "aktie",
+   "name": "Aktie NBIS",
+   "von": "2024-10-21",
+   "bis": "2026-10-23",
+   "slippage_bp": 3.68,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": -44.97,
+    "P3": -110.91
+   },
+   "zeitraeume": 2,
+   "summe_pct": -155.88,
+   "stress_pct": -183.78,
+   "sharpe": -0.677,
+   "t_wert": -0.96,
+   "groesster_tag_pct": 51.1,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:NET": {
+   "gruppe": "aktie",
+   "name": "Aktie NET",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 12.14,
+   "je_zeitraum_pct": {
+    "P0": 62.71,
+    "T": 21.84,
+    "V1": -33.16,
+    "V2": 45.77,
+    "P3": -49.19
+   },
+   "zeitraeume": 5,
+   "summe_pct": 47.97,
+   "stress_pct": -87.82,
+   "sharpe": 0.099,
+   "t_wert": 0.26,
+   "groesster_tag_pct": 32.8,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:NFLX": {
+   "gruppe": "aktie",
+   "name": "Aktie NFLX",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.44,
+   "je_zeitraum_pct": {
+    "P0": -89.87,
+    "T": 64.06,
+    "V1": -12.99,
+    "V2": 1.21,
+    "P3": 41.06
+   },
+   "zeitraeume": 5,
+   "summe_pct": 3.47,
+   "stress_pct": -80.11,
+   "sharpe": 0.012,
+   "t_wert": 0.03,
+   "groesster_tag_pct": 32.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:NKE": {
+   "gruppe": "aktie",
+   "name": "Aktie NKE",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.66,
+   "je_zeitraum_pct": {
+    "P0": -0.82,
+    "T": 46.19,
+    "V1": -25.59,
+    "V2": -21.3,
+    "P3": -53.17
+   },
+   "zeitraeume": 5,
+   "summe_pct": -54.68,
+   "stress_pct": -141.64,
+   "sharpe": -0.233,
+   "t_wert": -0.61,
+   "groesster_tag_pct": 20.1,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:NOK": {
+   "gruppe": "aktie",
+   "name": "Aktie NOK",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 12.71,
+   "je_zeitraum_pct": {
+    "P0": 38.97,
+    "T": -44.72,
+    "V1": -32.47,
+    "V2": -9.76,
+    "P3": 133.7
+   },
+   "zeitraeume": 5,
+   "summe_pct": 85.73,
+   "stress_pct": -48.12,
+   "sharpe": 0.244,
+   "t_wert": 0.64,
+   "groesster_tag_pct": 47.5,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:NOW": {
+   "gruppe": "aktie",
+   "name": "Aktie NOW",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 4.02,
+   "je_zeitraum_pct": {
+    "P0": 19.52,
+    "T": -59.86,
+    "V1": -19.89,
+    "V2": -28.49,
+    "P3": 57.87
+   },
+   "zeitraeume": 5,
+   "summe_pct": -30.85,
+   "stress_pct": -126.41,
+   "sharpe": -0.104,
+   "t_wert": -0.27,
+   "groesster_tag_pct": 19.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:NVDA": {
+   "gruppe": "aktie",
+   "name": "Aktie NVDA",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 1.89,
+   "je_zeitraum_pct": {
+    "P0": 31.05,
+    "T": 117.72,
+    "V1": 67.45,
+    "V2": -53.78,
+    "P3": -26.57
+   },
+   "zeitraeume": 5,
+   "summe_pct": 135.87,
+   "stress_pct": 50.02,
+   "sharpe": 0.375,
+   "t_wert": 0.98,
+   "groesster_tag_pct": 26.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:NVO": {
+   "gruppe": "aktie",
+   "name": "Aktie NVO",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.43,
+   "je_zeitraum_pct": {
+    "P0": -32.83,
+    "T": -25.52,
+    "V1": -14.46,
+    "V2": 9.37,
+    "P3": -50.42
+   },
+   "zeitraeume": 5,
+   "summe_pct": -113.86,
+   "stress_pct": -200.59,
+   "sharpe": -0.474,
+   "t_wert": -1.24,
+   "groesster_tag_pct": 21.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:OKLO": {
+   "gruppe": "aktie",
+   "name": "Aktie OKLO",
+   "von": "2021-07-08",
+   "bis": "2026-10-23",
+   "slippage_bp": 8.65,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": -23.25,
+    "V1": -92.57,
+    "V2": 267.41,
+    "P3": 139.96
+   },
+   "zeitraeume": 4,
+   "summe_pct": 291.55,
+   "stress_pct": 195.01,
+   "sharpe": 0.49,
+   "t_wert": 1.12,
+   "groesster_tag_pct": 84.8,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:ONDS": {
+   "gruppe": "aktie",
+   "name": "Aktie ONDS",
+   "von": "2020-12-04",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.02,
+   "je_zeitraum_pct": {
+    "P0": 56.41,
+    "T": 1.73,
+    "V1": 142.93,
+    "V2": 88.83,
+    "P3": 239.2
+   },
+   "zeitraeume": 5,
+   "summe_pct": 529.1,
+   "stress_pct": 455.15,
+   "sharpe": 0.649,
+   "t_wert": 1.58,
+   "groesster_tag_pct": 69.1,
+   "alle_zeitraeume_positiv": true,
+   "auffaellig": false
+  },
+  "AKTIE:ORCL": {
+   "gruppe": "aktie",
+   "name": "Aktie ORCL",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 7.39,
+   "je_zeitraum_pct": {
+    "P0": -25.05,
+    "T": -0.63,
+    "V1": 1.67,
+    "V2": -10.87,
+    "P3": 48.78
+   },
+   "zeitraeume": 5,
+   "summe_pct": 13.9,
+   "stress_pct": -92.75,
+   "sharpe": 0.048,
+   "t_wert": 0.13,
+   "groesster_tag_pct": 36.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:PANW": {
+   "gruppe": "aktie",
+   "name": "Aktie PANW",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 8.28,
+   "je_zeitraum_pct": {
+    "P0": 99.04,
+    "T": -72.97,
+    "V1": -20.83,
+    "V2": -4.21,
+    "P3": -2.4
+   },
+   "zeitraeume": 5,
+   "summe_pct": -1.38,
+   "stress_pct": -110.19,
+   "sharpe": -0.005,
+   "t_wert": -0.01,
+   "groesster_tag_pct": 28.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:PATH": {
+   "gruppe": "aktie",
+   "name": "Aktie PATH",
+   "von": "2021-04-21",
+   "bis": "2026-10-23",
+   "slippage_bp": 15.22,
+   "je_zeitraum_pct": {
+    "P0": -17.45,
+    "T": -76.89,
+    "V1": 109.08,
+    "V2": -30.73,
+    "P3": -41.36
+   },
+   "zeitraeume": 5,
+   "summe_pct": -57.35,
+   "stress_pct": -171.65,
+   "sharpe": -0.162,
+   "t_wert": -0.38,
+   "groesster_tag_pct": 31.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:PAYP": {
+   "gruppe": "aktie",
+   "name": "Aktie PAYP",
+   "von": "2026-03-12",
+   "bis": "2026-10-23",
+   "slippage_bp": 7.14,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": -87.45
+   },
+   "zeitraeume": 1,
+   "summe_pct": -87.45,
+   "stress_pct": -98.48,
+   "sharpe": -2.481,
+   "t_wert": -1.96,
+   "groesster_tag_pct": 10.3,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:PDD": {
+   "gruppe": "aktie",
+   "name": "Aktie PDD",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.55,
+   "je_zeitraum_pct": {
+    "P0": 180.94,
+    "T": 37.92,
+    "V1": 12.84,
+    "V2": -9.13,
+    "P3": -3.93
+   },
+   "zeitraeume": 5,
+   "summe_pct": 218.64,
+   "stress_pct": 133.48,
+   "sharpe": 0.483,
+   "t_wert": 1.26,
+   "groesster_tag_pct": 29.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:PENG": {
+   "gruppe": "aktie",
+   "name": "Aktie PENG",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 8.73,
+   "je_zeitraum_pct": {
+    "P0": -144.03,
+    "T": 24.62,
+    "V1": -48.57,
+    "V2": -15.85,
+    "P3": 126.17
+   },
+   "zeitraeume": 5,
+   "summe_pct": -57.66,
+   "stress_pct": -173.53,
+   "sharpe": -0.116,
+   "t_wert": -0.3,
+   "groesster_tag_pct": 57.3,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:PLTR": {
+   "gruppe": "aktie",
+   "name": "Aktie PLTR",
+   "von": "2020-09-30",
+   "bis": "2026-10-23",
+   "slippage_bp": 0.61,
+   "je_zeitraum_pct": {
+    "P0": 177.3,
+    "T": 15.01,
+    "V1": -68.43,
+    "V2": 67.11,
+    "P3": -34.11
+   },
+   "zeitraeume": 5,
+   "summe_pct": 156.88,
+   "stress_pct": 86.05,
+   "sharpe": 0.33,
+   "t_wert": 0.81,
+   "groesster_tag_pct": 52.3,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:PYPL": {
+   "gruppe": "aktie",
+   "name": "Aktie PYPL",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 6.81,
+   "je_zeitraum_pct": {
+    "P0": 48.03,
+    "T": -4.4,
+    "V1": -12.38,
+    "V2": -29.63,
+    "P3": 17.41
+   },
+   "zeitraeume": 5,
+   "summe_pct": 19.03,
+   "stress_pct": -90.61,
+   "sharpe": 0.065,
+   "t_wert": 0.17,
+   "groesster_tag_pct": 18.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:QCOM": {
+   "gruppe": "aktie",
+   "name": "Aktie QCOM",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 0.59,
+   "je_zeitraum_pct": {
+    "P0": -74.52,
+    "T": -25.55,
+    "V1": 1.82,
+    "V2": -28.04,
+    "P3": 82.56
+   },
+   "zeitraeume": 5,
+   "summe_pct": -43.73,
+   "stress_pct": -121.68,
+   "sharpe": -0.139,
+   "t_wert": -0.36,
+   "groesster_tag_pct": 21.3,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:RDDT": {
+   "gruppe": "aktie",
+   "name": "Aktie RDDT",
+   "von": "2024-03-21",
+   "bis": "2026-10-23",
+   "slippage_bp": 32.13,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": -2.96,
+    "V2": 174.71,
+    "P3": -66.67
+   },
+   "zeitraeume": 3,
+   "summe_pct": 105.08,
+   "stress_pct": 22.08,
+   "sharpe": 0.48,
+   "t_wert": 0.77,
+   "groesster_tag_pct": 55.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:RDW": {
+   "gruppe": "aktie",
+   "name": "Aktie RDW",
+   "von": "2021-01-14",
+   "bis": "2026-10-23",
+   "slippage_bp": 26.6,
+   "je_zeitraum_pct": {
+    "P0": -16.81,
+    "T": -143.02,
+    "V1": 95.06,
+    "V2": -84.12,
+    "P3": 193.34
+   },
+   "zeitraeume": 5,
+   "summe_pct": 44.44,
+   "stress_pct": -120.47,
+   "sharpe": 0.077,
+   "t_wert": 0.19,
+   "groesster_tag_pct": 52.1,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:RIVN": {
+   "gruppe": "aktie",
+   "name": "Aktie RIVN",
+   "von": "2021-11-10",
+   "bis": "2026-10-23",
+   "slippage_bp": 8.4,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": 8.37,
+    "V1": -24.71,
+    "V2": -0.44,
+    "P3": 18.84
+   },
+   "zeitraeume": 4,
+   "summe_pct": 2.06,
+   "stress_pct": -77.28,
+   "sharpe": 0.006,
+   "t_wert": 0.01,
+   "groesster_tag_pct": 50.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:RKLB": {
+   "gruppe": "aktie",
+   "name": "Aktie RKLB",
+   "von": "2020-11-24",
+   "bis": "2026-10-23",
+   "slippage_bp": 3.39,
+   "je_zeitraum_pct": {
+    "P0": -49.81,
+    "T": 57.26,
+    "V1": -32.57,
+    "V2": 98.04,
+    "P3": 164.67
+   },
+   "zeitraeume": 5,
+   "summe_pct": 237.59,
+   "stress_pct": 155.58,
+   "sharpe": 0.463,
+   "t_wert": 1.13,
+   "groesster_tag_pct": 55.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:RUM": {
+   "gruppe": "aktie",
+   "name": "Aktie RUM",
+   "von": "2021-04-14",
+   "bis": "2026-10-23",
+   "slippage_bp": 12.28,
+   "je_zeitraum_pct": {
+    "P0": -8.2,
+    "T": -54.7,
+    "V1": -4.28,
+    "V2": -20.53,
+    "P3": -116.71
+   },
+   "zeitraeume": 5,
+   "summe_pct": -204.42,
+   "stress_pct": -314.84,
+   "sharpe": -0.482,
+   "t_wert": -1.13,
+   "groesster_tag_pct": 41.5,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:SECZ": {
+   "gruppe": "aktie",
+   "name": "Aktie SECZ",
+   "von": "2026-07-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 12.73,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": 79.1
+   },
+   "zeitraeume": 1,
+   "summe_pct": 79.1,
+   "stress_pct": 73.24,
+   "sharpe": 1.517,
+   "t_wert": 0.85,
+   "groesster_tag_pct": 39.5,
+   "alle_zeitraeume_positiv": true,
+   "auffaellig": false
+  },
+  "AKTIE:SHAZ": {
+   "gruppe": "aktie",
+   "name": "Aktie SHAZ",
+   "von": "2026-02-18",
+   "bis": "2026-10-23",
+   "slippage_bp": 36.56,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": 59.06
+   },
+   "zeitraeume": 1,
+   "summe_pct": 59.06,
+   "stress_pct": 38.74,
+   "sharpe": 0.716,
+   "t_wert": 0.59,
+   "groesster_tag_pct": 37.2,
+   "alle_zeitraeume_positiv": true,
+   "auffaellig": false
+  },
+  "AKTIE:SHOP": {
+   "gruppe": "aktie",
+   "name": "Aktie SHOP",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 4.14,
+   "je_zeitraum_pct": {
+    "P0": -82.09,
+    "T": -30.15,
+    "V1": -15.4,
+    "V2": 49.79,
+    "P3": -114.77
+   },
+   "zeitraeume": 5,
+   "summe_pct": -192.63,
+   "stress_pct": -286.46,
+   "sharpe": -0.447,
+   "t_wert": -1.17,
+   "groesster_tag_pct": 26.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:SKHY": {
+   "gruppe": "aktie",
+   "name": "Aktie SKHY",
+   "von": "2026-07-10",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.34,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": 45.77
+   },
+   "zeitraeume": 1,
+   "summe_pct": 45.77,
+   "stress_pct": 42.85,
+   "sharpe": 2.27,
+   "t_wert": 1.22,
+   "groesster_tag_pct": 13.9,
+   "alle_zeitraeume_positiv": true,
+   "auffaellig": false
+  },
+  "AKTIE:SMCI": {
+   "gruppe": "aktie",
+   "name": "Aktie SMCI",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 11.54,
+   "je_zeitraum_pct": {
+    "P0": -22.77,
+    "T": -81.53,
+    "V1": 59.26,
+    "V2": -101.19,
+    "P3": -139.53
+   },
+   "zeitraeume": 5,
+   "summe_pct": -285.76,
+   "stress_pct": -417.3,
+   "sharpe": -0.441,
+   "t_wert": -1.15,
+   "groesster_tag_pct": 81.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:SNDK": {
+   "gruppe": "aktie",
+   "name": "Aktie SNDK",
+   "von": "2025-02-13",
+   "bis": "2026-10-23",
+   "slippage_bp": 1.54,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": 634.71
+   },
+   "zeitraeume": 1,
+   "summe_pct": 634.71,
+   "stress_pct": 609.37,
+   "sharpe": 1.839,
+   "t_wert": 2.3,
+   "groesster_tag_pct": 109.4,
+   "alle_zeitraeume_positiv": true,
+   "auffaellig": false
+  },
+  "AKTIE:SNPS": {
+   "gruppe": "aktie",
+   "name": "Aktie SNPS",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 15.71,
+   "je_zeitraum_pct": {
+    "P0": -3.96,
+    "T": -50.49,
+    "V1": -11.07,
+    "V2": -42.99,
+    "P3": -23.77
+   },
+   "zeitraeume": 5,
+   "summe_pct": -132.28,
+   "stress_pct": -279.9,
+   "sharpe": -0.471,
+   "t_wert": -1.23,
+   "groesster_tag_pct": 35.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:SOFI": {
+   "gruppe": "aktie",
+   "name": "Aktie SOFI",
+   "von": "2021-01-04",
+   "bis": "2026-10-23",
+   "slippage_bp": 26.32,
+   "je_zeitraum_pct": {
+    "P0": -46.34,
+    "T": -84.8,
+    "V1": -80.72,
+    "V2": 8.28,
+    "P3": -33.07
+   },
+   "zeitraeume": 5,
+   "summe_pct": -236.65,
+   "stress_pct": -405.93,
+   "sharpe": -0.615,
+   "t_wert": -1.48,
+   "groesster_tag_pct": 19.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:SPCX": {
+   "gruppe": "aktie",
+   "name": "Aktie SPCX",
+   "von": "2026-06-12",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.23,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": -10.19
+   },
+   "zeitraeume": 1,
+   "summe_pct": -10.19,
+   "stress_pct": -14.48,
+   "sharpe": -0.438,
+   "t_wert": -0.27,
+   "groesster_tag_pct": 17.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:STRC": {
+   "gruppe": "aktie",
+   "name": "Aktie STRC",
+   "von": "2025-07-30",
+   "bis": "2026-10-23",
+   "slippage_bp": 1.02,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": null,
+    "P3": -1.28
+   },
+   "zeitraeume": 1,
+   "summe_pct": -1.28,
+   "stress_pct": -14.98,
+   "sharpe": -0.057,
+   "t_wert": -0.06,
+   "groesster_tag_pct": 9.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:TEM": {
+   "gruppe": "aktie",
+   "name": "Aktie TEM",
+   "von": "2024-06-14",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.72,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": null,
+    "V2": -29.38,
+    "P3": 60.84
+   },
+   "zeitraeume": 2,
+   "summe_pct": 31.46,
+   "stress_pct": -2.95,
+   "sharpe": 0.139,
+   "t_wert": 0.21,
+   "groesster_tag_pct": 30.8,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:TER": {
+   "gruppe": "aktie",
+   "name": "Aktie TER",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 7.86,
+   "je_zeitraum_pct": {
+    "P0": 7.46,
+    "T": 10.62,
+    "V1": -11.8,
+    "V2": 35.91,
+    "P3": -79.0
+   },
+   "zeitraeume": 5,
+   "summe_pct": -36.81,
+   "stress_pct": -153.42,
+   "sharpe": -0.101,
+   "t_wert": -0.26,
+   "groesster_tag_pct": 25.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:TSLA": {
+   "gruppe": "aktie",
+   "name": "Aktie TSLA",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 1.3,
+   "je_zeitraum_pct": {
+    "P0": 200.91,
+    "T": 99.25,
+    "V1": -73.77,
+    "V2": 89.8,
+    "P3": -41.19
+   },
+   "zeitraeume": 5,
+   "summe_pct": 275.0,
+   "stress_pct": 193.6,
+   "sharpe": 0.591,
+   "t_wert": 1.54,
+   "groesster_tag_pct": 30.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:TSM": {
+   "gruppe": "aktie",
+   "name": "Aktie TSM",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 3.59,
+   "je_zeitraum_pct": {
+    "P0": 8.82,
+    "T": 69.76,
+    "V1": 5.79,
+    "V2": -7.46,
+    "P3": 56.79
+   },
+   "zeitraeume": 5,
+   "summe_pct": 133.69,
+   "stress_pct": 39.81,
+   "sharpe": 0.491,
+   "t_wert": 1.28,
+   "groesster_tag_pct": 16.4,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:TTWO": {
+   "gruppe": "aktie",
+   "name": "Aktie TTWO",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 6.09,
+   "je_zeitraum_pct": {
+    "P0": -56.72,
+    "T": -28.25,
+    "V1": -14.5,
+    "V2": 10.6,
+    "P3": -12.94
+   },
+   "zeitraeume": 5,
+   "summe_pct": -101.81,
+   "stress_pct": -205.28,
+   "sharpe": -0.447,
+   "t_wert": -1.17,
+   "groesster_tag_pct": 13.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:TWST": {
+   "gruppe": "aktie",
+   "name": "Aktie TWST",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 9.12,
+   "je_zeitraum_pct": {
+    "P0": -9.79,
+    "T": -81.57,
+    "V1": 122.85,
+    "V2": 7.97,
+    "P3": -65.01
+   },
+   "zeitraeume": 5,
+   "summe_pct": -25.55,
+   "stress_pct": -144.11,
+   "sharpe": -0.045,
+   "t_wert": -0.12,
+   "groesster_tag_pct": 34.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:TXN": {
+   "gruppe": "aktie",
+   "name": "Aktie TXN",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 2.66,
+   "je_zeitraum_pct": {
+    "P0": -17.91,
+    "T": -74.61,
+    "V1": 22.81,
+    "V2": -13.33,
+    "P3": 58.02
+   },
+   "zeitraeume": 5,
+   "summe_pct": -25.03,
+   "stress_pct": -115.35,
+   "sharpe": -0.105,
+   "t_wert": -0.27,
+   "groesster_tag_pct": 23.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:UBER": {
+   "gruppe": "aktie",
+   "name": "Aktie UBER",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 14.51,
+   "je_zeitraum_pct": {
+    "P0": -38.19,
+    "T": -35.02,
+    "V1": 30.56,
+    "V2": -32.7,
+    "P3": -57.95
+   },
+   "zeitraeume": 5,
+   "summe_pct": -133.3,
+   "stress_pct": -281.79,
+   "sharpe": -0.421,
+   "t_wert": -1.1,
+   "groesster_tag_pct": 21.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:UNH": {
+   "gruppe": "aktie",
+   "name": "Aktie UNH",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 6.13,
+   "je_zeitraum_pct": {
+    "P0": -25.65,
+    "T": -23.13,
+    "V1": -36.43,
+    "V2": 4.02,
+    "P3": 34.38
+   },
+   "zeitraeume": 5,
+   "summe_pct": -46.81,
+   "stress_pct": -152.0,
+   "sharpe": -0.205,
+   "t_wert": -0.54,
+   "groesster_tag_pct": 26.6,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:USAR": {
+   "gruppe": "aktie",
+   "name": "Aktie USAR",
+   "von": "2023-07-17",
+   "bis": "2026-10-23",
+   "slippage_bp": 25.41,
+   "je_zeitraum_pct": {
+    "P0": null,
+    "T": null,
+    "V1": -16.42,
+    "V2": -204.25,
+    "P3": 153.49
+   },
+   "zeitraeume": 3,
+   "summe_pct": -67.18,
+   "stress_pct": -153.2,
+   "sharpe": -0.176,
+   "t_wert": -0.32,
+   "groesster_tag_pct": 68.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:V": {
+   "gruppe": "aktie",
+   "name": "Aktie V",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.66,
+   "je_zeitraum_pct": {
+    "P0": -56.12,
+    "T": -51.89,
+    "V1": -15.4,
+    "V2": 3.3,
+    "P3": -14.41
+   },
+   "zeitraeume": 5,
+   "summe_pct": -134.52,
+   "stress_pct": -239.26,
+   "sharpe": -0.756,
+   "t_wert": -1.97,
+   "groesster_tag_pct": 12.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:VKTX": {
+   "gruppe": "aktie",
+   "name": "Aktie VKTX",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 17.23,
+   "je_zeitraum_pct": {
+    "P0": -53.07,
+    "T": -93.13,
+    "V1": 239.06,
+    "V2": -117.79,
+    "P3": -193.4
+   },
+   "zeitraeume": 5,
+   "summe_pct": -218.33,
+   "stress_pct": -383.62,
+   "sharpe": -0.264,
+   "t_wert": -0.69,
+   "groesster_tag_pct": 196.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:VST": {
+   "gruppe": "aktie",
+   "name": "Aktie VST",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 13.02,
+   "je_zeitraum_pct": {
+    "P0": -91.43,
+    "T": -73.97,
+    "V1": 140.54,
+    "V2": -0.24,
+    "P3": -32.9
+   },
+   "zeitraeume": 5,
+   "summe_pct": -57.99,
+   "stress_pct": -202.72,
+   "sharpe": -0.166,
+   "t_wert": -0.43,
+   "groesster_tag_pct": 35.0,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:WDC": {
+   "gruppe": "aktie",
+   "name": "Aktie WDC",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 3.5,
+   "je_zeitraum_pct": {
+    "P0": -100.5,
+    "T": 20.47,
+    "V1": 31.09,
+    "V2": -4.54,
+    "P3": 258.09
+   },
+   "zeitraeume": 5,
+   "summe_pct": 204.6,
+   "stress_pct": 110.44,
+   "sharpe": 0.524,
+   "t_wert": 1.37,
+   "groesster_tag_pct": 21.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:WEN": {
+   "gruppe": "aktie",
+   "name": "Aktie WEN",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 8.49,
+   "je_zeitraum_pct": {
+    "P0": -61.95,
+    "T": -23.83,
+    "V1": -19.52,
+    "V2": -9.26,
+    "P3": -227.65
+   },
+   "zeitraeume": 5,
+   "summe_pct": -342.22,
+   "stress_pct": -465.09,
+   "sharpe": -1.24,
+   "t_wert": -3.24,
+   "groesster_tag_pct": 25.7,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:WMT": {
+   "gruppe": "aktie",
+   "name": "Aktie WMT",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.48,
+   "je_zeitraum_pct": {
+    "P0": -48.63,
+    "T": 19.86,
+    "V1": 4.6,
+    "V2": 28.33,
+    "P3": -54.62
+   },
+   "zeitraeume": 5,
+   "summe_pct": -50.47,
+   "stress_pct": -147.89,
+   "sharpe": -0.31,
+   "t_wert": -0.81,
+   "groesster_tag_pct": 10.9,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:XOM": {
+   "gruppe": "aktie",
+   "name": "Aktie XOM",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 0.58,
+   "je_zeitraum_pct": {
+    "P0": -7.91,
+    "T": -33.12,
+    "V1": -1.74,
+    "V2": -23.4,
+    "P3": -60.43
+   },
+   "zeitraeume": 5,
+   "summe_pct": -126.6,
+   "stress_pct": -204.46,
+   "sharpe": -0.582,
+   "t_wert": -1.52,
+   "groesster_tag_pct": 12.5,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  },
+  "AKTIE:ZM": {
+   "gruppe": "aktie",
+   "name": "Aktie ZM",
+   "von": "2020-01-02",
+   "bis": "2026-10-23",
+   "slippage_bp": 5.06,
+   "je_zeitraum_pct": {
+    "P0": 77.71,
+    "T": -9.97,
+    "V1": -16.96,
+    "V2": 28.31,
+    "P3": 30.99
+   },
+   "zeitraeume": 5,
+   "summe_pct": 110.07,
+   "stress_pct": 11.51,
+   "sharpe": 0.302,
+   "t_wert": 0.79,
+   "groesster_tag_pct": 48.2,
+   "alle_zeitraeume_positiv": false,
+   "auffaellig": false
+  }
+ },
+ "gruppen": {
+  "labor_etf": {
+   "maerkte": 10,
+   "je_zeitraum_pct": {
+    "P0": -13.17,
+    "T": 1.02,
+    "V1": 5.14,
+    "V2": -8.89,
+    "P3": -6.94
+   },
+   "summe_pct": -22.83,
+   "sharpe": -0.147
+  },
+  "runde14": {
+   "maerkte": 11,
+   "je_zeitraum_pct": {
+    "P0": 8.06,
+    "T": -37.4,
+    "V1": -26.99,
+    "V2": -18.89,
+    "P3": -4.79
+   },
+   "summe_pct": -80.01,
+   "sharpe": -0.664
+  },
+  "aktie": {
+   "maerkte": 132,
+   "je_zeitraum_pct": {
+    "P0": 1.95,
+    "T": 5.31,
+    "V1": 10.36,
+    "V2": -0.53,
+    "P3": 22.01
+   },
+   "summe_pct": 39.1,
+   "sharpe": 0.252
+  }
+ },
+ "krypto": {
+  "1000BONKUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 2.15
+   },
+   "summe_pct": 2.15,
+   "stress_pct": 0.71,
+   "t_wert": 0.01,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -66.64
+   },
+   "rest_t_wert": -0.48,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "1000FLOKIUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 720.59
+   },
+   "summe_pct": 720.59,
+   "stress_pct": 716.73,
+   "t_wert": 1.32,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 639.16
+   },
+   "rest_t_wert": 1.22,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "1000PEPEUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 537.8
+   },
+   "summe_pct": 537.8,
+   "stress_pct": 537.37,
+   "t_wert": 1.24,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 458.56
+   },
+   "rest_t_wert": 1.12,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "1000RATSUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 12.55
+   },
+   "summe_pct": 12.55,
+   "stress_pct": 9.23,
+   "t_wert": 0.1,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -50.48
+   },
+   "rest_t_wert": -0.44,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "1000SATSUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 31.32
+   },
+   "summe_pct": 31.32,
+   "stress_pct": 27.56,
+   "t_wert": 0.38,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -34.95
+   },
+   "rest_t_wert": -0.49,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "1000SHIBUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 603.65,
+    "V1": 180.12
+   },
+   "summe_pct": 783.77,
+   "stress_pct": 778.11,
+   "t_wert": 1.26,
+   "rest_gegen_korb_pct": {
+    "T": 533.37,
+    "V1": 96.7
+   },
+   "rest_t_wert": 1.04,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "1INCHUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 22.66,
+    "V1": 8.36
+   },
+   "summe_pct": 31.02,
+   "stress_pct": 27.4,
+   "t_wert": 0.19,
+   "rest_gegen_korb_pct": {
+    "T": -47.62,
+    "V1": -75.06
+   },
+   "rest_t_wert": -0.95,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "AAVEUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 82.7,
+    "V1": 4.46
+   },
+   "summe_pct": 87.16,
+   "stress_pct": 84.54,
+   "t_wert": 0.51,
+   "rest_gegen_korb_pct": {
+    "T": 12.42,
+    "V1": -78.96
+   },
+   "rest_t_wert": -0.48,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ACEUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 40.69
+   },
+   "summe_pct": 40.69,
+   "stress_pct": 38.35,
+   "t_wert": 0.67,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -14.13
+   },
+   "rest_t_wert": -0.26,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ACHUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 4.11,
+    "V1": 112.81
+   },
+   "summe_pct": 116.92,
+   "stress_pct": 114.48,
+   "t_wert": 0.89,
+   "rest_gegen_korb_pct": {
+    "T": -1.36,
+    "V1": 29.39
+   },
+   "rest_t_wert": 0.24,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ADAUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 27.51,
+    "V1": 157.21
+   },
+   "summe_pct": 184.73,
+   "stress_pct": 170.2,
+   "t_wert": 1.24,
+   "rest_gegen_korb_pct": {
+    "T": -42.76,
+    "V1": 73.79
+   },
+   "rest_t_wert": 0.26,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "AGLDUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -10.38
+   },
+   "summe_pct": -10.38,
+   "stress_pct": -15.37,
+   "t_wert": -0.08,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -94.14
+   },
+   "rest_t_wert": -0.81,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ALGOUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 12.5,
+    "V1": 115.77
+   },
+   "summe_pct": 128.27,
+   "stress_pct": 113.42,
+   "t_wert": 0.64,
+   "rest_gegen_korb_pct": {
+    "T": -57.78,
+    "V1": 32.35
+   },
+   "rest_t_wert": -0.15,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "APEUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 97.59,
+    "V1": -29.68
+   },
+   "summe_pct": 67.91,
+   "stress_pct": 46.17,
+   "t_wert": 0.49,
+   "rest_gegen_korb_pct": {
+    "T": 101.78,
+    "V1": -113.1
+   },
+   "rest_t_wert": -0.1,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "APTUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 265.23,
+    "V1": 110.73
+   },
+   "summe_pct": 375.96,
+   "stress_pct": 373.69,
+   "t_wert": 1.6,
+   "rest_gegen_korb_pct": {
+    "T": 251.99,
+    "V1": 27.31
+   },
+   "rest_t_wert": 1.31,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ARBUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 89.38
+   },
+   "summe_pct": 89.38,
+   "stress_pct": 85.41,
+   "t_wert": 1.08,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 5.96
+   },
+   "rest_t_wert": 0.07,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ARKMUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 261.65
+   },
+   "summe_pct": 261.65,
+   "stress_pct": 254.09,
+   "t_wert": 0.64,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 177.4
+   },
+   "rest_t_wert": 0.45,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ARUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -5.36,
+    "V1": 288.02
+   },
+   "summe_pct": 282.66,
+   "stress_pct": 255.8,
+   "t_wert": 1.07,
+   "rest_gegen_korb_pct": {
+    "T": -35.02,
+    "V1": 204.6
+   },
+   "rest_t_wert": 0.72,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ATOMUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 212.26,
+    "V1": -6.47
+   },
+   "summe_pct": 205.8,
+   "stress_pct": 186.73,
+   "t_wert": 0.85,
+   "rest_gegen_korb_pct": {
+    "T": 141.99,
+    "V1": -89.89
+   },
+   "rest_t_wert": 0.23,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "AUCTIONUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -0.41
+   },
+   "summe_pct": -0.41,
+   "stress_pct": -1.58,
+   "t_wert": -0.01,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -63.44
+   },
+   "rest_t_wert": -0.76,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "AVAXUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 234.27,
+    "V1": 179.36
+   },
+   "summe_pct": 413.62,
+   "stress_pct": 410.84,
+   "t_wert": 1.49,
+   "rest_gegen_korb_pct": {
+    "T": 163.99,
+    "V1": 95.93
+   },
+   "rest_t_wert": 1.02,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "AXLUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -14.55
+   },
+   "summe_pct": -14.55,
+   "stress_pct": -17.29,
+   "t_wert": -0.38,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -17.64
+   },
+   "rest_t_wert": -0.52,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "AXSUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -1.95,
+    "V1": -24.2
+   },
+   "summe_pct": -26.14,
+   "stress_pct": -30.03,
+   "t_wert": -0.14,
+   "rest_gegen_korb_pct": {
+    "T": -72.23,
+    "V1": -107.62
+   },
+   "rest_t_wert": -1.16,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "BANDUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 13.24,
+    "V1": -41.56
+   },
+   "summe_pct": -28.32,
+   "stress_pct": -65.0,
+   "t_wert": -0.12,
+   "rest_gegen_korb_pct": {
+    "T": -57.03,
+    "V1": -124.98
+   },
+   "rest_t_wert": -0.84,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "BBUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "BCHUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 84.17,
+    "V1": -63.49
+   },
+   "summe_pct": 20.68,
+   "stress_pct": 19.43,
+   "t_wert": 0.13,
+   "rest_gegen_korb_pct": {
+    "T": 13.89,
+    "V1": -146.91
+   },
+   "rest_t_wert": -0.92,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "BEAMXUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 85.2
+   },
+   "summe_pct": 85.2,
+   "stress_pct": 83.39,
+   "t_wert": 0.91,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 18.87
+   },
+   "rest_t_wert": 0.23,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "BIGTIMEUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -12.74
+   },
+   "summe_pct": -12.74,
+   "stress_pct": -15.56,
+   "t_wert": -0.14,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -70.12
+   },
+   "rest_t_wert": -0.8,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "BLURUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -97.96
+   },
+   "summe_pct": -97.96,
+   "stress_pct": -246.72,
+   "t_wert": -0.78,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -181.38
+   },
+   "rest_t_wert": -1.47,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "BNBUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 0.35,
+    "V1": 110.39
+   },
+   "summe_pct": 110.74,
+   "stress_pct": 109.35,
+   "t_wert": 0.94,
+   "rest_gegen_korb_pct": {
+    "T": -69.93,
+    "V1": 26.97
+   },
+   "rest_t_wert": -0.37,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "BNTUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -7.01
+   },
+   "summe_pct": -7.01,
+   "stress_pct": -9.4,
+   "t_wert": -0.05,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -94.95
+   },
+   "rest_t_wert": -0.72,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "BOMEUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "BSVUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 101.11
+   },
+   "summe_pct": 101.11,
+   "stress_pct": 98.82,
+   "t_wert": 0.98,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 37.42
+   },
+   "rest_t_wert": 0.38,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "BTCUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 44.02,
+    "V1": 74.99
+   },
+   "summe_pct": 119.0,
+   "stress_pct": 117.73,
+   "t_wert": 1.2,
+   "rest_gegen_korb_pct": {
+    "T": -26.26,
+    "V1": -8.43
+   },
+   "rest_t_wert": -0.39,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "CAKEUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 66.73
+   },
+   "summe_pct": 66.73,
+   "stress_pct": 66.44,
+   "t_wert": 0.92,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 5.49
+   },
+   "rest_t_wert": 0.09,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "CFXUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -63.46,
+    "V1": -99.76
+   },
+   "summe_pct": -163.23,
+   "stress_pct": -202.84,
+   "t_wert": -1.23,
+   "rest_gegen_korb_pct": {
+    "T": -68.58,
+    "V1": -183.18
+   },
+   "rest_t_wert": -2.05,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "CHZUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -34.69,
+    "V1": 3.69
+   },
+   "summe_pct": -31.0,
+   "stress_pct": -56.04,
+   "t_wert": -0.16,
+   "rest_gegen_korb_pct": {
+    "T": -104.97,
+    "V1": -79.73
+   },
+   "rest_t_wert": -1.07,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "CKBUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 21.9,
+    "V1": 300.25
+   },
+   "summe_pct": 322.15,
+   "stress_pct": 315.78,
+   "t_wert": 0.88,
+   "rest_gegen_korb_pct": {
+    "T": 16.02,
+    "V1": 216.83
+   },
+   "rest_t_wert": 0.67,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "COMPUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -47.73,
+    "V1": 56.6
+   },
+   "summe_pct": 8.87,
+   "stress_pct": -6.34,
+   "t_wert": 0.05,
+   "rest_gegen_korb_pct": {
+    "T": -118.01,
+    "V1": -26.82
+   },
+   "rest_t_wert": -0.92,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "COTIUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 175.53,
+    "V1": 301.73
+   },
+   "summe_pct": 477.26,
+   "stress_pct": 467.87,
+   "t_wert": 1.45,
+   "rest_gegen_korb_pct": {
+    "T": 105.25,
+    "V1": 218.31
+   },
+   "rest_t_wert": 1.08,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "CRVUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 8.52,
+    "V1": 54.05
+   },
+   "summe_pct": 62.58,
+   "stress_pct": 49.96,
+   "t_wert": 0.29,
+   "rest_gegen_korb_pct": {
+    "T": -61.75,
+    "V1": -29.37
+   },
+   "rest_t_wert": -0.52,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "CTKUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -267.54,
+    "V1": -63.28
+   },
+   "summe_pct": -330.82,
+   "stress_pct": -434.72,
+   "t_wert": -1.9,
+   "rest_gegen_korb_pct": {
+    "T": -337.82,
+    "V1": -146.7
+   },
+   "rest_t_wert": -2.84,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "CVCUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -99.26,
+    "V1": 0.0
+   },
+   "summe_pct": -99.26,
+   "stress_pct": -106.86,
+   "t_wert": -0.44,
+   "rest_gegen_korb_pct": {
+    "T": -169.54,
+    "V1": -83.42
+   },
+   "rest_t_wert": -1.17,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "CVXUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 40.06,
+    "V1": 138.37
+   },
+   "summe_pct": 178.43,
+   "stress_pct": 169.53,
+   "t_wert": 1.69,
+   "rest_gegen_korb_pct": {
+    "T": 32.6,
+    "V1": 54.95
+   },
+   "rest_t_wert": 0.93,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "CYBERUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -6.12
+   },
+   "summe_pct": -6.12,
+   "stress_pct": -8.83,
+   "t_wert": -0.06,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -96.14
+   },
+   "rest_t_wert": -0.96,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "DASHUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 84.31,
+    "V1": -63.17
+   },
+   "summe_pct": 21.13,
+   "stress_pct": 14.63,
+   "t_wert": 0.15,
+   "rest_gegen_korb_pct": {
+    "T": 14.03,
+    "V1": -146.59
+   },
+   "rest_t_wert": -1.15,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "DOGEUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 96.42,
+    "V1": 47.47
+   },
+   "summe_pct": 143.89,
+   "stress_pct": 139.69,
+   "t_wert": 0.77,
+   "rest_gegen_korb_pct": {
+    "T": 26.14,
+    "V1": -35.95
+   },
+   "rest_t_wert": -0.06,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "DOTUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 77.5,
+    "V1": 55.39
+   },
+   "summe_pct": 132.9,
+   "stress_pct": 97.69,
+   "t_wert": 0.8,
+   "rest_gegen_korb_pct": {
+    "T": 7.23,
+    "V1": -28.03
+   },
+   "rest_t_wert": -0.17,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "DUSKUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -98.09,
+    "V1": 60.14
+   },
+   "summe_pct": -37.95,
+   "stress_pct": -50.37,
+   "t_wert": -0.21,
+   "rest_gegen_korb_pct": {
+    "T": -127.45,
+    "V1": -23.28
+   },
+   "rest_t_wert": -0.94,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "DYDXUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 145.82,
+    "V1": -102.09
+   },
+   "summe_pct": 43.73,
+   "stress_pct": 13.58,
+   "t_wert": 0.21,
+   "rest_gegen_korb_pct": {
+    "T": 108.57,
+    "V1": -185.51
+   },
+   "rest_t_wert": -0.43,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "EGLDUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 121.94,
+    "V1": 139.22
+   },
+   "summe_pct": 261.16,
+   "stress_pct": 252.33,
+   "t_wert": 1.55,
+   "rest_gegen_korb_pct": {
+    "T": 51.66,
+    "V1": 55.8
+   },
+   "rest_t_wert": 0.7,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ENAUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "ENJUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 77.14,
+    "V1": 91.92
+   },
+   "summe_pct": 169.06,
+   "stress_pct": 157.49,
+   "t_wert": 0.93,
+   "rest_gegen_korb_pct": {
+    "T": 6.86,
+    "V1": 8.5
+   },
+   "rest_t_wert": 0.11,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ENSUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -115.96,
+    "V1": 3.52
+   },
+   "summe_pct": -112.44,
+   "stress_pct": -118.0,
+   "t_wert": -0.56,
+   "rest_gegen_korb_pct": {
+    "T": -134.08,
+    "V1": -79.9
+   },
+   "rest_t_wert": -1.13,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ETCUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 54.17,
+    "V1": -74.4
+   },
+   "summe_pct": -20.24,
+   "stress_pct": -24.49,
+   "t_wert": -0.11,
+   "rest_gegen_korb_pct": {
+    "T": -16.11,
+    "V1": -157.83
+   },
+   "rest_t_wert": -1.12,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ETHFIUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "ETHUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 41.19,
+    "V1": 18.5
+   },
+   "summe_pct": 59.69,
+   "stress_pct": 58.4,
+   "t_wert": 0.49,
+   "rest_gegen_korb_pct": {
+    "T": -29.09,
+    "V1": -64.92
+   },
+   "rest_t_wert": -0.99,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ETHWUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -46.68
+   },
+   "summe_pct": -46.68,
+   "stress_pct": -48.36,
+   "t_wert": -0.65,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -119.75
+   },
+   "rest_t_wert": -1.7,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "FETUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -26.28,
+    "V1": 292.8
+   },
+   "summe_pct": 266.53,
+   "stress_pct": 256.37,
+   "t_wert": 1.14,
+   "rest_gegen_korb_pct": {
+    "T": -11.94,
+    "V1": 209.38
+   },
+   "rest_t_wert": 0.94,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "FILUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 70.59,
+    "V1": 106.35
+   },
+   "summe_pct": 176.93,
+   "stress_pct": 136.42,
+   "t_wert": 0.94,
+   "rest_gegen_korb_pct": {
+    "T": 0.31,
+    "V1": 22.93
+   },
+   "rest_t_wert": 0.15,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "GALAUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 379.76,
+    "V1": 170.3
+   },
+   "summe_pct": 550.06,
+   "stress_pct": 533.47,
+   "t_wert": 1.38,
+   "rest_gegen_korb_pct": {
+    "T": 338.22,
+    "V1": 86.88
+   },
+   "rest_t_wert": 1.13,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "GASUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -95.95
+   },
+   "summe_pct": -95.95,
+   "stress_pct": -101.51,
+   "t_wert": -1.57,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -155.72
+   },
+   "rest_t_wert": -2.65,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "GRTUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 124.8,
+    "V1": 236.74
+   },
+   "summe_pct": 361.53,
+   "stress_pct": 316.28,
+   "t_wert": 1.33,
+   "rest_gegen_korb_pct": {
+    "T": 54.52,
+    "V1": 153.32
+   },
+   "rest_t_wert": 0.89,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "HBARUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -27.61,
+    "V1": 15.22
+   },
+   "summe_pct": -12.39,
+   "stress_pct": -16.95,
+   "t_wert": -0.07,
+   "rest_gegen_korb_pct": {
+    "T": -97.88,
+    "V1": -68.2
+   },
+   "rest_t_wert": -1.11,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ICPUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -19.9,
+    "V1": 187.24
+   },
+   "summe_pct": 167.33,
+   "stress_pct": 157.3,
+   "t_wert": 0.84,
+   "rest_gegen_korb_pct": {
+    "T": -90.18,
+    "V1": 103.82
+   },
+   "rest_t_wert": 0.07,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ILVUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 37.69
+   },
+   "summe_pct": 37.69,
+   "stress_pct": 35.76,
+   "t_wert": 0.48,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -28.35
+   },
+   "rest_t_wert": -0.41,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "INJUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 130.05,
+    "V1": 61.86
+   },
+   "summe_pct": 191.91,
+   "stress_pct": 189.78,
+   "t_wert": 0.91,
+   "rest_gegen_korb_pct": {
+    "T": 124.12,
+    "V1": -21.56
+   },
+   "rest_t_wert": 0.52,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "IOUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "JASMYUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 32.94,
+    "V1": 307.07
+   },
+   "summe_pct": 340.01,
+   "stress_pct": 333.86,
+   "t_wert": 1.29,
+   "rest_gegen_korb_pct": {
+    "T": 35.64,
+    "V1": 223.65
+   },
+   "rest_t_wert": 1.03,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "JTOUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -41.59
+   },
+   "summe_pct": -41.59,
+   "stress_pct": -42.49,
+   "t_wert": -0.52,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -112.53
+   },
+   "rest_t_wert": -1.29,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "JUPUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 33.67
+   },
+   "summe_pct": 33.67,
+   "stress_pct": 32.76,
+   "t_wert": 0.65,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 24.68
+   },
+   "rest_t_wert": 0.56,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "KASUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 59.0
+   },
+   "summe_pct": 59.0,
+   "stress_pct": 55.55,
+   "t_wert": 0.88,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -7.33
+   },
+   "rest_t_wert": -0.09,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "KSMUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 2.78,
+    "V1": 90.88
+   },
+   "summe_pct": 93.66,
+   "stress_pct": 83.43,
+   "t_wert": 0.54,
+   "rest_gegen_korb_pct": {
+    "T": -67.49,
+    "V1": 7.46
+   },
+   "rest_t_wert": -0.42,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "LDOUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 35.49,
+    "V1": -54.58
+   },
+   "summe_pct": -19.09,
+   "stress_pct": -25.04,
+   "t_wert": -0.12,
+   "rest_gegen_korb_pct": {
+    "T": 28.03,
+    "V1": -138.0
+   },
+   "rest_t_wert": -0.71,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "LINKUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -140.83,
+    "V1": 42.42
+   },
+   "summe_pct": -98.41,
+   "stress_pct": -101.31,
+   "t_wert": -0.63,
+   "rest_gegen_korb_pct": {
+    "T": -211.11,
+    "V1": -41.0
+   },
+   "rest_t_wert": -1.96,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "LISTAUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "LITUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 16.47,
+    "V1": -38.31
+   },
+   "summe_pct": -21.84,
+   "stress_pct": -23.68,
+   "t_wert": -0.1,
+   "rest_gegen_korb_pct": {
+    "T": -53.81,
+    "V1": -121.73
+   },
+   "rest_t_wert": -0.97,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "LPTUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 81.65,
+    "V1": -36.02
+   },
+   "summe_pct": 45.63,
+   "stress_pct": -16.29,
+   "t_wert": 0.2,
+   "rest_gegen_korb_pct": {
+    "T": 45.14,
+    "V1": -119.44
+   },
+   "rest_t_wert": -0.37,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "LQTYUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 5.82
+   },
+   "summe_pct": 5.82,
+   "stress_pct": -12.41,
+   "t_wert": 0.04,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -77.6
+   },
+   "rest_t_wert": -0.61,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "LTCUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -51.29,
+    "V1": -68.9
+   },
+   "summe_pct": -120.19,
+   "stress_pct": -125.79,
+   "t_wert": -0.88,
+   "rest_gegen_korb_pct": {
+    "T": -121.56,
+    "V1": -152.32
+   },
+   "rest_t_wert": -2.35,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "MANAUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 348.37,
+    "V1": 65.72
+   },
+   "summe_pct": 414.09,
+   "stress_pct": 410.15,
+   "t_wert": 1.28,
+   "rest_gegen_korb_pct": {
+    "T": 278.09,
+    "V1": -17.7
+   },
+   "rest_t_wert": 0.89,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "MANTAUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 45.01
+   },
+   "summe_pct": 45.01,
+   "stress_pct": 43.35,
+   "t_wert": 0.96,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 46.65
+   },
+   "rest_t_wert": 1.43,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "MAVIAUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -52.59
+   },
+   "summe_pct": -52.59,
+   "stress_pct": -56.47,
+   "t_wert": -0.81,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -56.76
+   },
+   "rest_t_wert": -0.96,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "MDTUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 139.12
+   },
+   "summe_pct": 139.12,
+   "stress_pct": 133.92,
+   "t_wert": 0.9,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 58.38
+   },
+   "rest_t_wert": 0.41,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "MEMEUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -32.2
+   },
+   "summe_pct": -32.2,
+   "stress_pct": -46.53,
+   "t_wert": -0.27,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -89.05
+   },
+   "rest_t_wert": -0.88,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "MEWUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "MINAUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 7.12,
+    "V1": -97.28
+   },
+   "summe_pct": -90.16,
+   "stress_pct": -121.38,
+   "t_wert": -0.7,
+   "rest_gegen_korb_pct": {
+    "T": 3.21,
+    "V1": -180.7
+   },
+   "rest_t_wert": -1.43,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "MOVRUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -10.23
+   },
+   "summe_pct": -10.23,
+   "stress_pct": -12.04,
+   "t_wert": -0.16,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -59.53
+   },
+   "rest_t_wert": -0.95,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "NEARUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 183.71,
+    "V1": 323.96
+   },
+   "summe_pct": 507.67,
+   "stress_pct": 500.06,
+   "t_wert": 1.84,
+   "rest_gegen_korb_pct": {
+    "T": 113.43,
+    "V1": 240.54
+   },
+   "rest_t_wert": 1.41,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "NEOUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -20.77,
+    "V1": 94.2
+   },
+   "summe_pct": 73.43,
+   "stress_pct": 33.83,
+   "t_wert": 0.42,
+   "rest_gegen_korb_pct": {
+    "T": -91.05,
+    "V1": 10.78
+   },
+   "rest_t_wert": -0.56,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "NOTUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "ONDOUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -21.41
+   },
+   "summe_pct": -21.41,
+   "stress_pct": -22.99,
+   "t_wert": -0.27,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -25.21
+   },
+   "rest_t_wert": -0.32,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ONEUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 264.95,
+    "V1": 146.4
+   },
+   "summe_pct": 411.35,
+   "stress_pct": 393.81,
+   "t_wert": 1.87,
+   "rest_gegen_korb_pct": {
+    "T": 194.67,
+    "V1": 62.98
+   },
+   "rest_t_wert": 1.41,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "OPUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 72.91,
+    "V1": -29.98
+   },
+   "summe_pct": 42.93,
+   "stress_pct": 22.57,
+   "t_wert": 0.22,
+   "rest_gegen_korb_pct": {
+    "T": 79.03,
+    "V1": -113.4
+   },
+   "rest_t_wert": -0.21,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ORDIUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -0.47
+   },
+   "summe_pct": -0.47,
+   "stress_pct": -2.13,
+   "t_wert": -0.01,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -65.81
+   },
+   "rest_t_wert": -0.75,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "PENDLEUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 88.88
+   },
+   "summe_pct": 88.88,
+   "stress_pct": 88.28,
+   "t_wert": 0.61,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 4.63
+   },
+   "rest_t_wert": 0.03,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "PEOPLEUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -150.02,
+    "V1": 441.79
+   },
+   "summe_pct": 291.77,
+   "stress_pct": 244.01,
+   "t_wert": 0.94,
+   "rest_gegen_korb_pct": {
+    "T": -174.37,
+    "V1": 358.37
+   },
+   "rest_t_wert": 0.62,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "POLYXUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 23.08
+   },
+   "summe_pct": 23.08,
+   "stress_pct": 18.09,
+   "t_wert": 0.19,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -36.69
+   },
+   "rest_t_wert": -0.32,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "PORTALUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 46.75
+   },
+   "summe_pct": 46.75,
+   "stress_pct": 45.99,
+   "t_wert": 1.19,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 43.78
+   },
+   "rest_t_wert": 1.3,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "PYTHUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 130.15
+   },
+   "summe_pct": 130.15,
+   "stress_pct": 129.74,
+   "t_wert": 1.59,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 61.36
+   },
+   "rest_t_wert": 0.75,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "QNTUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -20.04,
+    "V1": -56.01
+   },
+   "summe_pct": -76.04,
+   "stress_pct": -79.43,
+   "t_wert": -1.01,
+   "rest_gegen_korb_pct": {
+    "T": -32.7,
+    "V1": -139.43
+   },
+   "rest_t_wert": -2.15,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "REZUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "RIFUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -1.54
+   },
+   "summe_pct": -1.54,
+   "stress_pct": -7.22,
+   "t_wert": -0.02,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -65.0
+   },
+   "rest_t_wert": -0.81,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "RUNEUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 81.79,
+    "V1": 370.31
+   },
+   "summe_pct": 452.1,
+   "stress_pct": 447.11,
+   "t_wert": 1.74,
+   "rest_gegen_korb_pct": {
+    "T": 11.51,
+    "V1": 286.89
+   },
+   "rest_t_wert": 1.31,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "SAGAUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "SANDUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 487.56,
+    "V1": 56.1
+   },
+   "summe_pct": 543.66,
+   "stress_pct": 536.81,
+   "t_wert": 1.21,
+   "rest_gegen_korb_pct": {
+    "T": 417.28,
+    "V1": -27.32
+   },
+   "rest_t_wert": 0.92,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "SEIUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 245.8
+   },
+   "summe_pct": 245.8,
+   "stress_pct": 233.34,
+   "t_wert": 1.42,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 155.03
+   },
+   "rest_t_wert": 0.9,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "SKLUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 165.41,
+    "V1": 231.03
+   },
+   "summe_pct": 396.44,
+   "stress_pct": 381.11,
+   "t_wert": 1.55,
+   "rest_gegen_korb_pct": {
+    "T": 95.13,
+    "V1": 147.61
+   },
+   "rest_t_wert": 1.06,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "SOLUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 244.77,
+    "V1": 288.93
+   },
+   "summe_pct": 533.7,
+   "stress_pct": 530.22,
+   "t_wert": 1.89,
+   "rest_gegen_korb_pct": {
+    "T": 174.49,
+    "V1": 205.51
+   },
+   "rest_t_wert": 1.45,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "SPELLUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 41.23,
+    "V1": 31.99
+   },
+   "summe_pct": 73.22,
+   "stress_pct": 51.92,
+   "t_wert": 0.42,
+   "rest_gegen_korb_pct": {
+    "T": 47.25,
+    "V1": -51.43
+   },
+   "rest_t_wert": -0.03,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "STEEMUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -12.55
+   },
+   "summe_pct": -12.55,
+   "stress_pct": -14.26,
+   "t_wert": -0.2,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -78.15
+   },
+   "rest_t_wert": -1.46,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "STXUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -38.82,
+    "V1": -22.03
+   },
+   "summe_pct": -60.85,
+   "stress_pct": -65.17,
+   "t_wert": -0.45,
+   "rest_gegen_korb_pct": {
+    "T": -42.68,
+    "V1": -105.46
+   },
+   "rest_t_wert": -1.1,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "SUIUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 49.91
+   },
+   "summe_pct": 49.91,
+   "stress_pct": 48.81,
+   "t_wert": 0.43,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -31.67
+   },
+   "rest_t_wert": -0.28,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "SUSHIUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -66.53,
+    "V1": -0.32
+   },
+   "summe_pct": -66.85,
+   "stress_pct": -86.12,
+   "t_wert": -0.34,
+   "rest_gegen_korb_pct": {
+    "T": -136.81,
+    "V1": -83.74
+   },
+   "rest_t_wert": -1.31,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "TAOUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "THETAUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -49.38,
+    "V1": 207.68
+   },
+   "summe_pct": 158.3,
+   "stress_pct": 137.56,
+   "t_wert": 0.81,
+   "rest_gegen_korb_pct": {
+    "T": -119.66,
+    "V1": 124.26
+   },
+   "rest_t_wert": 0.03,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "TIAUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -70.5
+   },
+   "summe_pct": -70.5,
+   "stress_pct": -71.65,
+   "t_wert": -0.9,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -131.26
+   },
+   "rest_t_wert": -1.59,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "TRBUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 288.56,
+    "V1": 449.95
+   },
+   "summe_pct": 738.52,
+   "stress_pct": 732.79,
+   "t_wert": 1.93,
+   "rest_gegen_korb_pct": {
+    "T": 218.29,
+    "V1": 366.53
+   },
+   "rest_t_wert": 1.59,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "TRXUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -11.26,
+    "V1": 37.5
+   },
+   "summe_pct": 26.24,
+   "stress_pct": 24.81,
+   "t_wert": 0.25,
+   "rest_gegen_korb_pct": {
+    "T": -81.54,
+    "V1": -45.92
+   },
+   "rest_t_wert": -1.04,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "TURBOUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "UMAUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 4.94
+   },
+   "summe_pct": 4.94,
+   "stress_pct": -7.9,
+   "t_wert": 0.03,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -81.05
+   },
+   "rest_t_wert": -0.54,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "UNIUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -140.89,
+    "V1": 28.81
+   },
+   "summe_pct": -112.08,
+   "stress_pct": -117.65,
+   "t_wert": -0.63,
+   "rest_gegen_korb_pct": {
+    "T": -211.16,
+    "V1": -54.61
+   },
+   "rest_t_wert": -1.77,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "VETUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 114.32,
+    "V1": 92.0
+   },
+   "summe_pct": 206.32,
+   "stress_pct": 188.59,
+   "t_wert": 1.3,
+   "rest_gegen_korb_pct": {
+    "T": 44.04,
+    "V1": 8.58
+   },
+   "rest_t_wert": 0.43,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "WIFUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -20.86
+   },
+   "summe_pct": -20.86,
+   "stress_pct": -23.12,
+   "t_wert": -0.24,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -19.22
+   },
+   "rest_t_wert": -0.24,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "WLDUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 189.16
+   },
+   "summe_pct": 189.16,
+   "stress_pct": 186.65,
+   "t_wert": 1.02,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 105.1
+   },
+   "rest_t_wert": 0.57,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "XAIUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": 0.69
+   },
+   "summe_pct": 0.69,
+   "stress_pct": -43.56,
+   "t_wert": 0.01,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": 7.16
+   },
+   "rest_t_wert": 0.13,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "XLMUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -124.91,
+    "V1": -85.97
+   },
+   "summe_pct": -210.87,
+   "stress_pct": -212.75,
+   "t_wert": -1.58,
+   "rest_gegen_korb_pct": {
+    "T": -195.19,
+    "V1": -169.39
+   },
+   "rest_t_wert": -2.98,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "XMRUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 35.71,
+    "V1": -14.9
+   },
+   "summe_pct": 20.81,
+   "stress_pct": 19.6,
+   "t_wert": 0.17,
+   "rest_gegen_korb_pct": {
+    "T": -34.56,
+    "V1": -98.32
+   },
+   "rest_t_wert": -1.03,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "XRPUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 92.37,
+    "V1": 99.31
+   },
+   "summe_pct": 191.69,
+   "stress_pct": 189.28,
+   "t_wert": 1.27,
+   "rest_gegen_korb_pct": {
+    "T": 22.1,
+    "V1": 15.89
+   },
+   "rest_t_wert": 0.28,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "XTZUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 13.85,
+    "V1": -42.01
+   },
+   "summe_pct": -28.15,
+   "stress_pct": -40.11,
+   "t_wert": -0.16,
+   "rest_gegen_korb_pct": {
+    "T": -56.43,
+    "V1": -125.43
+   },
+   "rest_t_wert": -1.35,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "YGGUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": -20.6
+   },
+   "summe_pct": -20.6,
+   "stress_pct": -63.83,
+   "t_wert": -0.14,
+   "rest_gegen_korb_pct": {
+    "T": null,
+    "V1": -107.25
+   },
+   "rest_t_wert": -0.76,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ZECUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 82.45,
+    "V1": 24.86
+   },
+   "summe_pct": 107.31,
+   "stress_pct": 106.16,
+   "t_wert": 0.68,
+   "rest_gegen_korb_pct": {
+    "T": 12.17,
+    "V1": -58.56
+   },
+   "rest_t_wert": -0.32,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ZENUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -187.67,
+    "V1": 7.88
+   },
+   "summe_pct": -179.79,
+   "stress_pct": -199.42,
+   "t_wert": -0.95,
+   "rest_gegen_korb_pct": {
+    "T": -257.95,
+    "V1": -75.54
+   },
+   "rest_t_wert": -2.12,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ZILUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": 227.52,
+    "V1": 82.14
+   },
+   "summe_pct": 309.65,
+   "stress_pct": 293.13,
+   "t_wert": 1.18,
+   "rest_gegen_korb_pct": {
+    "T": 157.24,
+    "V1": -1.28
+   },
+   "rest_t_wert": 0.68,
+   "beide_positiv": true,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  },
+  "ZKUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "ZROUSDT": {
+   "zu_kurz": true,
+   "je_zeitraum_pct": {
+    "T": null,
+    "V1": null
+   }
+  },
+  "ZRXUSDT": {
+   "zu_kurz": false,
+   "je_zeitraum_pct": {
+    "T": -42.29,
+    "V1": 264.52
+   },
+   "summe_pct": 222.23,
+   "stress_pct": 189.71,
+   "t_wert": 0.85,
+   "rest_gegen_korb_pct": {
+    "T": -112.57,
+    "V1": 181.1
+   },
+   "rest_t_wert": 0.29,
+   "beide_positiv": false,
+   "auffaellig": false,
+   "eigenstaendig_auffaellig": false
+  }
+ },
+ "neue_kontrakte_nur_bericht": {
+  "0GUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-16",
+   "tage": 350,
+   "summe_pct": 41.57,
+   "t_wert": 0.41,
+   "groesster_tag_pct": 37.5
+  },
+  "1000000MOGUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-01-06",
+   "tage": 664,
+   "summe_pct": 50.31,
+   "t_wert": 0.26,
+   "groesster_tag_pct": 42.7
+  },
+  "1MBABYDOGEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-11-15",
+   "tage": 716,
+   "summe_pct": 25.82,
+   "t_wert": 0.17,
+   "groesster_tag_pct": 72.7
+  },
+  "4USDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-07",
+   "tage": 329,
+   "summe_pct": 108.17,
+   "t_wert": 0.45,
+   "groesster_tag_pct": 82.4
+  },
+  "ACTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-01-10",
+   "tage": 660,
+   "summe_pct": -46.12,
+   "t_wert": -0.26,
+   "groesster_tag_pct": 55.4
+  },
+  "AEROUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-02-02",
+   "tage": 637,
+   "summe_pct": 117.89,
+   "t_wert": 0.73,
+   "groesster_tag_pct": 35.3
+  },
+  "AIGENSYNUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-06-28",
+   "tage": 126,
+   "summe_pct": -78.04,
+   "t_wert": -1.41,
+   "groesster_tag_pct": 37.1
+  },
+  "AINUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-08",
+   "tage": 419,
+   "summe_pct": 30.56,
+   "t_wert": 0.09,
+   "groesster_tag_pct": 201.3
+  },
+  "AIXBTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-02-18",
+   "tage": 621,
+   "summe_pct": 80.67,
+   "t_wert": 0.43,
+   "groesster_tag_pct": 56.7
+  },
+  "AKTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-01-17",
+   "tage": 653,
+   "summe_pct": 193.42,
+   "t_wert": 1.31,
+   "groesster_tag_pct": 28.8
+  },
+  "ALLOUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-01-10",
+   "tage": 295,
+   "summe_pct": 457.37,
+   "t_wert": 1.29,
+   "groesster_tag_pct": 234.1
+  },
+  "APRUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-22",
+   "tage": 314,
+   "summe_pct": -168.24,
+   "t_wert": -0.54,
+   "groesster_tag_pct": 192.4
+  },
+  "ARCUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-03-18",
+   "tage": 593,
+   "summe_pct": -184.06,
+   "t_wert": -0.67,
+   "groesster_tag_pct": 78.8
+  },
+  "ARIAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-02",
+   "tage": 364,
+   "summe_pct": 198.79,
+   "t_wert": 0.17,
+   "groesster_tag_pct": 886.3
+  },
+  "ASTERUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-18",
+   "tage": 348,
+   "summe_pct": -81.51,
+   "t_wert": -1.32,
+   "groesster_tag_pct": 16.9
+  },
+  "ATHUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-01",
+   "tage": 518,
+   "summe_pct": 48.32,
+   "t_wert": 0.4,
+   "groesster_tag_pct": 46.0
+  },
+  "ATUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-28",
+   "tage": 308,
+   "summe_pct": -138.79,
+   "t_wert": -1.54,
+   "groesster_tag_pct": 31.7
+  },
+  "AUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-07-27",
+   "tage": 462,
+   "summe_pct": 41.08,
+   "t_wert": 0.48,
+   "groesster_tag_pct": 26.6
+  },
+  "AVNTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-08",
+   "tage": 358,
+   "summe_pct": 59.3,
+   "t_wert": 0.66,
+   "groesster_tag_pct": 21.2
+  },
+  "AWEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-07-20",
+   "tage": 469,
+   "summe_pct": 38.71,
+   "t_wert": 0.31,
+   "groesster_tag_pct": 62.0
+  },
+  "AZTECUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-04-12",
+   "tage": 203,
+   "summe_pct": -197.3,
+   "t_wert": -2.76,
+   "groesster_tag_pct": 16.9
+  },
+  "BANANAS31USDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-05-21",
+   "tage": 529,
+   "summe_pct": -178.71,
+   "t_wert": -0.38,
+   "groesster_tag_pct": 295.4
+  },
+  "BANANAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-10-14",
+   "tage": 748,
+   "summe_pct": -161.99,
+   "t_wert": -1.08,
+   "groesster_tag_pct": 29.8
+  },
+  "BANKUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-17",
+   "tage": 502,
+   "summe_pct": -238.46,
+   "t_wert": -0.38,
+   "groesster_tag_pct": 296.5
+  },
+  "BANUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-01-17",
+   "tage": 653,
+   "summe_pct": -660.81,
+   "t_wert": -2.55,
+   "groesster_tag_pct": 112.4
+  },
+  "BARDUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-17",
+   "tage": 349,
+   "summe_pct": -26.39,
+   "t_wert": -0.22,
+   "groesster_tag_pct": 81.7
+  },
+  "BASEDUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-05-29",
+   "tage": 156,
+   "summe_pct": -33.94,
+   "t_wert": -0.32,
+   "groesster_tag_pct": 40.5
+  },
+  "BASUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-10-25",
+   "tage": 372,
+   "summe_pct": 92.12,
+   "t_wert": 0.39,
+   "groesster_tag_pct": 87.4
+  },
+  "BEATUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-01-11",
+   "tage": 294,
+   "summe_pct": 80.1,
+   "t_wert": 0.1,
+   "groesster_tag_pct": 379.7
+  },
+  "BERAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-04-07",
+   "tage": 573,
+   "summe_pct": 13.77,
+   "t_wert": 0.09,
+   "groesster_tag_pct": 73.6
+  },
+  "BILLUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-07-06",
+   "tage": 118,
+   "summe_pct": 135.24,
+   "t_wert": 1.8,
+   "groesster_tag_pct": 45.1
+  },
+  "BIOUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-03-04",
+   "tage": 607,
+   "summe_pct": 220.69,
+   "t_wert": 0.77,
+   "groesster_tag_pct": 133.4
+  },
+  "BMTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-05-16",
+   "tage": 534,
+   "summe_pct": -134.06,
+   "t_wert": -0.54,
+   "groesster_tag_pct": 162.9
+  },
+  "BRETTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-10-19",
+   "tage": 743,
+   "summe_pct": 62.97,
+   "t_wert": 0.33,
+   "groesster_tag_pct": 37.6
+  },
+  "BREVUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-02-28",
+   "tage": 246,
+   "summe_pct": -83.74,
+   "t_wert": -1.26,
+   "groesster_tag_pct": 26.1
+  },
+  "BROCCOLI714USDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-05-20",
+   "tage": 530,
+   "summe_pct": 66.39,
+   "t_wert": 0.31,
+   "groesster_tag_pct": 80.8
+  },
+  "BROCCOLIF3BUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-05-20",
+   "tage": 530,
+   "summe_pct": -46.9,
+   "t_wert": -0.23,
+   "groesster_tag_pct": 96.4
+  },
+  "BSBUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-05-24",
+   "tage": 161,
+   "summe_pct": -134.34,
+   "t_wert": -1.2,
+   "groesster_tag_pct": 55.2
+  },
+  "BTWUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-08-03",
+   "tage": 90,
+   "summe_pct": 584.86,
+   "t_wert": 1.4,
+   "groesster_tag_pct": 124.9
+  },
+  "BUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-07-21",
+   "tage": 468,
+   "summe_pct": -21.63,
+   "t_wert": -0.06,
+   "groesster_tag_pct": 176.4
+  },
+  "CCUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-30",
+   "tage": 306,
+   "summe_pct": -38.46,
+   "t_wert": -0.54,
+   "groesster_tag_pct": 17.2
+  },
+  "CHIPUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-06-15",
+   "tage": 139,
+   "summe_pct": -33.21,
+   "t_wert": -0.31,
+   "groesster_tag_pct": 48.4
+  },
+  "CLOUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-13",
+   "tage": 323,
+   "summe_pct": -203.28,
+   "t_wert": -0.69,
+   "groesster_tag_pct": 94.9
+  },
+  "COAIUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-24",
+   "tage": 342,
+   "summe_pct": -142.3,
+   "t_wert": -1.36,
+   "groesster_tag_pct": 31.9
+  },
+  "COLLECTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-03-01",
+   "tage": 245,
+   "summe_pct": -88.85,
+   "t_wert": -0.59,
+   "groesster_tag_pct": 37.0
+  },
+  "COOKIEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-03-08",
+   "tage": 603,
+   "summe_pct": 22.87,
+   "t_wert": 0.14,
+   "groesster_tag_pct": 42.1
+  },
+  "COWUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-01-05",
+   "tage": 665,
+   "summe_pct": -69.28,
+   "t_wert": -0.5,
+   "groesster_tag_pct": 31.5
+  },
+  "CROSSUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-08",
+   "tage": 419,
+   "summe_pct": -306.3,
+   "t_wert": -1.89,
+   "groesster_tag_pct": 83.9
+  },
+  "CUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-13",
+   "tage": 414,
+   "summe_pct": 130.58,
+   "t_wert": 0.94,
+   "groesster_tag_pct": 49.8
+  },
+  "CYSUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-02-10",
+   "tage": 264,
+   "summe_pct": -158.36,
+   "t_wert": -0.66,
+   "groesster_tag_pct": 104.6
+  },
+  "DATAIPUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-09-01",
+   "tage": 61,
+   "summe_pct": 36.57,
+   "t_wert": 1.49,
+   "groesster_tag_pct": 8.7
+  },
+  "DEEPUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-21",
+   "tage": 498,
+   "summe_pct": -72.62,
+   "t_wert": -0.58,
+   "groesster_tag_pct": 23.8
+  },
+  "DEXEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-02-22",
+   "tage": 617,
+   "summe_pct": -88.42,
+   "t_wert": -0.29,
+   "groesster_tag_pct": 113.2
+  },
+  "DIAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-12-01",
+   "tage": 700,
+   "summe_pct": 247.53,
+   "t_wert": 1.4,
+   "groesster_tag_pct": 69.0
+  },
+  "DOGSUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-10-25",
+   "tage": 737,
+   "summe_pct": -187.99,
+   "t_wert": -0.99,
+   "groesster_tag_pct": 74.1
+  },
+  "DOLOUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-30",
+   "tage": 489,
+   "summe_pct": 319.22,
+   "t_wert": 0.77,
+   "groesster_tag_pct": 166.9
+  },
+  "DOODUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-07-08",
+   "tage": 481,
+   "summe_pct": -18.18,
+   "t_wert": -0.09,
+   "groesster_tag_pct": 87.1
+  },
+  "DRIFTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-01-07",
+   "tage": 663,
+   "summe_pct": -71.83,
+   "t_wert": -0.44,
+   "groesster_tag_pct": 46.7
+  },
+  "EDENUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-29",
+   "tage": 337,
+   "summe_pct": -105.01,
+   "t_wert": -0.51,
+   "groesster_tag_pct": 101.1
+  },
+  "EDGEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-05-18",
+   "tage": 167,
+   "summe_pct": 65.38,
+   "t_wert": 0.71,
+   "groesster_tag_pct": 44.1
+  },
+  "EIGENUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-11-30",
+   "tage": 701,
+   "summe_pct": -194.0,
+   "t_wert": -1.15,
+   "groesster_tag_pct": 44.0
+  },
+  "ELSAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-03-23",
+   "tage": 223,
+   "summe_pct": 4.62,
+   "t_wert": 0.07,
+   "groesster_tag_pct": 16.3
+  },
+  "ENSOUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-13",
+   "tage": 323,
+   "summe_pct": 172.88,
+   "t_wert": 0.85,
+   "groesster_tag_pct": 134.1
+  },
+  "ESPORTSUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-27",
+   "tage": 400,
+   "summe_pct": -351.68,
+   "t_wert": -0.65,
+   "groesster_tag_pct": 309.9
+  },
+  "EVAAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-02",
+   "tage": 334,
+   "summe_pct": -166.66,
+   "t_wert": -0.44,
+   "groesster_tag_pct": 192.7
+  },
+  "FARTCOINUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-02-18",
+   "tage": 621,
+   "summe_pct": -123.52,
+   "t_wert": -0.58,
+   "groesster_tag_pct": 56.9
+  },
+  "FFUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-28",
+   "tage": 338,
+   "summe_pct": 58.95,
+   "t_wert": 0.51,
+   "groesster_tag_pct": 54.0
+  },
+  "FHEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-11",
+   "tage": 508,
+   "summe_pct": -203.23,
+   "t_wert": -0.48,
+   "groesster_tag_pct": 196.3
+  },
+  "FIDAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-11-18",
+   "tage": 713,
+   "summe_pct": -61.89,
+   "t_wert": -0.36,
+   "groesster_tag_pct": 56.4
+  },
+  "FLOCKUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-08",
+   "tage": 358,
+   "summe_pct": 191.5,
+   "t_wert": 1.28,
+   "groesster_tag_pct": 59.5
+  },
+  "FUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-08-17",
+   "tage": 441,
+   "summe_pct": -46.12,
+   "t_wert": -0.17,
+   "groesster_tag_pct": 182.0
+  },
+  "GENIUSUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-06-15",
+   "tage": 139,
+   "summe_pct": -41.29,
+   "t_wert": -0.94,
+   "groesster_tag_pct": 18.8
+  },
+  "GIGGLEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-08",
+   "tage": 328,
+   "summe_pct": 1.96,
+   "t_wert": 0.01,
+   "groesster_tag_pct": 60.5
+  },
+  "GOATUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-12-23",
+   "tage": 678,
+   "summe_pct": 249.47,
+   "t_wert": 0.83,
+   "groesster_tag_pct": 155.0
+  },
+  "GPSUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-04-18",
+   "tage": 562,
+   "summe_pct": -232.32,
+   "t_wert": -1.23,
+   "groesster_tag_pct": 64.9
+  },
+  "GRAMUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-08-31",
+   "tage": 62,
+   "summe_pct": -11.33,
+   "t_wert": -0.43,
+   "groesster_tag_pct": 11.0
+  },
+  "GRASSUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-01-07",
+   "tage": 663,
+   "summe_pct": 99.08,
+   "t_wert": 0.45,
+   "groesster_tag_pct": 49.7
+  },
+  "GRVTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": true,
+   "von": "2026-09-29",
+   "tage": 33,
+   "summe_pct": -9.01,
+   "t_wert": -0.32,
+   "groesster_tag_pct": 11.0
+  },
+  "GUAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-02-19",
+   "tage": 255,
+   "summe_pct": 534.76,
+   "t_wert": 0.9,
+   "groesster_tag_pct": 275.9
+  },
+  "GUNUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-05-30",
+   "tage": 520,
+   "summe_pct": -90.77,
+   "t_wert": -0.48,
+   "groesster_tag_pct": 69.4
+  },
+  "HAEDALUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-30",
+   "tage": 489,
+   "summe_pct": -34.4,
+   "t_wert": -0.25,
+   "groesster_tag_pct": 46.8
+  },
+  "HANAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-25",
+   "tage": 341,
+   "summe_pct": 121.91,
+   "t_wert": 0.7,
+   "groesster_tag_pct": 78.2
+  },
+  "HEIUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-04-14",
+   "tage": 566,
+   "summe_pct": -353.58,
+   "t_wert": -1.6,
+   "groesster_tag_pct": 107.5
+  },
+  "HEMIUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-10-28",
+   "tage": 369,
+   "summe_pct": -15.69,
+   "t_wert": -0.09,
+   "groesster_tag_pct": 63.2
+  },
+  "HMSTRUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-11-25",
+   "tage": 706,
+   "summe_pct": -117.93,
+   "t_wert": -0.63,
+   "groesster_tag_pct": 73.6
+  },
+  "HOMEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-08-09",
+   "tage": 449,
+   "summe_pct": 202.94,
+   "t_wert": 0.93,
+   "groesster_tag_pct": 116.0
+  },
+  "HUMAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-07-25",
+   "tage": 464,
+   "summe_pct": -26.04,
+   "t_wert": -0.19,
+   "groesster_tag_pct": 28.9
+  },
+  "HUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-08-24",
+   "tage": 434,
+   "summe_pct": -335.81,
+   "t_wert": -0.59,
+   "groesster_tag_pct": 223.3
+  },
+  "HYPERUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-21",
+   "tage": 498,
+   "summe_pct": 242.93,
+   "t_wert": 0.48,
+   "groesster_tag_pct": 477.8
+  },
+  "HYPEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-07-29",
+   "tage": 460,
+   "summe_pct": -125.89,
+   "t_wert": -1.14,
+   "groesster_tag_pct": 23.5
+  },
+  "ICNTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-01",
+   "tage": 426,
+   "summe_pct": -341.75,
+   "t_wert": -2.02,
+   "groesster_tag_pct": 46.5
+  },
+  "IDOLUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-02",
+   "tage": 425,
+   "summe_pct": -277.08,
+   "t_wert": -1.38,
+   "groesster_tag_pct": 68.9
+  },
+  "IRYSUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-01-25",
+   "tage": 280,
+   "summe_pct": 167.02,
+   "t_wert": 0.42,
+   "groesster_tag_pct": 313.8
+  },
+  "JELLYJELLYUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-05-25",
+   "tage": 525,
+   "summe_pct": -436.31,
+   "t_wert": -1.11,
+   "groesster_tag_pct": 252.1
+  },
+  "JSTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-27",
+   "tage": 492,
+   "summe_pct": -10.63,
+   "t_wert": -0.15,
+   "groesster_tag_pct": 22.7
+  },
+  "KAITOUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-04-21",
+   "tage": 559,
+   "summe_pct": 155.34,
+   "t_wert": 0.84,
+   "groesster_tag_pct": 57.4
+  },
+  "KERNELUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-13",
+   "tage": 506,
+   "summe_pct": 30.24,
+   "t_wert": 0.2,
+   "groesster_tag_pct": 38.4
+  },
+  "KITEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-28",
+   "tage": 308,
+   "summe_pct": 84.93,
+   "t_wert": 0.58,
+   "groesster_tag_pct": 42.6
+  },
+  "LABUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-16",
+   "tage": 320,
+   "summe_pct": 2543.77,
+   "t_wert": 1.31,
+   "groesster_tag_pct": 1191.5
+  },
+  "LAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-08-04",
+   "tage": 454,
+   "summe_pct": -99.72,
+   "t_wert": -0.8,
+   "groesster_tag_pct": 42.1
+  },
+  "MAGMAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-03-01",
+   "tage": 245,
+   "summe_pct": -136.52,
+   "t_wert": -0.49,
+   "groesster_tag_pct": 73.1
+  },
+  "MEGAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-03-31",
+   "tage": 215,
+   "summe_pct": 9.01,
+   "t_wert": 0.11,
+   "groesster_tag_pct": 32.2
+  },
+  "MERLUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-07-28",
+   "tage": 461,
+   "summe_pct": -189.29,
+   "t_wert": -0.86,
+   "groesster_tag_pct": 122.3
+  },
+  "METUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-10",
+   "tage": 326,
+   "summe_pct": -31.58,
+   "t_wert": -0.28,
+   "groesster_tag_pct": 36.6
+  },
+  "MMTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-01-03",
+   "tage": 302,
+   "summe_pct": -105.35,
+   "t_wert": -0.99,
+   "groesster_tag_pct": 36.2
+  },
+  "MONUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-09",
+   "tage": 327,
+   "summe_pct": -16.3,
+   "t_wert": -0.16,
+   "groesster_tag_pct": 19.9
+  },
+  "MOODENGUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-12-24",
+   "tage": 677,
+   "summe_pct": 825.37,
+   "t_wert": 1.07,
+   "groesster_tag_pct": 322.2
+  },
+  "MORPHOUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-01-26",
+   "tage": 644,
+   "summe_pct": -143.78,
+   "t_wert": -0.98,
+   "groesster_tag_pct": 30.7
+  },
+  "MOVEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-02-07",
+   "tage": 632,
+   "summe_pct": -183.17,
+   "t_wert": -1.47,
+   "groesster_tag_pct": 36.6
+  },
+  "MUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-05",
+   "tage": 422,
+   "summe_pct": 65.75,
+   "t_wert": 0.36,
+   "groesster_tag_pct": 57.5
+  },
+  "MYXUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-08-17",
+   "tage": 441,
+   "summe_pct": 782.46,
+   "t_wert": 0.66,
+   "groesster_tag_pct": 901.6
+  },
+  "NEIROUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-11-15",
+   "tage": 716,
+   "summe_pct": 102.61,
+   "t_wert": 0.47,
+   "groesster_tag_pct": 70.8
+  },
+  "NEWTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-08-18",
+   "tage": 440,
+   "summe_pct": 80.96,
+   "t_wert": 1.04,
+   "groesster_tag_pct": 24.2
+  },
+  "NIGHTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-02-08",
+   "tage": 266,
+   "summe_pct": 55.56,
+   "t_wert": 0.53,
+   "groesster_tag_pct": 43.0
+  },
+  "NILUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-05-23",
+   "tage": 527,
+   "summe_pct": -252.45,
+   "t_wert": -1.13,
+   "groesster_tag_pct": 120.5
+  },
+  "NXPCUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-07-14",
+   "tage": 475,
+   "summe_pct": 0.95,
+   "t_wert": 0.01,
+   "groesster_tag_pct": 23.0
+  },
+  "OPGUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-06-21",
+   "tage": 133,
+   "summe_pct": 11.12,
+   "t_wert": 0.23,
+   "groesster_tag_pct": 14.2
+  },
+  "OPNUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-04-22",
+   "tage": 193,
+   "summe_pct": -88.56,
+   "t_wert": -0.8,
+   "groesster_tag_pct": 64.0
+  },
+  "ORCAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-02-04",
+   "tage": 635,
+   "summe_pct": -123.33,
+   "t_wert": -0.63,
+   "groesster_tag_pct": 78.8
+  },
+  "ORDERUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-25",
+   "tage": 341,
+   "summe_pct": -88.79,
+   "t_wert": -0.68,
+   "groesster_tag_pct": 99.0
+  },
+  "PENGUUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-02-15",
+   "tage": 624,
+   "summe_pct": 513.74,
+   "t_wert": 2.19,
+   "groesster_tag_pct": 62.4
+  },
+  "PHAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-02-28",
+   "tage": 611,
+   "summe_pct": 7.46,
+   "t_wert": 0.03,
+   "groesster_tag_pct": 140.4
+  },
+  "PIPPINUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-03-25",
+   "tage": 586,
+   "summe_pct": -6.25,
+   "t_wert": -0.01,
+   "groesster_tag_pct": 206.7
+  },
+  "PLAYUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-29",
+   "tage": 398,
+   "summe_pct": -219.14,
+   "t_wert": -0.56,
+   "groesster_tag_pct": 184.0
+  },
+  "PNUTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-01-10",
+   "tage": 660,
+   "summe_pct": 74.35,
+   "t_wert": 0.39,
+   "groesster_tag_pct": 74.3
+  },
+  "POLUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-11-12",
+   "tage": 719,
+   "summe_pct": 196.4,
+   "t_wert": 1.66,
+   "groesster_tag_pct": 28.5
+  },
+  "PONSUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "POPCATUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-10-21",
+   "tage": 741,
+   "summe_pct": -54.72,
+   "t_wert": -0.28,
+   "groesster_tag_pct": 35.0
+  },
+  "POWERUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-02-04",
+   "tage": 270,
+   "summe_pct": -18.95,
+   "t_wert": -0.02,
+   "groesster_tag_pct": 775.8
+  },
+  "PROVEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-10-04",
+   "tage": 393,
+   "summe_pct": -45.45,
+   "t_wert": -0.46,
+   "groesster_tag_pct": 44.3
+  },
+  "PUMPUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-08",
+   "tage": 419,
+   "summe_pct": 122.85,
+   "t_wert": 0.67,
+   "groesster_tag_pct": 59.5
+  },
+  "PUNDIXUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-29",
+   "tage": 490,
+   "summe_pct": -29.58,
+   "t_wert": -0.37,
+   "groesster_tag_pct": 21.2
+  },
+  "RAREUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-10-14",
+   "tage": 748,
+   "summe_pct": -296.77,
+   "t_wert": -1.64,
+   "groesster_tag_pct": 55.7
+  },
+  "RAVEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-02-12",
+   "tage": 262,
+   "summe_pct": 254.29,
+   "t_wert": 0.03,
+   "groesster_tag_pct": 7113.8
+  },
+  "RAYSOLUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-02-08",
+   "tage": 631,
+   "summe_pct": 314.71,
+   "t_wert": 1.66,
+   "groesster_tag_pct": 59.2
+  },
+  "REDUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-05-05",
+   "tage": 545,
+   "summe_pct": 63.82,
+   "t_wert": 0.46,
+   "groesster_tag_pct": 68.0
+  },
+  "RENDERUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-09-24",
+   "tage": 768,
+   "summe_pct": 208.03,
+   "t_wert": 1.42,
+   "groesster_tag_pct": 28.4
+  },
+  "REUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-08-17",
+   "tage": 76,
+   "summe_pct": 26.28,
+   "t_wert": 0.56,
+   "groesster_tag_pct": 34.5
+  },
+  "RIVERUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-16",
+   "tage": 320,
+   "summe_pct": 492.31,
+   "t_wert": 0.51,
+   "groesster_tag_pct": 446.7
+  },
+  "ROBOUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-04-28",
+   "tage": 187,
+   "summe_pct": -54.85,
+   "t_wert": -0.71,
+   "groesster_tag_pct": 19.8
+  },
+  "RPLUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-11-08",
+   "tage": 723,
+   "summe_pct": -27.45,
+   "t_wert": -0.17,
+   "groesster_tag_pct": 51.3
+  },
+  "SAFEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-12-24",
+   "tage": 677,
+   "summe_pct": 98.8,
+   "t_wert": 0.74,
+   "groesster_tag_pct": 35.9
+  },
+  "SAHARAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-08-25",
+   "tage": 433,
+   "summe_pct": 33.06,
+   "t_wert": 0.25,
+   "groesster_tag_pct": 53.2
+  },
+  "SAPIENUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-10-19",
+   "tage": 378,
+   "summe_pct": -41.7,
+   "t_wert": -0.23,
+   "groesster_tag_pct": 119.3
+  },
+  "SENTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-01-13",
+   "tage": 292,
+   "summe_pct": -168.12,
+   "t_wert": -1.47,
+   "groesster_tag_pct": 34.2
+  },
+  "SHELLUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-04-18",
+   "tage": 562,
+   "summe_pct": -5.91,
+   "t_wert": -0.04,
+   "groesster_tag_pct": 30.6
+  },
+  "SIGNUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-27",
+   "tage": 492,
+   "summe_pct": 115.74,
+   "t_wert": 0.91,
+   "groesster_tag_pct": 48.2
+  },
+  "SIRENUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-05-21",
+   "tage": 529,
+   "summe_pct": 341.3,
+   "t_wert": 0.11,
+   "groesster_tag_pct": 1497.1
+  },
+  "SKYAIUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-07-12",
+   "tage": 477,
+   "summe_pct": 496.7,
+   "t_wert": 0.54,
+   "groesster_tag_pct": 535.0
+  },
+  "SKYUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-08",
+   "tage": 358,
+   "summe_pct": 10.84,
+   "t_wert": 0.15,
+   "groesster_tag_pct": 16.4
+  },
+  "SOONUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-07-22",
+   "tage": 467,
+   "summe_pct": 394.32,
+   "t_wert": 1.1,
+   "groesster_tag_pct": 141.9
+  },
+  "SOPHUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-07-27",
+   "tage": 462,
+   "summe_pct": -7.85,
+   "t_wert": -0.07,
+   "groesster_tag_pct": 45.6
+  },
+  "SPACEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-03-24",
+   "tage": 222,
+   "summe_pct": -237.73,
+   "t_wert": -2.23,
+   "groesster_tag_pct": 59.2
+  },
+  "SPKUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-08-16",
+   "tage": 442,
+   "summe_pct": 18.16,
+   "t_wert": 0.13,
+   "groesster_tag_pct": 67.8
+  },
+  "SPXUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-02-08",
+   "tage": 631,
+   "summe_pct": -189.64,
+   "t_wert": -0.97,
+   "groesster_tag_pct": 35.4
+  },
+  "SQDUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-08-10",
+   "tage": 448,
+   "summe_pct": 26.32,
+   "t_wert": 0.12,
+   "groesster_tag_pct": 91.7
+  },
+  "STABLEUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-01-05",
+   "tage": 300,
+   "summe_pct": -219.52,
+   "t_wert": -2.02,
+   "groesster_tag_pct": 37.9
+  },
+  "STARUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-07-13",
+   "tage": 111,
+   "summe_pct": 29.24,
+   "t_wert": 0.23,
+   "groesster_tag_pct": 53.4
+  },
+  "STBLUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-16",
+   "tage": 350,
+   "summe_pct": -143.98,
+   "t_wert": -1.49,
+   "groesster_tag_pct": 19.1
+  },
+  "STOUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-11",
+   "tage": 508,
+   "summe_pct": -20.42,
+   "t_wert": -0.03,
+   "groesster_tag_pct": 413.7
+  },
+  "SUNUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-10-21",
+   "tage": 741,
+   "summe_pct": 10.53,
+   "t_wert": 0.09,
+   "groesster_tag_pct": 66.9
+  },
+  "SUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-03-17",
+   "tage": 594,
+   "summe_pct": 3.61,
+   "t_wert": 0.03,
+   "groesster_tag_pct": 34.4
+  },
+  "SYNUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2024-10-15",
+   "tage": 747,
+   "summe_pct": 414.33,
+   "t_wert": 0.72,
+   "groesster_tag_pct": 265.6
+  },
+  "SYRUPUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-07-06",
+   "tage": 483,
+   "summe_pct": 33.94,
+   "t_wert": 0.33,
+   "groesster_tag_pct": 21.3
+  },
+  "TACUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-13",
+   "tage": 414,
+   "summe_pct": 133.21,
+   "t_wert": 0.35,
+   "groesster_tag_pct": 157.1
+  },
+  "TAGUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-23",
+   "tage": 404,
+   "summe_pct": -278.34,
+   "t_wert": -1.5,
+   "groesster_tag_pct": 40.1
+  },
+  "TAIKOUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-08-10",
+   "tage": 448,
+   "summe_pct": -728.77,
+   "t_wert": -1.28,
+   "groesster_tag_pct": 562.2
+  },
+  "TAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-19",
+   "tage": 408,
+   "summe_pct": 86.28,
+   "t_wert": 0.55,
+   "groesster_tag_pct": 50.8
+  },
+  "TOWNSUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-10-04",
+   "tage": 393,
+   "summe_pct": 26.51,
+   "t_wert": 0.27,
+   "groesster_tag_pct": 35.2
+  },
+  "TRUMPUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-03-19",
+   "tage": 592,
+   "summe_pct": -90.69,
+   "t_wert": -0.67,
+   "groesster_tag_pct": 49.7
+  },
+  "TSTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-04-10",
+   "tage": 570,
+   "summe_pct": -292.93,
+   "t_wert": -1.42,
+   "groesster_tag_pct": 70.5
+  },
+  "TUTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-05-19",
+   "tage": 531,
+   "summe_pct": 343.18,
+   "t_wert": 0.25,
+   "groesster_tag_pct": 810.3
+  },
+  "UAIUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-01-05",
+   "tage": 300,
+   "summe_pct": -338.98,
+   "t_wert": -1.36,
+   "groesster_tag_pct": 72.9
+  },
+  "UBUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-11",
+   "tage": 355,
+   "summe_pct": 48.89,
+   "t_wert": 0.11,
+   "groesster_tag_pct": 203.2
+  },
+  "USELESSUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-10-14",
+   "tage": 383,
+   "summe_pct": 572.67,
+   "t_wert": 1.57,
+   "groesster_tag_pct": 173.0
+  },
+  "VELVETUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-13",
+   "tage": 414,
+   "summe_pct": 199.95,
+   "t_wert": 0.15,
+   "groesster_tag_pct": 1017.0
+  },
+  "VIRTUALUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-02-08",
+   "tage": 631,
+   "summe_pct": 65.45,
+   "t_wert": 0.29,
+   "groesster_tag_pct": 118.9
+  },
+  "VVVUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-03-30",
+   "tage": 581,
+   "summe_pct": 385.58,
+   "t_wert": 1.59,
+   "groesster_tag_pct": 55.5
+  },
+  "WALUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-05-26",
+   "tage": 524,
+   "summe_pct": 15.4,
+   "t_wert": 0.12,
+   "groesster_tag_pct": 58.0
+  },
+  "WCTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-06-14",
+   "tage": 505,
+   "summe_pct": -73.0,
+   "t_wert": -0.68,
+   "groesster_tag_pct": 34.0
+  },
+  "WLFIUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-10-22",
+   "tage": 375,
+   "summe_pct": -82.26,
+   "t_wert": -1.2,
+   "groesster_tag_pct": 24.3
+  },
+  "XPINUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-11",
+   "tage": 355,
+   "summe_pct": -120.56,
+   "t_wert": -1.03,
+   "groesster_tag_pct": 48.7
+  },
+  "XPLUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-10-21",
+   "tage": 376,
+   "summe_pct": -55.99,
+   "t_wert": -0.46,
+   "groesster_tag_pct": 23.2
+  },
+  "ZAMAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-03-10",
+   "tage": 236,
+   "summe_pct": -119.91,
+   "t_wert": -1.17,
+   "groesster_tag_pct": 37.1
+  },
+  "ZEREBROUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-03-03",
+   "tage": 608,
+   "summe_pct": -436.32,
+   "t_wert": -0.81,
+   "groesster_tag_pct": 262.7
+  },
+  "ZESTUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-08-03",
+   "tage": 90,
+   "summe_pct": 47.83,
+   "t_wert": 0.89,
+   "groesster_tag_pct": 27.2
+  },
+  "ZKCUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-11-14",
+   "tage": 352,
+   "summe_pct": -21.63,
+   "t_wert": -0.22,
+   "groesster_tag_pct": 55.0
+  },
+  "ZKPUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-02-19",
+   "tage": 255,
+   "summe_pct": -90.62,
+   "t_wert": -1.22,
+   "groesster_tag_pct": 30.3
+  },
+  "ZORAUSDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-09-23",
+   "tage": 404,
+   "summe_pct": 95.38,
+   "t_wert": 0.86,
+   "groesster_tag_pct": 41.6
+  },
+  "哈基米USDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "币安人生USDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2025-12-19",
+   "tage": 317,
+   "summe_pct": 487.15,
+   "t_wert": 1.15,
+   "groesster_tag_pct": 242.1
+  },
+  "牛来USDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": true,
+   "von": "2026-10-29",
+   "tage": 3,
+   "summe_pct": -4.05,
+   "t_wert": -0.28,
+   "groesster_tag_pct": 10.2
+  },
+  "龙虾USDT": {
+   "gruppe": "krypto_neu",
+   "zu_kurz": false,
+   "von": "2026-05-10",
+   "tage": 175,
+   "summe_pct": 189.54,
+   "t_wert": 0.42,
+   "groesster_tag_pct": 203.3
+  },
+  "AAOIUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-07",
+   "tage": 86,
+   "summe_pct": 13.11,
+   "t_wert": 0.25,
+   "groesster_tag_pct": 21.9
+  },
+  "AAPLUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-06-05",
+   "tage": 149,
+   "summe_pct": -8.62,
+   "t_wert": -0.47,
+   "groesster_tag_pct": 8.8
+  },
+  "ADBEUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-10",
+   "tage": 83,
+   "summe_pct": -5.84,
+   "t_wert": -0.29,
+   "groesster_tag_pct": 6.0
+  },
+  "AGPUUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "AKAMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "ALABUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-21",
+   "tage": 72,
+   "summe_pct": 13.04,
+   "t_wert": 0.37,
+   "groesster_tag_pct": 12.6
+  },
+  "AMATUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-07",
+   "tage": 86,
+   "summe_pct": 10.06,
+   "t_wert": 0.42,
+   "groesster_tag_pct": 8.3
+  },
+  "AMCUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "AMDUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-05",
+   "tage": 119,
+   "summe_pct": -4.07,
+   "t_wert": -0.1,
+   "groesster_tag_pct": 13.7
+  },
+  "AMZNUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-04-10",
+   "tage": 205,
+   "summe_pct": -32.49,
+   "t_wert": -1.17,
+   "groesster_tag_pct": 11.6
+  },
+  "ANETUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "ANTHROPICUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-01",
+   "tage": 92,
+   "summe_pct": 43.96,
+   "t_wert": 1.96,
+   "groesster_tag_pct": 9.4
+  },
+  "APLDUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "APPUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-08",
+   "tage": 54,
+   "summe_pct": -8.44,
+   "t_wert": -0.41,
+   "groesster_tag_pct": 9.4
+  },
+  "ARMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-25",
+   "tage": 99,
+   "summe_pct": 20.62,
+   "t_wert": 0.45,
+   "groesster_tag_pct": 18.7
+  },
+  "ASMLUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-10",
+   "tage": 83,
+   "summe_pct": 5.28,
+   "t_wert": 0.31,
+   "groesster_tag_pct": 5.3
+  },
+  "ASTSUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-31",
+   "tage": 93,
+   "summe_pct": 7.57,
+   "t_wert": 0.19,
+   "groesster_tag_pct": 10.8
+  },
+  "AVGOUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-06-19",
+   "tage": 135,
+   "summe_pct": -24.11,
+   "t_wert": -1.05,
+   "groesster_tag_pct": 6.4
+  },
+  "AXTIUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-07",
+   "tage": 86,
+   "summe_pct": 32.34,
+   "t_wert": 0.49,
+   "groesster_tag_pct": 24.7
+  },
+  "BABAUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-06-19",
+   "tage": 135,
+   "summe_pct": -16.43,
+   "t_wert": -0.66,
+   "groesster_tag_pct": 11.1
+  },
+  "BACUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "BBXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-31",
+   "tage": 93,
+   "summe_pct": -23.85,
+   "t_wert": -0.7,
+   "groesster_tag_pct": 11.7
+  },
+  "BEUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-25",
+   "tage": 99,
+   "summe_pct": 9.19,
+   "t_wert": 0.16,
+   "groesster_tag_pct": 28.2
+  },
+  "BITOUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-25",
+   "tage": 37,
+   "summe_pct": 1.42,
+   "t_wert": 0.16,
+   "groesster_tag_pct": 4.1
+  },
+  "BMNRUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-10",
+   "tage": 83,
+   "summe_pct": 32.99,
+   "t_wert": 0.78,
+   "groesster_tag_pct": 17.2
+  },
+  "BNCUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-07",
+   "tage": 55,
+   "summe_pct": 56.38,
+   "t_wert": 0.99,
+   "groesster_tag_pct": 34.2
+  },
+  "BOTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-07",
+   "tage": 55,
+   "summe_pct": 7.01,
+   "t_wert": 0.23,
+   "groesster_tag_pct": 11.0
+  },
+  "BRKBUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-17",
+   "tage": 107,
+   "summe_pct": -6.12,
+   "t_wert": -0.77,
+   "groesster_tag_pct": 3.7
+  },
+  "BSPUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-31",
+   "tage": 62,
+   "summe_pct": 0.7,
+   "t_wert": 0.01,
+   "groesster_tag_pct": 37.7
+  },
+  "BWETUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "BXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-07",
+   "tage": 86,
+   "summe_pct": 16.5,
+   "t_wert": 0.97,
+   "groesster_tag_pct": 6.5
+  },
+  "BYDUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "BZUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-05-31",
+   "tage": 154,
+   "summe_pct": 33.78,
+   "t_wert": 1.16,
+   "groesster_tag_pct": 8.2
+  },
+  "CATUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-31",
+   "tage": 62,
+   "summe_pct": 11.45,
+   "t_wert": 0.74,
+   "groesster_tag_pct": 8.8
+  },
+  "CBRSUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-18",
+   "tage": 106,
+   "summe_pct": -34.0,
+   "t_wert": -0.66,
+   "groesster_tag_pct": 17.9
+  },
+  "CEGUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "CIENUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-21",
+   "tage": 72,
+   "summe_pct": 10.36,
+   "t_wert": 0.26,
+   "groesster_tag_pct": 16.0
+  },
+  "CLUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-05-31",
+   "tage": 154,
+   "summe_pct": 20.73,
+   "t_wert": 0.67,
+   "groesster_tag_pct": 8.0
+  },
+  "COHRUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-25",
+   "tage": 99,
+   "summe_pct": 12.85,
+   "t_wert": 0.24,
+   "groesster_tag_pct": 20.6
+  },
+  "COINUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-04-10",
+   "tage": 205,
+   "summe_pct": -83.1,
+   "t_wert": -1.58,
+   "groesster_tag_pct": 12.9
+  },
+  "COPPERUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-05-05",
+   "tage": 180,
+   "summe_pct": -23.66,
+   "t_wert": -1.36,
+   "groesster_tag_pct": 4.8
+  },
+  "COSTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-08",
+   "tage": 85,
+   "summe_pct": -1.64,
+   "t_wert": -0.18,
+   "groesster_tag_pct": 3.1
+  },
+  "CRCLUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-04-10",
+   "tage": 205,
+   "summe_pct": -61.25,
+   "t_wert": -0.85,
+   "groesster_tag_pct": 21.2
+  },
+  "CRDOUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-07",
+   "tage": 86,
+   "summe_pct": 29.17,
+   "t_wert": 0.61,
+   "groesster_tag_pct": 18.2
+  },
+  "CRMLUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "CRMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-02",
+   "tage": 91,
+   "summe_pct": 30.81,
+   "t_wert": 1.11,
+   "groesster_tag_pct": 15.7
+  },
+  "CRWDUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-07",
+   "tage": 86,
+   "summe_pct": -35.6,
+   "t_wert": -1.08,
+   "groesster_tag_pct": 13.0
+  },
+  "CRWVUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-17",
+   "tage": 107,
+   "summe_pct": -33.98,
+   "t_wert": -0.58,
+   "groesster_tag_pct": 19.8
+  },
+  "CSCOUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-14",
+   "tage": 110,
+   "summe_pct": -29.12,
+   "t_wert": -1.59,
+   "groesster_tag_pct": 7.6
+  },
+  "CVNAUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "CXMTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-17",
+   "tage": 15,
+   "summe_pct": 4.88,
+   "t_wert": 0.32,
+   "groesster_tag_pct": 10.7
+  },
+  "CYPHUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "DELLUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-02",
+   "tage": 91,
+   "summe_pct": 25.88,
+   "t_wert": 0.72,
+   "groesster_tag_pct": 13.3
+  },
+  "DISUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-14",
+   "tage": 110,
+   "summe_pct": 21.73,
+   "t_wert": 1.5,
+   "groesster_tag_pct": 4.2
+  },
+  "DJTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-24",
+   "tage": 8,
+   "summe_pct": 11.44,
+   "t_wert": 1.34,
+   "groesster_tag_pct": 6.3
+  },
+  "DKNGUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-09",
+   "tage": 84,
+   "summe_pct": 20.74,
+   "t_wert": 0.94,
+   "groesster_tag_pct": 7.1
+  },
+  "DRAMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-17",
+   "tage": 107,
+   "summe_pct": -18.16,
+   "t_wert": -0.43,
+   "groesster_tag_pct": 14.9
+  },
+  "EBAYUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-08",
+   "tage": 85,
+   "summe_pct": -6.38,
+   "t_wert": -0.42,
+   "groesster_tag_pct": 5.8
+  },
+  "EWJUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-05-18",
+   "tage": 167,
+   "summe_pct": -38.8,
+   "t_wert": -2.52,
+   "groesster_tag_pct": 4.5
+  },
+  "EWTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-31",
+   "tage": 93,
+   "summe_pct": 3.07,
+   "t_wert": 0.2,
+   "groesster_tag_pct": 4.8
+  },
+  "EWYUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-05-15",
+   "tage": 170,
+   "summe_pct": -45.05,
+   "t_wert": -1.07,
+   "groesster_tag_pct": 12.4
+  },
+  "EWZUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-09",
+   "tage": 84,
+   "summe_pct": -0.3,
+   "t_wert": -0.01,
+   "groesster_tag_pct": 17.3
+  },
+  "FLEXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-31",
+   "tage": 62,
+   "summe_pct": 8.84,
+   "t_wert": 0.37,
+   "groesster_tag_pct": 10.3
+  },
+  "FLNCUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-17",
+   "tage": 107,
+   "summe_pct": 1.65,
+   "t_wert": 0.03,
+   "groesster_tag_pct": 32.7
+  },
+  "FWDIUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-07",
+   "tage": 55,
+   "summe_pct": -33.61,
+   "t_wert": -0.88,
+   "groesster_tag_pct": 23.4
+  },
+  "GDXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-16",
+   "tage": 16,
+   "summe_pct": 0.4,
+   "t_wert": 0.05,
+   "groesster_tag_pct": 5.6
+  },
+  "GEVUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-08",
+   "tage": 54,
+   "summe_pct": -15.59,
+   "t_wert": -0.77,
+   "groesster_tag_pct": 9.9
+  },
+  "GIGADEVUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-02",
+   "tage": 30,
+   "summe_pct": 19.52,
+   "t_wert": 0.81,
+   "groesster_tag_pct": 11.4
+  },
+  "GLWUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-10",
+   "tage": 83,
+   "summe_pct": -10.21,
+   "t_wert": -0.33,
+   "groesster_tag_pct": 9.0
+  },
+  "GMEUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-09",
+   "tage": 84,
+   "summe_pct": 38.09,
+   "t_wert": 1.47,
+   "groesster_tag_pct": 8.3
+  },
+  "GOOGLUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-05-25",
+   "tage": 160,
+   "summe_pct": -4.55,
+   "t_wert": -0.21,
+   "groesster_tag_pct": 9.1
+  },
+  "GPROUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "GSUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-27",
+   "tage": 35,
+   "summe_pct": -5.67,
+   "t_wert": -0.87,
+   "groesster_tag_pct": 3.1
+  },
+  "HDUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-14",
+   "tage": 110,
+   "summe_pct": 15.85,
+   "t_wert": 1.11,
+   "groesster_tag_pct": 4.6
+  },
+  "HIMSUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-08",
+   "tage": 85,
+   "summe_pct": -70.7,
+   "t_wert": -2.27,
+   "groesster_tag_pct": 11.6
+  },
+  "HK0700USDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-20",
+   "tage": 42,
+   "summe_pct": 0.87,
+   "t_wert": 0.08,
+   "groesster_tag_pct": 4.9
+  },
+  "HK0992USDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "HK1810USDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-20",
+   "tage": 42,
+   "summe_pct": -13.53,
+   "t_wert": -0.79,
+   "groesster_tag_pct": 8.3
+  },
+  "HOODUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-04-03",
+   "tage": 212,
+   "summe_pct": -13.8,
+   "t_wert": -0.23,
+   "groesster_tag_pct": 15.3
+  },
+  "HPEUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-07",
+   "tage": 86,
+   "summe_pct": 8.54,
+   "t_wert": 0.24,
+   "groesster_tag_pct": 12.3
+  },
+  "HUTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "HYUNDAIUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-01",
+   "tage": 92,
+   "summe_pct": 26.46,
+   "t_wert": 1.26,
+   "groesster_tag_pct": 10.3
+  },
+  "IBKRUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "INTCUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-04-03",
+   "tage": 212,
+   "summe_pct": 146.71,
+   "t_wert": 1.59,
+   "groesster_tag_pct": 35.6
+  },
+  "INTWUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-07",
+   "tage": 55,
+   "summe_pct": 110.32,
+   "t_wert": 1.84,
+   "groesster_tag_pct": 29.0
+  },
+  "IONQUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-27",
+   "tage": 5,
+   "summe_pct": -5.69,
+   "t_wert": -0.59,
+   "groesster_tag_pct": 6.8
+  },
+  "IRENUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-02",
+   "tage": 91,
+   "summe_pct": 35.67,
+   "t_wert": 0.91,
+   "groesster_tag_pct": 12.5
+  },
+  "IWMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-07",
+   "tage": 86,
+   "summe_pct": 0.93,
+   "t_wert": 0.14,
+   "groesster_tag_pct": 1.9
+  },
+  "JPMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-17",
+   "tage": 107,
+   "summe_pct": -0.19,
+   "t_wert": -0.02,
+   "groesster_tag_pct": 3.4
+  },
+  "KORUUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-21",
+   "tage": 72,
+   "summe_pct": 10.79,
+   "t_wert": 0.2,
+   "groesster_tag_pct": 15.1
+  },
+  "KSTRUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-31",
+   "tage": 62,
+   "summe_pct": 14.63,
+   "t_wert": 0.95,
+   "groesster_tag_pct": 5.4
+  },
+  "KUAISHOUUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-10",
+   "tage": 22,
+   "summe_pct": 11.89,
+   "t_wert": 1.14,
+   "groesster_tag_pct": 6.7
+  },
+  "LITEUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-14",
+   "tage": 110,
+   "summe_pct": -40.02,
+   "t_wert": -0.7,
+   "groesster_tag_pct": 15.0
+  },
+  "LLYUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-31",
+   "tage": 93,
+   "summe_pct": -1.27,
+   "t_wert": -0.08,
+   "groesster_tag_pct": 5.9
+  },
+  "LRCXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-21",
+   "tage": 72,
+   "summe_pct": 33.46,
+   "t_wert": 1.49,
+   "groesster_tag_pct": 10.4
+  },
+  "LYTEUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-16",
+   "tage": 16,
+   "summe_pct": 15.78,
+   "t_wert": 0.84,
+   "groesster_tag_pct": 12.3
+  },
+  "MARAUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-27",
+   "tage": 5,
+   "summe_pct": 1.88,
+   "t_wert": 0.32,
+   "groesster_tag_pct": 3.7
+  },
+  "MCDUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "MEITUANUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-10",
+   "tage": 22,
+   "summe_pct": -16.66,
+   "t_wert": -1.94,
+   "groesster_tag_pct": 3.3
+  },
+  "METAUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-05-25",
+   "tage": 160,
+   "summe_pct": 18.79,
+   "t_wert": 0.57,
+   "groesster_tag_pct": 11.9
+  },
+  "MINIMAXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-15",
+   "tage": 47,
+   "summe_pct": 27.52,
+   "t_wert": 0.75,
+   "groesster_tag_pct": 15.6
+  },
+  "MOONSHOTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "MPUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "MRKUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-27",
+   "tage": 5,
+   "summe_pct": -3.6,
+   "t_wert": -1.14,
+   "groesster_tag_pct": 2.8
+  },
+  "MRNAUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-24",
+   "tage": 8,
+   "summe_pct": -11.31,
+   "t_wert": -1.59,
+   "groesster_tag_pct": 5.2
+  },
+  "MRVLUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-14",
+   "tage": 110,
+   "summe_pct": 19.63,
+   "t_wert": 0.4,
+   "groesster_tag_pct": 14.9
+  },
+  "MSFTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-06-19",
+   "tage": 135,
+   "summe_pct": 8.24,
+   "t_wert": 0.43,
+   "groesster_tag_pct": 7.3
+  },
+  "MSTRUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-04-10",
+   "tage": 205,
+   "summe_pct": 34.65,
+   "t_wert": 0.56,
+   "groesster_tag_pct": 18.5
+  },
+  "MSTUUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "MUUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-06-06",
+   "tage": 148,
+   "summe_pct": -48.5,
+   "t_wert": -0.86,
+   "groesster_tag_pct": 16.9
+  },
+  "MUUUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-14",
+   "tage": 48,
+   "summe_pct": -21.28,
+   "t_wert": -0.58,
+   "groesster_tag_pct": 12.0
+  },
+  "MVLLUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-28",
+   "tage": 65,
+   "summe_pct": 25.0,
+   "t_wert": 0.41,
+   "groesster_tag_pct": 28.7
+  },
+  "NATGASUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-05-31",
+   "tage": 154,
+   "summe_pct": -23.15,
+   "t_wert": -0.96,
+   "groesster_tag_pct": 6.1
+  },
+  "NBISUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-25",
+   "tage": 99,
+   "summe_pct": 16.84,
+   "t_wert": 0.29,
+   "groesster_tag_pct": 25.4
+  },
+  "NETUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-16",
+   "tage": 16,
+   "summe_pct": 11.31,
+   "t_wert": 0.75,
+   "groesster_tag_pct": 8.4
+  },
+  "NFLXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-08",
+   "tage": 85,
+   "summe_pct": 6.82,
+   "t_wert": 0.4,
+   "groesster_tag_pct": 7.0
+  },
+  "NKEUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "NOKUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-31",
+   "tage": 93,
+   "summe_pct": -7.98,
+   "t_wert": -0.26,
+   "groesster_tag_pct": 13.2
+  },
+  "NOWUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-02",
+   "tage": 91,
+   "summe_pct": -6.39,
+   "t_wert": -0.18,
+   "groesster_tag_pct": 22.4
+  },
+  "NVDAUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-05-25",
+   "tage": 160,
+   "summe_pct": -27.94,
+   "t_wert": -1.17,
+   "groesster_tag_pct": 6.5
+  },
+  "NVOUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-31",
+   "tage": 93,
+   "summe_pct": 3.06,
+   "t_wert": 0.17,
+   "groesster_tag_pct": 8.6
+  },
+  "OKLOUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "ONDSUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-02",
+   "tage": 91,
+   "summe_pct": 6.59,
+   "t_wert": 0.19,
+   "groesster_tag_pct": 12.9
+  },
+  "OPENAIUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-25",
+   "tage": 99,
+   "summe_pct": 19.39,
+   "t_wert": 0.78,
+   "groesster_tag_pct": 8.2
+  },
+  "ORCLUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-14",
+   "tage": 110,
+   "summe_pct": -38.38,
+   "t_wert": -1.16,
+   "groesster_tag_pct": 11.1
+  },
+  "PANWUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-19",
+   "tage": 43,
+   "summe_pct": -16.95,
+   "t_wert": -0.83,
+   "groesster_tag_pct": 8.2
+  },
+  "PATHUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "PAXGUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2025-05-26",
+   "tage": 524,
+   "summe_pct": -9.5,
+   "t_wert": -0.28,
+   "groesster_tag_pct": 12.0
+  },
+  "PAYPUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-05-22",
+   "tage": 163,
+   "summe_pct": -5.48,
+   "t_wert": -0.16,
+   "groesster_tag_pct": 9.0
+  },
+  "PDDUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-27",
+   "tage": 5,
+   "summe_pct": -0.55,
+   "t_wert": -0.14,
+   "groesster_tag_pct": 2.9
+  },
+  "PENGUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-19",
+   "tage": 43,
+   "summe_pct": 14.24,
+   "t_wert": 0.36,
+   "groesster_tag_pct": 22.4
+  },
+  "PLTRUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-04-10",
+   "tage": 205,
+   "summe_pct": -45.64,
+   "t_wert": -1.06,
+   "groesster_tag_pct": 15.9
+  },
+  "PYPLUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-27",
+   "tage": 35,
+   "summe_pct": -2.73,
+   "t_wert": -0.38,
+   "groesster_tag_pct": 4.4
+  },
+  "QCOMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-05",
+   "tage": 119,
+   "summe_pct": -3.71,
+   "t_wert": -0.13,
+   "groesster_tag_pct": 9.9
+  },
+  "QNTXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-28",
+   "tage": 96,
+   "summe_pct": 14.9,
+   "t_wert": 0.32,
+   "groesster_tag_pct": 27.4
+  },
+  "QQQUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-06-05",
+   "tage": 149,
+   "summe_pct": -18.28,
+   "t_wert": -1.27,
+   "groesster_tag_pct": 4.7
+  },
+  "RAMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-24",
+   "tage": 8,
+   "summe_pct": -29.64,
+   "t_wert": -1.97,
+   "groesster_tag_pct": 11.6
+  },
+  "RDDTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-05",
+   "tage": 27,
+   "summe_pct": 31.75,
+   "t_wert": 1.35,
+   "groesster_tag_pct": 18.0
+  },
+  "RDWUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "RIVNUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-09",
+   "tage": 84,
+   "summe_pct": 15.61,
+   "t_wert": 0.93,
+   "groesster_tag_pct": 6.3
+  },
+  "RKLBUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-17",
+   "tage": 107,
+   "summe_pct": 18.2,
+   "t_wert": 0.4,
+   "groesster_tag_pct": 16.0
+  },
+  "RUMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "SAMSUNGUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-01",
+   "tage": 92,
+   "summe_pct": -10.48,
+   "t_wert": -0.31,
+   "groesster_tag_pct": 12.1
+  },
+  "SECZUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "SHAZUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-19",
+   "tage": 43,
+   "summe_pct": 47.32,
+   "t_wert": 1.68,
+   "groesster_tag_pct": 11.9
+  },
+  "SHOPUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-16",
+   "tage": 16,
+   "summe_pct": 0.94,
+   "t_wert": 0.11,
+   "groesster_tag_pct": 4.8
+  },
+  "SKDDUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-24",
+   "tage": 8,
+   "summe_pct": -42.03,
+   "t_wert": -3.15,
+   "groesster_tag_pct": 14.9
+  },
+  "SKHYNIXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-01",
+   "tage": 92,
+   "summe_pct": 1.34,
+   "t_wert": 0.04,
+   "groesster_tag_pct": 11.2
+  },
+  "SKHYUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-08",
+   "tage": 54,
+   "summe_pct": 11.02,
+   "t_wert": 0.49,
+   "groesster_tag_pct": 7.8
+  },
+  "SKUUUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-24",
+   "tage": 8,
+   "summe_pct": -44.22,
+   "t_wert": -3.39,
+   "groesster_tag_pct": 14.0
+  },
+  "SMCIUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-21",
+   "tage": 72,
+   "summe_pct": 3.0,
+   "t_wert": 0.09,
+   "groesster_tag_pct": 12.7
+  },
+  "SMHUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-27",
+   "tage": 35,
+   "summe_pct": 6.77,
+   "t_wert": 0.61,
+   "groesster_tag_pct": 5.5
+  },
+  "SNDKUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-06-06",
+   "tage": 148,
+   "summe_pct": 29.58,
+   "t_wert": 0.38,
+   "groesster_tag_pct": 21.0
+  },
+  "SNPSUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "SNXXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-07",
+   "tage": 55,
+   "summe_pct": 16.89,
+   "t_wert": 0.36,
+   "groesster_tag_pct": 21.6
+  },
+  "SOFIUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-19",
+   "tage": 43,
+   "summe_pct": 5.59,
+   "t_wert": 0.33,
+   "groesster_tag_pct": 11.4
+  },
+  "SOXLUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-14",
+   "tage": 110,
+   "summe_pct": 63.3,
+   "t_wert": 0.89,
+   "groesster_tag_pct": 20.5
+  },
+  "SOXSUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-14",
+   "tage": 48,
+   "summe_pct": 44.24,
+   "t_wert": 0.86,
+   "groesster_tag_pct": 23.6
+  },
+  "SPCXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-20",
+   "tage": 104,
+   "summe_pct": -0.89,
+   "t_wert": -0.03,
+   "groesster_tag_pct": 15.3
+  },
+  "SPYUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-06-05",
+   "tage": 149,
+   "summe_pct": -14.89,
+   "t_wert": -1.97,
+   "groesster_tag_pct": 2.4
+  },
+  "SQQQUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-28",
+   "tage": 65,
+   "summe_pct": 11.7,
+   "t_wert": 0.53,
+   "groesster_tag_pct": 8.5
+  },
+  "STRCUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-31",
+   "tage": 62,
+   "summe_pct": 0.67,
+   "t_wert": 0.24,
+   "groesster_tag_pct": 1.2
+  },
+  "STXXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-10",
+   "tage": 83,
+   "summe_pct": -3.41,
+   "t_wert": -0.1,
+   "groesster_tag_pct": 11.6
+  },
+  "TBTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-25",
+   "tage": 37,
+   "summe_pct": 11.73,
+   "t_wert": 1.93,
+   "groesster_tag_pct": 3.0
+  },
+  "TEMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-27",
+   "tage": 5,
+   "summe_pct": -10.0,
+   "t_wert": -0.97,
+   "groesster_tag_pct": 7.6
+  },
+  "TENCENTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-20",
+   "tage": 42,
+   "summe_pct": -0.25,
+   "t_wert": -0.02,
+   "groesster_tag_pct": 5.0
+  },
+  "TERUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-31",
+   "tage": 62,
+   "summe_pct": 9.93,
+   "t_wert": 0.35,
+   "groesster_tag_pct": 9.9
+  },
+  "TMFUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-25",
+   "tage": 37,
+   "summe_pct": 17.16,
+   "t_wert": 1.71,
+   "groesster_tag_pct": 4.9
+  },
+  "TQQQUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-28",
+   "tage": 65,
+   "summe_pct": 10.7,
+   "t_wert": 0.47,
+   "groesster_tag_pct": 9.0
+  },
+  "TSLAUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-03-29",
+   "tage": 217,
+   "summe_pct": -18.18,
+   "t_wert": -0.5,
+   "groesster_tag_pct": 8.9
+  },
+  "TSMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-06-05",
+   "tage": 149,
+   "summe_pct": -32.86,
+   "t_wert": -1.17,
+   "groesster_tag_pct": 8.9
+  },
+  "TTWOUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-31",
+   "tage": 62,
+   "summe_pct": -4.17,
+   "t_wert": -0.31,
+   "groesster_tag_pct": 6.1
+  },
+  "TWSTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "TXNUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-31",
+   "tage": 62,
+   "summe_pct": 0.72,
+   "t_wert": 0.05,
+   "groesster_tag_pct": 4.9
+  },
+  "UBERUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-14",
+   "tage": 110,
+   "summe_pct": 16.57,
+   "t_wert": 0.88,
+   "groesster_tag_pct": 7.0
+  },
+  "UNHUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "UNITREEUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-18",
+   "tage": 14,
+   "summe_pct": 31.1,
+   "t_wert": 0.91,
+   "groesster_tag_pct": 27.4
+  },
+  "URNMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-08",
+   "tage": 85,
+   "summe_pct": 15.1,
+   "t_wert": 0.73,
+   "groesster_tag_pct": 7.7
+  },
+  "USARUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-05",
+   "tage": 119,
+   "summe_pct": 59.78,
+   "t_wert": 1.32,
+   "groesster_tag_pct": 15.6
+  },
+  "USDEXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "UVXYUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-10",
+   "tage": 83,
+   "summe_pct": -4.84,
+   "t_wert": -0.18,
+   "groesster_tag_pct": 12.4
+  },
+  "VKTXUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "VSTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-16",
+   "tage": 16,
+   "summe_pct": 8.48,
+   "t_wert": 0.76,
+   "groesster_tag_pct": 9.2
+  },
+  "VUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-17",
+   "tage": 107,
+   "summe_pct": -0.75,
+   "t_wert": -0.07,
+   "groesster_tag_pct": 3.5
+  },
+  "WDCUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-25",
+   "tage": 99,
+   "summe_pct": -21.83,
+   "t_wert": -0.51,
+   "groesster_tag_pct": 19.4
+  },
+  "WENUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-07",
+   "tage": 55,
+   "summe_pct": -2.69,
+   "t_wert": -0.14,
+   "groesster_tag_pct": 14.3
+  },
+  "WMTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-07-17",
+   "tage": 107,
+   "summe_pct": -21.08,
+   "t_wert": -1.37,
+   "groesster_tag_pct": 9.1
+  },
+  "XAGUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-03-08",
+   "tage": 238,
+   "summe_pct": 32.2,
+   "t_wert": 0.82,
+   "groesster_tag_pct": 9.7
+  },
+  "XAUTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-05-25",
+   "tage": 160,
+   "summe_pct": -4.74,
+   "t_wert": -0.31,
+   "groesster_tag_pct": 4.9
+  },
+  "XAUUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-02-09",
+   "tage": 265,
+   "summe_pct": -17.85,
+   "t_wert": -0.81,
+   "groesster_tag_pct": 5.0
+  },
+  "XBIUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-07",
+   "tage": 55,
+   "summe_pct": 0.36,
+   "t_wert": 0.03,
+   "groesster_tag_pct": 3.9
+  },
+  "XLEUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-09",
+   "tage": 84,
+   "summe_pct": 9.3,
+   "t_wert": 0.77,
+   "groesster_tag_pct": 4.8
+  },
+  "XOMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "XPDUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-03-31",
+   "tage": 215,
+   "summe_pct": -30.46,
+   "t_wert": -1.03,
+   "groesster_tag_pct": 7.3
+  },
+  "XPTUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-03-31",
+   "tage": 215,
+   "summe_pct": -14.55,
+   "t_wert": -0.51,
+   "groesster_tag_pct": 6.4
+  },
+  "ZCSHUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "tage": 0
+  },
+  "ZHIPUUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-09-15",
+   "tage": 47,
+   "summe_pct": -16.13,
+   "t_wert": -0.42,
+   "groesster_tag_pct": 15.4
+  },
+  "ZHONGJIUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": true,
+   "von": "2026-10-13",
+   "tage": 19,
+   "summe_pct": 25.33,
+   "t_wert": 1.06,
+   "groesster_tag_pct": 12.1
+  },
+  "ZMUSDT": {
+   "gruppe": "kontrakt_aktie_index_rohstoff",
+   "zu_kurz": false,
+   "von": "2026-08-09",
+   "tage": 84,
+   "summe_pct": 3.56,
+   "t_wert": 0.19,
+   "groesster_tag_pct": 8.3
+  }
+ },
+ "ohne_kursdaten": [
+  "AMKRUSDT",
+  "ASXUSDT",
+  "BTC500USDT",
+  "ETH500USDT",
+  "FUTUUSDT",
+  "GEUSDT",
+  "GFSUSDT",
+  "GIGADEVICEUSDT",
+  "INDAUSDT",
+  "INFQUSDT",
+  "JDUSDT",
+  "KIOXIAUSDT",
+  "KWEBUSDT",
+  "MINIMAXHKDUSDT",
+  "NDX100USDT",
+  "OUSTUSDT",
+  "PROSUSDT",
+  "QBTSUSDT",
+  "QNTSTOCKUSDT",
+  "QUBTUSDT",
+  "SIMOUSDT",
+  "SITMUSDT",
+  "STXSTOCKUSDT",
+  "XIAOMIUSDT",
+  "ZHIPUHKDUSDT"
+ ],
+ "zaehlung": {
+  "nicht_krypto_maerkte": 153,
+  "mit_mindestens_vier_zeitraeumen": 133,
+  "davon_alle_zeitraeume_positiv": 4,
+  "auffaellig": [
+   "AKTIE:AAOI"
+  ],
+  "summe_positiv": 71,
+  "krypto_kontrakte": 137,
+  "krypto_mit_zeile": 123,
+  "krypto_mit_T_und_V1": 77,
+  "krypto_beide_positiv": 38,
+  "krypto_auffaellig": [],
+  "krypto_eigenstaendig_auffaellig": [],
+  "neue_kontrakte": 392,
+  "neue_kontrakte_mit_60_tagen": 306,
+  "neue_kontrakte_im_plus": {
+   "krypto_neu": [
+    92,
+    189
+   ],
+   "kontrakt_aktie_index_rohstoff": [
+    63,
+    117
+   ]
+  },
+  "yubit_symbole_ohne_kursdaten": 25
+ }
+}

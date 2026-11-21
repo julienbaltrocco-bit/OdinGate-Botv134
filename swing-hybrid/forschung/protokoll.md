@@ -2108,3 +2108,70 @@ stimmt; aber sie fanden **Fehler in den Daten und in meiner Festlegung**, alle v
 25 Yubit-Symbole haben gar keine Kurse (darunter der Nasdaq-100-Kontrakt NDX100). Zehn Coins mit feinen Daten sind bei
 Yubit nicht gelistet (CHR, DENT, HOT, ICX, IOST, LRC, MTL, OCEAN, RVN, STORJ) und bleiben außen vor. Krypto vor
 08/2021 wurde nur als Gruppe gerechnet (Runden 4 und 22), nicht je Coin.
+
+---
+
+## 50. Ergebnis E26: die Trendregel auf jedem einzelnen Markt (21.11.2026)
+
+Alle Zeilen in `ergebnisse/e26_jeder_markt.csv` (682 Zeilen: 153 Nicht-Krypto-Märkte, 137 alte und 392 neue Kontrakte)
+und `e26_jeder_markt.json`. Tagesregel, Einsatz 1 je Markt, netto mit Rebate. P0 = vor 15.08.2021, T, V1, V2 =
+07/2024–03/2025, P3 = ab 04/2025.
+
+### Die zehn Labor-ETFs (ab 2016) und die elf weiteren Märkte (ab 2020), Ergebnis in % des Einsatzes
+
+| Markt | P0 | T | V1 | V2 | P3 | Summe | im Stress |
+|---|---|---|---|---|---|---|---|
+| DIA (Dow) | +45 | −12 | +10 | +8 | −9 | +42 | −87 |
+| SPY (S&P 500) | +5 | +8 | +13 | −7 | +7 | +27 | −98 |
+| QQQ (Nasdaq) | −14 | +19 | +6 | −22 | +7 | −3 | −130 |
+| XLK (Technologie) | −16 | +9 | +7 | −32 | +19 | −13 | −144 |
+| XLE (Energie) | +35 | −11 | +21 | −25 | −33 | −14 | −158 |
+| EFA (Industrieländer) | −23 | +18 | −1 | +3 | −13 | −15 | −146 |
+| EEM (Schwellenländer) | −29 | −3 | −1 | −3 | +4 | −32 | −162 |
+| XLF (Finanzen) | −56 | +1 | +15 | +7 | −25 | −58 | −190 |
+| IWM (Nebenwerte) | −57 | −7 | −9 | −15 | +9 | −79 | −215 |
+| XLV (Gesundheit) | −22 | −13 | −11 | −2 | −37 | −84 | −216 |
+| EWY (Korea) | +35 | +8 | +15 | −19 | +74 | +113 | +35 |
+| Silber | +36 | −34 | −26 | −5 | +91 | +62 | −46 |
+| Brent-Öl | +94 | −90 | −2 | −7 | −35 | −40 | −120 |
+| Gold | −23 | −10 | −15 | +9 | −16 | −55 | −133 |
+| Kupfer | +24 | −33 | +1 | −10 | −45 | −63 | −147 |
+| EWJ (Japan) | +6 | −15 | −10 | −24 | −42 | −85 | −237 |
+| TBT (US-Anleihen short) | −32 | +16 | −20 | −41 | −32 | −110 | −275 |
+| WTI-Öl (ab 22.04.2020) | +43 | −86 | −13 | −30 | −31 | −117 | −205 |
+| Platin | −24 | −74 | −60 | −24 | +50 | −133 | −212 |
+| Palladium | −26 | −69 | −101 | −23 | −0 | −219 | −310 |
+| Erdgas | −54 | −25 | −66 | −34 | −67 | −245 | −358 |
+
+- **Kein einziger dieser 21 Märkte ist in allen Zeiträumen positiv.** Vier sind in der Summe im Plus (DIA, SPY, Korea,
+  Silber), 17 im Minus; mit Funding und doppelten Kosten bleibt nur Korea positiv. Korb der zehn ETFs über 10,8 Jahre
+  −23 %, Korb der elf weiteren Märkte −80 %.
+
+### Die 132 Aktien (ab 2020)
+
+- 67 im Plus, 65 im Minus, Median +2,7 %. Korb aller Aktien +39 % in 6,8 Jahren (Sharpe 0,25; je Zeitraum +2, +5, +10,
+  −1, +22). Von 112 Aktien mit mindestens vier Zeiträumen sind 4 in allen positiv (AAOI, CRDO, CYPH, ONDS) und **eine
+  auffällig** (AAOI, t = 2,13). Erwartet ohne jeden Vorteil: drei bis fünf und etwa eine. Das ist genau Zufall, und
+  die Aktienliste begünstigt die Regel dabei noch. Einzelne Tage machen bis zum Dreifachen des Einsatzes aus.
+
+### Krypto: jeder der 137 alten Kontrakte
+
+- Von 77 Kontrakten mit beiden Zeiträumen sind 52 in T positiv (68 %), 54 in V1 (70 %), 38 in beiden (49 %; ohne Vorteil
+  wären es 25 %). Summe positiv bei 81 von 123. **Kein einzelner Kontrakt** erreicht für sich einen t-Wert von 2
+  (höchster 1,93), keiner ist eigenständig auffällig: Der Vorteil zeigt sich in der Breite, nicht an einzelnen Coins.
+- Die elf Labor-Coins (T / V1): BTC +44 / +75, ETH +41 / +19, SOL +245 / +289, XRP +92 / +99, DOT +78 / +55,
+  DOGE +96 / +48, ADA +28 / +157, AVAX +234 / +179, BNB +0 / +110, LINK −141 / +42, LTC −51 / −69.
+
+### Neue Kontrakte (nur Bericht) und was nicht prüfbar ist
+
+- Neue Krypto-Kontrakte: 92 von 189 im Plus (Median −8 %). Kontrakte auf Aktien, ETFs, Indizes, Rohstoffe: 63 von 117
+  im Plus (Median +1 %). Beides Münzwurf über kurze Zeit.
+- **Ohne jede Kursdatei (25 Yubit-Symbole):** AMKR, ASX, BTC500, ETH500, FUTU, GE, GFS, GIGADEVICE, INDA, INFQ, JD,
+  KIOXIA, KWEB, MINIMAXHKD, NDX100, OUST, PROS, QBTS, QNTSTOCK, QUBT, SIMO, SITM, STXSTOCK, XIAOMI, ZHIPUHKD.
+
+### Einordnung
+
+Die 14-Tage-Trendregel ist ein Krypto-Befund, kein Befund der zehn Coins: Auf Krypto verdient sie in der Breite, auf
+ETFs, Indizes und Rohstoffen verliert sie über zehn Jahre, bei Aktien liegt sie genau auf Zufall. Geprüft ist damit
+jede vorhandene Kursreihe mit **dieser** Regel. Nicht geprüft sind andere Rückblicke für Nicht-Krypto (außer 12 Monate,
+Runde 15), andere Strategien und die oben genannten Märkte ohne Daten.

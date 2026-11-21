@@ -329,8 +329,14 @@
   "runde": 2,
   "datum": "2026-11-21",
   "titel": "Vollständigkeit: die Trendregel auf jedem einzelnen Markt (zehn Labor-ETFs ab 2016, elf weitere Märkte, 134 Aktien, 137 Krypto-Kontrakte)",
-  "einstufung": "offen",
-  "kurz": "vor der Rechnung festgelegt (Protokoll Abschnitt 49); noch kein Ergebnis",
-  "dateien": []
+  "einstufung": "A",
+  "kurz": "Jeder Markt einzeln: von 21 ETFs/Rohstoffen keiner in allen Zeiträumen positiv (17 im Minus; Korb ETFs −23 % in 10,8 Jahren, Rohstoffe −80 %); 132 Aktien: 67 im Plus, eine auffällig (Zufallserwartung eine); Krypto: 38 von 77 in T und V1 positiv (Zufall 25 %), kein einzelner Kontrakt mit t ≥ 2. Datenfehler vor der Rechnung behoben (DIA-Token, CL/BZ, WTI negativ). 25 Yubit-Symbole ohne Kurse.",
+  "dateien": [
+   "forschung/ergebnisse/e26_jeder_markt.json",
+   "forschung/ergebnisse/e26_jeder_markt.csv",
+   "forschung/experimente/e26_jeder_markt.py",
+   "tests/test_e26_jeder_markt.py",
+   "tests/test_e26_gegenpruefung.py"
+  ]
  }
 ]
