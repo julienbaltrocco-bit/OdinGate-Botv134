@@ -1707,3 +1707,39 @@ Daten, Zeiträume (T, V1; V2 nur für Besteher), Kosten, Buchung und Rechenkern 
 - **Was vorab dagegen spricht:** Runde 14 (derselbe Trend verliert auf Indizes, Metallen, Energie). In der
   Trendforschung laufen starke Bewegungen eher weiter, als dass sie enden; die Gegenprobe A2 prüft genau das. T und
   V1 sind für andere Regeln schon gesehen. Zehn Kandidaten und Bausteine insgesamt.
+
+### Unabhängige Gegenprüfung von E24 und Präzisierungen (21.11.2026, vor der Rechnung des Ergebnisses)
+
+Zwei unabhängige Prüfer, ohne das Ergebnis zu rechnen oder zu sehen:
+- **Nachbau nur nach dem Text:** Teil A für SOL und ETH: Richtung, Ausdehnung z (Abweichung unter 4 × 10⁻¹⁴), Alter des
+  Trends, alle sechs gefilterten Richtungen und alle 34 Orderlisten (58 bis 2.128 Orders) identisch. Teil C: Signal
+  an allen 1.051 Tagen identisch, kein zusätzlicher Tag Verzug und kein Blick voraus. Teil B und C, Tagesreihen:
+  identisch, sobald die Buchungsregeln von `tagestrend.py` gelten (der Text nannte sie nur durch den Verweis).
+- **Gegenlesen:** kein Blick in die Zukunft (Störungen an Stunden-, Tages- und Zwischenkerzen, Wochenenden und
+  Feiertagen), nichts nach dem 30.06.2024 kann eine Zahl beeinflussen, Urteil und Hürden entsprechen dem Text.
+- **Schwäche der Tests, behoben:** Die sechs Tests hätten 19 absichtlich eingebaute Fehler nicht bemerkt (darunter ein
+  Bitcoin-Signal einen Tag zu früh). Die 14 Tests des Prüfers mit seiner zweiten Rechnung (`tests/e24_referenz.py`,
+  `tests/test_e24_gegenpruefung.py`) sind übernommen; zusammen mit E23 sind 132 Tests grün.
+
+**Präzisierungen (der Code war schon so; keine Regel ändert sich):**
+1. **Teil B und C, Buchung wie `tagestrend.py`:** Slippage als Aufschlag auf den Eröffnungskurs; Stückzahl = Einsatz
+   geteilt durch diesen Kurs; Gebühr auf den gehandelten Betrag, 85 % Rebate auch im Stress (dort 0,16 %); vor dem
+   15.08.2021 flach, erster Einstieg zur ersten Eröffnung im Fenster; am letzten Börsentag des Fensters (28.06.2024)
+   werden alle Positionen zur Eröffnung geschlossen; Stress-Funding auf den Positionswert zum Vortagesschluss, je
+   Kalendertag, gebucht am Börsentag. Liegt eine Summe in V1 näher als 0,2 % an null, gilt die Hürde als grenzwertig.
+2. **Nachprüfung:** Teil A: V2 wird für Besteher einmal geöffnet, Bedingungen wie E23. Teil B: wie festgelegt. Teil C:
+   keine Nachprüfung auf alten Daten (sie bräuchte Bitcoin-Kurse aus dem geschlossenen Zeitraum); ein Bestehen von T
+   und V1 heißt B (interessant), C erst nach einem Papier-Test.
+3. **Zerlegung in Teil A:** Jede Stufe von z und Alter ist eine eigene Regel (Position nur in dieser Stufe, Einsatz 1
+   bei jedem Eintritt); untere Grenze eingeschlossen, obere ausgeschlossen. Die Erträge addieren sich nicht genau zu B0.
+4. **Zahl der Urteile:** sechs Kandidaten (Teil A) und zwei Bausteine (Teil B, Teil C), zusammen acht, nicht zehn.
+
+**Hinweise der Prüfer für die Auslegung:**
+- Hürde 3 (Mischung besser, gegen Zufall gesichert) ist streng: Ein Baustein braucht dafür grob eine eigene
+  Sharpe-Zahl ab 1,5. Ein Scheitern dort sagt wenig über einen mäßig guten Baustein; berichtet wird deshalb auch
+  das Ergebnis des Bausteins allein.
+- A1 ist 5 bis 32 % der Zeit flach und stellt 15 bis 54 % mehr Orders als die Basis; A1 und A2 mit Schwelle 1,0
+  ergänzen sich genau.
+- Aktienliste: 14 der 134 Titel haben im Fenster keine Kurse, 14 weitere beginnen erst im Fenster; Kurse ohne
+  Dividenden. Die Auswahl von 2026 begünstigt die Regel eher. Acht Dateien zeigen Tagessprünge über 80 %
+  (teils echte Ereignisse, nicht alle geprüft); das wird nachgesehen, falls das Aktien-Ergebnis nahe null liegt.

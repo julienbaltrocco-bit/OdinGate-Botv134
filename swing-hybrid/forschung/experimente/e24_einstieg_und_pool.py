@@ -247,14 +247,17 @@ def hauptlauf():
         a[ken] = e
     basis_alt = np.load(F / "ergebnisse/e23_marktstruktur_tage.npz")
     for zr in ("T", "V1"):                                           # die Basis muss genau die von E23 sein
-        if not np.allclose(reihen[("B0", zr)], basis_alt[f"B0_{zr}"], atol=1e-12):
+        if not np.array_equal(reihen[("B0", zr)], basis_alt[f"B0_{zr}"]):
             raise SystemExit("Die Basis weicht von E23 ab.")
     kand = {(k, zr): v for (k, zr), v in reihen.items() if k == "B0" or k[0] == "A"}
     for ken, u in urteil_a(kand).items():
         for zr in ("T", "V1"):
             a[ken][zr].update(sharpe_minus_basis=round(u[zr]["differenz"], 3), anteil_ohne_vorteil=round(u[zr]["anteil_ohne_vorteil"], 4), bedingung=u[zr]["bedingung"])
         a[ken]["urteil"] = u["urteil"]
-    out["teil_a"] = {"regeln": a, "z_stufen": [list(map(float, s)) for s in Z_STUFEN], "alter_stufen_h": [list(s) for s in ALTER_STUFEN],
+    out["teil_a"] = {"regeln": a, "z_stufen": [[float(u), None if np.isinf(o_) else float(o_)] for u, o_ in Z_STUFEN],
+                     "alter_stufen_h": [[u, None if o_ >= 10 ** 9 else o_] for u, o_ in ALTER_STUFEN],
+                     "hinweis_zerlegung": "z_0 bis z_4 und alter_0 bis alter_4 sind je eigene Regeln (Position nur in dieser Stufe, Einsatz 1 bei jedem "
+                                          "Eintritt in die Stufe); untere Grenze eingeschlossen, obere ausgeschlossen; die Erträge addieren sich nicht genau zu B0",
                      "besteher": [k for k, e in a.items() if e.get("urteil", {}).get("besteht_T_und_V1")]}
     # Teil B und C
     b0 = {zr: reihen[("B0", zr)] for zr in ("T", "V1")}
@@ -267,8 +270,8 @@ def hauptlauf():
                                               "sharpe": round(E.sharpe(zeitraum(baustein_qqq(art), zr)), 3)} for zr in ("T", "V1")}
                                    for art in ("eigen", "halten")}
     out["einstufung"] = {"teil_a": "offen: V2 für " + ", ".join(out["teil_a"]["besteher"]) if out["teil_a"]["besteher"] else "A (verworfen)",
-                         "teil_b": "offen: Nachprüfung" if out["teil_b"]["besteht_T_und_V1"] else "A (verworfen)",
-                         "teil_c": "offen: Nachprüfung" if out["teil_c"]["besteht_T_und_V1"] else "A (verworfen)"}
+                         "teil_b": "offen: Nachprüfung allein auf 01.07.2024 bis 23.10.2026" if out["teil_b"]["besteht_T_und_V1"] else "A (verworfen)",
+                         "teil_c": "B (interessant): besteht T und V1; weiter nur über einen Papier-Test" if out["teil_c"]["besteht_T_und_V1"] else "A (verworfen)"}
     ERGEBNIS.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n")
     np.savez_compressed(ERGEBNIS.with_name("e24_einstieg_und_pool_tage.npz"), **{f"{k}_{z}": v for (k, z), v in reihen.items()},
                         aktien=nb.to_numpy(), aktien_stress=sb.to_numpy(), qqq_btc=nc.to_numpy(), qqq_btc_stress=sc.to_numpy())
