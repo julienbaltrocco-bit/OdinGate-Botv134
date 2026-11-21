@@ -60,6 +60,7 @@ einem kleinen Server (cron). Dafür fehlen zwei Entscheidungen des Auftraggebers
 | Was | Wo | Takt | Braucht KI |
 |---|---|---|---|
 | Test 1 bis Test 4 (Papier-Bot; Test 3 seit 20.11.2026, Test 4 seit 21.11.2026, alle mit den Einstiegen von Test 1) | Server des Auftraggebers, Dienst `odingate-bot` (Zeitplan `odingate-bot.timer`) | alle 5 Minuten, vier Durchgänge nacheinander (rund 65 Sekunden) | nein |
+| Datensammler (Yubit-Ticker und -Orderbücher, Binance-Spannen; seit 21.11.2026) | Server des Auftraggebers, letzter Schritt im Dienst `odingate-bot` | alle 5 Minuten, rund 30 Sekunden; Upload stündlich | nein |
 | Beobachtung „Gegen Kaufdruck“, live (`L-dc1d27a3`) | Server des Auftraggebers, Dienst `odingate-live` | alle 5 Minuten | nein |
 | OS-1.1, `B-24332e4d`, `B-dc1d27a3` (Schattentests aus Archivdaten) | Claude, geplante Aufgabe „OdinGate Papier-Lauf mit Board“ | täglich 11:17 UTC (seit 17.11.; Binance veröffentlicht die Archivdateien des Vortags zwischen etwa 07:30 und 10:05 UTC) | ja, wenig |
 | Forschungszyklus | Claude, geplante Aufgabe „OdinGate Forschungszyklus“ | täglich 01:43 UTC | ja |
@@ -95,6 +96,18 @@ eigener Reiter auf dem Board. Der vierte Durchgang läuft nach Test 3 und rechne
 **Offen (bis etwa Februar 2027 zu beheben):** Bericht und Board-Daten laden bei jedem Lauf die ganze `spannen.csv`
 jedes Tests. Nach Rechnung eines Prüfers stößt das nach rund 116 Tagen Laufzeit an die 300 MB des Containers; dann
 scheitert Test 1 und mit ihm der ganze Lauf.
+
+**Datensammler seit 21.11.2026 (Protokoll Abschnitt 54):** Code im Bot-Zweig unter `swing-hybrid/sammler`, Aufruf am
+Ende von `stunde.sh` (nur auf dem Server, nur wenn alle vier Tests gesichert sind). Daten auf dem Server unter
+`/opt/odingate/daten/sammler` (`offen/` laufende Stunde, `bereit/` gepackt und noch nicht hochgeladen, `zweig-JJJJ-MM/`
+Arbeitsordner). Veröffentlicht wird stündlich in den Zweig `odingate-marktdaten-JJJJ-MM` (bei Störungen zusätzlich
+`…-2`, `…-3`): je Tabelle und Stunde eine Datei `<tabelle>/<tag>/<stunde>.csv.gz`, dazu `status.json` mit dem letzten
+Lauf und den Tageszählern. Tabellen: `ticker`, `tiefe`, `binance`, `laeufe` (Spalten siehe `sammler/kern.py`).
+- Ausschalten: `"aktiv": false` in `swing-hybrid/sammler/config.json` im Bot-Zweig (wirkt mit dem nächsten Lauf) oder
+  auf dem Server `touch /opt/odingate/daten/sammler/STOPP`.
+- Takt ändern (weniger Daten, weniger Abrufe): `tiefe_teile`, `binance_jede`, `alle_jede` in derselben Datei.
+- Kontrolle von außen: `git fetch origin odingate-marktdaten-JJJJ-MM` und `status.json` lesen; fehlende Läufe zeigt
+  die Tabelle `laeufe`. Ein Lauf ohne Sammler (Test gescheitert, GitHub nicht erreichbar) hinterlässt eine Lücke.
 
 **Woran man einen Ausfall erkennt:** Auf dem Trading Board steht bei Test 1 und 2 „Bot-Stand vor …“. Mehr als rund
 zehn Minuten heißt: Der Server rechnet nicht. Der Kaufdruck-Tab fällt bei einem Ausfall von selbst auf den täglichen
