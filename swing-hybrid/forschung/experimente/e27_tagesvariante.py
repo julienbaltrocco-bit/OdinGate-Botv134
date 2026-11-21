@@ -45,8 +45,15 @@ def regeln(mit_abstaenden: bool) -> dict:
     return r
 
 
+def v2_geoeffnet() -> bool:
+    return ERGEBNIS.exists() and "V2" in json.loads(ERGEBNIS.read_text())
+
+
 def rechne(i_ende: int, mit_abstaenden: bool, mit_orders: int = 0):
-    """Tagesfelder je Regel und Coin bis Kerze i_ende (ausschließlich), über den Kern von E23 mit Art B0."""
+    """Tagesfelder je Regel und Coin bis Kerze i_ende (ausschließlich), über den Kern von E23 mit Art B0.
+    Über das Ende von V1 hinaus wird nur gerechnet, wenn die Öffnung von V2 schon in der Ergebnisdatei steht."""
+    if i_ende > E.ENDE_V1 and not v2_geoeffnet():
+        raise SystemExit("V2 ist nicht geöffnet: Es wird nichts nach dem 30.06.2024 gerechnet.")
     ntage = D.N // E.TAG
     rg = regeln(mit_abstaenden)
     erg = {k: {"brut": np.zeros((len(D.COINS), 2, ntage)), "nord": np.zeros((len(D.COINS), 2, ntage)), "slipb": np.zeros((len(D.COINS), 2, ntage)),
@@ -99,11 +106,36 @@ def bedingungen(reihen: dict, orders: dict) -> dict:
     return out
 
 
-def bericht(reihen: dict, orders: dict, zr: str) -> dict:
+def teile_zeitraum(erg: dict, zr: str) -> dict:
+    """Zerlegung je Regel in Punkten des Kontos: Ergebnis vor Kosten (Kurs und Funding), Slippage, Gebühr."""
+    sl, nc = E.tage(zr), len(D.COINS)
+    out = {}
+    for ken, r in erg.items():
+        n = r["nord"][:, :, sl]
+        out[ken] = {"vor_kosten": float(r["brut"][:, :, sl].sum() / nc), "orders": float(n.sum()),
+                    "slippage_bewegt": float(r["slipb"][:, :, sl].sum() / 1e4 / nc),
+                    "slippage_ruhig": float((n.sum(axis=(1, 2)) * r["slip_coin"]).sum() / 1e4 / nc),
+                    "gebuehr_mit_rebate": float(n.sum() * E.GEB_BP * (1 - E.REBATE) / 1e4 / nc), "gebuehr_ohne_rebate": float(n.sum() * E.GEB_BP / 1e4 / nc)}
+    return out
+
+
+def bericht(reihen: dict, orders: dict, zr: str, teile: dict = None) -> dict:
     n = E.tage(zr).stop - E.tage(zr).start
     out = {}
     for ken in sorted({k for k, _, _ in reihen}):
         e = {"orders_je_tag": round(orders[ken] / n, 2)}
+        if teile is not None:
+            t, b = teile[ken], teile["B0"]
+            e["zerlegung_pct"] = {k: round(v * 100, 2) for k, v in t.items() if k != "orders"}
+            if ken != "B0":                                          # Unterschied zur Stundenregel: Zeitpunkt, gesparte Slippage, gesparte Gebühr
+                kern_t, kern_b = t["vor_kosten"] - t["slippage_bewegt"], b["vor_kosten"] - b["slippage_bewegt"]
+                weniger = b["orders"] - t["orders"]
+                e["gegen_b0_pct"] = {"zeitpunkt_vor_kosten": round((t["vor_kosten"] - b["vor_kosten"]) * 100, 2),
+                                     "slippage_gespart": round((b["slippage_bewegt"] - t["slippage_bewegt"]) * 100, 2),
+                                     "gebuehr_gespart_mit_rebate": round((b["gebuehr_mit_rebate"] - t["gebuehr_mit_rebate"]) * 100, 2),
+                                     "gebuehr_gespart_ohne_rebate": round((b["gebuehr_ohne_rebate"] - t["gebuehr_ohne_rebate"]) * 100, 2)}
+                # Gebühr je Order in bp, ab der die Regel vor der Stundenregel liegt (negativ: schon ohne jede Gebühr)
+                e["gleichstand_gebuehr_bp"] = round((kern_b - kern_t) * 1e4 * len(D.COINS) / weniger, 2) if weniger > 0 else None
         for kosten in ("bewegt", "ruhig"):
             for reb in ("mit", "ohne"):
                 x = reihen[(ken, kosten, reb)]
@@ -115,14 +147,14 @@ def bericht(reihen: dict, orders: dict, zr: str) -> dict:
 
 
 def stufe1():
-    if ERGEBNIS.exists() and "V2" in json.loads(ERGEBNIS.read_text()):
+    if v2_geoeffnet():
         raise SystemExit("V2 ist schon geöffnet; das Ergebnis wird nicht überschrieben.")
     erg, _ = rechne(E.ENDE_V1, mit_abstaenden=True)
     out = {"experiment": "E27", "festlegung": "forschung/protokoll.md Abschnitt 51", "gerechnet_bis": "2024-06-30 (V2 nicht gerechnet)"}
     tage = {}
     for zr in ("T", "V1"):
         reihen, orders = reihen_zeitraum(erg, zr)
-        out[zr] = {"regeln": bericht(reihen, orders, zr), "bedingungen": bedingungen(reihen, orders)}
+        out[zr] = {"regeln": bericht(reihen, orders, zr, teile_zeitraum(erg, zr)), "bedingungen": bedingungen(reihen, orders)}
         tage.update({f"{k}_{ko}_{rb}_{zr}": v for (k, ko, rb), v in reihen.items()})
     out["v2_frei"] = bool(out["T"]["bedingungen"]["alle"] and out["V1"]["bedingungen"]["alle"])
     out["einstufung"] = "offen: V2 wird geöffnet" if out["v2_frei"] else "A (verworfen): Bedingungen schon in T oder V1 nicht erfüllt; V2 bleibt zu"
@@ -139,17 +171,29 @@ def stufe2():
         raise SystemExit("Stufe 1 gibt V2 nicht frei.")
     if str(D.RASTER[-1]) != "2025-03-31 23:55:00" or D.N != E.tage("V2").stop * E.TAG:
         raise SystemExit("Der Speicher endet nicht mit V2: Abbruch, damit nichts ab 04/2025 gelesen wird.")
+    # Vorprüfungen, die V2 nicht brauchen, vor der Sperre: Stufe 1 muss sich bitgleich wiederholen lassen und bestehen
+    datei = ERGEBNIS.with_name("e27_tagesvariante_tage.npz")
+    if not datei.exists():
+        raise SystemExit("Die Tagesreihen aus Stufe 1 fehlen: erst Stufe 1 rechnen.")
+    vorher = np.load(datei)
+    probe, _ = rechne(E.ENDE_V1, mit_abstaenden=False)
+    for zr in ("T", "V1"):
+        reihen, orders = reihen_zeitraum(probe, zr)
+        for (k, ko, rb), v in reihen.items():
+            if f"{k}_{ko}_{rb}_{zr}" not in vorher.files or not np.array_equal(v, vorher[f"{k}_{ko}_{rb}_{zr}"]):
+                raise SystemExit(f"{k} in {zr} lässt sich nicht bitgleich wiederholen: Abbruch vor der Öffnung.")
+        if not bedingungen(reihen, orders)["alle"]:
+            raise SystemExit(f"Die Bedingungen in {zr} gelten bei der Wiederholung nicht: Abbruch vor der Öffnung.")
     alt["V2"] = {"stand": "geöffnet, Rechnung läuft"}                # Sperre steht, bevor die erste Zahl aus V2 entsteht
     ERGEBNIS.write_text(json.dumps(alt, ensure_ascii=False, indent=1) + "\n")
     erg, _ = rechne(D.N, mit_abstaenden=False)
-    vorher = np.load(ERGEBNIS.with_name("e27_tagesvariante_tage.npz"))
-    for zr in ("T", "V1"):                                           # die schon gerechneten Zeiträume müssen unverändert herauskommen
+    for zr in ("T", "V1"):                                           # zweite Sicherung: die früheren Zeiträume kommen unverändert heraus
         reihen, _ = reihen_zeitraum(erg, zr)
         for (k, ko, rb), v in reihen.items():
             if not np.array_equal(v, vorher[f"{k}_{ko}_{rb}_{zr}"]):
                 raise SystemExit(f"{k} in {zr} weicht von Stufe 1 ab: Abbruch.")
     reihen, orders = reihen_zeitraum(erg, "V2")
-    alt["V2"] = {"regeln": bericht(reihen, orders, "V2"), "bedingungen": bedingungen(reihen, orders)}
+    alt["V2"] = {"regeln": bericht(reihen, orders, "V2", teile_zeitraum(erg, "V2")), "bedingungen": bedingungen(reihen, orders)}
     alt["gerechnet_bis"] = "2025-03-31 (V2 einmal geöffnet)"
     alt["einstufung"] = "C (Kandidat für Test 4 auf Papier)" if alt["V2"]["bedingungen"]["alle"] else "B (interessant): besteht T und V1, nicht V2"
     ERGEBNIS.write_text(json.dumps(alt, ensure_ascii=False, indent=1) + "\n")

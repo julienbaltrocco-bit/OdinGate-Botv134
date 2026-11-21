@@ -85,6 +85,11 @@ def test_bedingungen_einzeln():
 
 def test_v2_nur_einmal_und_nur_nach_freigabe(tmp_path, monkeypatch):
     monkeypatch.setattr(X, "ERGEBNIS", tmp_path / "e27.json")
+
+    def verboten(*a, **k):
+        raise AssertionError("In diesem Test darf nichts gerechnet werden.")
+    monkeypatch.setattr(X, "rechne", verboten)
+    monkeypatch.setattr(X.D, "laden", verboten)
     X.ERGEBNIS.write_text(json.dumps({"v2_frei": False}))
     with pytest.raises(SystemExit):
         X.stufe2()                                                 # Stufe 1 gibt nicht frei

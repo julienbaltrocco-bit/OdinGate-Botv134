@@ -2222,3 +2222,35 @@ Stunden (nur zur Einordnung, nicht in V2).
 **Prüfungen der Rechnung vor dem Öffnen von V2:** Tests für die Tagesrichtung (kein Blick in die Zukunft, Ausführung
 um 00:05 UTC, Vergleich mit einer einfachen Schleife), für die Bedingungen und für die Sperre (V2 nur einmal, nichts ab
 04/2025); unabhängige Nachrechnung der Orders zweier Coins in T und V1; Gegenlesen.
+
+### Unabhängige Gegenprüfung von E27 und Präzisierungen (21.11.2026, vor Stufe 1 und vor der Öffnung von V2)
+
+Zwei unabhängige Prüfer, ohne V2 zu öffnen und ohne ein Kontoergebnis zu rechnen:
+- **Nachbau nur nach dem Text** (SOL und ETH, bis 30.06.2024): Stundenrichtung, die geltende Richtung aller neun Regeln
+  und alle 18 Orderlisten identisch; die Tagesfelder stimmen bis auf Rundung (unter 10⁻¹⁴). Jede Order der
+  Tagesvariante liegt auf 00:05 UTC; an Tagen ohne Richtungswechsel um Mitternacht gibt es keine Order.
+- **Gegenlesen:** kein Blick in die Zukunft (über 700 Störungsfälle), Bedingungen A bis D und die Einstufung wie im Text.
+
+**Vor der Öffnung behoben:**
+1. **Sperre:** Die Prüfungen, die V2 nicht brauchen, laufen jetzt vor der Sperre: Stufe 1 wird wiederholt und muss
+   bitgleich herauskommen und bestehen; erst dann wird die Öffnung in die Ergebnisdatei geschrieben, erst danach wird
+   über den 30.06.2024 hinaus gerechnet. Das Rechenprogramm verweigert jede Rechnung nach dem 30.06.2024, solange die
+   Öffnung nicht in der Datei steht. Steht dort „geöffnet, Rechnung läuft“ und fehlt das Ergebnis, ist die Rechnung
+   nach der Öffnung abgebrochen; ein zweiter Lauf wäre nur zulässig, wenn nachweislich keine Zahl aus V2 entstanden
+   ist, und würde hier vermerkt.
+2. **Tests:** Die acht Tests hätten 32 von 52 eingebauten Fehlern nicht bemerkt; die 42 Tests des Prüfers sind
+   übernommen und an die Korrektur angepasst (50 Tests grün, keiner liest den Datenspeicher).
+3. **Bericht ergänzt (ohne Einfluss auf das Urteil):** je Regel das Ergebnis vor Kosten, Slippage und Gebühr getrennt,
+   und der Unterschied zur Stundenregel zerlegt in Zeitpunkt, gesparte Slippage und gesparte Gebühr. Nach der
+   einmaligen Öffnung ließe sich das nicht mehr nachholen.
+
+**Präzisierung:** Fällt die Prüfung um 00:05 UTC in eine Datenlücke, wird die Übernahme bei der nächsten Prüfung
+nachgeholt, die stattfindet, mit dem Wert der Mitternachtsstunde (dieselbe Mechanik wie bei der Stundenregel). Bis
+30.06.2024 betrifft das nur SOL, XRP und LTC an den bekannten fünf Tagen. Ein Papier-Bot, der nur einmal am Tag läuft
+und nichts nachholt, würde sich an solchen Tagen anders verhalten.
+
+**Hinweis der Prüfer zur Lesart (die Regeln bleiben):** Die Bedingungen A, C und D begünstigen das Bestehen schon durch
+die Kostenrechnung: Wer ein Fünftel der Orders stellt, spart ohne Rebate rund 20 Punkte Gebühr in neun Monaten; die
+sechs Uhrzeiten sind sechs Abfragen desselben Signals, keine sechs unabhängigen Bestätigungen. Ein Bestehen heißt
+deshalb **„bei einem Fünftel der Orders nicht erkennbar schlechter“**, nicht „besser“. Berichtet wird für beide Regeln
+das Vorzeichen je Zeitraum mit und ohne Rebate und die Zerlegung.
