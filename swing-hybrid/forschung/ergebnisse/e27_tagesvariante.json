@@ -1,7 +1,7 @@
 {
  "experiment": "E27",
  "festlegung": "forschung/protokoll.md Abschnitt 51",
- "gerechnet_bis": "2024-06-30 (V2 nicht gerechnet)",
+ "gerechnet_bis": "2025-03-31 (V2 einmal geöffnet)",
  "T": {
   "regeln": {
    "ALLE_12H": {
@@ -709,5 +709,282 @@
   }
  },
  "v2_frei": true,
- "einstufung": "offen: V2 wird geöffnet"
+ "einstufung": "C (Kandidat für Test 4 auf Papier)",
+ "V2": {
+  "regeln": {
+   "B0": {
+    "orders_je_tag": 10.91,
+    "zerlegung_pct": {
+     "vor_kosten": 98.54,
+     "slippage_bewegt": 11.53,
+     "slippage_ruhig": 9.0,
+     "gebuehr_mit_rebate": 3.59,
+     "gebuehr_ohne_rebate": 23.92
+    },
+    "bewegt_mit_rebate": {
+     "summe_pct": 83.42,
+     "sharpe": 1.416,
+     "einbruch_pct": 47.45
+    },
+    "bewegt_ohne_rebate": {
+     "summe_pct": 63.09,
+     "sharpe": 1.067,
+     "einbruch_pct": 54.73
+    },
+    "ruhig_mit_rebate": {
+     "summe_pct": 85.95,
+     "sharpe": 1.46,
+     "einbruch_pct": 46.87
+    },
+    "ruhig_ohne_rebate": {
+     "summe_pct": 65.62,
+     "sharpe": 1.111,
+     "einbruch_pct": 54.14
+    }
+   },
+   "TAG": {
+    "orders_je_tag": 2.32,
+    "zerlegung_pct": {
+     "vor_kosten": 86.88,
+     "slippage_bewegt": 2.61,
+     "slippage_ruhig": 1.98,
+     "gebuehr_mit_rebate": 0.76,
+     "gebuehr_ohne_rebate": 5.09
+    },
+    "gegen_b0_pct": {
+     "zeitpunkt_vor_kosten": -11.66,
+     "slippage_gespart": 8.92,
+     "gebuehr_gespart_mit_rebate": 2.82,
+     "gebuehr_gespart_ohne_rebate": 18.83
+    },
+    "gleichstand_gebuehr_bp": 1.17,
+    "bewegt_mit_rebate": {
+     "summe_pct": 83.5,
+     "sharpe": 1.35,
+     "einbruch_pct": 41.35
+    },
+    "bewegt_ohne_rebate": {
+     "summe_pct": 79.18,
+     "sharpe": 1.281,
+     "einbruch_pct": 42.95
+    },
+    "ruhig_mit_rebate": {
+     "summe_pct": 84.14,
+     "sharpe": 1.361,
+     "einbruch_pct": 41.25
+    },
+    "ruhig_ohne_rebate": {
+     "summe_pct": 79.81,
+     "sharpe": 1.291,
+     "einbruch_pct": 42.86
+    },
+    "anteil_ohne_vorteil_ohne_rebate": 0.2776
+   },
+   "TAG_04": {
+    "orders_je_tag": 2.28,
+    "zerlegung_pct": {
+     "vor_kosten": 83.35,
+     "slippage_bewegt": 2.25,
+     "slippage_ruhig": 1.99,
+     "gebuehr_mit_rebate": 0.75,
+     "gebuehr_ohne_rebate": 5.01
+    },
+    "gegen_b0_pct": {
+     "zeitpunkt_vor_kosten": -15.19,
+     "slippage_gespart": 9.27,
+     "gebuehr_gespart_mit_rebate": 2.84,
+     "gebuehr_gespart_ohne_rebate": 18.91
+    },
+    "gleichstand_gebuehr_bp": 2.5,
+    "bewegt_mit_rebate": {
+     "summe_pct": 80.35,
+     "sharpe": 1.308,
+     "einbruch_pct": 39.87
+    },
+    "bewegt_ohne_rebate": {
+     "summe_pct": 76.09,
+     "sharpe": 1.238,
+     "einbruch_pct": 41.45
+    },
+    "ruhig_mit_rebate": {
+     "summe_pct": 80.61,
+     "sharpe": 1.312,
+     "einbruch_pct": 39.82
+    },
+    "ruhig_ohne_rebate": {
+     "summe_pct": 76.36,
+     "sharpe": 1.243,
+     "einbruch_pct": 41.4
+    },
+    "anteil_ohne_vorteil_ohne_rebate": 0.3336
+   },
+   "TAG_08": {
+    "orders_je_tag": 2.34,
+    "zerlegung_pct": {
+     "vor_kosten": 81.35,
+     "slippage_bewegt": 2.51,
+     "slippage_ruhig": 2.09,
+     "gebuehr_mit_rebate": 0.77,
+     "gebuehr_ohne_rebate": 5.12
+    },
+    "gegen_b0_pct": {
+     "zeitpunkt_vor_kosten": -17.19,
+     "slippage_gespart": 9.02,
+     "gebuehr_gespart_mit_rebate": 2.82,
+     "gebuehr_gespart_ohne_rebate": 18.8
+    },
+    "gleichstand_gebuehr_bp": 3.48,
+    "bewegt_mit_rebate": {
+     "summe_pct": 78.08,
+     "sharpe": 1.304,
+     "einbruch_pct": 37.56
+    },
+    "bewegt_ohne_rebate": {
+     "summe_pct": 73.72,
+     "sharpe": 1.231,
+     "einbruch_pct": 38.94
+    },
+    "ruhig_mit_rebate": {
+     "summe_pct": 78.5,
+     "sharpe": 1.311,
+     "einbruch_pct": 37.45
+    },
+    "ruhig_ohne_rebate": {
+     "summe_pct": 74.14,
+     "sharpe": 1.238,
+     "einbruch_pct": 38.82
+    },
+    "anteil_ohne_vorteil_ohne_rebate": 0.3106
+   },
+   "TAG_12": {
+    "orders_je_tag": 2.34,
+    "zerlegung_pct": {
+     "vor_kosten": 77.04,
+     "slippage_bewegt": 2.43,
+     "slippage_ruhig": 1.97,
+     "gebuehr_mit_rebate": 0.77,
+     "gebuehr_ohne_rebate": 5.14
+    },
+    "gegen_b0_pct": {
+     "zeitpunkt_vor_kosten": -21.5,
+     "slippage_gespart": 9.1,
+     "gebuehr_gespart_mit_rebate": 2.82,
+     "gebuehr_gespart_ohne_rebate": 18.78
+    },
+    "gleichstand_gebuehr_bp": 5.28,
+    "bewegt_mit_rebate": {
+     "summe_pct": 73.84,
+     "sharpe": 1.201,
+     "einbruch_pct": 37.28
+    },
+    "bewegt_ohne_rebate": {
+     "summe_pct": 69.47,
+     "sharpe": 1.129,
+     "einbruch_pct": 38.37
+    },
+    "ruhig_mit_rebate": {
+     "summe_pct": 74.3,
+     "sharpe": 1.208,
+     "einbruch_pct": 37.19
+    },
+    "ruhig_ohne_rebate": {
+     "summe_pct": 69.94,
+     "sharpe": 1.137,
+     "einbruch_pct": 38.28
+    },
+    "anteil_ohne_vorteil_ohne_rebate": 0.4362
+   },
+   "TAG_16": {
+    "orders_je_tag": 2.33,
+    "zerlegung_pct": {
+     "vor_kosten": 92.68,
+     "slippage_bewegt": 2.58,
+     "slippage_ruhig": 1.89,
+     "gebuehr_mit_rebate": 0.77,
+     "gebuehr_ohne_rebate": 5.1
+    },
+    "gegen_b0_pct": {
+     "zeitpunkt_vor_kosten": -5.86,
+     "slippage_gespart": 8.94,
+     "gebuehr_gespart_mit_rebate": 2.82,
+     "gebuehr_gespart_ohne_rebate": 18.82
+    },
+    "gleichstand_gebuehr_bp": -1.31,
+    "bewegt_mit_rebate": {
+     "summe_pct": 89.33,
+     "sharpe": 1.496,
+     "einbruch_pct": 48.36
+    },
+    "bewegt_ohne_rebate": {
+     "summe_pct": 85.0,
+     "sharpe": 1.422,
+     "einbruch_pct": 49.97
+    },
+    "ruhig_mit_rebate": {
+     "summe_pct": 90.03,
+     "sharpe": 1.508,
+     "einbruch_pct": 48.2
+    },
+    "ruhig_ohne_rebate": {
+     "summe_pct": 85.69,
+     "sharpe": 1.434,
+     "einbruch_pct": 49.81
+    },
+    "anteil_ohne_vorteil_ohne_rebate": 0.1652
+   },
+   "TAG_20": {
+    "orders_je_tag": 2.34,
+    "zerlegung_pct": {
+     "vor_kosten": 84.3,
+     "slippage_bewegt": 2.42,
+     "slippage_ruhig": 1.98,
+     "gebuehr_mit_rebate": 0.77,
+     "gebuehr_ohne_rebate": 5.14
+    },
+    "gegen_b0_pct": {
+     "zeitpunkt_vor_kosten": -14.24,
+     "slippage_gespart": 9.11,
+     "gebuehr_gespart_mit_rebate": 2.82,
+     "gebuehr_gespart_ohne_rebate": 18.78
+    },
+    "gleichstand_gebuehr_bp": 2.19,
+    "bewegt_mit_rebate": {
+     "summe_pct": 81.11,
+     "sharpe": 1.358,
+     "einbruch_pct": 37.19
+    },
+    "bewegt_ohne_rebate": {
+     "summe_pct": 76.74,
+     "sharpe": 1.284,
+     "einbruch_pct": 38.86
+    },
+    "ruhig_mit_rebate": {
+     "summe_pct": 81.55,
+     "sharpe": 1.366,
+     "einbruch_pct": 37.09
+    },
+    "ruhig_ohne_rebate": {
+     "summe_pct": 77.18,
+     "sharpe": 1.291,
+     "einbruch_pct": 38.76
+    },
+    "anteil_ohne_vorteil_ohne_rebate": 0.2564
+   }
+  },
+  "bedingungen": {
+   "A_ohne_rebate_besser": true,
+   "B_mit_rebate_nicht_schlechter": true,
+   "C_hoechstens_ein_drittel_der_orders": true,
+   "D_mindestens_vier_von_sechs_uhrzeiten": true,
+   "A_je_uhrzeit": {
+    "TAG": true,
+    "TAG_04": true,
+    "TAG_08": true,
+    "TAG_12": true,
+    "TAG_16": true,
+    "TAG_20": true
+   },
+   "alle": true
+  }
+ }
 }

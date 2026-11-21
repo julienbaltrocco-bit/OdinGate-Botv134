@@ -2254,3 +2254,45 @@ die Kostenrechnung: Wer ein Fünftel der Orders stellt, spart ohne Rebate rund 2
 sechs Uhrzeiten sind sechs Abfragen desselben Signals, keine sechs unabhängigen Bestätigungen. Ein Bestehen heißt
 deshalb **„bei einem Fünftel der Orders nicht erkennbar schlechter“**, nicht „besser“. Berichtet wird für beide Regeln
 das Vorzeichen je Zeitraum mit und ohne Rebate und die Zerlegung.
+
+---
+
+## 52. Ergebnis E27: Tagesvariante gegen Stundenregel, V2 einmal geöffnet (21.11.2026)
+
+Stufe 1 (T, V1): Bedingungen A bis D erfüllt. Die Wiederholung vor der Öffnung kam bitgleich heraus; danach wurde V2
+(01.07.2024 – 31.03.2025) um 11:12 UTC einmal geöffnet. **Einstufung C: Kandidat für Test 4 auf Papier.**
+Zehn Coins, Einsatz 1 × Konto, bewegte Kosten (`ergebnisse/e27_tagesvariante.json`).
+
+| | T (08/2021–06/2023) | V1 (07/2023–06/2024) | **V2 (07/2024–03/2025, neu)** |
+|---|---|---|---|
+| Orders je Tag: Stunde / Tag | 10,9 / 2,3 | 12,2 / 2,4 | 10,9 / 2,3 |
+| **mit Rebate:** Stundenregel | +63 % (Sharpe 0,53) | +73 % (1,31) | **+83 % (1,42)** |
+| mit Rebate: Tagesvariante | +61 % (0,49) | +91 % (1,68) | **+84 % (1,35)** |
+| **ohne Rebate:** Stundenregel | +12 % (0,10) | +42 % (0,76) | **+63 % (1,07)** |
+| ohne Rebate: Tagesvariante | +50 % (0,40) | +85 % (1,57) | **+79 % (1,28)** |
+| größter Einbruch mit Rebate: Stunde / Tag | 60 % / 54 % | 33 % / 25 % | 48 % / 41 % |
+| Uhrzeiten, die ohne Rebate vor der Stundenregel liegen | 6 von 6 | 6 von 6 | 6 von 6 |
+
+**Woher der Unterschied kommt (Punkte des Kontos, Tagesvariante minus Stundenregel):**
+
+| | T | V1 | V2 |
+|---|---|---|---|
+| Zeitpunkt (Ergebnis vor Kosten) | −31,8 | +2,3 | −11,7 |
+| gesparte Slippage | +22,0 | +11,7 | +8,9 |
+| gesparte Gebühr mit Rebate / ohne Rebate | +7,1 / +47,1 | +4,3 / +28,8 | +2,8 / +18,8 |
+
+- **Lesart:** Die Stundenregel hat vor Kosten den etwas besseren Zeitpunkt (in zwei von drei Zeiträumen), zahlt dafür
+  aber fast fünfmal so viele Orders. Mit dem angenommenen Rebate von 85 % heben sich beide auf (V2: +83,4 % gegen
+  +83,5 %); ohne Rebate liegt die Tagesvariante in jedem Zeitraum klar vorn. In V2 liegt der Gleichstand bei 1,2 bp
+  Gebühr je Order, also genau beim angenommenen Rebate: Fällt das Rebate niedriger aus, ist die Tagesvariante besser.
+- Der Unterschied ohne Rebate ist in V2 allein nicht gegen Zufall gesichert (28 % der Ziehungen ohne Vorteil; in T
+  11 %, in V1 unter 1 %). Wie von den Prüfern vorab festgehalten heißt das Urteil: **bei einem Fünftel der Orders
+  nicht erkennbar schlechter, und weit weniger vom Rebate abhängig**, nicht „bessere Strategie“.
+- Alle sechs Uhrzeiten bestehen in allen drei Zeiträumen; 00:00 UTC ist keine Glücks-Uhrzeit (in V2 liegt sie im
+  Mittelfeld: ohne Rebate +79 % bei einer Spanne von +70 % bis +85 %).
+- Zur Einordnung in T und V1: Abfrage alle 12 Stunden +80 % / +101 % mit Rebate bei 3,2 Orders je Tag, alle 4 Stunden
+  +71 % / +94 % bei 5,3 bis 5,9. Seltener abfragen kostet in diesen Daten nichts.
+- **Risiko unverändert:** Auch die Tagesvariante hatte in neun Monaten einen Einbruch von 41 % bei Einsatz 1.
+
+**Verbraucht:** V2 ist für die Stundenregel und die Tagesvariante auf den zehn Coins jetzt angesehen. Der Tresor ab
+04/2025 bleibt zu. Ein weiterer Beleg kann nur noch aus einem Papier-Test kommen.

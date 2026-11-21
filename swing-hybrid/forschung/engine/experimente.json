@@ -345,8 +345,15 @@
   "runde": 2,
   "datum": "2026-11-21",
   "titel": "Tagesvariante der Trendregel gegen die Stundenregel, mit einmaliger Öffnung von V2 (H27)",
-  "einstufung": "offen",
-  "kurz": "vor der Rechnung festgelegt (Protokoll Abschnitt 51); noch kein Ergebnis",
-  "dateien": []
+  "einstufung": "C",
+  "kurz": "Tagesvariante besteht A bis D in T, V1 und im einmal geöffneten V2: mit Rebate gleichauf mit der Stundenregel (V2 +83,5 % gegen +83,4 %), ohne Rebate vorn (+79 % gegen +63 %; T +50 gegen +12, V1 +85 gegen +42), 2,3 statt 10,9 Orders je Tag, alle sechs Uhrzeiten bestehen. Lesart: nicht erkennbar schlechter bei einem Fünftel der Orders. Kandidat für Test 4 auf Papier.",
+  "dateien": [
+   "forschung/ergebnisse/e27_tagesvariante.json",
+   "forschung/ergebnisse/e27_tagesvariante_tage.npz",
+   "forschung/ergebnisse/e27_tagesvariante_tage_v2.npz",
+   "forschung/experimente/e27_tagesvariante.py",
+   "tests/test_e27_tagesvariante.py",
+   "tests/test_e27_gegenpruefung.py"
+  ]
  }
 ]
