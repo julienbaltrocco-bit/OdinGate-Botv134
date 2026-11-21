@@ -1629,3 +1629,81 @@ Schlusskursen, 1 und 4 Stunden, Stärke 3 und 5) als Zusatz zu genau dieser Tren
 mit Docht statt Schluss oder als eigene Strategie sagt das Ergebnis nichts; das wären neue, vorab festzulegende
 Experimente. T und V1 wurden für andere Regeln schon gesehen. Der Risikobefund hängt an der Annahme „fester Einsatz,
 kein Nachschuss, Bewertung zum Tagesschluss“.
+
+---
+
+## 45. Festlegung E24 (vor der Rechnung, 21.11.2026, Idee des Auftraggebers): bessere Einstiege und ein breiterer Pool (H21 bis H23)
+
+**Anlass.** Der Auftraggeber möchte (1) nicht „stumpf“ in einen Trend einsteigen, der schon weit gelaufen ist („nicht mehr
+viel Luft“), (2) weitere bei Yubit handelbare Märkte außer Krypto einbeziehen (Nasdaq, Aktien, Indizes), die nur lose
+mit Krypto zusammenhängen, und (3) nutzen, dass ein Markt dem anderen nachziehen könnte (Beispiel: Krypto fällt
+zuerst, der Nasdaq folgt). Er will erst die Auswertung sehen; an den Papier-Tests wird vorher nichts geändert.
+
+**Datenlage (gesichtet, ohne Ergebnisse).**
+- Trading-Labor: Tageskurse von zehn US-ETFs (SPY, QQQ, DIA, IWM, EEM, EFA, XLE, XLF, XLK, XLV), 2016 bis 10/2026.
+  Keine Intraday-Kurse, kein DAX, keine CFDs.
+- Eigene Abrufe aus den Runden 14 bis 17 (`reports/suche_protokoll.md`): Tageskurse von 14 Märkten (SPY, QQQ, IWM, EWJ,
+  EWY, Gold, Silber, Platin, Palladium, Kupfer, WTI, Brent, Erdgas, TBT) und von 134 Aktien, die Yubit als Kontrakt
+  führt, jeweils 2020 bis 10/2026.
+- Yubit führt Kontrakte auf QQQ, Nasdaq 100, S&P 500, SPY, DIA, IWM, Japan, Korea, Gold, Silber, Kupfer, Erdgas und
+  rund 150 Aktien. **Kein DAX-Kontrakt** in der Symbolliste vom 14.11.2026. Die Kontrakte selbst gibt es erst seit
+  2026 (wenige Monate Historie); gerechnet werden kann nur auf den Tageskursen der Basiswerte.
+
+**Schon geprüft (Runden 14 bis 17, alle durchgefallen):** der 14-Tage-Trend auf den 14 Märkten (verliert, 11 von 14
+negativ; dort kehren 14-Tage-Bewegungen eher um), der 12-Monats-Trend auf denselben Märkten, der Nasdaq-Trend als
+Filter für Krypto (macht es schlechter), verwandte Paare, Aktien-Momentum über 12 Monate (am knappsten, aber durch
+die Auswahl der Aktienliste verzerrt). Das wird nicht wiederholt. Neu sind die drei Teile unten.
+
+### Teil A: „Luft“ beim Einstieg (H21), Krypto
+
+Daten, Zeiträume (T, V1; V2 nur für Besteher), Kosten, Buchung und Rechenkern wie E23 (Abschnitt 43). Basis B0.
+- **Ausdehnung z** je Coin an der Stundenkerze t: |ln(C_t / C_{t−336})| geteilt durch (σ_t × √336); σ_t = Streuung
+  (Stichprobe) der letzten 720 Stunden-Renditen ln(C_u / C_{u−1}), u = t−719 bis t. z misst, wie weit der Kurs in
+  14 Tagen schon gelaufen ist, gemessen an seiner üblichen Schwankung. Vor t = 720 ist z nicht bestimmt.
+- **Kandidaten** (Position wie B0, aber Richtung 0 = flach, wenn die Bedingung nicht gilt; geprüft wie d):
+  - A1 „nicht überdehnt“: nur solange z ≤ 1,0 / 1,5 / 2,0 (die Idee des Auftraggebers).
+  - A2 „nur mit Kraft“ (Gegenprobe): nur solange z ≥ 0,25 / 0,5 / 1,0.
+  Ist z nicht bestimmt, ist die Richtung 0. Sechs Kandidaten.
+- **Urteil** wie E23: die vier Bedingungen gegen B0 (Sharpe-Zahl höher und gegen Zufall gesichert in T mit 2,5 % und
+  in V1 mit 16 %, netto positiv, ein Nachbar ebenfalls über B0). Nachbar ist die nächstliegende Schwelle derselben
+  Art (bei der mittleren beide).
+- **Zusätzlich berichtet (ohne Urteil):** Ergebnis von B0 vor Orderkosten, zerlegt nach z (unter 0,5 / 0,5–1 / 1–1,5 /
+  1,5–2 / über 2) und nach Alter des Trends (Stunden seit dem letzten Wechsel von d: unter 24 / 24–72 / 72–168 /
+  168–336 / ab 336): Anteil der Zeit und Ertrag je 100 Tage Haltezeit, in T und V1.
+
+### Teil B: dieselbe Trendregel auf Aktien (H22)
+
+- 134 Aktien mit Yubit-Kontrakt (Liste und Tageskurse aus Runde 17). Regel und Rechnung exakt wie Runde 14
+  (`src/hybrid/tagestrend.py`): Schluss gegen den Schluss vor 14 Kalendertagen, long oder short, Handel zur nächsten
+  Eröffnung, Größe beim Einstieg fest, Einsatz 1 gleich verteilt auf alle 134 (noch nicht notierte bleiben leer).
+- Kosten: Taker 0,08 % mit 85 % Rebate; Slippage = gemessene Yubit-Spanne je Aktie (ohne Messwert der Median,
+  mindestens 0,5 bp), wie Runde 17. Funding 0. Stress: doppelte Slippage, doppelte Gebühr, 10 % Funding pro Jahr.
+- Zeiträume T und V1 (Kalendertage). **Hürden:** (B1) netto mit Rebate in T und V1 positiv; (B2) auch im Stress;
+  (B3) Mischung je zur Hälfte mit B0 (Tagesreihe aus E23): Sharpe-Zahl höher als B0 allein, gegen Zufall gesichert
+  wie in E23 (T 2,5 %, V1 16 %).
+- Besteht der Baustein, wird er allein auf 01.07.2024 bis 23.10.2026 nachgeprüft (netto positiv). Die Mischung
+  lässt sich dort nicht prüfen, ohne die Krypto-Schlussprüfung zu öffnen; das bliebe einem Papier-Test überlassen.
+- **Bekannte Verzerrung:** Die Aktienliste stammt von 2026 und enthält bevorzugt Titel, die bis dahin stark gestiegen
+  sind. Das begünstigt Long-Positionen. Ein Bestehen wäre deshalb nur ein Hinweis.
+
+### Teil C: „Der Nasdaq zieht Krypto nach“ (H23)
+
+- Ein Markt: QQQ (Tageskurse und Spanne aus Runde 14). Position in QQQ nach dem 14-Tage-Trend von **Bitcoin**:
+  Vorzeichen von (BTC-Schluss des UTC-Tages D−1 − BTC-Schluss des UTC-Tages D−15), gehandelt zur Eröffnung des
+  US-Börsentags D (mindestens 13 Stunden später), Größe beim Einstieg fest, Einsatz 1. BTC-Tagesschluss = Schluss
+  der letzten 5-Minuten-Kerze des UTC-Tages aus dem Speicher der Fabrik.
+- Kosten und Stress wie Teil B. **Hürden:** (C1) netto in T und V1 positiv; (C2) auch im Stress; (C3) Mischung je
+  zur Hälfte mit B0 mit höherer Sharpe-Zahl, gesichert wie oben. Zur Einordnung berichtet: QQQ nach dem eigenen
+  14-Tage-Trend und QQQ gekauft und gehalten.
+- Die umgekehrte Richtung (Nasdaq-Trend als Filter für Krypto) ist in Runde 16 gescheitert und wird nicht wiederholt.
+
+### Gemeinsam
+
+- **Einstufung je Teil:** A (verworfen), B (interessant: besteht T und V1, aber nicht die Nachprüfung), C (Kandidat
+  für einen Papier-Test). Über einen Papier-Test entscheidet der Auftraggeber.
+- **Prüfungen der Rechnung vor dem Urteil:** Tests für z (kein Blick in die Zukunft, Vergleich mit einer einfachen
+  Schleife), Gleichlauf der Tagesrechnung mit `tagestrend`, Zeitversatz BTC-Signal gegen QQQ-Eröffnung; unabhängige
+  Nachrechnung durch einen zweiten Programmierer nur nach diesem Text.
+- **Was vorab dagegen spricht:** Runde 14 (derselbe Trend verliert auf Indizes, Metallen, Energie). In der
+  Trendforschung laufen starke Bewegungen eher weiter, als dass sie enden; die Gegenprobe A2 prüft genau das. T und
+  V1 sind für andere Regeln schon gesehen. Zehn Kandidaten und Bausteine insgesamt.

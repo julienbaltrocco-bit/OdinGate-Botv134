@@ -288,5 +288,15 @@
    "tests/test_e23_marktstruktur.py",
    "tests/e23_referenz.py"
   ]
+ },
+ {
+  "nr": 24,
+  "id": "E24",
+  "runde": 2,
+  "datum": "2026-11-21",
+  "titel": "Bessere Einstiege und breiterer Pool: Ausdehnung des Trends (Krypto), Trendregel auf Aktien, QQQ nach dem Bitcoin-Trend (H21 bis H23)",
+  "einstufung": "offen",
+  "kurz": "vor der Rechnung festgelegt (Protokoll Abschnitt 45); noch kein Ergebnis",
+  "dateien": []
  }
 ]

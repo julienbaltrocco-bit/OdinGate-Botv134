@@ -120,5 +120,29 @@
   "daten": "5-Minuten-Kerzen (Speicher der Fabrik), Funding",
   "aufwand": "mittel",
   "status": "verworfen (E23): Struktur-Stop, Wiedereinstieg und Struktur-Filter liegen in T und V1 alle unter der Basis"
+ },
+ {
+  "id": "H21",
+  "titel": "„Luft“ beim Einstieg: Position nur, solange der Trend nicht überdehnt ist (Idee des Auftraggebers), mit Gegenprobe „nur mit Kraft“",
+  "mechanismus": "Ein schon weit gelaufener Trend könnte weniger Restertrag haben; die Trendforschung erwartet eher das Gegenteil. Zweiseitig geprüft.",
+  "daten": "5-Minuten-Kerzen (Speicher der Fabrik)",
+  "aufwand": "gering",
+  "status": "festgelegt (E24 Teil A), noch nicht gerechnet"
+ },
+ {
+  "id": "H22",
+  "titel": "Dieselbe 14-Tage-Trendregel auf Aktien mit Yubit-Kontrakt, allein und als Beimischung",
+  "mechanismus": "Streuung über Märkte, die nicht mit Krypto laufen. Dagegen: Runde 14 (Indizes, Metalle, Energie verlieren mit dem 14-Tage-Trend); Aktienliste von 2026 verzerrt.",
+  "daten": "Tageskurse von 134 Aktien (Yahoo, 2020 bis 10/2026)",
+  "aufwand": "gering",
+  "status": "festgelegt (E24 Teil B), noch nicht gerechnet"
+ },
+ {
+  "id": "H23",
+  "titel": "Der Nasdaq zieht Krypto nach: QQQ nach dem 14-Tage-Trend von Bitcoin",
+  "mechanismus": "Krypto handelt rund um die Uhr und könnte Stimmungswechsel früher zeigen. Die umgekehrte Richtung scheiterte in Runde 16.",
+  "daten": "QQQ-Tageskurse, BTC aus dem Speicher der Fabrik",
+  "aufwand": "gering",
+  "status": "festgelegt (E24 Teil C), noch nicht gerechnet"
  }
 ]
