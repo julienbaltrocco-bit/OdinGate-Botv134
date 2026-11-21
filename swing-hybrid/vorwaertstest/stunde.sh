@@ -96,3 +96,20 @@ else
   sichern
   echo "gesichert (Test 4): $(git rev-parse --short HEAD)"
 fi
+
+
+# Datensammler (kein Test, keine Orders, kein Schlüssel): schreibt öffentliche Marktdaten mit (Yubit-Ticker und -Orderbücher,
+# Binance-Spannen) und legt sie stündlich in einen eigenen Daten-Zweig (odingate-marktdaten-JJJJ-MM). Läuft ganz zuletzt, nur auf
+# dem Server, mit eigener Zeitgrenze und außerhalb dieses Repository-Ordners. Die Tests sind an dieser Stelle schon gesichert;
+# ein Fehler hier ändert an ihnen nichts. Ausschalten: "aktiv": false in swing-hybrid/sammler/config.json.
+SAMMLER_DATEN="${ODINGATE_SAMMLER:-/daten/sammler}"
+SAMMLER_ZEIT=$(( 250 - SECONDS ))     # der ganze Lauf darf höchstens 270 Sekunden dauern; was die Tests verbraucht haben, zählt mit
+[ "$SAMMLER_ZEIT" -gt 120 ] && SAMMLER_ZEIT=120
+case "$SAMMLER_DATEN" in /*) ;; *) SAMMLER_ZEIT=0 ;; esac     # nur ein absoluter Pfad: nie in den Ordner des Bots schreiben
+if [ "$ICH" = server ] && [ -d "$(dirname "$SAMMLER_DATEN")" ]; then
+  if [ "$SAMMLER_ZEIT" -ge 100 ]; then
+    timeout -k 10 "$SAMMLER_ZEIT" python3 -m sammler.lauf --daten "$SAMMLER_DATEN" || echo "Sammler: Fehler oder Zeitgrenze (die Tests sind nicht betroffen)"
+  else
+    echo "Sammler: in diesem Lauf ausgelassen (zu wenig Zeit übrig oder kein absoluter Datenpfad)."
+  fi
+fi
