@@ -144,5 +144,29 @@
   "daten": "QQQ-Tageskurse, BTC aus dem Speicher der Fabrik",
   "aufwand": "gering",
   "status": "verworfen (E24 Teil C)"
+ },
+ {
+  "id": "H24",
+  "titel": "Trendregel auf allen Krypto-Kontrakten statt nur zehn Coins (breiter Korb, nach Umsatz, kleine Coins)",
+  "mechanismus": "Mehr Märkte, die nicht ganz gleich laufen; kleine Coins trenden womöglich stärker, kosten aber mehr. Runden 3 bis 5: 60 alte Coins ähnlich wie die zehn.",
+  "daten": "Binance-Tageskurse und Funding für 329 Krypto-Kontrakte, Yubit-Spannen",
+  "aufwand": "mittel",
+  "status": "festgelegt (E25 Teil 1), noch nicht gerechnet"
+ },
+ {
+  "id": "H25",
+  "titel": "Auswahl der Coins danach, wo die Trendregel zuletzt funktioniert hat",
+  "mechanismus": "Wenn manche Märkte dauerhaft besser trenden, hält ein Vorteil der letzten 180 Tage an; sonst ist es Zufall und die Gegenprobe (schwächstes Drittel) ist gleich gut.",
+  "daten": "wie H24",
+  "aufwand": "gering",
+  "status": "festgelegt (E25 Teil 1), noch nicht gerechnet"
+ },
+ {
+  "id": "H26",
+  "titel": "Trendregel auf den echten Kontrakten für Aktien, Indizes und Rohstoffe seit ihrer Einführung",
+  "mechanismus": "Die Kontrakte handeln rund um die Uhr und könnten sich anders verhalten als die Basiswerte. Historie höchstens acht Monate: nur Bericht.",
+  "daten": "Binance-Tageskurse der Kontrakte seit 2026",
+  "aufwand": "gering",
+  "status": "festgelegt (E25 Teil 2, nur Bericht), noch nicht gerechnet"
  }
 ]

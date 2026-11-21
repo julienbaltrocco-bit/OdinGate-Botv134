@@ -305,5 +305,15 @@
    "tests/test_e24_gegenpruefung.py",
    "tests/e24_referenz.py"
   ]
+ },
+ {
+  "nr": 25,
+  "id": "E25",
+  "runde": 2,
+  "datum": "2026-11-21",
+  "titel": "Die Trendregel über alle Kontrakte: Krypto breit mit Auswahlregeln; neue Kontrakte auf Aktien, Indizes, Rohstoffe als Bericht (H24 bis H26)",
+  "einstufung": "offen",
+  "kurz": "vor der Rechnung festgelegt (Protokoll Abschnitt 47); noch kein Ergebnis",
+  "dateien": []
  }
 ]

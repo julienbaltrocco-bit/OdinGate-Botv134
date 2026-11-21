@@ -1817,3 +1817,74 @@ Spannen, Funding), die es erst seit 2026 gibt; ohne sie bleibt jede Rechnung auf
 **Was dagegen sprechen könnte.** Teil A prüft eine Messgröße für „Luft“ (14-Tage-Bewegung gegen die übliche
 Schwankung) und einfache Schwellen; andere Messgrößen wären neue Experimente. Teil B und C rechnen auf Tageskursen der
 Basiswerte mit angenommenen Kosten. Hürde 3 ist streng (siehe Hinweise der Prüfer). T und V1 sind schon oft gesehen.
+
+---
+
+## 47. Festlegung E25 (vor der Rechnung, 21.11.2026, Auftrag des Auftraggebers): die Trendregel über alle Kontrakte (H24 bis H26)
+
+**Auftrag.** „Such bitte weiter nach Edge in den ganzen Daten, die wir haben, mit den gleichen Strategien. In den ganzen
+Assets.“ Wo Yubit einen Kontrakt noch nicht lange führt, soll ersatzweise die Historie einer anderen Börse dienen,
+auch mit aktuellen Daten; Unterschiede zwischen den Orderbüchern seien vernachlässigbar.
+
+**Datenlage.** OKX ist aus der Rechenumgebung nicht erreichbar. Als Ersatz-Historie liegen Binance-Tageskurse mit
+Funding für **529 Kontrakte** vor, die Yubit führt (01.07.2021 bis 31.10.2026, keine fehlenden Monate), dazu je
+Kontrakt eine gemessene Yubit-Spanne (Stichprobe vom 14.11.2026, 30 Messungen je Symbol). Erster Handelstag:
+
+| | vor 08/2021 | 08/2021–06/2023 | 07/2023–06/2024 | 07/2024–03/2025 | 04–12/2025 | ab 2026 |
+|---|---|---|---|---|---|---|
+| Krypto | 54 | 29 | 52 | 64 | 102 | 28 |
+| Aktien, Indizes, Rohstoffe (Liste aus Runde 10) | 1 | 1 | 0 | 1 | 2 | 195 |
+
+**Schon geprüft:** der unveränderte Kandidat auf 60 alten Coins in vier Gruppen (Runden 3 bis 5: überall ähnlich,
+Prüfzeitraum schwach) und die Tageskurse der Basiswerte (Runde 14, E24). **Neu** sind: alle übrigen Coins, eine
+Auswahl der Coins nach Regeln, die nur die Vergangenheit kennen, und die echten Kontrakte auf Aktien, Indizes und
+Rohstoffe seit ihrer Einführung.
+
+**Tagesregel (die Trendregel auf Tageskursen, sonst unverändert).** Je Kontrakt Richtung d = Vorzeichen von
+(Tagesschluss − Tagesschluss 14 Tage davor), bekannt am Schluss des UTC-Tages, gehandelt zur Eröffnung des nächsten
+Tages. Immer eine Position in Richtung d, Stückzahl beim Einstieg fest (Einsatz 1 zum Einstiegskurs), bei Wechsel
+drehen (zwei Orders). Ergebnis in Anteilen des Einsatzes: Richtung × (Kurs / Einstiegskurs − 1), täglich bewertet.
+Ein Kontrakt ist ab dem 61. Tag nach seinem ersten Handelstag dabei.
+- **Kosten:** je Order Gebühr 8 bp mit 85 % Rebate (1,2 bp) plus Slippage = gemessene Yubit-Spanne des Kontrakts
+  (Median der 30 Messungen, mindestens 0,5 bp). Stress: doppelte Slippage. Funding: Eine am Tag t gehaltene Position
+  zahlt Richtung × Funding-Summe des Tages t.
+- Die Stops von Test 2 und Test 3 lassen sich auf Tageskursen nicht sauber nachbilden; geprüft wird nur die Regel von
+  Test 1. (Auf den zehn Coins mit feinen Daten: E23, Vergleichsregeln.)
+
+### Teil 1: Krypto breit, mit Urteil (nur T und V1; nichts nach dem 30.06.2024 wird geladen)
+
+Körbe, jeder mit Einsatz 1, gleich verteilt auf seine Mitglieder; die Mitglieder stehen je Kalendermonat fest und
+werden nur aus Daten bis zum letzten Tag des Vormonats bestimmt. Verlässt ein Kontrakt den Korb, wird er zur ersten
+Eröffnung des Monats geschlossen (Kosten wie jede Order). Das Gewicht je Mitglied ist 1 / Zahl der Mitglieder des Monats.
+- **BASIS:** die zehn Coins der Papier-Tests (Vergleichsmaß, mit derselben Tagesregel).
+- **ALLE:** alle Krypto-Kontrakte, die dabei sind.
+- **LIQ30:** die 30 mit dem höchsten mittleren Tagesumsatz der letzten 30 Tage.
+- **KLEIN:** alle außer diesen 30.
+- **GUT:** das Drittel, bei dem die Tagesregel selbst in den letzten 180 Tagen netto am meisten gebracht hat
+  (nur Kontrakte mit mindestens 180 Tagen Zugehörigkeit); **SCHLECHT:** das schwächste Drittel (Gegenprobe).
+
+**Urteil** für ALLE, LIQ30, KLEIN, GUT gegen BASIS: (1) T: Sharpe-Zahl höher und gegen Zufall gesichert (Block-
+Stichprobe wie E23, höchstens 2,5 % der Ziehungen ohne Vorteil); (2) V1: höher, höchstens 16 %; (3) netto in T und V1
+positiv; (4) auch mit doppelter Slippage in T und V1 positiv; (5) nur GUT: in T und V1 auch höher als SCHLECHT.
+Besteher gehen einmal in V2 (01.07.2024 – 31.03.2025; höhere Sharpe-Zahl als BASIS und netto positiv). A, B, C wie bisher.
+Zusätzlich berichtet: Mischung je zur Hälfte mit BASIS, Zahl der Mitglieder, Orders, Ergebnis je Jahr; zur Einordnung
+die Tagesregel gegen die Stundenregel (B0 aus E23) auf den zehn Coins.
+
+### Teil 2: neue Kontrakte, nur Bericht (auf ausdrücklichen Wunsch mit aktuellen Daten)
+
+Kontrakte mit erstem Handelstag ab 01.07.2024 haben keine Historie in T und V1. Für sie, und nur für sie, wird die
+Tagesregel vom 61. Tag bis 31.10.2026 gerechnet, getrennt nach (a) Krypto und (b) Aktien, Indizes, Rohstoffe: Zahl der
+Kontrakte und Tage, Ergebnis eines gleichgewichteten Korbs (netto, im Stress, vor Kosten), Anteil der Kontrakte im
+Plus, Ergebnis je Quartal. **Kein Urteil:** ein einziger Marktabschnitt, bei den Aktien-Kontrakten höchstens acht
+Monate. Der Tresor (ab 04/2025) wird damit nur für diese neuen Kontrakte angesehen; für die zehn Coins der Papier-Tests
+und alle älteren Kontrakte bleibt er zu. Ein auffälliges Ergebnis wäre ein Anlass für einen Papier-Test oder eine
+spätere Prüfung, kein Beleg.
+
+### Prüfungen der Rechnung vor dem Urteil
+
+Tests an handgebauten Reihen (Richtung, Verzug, Drehung, Funding, Kosten, Monatswechsel, Auswahl nur aus der
+Vergangenheit); Störungstest; unabhängige Nachrechnung durch einen zweiten Programmierer nur nach diesem Text.
+
+**Was vorab dagegen spricht.** Die 60 alten Coins zeigten im Prüfzeitraum wenig. Die Liste enthält nur Kontrakte, die
+Yubit heute führt (verschwundene fehlen). Spannen stammen aus einer Stunde an einem Samstag. Die Tagesregel handelt
+seltener als die Stundenregel und ist nicht dieselbe Regel. Fünf Körbe gegen eine Basis; T und V1 sind oft gesehen.
