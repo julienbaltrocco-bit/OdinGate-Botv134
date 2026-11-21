@@ -2468,6 +2468,35 @@ die ersten Daten. Gleicher Symbolname bei Yubit und Binance ist noch nicht als g
   NVDAUSDT (14.11. und 19.11.2026) geöffnet sowie Stundenumsätze und Funding von NVDAUSDT bei Yubit angesehen.
 - Was der Sammler ab jetzt bei Yubit mitschreibt, ist vorwärts erhoben.
 
+**Gegenprüfung des Datensammlers (21.11.2026, drei unabhängige Prüfer, vor der Inbetriebnahme) und Änderungen danach.**
+Kein Weg gefunden, auf dem der Sammler die Tests oder den Bot-Klon stört (Ende-Code, Arbeitsbaum, Abbruch durch die
+Zeitgrenze selbst nachgestellt). Die Tabelleninhalte sind richtig gerechnet (54 echte Orderbücher und 6.000 künstliche
+gegen einen unabhängigen Nachbau; Handrechnung an fünf Büchern). Die Mutationsprüfung fand 65 Lücken in meinen Tests
+(211 eingebaute Fehler, 142 gefunden); 26 der 42 Zusatztests der Prüfer gelten unverändert und sind übernommen, der
+Gegenstand der übrigen 16 wird nach dem Umbau in `tests/test_sammler.py` neu geprüft (zusammen 63 Tests).
+Vor dem Start geändert:
+1. *Veröffentlichen wiederaufnehmbar.* Gepackte Stunden liegen in `bereit/<Monat>/`, bis sie im Daten-Zweig sind; was
+   aussteht, ergibt sich allein aus diesem Ordner. Vorher stand es nur im Gedächtnis des Laufs: Ein Abbruch am
+   Monatswechsel hätte die letzte Stunde des Monats still verloren.
+2. *Arbeitsordner ersetzbar.* Ist er unvollständig eingerichtet, verloren oder lehnt das Ziel dreimal ab, beginnt der
+   Sammler einen weiteren Zweig mit Nummer (`odingate-marktdaten-JJJJ-MM-2`). Es wird nichts geholt, überschrieben oder
+   gelöscht. Vorher konnte ein solcher Zustand jeden weiteren Push dauerhaft verhindern.
+3. *Zeit.* Eine Gesamtfrist (95 s) für den ganzen Durchlauf, jeder Abruf höchstens 12 s auch bei tröpfelnder Antwort,
+   der Zustand wird vor jedem git-Schritt gesichert. Das Lauf-Skript gibt dem Sammler höchstens 120 s und nur, wenn
+   vom ganzen Lauf noch genug übrig ist (`timeout -k 10`); sonst wird er in diesem Lauf ausgelassen.
+4. *Störungen der Börse.* Neben HTTP 403/418/429 gilt auch eine Drossel-Meldung im Antwortkörper als Bremse. Fünf
+   gescheiterte Orderbuch-Abrufe in Folge beenden die Runde, drei solche Läufe nacheinander führen zur Stunden-Pause.
+   Die Pause wird sofort gespeichert. Höchstens zwei gleichzeitige Abrufe mit 0,3 s Pause.
+5. *Daten.* Eigener Laufzähler statt Uhrzeit (der Sammler beginnt nur Sekunden nach einer Fünf-Minuten-Grenze; die
+   Runde wäre sonst gesprungen). Binance-Zeilen tragen die Zeit des Kurses laut Binance (`zeit_ms`). Bester Kurs und
+   Menge kommen aus denselben Stufen wie die Rechnung. Bandgrenzen gehören zum Band. Halbe Zeilen nach einem Abbruch
+   werden abgeschlossen; bei geänderten Spalten beginnt eine neue Datei. Die Platzgrenze wird in jedem Lauf neu
+   gemessen. Commits im Daten-Zweig tragen die Identität „OdinGate Sammler“.
+- **Bekannte Folgen der Bauart (kein Fehler):** Der Sammler läuft nur, wenn alle vier Tests durchgelaufen sind und der
+  Server am Zug ist; fällt ein Lauf aus, fehlen diese fünf Minuten (erkennbar in der Tabelle `laeufe`). Der Binance-Teil
+  ist von hier weiterhin nicht ausprobiert. Der Daten-Zweig wächst geschätzt um rund 100 MB je Monat; nach den ersten
+  Tagen wird gemessen.
+
 ---
 
 ## 55. Test 4 in Betrieb (21.11.2026, Ergebnis zu Abschnitt 53)
