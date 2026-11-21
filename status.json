@@ -1,0 +1,38 @@
+{
+ "geschrieben": "2026-11-21 16:00",
+ "zeit": "2026-11-21 16:00",
+ "letzter_lauf": {
+  "t": 1795276815,
+  "lauf_nr": 4,
+  "zeit": "2026-11-21 16:00",
+  "ticker": 232,
+  "tiefe_soll": 84,
+  "tiefe_ist": 84,
+  "binance": 0,
+  "boersenzeit_ms": 1795276815465,
+  "dauer_s": 24.3,
+  "fehler": ""
+ },
+ "heute": {
+  "binance": 418,
+  "laeufe": 5,
+  "laeufe_mit_fehler": 0,
+  "tag": "2026-11-21",
+  "ticker": 1489,
+  "tiefe": 420
+ },
+ "platz_mb": 0.2,
+ "voll": false,
+ "einstellung": {
+  "tiefe_teile": 3,
+  "tiefe_threads": 2,
+  "pause_s": 0.3,
+  "binance_jede": 3,
+  "alle_jede": 12
+ },
+ "kontrakte": {
+  "coins": 10,
+  "reihum": 222
+ },
+ "zweig": "odingate-marktdaten-2026-11"
+}
