@@ -279,8 +279,14 @@
   "runde": 2,
   "datum": "2026-11-21",
   "titel": "Marktstruktur als Zusatz zur Trendregel: Struktur-Stop, Wiedereinstieg, Struktur-Filter (12 Kandidaten gegen die Basis; H20)",
-  "einstufung": "offen",
-  "kurz": "vor der Rechnung festgelegt (Protokoll Abschnitt 43); noch kein Ergebnis",
-  "dateien": []
+  "einstufung": "A",
+  "kurz": "0 von 12 Kandidaten über der Basis, weder in T noch in V1 (Sharpe Basis 0,53 / 1,31; bester Kandidat V1 0,91 bei T −0,26); V2 nicht geöffnet. Vergleich: Regel von Test 2 in T besser (1,05), in V1 schlechter (0,10); Regel von Test 3 in beiden ohne Ertrag. Nebenbefund: Basis mit Einbruch 60 % bei Einsatz 1.",
+  "dateien": [
+   "forschung/ergebnisse/e23_marktstruktur.json",
+   "forschung/ergebnisse/e23_marktstruktur_tage.npz",
+   "forschung/experimente/e23_marktstruktur.py",
+   "tests/test_e23_marktstruktur.py",
+   "tests/e23_referenz.py"
+  ]
  }
 ]

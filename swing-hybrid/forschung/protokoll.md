@@ -1568,3 +1568,64 @@ Orderlisten sind nach den Korrekturen unverändert.
   zwölf Kandidaten: rund 0,06 bis 0,12 statt 0,05. Ergebnisse nahe an der Schwelle gelten als grenzwertig.
 - In V2 gibt es keinen Schutz gegen Zufall mehr (nur „besser als B0 und positiv“); ein zufälliger Besteher käme dort
   mit 30 bis 50 % durch.
+
+---
+
+## 44. Ergebnis E23: Marktstruktur als Zusatz zur Trendregel (21.11.2026)
+
+**Gerechnet:** Basis, drei Vergleichsregeln und zwölf Kandidaten auf zehn Coins, nur T und V1 (5 Sekunden;
+`ergebnisse/e23_marktstruktur.json`, Tagesreihen in `e23_marktstruktur_tage.npz`). Kosten wie festgelegt (bewegter
+Markt, mit Rebate). Einsatz 1 × Konto.
+
+| Regel | T: Sharpe | T: Summe | T: größter Einbruch | V1: Sharpe | V1: Summe | V1: größter Einbruch | Zeit im Markt | Orders je Tag |
+|---|---|---|---|---|---|---|---|---|
+| **B0 Basis (Regel von Test 1)** | **0,53** | +63 % | 60 % | **1,31** | +73 % | 33 % | 100 % | 10,9 |
+| V1 Struktur-Stop, 1 h, k 3 | −1,21 | −40 % | 41 % | −1,44 | −23 % | 30 % | 19 % | 10,9 |
+| V1 Struktur-Stop, 1 h, k 5 | −0,85 | −33 % | 44 % | −0,78 | −14 % | 26 % | 25 % | 10,9 |
+| V1 Struktur-Stop, 4 h, k 3 | 0,02 | +1 % | 35 % | −0,08 | −2 % | 36 % | 45 % | 10,9 |
+| V1 Struktur-Stop, 4 h, k 5 | −0,33 | −23 % | 38 % | 0,32 | +11 % | 42 % | 55 % | 10,9 |
+| V2 mit Wiedereinstieg, 1 h, k 3 | −0,57 | −48 % | 82 % | −0,49 | −17 % | 38 % | 55 % | 18,5 |
+| V2 mit Wiedereinstieg, 1 h, k 5 | −0,65 | −56 % | 75 % | −0,56 | −20 % | 41 % | 60 % | 15,7 |
+| V2 mit Wiedereinstieg, 4 h, k 3 | −0,19 | −17 % | 55 % | 0,58 | +24 % | 22 % | 68 % | 12,4 |
+| V2 mit Wiedereinstieg, 4 h, k 5 | −0,17 | −16 % | 68 % | 0,80 | +37 % | 23 % | 74 % | 11,8 |
+| V3 Struktur-Filter, 1 h, k 3 | −0,26 | −23 % | 67 % | −0,26 | −10 % | 37 % | 56 % | 13,6 |
+| V3 Struktur-Filter, 1 h, k 5 | −0,46 | −41 % | 70 % | −0,23 | −9 % | 39 % | 59 % | 11,0 |
+| V3 Struktur-Filter, 4 h, k 3 | −0,14 | −13 % | 50 % | 0,85 | +35 % | 25 % | 65 % | 7,5 |
+| V3 Struktur-Filter, 4 h, k 5 | −0,26 | −25 % | 75 % | 0,91 | +43 % | 24 % | 69 % | 6,9 |
+| K1 fester Stop 5 % (Vergleich) | 0,36 | +40 % | 57 % | 1,11 | +59 % | 35 % | 90 % | 10,9 |
+| K2 Stop 5 %, Ziel 15 % (Regel von Test 2) | 1,05 | +61 % | 30 % | 0,10 | +3 % | 32 % | 53 % | 10,9 |
+| K3 nachgezogener Stop 5 % (Regel von Test 3) | −0,07 | −3 % | 28 % | −0,14 | −3 % | 20 % | 33 % | 10,9 |
+
+- **Kein Kandidat besteht; keiner liegt in T oder in V1 auch nur über der Basis** (0 von 12 in T, 0 von 12 in V1).
+  Anteil der Ziehungen ohne Vorteil: 78 bis 100 % in T, 89 bis 100 % in V1. Elf von zwölf sind in T netto negativ.
+- **Warum:** Die Trendregel verdient an wenigen großen Bewegungen. Struktur-Stops werfen die Position sehr oft hinaus
+  (bei 1 h, k 3 enden 2.166 von 6.072 Einstiegen am Stop; nur noch 19 % der Zeit im Markt) und verpassen dann genau
+  diese Bewegungen. Der Wiedereinstieg holt das nicht zurück, er verdoppelt bei 1 h fast die Orders (bis 18,5 je Tag)
+  und damit die Kosten. Der Filter auf 4 Stunden kommt der Basis in V1 am nächsten (0,91 gegen 1,31), verliert aber
+  in T.
+- Die Sharpe-Zahl der Basis ist in beiden Zeiträumen positiv; der von den Prüfern genannte mechanische Effekt
+  (Abschnitt 43) spräche hier leicht gegen Regeln, die zeitweise flach sind, erklärt den Abstand aber nicht: Die
+  meisten Kandidaten verlieren absolut.
+- **Einstufung A (verworfen).** V2 bleibt geschlossen, kein Test 4. Andere Kerzenlängen, Stärken oder Puffer werden
+  nicht nachgeschoben (so festgelegt). H20 ist für diese Bauart erledigt.
+
+**Vergleichsregeln (nur Einordnung, kein Urteil).** Der feste Stop 5 % (K1) ist in beiden Zeiträumen etwas schlechter
+als die Basis. Die Regel von Test 2 (K2) ist in T deutlich besser (halber Einbruch bei gleichem Ertrag), in V1
+deutlich schlechter (+3 % gegen +73 %): Das Ziel bei 15 % nimmt in einem langen Trend zu früh Gewinn mit. Die Regel
+von Test 3 (K3) verdient in beiden Zeiträumen nichts (1.062 Nachzug-Stops, 33 % der Zeit im Markt). Das spricht gegen
+die Erwartung, dass engere Stops diese Trendregel verbessern; die laufenden Papier-Tests bleiben, wie sie sind.
+
+**Nebenbefund zum Risiko der Basis (wichtig für Test 1 bis 3).**
+- Größter Einbruch bei Einsatz 1: **60 % des Kontos**, vom 04.02. bis 29.06.2023 (145 Tage); schlechtester Tag −13 %.
+- Die Papier-Tests laufen mit Hebel 3 und festem Einsatz. Rückgerechnet (Tagesschlusswerte, ohne Nachschuss): Bei
+  einem Start am ungünstigsten Tag wäre das Konto aufgebraucht gewesen (Verlust 180 % des Startkapitals), ebenso bei
+  Hebel 2 (120 %). Bei Hebel 3 hätte das für **173 von 1.051 Starttagen (16 %)** gegolten. Innerhalb eines Tages
+  wäre es früher eingetreten.
+- Ohne Rebate bleibt von der Basis wenig übrig (Sharpe 0,10 in T, 0,76 in V1): Bei 10,9 Orders je Tag kostet die
+  volle Gebühr rund 27 % des Kontos pro Jahr. Das Rebate von 85 % ist weiter unbestätigt.
+
+**Was dagegen sprechen könnte.** Geprüft ist eine Bauart von Marktstruktur (Zwischenhochs und -tiefs nach
+Schlusskursen, 1 und 4 Stunden, Stärke 3 und 5) als Zusatz zu genau dieser Trendregel. Über Struktur auf Tageskerzen,
+mit Docht statt Schluss oder als eigene Strategie sagt das Ergebnis nichts; das wären neue, vorab festzulegende
+Experimente. T und V1 wurden für andere Regeln schon gesehen. Der Risikobefund hängt an der Annahme „fester Einsatz,
+kein Nachschuss, Bewertung zum Tagesschluss“.

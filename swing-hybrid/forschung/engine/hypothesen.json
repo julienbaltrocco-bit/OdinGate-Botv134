@@ -119,6 +119,6 @@
   "mechanismus": "Zwischenhochs und -tiefs als Stop-Niveau, Strukturbruch in Trendrichtung als Wiedereinstieg, Strukturrichtung als Filter. Könnte Stops an den Markt anpassen und nach einem Stop den Rest des Trends mitnehmen. Dagegen: verwandte Ausbruchs- und Rücksetzer-Regeln scheiterten in der Fabrik an den Kosten; viele Stellschrauben.",
   "daten": "5-Minuten-Kerzen (Speicher der Fabrik), Funding",
   "aufwand": "mittel",
-  "status": "festgelegt (E23), noch nicht gerechnet"
+  "status": "verworfen (E23): Struktur-Stop, Wiedereinstieg und Struktur-Filter liegen in T und V1 alle unter der Basis"
  }
 ]
