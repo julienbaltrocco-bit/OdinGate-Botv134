@@ -1888,3 +1888,22 @@ Vergangenheit); Störungstest; unabhängige Nachrechnung durch einen zweiten Pro
 **Was vorab dagegen spricht.** Die 60 alten Coins zeigten im Prüfzeitraum wenig. Die Liste enthält nur Kontrakte, die
 Yubit heute führt (verschwundene fehlen). Spannen stammen aus einer Stunde an einem Samstag. Die Tagesregel handelt
 seltener als die Stundenregel und ist nicht dieselbe Regel. Fünf Körbe gegen eine Basis; T und V1 sind oft gesehen.
+
+### Präzisierungen zu Abschnitt 47 (21.11.2026, vor der Rechnung)
+
+1. **Kalender:** Tag 0 ist der 01.07.2021 (Beginn der Dateien). „Ab dem 61. Tag“ heißt: dabei an Tagen mit Index ≥
+   erster Handelstag + 60. Kontrakte, deren Daten am 01.07.2021 beginnen (also schon vorher gelistet waren), sind von
+   Anfang an dabei.
+2. **Mitglieder eines Monats:** wer am ersten Tag des Monats dabei ist (ALLE; BASIS: die zehn Coins). LIQ30: die 30
+   mit dem höchsten mittleren Tagesumsatz der 30 Tage davor, KLEIN der Rest. GUT und SCHLECHT: unter den Kontrakten,
+   die seit mindestens 180 Tagen dabei sind, das beste und das schwächste Drittel (abgerundet) nach der Netto-Summe
+   der 180 Tage davor aus der Einzelrechnung des Kontrakts (Tagesregel mit Einsatz 1, seit er dabei ist). Bei
+   Gleichstand entscheidet die alphabetische Reihenfolge der Symbole.
+3. **Sollrichtung** am Tag t: d des Vortags, wenn der Kontrakt am Tag t Mitglied ist, sonst 0; ausgeführt zur
+   Eröffnung von t. Offene Positionen laufen am Ende des Fensters weiter (bewertet zum letzten Schluss).
+4. **Gewichte:** Tagesergebnis des Korbs = Summe der Ergebnisse seiner Mitglieder (je Einsatz 1) geteilt durch die Zahl
+   der Mitglieder des Monats. Die Schlussorder eines ausscheidenden Kontrakts zählt mit dem Gewicht des Vormonats.
+   Ändert sich die Zahl der Mitglieder, wird das Gewicht der übrigen ohne Kosten angepasst.
+5. **GUT in T:** Wegen der 180 Tage Vorlauf hat GUT erst ab 01.01.2022 Mitglieder. Für die Bedingungen werden GUT und
+   BASIS (und SCHLECHT) nur über die Tage ab dem ersten Tag mit Mitgliedern verglichen.
+6. **Teil 2:** ein Korb je Gruppe, gebildet wie ALLE.
